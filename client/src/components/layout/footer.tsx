@@ -1,5 +1,5 @@
 import { Link } from "wouter"
-import { Twitter, Linkedin, Mail, Phone, MapPin, ArrowUpRight, Sparkles } from "lucide-react"
+import { Twitter, Linkedin, Mail, Phone, MapPin, ArrowUpRight, Globe } from "lucide-react"
 
 export default function Footer() {
   const serviceLinks = [
@@ -14,6 +14,45 @@ export default function Footer() {
     { name: "24-Hour Demo", href: "/demo-delivery" },
     { name: "Careers", href: "/careers" },
     { name: "Get Quote", href: "/quotation" },
+  ]
+
+  const addresses = [
+    {
+      id: "US",
+      country: "United States",
+      flag: "🇺🇸",
+      address: "5 Penn Plaza, 14th Floor, New York, NY 10001, US"
+    },
+    {
+      id: "UK",
+      country: "United Kingdom",
+      flag: "🇬🇧",
+      address: "12 Steward Street, The Steward Building, London, E1 6FQ, Great Britain"
+    },
+    {
+      id: "DE",
+      country: "Germany",
+      flag: "🇩🇪",
+      address: "Banking Circle S.A. - German Branch, Maximilianstraße 54, 80538 München"
+    },
+    {
+      id: "AU",
+      country: "Australia",
+      flag: "🇦🇺",
+      address: "Level 11/10 Carrington St, Sydney NSW 2000, Australia"
+    },
+    {
+      id: "CA",
+      country: "Canada",
+      flag: "🇨🇦",
+      address: "736 Meridian Road N.E, Calgary, Alberta, CA"
+    },
+    {
+      id: "IN",
+      country: "India",
+      flag: "🇮🇳",
+      address: "Cehpoint, Labpur, Sandipan Patsala Para, Birbhum, Bolpur, West Bengal - 731303, India"
+    }
   ]
 
   return (
@@ -146,7 +185,7 @@ export default function Footer() {
               <div className="w-12 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* Email Card */}
               <div className="group relative p-4 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-lg hover:shadow-primary/10">
                 <div className="flex items-start space-x-4">
@@ -184,33 +223,46 @@ export default function Footer() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
 
-              {/* Address Card */}
-              <div className="group relative p-4 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-lg hover:shadow-primary/10">
+        {/* Global Addresses Section */}
+        <div className="mt-16 space-y-8">
+          <div className="space-y-2 text-center">
+            <div className="flex items-center justify-center space-x-3">
+              <Globe className="w-6 h-6 text-primary animate-pulse" />
+              <h4 className="font-semibold text-2xl text-foreground">Our Global Presence</h4>
+            </div>
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full mx-auto" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {addresses.map((location) => (
+              <div
+                key={location.id}
+                className="group relative p-5 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
+                data-testid={`footer-address-${location.id}`}
+              >
                 <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary/30 to-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <MapPin className="w-5 h-5 text-primary" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-primary/30 to-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <MapPin className="w-6 h-6 text-primary" />
                   </div>
-                  <div className="min-w-0 flex-1 space-y-1">
-                    <p className="text-xs font-semibold text-primary/80 uppercase tracking-wider">Address</p>
-                    <address
-                      className="not-italic text-sm text-foreground leading-relaxed"
-                      data-testid="footer-address"
-                    >
-                      Cehpoint, Labpur
-                      <br />
-                      Sandipan Patsala Para
-                      <br />
-                      Birbhum, Bolpur
-                      <br />
-                      West Bengal - 731303
-                      <br />
-                      India
+                  <div className="min-w-0 flex-1 space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xl">{location.flag}</span>
+                      <p className="text-sm font-bold text-primary uppercase tracking-wider">
+                        {location.country}
+                      </p>
+                    </div>
+                    <address className="not-italic text-sm text-foreground/80 leading-relaxed">
+                      {location.address}
                     </address>
                   </div>
                 </div>
+                <div className="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl pointer-events-none" />
               </div>
-            </div>
+            ))}
           </div>
         </div>
 
