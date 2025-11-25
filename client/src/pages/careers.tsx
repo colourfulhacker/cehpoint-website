@@ -275,9 +275,9 @@ export default function Careers() {
                     </div>
                     <div className="mt-6 pt-6 border-t">
                       <Button asChild className="w-full md:w-auto">
-                        <a href="mailto:hr@cehpoint.co.in?subject=Application for {job.title}&body=Dear Hiring Team,%0A%0AI am interested in applying for the {job.title} position. Please find my resume attached.%0A%0AThank you for your consideration.%0A%0ABest regards">
+                        <a href="http://interview-ai.cehpoint.co.in">
                           <Mail className="w-4 h-4 mr-2" />
-                          Apply Now - Email HR
+                          Apply Now
                         </a>
                       </Button>
                     </div>
