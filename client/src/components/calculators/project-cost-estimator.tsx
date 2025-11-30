@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Users, Clock, Shield, Briefcase, GraduationCap, Calculator } from "lucide-react";
+import ProposalPopup from "@/components/quotation/proposal-popup";
 
 const RATES = {
     USD: { intern: 500, contractual: 2000, fulltime: 4000, secure: 6000, symbol: "$" },
@@ -45,6 +46,7 @@ export default function ProjectCostEstimator() {
 
     return (
         <section className="py-24 relative overflow-hidden" data-testid="cost-estimator">
+            <ProposalPopup />
             <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
