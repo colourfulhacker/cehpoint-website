@@ -162,7 +162,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
     };
 
     return (
-        <div className="w-full max-w-7xl mx-auto px-4 py-12 relative">
+        <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 relative">
             {/* Background Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-96 bg-primary/20 blur-[120px] rounded-full -z-10 pointer-events-none" />
 
@@ -176,7 +176,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                     <CheckCircle className="w-5 h-5" />
                     <span>Perfect Match Found</span>
                 </div>
-                <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight">
+                <h1 className="text-4xl md:text-7xl font-display font-bold mb-6 tracking-tight">
                     Investment <span className="text-gradient">Opportunity</span>
                 </h1>
                 <p className="text-xl text-foreground/60 max-w-2xl mx-auto">
@@ -216,10 +216,10 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                     >
                         {/* Overview Tab */}
                         <TabsContent value="overview" className="space-y-8 mt-0">
-                            <div className={`p-8 sm:p-12 rounded-3xl bg-gradient-to-br ${idea.color} text-white shadow-2xl relative overflow-hidden`}>
+                            <div className={`p-6 md:p-12 rounded-3xl bg-gradient-to-br ${idea.color} text-white shadow-2xl relative overflow-hidden`}>
                                 <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
                                 <div className="relative z-10">
-                                    <h2 className="text-3xl sm:text-5xl font-display font-bold mb-6">{idea.title}</h2>
+                                    <h2 className="text-3xl sm:text-5xl font-display font-bold mb-4 md:mb-6">{idea.title}</h2>
                                     <p className="text-lg sm:text-xl opacity-90 mb-10 max-w-3xl leading-relaxed">{idea.elevatorPitch}</p>
 
                                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">

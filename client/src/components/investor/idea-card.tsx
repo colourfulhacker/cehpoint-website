@@ -66,7 +66,7 @@ export default function IdeaCard({ idea, onSwipe, index }: IdeaCardProps) {
             onDragEnd={handleDragEnd}
             animate={controls}
             whileTap={{ cursor: "grabbing" }}
-            className="w-full max-w-md mx-auto h-[600px] perspective-1000"
+            className="w-full max-w-md mx-auto h-[500px] md:h-[600px] perspective-1000"
         >
             <Card className={`relative h-full overflow-hidden border-0 shadow-2xl rounded-[2.5rem] bg-gradient-to-br ${idea.color} text-white`}>
                 {/* Noise Texture Overlay */}
@@ -96,7 +96,7 @@ export default function IdeaCard({ idea, onSwipe, index }: IdeaCardProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
 
                 {/* Card Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 space-y-6 z-10">
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 space-y-4 md:space-y-6 z-10">
                     <div>
                         <div className="flex items-center gap-2 mb-4">
                             <Badge variant="secondary" className="bg-white/20 hover:bg-white/30 text-white border-white/10 backdrop-blur-md px-3 py-1 text-xs font-bold uppercase tracking-wider shadow-lg">
@@ -106,7 +106,7 @@ export default function IdeaCard({ idea, onSwipe, index }: IdeaCardProps) {
                                 <Sparkles className="w-3 h-3 text-yellow-300" />
                             </div>
                         </div>
-                        <h2 className="text-4xl font-display font-bold leading-tight mb-3 drop-shadow-xl text-white">
+                        <h2 className="text-3xl md:text-4xl font-display font-bold leading-tight mb-3 drop-shadow-xl text-white">
                             {idea.title}
                         </h2>
                     </div>

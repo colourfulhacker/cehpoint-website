@@ -270,7 +270,7 @@ Generate the JSON array NOW:`;
 
     if (apiError && ideas.length === 0) {
         return (
-            <div className="w-full max-w-md mx-auto h-[600px] flex flex-col items-center justify-center p-8 text-center">
+            <div className="w-full max-w-md mx-auto h-[500px] md:h-[600px] flex flex-col items-center justify-center p-4 md:p-8 text-center">
                 <div className="glass-intense rounded-3xl p-8 border-2 border-red-500/20">
                     <X className="w-16 h-16 text-red-500 mx-auto mb-4" />
                     <h3 className="text-2xl font-bold mb-4">We're Not Accepting New Investors</h3>
@@ -289,7 +289,7 @@ Generate the JSON array NOW:`;
     return (
         <div className="relative w-full max-w-md mx-auto flex flex-col items-center justify-center">
             {/* Card Stack Container */}
-            <div className="relative w-full h-[600px] mb-12 perspective-1000">
+            <div className="relative w-full h-[500px] md:h-[600px] mb-8 md:mb-12 perspective-1000">
                 {/* Background Stack Effect */}
                 {ideas.length > 1 && (
                     <div className="absolute top-4 left-4 right-4 bottom-0 bg-secondary/30 rounded-[2.5rem] transform scale-95 translate-y-4 blur-sm -z-10 border border-white/5"></div>
@@ -320,7 +320,7 @@ Generate the JSON array NOW:`;
 
             {/* Decision Slider */}
             <div className="w-full max-w-md mb-8 px-4">
-                <div className="glass-intense rounded-3xl p-6 border border-white/10 shadow-xl">
+                <div className="glass-intense rounded-3xl p-4 md:p-6 border border-white/10 shadow-xl">
                     <p className="text-xs text-center text-foreground/60 mb-4 font-bold uppercase tracking-widest">Slide to Decide</p>
                     <div className="flex items-center gap-4">
                         <div className="flex flex-col items-center flex-shrink-0 transition-opacity duration-300" style={{ opacity: sliderValue < 40 ? 1 : 0.5 }}>
@@ -380,7 +380,7 @@ Generate the JSON array NOW:`;
                 <Button
                     size="icon"
                     variant="outline"
-                    className="w-16 h-16 rounded-full border-red-500/20 bg-red-500/5 text-red-500 hover:bg-red-500 hover:text-white hover:border-red-500 shadow-lg hover:scale-110 transition-all duration-300 group"
+                    className="w-12 h-12 md:w-16 md:h-16 rounded-full border-red-500/20 bg-red-500/5 text-red-500 hover:bg-red-500 hover:text-white hover:border-red-500 shadow-lg hover:scale-110 transition-all duration-300 group"
                     onClick={() => handleSwipe("left")}
                     disabled={ideas.length === 0}
                 >
@@ -399,7 +399,7 @@ Generate the JSON array NOW:`;
                 <Button
                     size="icon"
                     variant="outline"
-                    className="w-16 h-16 rounded-full border-green-500/20 bg-green-500/5 text-green-500 hover:bg-green-500 hover:text-white hover:border-green-500 shadow-lg hover:scale-110 transition-all duration-300 group"
+                    className="w-12 h-12 md:w-16 md:h-16 rounded-full border-green-500/20 bg-green-500/5 text-green-500 hover:bg-green-500 hover:text-white hover:border-green-500 shadow-lg hover:scale-110 transition-all duration-300 group"
                     onClick={() => handleSwipe("right")}
                     disabled={ideas.length === 0}
                 >

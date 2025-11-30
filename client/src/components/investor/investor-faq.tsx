@@ -37,7 +37,7 @@ export default function InvestorFAQ() {
     ];
 
     return (
-        <div className="w-full max-w-4xl mx-auto px-4 py-16">
+        <div className="w-full max-w-4xl mx-auto px-4 py-8 md:py-16">
             <div className="text-center mb-12">
                 <motion.div
                     initial={{ scale: 0 }}
@@ -46,7 +46,7 @@ export default function InvestorFAQ() {
                 >
                     <HelpCircle className="w-8 h-8" />
                 </motion.div>
-                <h2 className="text-4xl font-display font-bold mb-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Frequently Asked Questions</h2>
                 <p className="text-muted-foreground text-lg">Everything you need to know about investing with Cehpoint.</p>
             </div>
 
@@ -54,7 +54,7 @@ export default function InvestorFAQ() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="glass p-8 rounded-3xl mb-12"
+                className="glass p-6 md:p-8 rounded-3xl mb-12"
             >
                 <Accordion type="single" collapsible className="w-full">
                     {faqs.map((faq, index) => (
