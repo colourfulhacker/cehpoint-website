@@ -1,14 +1,15 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ArrowRight, Target, Lightbulb, Rocket, DollarSign, Users, TrendingUp, Shield, Code, Database, Zap, MessageCircle, Heart, ChevronRight, Send, Loader2, User } from "lucide-react";
+import { CheckCircle, ArrowRight, Target, Lightbulb, Rocket, DollarSign, Users, TrendingUp, Shield, Code, Database, Zap, MessageCircle, Heart, ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
-// Initialize Gemini API
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || "");
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 interface Idea {
     id: string;
@@ -58,10 +59,6 @@ interface ChatMessage {
 
 export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
     const [activeTab, setActiveTab] = useState("overview");
-    const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-    const [inputMessage, setInputMessage] = useState("");
-    const [isTyping, setIsTyping] = useState(false);
-    const chatEndRef = useRef<HTMLDivElement>(null);
 
     // Professional default details if not provided by Gemini
     const problemStatement = idea.problemStatement || `In the ${idea.industry} sector, businesses struggle with inefficient manual processes that waste valuable time and resources. Current solutions are either too expensive, too complex, or don't address the core pain points effectively.`;
@@ -82,84 +79,10 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
         { id: "market", label: "Market" },
         { id: "financial", label: "Financial" },
         { id: "execution", label: "Execution" },
-        { id: "qa", label: "Ask AI" },
+        { id: "faq", label: "FAQ" },
     ];
 
-    // Initialize chat with a welcome message
-    useEffect(() => {
-        if (activeTab === "qa" && chatHistory.length === 0) {
-            setChatHistory([
-                {
-                    role: 'ai',
-                    content: `Hello! I'm your AI investment consultant for ${idea.title}. I have access to the full business plan, financials, and technical details. What would you like to know?`
-                }
-            ]);
-        }
-    }, [activeTab, idea.title]);
 
-    // Scroll to bottom of chat
-    useEffect(() => {
-        if (activeTab === "qa") {
-            chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [chatHistory, activeTab]);
-
-    const handleAskQuestion = async () => {
-        if (!inputMessage.trim() || isTyping) return;
-
-        const userMsg = inputMessage;
-        setInputMessage("");
-        setChatHistory(prev => [...prev, { role: 'user', content: userMsg }]);
-        setIsTyping(true);
-
-        try {
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-            const prompt = `
-            You are an expert investment consultant analyzing a specific business opportunity.
-            
-            BUSINESS CONTEXT:
-            Title: ${idea.title}
-            Industry: ${idea.industry}
-            Pitch: ${idea.elevatorPitch}
-            Problem: ${problemStatement}
-            Solution: ${solution}
-            Tech Stack: ${techStack.join(', ')}
-            Target Market: ${targetMarket}
-            Revenue Model: ${revenueModel}
-            Budget: ${idea.budget}
-            Profit Potential: ${idea.profitPotential}
-
-            USER QUESTION: "${userMsg}"
-
-            INSTRUCTIONS:
-            - Answer as a professional consultant.
-            - Be specific to the business context provided.
-            - Keep the answer concise (max 3-4 sentences).
-            - Focus on investment value, feasibility, and growth potential.
-            - If the question is off-topic, politely steer back to the business idea.
-            `;
-
-            const result = await model.generateContent(prompt);
-            const response = await result.response;
-            const aiAnswer = response.text();
-
-            setChatHistory(prev => [...prev, { role: 'ai', content: aiAnswer }]);
-        } catch (error) {
-            console.error("Failed to get AI answer:", error);
-            if (error instanceof Error) {
-                console.error("Error details:", error.message, error.stack);
-            }
-            setChatHistory(prev => [...prev, { role: 'ai', content: "I apologize, but I'm having trouble connecting to the analysis engine right now. Please check your internet connection or try again in a moment." }]);
-        } finally {
-            setIsTyping(false);
-        }
-    };
-
-    const handleKeyPress = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            handleAskQuestion();
-        }
-    };
 
     return (
         <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 relative">
@@ -509,76 +432,26 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                             </div>
                         </TabsContent>
 
-                        {/* Q&A Tab - Interactive */}
-                        <TabsContent value="qa" className="space-y-8 mt-0">
-                            <div className="glass p-8 rounded-3xl min-h-[500px] flex flex-col">
+                        {/* FAQ Tab */}
+                        <TabsContent value="faq" className="space-y-8 mt-0">
+                            <div className="glass p-6 md:p-8 rounded-3xl min-h-[500px] flex flex-col">
                                 <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
                                     <MessageCircle className="w-6 h-6 text-primary" />
-                                    Ask AI Consultant
+                                    Frequently Asked Questions
                                 </h3>
 
-                                {/* Chat History */}
-                                <div className="flex-1 space-y-4 mb-6 overflow-y-auto max-h-[400px] pr-2 scrollbar-thin scrollbar-thumb-primary/20">
-                                    {/* Pre-generated FAQs as initial chat context */}
+                                <Accordion type="single" collapsible className="w-full">
                                     {idea.faq && idea.faq.map((item, i) => (
-                                        <div key={`faq-${i}`} className="space-y-4">
-                                            <div className="flex justify-end">
-                                                <div className="bg-primary/20 text-foreground p-4 rounded-2xl rounded-tr-none max-w-[80%]">
-                                                    <p className="font-medium">{item.question}</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex justify-start">
-                                                <div className="bg-secondary/50 text-foreground p-4 rounded-2xl rounded-tl-none max-w-[80%] border border-white/5">
-                                                    <p className="leading-relaxed">{item.answer}</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <AccordionItem key={i} value={`item-${i}`} className="border-b-white/10">
+                                            <AccordionTrigger className="text-lg font-medium text-left hover:text-primary transition-colors">
+                                                {item.question}
+                                            </AccordionTrigger>
+                                            <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                                {item.answer}
+                                            </AccordionContent>
+                                        </AccordionItem>
                                     ))}
-
-                                    {/* Dynamic Chat */}
-                                    {chatHistory.map((msg, i) => (
-                                        <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                            <div className={`
-                                                p-4 rounded-2xl max-w-[80%] 
-                                                ${msg.role === 'user'
-                                                    ? 'bg-primary/20 text-foreground rounded-tr-none'
-                                                    : 'bg-secondary/50 text-foreground rounded-tl-none border border-white/5'}
-                                            `}>
-                                                <p className="leading-relaxed">{msg.content}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-
-                                    {isTyping && (
-                                        <div className="flex justify-start">
-                                            <div className="bg-secondary/50 p-4 rounded-2xl rounded-tl-none border border-white/5 flex items-center gap-2">
-                                                <Loader2 className="w-4 h-4 animate-spin text-primary" />
-                                                <span className="text-sm opacity-60">AI is analyzing...</span>
-                                            </div>
-                                        </div>
-                                    )}
-                                    <div ref={chatEndRef} />
-                                </div>
-
-                                {/* Input Area */}
-                                <div className="relative">
-                                    <Input
-                                        value={inputMessage}
-                                        onChange={(e) => setInputMessage(e.target.value)}
-                                        onKeyDown={handleKeyPress}
-                                        placeholder="Ask specific questions about this business idea..."
-                                        className="pr-12 py-6 bg-secondary/80 text-foreground border-white/10 rounded-xl focus-visible:ring-primary placeholder:text-muted-foreground"
-                                        disabled={isTyping}
-                                    />
-                                    <Button
-                                        onClick={handleAskQuestion}
-                                        disabled={!inputMessage.trim() || isTyping}
-                                        size="icon"
-                                        className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 rounded-lg bg-primary hover:bg-primary/90"
-                                    >
-                                        <Send className="w-4 h-4" />
-                                    </Button>
-                                </div>
+                                </Accordion>
                             </div>
                         </TabsContent>
                     </motion.div>
