@@ -93,7 +93,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-16"
+                className="text-center mb-8 md:mb-16"
             >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 border-primary/30 text-primary font-medium">
                     <CheckCircle className="w-5 h-5" />
@@ -108,13 +108,13 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
             </motion.div>
 
             <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <div className="flex justify-center mb-12 overflow-x-auto pb-4 scrollbar-hide">
+                <div className="flex justify-center mb-8 md:mb-12 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4">
                     <TabsList className="bg-transparent border-none p-1 gap-2 h-auto">
                         {tabs.map((tab) => (
                             <TabsTrigger
                                 key={tab.id}
                                 value={tab.id}
-                                className="relative px-6 py-3 rounded-full text-sm font-medium transition-all data-[state=active]:text-white data-[state=active]:shadow-lg hover:text-primary"
+                                className="relative px-4 md:px-6 py-3 rounded-full text-xs md:text-sm font-medium transition-all data-[state=active]:text-white data-[state=active]:shadow-lg hover:text-primary whitespace-nowrap"
                             >
                                 {activeTab === tab.id && (
                                     <motion.div
@@ -462,7 +462,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.8 }}
-                className="text-center mt-20"
+                className="text-center mt-12 md:mt-20"
             >
                 <Button
                     onClick={onProceed}

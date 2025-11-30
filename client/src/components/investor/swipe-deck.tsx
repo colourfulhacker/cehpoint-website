@@ -287,7 +287,7 @@ Generate the JSON array NOW:`;
     }
 
     return (
-        <div className="relative w-full max-w-md mx-auto flex flex-col items-center justify-center">
+        <div className="relative w-full max-w-md mx-auto flex flex-col items-center justify-center pb-8">
             {/* Card Stack Container */}
             <div className="relative w-full h-[500px] md:h-[600px] mb-8 md:mb-12 perspective-1000">
                 {/* Background Stack Effect */}

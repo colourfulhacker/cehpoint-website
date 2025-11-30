@@ -32,13 +32,13 @@ export default function InvestorConnect() {
     };
 
     return (
-        <div className="min-h-screen pt-20 bg-background overflow-hidden relative">
+        <div className="min-h-screen pt-20 bg-background overflow-x-hidden relative">
             {/* Dynamic Background */}
             <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 container mx-auto px-4 py-4 md:py-8">
+            <div className="relative z-10 container mx-auto px-4 py-4 md:py-8 pb-16">
                 <AnimatePresence mode="wait">
                     {view === "swipe" && (
                         <motion.div
@@ -49,7 +49,7 @@ export default function InvestorConnect() {
                             transition={{ duration: 0.5 }}
                             className="flex flex-col items-center"
                         >
-                            <div className="text-center mb-8">
+                            <div className="text-center mb-4 md:mb-8">
                                 <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-4 border-primary/20">
                                     <span className="text-sm font-medium text-primary flex items-center gap-2">
                                         <Sparkles className="w-4 h-4" /> Investor Connect
