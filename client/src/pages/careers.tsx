@@ -19,6 +19,8 @@ import {
   ExternalLink,
 } from "lucide-react";
 
+import AIInterviewPopup from "@/components/careers/ai-interview-popup";
+
 export default function Careers() {
   const fullTimeJobs = [
     {
@@ -87,6 +89,7 @@ export default function Careers() {
         "Expertise in AWS/Azure cloud security",
         "Experience with containerization and orchestration security",
         "Knowledge of infrastructure as code (Terraform, CloudFormation)",
+
         "Familiarity with security scanning tools and SAST/DAST",
       ],
     },
@@ -168,6 +171,7 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen pt-16">
+      <AIInterviewPopup />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
