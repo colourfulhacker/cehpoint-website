@@ -1,0 +1,87 @@
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
+import { motion } from "framer-motion";
+import { MessageCircle, HelpCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export default function InvestorFAQ() {
+    const faqs = [
+        {
+            question: "How does the 100% Equity model work?",
+            answer: "Unlike traditional VC where you give up 20-30% equity, with Cehpoint you own 100% of the business. You pay a one-time development fee, and we build, launch, and transfer the entire IP, source code, and assets to you. You are the sole owner."
+        },
+        {
+            question: "What is the 'Zero Tech Risk' guarantee?",
+            answer: "We handle the entire technical execution. From architecture to deployment, our expert teams build the product. We also provide 6 months of post-launch support and maintenance. If we fail to deliver the agreed scope, we offer a full refund."
+        },
+        {
+            question: "What happens after I claim a deal?",
+            answer: "Once you click 'Claim This Deal', you'll be connected with our investment team via WhatsApp. We'll schedule a call to discuss the business plan, sign a legal agreement, and set up the payment terms. Development starts immediately after."
+        },
+        {
+            question: "Can I customize the idea or features?",
+            answer: "Yes! The listed features are a baseline. During the planning phase, we can tailor the features, design, and roadmap to fit your specific vision and market needs."
+        },
+        {
+            question: "Do you help with marketing and growth?",
+            answer: "Our primary focus is technical execution. However, we provide a 'Go-to-Market' strategy guide and can connect you with our partner marketing agencies. We ensure the product is SEO-optimized and growth-ready."
+        },
+        {
+            question: "Is the budget fixed?",
+            answer: "The listed budget is an estimate for the MVP (Minimum Viable Product). The final cost may vary slightly based on your specific customizations and additional feature requests. We provide a fixed-price quote before starting."
+        }
+    ];
+
+    return (
+        <div className="w-full max-w-4xl mx-auto px-4 py-16">
+            <div className="text-center mb-12">
+                <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-6"
+                >
+                    <HelpCircle className="w-8 h-8" />
+                </motion.div>
+                <h2 className="text-4xl font-display font-bold mb-4">Frequently Asked Questions</h2>
+                <p className="text-muted-foreground text-lg">Everything you need to know about investing with Cehpoint.</p>
+            </div>
+
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="glass p-8 rounded-3xl mb-12"
+            >
+                <Accordion type="single" collapsible className="w-full">
+                    {faqs.map((faq, index) => (
+                        <AccordionItem key={index} value={`item-${index}`} className="border-b-white/10">
+                            <AccordionTrigger className="text-lg font-medium text-left hover:text-primary transition-colors">
+                                {faq.question}
+                            </AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                {faq.answer}
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+            </motion.div>
+
+            <div className="text-center">
+                <p className="text-muted-foreground mb-6">Still have questions?</p>
+                <a
+                    href="https://wa.me/919091156095?text=Hi%2C%20I%20have%20some%20questions%20about%20investment%20opportunities."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <Button size="lg" className="rounded-full px-8 gap-2">
+                        <MessageCircle className="w-5 h-5" /> Chat with us on WhatsApp
+                    </Button>
+                </a>
+            </div>
+        </div>
+    );
+}

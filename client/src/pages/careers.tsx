@@ -184,7 +184,7 @@ export default function Careers() {
             <h1 className="text-4xl md:text-6xl font-bold text-gradient mb-6">
               Build Your Career in Cybersecurity
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-8">
               Join our innovative team and work on cutting-edge security
               solutions. We offer competitive compensation, flexible work
               arrangements, and exceptional growth opportunities.
@@ -206,7 +206,7 @@ export default function Careers() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Full-Time Opportunities
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
               Permanent positions with competitive salary of ₹60,000/month and
               comprehensive benefits
             </p>
@@ -235,7 +235,7 @@ export default function Careers() {
                           {job.type}
                         </Badge>
                         <p className="font-semibold text-lg">{job.salary}</p>
-                        <p className="text-sm text-muted-foreground flex items-center">
+                        <p className="text-sm text-foreground/70 flex items-center">
                           <MapPin className="w-4 h-4 mr-1" />
                           {job.location}
                         </p>
@@ -252,7 +252,7 @@ export default function Careers() {
                           {job.responsibilities.map((resp, idx) => (
                             <li key={idx} className="flex items-start">
                               <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                              <span className="text-muted-foreground">
+                              <span className="text-foreground/70">
                                 {resp}
                               </span>
                             </li>
@@ -265,7 +265,7 @@ export default function Careers() {
                           {job.requirements.map((req, idx) => (
                             <li key={idx} className="flex items-start">
                               <div className="w-2 h-2 bg-secondary rounded-full mt-2 mr-3 flex-shrink-0" />
-                              <span className="text-muted-foreground">
+                              <span className="text-foreground/70">
                                 {req}
                               </span>
                             </li>
@@ -301,7 +301,7 @@ export default function Careers() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Marketing & Business Development Opportunities
             </h2>
-           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-8">
               Join our growth team and help expand Cehpoint's reach across multiple sectors.
             </p>
             <Button size="lg" asChild>
@@ -330,7 +330,7 @@ export default function Careers() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Internship Opportunities
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
               Performance-based internships with stipends up to ₹15,000/month
               and PPO opportunities worth ₹6 LPA
             </p>
@@ -372,7 +372,7 @@ export default function Careers() {
                           {internship.responsibilities.map((resp, idx) => (
                             <li key={idx} className="flex items-start">
                               <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0" />
-                              <span className="text-sm text-muted-foreground">
+                              <span className="text-sm text-foreground/70">
                                 {resp}
                               </span>
                             </li>
@@ -387,7 +387,7 @@ export default function Careers() {
                           {internship.requirements.map((req, idx) => (
                             <li key={idx} className="flex items-start">
                               <div className="w-1.5 h-1.5 bg-secondary rounded-full mt-2 mr-2 flex-shrink-0" />
-                              <span className="text-sm text-muted-foreground">
+                              <span className="text-sm text-foreground/70">
                                 {req}
                               </span>
                             </li>
@@ -428,7 +428,7 @@ export default function Careers() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Our Policies & Benefits
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
               Transparent policies that ensure fairness and growth for all team
               members
             </p>
@@ -451,7 +451,7 @@ export default function Careers() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">
+                    <p className="text-foreground/70">
                       {policy.description}
                     </p>
                   </CardContent>

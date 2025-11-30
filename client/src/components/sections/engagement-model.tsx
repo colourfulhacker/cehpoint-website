@@ -7,7 +7,7 @@ export default function EngagementModel() {
       description: "Experience the working solution first, pay only when completely satisfied with the demo results."
     },
     {
-      title: "Transparent Scope", 
+      title: "Transparent Scope",
       description: "Fixed deliverables, clear timelines, and no hidden costs or scope creep."
     },
     {
@@ -25,10 +25,10 @@ export default function EngagementModel() {
               <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="engagement-model-title">
                 Our <span className="text-gradient">Engagement Model</span>
               </h2>
-              <p className="text-xl text-muted-foreground mb-8" data-testid="engagement-model-subtitle">
+              <p className="text-xl text-foreground/80 mb-8" data-testid="engagement-model-subtitle">
                 Pay after demo, transparent scope, and rapid MVP delivery that sets us apart from traditional development agencies.
               </p>
-              
+
               <div className="space-y-6">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start space-x-4" data-testid={`benefit-${index}`}>
@@ -39,7 +39,7 @@ export default function EngagementModel() {
                       <h3 className="font-bold text-lg mb-1" data-testid={`benefit-title-${index}`}>
                         {benefit.title}
                       </h3>
-                      <p className="text-muted-foreground" data-testid={`benefit-description-${index}`}>
+                      <p className="text-foreground/70" data-testid={`benefit-description-${index}`}>
                         {benefit.description}
                       </p>
                     </div>
@@ -47,7 +47,7 @@ export default function EngagementModel() {
                 ))}
               </div>
             </div>
-            
+
             <div className="relative">
               <div className="aspect-square gradient-primary rounded-3xl p-8 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>

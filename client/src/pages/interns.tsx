@@ -48,9 +48,9 @@ export default function Interns() {
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
               Launch your career in software development with hands-on experience in e-commerce, edutech, and fintech projects.
             </p>
-            <a 
-              href="https://internlink.cehpoint.co.in/" 
-              target="_blank" 
+            <a
+              href="https://internlink.cehpoint.co.in/"
+              target="_blank"
               rel="noopener noreferrer"
               data-testid="cta-apply-now"
             >
@@ -74,7 +74,7 @@ export default function Interns() {
               Our internship program is designed to accelerate your growth as a software developer
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => {
               const IconComponent = benefit.icon;
@@ -107,11 +107,11 @@ export default function Interns() {
               Gain hands-on experience with industry-leading technologies and frameworks
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {techStack.map((tech, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="glass rounded-xl p-4 text-center hover-lift"
                 data-testid={`tech-${index}`}
               >
@@ -133,7 +133,7 @@ export default function Interns() {
               <p className="text-xl text-muted-foreground mb-8">
                 A comprehensive internship experience designed to prepare you for a successful career in software development.
               </p>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
@@ -144,7 +144,7 @@ export default function Interns() {
                     <p className="text-muted-foreground">3-6 months with flexible scheduling options</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-bold text-sm">2</span>
@@ -154,7 +154,7 @@ export default function Interns() {
                     <p className="text-muted-foreground">Structured learning with real project assignments</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-bold text-sm">3</span>
@@ -164,7 +164,7 @@ export default function Interns() {
                     <p className="text-muted-foreground">One-on-one guidance from senior developers</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-bold text-sm">4</span>
@@ -176,7 +176,7 @@ export default function Interns() {
                 </div>
               </div>
             </div>
-            
+
             <div className="glass rounded-3xl p-8">
               <h3 className="font-bold text-2xl mb-6 text-center" data-testid="requirements-title">
                 Requirements
@@ -203,7 +203,7 @@ export default function Interns() {
                   <span className="text-primary font-semibold">Growth Mindset</span>
                 </div>
               </div>
-              
+
               <div className="mt-8 p-4 bg-primary/10 rounded-xl">
                 <p className="text-center text-sm text-muted-foreground">
                   <strong>Note:</strong> Selected interns may receive offers for full-time positions based on performance.
@@ -225,7 +225,7 @@ export default function Interns() {
               Simple and straightforward application process to join our internship program
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
@@ -234,7 +234,7 @@ export default function Interns() {
               <h3 className="font-bold text-lg mb-2">Apply Online</h3>
               <p className="text-muted-foreground text-sm">Submit your application through our portal</p>
             </div>
-            
+
             <div className="text-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold text-xl">2</span>
@@ -242,7 +242,7 @@ export default function Interns() {
               <h3 className="font-bold text-lg mb-2">Initial Screening</h3>
               <p className="text-muted-foreground text-sm">Review of qualifications and background</p>
             </div>
-            
+
             <div className="text-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold text-xl">3</span>
@@ -250,13 +250,57 @@ export default function Interns() {
               <h3 className="font-bold text-lg mb-2">Technical Assessment</h3>
               <p className="text-muted-foreground text-sm">Coding challenge and technical interview</p>
             </div>
-            
+
             <div className="text-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold text-xl">4</span>
               </div>
               <h3 className="font-bold text-lg mb-2">Final Interview</h3>
               <p className="text-muted-foreground text-sm">Meet the team and discuss goals</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Life at Cehpoint */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-display font-bold text-4xl md:text-6xl mb-6">
+              Life at <span className="text-gradient">Cehpoint</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              More than just code - it's about community, growth, and innovation
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="glass rounded-3xl p-8 hover-lift">
+              <div className="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl mb-6 flex items-center justify-center">
+                <Users className="w-16 h-16 text-primary/50" />
+              </div>
+              <h3 className="font-bold text-xl mb-2">Collaborative Culture</h3>
+              <p className="text-muted-foreground">
+                Work in an open, inclusive environment where every idea is valued and teamwork is paramount.
+              </p>
+            </div>
+            <div className="glass rounded-3xl p-8 hover-lift">
+              <div className="h-48 bg-gradient-to-br from-accent/20 to-secondary/20 rounded-2xl mb-6 flex items-center justify-center">
+                <Rocket className="w-16 h-16 text-accent/50" />
+              </div>
+              <h3 className="font-bold text-xl mb-2">Innovation First</h3>
+              <p className="text-muted-foreground">
+                We encourage experimentation and creative problem-solving to build the next generation of tech.
+              </p>
+            </div>
+            <div className="glass rounded-3xl p-8 hover-lift">
+              <div className="h-48 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl mb-6 flex items-center justify-center">
+                <Award className="w-16 h-16 text-primary/50" />
+              </div>
+              <h3 className="font-bold text-xl mb-2">Continuous Learning</h3>
+              <p className="text-muted-foreground">
+                Regular workshops, hackathons, and knowledge sharing sessions to keep your skills sharp.
+              </p>
             </div>
           </div>
         </div>
@@ -272,9 +316,9 @@ export default function Interns() {
             <p className="text-xl text-muted-foreground mb-8" data-testid="cta-description">
               Join our internship program and gain valuable experience working on real-world projects with cutting-edge technologies.
             </p>
-            <a 
-              href="https://internlink.cehpoint.co.in/" 
-              target="_blank" 
+            <a
+              href="https://internlink.cehpoint.co.in/"
+              target="_blank"
               rel="noopener noreferrer"
               data-testid="cta-final"
             >

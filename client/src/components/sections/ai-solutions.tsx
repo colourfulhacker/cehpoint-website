@@ -1,7 +1,7 @@
 import { Brain, Bot, TrendingUp, Eye, Cpu, Shield, Target, Code } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Link } from "wouter"
-import { AISolutionsModal } from "../ui/ai-solutions-modal"
+
 
 
 export default function AISolutions() {
@@ -14,6 +14,7 @@ export default function AISolutions() {
       features: ["Custom AI models", "Content generation", "AI chatbots", "Smart recommendations"],
       benefits: "40% increase in user engagement",
       complexity: "Advanced",
+      technologies: "OpenAI GPT-4, Google Gemini, Claude",
     },
     {
       icon: Bot,
@@ -23,6 +24,7 @@ export default function AISolutions() {
       features: ["Process automation", "Smart workflows", "Decision engines", "Task optimization"],
       benefits: "60% reduction in manual tasks",
       complexity: "Intermediate",
+      technologies: "LangChain, AutoGPT, n8n",
     },
     {
       icon: TrendingUp,
@@ -31,6 +33,7 @@ export default function AISolutions() {
       features: ["ML pipelines", "Forecasting models", "Trend analysis", "Business intelligence"],
       benefits: "25% improvement in predictions",
       complexity: "Advanced",
+      technologies: "TensorFlow, PyTorch, Scikit-learn",
     },
     {
       icon: Eye,
@@ -40,6 +43,7 @@ export default function AISolutions() {
       features: ["Image recognition", "Video analysis", "Quality control", "Visual search"],
       benefits: "90% accuracy in detection",
       complexity: "Advanced",
+      technologies: "OpenCV, YOLO, TensorFlow Vision",
     },
     {
       icon: Cpu,
@@ -48,6 +52,7 @@ export default function AISolutions() {
       features: ["Edge deployment", "Real-time inference", "Low latency", "Instant responses"],
       benefits: "Sub-100ms response times",
       complexity: "Expert",
+      technologies: "TensorFlow Lite, ONNX Runtime, Edge TPU",
     },
     {
       icon: Shield,
@@ -57,6 +62,7 @@ export default function AISolutions() {
       features: ["Fraud detection", "Security monitoring", "Compliance automation", "Risk assessment"],
       benefits: "99.5% threat detection rate",
       complexity: "Advanced",
+      technologies: "Anomaly Detection ML, XGBoost, Isolation Forest",
     },
     {
       icon: Target,
@@ -65,6 +71,7 @@ export default function AISolutions() {
       features: ["User personalization", "Dynamic content", "Behavioral analysis", "A/B testing"],
       benefits: "35% increase in conversions",
       complexity: "Intermediate",
+      technologies: "Recommendation Systems, Collaborative Filtering",
     },
     {
       icon: Code,
@@ -73,6 +80,7 @@ export default function AISolutions() {
       features: ["Code generation", "Smart refactoring", "Bug detection", "Performance optimization"],
       benefits: "3x faster development",
       complexity: "Advanced",
+      technologies: "GitHub Copilot, OpenAI Codex, CodeLlama",
     },
   ]
 
@@ -91,13 +99,13 @@ export default function AISolutions() {
             <span className="text-gradient">Innovation</span>
           </h2>
           <p
-            className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light"
+            className="text-xl md:text-2xl text-foreground/80 max-w-4xl mx-auto leading-relaxed font-light"
             data-testid="ai-solutions-subtitle"
           >
             From generative AI to predictive analytics, we integrate cutting-edge artificial intelligence to transform
             your business processes and drive exponential growth.
           </p>
-          <div className="mt-8 flex justify-center gap-8 text-sm text-muted-foreground">
+          <div className="mt-8 flex justify-center gap-8 text-sm text-foreground/70">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
               <span>Enterprise-Grade AI</span>
@@ -147,7 +155,7 @@ export default function AISolutions() {
                 </h3>
 
                 <p
-                  className="text-muted-foreground text-sm mb-4 leading-relaxed"
+                  className="text-foreground/70 text-sm mb-4 leading-relaxed"
                   data-testid={`ai-description-${solution.title.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   {solution.description}
@@ -157,40 +165,25 @@ export default function AISolutions() {
                   {solution.features.slice(0, 3).map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center text-xs">
                       <div className="w-1.5 h-1.5 gradient-accent rounded-full mr-2 flex-shrink-0"></div>
-                      <span className="text-muted-foreground">{feature}</span>
+                      <span className="text-foreground/70">{feature}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="text-xs font-medium text-green-400 bg-green-400/10 px-2 py-1 rounded-full inline-block">
+                <div className="text-xs font-medium text-green-400 bg-green-400/10 px-2 py-1 rounded-full inline-block mb-3">
                   {solution.benefits}
+                </div>
+
+                <div className="pt-3 border-t border-white/5">
+                  <p className="text-xs text-foreground/70">
+                    <span className="font-medium text-accent">Tech:</span> {solution.technologies}
+                  </p>
                 </div>
 
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
               </div>
             )
           })}
-        </div>
-
-        <div className="text-center space-y-8">
-          <div className="glass-intense rounded-3xl p-8 max-w-4xl mx-auto">
-            <h3 className="font-display font-bold text-2xl mb-4">Experience AI-Powered Quotations</h3>
-            <p className="text-muted-foreground mb-6">
-              See our AI in action! Get intelligent project analysis, cost estimation, and technical recommendations
-              powered by advanced machine learning.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/quotation">
-                <Button
-                  className="btn-primary hover-glow px-8 py-4 rounded-2xl text-lg font-bold text-primary-foreground"
-                  data-testid="ai-solutions-cta-primary"
-                >
-                  Try AI Quotation System
-                </Button>
-              </Link>
-              <AISolutionsModal />
-            </div>
-          </div>
         </div>
       </div>
     </section>

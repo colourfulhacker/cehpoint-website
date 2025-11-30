@@ -1,7 +1,27 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+
+  const rotatingTexts = [
+    "Digital Excellence",
+    "MVP Solutions",
+    "AI Innovation",
+    "Cloud Platforms",
+    "Mobile Apps",
+    "Web Solutions",
+    "Enterprise Software",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prev) => (prev + 1) % rotatingTexts.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
@@ -47,8 +67,16 @@ export default function Hero() {
             data-testid="hero-title"
           >
             Transform Ideas Into
-            <br className="hidden sm:block" />
-            <span className="text-gradient">Digital Excellence</span>
+            <br />
+            <span
+              key={currentTextIndex}
+              className="text-gradient inline-block animate-fade-up"
+              style={{
+                animation: 'fadeUp 0.6s ease-out'
+              }}
+            >
+              {rotatingTexts[currentTextIndex]}
+            </span>
           </h1>
 
           <p

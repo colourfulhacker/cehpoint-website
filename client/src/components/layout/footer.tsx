@@ -1,5 +1,14 @@
 import { Link } from "wouter"
-import { Twitter, Linkedin, Mail, Phone, MapPin, ArrowUpRight, Globe } from "lucide-react"
+import { Twitter, Linkedin, Mail, Phone, MapPin, ArrowUpRight, Globe, Info } from "lucide-react"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
 
 export default function Footer() {
   const serviceLinks = [
@@ -71,7 +80,7 @@ export default function Footer() {
                 </div>
               </div>
 
-              <p className="text-muted-foreground text-base leading-relaxed max-w-md" data-testid="footer-description">
+              <p className="text-foreground/70 text-base leading-relaxed max-w-md" data-testid="footer-description">
                 Cehpoint is a modern IT and cybersecurity company committed to delivering secure, scalable, and
                 intelligent technology solutions. Founded by ethical hackers and seasoned IT professionals.
               </p>
@@ -119,7 +128,7 @@ export default function Footer() {
                   {link.href.startsWith("#") ? (
                     <a
                       href={link.href}
-                      className="flex items-center space-x-3 text-muted-foreground hover:text-primary transition-all duration-300 group-hover:translate-x-2"
+                      className="flex items-center space-x-3 text-foreground/70 hover:text-primary transition-all duration-300 group-hover:translate-x-2"
                       data-testid={`footer-service-${link.name.toLowerCase().replace(/\s+/g, "-")}`}
                     >
                       <div className="w-1.5 h-1.5 bg-primary/40 rounded-full group-hover:bg-primary group-hover:scale-150 transition-all duration-300" />
@@ -128,7 +137,7 @@ export default function Footer() {
                   ) : (
                     <Link
                       href={link.href}
-                      className="flex items-center space-x-3 text-muted-foreground hover:text-primary transition-all duration-300 group-hover:translate-x-2"
+                      className="flex items-center space-x-3 text-foreground/70 hover:text-primary transition-all duration-300 group-hover:translate-x-2"
                       data-testid={`footer-service-${link.name.toLowerCase().replace(/\s+/g, "-")}`}
                     >
                       <div className="w-1.5 h-1.5 bg-primary/40 rounded-full group-hover:bg-primary group-hover:scale-150 transition-all duration-300" />
@@ -155,7 +164,7 @@ export default function Footer() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-3 text-muted-foreground hover:text-primary transition-all duration-300 group-hover:translate-x-2"
+                      className="flex items-center space-x-3 text-foreground/70 hover:text-primary transition-all duration-300 group-hover:translate-x-2"
                       data-testid={`footer-company-${link.name.toLowerCase().replace(/\s+/g, "-")}`}
                     >
                       <div className="w-1.5 h-1.5 bg-primary/40 rounded-full group-hover:bg-primary group-hover:scale-150 transition-all duration-300" />
@@ -165,7 +174,7 @@ export default function Footer() {
                   ) : (
                     <Link
                       href={link.href}
-                      className="flex items-center space-x-3 text-muted-foreground hover:text-primary transition-all duration-300 group-hover:translate-x-2"
+                      className="flex items-center space-x-3 text-foreground/70 hover:text-primary transition-all duration-300 group-hover:translate-x-2"
                       data-testid={`footer-company-${link.name.toLowerCase().replace(/\s+/g, "-")}`}
                     >
                       <div className="w-1.5 h-1.5 bg-primary/40 rounded-full group-hover:bg-primary group-hover:scale-150 transition-all duration-300" />
@@ -233,6 +242,40 @@ export default function Footer() {
             <div className="flex items-center justify-center space-x-3">
               <Globe className="w-6 h-6 text-primary animate-pulse" />
               <h4 className="font-semibold text-2xl text-foreground">Our Global Presence</h4>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-6 w-6 rounded-full hover:bg-primary/10">
+                    <Info className="h-4 w-4 text-foreground/70 hover:text-primary transition-colors" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="glass-intense border-primary/20 max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-display font-bold text-gradient mb-4">
+                      Global Digital-First Operations
+                    </DialogTitle>
+                    <DialogDescription className="text-base space-y-4 text-foreground/90">
+                      <p>
+                        Cehpoint operates as a legally registered global entity with virtual offices established for administrative, legal, and banking purposes.
+                      </p>
+                      <p>
+                        Our distributed team of experts delivers world-class services to clients worldwide, transcending physical boundaries. While we are primarily a digital-first organization to ensure speed, efficiency, and global reach, we maintain full capability to execute complex projects remotely.
+                      </p>
+                      <div className="bg-secondary/30 p-4 rounded-xl space-y-2">
+                        <h5 className="font-semibold text-primary">Key Operational Highlights:</h5>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-foreground/70">
+                          <li><span className="font-medium text-foreground">Global Reach:</span> We serve clients internationally without geographical limitations.</li>
+                          <li><span className="font-medium text-foreground">Virtual Infrastructure:</span> Our legal addresses and virtual offices support our global banking and compliance needs.</li>
+                          <li><span className="font-medium text-foreground">Remote Culture:</span> Our diverse, international team collaborates seamlessly across time zones.</li>
+                          <li><span className="font-medium text-foreground">In-Person Meetings:</span> While we operate digitally, offline consultations can be arranged by appointment when necessary.</li>
+                        </ul>
+                      </div>
+                      <p className="text-sm italic text-foreground/70">
+                        We are committed to providing the same high standard of service, security, and professionalism, regardless of location.
+                      </p>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
             </div>
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full mx-auto" />
           </div>
@@ -269,10 +312,10 @@ export default function Footer() {
         <div className="relative mt-20 pt-8 border-t border-border/50">
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
             <div className="text-center lg:text-left space-y-2">
-              <p className="text-muted-foreground text-sm font-medium" data-testid="footer-copyright">
+              <p className="text-foreground/70 text-sm font-medium" data-testid="footer-copyright">
                 &copy; {new Date().getFullYear()} Cehpoint. All rights reserved.
               </p>
-              <p className="text-muted-foreground/70 text-xs">
+              <p className="text-foreground/60 text-xs">
                 The Point Where IT Innovation Meets Cybersecurity Excellence.
               </p>
             </div>
@@ -280,7 +323,7 @@ export default function Footer() {
             <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
               <div className="text-center sm:text-right">
                 <p className="text-sm font-medium text-foreground mb-1">Ready to get started?</p>
-                <p className="text-xs text-muted-foreground">Let's build something amazing together</p>
+                <p className="text-xs text-foreground/70">Let's build something amazing together</p>
               </div>
               <div className="flex space-x-3">
                 <a

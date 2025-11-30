@@ -25,68 +25,91 @@ import {
 export default function IndustrySolutions() {
   const industries = [
     {
-      icon: ShoppingCart,
-      title: "E-commerce",
+      icon: Brain,
+      title: "Innovative IT Services",
       description:
-        "Transform shopping experiences with intelligent recommendations that boost sales by 40% and seamless omnichannel integration that keeps customers coming back.",
+        "Cutting-edge technology solutions tailored for your business growth. We deliver scalable, robust, and future-ready IT infrastructure.",
       features: [
-        "AI product recommendations",
-        "Omnichannel integration",
-        "Advanced analytics",
-        "Global payment systems",
+        "Custom Software Development",
+        "Cloud Architecture",
+        "Digital Transformation",
+        "Legacy Modernization",
+      ],
+      growth: "High Impact",
+      projects: "200+",
+    },
+    {
+      icon: Shield,
+      title: "Cyber Security",
+      description:
+        "Comprehensive security audits and protection strategies. We safeguard your digital assets against evolving threats with advanced protocols.",
+      features: ["Vulnerability Assessment", "Penetration Testing", "Security Compliance", "Threat Monitoring"],
+      growth: "Critical",
+      projects: "150+",
+    },
+    {
+      icon: ShoppingCart,
+      title: "E-commerce Development",
+      description:
+        "Transform shopping experiences with intelligent recommendations and seamless omnichannel integration that boosts sales and customer retention.",
+      features: [
+        "Custom Storefronts",
+        "Payment Gateway Integration",
+        "Inventory Management",
+        "User Experience Design",
       ],
       growth: "35% YoY",
       projects: "150+",
     },
     {
-      icon: DollarSign,
-      title: "Fintech",
-      description:
-        "Build trust with bulletproof security, lightning-fast transactions, and automated compliance that keeps you ahead of regulations while reducing costs by 60%.",
-      features: ["Blockchain technology", "Automated compliance", "Real-time transactions", "Risk assessment AI"],
-      growth: "42% YoY",
-      projects: "120+",
-    },
-    {
       icon: BookOpen,
-      title: "Edutech",
+      title: "Edutech Solutions",
       description:
-        "Revolutionize education with AI that adapts to every student's pace, virtual classrooms that feel real, and learning paths that guarantee better outcomes.",
-      features: ["Adaptive learning AI", "Virtual reality classes", "Progress analytics", "Gamified content"],
+        "Revolutionize education with adaptive learning platforms, virtual classrooms, and student management systems.",
+      features: ["LMS Development", "Virtual Classrooms", "Student Analytics", "Gamified Learning"],
       growth: "28% YoY",
       projects: "85+",
     },
     {
-      icon: Heart,
-      title: "Healthcare",
+      icon: DollarSign,
+      title: "Fintech Applications",
       description:
-        "Save lives and reduce costs with AI-powered diagnostics, secure telemedicine platforms, and patient management systems that healthcare providers trust.",
-      features: ["HIPAA compliance", "AI diagnostics", "Telemedicine", "Patient analytics"],
+        "Secure and compliant financial technology solutions. From digital wallets to blockchain integration, we build trust.",
+      features: ["Secure Transactions", "Blockchain Integration", "Regulatory Compliance", "Financial Analytics"],
+      growth: "42% YoY",
+      projects: "120+",
+    },
+    {
+      icon: Heart,
+      title: "Healthcare & Medical",
+      description:
+        "HIPAA-compliant healthcare solutions including telemedicine platforms, patient management, and diagnostic tools.",
+      features: ["Telemedicine Apps", "EHR Systems", "Medical IoT", "Patient Portals"],
       growth: "31% YoY",
       projects: "95+",
     },
     {
       icon: Factory,
-      title: "Manufacturing",
+      title: "Manufacturing & IoT",
       description:
         "Industry 4.0 solutions with IoT integration, predictive maintenance, and supply chain optimization.",
-      features: ["IoT monitoring", "Predictive maintenance", "Quality control", "Supply chain optimization"],
+      features: ["IoT Monitoring", "Predictive Maintenance", "Smart Factory", "Supply Chain Ops"],
       growth: "24% YoY",
       projects: "70+",
     },
     {
       icon: Building,
-      title: "Real Estate",
-      description: "PropTech innovations with virtual tours, smart contracts, and automated property management.",
-      features: ["Virtual reality tours", "Smart contracts", "Property analytics", "Automated management"],
+      title: "Real Estate (PropTech)",
+      description: "Innovative property technology solutions with virtual tours, smart contracts, and automated property management.",
+      features: ["Virtual Tours", "Smart Contracts", "Property Management", "Listing Portals"],
       growth: "29% YoY",
       projects: "65+",
     },
     {
       icon: Truck,
-      title: "Logistics",
+      title: "Logistics & Supply Chain",
       description: "Smart logistics with route optimization, fleet management, and real-time tracking technologies.",
-      features: ["Route optimization", "Fleet management", "Real-time tracking", "Predictive delivery"],
+      features: ["Route Optimization", "Fleet Management", "Real-time Tracking", "Delivery Apps"],
       growth: "26% YoY",
       projects: "80+",
     },
@@ -95,7 +118,7 @@ export default function IndustrySolutions() {
       title: "Travel & Tourism",
       description:
         "Comprehensive travel platforms with booking systems, itinerary planning, and experience management.",
-      features: ["Smart booking", "Itinerary AI", "Experience curation", "Travel analytics"],
+      features: ["Booking Engines", "Itinerary Planners", "Travel CRM", "Mobile Travel Apps"],
       growth: "33% YoY",
       projects: "45+",
     },
@@ -103,7 +126,7 @@ export default function IndustrySolutions() {
       icon: Utensils,
       title: "Food & Beverage",
       description: "Restaurant tech with ordering systems, inventory management, and customer experience optimization.",
-      features: ["Online ordering", "Inventory management", "Customer insights", "Delivery integration"],
+      features: ["Online Ordering", "POS Systems", "Inventory Mgmt", "Delivery Integration"],
       growth: "27% YoY",
       projects: "60+",
     },
@@ -112,75 +135,36 @@ export default function IndustrySolutions() {
       title: "Automotive",
       description:
         "Connected vehicle platforms with fleet management, maintenance tracking, and smart mobility solutions.",
-      features: ["Fleet management", "Maintenance tracking", "Connected vehicles", "Mobility analytics"],
+      features: ["Fleet Telematics", "Service Scheduling", "Connected Car Apps", "Dealer Management"],
       growth: "22% YoY",
       projects: "40+",
     },
     {
-      icon: TreePine,
-      title: "Agriculture",
-      description: "Precision agriculture with IoT sensors, crop monitoring, and yield optimization technologies.",
-      features: ["IoT crop monitoring", "Yield optimization", "Weather integration", "Farm analytics"],
-      growth: "30% YoY",
-      projects: "35+",
-    },
-    {
-      icon: Home,
-      title: "Smart Home",
-      description: "IoT-enabled home automation with security systems, energy management, and intelligent controls.",
-      features: ["Home automation", "Security systems", "Energy management", "Smart controls"],
+      icon: Blocks,
+      title: "SaaS & Enterprise Software",
+      description:
+        "Scalable cloud-based software solutions with multi-tenancy, subscription management, and enterprise integrations.",
+      features: ["Multi-tenant Architecture", "API Development", "Subscription Billing", "Enterprise Integrations"],
       growth: "38% YoY",
-      projects: "55+",
-    },
-    {
-      icon: GraduationCap,
-      title: "Professional Services",
-      description: "Business automation with CRM systems, project management, and client communication platforms.",
-      features: ["CRM integration", "Project management", "Client portals", "Automation tools"],
-      growth: "25% YoY",
-      projects: "90+",
-    },
-    {
-      icon: Briefcase,
-      title: "Enterprise SaaS",
-      description: "Scalable business solutions with multi-tenancy, enterprise integrations, and advanced analytics.",
-      features: ["Multi-tenant architecture", "Enterprise integrations", "Advanced analytics", "Auto-scaling"],
-      growth: "41% YoY",
       projects: "110+",
     },
     {
       icon: Film,
       title: "Media & Entertainment",
-      description: "Content platforms with streaming technology, content management, and audience engagement tools.",
-      features: ["Streaming technology", "Content management", "Audience analytics", "Monetization tools"],
-      growth: "34% YoY",
-      projects: "50+",
-    },
-    {
-      icon: Music,
-      title: "Creative Industries",
       description:
-        "Digital platforms for artists, creators, and agencies with portfolio management and collaboration tools.",
-      features: ["Portfolio management", "Collaboration tools", "Creative workflows", "Client management"],
-      growth: "32% YoY",
-      projects: "40+",
+        "Streaming platforms, content management systems, and digital media solutions for modern entertainment.",
+      features: ["Video Streaming", "Content CMS", "Live Broadcasting", "Media Analytics"],
+      growth: "30% YoY",
+      projects: "55+",
     },
     {
-      icon: Users,
-      title: "Social Platforms",
-      description: "Community-driven platforms with social features, content moderation, and engagement analytics.",
-      features: ["Community features", "Content moderation", "Engagement analytics", "Social commerce"],
-      growth: "36% YoY",
-      projects: "75+",
-    },
-    {
-      icon: Brain,
-      title: "AI & Machine Learning",
+      icon: Briefcase,
+      title: "Government & Public Sector",
       description:
-        "Intelligent systems with ML pipelines, data processing, and automated decision-making capabilities.",
-      features: ["ML pipelines", "Data processing", "Model deployment", "Automated insights"],
-      growth: "45% YoY",
-      projects: "65+",
+        "Secure, compliant digital transformation solutions for government agencies and public services.",
+      features: ["Citizen Portals", "E-Governance", "Data Security", "Public Service Apps"],
+      growth: "19% YoY",
+      projects: "35+",
     },
   ]
 
@@ -275,10 +259,12 @@ export default function IndustrySolutions() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {industries.map((industry, index) => {
             const IconComponent = industry.icon
+            const serviceId = industry.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
             return (
               <div
+                id={serviceId}
                 key={industry.title}
-                className="glass-intense rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover-lift group relative overflow-hidden"
+                className="glass-intense rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover-lift group relative overflow-hidden scroll-mt-24"
                 data-testid={`industry-card-${industry.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`}
                 role="article"
                 aria-labelledby={`industry-title-${industry.title.toLowerCase()}`}

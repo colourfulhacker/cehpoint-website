@@ -154,8 +154,8 @@ export function AISolutionsModal() {
     setError(null);
 
     try {
-   //   console.log("Submitting answers:", answers);
-   //   console.log("Current URL:", window.location.href);
+      //   console.log("Submitting answers:", answers);
+      //   console.log("Current URL:", window.location.href);
 
       const response = await fetch(fullUrl, {
         method: "POST",
@@ -165,7 +165,7 @@ export function AISolutionsModal() {
         body: JSON.stringify({ answers }),
       });
 
-    //  console.log("Response status:", response.status);
+      //  console.log("Response status:", response.status);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -174,7 +174,7 @@ export function AISolutionsModal() {
       }
 
       const data = await response.json();
-   //   console.log("Success data:", data);
+      //   console.log("Success data:", data);
       setResponse(data);
       setCurrentStep(5);
     } catch (err) {
@@ -248,13 +248,12 @@ export function AISolutionsModal() {
             {[1, 2, 3, 4, 5].map((step) => (
               <div
                 key={step}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  step === currentStep
+                className={`w-3 h-3 rounded-full transition-colors ${step === currentStep
                     ? "bg-primary"
                     : step < currentStep || (step <= 4 && isStepComplete(step))
-                    ? "bg-white/20"
-                    : "bg-muted"
-                }`}
+                      ? "bg-white/20"
+                      : "bg-muted"
+                  }`}
               />
             ))}
           </div>
@@ -265,7 +264,7 @@ export function AISolutionsModal() {
               <CardHeader>
                 <CardTitle className="text-lg flex items-center justify-between">
                   <span>Question {currentStep} of 3</span>
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-sm text-foreground/70">
                     {getSelectedCount(questions[currentStep - 1].id)} selected
                   </span>
                 </CardTitle>
@@ -279,7 +278,7 @@ export function AISolutionsModal() {
                     {questions[currentStep - 1].options.map((option) => {
                       const isChecked = (
                         answers[
-                          questions[currentStep - 1].id as keyof typeof answers
+                        questions[currentStep - 1].id as keyof typeof answers
                         ] as string[]
                       ).includes(option.value);
 
@@ -313,7 +312,7 @@ export function AISolutionsModal() {
                   {/* Selection summary */}
                   {/* {getSelectedCount(questions[currentStep - 1].id) > 0 && (
                     <div className="mt-4 p-3 bg-muted/30 rounded-lg">
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/70">
                         <strong>Selected:</strong>{" "}
                         {(answers[questions[currentStep - 1].id as keyof typeof answers] as string[])
                           .map(value => 
@@ -354,7 +353,7 @@ export function AISolutionsModal() {
                     <h4 className="font-semibold text-sm">
                       Your Selections Summary:
                     </h4>
-                    <div className="space-y-1 text-xs text-muted-foreground">
+                    <div className="space-y-1 text-xs text-foreground/70">
                       <div>
                         <strong>Goals:</strong>{" "}
                         {answers.primaryGoal.join(", ") || "None selected"}
@@ -386,21 +385,21 @@ export function AISolutionsModal() {
               <CardContent className="space-y-6">
                 <div>
                   <h4 className="font-semibold mb-2">Recommendation Summary</h4>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/70">
                     {response.recommendation}
                   </p>
                 </div>
 
                 <div>
                   <h4 className="font-semibold mb-2">AWS Solution</h4>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/70">
                     {response.awsSolution}
                   </p>
                 </div>
 
                 <div>
                   <h4 className="font-semibold mb-2">GCP Alternative</h4>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/70">
                     {response.gcpSolution}
                   </p>
                 </div>
@@ -411,7 +410,7 @@ export function AISolutionsModal() {
                     {response.nextSteps.map((step, index) => (
                       <li
                         key={index}
-                        className="flex items-start gap-2 text-muted-foreground"
+                        className="flex items-start gap-2 text-foreground/70"
                       >
                         <span className="text-primary font-bold mt-1">
                           {index + 1}.
