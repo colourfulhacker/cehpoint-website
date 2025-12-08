@@ -157,7 +157,7 @@ Additional Context: ${answers.customQuestion || 'None provided'}
 Please provide a comprehensive cloud architecture recommendation in the specified JSON format with specific AWS and GCP service recommendations tailored to these requirements.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash-exp",
+      model: "gemini-2.5-flash",
       config: {
         systemInstruction: systemPrompt,
         responseMimeType: "application/json",
@@ -302,7 +302,7 @@ Additional Context: ${request.additionalContext || 'None provided'}
 Please provide a comprehensive quotation analysis in the specified JSON format with realistic cost estimates, timeline projections, and detailed recommendations.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash-exp",
+      model: "gemini-2.5-flash",
       config: {
         systemInstruction: systemPrompt,
         responseMimeType: "application/json",
