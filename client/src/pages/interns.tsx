@@ -11,7 +11,7 @@ export default function Interns() {
     {
       icon: Users,
       title: "Mentorship Program",
-      description: "Learn from experienced developers with personalized guidance and code reviews."
+      description: "Learn from real world professionals and experts with personalized guidance and code reviews."
     },
     {
       icon: Award,
@@ -46,7 +46,7 @@ export default function Interns() {
               Join Our <span className="text-gradient">Internship Program</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
-              Launch your career in software development with hands-on experience in e-commerce, edutech, and fintech projects.
+              Performance-based internships with stipends up to <span className="text-primary font-semibold">₹15,000/month</span> and PPO opportunities worth <span className="text-primary font-semibold">₹6 LPA</span>.
             </p>
             <a
               href="https://internlink.cehpoint.co.in/"
@@ -161,7 +161,7 @@ export default function Interns() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">Mentorship</h3>
-                    <p className="text-muted-foreground">One-on-one guidance from senior developers</p>
+                    <p className="text-muted-foreground">One-on-one guidance from real world professionals and experts</p>
                   </div>
                 </div>
 
@@ -206,7 +206,7 @@ export default function Interns() {
 
               <div className="mt-8 p-4 bg-primary/10 rounded-xl">
                 <p className="text-center text-sm text-muted-foreground">
-                  <strong>Note:</strong> Selected interns may receive offers for full-time positions based on performance.
+                  <strong>Note:</strong> Outstanding interns will be eligible for a Pre-Placement Offer (PPO) worth ₹6 LPA upon successful completion.
                 </p>
               </div>
             </div>

@@ -1,8 +1,9 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Zap, TrendingUp, Bot, Sparkles, Code, Database, Server } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import AIROICalculator from "@/components/calculators/ai-roi-calculator";
 import IndustryUseCaseExplorer from "@/components/sections/industry-use-cases";
+import AISolutionsSection from "@/components/sections/ai-solutions";
 import { Badge } from "@/components/ui/badge";
 
 export default function AISolutions() {
@@ -29,14 +30,13 @@ export default function AISolutions() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <Link href="/quotation">
-                <Button
-                  className="btn-primary hover-glow px-8 py-6 rounded-2xl text-lg font-bold text-primary-foreground shadow-xl shadow-primary/20"
-                  data-testid="hero-cta-primary"
-                >
-                  Start Your 7-Day Sprint
-                </Button>
-              </Link>
+              <Button
+                onClick={() => window.open("https://wa.me/919091156095?text=Hi%2C%20I%20want%20to%20start%20a%207-Day%20AI%20Sprint.%20I'm%20interested%20in%20automating%20my%20business%20processes.", "_blank")}
+                className="btn-primary hover-glow px-8 py-6 rounded-2xl text-lg font-bold text-primary-foreground shadow-xl shadow-primary/20"
+                data-testid="hero-cta-primary"
+              >
+                Start Your 7-Day Sprint
+              </Button>
             </div>
           </div>
         </div>
@@ -63,84 +63,8 @@ export default function AISolutions() {
         <IndustryUseCaseExplorer />
       </section>
 
-      {/* Core Pillars */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-              Unignorable <span className="text-gradient">Value</span>
-            </h2>
-            <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-              We focus on the three areas that deliver the highest ROI for modern businesses.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Automation */}
-            <div className="glass-intense rounded-3xl p-8 hover-lift group border-t-4 border-blue-500">
-              <div className="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Zap className="w-8 h-8 text-blue-500" />
-              </div>
-              <h3 className="font-display font-bold text-2xl mb-4">Intelligent Automation</h3>
-              <p className="text-foreground/70 mb-6 leading-relaxed">
-                Eliminate repetitive tasks. From data entry to customer support, we build agents that work 24/7 without complaints.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                <Badge variant="outline" className="bg-blue-500/5 border-blue-500/20 text-blue-600">Python</Badge>
-                <Badge variant="outline" className="bg-blue-500/5 border-blue-500/20 text-blue-600">Selenium</Badge>
-                <Badge variant="outline" className="bg-blue-500/5 border-blue-500/20 text-blue-600">UiPath</Badge>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-sm font-medium"><CheckCircle className="w-4 h-4 text-blue-500 mr-2" /> 70% Cost Reduction</li>
-                <li className="flex items-center text-sm font-medium"><CheckCircle className="w-4 h-4 text-blue-500 mr-2" /> Zero Human Error</li>
-                <li className="flex items-center text-sm font-medium"><CheckCircle className="w-4 h-4 text-blue-500 mr-2" /> Instant Scalability</li>
-              </ul>
-            </div>
-
-            {/* Analytics */}
-            <div className="glass-intense rounded-3xl p-8 hover-lift group border-t-4 border-purple-500 transform md:-translate-y-4 shadow-2xl">
-              <div className="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <TrendingUp className="w-8 h-8 text-purple-500" />
-              </div>
-              <h3 className="font-display font-bold text-2xl mb-4">Predictive Analytics</h3>
-              <p className="text-foreground/70 mb-6 leading-relaxed">
-                Stop reacting, start predicting. Use your data to forecast sales, demand, and market trends with scary accuracy.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                <Badge variant="outline" className="bg-purple-500/5 border-purple-500/20 text-purple-600">TensorFlow</Badge>
-                <Badge variant="outline" className="bg-purple-500/5 border-purple-500/20 text-purple-600">PyTorch</Badge>
-                <Badge variant="outline" className="bg-purple-500/5 border-purple-500/20 text-purple-600">Scikit-learn</Badge>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-sm font-medium"><CheckCircle className="w-4 h-4 text-purple-500 mr-2" /> 90% Forecast Accuracy</li>
-                <li className="flex items-center text-sm font-medium"><CheckCircle className="w-4 h-4 text-purple-500 mr-2" /> Inventory Optimization</li>
-                <li className="flex items-center text-sm font-medium"><CheckCircle className="w-4 h-4 text-purple-500 mr-2" /> Dynamic Pricing</li>
-              </ul>
-            </div>
-
-            {/* GenAI */}
-            <div className="glass-intense rounded-3xl p-8 hover-lift group border-t-4 border-pink-500">
-              <div className="w-16 h-16 bg-pink-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Bot className="w-8 h-8 text-pink-500" />
-              </div>
-              <h3 className="font-display font-bold text-2xl mb-4">Generative AI</h3>
-              <p className="text-foreground/70 mb-6 leading-relaxed">
-                Create content, code, and designs at scale. Custom LLMs trained on your brand voice and proprietary data.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                <Badge variant="outline" className="bg-pink-500/5 border-pink-500/20 text-pink-600">OpenAI GPT-4</Badge>
-                <Badge variant="outline" className="bg-pink-500/5 border-pink-500/20 text-pink-600">Llama 3</Badge>
-                <Badge variant="outline" className="bg-pink-500/5 border-pink-500/20 text-pink-600">LangChain</Badge>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-sm font-medium"><CheckCircle className="w-4 h-4 text-pink-500 mr-2" /> 10x Content Output</li>
-                <li className="flex items-center text-sm font-medium"><CheckCircle className="w-4 h-4 text-pink-500 mr-2" /> Personalized Marketing</li>
-                <li className="flex items-center text-sm font-medium"><CheckCircle className="w-4 h-4 text-pink-500 mr-2" /> Custom Knowledge Bases</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Comprehensive Solutions Grid */}
+      <AISolutionsSection />
 
       {/* The Promise */}
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
@@ -168,11 +92,12 @@ export default function AISolutions() {
             </div>
           </div>
 
-          <Link href="/quotation">
-            <Button className="bg-white text-primary hover:bg-white/90 px-10 py-6 rounded-2xl text-xl font-bold shadow-2xl">
-              Challenge Us
-            </Button>
-          </Link>
+          <Button
+            onClick={() => window.open("https://wa.me/919091156095?text=Hi%2C%20I%20want%20to%20challenge%20Cehpoint.%20I%20have%20a%20complex%20problem%20that%20needs%20an%20AI%20solution.", "_blank")}
+            className="bg-white text-primary hover:bg-white/90 px-10 py-6 rounded-2xl text-xl font-bold shadow-2xl"
+          >
+            Challenge Us
+          </Button>
         </div>
       </section>
     </div>

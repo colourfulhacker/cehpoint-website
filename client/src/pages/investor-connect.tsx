@@ -5,18 +5,7 @@ import MatchReveal from "@/components/investor/match-reveal";
 import InvestorFAQ from "@/components/investor/investor-faq";
 // import FinalPitch from "@/components/investor/final-pitch";
 import { Sparkles } from "lucide-react";
-
-interface Idea {
-    id: string;
-    title: string;
-    industry: string;
-    elevatorPitch: string;
-    budget: string;
-    profitPotential: string;
-    timeToMarket: string;
-    tags: string[];
-    color: string;
-}
+import { Idea } from "@/data/investor-ideas";
 
 export default function InvestorConnect() {
     const [view, setView] = useState<"swipe" | "match" | "pitch">("swipe");

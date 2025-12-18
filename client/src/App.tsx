@@ -10,6 +10,7 @@ import EcommerceService from "@/pages/services/ecommerce";
 import EdutechService from "@/pages/services/edutech";
 import FintechService from "@/pages/services/fintech";
 import ServicesPage from "@/pages/services/index";
+import CyberSecurity from "@/pages/services/cyber-security";
 import CostEstimatorPage from "@/pages/cost-estimator";
 import DemoDelivery from "@/pages/demo-delivery";
 import Quotation from "@/pages/quotation";
@@ -18,6 +19,7 @@ import AISolutions from "@/pages/ai-solutions";
 import Incubation from "@/pages/incubation";
 import Careers from "@/pages/careers";
 import InvestorConnect from "@/pages/investor-connect";
+import LeadershipSearch from "@/pages/leadership-search";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import { Banner } from "./components/sections/Banner";
@@ -40,6 +42,7 @@ function Router() {
           <Route path="/services/ecommerce" component={EcommerceService} />
           <Route path="/services/edutech" component={EdutechService} />
           <Route path="/services/fintech" component={FintechService} />
+          <Route path="/services/cyber-security" component={CyberSecurity} />
           <Route path="/ai-solutions" component={AISolutions} />
           <Route path="/demo-delivery" component={DemoDelivery} />
           <Route path="/quotation" component={Quotation} />
@@ -48,6 +51,7 @@ function Router() {
           <Route path="/careers" component={Careers} />
           <Route path="/interns" component={Interns} />
           <Route path="/investor-connect" component={InvestorConnect} />
+          <Route path="/leadership-search" component={LeadershipSearch} />
           <Route component={NotFound} />
         </Switch>
       </main>

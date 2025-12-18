@@ -14,7 +14,7 @@ export default function Navbar() {
       children: [
         { name: "All Services", href: "/services" },
         { name: "IT Services", href: "/services#innovative-it-services" },
-        { name: "Cyber Security", href: "/services#cyber-security" },
+        { name: "Cyber Security", href: "/services/cyber-security" },
         { name: "E-commerce", href: "/services/ecommerce" },
         { name: "Edutech", href: "/services/edutech" },
         { name: "Fintech", href: "/services/fintech" },
@@ -27,6 +27,7 @@ export default function Navbar() {
     { name: "Demo Process", href: "/demo-delivery" },
     { name: "Get Quote", href: "/quotation" },
     { name: "Portfolio", href: "https://portfolios.cehpoint.co.in/", external: true },
+    { name: "Leadership Search", href: "/leadership-search" },
     {
       name: "Careers",
       href: "/careers",
@@ -56,7 +57,7 @@ export default function Navbar() {
                   <>
                     <Link
                       href={item.href}
-                      className="flex items-center text-foreground/80 hover:text-foreground transition-colors"
+                      className="flex items-center text-foreground/80 hover:text-foreground transition-colors whitespace-nowrap"
                       data-testid={`${item.name.toLowerCase()}-dropdown`}
                     >
                       {item.name}
@@ -67,7 +68,7 @@ export default function Navbar() {
                         <Link
                           key={child.name}
                           href={child.href}
-                          className="block px-4 py-2 text-sm text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
+                          className="block px-4 py-2 text-sm text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors whitespace-nowrap"
                           data-testid={`nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
                         >
                           {child.name}
@@ -80,7 +81,7 @@ export default function Navbar() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-foreground/80 hover:text-foreground transition-colors"
+                    className="text-foreground/80 hover:text-foreground transition-colors whitespace-nowrap"
                     data-testid={`nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {item.name}
@@ -88,7 +89,7 @@ export default function Navbar() {
                 ) : item.href.startsWith('#') ? (
                   <a
                     href={item.href}
-                    className="text-foreground/80 hover:text-foreground transition-colors"
+                    className="text-foreground/80 hover:text-foreground transition-colors whitespace-nowrap"
                     data-testid={`nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {item.name}
@@ -96,7 +97,7 @@ export default function Navbar() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-foreground/80 hover:text-foreground transition-colors"
+                    className="text-foreground/80 hover:text-foreground transition-colors whitespace-nowrap"
                     data-testid={`nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {item.name}

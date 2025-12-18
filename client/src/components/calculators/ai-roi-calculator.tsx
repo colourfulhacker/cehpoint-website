@@ -5,8 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
-import { Calculator, TrendingUp, Clock, Zap, ArrowRight } from "lucide-react";
-import { Link } from "wouter";
+import { Calculator, TrendingUp, Clock, Zap, MessageCircle } from "lucide-react";
 
 export default function AIROICalculator() {
     const [industry, setIndustry] = useState("ecommerce");
@@ -73,6 +72,23 @@ export default function AIROICalculator() {
             currency: 'INR',
             maximumFractionDigits: 0,
         }).format(amount);
+    };
+
+    const handleWhatsApp = () => {
+        const message = `Hi, I used the AI ROI Calculator on Cehpoint. Here are my business details:
+
+*Industry:* ${industry.charAt(0).toUpperCase() + industry.slice(1)}
+*Team Size:* ${teamSize[0]} Employees
+*Manual Work:* ${hoursPerWeek[0]} Hours/Week/Employee
+*Avg. Hourly Cost:* ₹${hourlyRate[0]}
+
+*ROI Analysis:*
+- Potential Annual Savings: ${formatCurrency(savings)}
+- Efficiency Gain: ${efficiency}%
+- Recommended Solution: ${recommendation}
+
+I would like to discuss implementing this solution.`;
+        window.open(`https://wa.me/919091156095?text=${encodeURIComponent(message)}`, '_blank');
     };
 
     return (
@@ -191,11 +207,12 @@ export default function AIROICalculator() {
                                 <p className="font-bold text-lg">{recommendation}</p>
                             </div>
 
-                            <Link href="/quotation">
-                                <Button className="w-full btn-primary py-6 text-lg font-bold shadow-lg hover:shadow-primary/25 transition-all">
-                                    Get This Solution Now <ArrowRight className="ml-2 w-5 h-5" />
-                                </Button>
-                            </Link>
+                            <Button
+                                onClick={handleWhatsApp}
+                                className="w-full btn-primary py-6 text-lg font-bold shadow-lg hover:shadow-primary/25 transition-all"
+                            >
+                                <MessageCircle className="mr-2 w-5 h-5" /> Get Detailed Analysis via WhatsApp
+                            </Button>
                             <p className="text-xs text-center text-muted-foreground">
                                 Based on industry benchmarks. Actual results may vary.
                             </p>

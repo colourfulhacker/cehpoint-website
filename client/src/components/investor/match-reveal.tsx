@@ -1,8 +1,18 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+    X,
+    CheckCircle,
+    TrendingUp,
+    Users,
+    DollarSign,
+    Shield,
+    MessageCircle,
+    ArrowRight,
+    Zap,
+    Heart
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ArrowRight, Target, Lightbulb, Rocket, DollarSign, Users, TrendingUp, Shield, Code, Database, Zap, MessageCircle, Heart, ChevronRight } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
     Accordion,
@@ -11,106 +21,55 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 
-interface Idea {
-    id: string;
-    title: string;
-    industry: string;
-    elevatorPitch: string;
-    budget: string;
-    profitPotential: string;
-    timeToMarket: string;
-    tags: string[];
-    color: string;
-    // Extended details
-    problemStatement?: string;
-    solution?: string;
-    techStack?: string[];
-    targetMarket?: string;
-    competitiveAdvantage?: string;
-    revenueModel?: string;
-    faq?: { question: string; answer: string }[];
-    architecture?: {
-        frontend: { title: string; description: string };
-        backend: { title: string; description: string };
-        data: { title: string; description: string };
-    };
-    risks?: Array<{
-        type: string;
-        level: 'Low' | 'Medium' | 'High';
-        mitigation: string;
-    }>;
-    metrics?: {
-        customers: string;
-        revenue: string;
-        retention: string;
-        breakeven: string;
-    };
-}
+import { Idea } from "@/data/investor-ideas";
 
 interface MatchRevealProps {
     idea: Idea;
     onProceed: () => void;
 }
 
-interface ChatMessage {
-    role: 'user' | 'ai';
-    content: string;
-}
-
 export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
     const [activeTab, setActiveTab] = useState("overview");
 
-    // Professional default details if not provided by Gemini
-    const problemStatement = idea.problemStatement || `In the ${idea.industry} sector, businesses struggle with inefficient manual processes that waste valuable time and resources. Current solutions are either too expensive, too complex, or don't address the core pain points effectively.`;
-
-    const solution = idea.solution || `Our platform leverages modern technology to automate and optimize key workflows, reducing operational costs by 40-60% while improving accuracy and speed. The system integrates seamlessly with existing infrastructure and requires minimal training.`;
-
-    const techStack = idea.techStack || ["React.js", "Node.js", "PostgreSQL", "AWS Cloud", "AI/ML APIs"];
-
-    const targetMarket = idea.targetMarket || `Small to medium-sized businesses in India operating in the ${idea.industry} sector, with annual revenues between ₹50L-₹10Cr.`;
-
-    const competitiveAdvantage = idea.competitiveAdvantage || "First-mover advantage in tier-2/3 cities, affordable pricing (1/3rd of competitors), built specifically for Indian business workflows, flexible customization, and local language support.";
-
-    const revenueModel = idea.revenueModel || "SaaS subscription model: ₹5K-₹15K/month per business depending on usage tier. Additional revenue from implementation fees (₹50K-₹2L) and premium support packages.";
-
-    const tabs = [
-        { id: "overview", label: "Overview" },
-        { id: "technical", label: "Technical" },
-        { id: "market", label: "Market" },
-        { id: "financial", label: "Financial" },
-        { id: "execution", label: "Execution" },
-        { id: "faq", label: "FAQ" },
-    ];
-
-
+    // Fallback values if data is missing
+    const problemStatement = idea.problemStatement || "Detailed problem statement not available.";
+    const solution = idea.solution || "Detailed solution description not available.";
+    const techStack = idea.techStack || ["React", "Node.js"];
+    const targetMarket = idea.targetMarket || "General Market";
+    const competitiveAdvantage = idea.competitiveAdvantage || "First mover advantage";
+    const revenueModel = idea.revenueModel || "Subscription based";
 
     return (
-        <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 relative">
-            {/* Background Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-96 bg-primary/20 blur-[120px] rounded-full -z-10 pointer-events-none" />
-
+        <div className="w-full max-w-4xl mx-auto pb-20">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="text-center mb-8 md:mb-16"
             >
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 border-primary/30 text-primary font-medium">
-                    <CheckCircle className="w-5 h-5" />
-                    <span>Perfect Match Found</span>
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-green-500/10 text-green-500 text-sm font-bold mb-6 border border-green-500/20">
+                    <CheckCircle className="w-4 h-4 mr-2" /> 98% Match Found
                 </div>
-                <h1 className="text-4xl md:text-7xl font-display font-bold mb-6 tracking-tight">
-                    Investment <span className="text-gradient">Opportunity</span>
-                </h1>
-                <p className="text-xl text-foreground/60 max-w-2xl mx-auto">
-                    Comprehensive business plan, technical architecture, and financial projections for <span className="text-foreground font-semibold">{idea.title}</span>
+                <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">
+                    You matched with <br />
+                    <span className={`bg-gradient-to-r ${idea.color} bg-clip-text text-transparent`}>
+                        {idea.title}
+                    </span>
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                    {idea.elevatorPitch}
                 </p>
             </motion.div>
 
-            <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <Tabs defaultValue="overview" className="w-full" onValueChange={setActiveTab}>
                 <div className="flex justify-center mb-8 md:mb-12 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4">
-                    <TabsList className="bg-transparent border-none p-1 gap-2 h-auto">
-                        {tabs.map((tab) => (
+                    <TabsList className="bg-secondary/30 backdrop-blur-md border border-white/10 p-1 rounded-full h-auto inline-flex">
+                        {[
+                            { id: "overview", label: "Overview" },
+                            { id: "financial", label: "Financials" },
+                            { id: "execution", label: "Execution" },
+                            { id: "faq", label: "FAQ" }
+                        ].map((tab) => (
                             <TabsTrigger
                                 key={tab.id}
                                 value={tab.id}
@@ -118,12 +77,12 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                             >
                                 {activeTab === tab.id && (
                                     <motion.div
-                                        layoutId="active-tab"
+                                        layoutId="activeTab"
                                         className="absolute inset-0 bg-primary rounded-full -z-10"
                                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                     />
                                 )}
-                                <span className="relative z-10">{tab.label}</span>
+                                {tab.label}
                             </TabsTrigger>
                         ))}
                     </TabsList>
@@ -139,127 +98,45 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                     >
                         {/* Overview Tab */}
                         <TabsContent value="overview" className="space-y-8 mt-0">
-                            <div className={`p-6 md:p-12 rounded-3xl bg-gradient-to-br ${idea.color} text-white shadow-2xl relative overflow-hidden`}>
-                                <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
-                                <div className="relative z-10">
-                                    <h2 className="text-3xl sm:text-5xl font-display font-bold mb-4 md:mb-6">{idea.title}</h2>
-                                    <p className="text-lg sm:text-xl opacity-90 mb-10 max-w-3xl leading-relaxed">{idea.elevatorPitch}</p>
-
-                                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                                        {[
-                                            { icon: Target, label: "Industry", value: idea.industry },
-                                            { icon: DollarSign, label: "Investment", value: idea.budget },
-                                            { icon: TrendingUp, label: "Est. Revenue", value: idea.profitPotential },
-                                            { icon: Rocket, label: "Launch", value: idea.timeToMarket }
-                                        ].map((item, i) => (
-                                            <div key={i} className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/10 hover:bg-white/20 transition-colors">
-                                                <item.icon className="w-6 h-6 mb-3 opacity-80" />
-                                                <p className="text-xs font-medium opacity-60 uppercase tracking-wider mb-1">{item.label}</p>
-                                                <p className="text-lg font-bold">{item.value}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="glass-intense p-8 rounded-3xl hover-lift border-l-4 border-l-red-500">
+                                <div className="glass p-8 rounded-3xl relative overflow-hidden group hover:border-primary/30 transition-colors">
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-red-500/20 transition-colors" />
                                     <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
-                                        <div className="p-2 bg-red-500/10 rounded-lg text-red-500">
-                                            <Shield className="w-6 h-6" />
+                                        <div className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
+                                            <X className="w-5 h-5" />
                                         </div>
-                                        Problem Statement
+                                        The Problem
                                     </h3>
-                                    <p className="text-foreground/80 leading-relaxed text-lg">{problemStatement}</p>
+                                    <p className="text-lg text-foreground/80 leading-relaxed">
+                                        {problemStatement}
+                                    </p>
                                 </div>
 
-                                <div className="glass-intense p-8 rounded-3xl hover-lift border-l-4 border-l-green-500">
+                                <div className="glass p-8 rounded-3xl relative overflow-hidden group hover:border-green-500/30 transition-colors">
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-green-500/20 transition-colors" />
                                     <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
-                                        <div className="p-2 bg-green-500/10 rounded-lg text-green-500">
-                                            <Lightbulb className="w-6 h-6" />
+                                        <div className="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center text-green-500">
+                                            <CheckCircle className="w-5 h-5" />
                                         </div>
-                                        Our Solution
+                                        The Solution
                                     </h3>
-                                    <p className="text-foreground/80 leading-relaxed text-lg">{solution}</p>
+                                    <p className="text-lg text-foreground/80 leading-relaxed">
+                                        {solution}
+                                    </p>
                                 </div>
                             </div>
-                        </TabsContent>
 
-                        {/* Technical Tab */}
-                        <TabsContent value="technical" className="space-y-8 mt-0">
                             <div className="glass p-8 rounded-3xl">
-                                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                                    <Code className="w-6 h-6 text-primary" />
-                                    Technology Stack
-                                </h3>
+                                <h3 className="text-2xl font-bold mb-6">Tech Stack</h3>
                                 <div className="flex flex-wrap gap-3">
                                     {techStack.map((tech, i) => (
-                                        <div key={i} className="px-4 py-2 bg-secondary/50 border border-white/5 rounded-full flex items-center gap-2 hover:bg-secondary transition-colors">
-                                            <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                                            <span className="font-medium">{tech}</span>
-                                        </div>
+                                        <span key={i} className="px-4 py-2 rounded-xl bg-secondary/50 border border-white/5 text-sm font-medium hover:bg-primary/10 hover:border-primary/30 transition-colors cursor-default">
+                                            {tech}
+                                        </span>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="glass-intense p-8 rounded-3xl">
-                                <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-                                    <Database className="w-6 h-6 text-primary" />
-                                    System Architecture
-                                </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    {[
-                                        {
-                                            icon: Code,
-                                            title: idea.architecture?.frontend.title || "Frontend Layer",
-                                            desc: idea.architecture?.frontend.description || "Progressive Web App (PWA) with offline capabilities.",
-                                            color: "blue"
-                                        },
-                                        {
-                                            icon: Zap,
-                                            title: idea.architecture?.backend.title || "Backend Services",
-                                            desc: idea.architecture?.backend.description || "RESTful APIs with microservices architecture.",
-                                            color: "purple"
-                                        },
-                                        {
-                                            icon: Shield,
-                                            title: idea.architecture?.data.title || "Data & Security",
-                                            desc: idea.architecture?.data.description || "Encrypted data storage and GDPR compliance.",
-                                            color: "green"
-                                        }
-                                    ].map((layer, i) => (
-                                        <div key={i} className={`p-6 rounded-2xl bg-gradient-to-br from-${layer.color}-500/5 to-${layer.color}-500/10 border border-${layer.color}-500/20 hover:border-${layer.color}-500/40 transition-all hover:-translate-y-1`}>
-                                            <div className={`w-12 h-12 rounded-xl bg-${layer.color}-500/10 text-${layer.color}-500 flex items-center justify-center mb-4`}>
-                                                <layer.icon className="w-6 h-6" />
-                                            </div>
-                                            <h4 className="font-bold text-lg mb-2">{layer.title}</h4>
-                                            <p className="text-sm text-foreground/70 leading-relaxed">{layer.desc}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="glass p-8 rounded-3xl">
-                                <h3 className="text-2xl font-bold mb-6">Development Roadmap</h3>
-                                <div className="space-y-4">
-                                    {["Core architecture & database design", "Feature development & API integration", "UI/UX implementation & testing", "Beta testing & bug fixes", "Deployment & client handover"].map((milestone, i) => (
-                                        <div key={i} className="flex items-center gap-4 p-4 bg-secondary/30 rounded-xl border border-white/5">
-                                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm flex-shrink-0">
-                                                {i + 1}
-                                            </div>
-                                            <div className="flex-1">
-                                                <p className="font-medium">Phase {i + 1}</p>
-                                                <p className="text-sm text-foreground/60">{milestone}</p>
-                                            </div>
-                                            <ChevronRight className="w-5 h-5 text-foreground/20" />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </TabsContent>
-
-                        {/* Market Tab */}
-                        <TabsContent value="market" className="space-y-8 mt-0">
                             <div className="glass p-8 rounded-3xl">
                                 <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
                                     <Users className="w-6 h-6 text-primary" />
@@ -440,18 +317,27 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                                     Frequently Asked Questions
                                 </h3>
 
-                                <Accordion type="single" collapsible className="w-full">
-                                    {idea.faq && idea.faq.map((item, i) => (
-                                        <AccordionItem key={i} value={`item-${i}`} className="border-b-white/10">
-                                            <AccordionTrigger className="text-lg font-medium text-left hover:text-primary transition-colors">
-                                                {item.question}
-                                            </AccordionTrigger>
-                                            <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                                                {item.answer}
-                                            </AccordionContent>
-                                        </AccordionItem>
-                                    ))}
-                                </Accordion>
+                                {idea.faq && idea.faq.length > 0 ? (
+                                    <Accordion type="single" collapsible className="w-full">
+                                        {idea.faq.map((item, i) => (
+                                            <AccordionItem key={i} value={`item-${i}`} className="border-b-white/10">
+                                                <AccordionTrigger className="text-lg font-medium text-left hover:text-primary transition-colors">
+                                                    {item.question}
+                                                </AccordionTrigger>
+                                                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                                                    {item.answer}
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        ))}
+                                    </Accordion>
+                                ) : (
+                                    <div className="flex flex-col items-center justify-center h-full text-center p-8">
+                                        <p className="text-muted-foreground text-lg">No specific FAQs available for this idea yet.</p>
+                                        <Button variant="link" className="mt-4 text-primary">
+                                            Contact us for more details
+                                        </Button>
+                                    </div>
+                                )}
                             </div>
                         </TabsContent>
                     </motion.div>
@@ -466,12 +352,13 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
             >
                 <Button
                     onClick={onProceed}
-                    className="btn-primary text-xl px-12 py-8 rounded-full shadow-2xl hover:scale-105 transition-transform group"
+                    className="w-full md:w-auto px-8 py-4 md:py-6 text-lg md:text-xl font-bold rounded-xl shadow-xl shadow-primary/20 hover:scale-105 transition-all group"
                 >
-                    Review Investment Terms <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                    Start Your Ownership Journey
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <p className="mt-6 text-sm font-medium text-foreground/50 uppercase tracking-widest">
-                    100% Equity Ownership • Zero Hidden Costs
+                <p className="mt-4 text-sm text-muted-foreground">
+                    Review the complete roadmap and ownership terms
                 </p>
             </motion.div>
         </div>

@@ -4,7 +4,8 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Users, Clock, Shield, Briefcase, GraduationCap, Calculator } from "lucide-react";
+import { Users, Clock, Shield, Briefcase, GraduationCap, Calculator, MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import ProposalPopup from "@/components/quotation/proposal-popup";
 
 const RATES = {
@@ -42,6 +43,21 @@ export default function ProjectCostEstimator() {
             currency: currency,
             maximumFractionDigits: 0,
         }).format(amount);
+    };
+
+    const handleWhatsApp = () => {
+        const message = `Hi, I used the Project Cost Estimator on Cehpoint. Here are my requirements:
+- Duration: ${duration} Months
+- Interns: ${interns}
+- Contractual: ${contractual}
+- Full-time: ${fulltime}
+- Secure Devs: ${secure}
+- Currency: ${currency}
+- Estimated Cost: ${formatCurrency(totalCost)}
+- PM Included: ${includePM ? 'Yes' : 'No'}
+
+Please contact me to discuss further.`;
+        window.open(`https://wa.me/919091156095?text=${encodeURIComponent(message)}`, '_blank');
     };
 
     return (
@@ -214,6 +230,14 @@ export default function ProjectCostEstimator() {
                                             *Rough estimate based on selected parameters. Final quote may vary.
                                         </div>
                                     </div>
+
+                                    <Button
+                                        onClick={handleWhatsApp}
+                                        className="w-full btn-primary font-bold py-6 text-lg rounded-xl flex items-center justify-center gap-2"
+                                    >
+                                        <MessageCircle className="w-5 h-5" />
+                                        Get Quote via WhatsApp
+                                    </Button>
                                 </CardContent>
                             </Card>
 
