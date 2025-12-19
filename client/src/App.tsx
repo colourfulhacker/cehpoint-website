@@ -4,6 +4,10 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { HelmetProvider } from "react-helmet-async";
+import Training from "@/pages/training";
+import Privacy from "@/pages/privacy";
+import SecurityScheme from "@/pages/security-scheme";
+import Terms from "@/pages/terms";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import EcommerceService from "@/pages/services/ecommerce";
@@ -44,6 +48,10 @@ function Router() {
           <Route path="/services/fintech" component={FintechService} />
           <Route path="/services/cyber-security" component={CyberSecurity} />
           <Route path="/ai-solutions" component={AISolutions} />
+          <Route path="/training" component={Training} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/security-scheme" component={SecurityScheme} />
           <Route path="/demo-delivery" component={DemoDelivery} />
           <Route path="/quotation" component={Quotation} />
           <Route path="/cost-estimator" component={CostEstimatorPage} />

@@ -15,18 +15,21 @@ export default function Home() {
     <div className="pt-[105px]" data-testid="home-page">
       <SEO
         title="Home"
-        description="Cehpoint is a leading IT consultancy offering enterprise outsourcing, custom software development, AI solutions, and digital transformation services."
+        description="Cehpoint is a leading IT consultancy offering enterprise outsourcing, custom software development, AI solutions, and digital transformation services. Partner with us to accelerate innovation and drive business growth."
+        keywords={["IT Consultancy", "Enterprise Outsourcing", "Custom Software Development", "AI Solutions", "Digital Transformation", "Cloud Services", "Agile Development", "Tech Innovation"]}
       />
-      <Hero />
-      <IndustrySolutions />
-      <TechStack />
-      <AISolutions />
-      <WhyChooseUs />
-      <ProcessWorkflow />
-      <DemoProcess />
-      <EngagementModel />
-      <ProjectCostEstimator />
-      <PortfolioCareers />
+      <main id="main-content">
+        <Hero />
+        <IndustrySolutions />
+        <TechStack />
+        <AISolutions />
+        <WhyChooseUs />
+        <ProcessWorkflow />
+        <DemoProcess />
+        <EngagementModel />
+        <ProjectCostEstimator />
+        <PortfolioCareers />
+      </main>
     </div>
   );
 }

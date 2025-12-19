@@ -2,6 +2,7 @@ import { ShoppingCart, CreditCard, BarChart3, Shield, Smartphone, Globe, Star, T
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
+import EcommerceCalculator from "@/components/calculators/ecommerce-calculator";
 
 export default function EcommerceService() {
   const problemPatterns = [
@@ -184,6 +185,9 @@ export default function EcommerceService() {
           </div>
         </div>
       </section>
+
+      {/* Calculator Section */}
+      <EcommerceCalculator />
 
       {/* Case Studies Section */}
       <section className="py-24">

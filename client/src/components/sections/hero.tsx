@@ -1,6 +1,8 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -55,22 +57,27 @@ export default function Hero() {
       </div>
 
       <div className="relative max-w-7xl pt-20 mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="animate-fade-up">
-          <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-8">
-            <span className="text-sm font-medium text-primary">
-              🚀 Enterprise-Grade Development
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-flex items-center px-5 py-2.5 rounded-full glass mb-8 hover:scale-105 transition-transform">
+            <Sparkles className="w-4 h-4 text-primary mr-2" />
+            <span className="text-sm font-semibold text-primary">
+              Enterprise-Grade Development
             </span>
           </div>
 
           <h1
-            className="font-display font-bold text-4xl sm:text-5xl md:text-7xl lg:text-9xl mb-8 tracking-tight leading-none"
+            className="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 tracking-tight leading-none"
             data-testid="hero-title"
           >
             Transform Ideas Into
             <br />
             <span
               key={currentTextIndex}
-              className="text-gradient inline-block animate-fade-up"
+              className="text-gradient inline-block"
               style={{
                 animation: 'fadeUp 0.6s ease-out'
               }}
@@ -79,31 +86,55 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p
-            className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-4 max-w-4xl mx-auto leading-relaxed font-light"
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-6 max-w-4xl mx-auto leading-relaxed font-light"
             data-testid="hero-subtitle"
           >
-            Enterprise-grade software development across all industries with
-            24-hour demo delivery and pay-after-demo engagement model.
-          </p>
+            Enterprise-grade software development across all industries with{" "}
+            <span className="text-foreground font-semibold">24-hour demo delivery</span> and{" "}
+            <span className="text-foreground font-semibold">pay-after-demo</span> model.
+          </motion.p>
 
-          <p className="text-base sm:text-lg text-muted-foreground/80 mb-12 max-w-2xl mx-auto">
-            From startup MVPs to enterprise platforms — we deliver proven
-            solutions that multiply revenue, reduce costs, and accelerate growth
-            across every industry.
-          </p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="flex flex-wrap justify-center gap-4 mb-12 max-w-2xl mx-auto"
+          >
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <CheckCircle2 className="w-4 h-4 text-primary" />
+              <span>MVP to Enterprise</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <CheckCircle2 className="w-4 h-4 text-primary" />
+              <span>24h Delivery</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <CheckCircle2 className="w-4 h-4 text-primary" />
+              <span>Pay After Demo</span>
+            </div>
+          </motion.div>
 
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-16"
+          >
             <Link
               href="/quotation"
-              className="w-full sm:w-auto sm:min-w-[200px]"
+              className="w-full sm:w-auto"
             >
               <Button
-                className="btn-primary hover-glow rounded-2xl text-base sm:text-lg font-bold text-primary-foreground w-full min-h-[60px]"
+                className="btn-primary hover-glow rounded-2xl text-lg font-bold text-primary-foreground w-full sm:w-auto px-8 py-6 group"
                 data-testid="hero-cta-primary"
                 aria-label="Get AI-powered project quotation"
               >
                 Get AI-Powered Quote
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
 
@@ -111,77 +142,52 @@ export default function Hero() {
               href="https://portfolios.cehpoint.co.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass hover-lift rounded-2xl text-base sm:text-lg font-semibold hover:bg-secondary/50 transition-all duration-300 w-full sm:w-auto sm:min-w-[200px] min-h-[60px] flex justify-center items-center text-center"
+              className="glass hover-lift rounded-2xl text-lg font-semibold hover:bg-secondary/50 transition-all duration-300 w-full sm:w-auto px-8 py-6 flex justify-center items-center group"
               data-testid="hero-cta-secondary"
               aria-label="View our portfolio of completed projects"
             >
-              Explore Portfolio →
+              Explore Portfolio
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-          </div>
+          </motion.div>
 
           {/* Enhanced Stats */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto"
             data-testid="hero-stats"
           >
-            <div className="glass-intense rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover-lift group">
-              <div
-                className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-2 sm:mb-3 group-hover:scale-110 transition-transform"
-                data-testid="stat-demo-time"
+            {[
+              { value: "24h", label: "Demo Delivery", sublabel: "Record Time" },
+              { value: "0%", label: "Upfront Payment", sublabel: "Pay After Demo" },
+              { value: "25+", label: "Industries", sublabel: "Expertise" },
+              { value: "500+", label: "Projects", sublabel: "Delivered" }
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.9 + index * 0.1, duration: 0.3 }}
+                className="glass-intense rounded-2xl sm:rounded-3xl p-6 md:p-8 hover-lift group cursor-pointer"
               >
-                24h
-              </div>
-              <div className="text-sm sm:text-base text-muted-foreground font-medium">
-                Demo Delivery
-              </div>
-              <div className="text-xs text-muted-foreground/60 mt-1">
-                Record Time
-              </div>
-            </div>
-            <div className="glass-intense rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover-lift group">
-              <div
-                className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-2 sm:mb-3 group-hover:scale-110 transition-transform"
-                data-testid="stat-payment-model"
-              >
-                0%
-              </div>
-              <div className="text-sm sm:text-base text-muted-foreground font-medium">
-                Upfront Payment
-              </div>
-              <div className="text-xs text-muted-foreground/60 mt-1">
-                Pay After Demo
-              </div>
-            </div>
-            <div className="glass-intense rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover-lift group">
-              <div
-                className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-2 sm:mb-3 group-hover:scale-110 transition-transform"
-                data-testid="stat-industries"
-              >
-                25+
-              </div>
-              <div className="text-sm sm:text-base text-muted-foreground font-medium">
-                Industries
-              </div>
-              <div className="text-xs text-muted-foreground/60 mt-1">
-                Expertise
-              </div>
-            </div>
-            <div className="glass-intense rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover-lift group">
-              <div
-                className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-2 sm:mb-3 group-hover:scale-110 transition-transform"
-                data-testid="stat-projects"
-              >
-                500+
-              </div>
-              <div className="text-sm sm:text-base text-muted-foreground font-medium">
-                Projects
-              </div>
-              <div className="text-xs text-muted-foreground/60 mt-1">
-                Delivered
-              </div>
-            </div>
-          </div>
-        </div>
+                <div
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-3 group-hover:scale-110 transition-transform"
+                  data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {stat.value}
+                </div>
+                <div className="text-sm sm:text-base text-muted-foreground font-medium">
+                  {stat.label}
+                </div>
+                <div className="text-xs text-muted-foreground/60 mt-1">
+                  {stat.sublabel}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

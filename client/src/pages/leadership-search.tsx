@@ -4,14 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Search, Mail, MapPin, Briefcase, X, Filter } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { MultiSelect } from "@/components/ui/multi-select";
 
 interface Leader {
     name: string;
@@ -126,7 +120,7 @@ const leadershipData: Leader[] = [
     { name: "Rashmi Kulkarni", designation: "Predictive Cyber Analytics Lead", email: "rashmi.kulkarni@cehpoint.co.in", country: "Canada", department: "Data, AI & Cyber Intelligence" },
     { name: "Shreya Shah", designation: "Secure Data Monetization Strategy Lead", email: "shreya.shah@cehpoint.co.in", country: "Canada", department: "Data, AI & Cyber Intelligence" },
     { name: "Kritika Sood", designation: "Client Lifecycle Automation Lead", email: "kritika.sood@cehpoint.co.in", country: "Canada", department: "Operations & Enablement" },
-    { name: "Olivia Martin", designation: "Digital Operations Excellence Lead", email: "olivia.martin@cehpoint.co.in", country: "Canada", department: "International team" },
+    { name: "Olivia Martin", designation: "Digital Operations Excellence Lead", email: "olivia.martin@cehpoint.co.in", country: "Canada", department: "Operations & Enablement" },
 
     // India - Cybercrime, Forensics & Security Training Experts
     { name: "Aditi Kulkarni", designation: "National Cybercrime Investigation Training Lead", email: "aditi.kulkarni@cehpoint.co.in", country: "India", department: "Cybercrime, Forensics & Security Training Experts" },
@@ -176,42 +170,69 @@ const leadershipData: Leader[] = [
 
 export default function LeadershipSearch() {
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedCountry, setSelectedCountry] = useState<string>("all");
-    const [selectedDepartment, setSelectedDepartment] = useState<string>("all");
+    const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
+    const [selectedDepartments, setSelectedDepartments] = useState<string[]>([]);
 
-    // Extract unique countries and departments
-    const countries = useMemo(() => {
-        const uniqueCountries = Array.from(new Set(leadershipData.map(l => l.country))).sort();
-        return ["all", ...uniqueCountries];
+    // Extract unique countries
+    const countryOptions = useMemo(() => {
+        return Array.from(new Set(leadershipData.map(l => l.country)))
+            .sort()
+            .map(c => ({ label: c, value: c }));
     }, []);
 
-    const departments = useMemo(() => {
-        // Filter departments based on selected country logic if desired, but for now global list
-        // However, it's better to show departments available in the selected country if one is selected.
-        // Let's keep it simple: Show all unique departments.
-        const allDepts = Array.from(new Set(leadershipData.map(l => l.department || "Other"))).sort();
-        return ["all", ...allDepts];
-    }, []);
+    // Extract unique departments for the selected countries
+    const departmentOptions = useMemo(() => {
+        const filteredByCountries = selectedCountries.length === 0
+            ? leadershipData
+            : leadershipData.filter(l => selectedCountries.includes(l.country));
+
+        return Array.from(new Set(filteredByCountries.map(l => l.department || "Other")))
+            .sort()
+            .map(d => ({ label: d, value: d }));
+    }, [selectedCountries]);
+
+    // Cleanup: Remove selected departments that are no longer available in the newly selected countries
+    useMemo(() => {
+        if (selectedCountries.length > 0 && selectedDepartments.length > 0) {
+            const availableDepts = new Set(
+                leadershipData
+                    .filter(l => selectedCountries.includes(l.country))
+                    .map(l => l.department || "Other")
+            );
+
+            const validSelectedDepts = selectedDepartments.filter(d => availableDepts.has(d));
+            if (validSelectedDepts.length !== selectedDepartments.length) {
+                setSelectedDepartments(validSelectedDepts);
+            }
+        }
+    }, [selectedCountries]);
 
     const filteredLeaders = useMemo(() => {
+        // Only show results if a specific country or department is selected
+        if (selectedCountries.length === 0 && selectedDepartments.length === 0) {
+            return [];
+        }
+
         return leadershipData.filter(leader => {
             const matchesSearch =
                 leader.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 leader.designation.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 (leader.department && leader.department.toLowerCase().includes(searchQuery.toLowerCase()));
 
-            const matchesCountry = selectedCountry === "all" || leader.country === selectedCountry;
-            const matchesDepartment = selectedDepartment === "all" || leader.department === selectedDepartment;
+            const matchesCountry = selectedCountries.length === 0 || selectedCountries.includes(leader.country);
+            const matchesDepartment = selectedDepartments.length === 0 || selectedDepartments.includes(leader.department || "Other");
 
             return matchesSearch && matchesCountry && matchesDepartment;
         });
-    }, [searchQuery, selectedCountry, selectedDepartment]);
+    }, [searchQuery, selectedCountries, selectedDepartments]);
 
     const clearFilters = () => {
         setSearchQuery("");
-        setSelectedCountry("all");
-        setSelectedDepartment("all");
+        setSelectedCountries([]);
+        setSelectedDepartments([]);
     };
+
+    const isInitialState = selectedCountries.length === 0 && selectedDepartments.length === 0;
 
     return (
         <div className="min-h-screen bg-background pt-24 pb-16 px-4 sm:px-6 lg:px-8">
@@ -260,41 +281,27 @@ export default function LeadershipSearch() {
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-4">
-                        <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-                            <SelectTrigger className="w-full md:w-[240px] h-11 bg-background border-primary/20">
-                                <div className="flex items-center gap-2">
-                                    <MapPin className="h-4 w-4 text-primary" />
-                                    <SelectValue placeholder="All Countries" />
-                                </div>
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all">All Countries</SelectItem>
-                                {countries.filter(c => c !== "all").map(country => (
-                                    <SelectItem key={country} value={country}>
-                                        {country}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
+                        <div className="flex-1 md:w-[300px]">
+                            <MultiSelect
+                                options={countryOptions}
+                                selected={selectedCountries}
+                                onChange={setSelectedCountries}
+                                placeholder="Select Countries"
+                                className="bg-background border-primary/20"
+                            />
+                        </div>
 
-                        <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
-                            <SelectTrigger className="w-full md:w-[320px] h-11 bg-background border-primary/20">
-                                <div className="flex items-center gap-2">
-                                    <Briefcase className="h-4 w-4 text-primary" />
-                                    <SelectValue placeholder="All Departments" />
-                                </div>
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all">All Departments</SelectItem>
-                                {departments.filter(d => d !== "all").map(dept => (
-                                    <SelectItem key={dept} value={dept}>
-                                        {dept}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
+                        <div className="flex-1 md:w-[400px]">
+                            <MultiSelect
+                                options={departmentOptions}
+                                selected={selectedDepartments}
+                                onChange={setSelectedDepartments}
+                                placeholder="Select Departments"
+                                className="bg-background border-primary/20"
+                            />
+                        </div>
 
-                        {(selectedCountry !== "all" || selectedDepartment !== "all" || searchQuery) && (
+                        {(selectedCountries.length > 0 || selectedDepartments.length > 0 || searchQuery) && (
                             <Button
                                 variant="ghost"
                                 onClick={clearFilters}
@@ -308,7 +315,7 @@ export default function LeadershipSearch() {
 
                     <div className="mt-2 text-sm text-center text-muted-foreground">
                         {filteredLeaders.length === 0 ? (
-                            "No matches found"
+                            isInitialState ? "" : "No matches found"
                         ) : (
                             `Showing ${filteredLeaders.length} result${filteredLeaders.length !== 1 ? 's' : ''}`
                         )}
@@ -370,11 +377,18 @@ export default function LeadershipSearch() {
                         className="text-center py-12 text-muted-foreground"
                     >
                         <div className="flex flex-col items-center gap-3">
-                            <Search className="h-10 w-10 opacity-20" />
-                            <p>No team members found with the current filters.</p>
-                            <Button variant="link" onClick={clearFilters}>
-                                Clear all filters
-                            </Button>
+                            <Filter className="h-10 w-10 opacity-20" />
+                            {isInitialState ? (
+                                <p className="text-lg">Please select a <b>Country</b> or <b>Department</b> to view leadership members.</p>
+                            ) : (
+                                <>
+                                    <Search className="h-10 w-10 opacity-20" />
+                                    <p>No team members found with the current filters.</p>
+                                    <Button variant="link" onClick={clearFilters}>
+                                        Clear all filters
+                                    </Button>
+                                </>
+                            )}
                         </div>
                     </motion.div>
                 )}

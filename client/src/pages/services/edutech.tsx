@@ -2,6 +2,7 @@ import { BookOpen, Users, Award, Monitor, Brain, Globe, Star, TrendingUp, CheckC
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
+import EdtechCalculator from "@/components/calculators/edtech-calculator";
 
 export default function EdutechService() {
   const problemPatterns = [
@@ -184,6 +185,9 @@ export default function EdutechService() {
           </div>
         </div>
       </section>
+
+      {/* Calculator Section */}
+      <EdtechCalculator />
 
       {/* Case Studies Section */}
       <section className="py-24">

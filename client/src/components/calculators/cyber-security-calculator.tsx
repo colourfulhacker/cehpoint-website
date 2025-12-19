@@ -6,43 +6,53 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import {
     Shield,
-    Lock,
     Activity,
     FileCheck,
     Calculator,
     MessageCircle,
-    Server,
     Globe,
     Smartphone,
     Wifi,
     Cloud,
-    ShieldCheck
+    ShieldCheck,
+    Server,
+    Layers,
+    Code,
+    Database
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const RATES = {
     USD: {
-        vapt: { web: 200, mobile: 250, network: 150, cloud: 300 },
+        vapt: { web: 200, mobile: 250, network: 150, cloud: 300, api: 100 },
         soc: { endpoint: 20 },
         compliance: { iso: 2000, gdpr: 2500, hipaa: 3000, pcidss: 2500 },
+        complexity: { static: 1, dynamic: 1.5, enterprise: 2.5, saas: 3, fintech: 4 },
+        hosting: { shared: 1, vps: 1.2, dedicated: 1.5, cloud: 1.8, hybrid: 2.5, onpremise: 3 },
         symbol: "$"
     },
     INR: {
-        vapt: { web: 15000, mobile: 20000, network: 10000, cloud: 25000 },
+        vapt: { web: 15000, mobile: 20000, network: 10000, cloud: 25000, api: 8000 },
         soc: { endpoint: 1500 },
         compliance: { iso: 150000, gdpr: 200000, hipaa: 250000, pcidss: 200000 },
+        complexity: { static: 1, dynamic: 1.5, enterprise: 2.5, saas: 3, fintech: 4 },
+        hosting: { shared: 1, vps: 1.2, dedicated: 1.5, cloud: 1.8, hybrid: 2.5, onpremise: 3 },
         symbol: "₹"
     },
     EUR: {
-        vapt: { web: 180, mobile: 230, network: 130, cloud: 270 },
+        vapt: { web: 180, mobile: 230, network: 130, cloud: 270, api: 90 },
         soc: { endpoint: 18 },
         compliance: { iso: 1800, gdpr: 2300, hipaa: 2700, pcidss: 2300 },
+        complexity: { static: 1, dynamic: 1.5, enterprise: 2.5, saas: 3, fintech: 4 },
+        hosting: { shared: 1, vps: 1.2, dedicated: 1.5, cloud: 1.8, hybrid: 2.5, onpremise: 3 },
         symbol: "€"
     },
     GBP: {
-        vapt: { web: 160, mobile: 200, network: 120, cloud: 240 },
+        vapt: { web: 160, mobile: 200, network: 120, cloud: 240, api: 80 },
         soc: { endpoint: 15 },
         compliance: { iso: 1600, gdpr: 2000, hipaa: 2400, pcidss: 2000 },
+        complexity: { static: 1, dynamic: 1.5, enterprise: 2.5, saas: 3, fintech: 4 },
+        hosting: { shared: 1, vps: 1.2, dedicated: 1.5, cloud: 1.8, hybrid: 2.5, onpremise: 3 },
         symbol: "£"
     },
 };
@@ -50,19 +60,30 @@ const RATES = {
 export default function CyberSecurityCalculator() {
     const [currency, setCurrency] = useState<keyof typeof RATES>("INR");
 
-    // VAPT State - storing counts for each type. 0 means not selected/disabled.
+    // VAPT State
     const [vaptCounts, setVaptCounts] = useState({
         web: 1,
         mobile: 0,
         network: 0,
-        cloud: 0
+        cloud: 0,
+        api: 0
     });
+
+    // Granular Metrics State
+    const [subdomainCount, setSubdomainCount] = useState(0);
+    const [mobilePlatforms, setMobilePlatforms] = useState(2); // iOS + Android default
+    const [networkIPs, setNetworkIPs] = useState(5); // IPs per network
+    const [cloudResources, setCloudResources] = useState(10); // Resources per account
+    const [apiEndpointsPerService, setApiEndpointsPerService] = useState(5); // Endpoints per service
+
+    const [techComplexity, setTechComplexity] = useState("dynamic");
+    const [hostingType, setHostingType] = useState("cloud");
 
     // Helper to toggle VAPT selection
     const toggleVapt = (type: keyof typeof vaptCounts) => {
         setVaptCounts(prev => ({
             ...prev,
-            [type]: prev[type] > 0 ? 0 : 1 // Toggle between 0 (off) and 1 (on)
+            [type]: prev[type] > 0 ? 0 : 1
         }));
     };
 
@@ -85,17 +106,61 @@ export default function CyberSecurityCalculator() {
 
     useEffect(() => {
         const rates = RATES[currency];
-        const vaptBaseCost = Object.keys(vaptCounts).reduce((acc, type) => {
-            // @ts-ignore
-            const count = vaptCounts[type];
-            // @ts-ignore
-            return count > 0 ? acc + ((rates.vapt[type] || 0) * count) : acc;
-        }, 0);
 
-        const totalAssets = Object.keys(vaptCounts).reduce((acc, type) => {
+        // Calculate Base VAPT Cost
+        let vaptBaseCost = 0;
+
+        // Web VAPT with complexity and subs
+        if (vaptCounts.web > 0) {
+            let webCost = rates.vapt.web * vaptCounts.web;
+            // Add subdomain cost (approx 30% of base web cost per subdomain)
+            webCost += (rates.vapt.web * 0.3 * subdomainCount);
+            // Apply complexity multiplier
             // @ts-ignore
-            return acc + (vaptCounts[type] || 0);
-        }, 0);
+            webCost *= rates.complexity[techComplexity];
+            vaptBaseCost += webCost;
+        }
+
+        // Mobile VAPT: Base (for 1 platform) * Apps * (1 + 0.6 per extra platform) * Hosting
+        // @ts-ignore
+        if (vaptCounts.mobile > 0) {
+            const platformMultiplier = 1 + Math.max(0, mobilePlatforms - 1) * 0.6;
+            // @ts-ignore
+            vaptBaseCost += (rates.vapt.mobile * vaptCounts.mobile * platformMultiplier * rates.hosting[hostingType]);
+        }
+
+        // Network VAPT: (Base Network Cost * Networks) + (Cost Per IP * IPs * Networks)
+        // @ts-ignore
+        if (vaptCounts.network > 0) {
+            // Assume base network cost covers setup, plus rate per IP
+            const perIpRate = rates.vapt.network * 0.2;
+            // @ts-ignore
+            const networkCost = (rates.vapt.network * vaptCounts.network) + (perIpRate * networkIPs * vaptCounts.network);
+            // @ts-ignore
+            vaptBaseCost += (networkCost * rates.hosting[hostingType]);
+        }
+
+        // Cloud VAPT: (Base Account Cost * Accounts) + (Cost Per Resource Unit * Resources * Accounts)
+        // @ts-ignore
+        if (vaptCounts.cloud > 0) {
+            const perResourceRate = rates.vapt.cloud * 0.1;
+            // @ts-ignore
+            const cloudCost = (rates.vapt.cloud * vaptCounts.cloud) + (perResourceRate * cloudResources * vaptCounts.cloud);
+            // @ts-ignore
+            vaptBaseCost += (cloudCost * rates.hosting[hostingType]);
+        }
+
+        // API VAPT: (Base Service Cost * Services) + (Cost Per Endpoint * Endpoints * Services)
+        // @ts-ignore
+        if (vaptCounts.api > 0) {
+            const perEndpointRate = rates.vapt.api * 0.15;
+            // @ts-ignore
+            const apiCost = (rates.vapt.api * vaptCounts.api) + (perEndpointRate * apiEndpointsPerService * vaptCounts.api);
+            // @ts-ignore
+            vaptBaseCost += (apiCost * rates.hosting[hostingType]);
+        }
+
+        const totalAssets = Object.values(vaptCounts).reduce((a, b) => a + b, 0) + subdomainCount;
 
         // Apply Tiered Discount Logic
         let discountMultiplier = 1;
@@ -124,7 +189,7 @@ export default function CyberSecurityCalculator() {
         }
 
         setTotalCost(Math.round(estimated));
-    }, [currency, vaptCounts, socEndpoints, compliance]);
+    }, [currency, vaptCounts, socEndpoints, compliance, subdomainCount, mobilePlatforms, networkIPs, cloudResources, apiEndpointsPerService, techComplexity, hostingType]);
 
     const formatCurrency = (amount: number) => {
         return new Intl.NumberFormat('en-US', {
@@ -137,10 +202,11 @@ export default function CyberSecurityCalculator() {
     const handleWhatsApp = () => {
         // Construct VAPT summary
         let vaptSummary = "";
-        if (vaptCounts.web > 0) vaptSummary += `- Web App Penetration Testing: ${vaptCounts.web} Assets\n`;
-        if (vaptCounts.mobile > 0) vaptSummary += `- Mobile App Penetration Testing: ${vaptCounts.mobile} Apps\n`;
-        if (vaptCounts.network > 0) vaptSummary += `- Network Vulnerability Assessment: ${vaptCounts.network} IPs\n`;
-        if (vaptCounts.cloud > 0) vaptSummary += `- Cloud Security Config Review: ${vaptCounts.cloud} Accounts\n`;
+        if (vaptCounts.web > 0) vaptSummary += `- Web App VAPT: ${vaptCounts.web} Apps + ${subdomainCount} Subdomains\n`;
+        if (vaptCounts.mobile > 0) vaptSummary += `- Mobile App VAPT: ${vaptCounts.mobile} Apps on ${mobilePlatforms} Platforms\n`;
+        if (vaptCounts.network > 0) vaptSummary += `- Network VAPT: ${vaptCounts.network} Networks (approx ${networkIPs} IPs/Network)\n`;
+        if (vaptCounts.cloud > 0) vaptSummary += `- Cloud Security: ${vaptCounts.cloud} Accounts (approx ${cloudResources} Resources/Account)\n`;
+        if (vaptCounts.api > 0) vaptSummary += `- API Security: ${vaptCounts.api} Services (approx ${apiEndpointsPerService} Endpoints/Service)\n`;
 
         if (vaptSummary === "") vaptSummary = "- None selected";
 
@@ -150,6 +216,10 @@ export default function CyberSecurityCalculator() {
         }
 
         const message = `Hi, I used the Cyber Security Cost Estimator on Cehpoint. Here are my requirements:
+
+*Infrastructure Profile:*
+- Tech Complexity: ${techComplexity.toUpperCase()}
+- Hosting Environment: ${hostingType.toUpperCase()}
 
 *VAPT Scope:*
 ${vaptSummary}
@@ -167,12 +237,12 @@ ${vaptSummary}
 Please provide a formal quotation for these services.`;
         window.open(`https://wa.me/919091156095?text=${encodeURIComponent(message)}`, '_blank');
     };
-
     const vaptOptions = [
-        { id: "web", label: "Web App Security", icon: Globe, color: "text-blue-400" },
-        { id: "mobile", label: "Mobile App Security", icon: Smartphone, color: "text-purple-400" },
-        { id: "network", label: "Network Security", icon: Wifi, color: "text-emerald-400" },
-        { id: "cloud", label: "Cloud Security", icon: Cloud, color: "text-amber-400" },
+        { id: "web", label: "Web Application", icon: Globe, color: "text-blue-400" },
+        { id: "mobile", label: "Mobile App", icon: Smartphone, color: "text-purple-400" },
+        { id: "network", label: "Network/Server", icon: Wifi, color: "text-emerald-400" },
+        { id: "cloud", label: "Cloud Infrastructure", icon: Cloud, color: "text-amber-400" },
+        { id: "api", label: "API Endpoints", icon: Code, color: "text-rose-400" },
     ];
 
     return (
@@ -196,6 +266,51 @@ Please provide a formal quotation for these services.`;
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Controls */}
                     <div className="lg:col-span-2 space-y-6">
+
+                        {/* Infrastructure Profile */}
+                        <Card className="glass-intense border-white/10">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2">
+                                    <Server className="w-5 h-5 text-indigo-400" />
+                                    Infrastructure Profile
+                                </CardTitle>
+                                <CardDescription>Define your technology stack for accurate estimation</CardDescription>
+                            </CardHeader>
+                            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label>Technology Complexity</Label>
+                                    <Select value={techComplexity} onValueChange={setTechComplexity}>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select Complexity" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="static">Static Website</SelectItem>
+                                            <SelectItem value="dynamic">Dynamic Web App</SelectItem>
+                                            <SelectItem value="enterprise">Complex Enterprise App</SelectItem>
+                                            <SelectItem value="saas">SaaS / Multi-tenant Platform</SelectItem>
+                                            <SelectItem value="fintech">Fintech / Banking Core</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Hosting Environment</Label>
+                                    <Select value={hostingType} onValueChange={setHostingType}>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select Hosting" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="shared">Shared Hosting</SelectItem>
+                                            <SelectItem value="vps">VPS / Virtual Server</SelectItem>
+                                            <SelectItem value="dedicated">Dedicated Server</SelectItem>
+                                            <SelectItem value="cloud">Cloud (AWS/Azure/GCP)</SelectItem>
+                                            <SelectItem value="hybrid">Hybrid Cloud</SelectItem>
+                                            <SelectItem value="onpremise">On-Premise Data Center</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </CardContent>
+                        </Card>
+
                         {/* VAPT Section */}
                         <Card className="glass-intense border-white/10 overflow-hidden relative">
                             <div className="absolute top-0 right-0 p-4 opacity-10">
@@ -239,9 +354,13 @@ Please provide a formal quotation for these services.`;
                                             {
                                                 // @ts-ignore
                                                 vaptCounts[option.id] > 0 && (
-                                                    <div className="pt-2 animate-in fade-in slide-in-from-top-2">
+                                                    <div className="pt-2 animate-in fade-in slide-in-from-top-2 space-y-4">
                                                         <div className="flex justify-between text-xs mb-2">
-                                                            <span className="text-muted-foreground">Quantity</span>
+                                                            <span className="text-muted-foreground">
+                                                                {option.id === 'api' ? 'Services' :
+                                                                    option.id === 'cloud' ? 'Accounts' :
+                                                                        option.id === 'network' ? 'Networks' : 'Quantity'}
+                                                            </span>
                                                             <span className="font-bold text-primary">
                                                                 {/* @ts-ignore */}
                                                                 {vaptCounts[option.id]}
@@ -257,6 +376,85 @@ Please provide a formal quotation for these services.`;
                                                             step={1}
                                                             className="py-2"
                                                         />
+
+                                                        {option.id === 'web' && (
+                                                            <div className="pt-2 border-t border-white/10">
+                                                                <div className="flex justify-between text-xs mb-2">
+                                                                    <span className="text-muted-foreground">Subdomains</span>
+                                                                    <span className="font-bold text-primary">{subdomainCount}</span>
+                                                                </div>
+                                                                <Slider
+                                                                    value={[subdomainCount]}
+                                                                    onValueChange={(val) => setSubdomainCount(val[0])}
+                                                                    max={20}
+                                                                    step={1}
+                                                                />
+                                                            </div>
+                                                        )}
+
+                                                        {option.id === 'mobile' && (
+                                                            <div className="pt-2 border-t border-white/10">
+                                                                <div className="flex justify-between text-xs mb-2">
+                                                                    <span className="text-muted-foreground">Target Platforms (iOS/Android)</span>
+                                                                    <span className="font-bold text-primary">{mobilePlatforms}</span>
+                                                                </div>
+                                                                <Slider
+                                                                    value={[mobilePlatforms]}
+                                                                    onValueChange={(val) => setMobilePlatforms(val[0])}
+                                                                    max={5}
+                                                                    min={1}
+                                                                    step={1}
+                                                                />
+                                                            </div>
+                                                        )}
+
+                                                        {option.id === 'network' && (
+                                                            <div className="pt-2 border-t border-white/10">
+                                                                <div className="flex justify-between text-xs mb-2">
+                                                                    <span className="text-muted-foreground">IPs / Nodes per Network</span>
+                                                                    <span className="font-bold text-primary">{networkIPs}</span>
+                                                                </div>
+                                                                <Slider
+                                                                    value={[networkIPs]}
+                                                                    onValueChange={(val) => setNetworkIPs(val[0])}
+                                                                    max={254}
+                                                                    min={1}
+                                                                    step={1}
+                                                                />
+                                                            </div>
+                                                        )}
+
+                                                        {option.id === 'cloud' && (
+                                                            <div className="pt-2 border-t border-white/10">
+                                                                <div className="flex justify-between text-xs mb-2">
+                                                                    <span className="text-muted-foreground">Resources per Account</span>
+                                                                    <span className="font-bold text-primary">{cloudResources}</span>
+                                                                </div>
+                                                                <Slider
+                                                                    value={[cloudResources]}
+                                                                    onValueChange={(val) => setCloudResources(val[0])}
+                                                                    max={100}
+                                                                    min={5}
+                                                                    step={5}
+                                                                />
+                                                            </div>
+                                                        )}
+
+                                                        {option.id === 'api' && (
+                                                            <div className="pt-2 border-t border-white/10">
+                                                                <div className="flex justify-between text-xs mb-2">
+                                                                    <span className="text-muted-foreground">Endpoints per Service</span>
+                                                                    <span className="font-bold text-primary">{apiEndpointsPerService}</span>
+                                                                </div>
+                                                                <Slider
+                                                                    value={[apiEndpointsPerService]}
+                                                                    onValueChange={(val) => setApiEndpointsPerService(val[0])}
+                                                                    max={50}
+                                                                    min={1}
+                                                                    step={1}
+                                                                />
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 )}
                                         </div>
@@ -366,11 +564,6 @@ Please provide a formal quotation for these services.`;
                                         <div className="text-xs text-muted-foreground">
                                             *Rough estimate based on selected parameters. Need a detailed proposal?
                                         </div>
-                                        {discount > 0 && (
-                                            <div className="text-sm font-medium text-emerald-400 mt-2 animate-in fade-in slide-in-from-bottom-1">
-                                                You save {formatCurrency(discount)} with volume discount!
-                                            </div>
-                                        )}
                                     </div>
 
                                     <Button

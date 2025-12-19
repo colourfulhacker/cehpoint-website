@@ -2,6 +2,7 @@ import { DollarSign, Shield, BarChart3, Smartphone, Globe, Lock, Star, TrendingU
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
+import FintechCalculator from "@/components/calculators/fintech-calculator";
 
 export default function FintechService() {
   const problemPatterns = [
@@ -184,6 +185,9 @@ export default function FintechService() {
           </div>
         </div>
       </section>
+
+      {/* Calculator Section */}
+      <FintechCalculator />
 
       {/* Case Studies Section */}
       <section className="py-24">
