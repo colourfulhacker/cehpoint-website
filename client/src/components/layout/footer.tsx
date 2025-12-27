@@ -21,6 +21,7 @@ export default function Footer() {
 
   const companyLinks = [
     { name: "Portfolio", href: "https://portfolios.cehpoint.co.in/", external: true },
+    { name: "Company Profile", href: "/company-profile" },
     { name: "24-Hour Demo", href: "/demo-delivery" },
     { name: "Careers", href: "/careers" },
     { name: "Get Quote", href: "/quotation" },

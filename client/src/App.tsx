@@ -24,13 +24,16 @@ import Incubation from "@/pages/incubation";
 import Careers from "@/pages/careers";
 import InvestorConnect from "@/pages/investor-connect";
 import LeadershipSearch from "@/pages/leadership-search";
+import CompanyProfile from "@/pages/company-profile";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import ScrollToTop from "@/components/layout/scroll-to-top";
 import { Banner } from "./components/sections/Banner";
 
 function Router() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <ScrollToTop />
       {/* Banner with highest z-index */}
       <div className="relative z-50">
         <Banner />
@@ -60,6 +63,7 @@ function Router() {
           <Route path="/interns" component={Interns} />
           <Route path="/investor-connect" component={InvestorConnect} />
           <Route path="/leadership-search" component={LeadershipSearch} />
+          <Route path="/company-profile" component={CompanyProfile} />
           <Route component={NotFound} />
         </Switch>
       </main>

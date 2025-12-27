@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "wouter";
+import { useState, useEffect } from "react";
+import { Link, useSearch } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -21,9 +21,29 @@ import {
 } from "lucide-react";
 
 export default function Training() {
+    const searchString = useSearch();
     const [activeTab, setActiveTab] = useState("entrepreneurs");
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     const [bookingType, setBookingType] = useState<"entrepreneur" | "student">("entrepreneur");
+
+    // Parse query params
+    const getParams = () => {
+        const params = new URLSearchParams(searchString);
+        return {
+            type: params.get("type") // 'business' or 'student'
+        };
+    };
+
+    const { type } = getParams();
+    const isSpecificView = !!type;
+
+    useEffect(() => {
+        if (type === "student") {
+            setActiveTab("students");
+        } else if (type === "business" || type === "entrepreneur") {
+            setActiveTab("entrepreneurs");
+        }
+    }, [type]);
 
     // Form State
     const [formData, setFormData] = useState({
@@ -88,13 +108,15 @@ export default function Training() {
                         Free 40-Minute Power Sessions
                     </Badge>
                     <h1 className="font-display font-bold text-5xl md:text-7xl mb-6 tracking-tight">
-                        Empowering Growth <br />
+                        {activeTab === "entrepreneurs" ? "Scale Your Business" : "Fast-Track Your Career"} <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                            Through Knowledge
+                            {activeTab === "entrepreneurs" ? "With Automation" : "With Future Tech"}
                         </span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-                        Short, impactful training programs designed to accelerate your business growth or fast-track your tech career.
+                        {activeTab === "entrepreneurs"
+                            ? "Short, impactful sessions to automate workflows and drive revenue."
+                            : "Learn high-demand skills like AI and Cloud that colleges miss."}
                     </p>
                 </div>
             </section>
@@ -102,23 +124,26 @@ export default function Training() {
             {/* Main Content */}
             <section className="py-12 bg-background relative z-10 -mt-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <Tabs defaultValue="entrepreneurs" onValueChange={setActiveTab} className="w-full">
-                        <div className="flex justify-center mb-12">
-                            <TabsList className="grid w-full max-w-md grid-cols-2 p-1 bg-secondary/30 backdrop-blur-md rounded-full">
-                                <TabsTrigger
-                                    value="entrepreneurs"
-                                    className="rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white"
-                                >
-                                    For Entrepreneurs
-                                </TabsTrigger>
-                                <TabsTrigger
-                                    value="students"
-                                    className="rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white"
-                                >
-                                    For Students
-                                </TabsTrigger>
-                            </TabsList>
-                        </div>
+                    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                        {/* Only show TabsList if NO specific type is requested */}
+                        {!isSpecificView && (
+                            <div className="flex justify-center mb-12">
+                                <TabsList className="grid w-full max-w-md grid-cols-2 p-1 bg-secondary/30 backdrop-blur-md rounded-full">
+                                    <TabsTrigger
+                                        value="entrepreneurs"
+                                        className="rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white"
+                                    >
+                                        For Entrepreneurs
+                                    </TabsTrigger>
+                                    <TabsTrigger
+                                        value="students"
+                                        className="rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white"
+                                    >
+                                        For Students
+                                    </TabsTrigger>
+                                </TabsList>
+                            </div>
+                        )}
 
                         {/* Entrepreneurs Content */}
                         <TabsContent value="entrepreneurs" className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">

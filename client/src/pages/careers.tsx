@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 
 import AIInterviewPopup from "@/components/careers/ai-interview-popup";
+import JobPostingSchema from "@/components/seo/job-posting-schema";
 
 export default function Careers() {
   const fullTimeJobs = [
@@ -172,6 +173,51 @@ export default function Careers() {
   return (
     <div className="min-h-screen pt-16">
       <AIInterviewPopup />
+
+      {/* JobPosting Structured Data for Full-Time Positions */}
+      {fullTimeJobs.map((job) => (
+        <JobPostingSchema
+          key={job.title}
+          title={job.title}
+          description={job.description}
+          department={job.department}
+          location={job.location}
+          employmentType="FULL_TIME"
+          salary={{
+            currency: "INR",
+            value: 720000, // ₹60,000/month = ₹720,000/year
+            unitText: "YEAR",
+          }}
+          datePosted="2025-01-01"
+          validThrough="2025-12-31"
+          responsibilities={job.responsibilities}
+          requirements={job.requirements}
+          applicationUrl="http://interview-ai.cehpoint.co.in"
+        />
+      ))}
+
+      {/* JobPosting Structured Data for Internships */}
+      {internships.map((internship) => (
+        <JobPostingSchema
+          key={internship.title}
+          title={internship.title}
+          description={internship.description}
+          department={internship.department}
+          location="Remote/Hybrid"
+          employmentType="INTERN"
+          salary={{
+            currency: "INR",
+            value: 180000, // Up to ₹15,000/month = ₹180,000/year
+            unitText: "YEAR",
+          }}
+          datePosted="2025-01-01"
+          validThrough="2025-12-31"
+          responsibilities={internship.responsibilities}
+          requirements={internship.requirements}
+          applicationUrl="https://internlink.cehpoint.co.in/"
+        />
+      ))}
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

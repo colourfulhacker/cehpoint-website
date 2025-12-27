@@ -1,3 +1,5 @@
+import { useRef, useState } from "react";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import {
   ShoppingCart,
   BookOpen,
@@ -17,306 +19,274 @@ import {
   GraduationCap,
   Car,
   Home,
-  TreePine,
   Briefcase,
-  Music,
-} from "lucide-react"
+  ArrowUpRight,
+  Sparkles
+} from "lucide-react";
 
-export default function IndustrySolutions() {
-  const industries = [
-    {
-      icon: Brain,
-      title: "Innovative IT Services",
-      description:
-        "Cutting-edge technology solutions tailored for your business growth. We deliver scalable, robust, and future-ready IT infrastructure.",
-      features: [
-        "Custom Software Development",
-        "Cloud Architecture",
-        "Digital Transformation",
-        "Legacy Modernization",
-      ],
-      growth: "High Impact",
-      projects: "200+",
-    },
-    {
-      icon: Shield,
-      title: "Cyber Security",
-      description:
-        "Comprehensive security audits and protection strategies. We safeguard your digital assets against evolving threats with advanced protocols.",
-      features: ["Vulnerability Assessment", "Penetration Testing", "Security Compliance", "Threat Monitoring"],
-      growth: "Critical",
-      projects: "150+",
-    },
-    {
-      icon: ShoppingCart,
-      title: "E-commerce Development",
-      description:
-        "Transform shopping experiences with intelligent recommendations and seamless omnichannel integration that boosts sales and customer retention.",
-      features: [
-        "Custom Storefronts",
-        "Payment Gateway Integration",
-        "Inventory Management",
-        "User Experience Design",
-      ],
-      growth: "35% YoY",
-      projects: "150+",
-    },
-    {
-      icon: BookOpen,
-      title: "Edutech Solutions",
-      description:
-        "Revolutionize education with adaptive learning platforms, virtual classrooms, and student management systems.",
-      features: ["LMS Development", "Virtual Classrooms", "Student Analytics", "Gamified Learning"],
-      growth: "28% YoY",
-      projects: "85+",
-    },
-    {
-      icon: DollarSign,
-      title: "Fintech Applications",
-      description:
-        "Secure and compliant financial technology solutions. From digital wallets to blockchain integration, we build trust.",
-      features: ["Secure Transactions", "Blockchain Integration", "Regulatory Compliance", "Financial Analytics"],
-      growth: "42% YoY",
-      projects: "120+",
-    },
-    {
-      icon: Heart,
-      title: "Healthcare & Medical",
-      description:
-        "HIPAA-compliant healthcare solutions including telemedicine platforms, patient management, and diagnostic tools.",
-      features: ["Telemedicine Apps", "EHR Systems", "Medical IoT", "Patient Portals"],
-      growth: "31% YoY",
-      projects: "95+",
-    },
-    {
-      icon: Factory,
-      title: "Manufacturing & IoT",
-      description:
-        "Industry 4.0 solutions with IoT integration, predictive maintenance, and supply chain optimization.",
-      features: ["IoT Monitoring", "Predictive Maintenance", "Smart Factory", "Supply Chain Ops"],
-      growth: "24% YoY",
-      projects: "70+",
-    },
-    {
-      icon: Building,
-      title: "Real Estate (PropTech)",
-      description: "Innovative property technology solutions with virtual tours, smart contracts, and automated property management.",
-      features: ["Virtual Tours", "Smart Contracts", "Property Management", "Listing Portals"],
-      growth: "29% YoY",
-      projects: "65+",
-    },
-    {
-      icon: Truck,
-      title: "Logistics & Supply Chain",
-      description: "Smart logistics with route optimization, fleet management, and real-time tracking technologies.",
-      features: ["Route Optimization", "Fleet Management", "Real-time Tracking", "Delivery Apps"],
-      growth: "26% YoY",
-      projects: "80+",
-    },
-    {
-      icon: Plane,
-      title: "Travel & Tourism",
-      description:
-        "Comprehensive travel platforms with booking systems, itinerary planning, and experience management.",
-      features: ["Booking Engines", "Itinerary Planners", "Travel CRM", "Mobile Travel Apps"],
-      growth: "33% YoY",
-      projects: "45+",
-    },
-    {
-      icon: Utensils,
-      title: "Food & Beverage",
-      description: "Restaurant tech with ordering systems, inventory management, and customer experience optimization.",
-      features: ["Online Ordering", "POS Systems", "Inventory Mgmt", "Delivery Integration"],
-      growth: "27% YoY",
-      projects: "60+",
-    },
-    {
-      icon: Car,
-      title: "Automotive",
-      description:
-        "Connected vehicle platforms with fleet management, maintenance tracking, and smart mobility solutions.",
-      features: ["Fleet Telematics", "Service Scheduling", "Connected Car Apps", "Dealer Management"],
-      growth: "22% YoY",
-      projects: "40+",
-    },
-    {
-      icon: Blocks,
-      title: "SaaS & Enterprise Software",
-      description:
-        "Scalable cloud-based software solutions with multi-tenancy, subscription management, and enterprise integrations.",
-      features: ["Multi-tenant Architecture", "API Development", "Subscription Billing", "Enterprise Integrations"],
-      growth: "38% YoY",
-      projects: "110+",
-    },
-    {
-      icon: Film,
-      title: "Media & Entertainment",
-      description:
-        "Streaming platforms, content management systems, and digital media solutions for modern entertainment.",
-      features: ["Video Streaming", "Content CMS", "Live Broadcasting", "Media Analytics"],
-      growth: "30% YoY",
-      projects: "55+",
-    },
-    {
-      icon: Briefcase,
-      title: "Government & Public Sector",
-      description:
-        "Secure, compliant digital transformation solutions for government agencies and public services.",
-      features: ["Citizen Portals", "E-Governance", "Data Security", "Public Service Apps"],
-      growth: "19% YoY",
-      projects: "35+",
-    },
-  ]
+// --- Data (Strictly Professional - No Themes) ---
+const industries = [
+  {
+    title: "Innovative IT Services",
+    icon: Brain,
+    description: "Cutting-edge technology solutions tailored for your business growth. We deliver scalable, robust, and future-ready IT infrastructure.",
+    features: ["Custom Software", "Cloud Architecture", "Digital Transformation", "Legacy Modernization"],
+    cost: "Custom Quote",
+    time: "2-4 Weeks",
+    span: "md:col-span-2 md:row-span-2",
+  },
+  {
+    title: "Cyber Security",
+    icon: Shield,
+    description: "Comprehensive protection strategies safeguarding your digital assets against evolving threats.",
+    features: ["Vulnerability Assessment", "Penetration Testing", "Compliance", "Threat Monitoring"],
+    cost: "From ₹15,000",
+    time: "1 Week",
+    span: "md:col-span-2 md:row-span-1",
+  },
+  {
+    title: "E-commerce",
+    icon: ShoppingCart,
+    description: "Intelligent recommendations and seamless omnichannel integration.",
+    features: ["Custom Storefronts", "Payment Gateways", "Inventory Mgmt", "UX Design"],
+    cost: "From ₹25,000",
+    time: "3-5 Weeks",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Edutech",
+    icon: GraduationCap,
+    description: "Adaptive learning platforms and virtual classrooms.",
+    features: ["LMS Development", "Virtual Classrooms", "Student Analytics", "Gamified Learning"],
+    cost: "From ₹30,000",
+    time: "4-6 Weeks",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Fintech",
+    icon: DollarSign,
+    description: "Secure financial technology. Digital wallets to blockchain.",
+    features: ["Secure Transactions", "Blockchain", "Compliance", "Financial Analytics"],
+    cost: "From ₹50,000",
+    time: "6-8 Weeks",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Healthcare",
+    icon: Heart,
+    description: "HIPAA-compliant telemedicine and patient management.",
+    features: ["Telemedicine Apps", "EHR Systems", "Medical IoT", "Patient Portals"],
+    cost: "From ₹45,000",
+    time: "5-7 Weeks",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Manufacturing",
+    icon: Factory,
+    description: "Industry 4.0 with IoT and predictive maintenance.",
+    features: ["IoT Monitoring", "Predictive Maintenance", "Smart Factory", "Supply Chain"],
+    cost: "From ₹60,000",
+    time: "8+ Weeks",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Real Estate",
+    icon: Building,
+    description: "PropTech with virtual tours and smart contracts.",
+    features: ["Virtual Tours", "Smart Contracts", "Property Mgmt", "Listings"],
+    cost: "From ₹35,000",
+    time: "4-6 Weeks",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Logistics",
+    icon: Truck,
+    description: "Route optimization and fleet management.",
+    features: ["Route Optimization", "Fleet Mgmt", "Real-time Tracking", "Delivery Apps"],
+    cost: "From ₹40,000",
+    time: "5-7 Weeks",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Travel & Tourism",
+    icon: Plane,
+    description: "Booking engines and experience management.",
+    features: ["Booking Engines", "Itinerary Planners", "Travel CRM", "Mobile Apps"],
+    cost: "From ₹30,000",
+    time: "4-6 Weeks",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Food & Beverage",
+    icon: Utensils,
+    description: "Restaurant tech with ordering and inventory systems.",
+    features: ["Online Ordering", "POS Systems", "Inventory Mgmt", "Delivery"],
+    cost: "From ₹20,000",
+    time: "3-4 Weeks",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Automotive",
+    icon: Car,
+    description: "Connected vehicle platforms and smart mobility.",
+    features: ["Fleet Telematics", "Service Scheduling", "Connected Car", "Dealer Mgmt"],
+    cost: "From ₹55,000",
+    time: "6-9 Weeks",
+    span: "md:col-span-2 md:row-span-1",
+  },
+  {
+    title: "SaaS & Enterprise",
+    icon: Blocks,
+    description: "Scalable cloud software with enterprise integration.",
+    features: ["Multi-tenant", "API Development", "Subscription Billing", "Integrations"],
+    cost: "Custom",
+    time: "Scale Dependent",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Media",
+    icon: Film,
+    description: "Streaming platforms and content management.",
+    features: ["Video Streaming", "Content CMS", "Live Broadcasting", "Analytics"],
+    cost: "From ₹40,000",
+    time: "5-7 Weeks",
+    span: "md:col-span-1 md:row-span-1",
+  },
+  {
+    title: "Government",
+    icon: Briefcase,
+    description: "Secure digital transformation for public sector.",
+    features: ["Citizen Portals", "E-Governance", "Data Security", "Public Service Apps"],
+    cost: "Tender Based",
+    time: "Project Based",
+    span: "md:col-span-2 md:row-span-1",
+  },
+];
+
+// --- Components ---
+
+function MasterpieceCard({ item }: { item: typeof industries[0] }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
 
   return (
-    <section id="services" className="py-24 bg-secondary/50" data-testid="industry-solutions-section">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20 animate-fade-up">
-          <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-6">
-            <span className="text-sm font-medium text-accent">🌍 Global Industry Coverage</span>
+    <div
+      className={`group relative rounded-3xl border border-white/5 bg-[#0a0a0a] overflow-hidden transition-all duration-500 hover:border-primary/50 ${item.span}`}
+      onMouseMove={handleMouseMove}
+    >
+      {/* 
+          STRICT BRANDING ENFORCEMENT:
+          - Background: #0a0a0a (Deep Dark)
+          - Border: White/5 (Subtle) -> Primary/50 (Violet on Hover)
+          - No Rainbow Gradients.
+      */}
+
+      {/* Spotlight Effect - Pure Primary (Violet) */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-500 group-hover:opacity-100"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              600px circle at ${mouseX}px ${mouseY}px,
+              rgba(124, 58, 237, 0.15),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+
+      <div className="relative h-full p-8 flex flex-col justify-between z-10">
+        {/* Icon Header */}
+        <div className="flex justify-between items-start mb-6">
+          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-white group-hover:text-primary group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-500">
+            <item.icon className="h-6 w-6" />
           </div>
-          <h2
-            className="font-display font-bold text-4xl md:text-7xl mb-8 tracking-tight"
-            data-testid="industry-solutions-title"
-          >
-            Transforming Every
-            <span className="text-gradient"> Industry</span>
-          </h2>
-          <p
-            className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light"
-            data-testid="industry-solutions-subtitle"
-          >
-            From startups to Fortune 500 companies, we deliver enterprise-grade solutions across every business vertical
-            with cutting-edge technology and measurable outcomes.
+          {/* Subtle "Active" Indicator - Accent Color (Orange) */}
+          <div className="w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent group-hover:shadow-[0_0_10px_rgba(249,115,22,0.6)] transition-all duration-500" />
+        </div>
+
+        {/* Content */}
+        <div>
+          <h3 className="text-xl font-display font-medium text-white mb-3 group-hover:text-primary-foreground transition-colors duration-300">
+            {item.title}
+          </h3>
+          <p className="text-sm text-zinc-400 font-light leading-relaxed group-hover:text-zinc-300 transition-colors duration-300">
+            {item.description}
           </p>
         </div>
 
-        <div className="mb-20 animate-fade-up">
-          <div className="glass-intense rounded-3xl p-8 md:p-12 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-50"></div>
-            <div className="relative z-10">
-              <div className="flex items-center justify-center mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 gradient-primary rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium text-accent uppercase tracking-wider">
-                    Full Spectrum Services
-                  </span>
-                  <div className="w-3 h-3 gradient-accent rounded-full animate-pulse"></div>
-                </div>
-              </div>
-
-              <div className="max-w-5xl mx-auto text-center">
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-                  We offer a <span className="text-primary font-semibold">full spectrum of services</span>, including
-                  software development, cloud infrastructure, IT consulting, and cybersecurity solutions such as
-                  penetration testing, vulnerability assessments, and security compliance.
-                </p>
-
-                <div className="flex items-center justify-center gap-4 mb-6">
-                  <div className="h-px bg-gradient-to-r from-transparent via-primary to-transparent flex-1 max-w-20"></div>
-                  <div className="w-2 h-2 gradient-primary rounded-full"></div>
-                  <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent flex-1 max-w-20"></div>
-                </div>
-
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  Every project we undertake is built with <span className="text-accent font-semibold">innovation</span>
-                  , <span className="text-primary font-semibold">reliability</span>, and{" "}
-                  <span className="text-accent font-semibold">protection</span> in mind — ensuring that your technology
-                  not only works but stays secure.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                <div className="text-center p-4 rounded-xl bg-background/50 backdrop-blur-sm">
-                  <div className="w-8 h-8 gradient-primary rounded-lg mx-auto mb-2 flex items-center justify-center">
-                    <Blocks className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-sm font-medium text-foreground">Development</span>
-                </div>
-                <div className="text-center p-4 rounded-xl bg-background/50 backdrop-blur-sm">
-                  <div className="w-8 h-8 gradient-primary rounded-lg mx-auto mb-2 flex items-center justify-center">
-                    <Wifi className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-sm font-medium text-foreground">Cloud Infrastructure</span>
-                </div>
-                <div className="text-center p-4 rounded-xl bg-background/50 backdrop-blur-sm">
-                  <div className="w-8 h-8 gradient-primary rounded-lg mx-auto mb-2 flex items-center justify-center">
-                    <Brain className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-sm font-medium text-foreground">IT Consulting</span>
-                </div>
-                <div className="text-center p-4 rounded-xl bg-background/50 backdrop-blur-sm">
-                  <div className="w-8 h-8 gradient-primary rounded-lg mx-auto mb-2 flex items-center justify-center">
-                    <Shield className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-sm font-medium text-foreground">Cybersecurity</span>
-                </div>
-              </div>
+        {/* Footer / Features Reveal */}
+        <div className="mt-8 pt-6 border-t border-white/5 group-hover:border-white/10 transition-colors duration-500">
+          {/* Default State: Metrics */}
+          <div className="flex justify-between items-center group-hover:opacity-0 transition-opacity duration-300 absolute w-[85%]">
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-zinc-600 font-bold">Starts From</p>
+              <p className="text-sm font-medium text-zinc-300">{item.cost}</p>
             </div>
+            <div className="text-right">
+              <p className="text-[10px] uppercase tracking-widest text-zinc-600 font-bold">Timeline</p>
+              <p className="text-sm font-medium text-zinc-300">{item.time}</p>
+            </div>
+          </div>
+
+          {/* Hover State: Features */}
+          <div className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
+            <ul className="grid grid-cols-2 gap-2">
+              {item.features.slice(0, 4).map((feat, i) => (
+                <li key={i} className="flex items-center text-[11px] text-zinc-400">
+                  <ArrowUpRight className="w-2.5 h-2.5 mr-1.5 text-primary" />
+                  {feat}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function IndustrySolutions() {
+  return (
+    <section className="py-32 bg-black relative overflow-hidden" data-testid="industry-solutions-masterpiece">
+      {/* 
+          MASTERPIECE BACKGROUND 
+          - Deep Black Base
+          - Subtle Violet Fog (Primary)
+          - No Noise/Grid clutter
+      */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none opacity-40"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-medium uppercase tracking-widest mb-6 backdrop-blur-md">
+              <Sparkles className="w-3 h-3" />
+              <span>Global Expertise</span>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-display font-medium text-white tracking-tight leading-[1.1]">
+              Industries <br />
+              <span className="text-zinc-500">Reimagined.</span>
+            </h2>
+          </div>
+          <div className="max-w-xs text-zinc-400 text-sm font-light leading-relaxed mb-2">
+            We engineer digital dominance across diverse sectors, transforming legacy systems into future-proof powerhouses.
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {industries.map((industry, index) => {
-            const IconComponent = industry.icon
-            const serviceId = industry.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-            return (
-              <div
-                id={serviceId}
-                key={industry.title}
-                className="glass-intense rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover-lift group relative overflow-hidden scroll-mt-24"
-                data-testid={`industry-card-${industry.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`}
-                role="article"
-                aria-labelledby={`industry-title-${industry.title.toLowerCase()}`}
-              >
-                <div className="absolute top-4 right-4 flex gap-2">
-                  <span className="text-xs font-medium text-green-400 bg-green-400/10 px-2 py-1 rounded-full">
-                    {industry.growth}
-                  </span>
-                  <span className="text-xs font-medium text-blue-400 bg-blue-400/10 px-2 py-1 rounded-full">
-                    {industry.projects}
-                  </span>
-                </div>
-
-                <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <IconComponent className="w-8 h-8 text-white" />
-                </div>
-
-                <h3
-                  className="font-display font-bold text-2xl mb-4 group-hover:text-primary transition-colors"
-                  data-testid={`industry-title-${industry.title.toLowerCase()}`}
-                >
-                  {industry.title}
-                </h3>
-
-                <p
-                  className="text-muted-foreground mb-6 leading-relaxed"
-                  data-testid={`industry-description-${industry.title.toLowerCase()}`}
-                >
-                  {industry.description}
-                </p>
-
-                <div className="space-y-3">
-                  {industry.features.map((feature, featureIndex) => (
-                    <div
-                      key={featureIndex}
-                      className="flex items-center text-sm"
-                      data-testid={`industry-feature-${industry.title.toLowerCase()}-${featureIndex}`}
-                    >
-                      <div className="w-2 h-2 gradient-accent rounded-full mr-3 flex-shrink-0"></div>
-                      <span className="text-muted-foreground group-hover:text-foreground transition-colors">
-                        {feature}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-              </div>
-            )
-          })}
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[minmax(320px,auto)]">
+          {industries.map((item, i) => (
+            <MasterpieceCard key={i} item={item} />
+          ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

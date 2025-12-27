@@ -70,6 +70,7 @@ export default function Navbar() {
       href: "#",
       children: [
         { name: "Demo Process", href: "/demo-delivery" },
+        { name: "Company Profile", href: "/company-profile" },
         { name: "Incubation", href: "/incubation" },
         { name: "Leadership Search", href: "/leadership-search" },
         { name: "Investor Connect", href: "/investor-connect" },
@@ -82,6 +83,7 @@ export default function Navbar() {
       children: [
         { name: "Full-time Jobs", href: "/careers" },
         { name: "Internship Program", href: "/interns" },
+        { name: "Campus Ambassador", href: "https://cehpoint-campus-ambassador-portal.cehpoint.co.in/", external: true },
       ]
     },
   ];
@@ -249,16 +251,31 @@ export default function Navbar() {
                         <div className="font-medium text-foreground px-2">{item.name}</div>
                         <div className="pl-4 space-y-2 border-l-2 border-primary/20 ml-2">
                           {item.children.map((child) => (
-                            <Link
-                              key={child.name}
-                              href={child.href}
-                              className="block text-sm text-foreground/80 hover:text-foreground transition-colors focus:outline-none focus:text-foreground focus:underline"
-                              onClick={() => setIsMenuOpen(false)}
-                              role="menuitem"
-                              data-testid={`mobile-nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
-                            >
-                              {child.name}
-                            </Link>
+                            child.external ? (
+                              <a
+                                key={child.name}
+                                href={child.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-sm text-foreground/80 hover:text-foreground transition-colors focus:outline-none focus:text-foreground focus:underline"
+                                onClick={() => setIsMenuOpen(false)}
+                                role="menuitem"
+                                data-testid={`mobile-nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
+                              >
+                                {child.name}
+                              </a>
+                            ) : (
+                              <Link
+                                key={child.name}
+                                href={child.href}
+                                className="block text-sm text-foreground/80 hover:text-foreground transition-colors focus:outline-none focus:text-foreground focus:underline"
+                                onClick={() => setIsMenuOpen(false)}
+                                role="menuitem"
+                                data-testid={`mobile-nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
+                              >
+                                {child.name}
+                              </Link>
+                            )
                           ))}
                         </div>
                       </div>
