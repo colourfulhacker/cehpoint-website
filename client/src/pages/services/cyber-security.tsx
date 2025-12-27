@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import CyberSecurityCalculator from "@/components/calculators/cyber-security-calculator";
 import SEO from "@/components/seo";
+import ServiceSchema from "@/components/seo/service-schema";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { MessageCircle } from "lucide-react";
 
 export default function CyberSecurity() {
@@ -66,6 +68,25 @@ export default function CyberSecurity() {
                 title="Cyber Security Services | Cehpoint"
                 description="Elite cyber security solutions including VAPT, SOC, Compliance, and Cloud Security. Protect your digital assets with Cehpoint."
                 keywords={["cyber security", "VAPT", "SOC", "penetration testing", "compliance", "data protection"]}
+                url="https://www.cehpoint.co.in/services/cyber-security"
+                canonical="https://www.cehpoint.co.in/services/cyber-security"
+            />
+
+            {/* Structured Data Schemas */}
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Services", url: "https://www.cehpoint.co.in/services" },
+                    { name: "Cyber Security", url: "https://www.cehpoint.co.in/services/cyber-security" }
+                ]}
+            />
+            <ServiceSchema
+                name="Cyber Security Services"
+                description="Elite cyber security solutions including VAPT, SOC as a Service, Compliance Audits, Cloud Security, and Forensics. Comprehensive protection for your digital assets."
+                serviceType="Cyber Security Services"
+                category="Information Security"
+                url="https://www.cehpoint.co.in/services/cyber-security"
+                hasOfferCatalog={true}
             />
 
             {/* Hero Section */}

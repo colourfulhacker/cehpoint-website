@@ -7,6 +7,14 @@ interface SEOProps {
     image?: string;
     url?: string;
     canonical?: string;
+    type?: "website" | "article" | "product" | "profile";
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    twitterCreator?: string;
+    twitterSite?: string;
+    robots?: string;
+    themeColor?: string;
 }
 
 export default function SEO({
@@ -15,7 +23,15 @@ export default function SEO({
     keywords = ["IT Consultancy", "Enterprise Outsourcing", "Software Development", "AI Solutions", "Digital Transformation", "Cloud Services"],
     image = "/og-image.png",
     url,
-    canonical
+    canonical,
+    type = "website",
+    publishedTime,
+    modifiedTime,
+    author = "Cehpoint",
+    twitterCreator = "@cehpoint",
+    twitterSite = "@cehpoint",
+    robots = "index, follow",
+    themeColor = "#0EA5E9"
 }: SEOProps) {
     const siteTitle = "Cehpoint - Innovative IT Solutions";
     const fullTitle = title === "Home" ? siteTitle : `${title} | ${siteTitle}`;
@@ -38,17 +54,32 @@ export default function SEO({
             <meta name="title" content={fullTitle} />
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords.join(", ")} />
+            <meta name="author" content={author} />
+            <meta name="application-name" content={siteTitle} />
+            <meta name="theme-color" content={themeColor} />
 
             {/* Canonical URL */}
             <link rel="canonical" href={canonicalUrl} />
 
             {/* Open Graph / Facebook */}
-            <meta property="og:type" content="website" />
+            <meta property="og:type" content={type} />
             <meta property="og:url" content={currentUrl} />
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
             <meta property="og:image" content={absoluteImage} />
             <meta property="og:site_name" content={siteTitle} />
+            <meta property="og:locale" content="en_US" />
+
+            {/* Article-specific Open Graph tags */}
+            {type === "article" && publishedTime && (
+                <meta property="article:published_time" content={publishedTime} />
+            )}
+            {type === "article" && modifiedTime && (
+                <meta property="article:modified_time" content={modifiedTime} />
+            )}
+            {type === "article" && author && (
+                <meta property="article:author" content={author} />
+            )}
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
@@ -56,10 +87,11 @@ export default function SEO({
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={absoluteImage} />
+            <meta name="twitter:creator" content={twitterCreator} />
+            <meta name="twitter:site" content={twitterSite} />
 
             {/* Additional Meta Tags */}
-            <meta name="robots" content="index, follow" />
-            <meta name="author" content="Cehpoint" />
+            <meta name="robots" content={robots} />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         </Helmet>
     );

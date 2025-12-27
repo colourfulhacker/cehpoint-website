@@ -6,6 +6,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/seo";
+import ServiceSchema from "@/components/seo/service-schema";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { motion } from "framer-motion";
 
 export default function ServicesPage() {
@@ -88,6 +90,60 @@ export default function ServicesPage() {
                 title="Services"
                 description="Comprehensive IT services including custom software development, cybersecurity, e-commerce, edutech, fintech solutions, and enterprise software. Transform your business with cutting-edge technology."
                 keywords={["IT Services", "Software Development", "Cybersecurity", "E-commerce", "Edutech", "Fintech", "Cloud Solutions", "Enterprise Software", "Digital Transformation"]}
+                url="https://www.cehpoint.co.in/services"
+                canonical="https://www.cehpoint.co.in/services"
+            />
+
+            {/* Structured Data Schemas */}
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Services", url: "https://www.cehpoint.co.in/services" }
+                ]}
+            />
+
+            {/* Service Schemas for each featured service */}
+            <ServiceSchema
+                name="Custom Software Development"
+                description="Custom software development, cloud architecture, and digital transformation solutions for enterprises."
+                serviceType="Software Development"
+                category="Information Technology"
+                url="https://www.cehpoint.co.in/services"
+                hasOfferCatalog={true}
+            />
+            <ServiceSchema
+                name="Cybersecurity Services"
+                description="Comprehensive security audits, penetration testing, and threat protection strategies."
+                serviceType="Security Services"
+                category="Cybersecurity"
+                url="https://www.cehpoint.co.in/services/cyber-security"
+            />
+            <ServiceSchema
+                name="E-commerce Solutions"
+                description="Conversion-optimized e-commerce platforms with seamless payment integration and omnichannel support."
+                serviceType="E-commerce Development"
+                category="E-commerce"
+                url="https://www.cehpoint.co.in/services/ecommerce"
+            />
+            <ServiceSchema
+                name="Edutech Platforms"
+                description="Adaptive learning systems, virtual classrooms, and comprehensive student management solutions."
+                serviceType="Educational Technology"
+                category="Education Technology"
+                url="https://www.cehpoint.co.in/services/edutech"
+            />
+            <ServiceSchema
+                name="Fintech Applications"
+                description="Secure, compliant financial technology solutions with blockchain and payment processing."
+                serviceType="Financial Technology"
+                category="Financial Services"
+                url="https://www.cehpoint.co.in/services/fintech"
+            />
+            <ServiceSchema
+                name="SaaS & Enterprise Software"
+                description="Scalable cloud-based software with multi-tenancy architecture and enterprise integrations."
+                serviceType="SaaS Development"
+                category="Enterprise Software"
                 url="https://www.cehpoint.co.in/services"
             />
 

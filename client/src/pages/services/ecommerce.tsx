@@ -2,6 +2,9 @@ import { ShoppingCart, CreditCard, BarChart3, Shield, Smartphone, Globe, Star, T
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
+import ServiceSchema from "@/components/seo/service-schema";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import FAQSchema from "@/components/seo/faq-schema";
 import EcommerceCalculator from "@/components/calculators/ecommerce-calculator";
 
 export default function EcommerceService() {
@@ -62,7 +65,35 @@ export default function EcommerceService() {
         title="E-commerce Solutions"
         description="Build scalable, conversion-optimized e-commerce platforms with PCI-DSS compliance, advanced fraud detection, and multi-channel integration. Drive revenue and customer satisfaction."
         keywords={["E-commerce Solutions", "Online Store Development", "Shopping Cart", "Payment Integration", "Multi-channel Commerce", "Mobile Commerce", "E-commerce Platform", "Conversion Optimization"]}
-        url="https://cehpoint.co.in/services/ecommerce"
+        url="https://www.cehpoint.co.in/services/ecommerce"
+        canonical="https://www.cehpoint.co.in/services/ecommerce"
+      />
+
+      {/* Structured Data Schemas */}
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.cehpoint.co.in/" },
+          { name: "Services", url: "https://www.cehpoint.co.in/services" },
+          { name: "E-commerce Solutions", url: "https://www.cehpoint.co.in/services/ecommerce" }
+        ]}
+      />
+      <ServiceSchema
+        name="E-commerce Development Services"
+        description="Build scalable, conversion-optimized e-commerce platforms with PCI-DSS compliance, advanced fraud detection, and multi-channel integration."
+        serviceType="E-commerce Platform Development"
+        category="E-commerce Software"
+        url="https://www.cehpoint.co.in/services/ecommerce"
+        hasOfferCatalog={true}
+      />
+      <FAQSchema
+        pageId="ecommerce"
+        faqs={[
+          { question: "How long does it take to launch an e-commerce store?", answer: "Timeline depends on complexity and customization, but typically ranges from 2-4 months for a full-featured store. We can launch a basic store in 3-4 weeks with iterative enhancements." },
+          { question: "What payment gateways do you support?", answer: "We integrate with all major payment gateways including Stripe, PayPal, Razorpay, Square, and regional providers. We also support digital wallets, buy-now-pay-later services, and cryptocurrency payments." },
+          { question: "How do you optimize for conversions?", answer: "We implement proven conversion optimization techniques including fast page loads, simplified checkout, personalized recommendations, abandoned cart recovery, A/B testing, and mobile-first design." },
+          { question: "Can you handle high traffic volumes?", answer: "Absolutely. Our platforms are built on scalable cloud infrastructure with auto-scaling, CDN integration, and caching strategies to handle traffic spikes during sales events and seasonal peaks." },
+          { question: "Do you provide ongoing maintenance and support?", answer: "Yes, we offer comprehensive support including 24/7 monitoring, security updates, performance optimization, feature enhancements, and dedicated support teams with guaranteed response times." }
+        ]}
       />
 
       {/* Hero Section */}

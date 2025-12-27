@@ -2,6 +2,9 @@ import { BookOpen, Users, Award, Monitor, Brain, Globe, Star, TrendingUp, CheckC
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
+import ServiceSchema from "@/components/seo/service-schema";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import FAQSchema from "@/components/seo/faq-schema";
 import EdtechCalculator from "@/components/calculators/edtech-calculator";
 
 export default function EdutechService() {
@@ -62,7 +65,35 @@ export default function EdutechService() {
         title="Edutech Solutions"
         description="Transform education with cutting-edge learning platforms featuring AI-powered analytics, virtual classrooms, and personalized learning paths. WCAG 2.1 AA compliant and FERPA certified."
         keywords={["Edutech Solutions", "Learning Management System", "Online Education", "Virtual Classroom", "Educational Technology", "LMS Platform", "E-Learning", "Student Analytics"]}
-        url="https://cehpoint.co.in/services/edutech"
+        url="https://www.cehpoint.co.in/services/edutech"
+        canonical="https://www.cehpoint.co.in/services/edutech"
+      />
+
+      {/* Structured Data Schemas */}
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.cehpoint.co.in/" },
+          { name: "Services", url: "https://www.cehpoint.co.in/services" },
+          { name: "Edutech Solutions", url: "https://www.cehpoint.co.in/services/edutech" }
+        ]}
+      />
+      <ServiceSchema
+        name="Educational Technology Solutions"
+        description="Transform education with cutting-edge learning platforms featuring AI-powered analytics, virtual classrooms, and personalized learning paths."
+        serviceType="Educational Technology Services"
+        category="Education Technology"
+        url="https://www.cehpoint.co.in/services/edutech"
+        hasOfferCatalog={true}
+      />
+      <FAQSchema
+        pageId="edutech"
+        faqs={[
+          { question: "How long does it take to implement an LMS?", answer: "Implementation timelines vary based on customization needs, but typically range from 3-6 months for a full-featured LMS. We can have a basic system running within 4-6 weeks with phased rollouts." },
+          { question: "Is the platform accessible for students with disabilities?", answer: "Yes, all our educational platforms are built to WCAG 2.1 AA standards, ensuring accessibility for students with visual, auditory, motor, and cognitive disabilities. We include screen reader support, keyboard navigation, and customizable interfaces." },
+          { question: "How do you protect student data and privacy?", answer: "We comply with FERPA, COPPA, and GDPR regulations. All student data is encrypted, access is role-based, and we implement comprehensive audit logging. Parents have full control over their children's data." },
+          { question: "Can you integrate with our existing systems?", answer: "Absolutely. We integrate with popular SIS systems, Google Classroom, Microsoft Teams, Zoom, and other educational tools through standard protocols like LTI, OneRoster, and custom APIs." },
+          { question: "What training and support do you provide?", answer: "We provide comprehensive training for administrators, teachers, and students, along with detailed documentation and video tutorials. Our support team is available 24/7 during critical periods like exam seasons." }
+        ]}
       />
 
       {/* Hero Section */}

@@ -2,6 +2,9 @@ import { DollarSign, Shield, BarChart3, Smartphone, Globe, Lock, Star, TrendingU
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
+import ServiceSchema from "@/components/seo/service-schema";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import FAQSchema from "@/components/seo/faq-schema";
 import FintechCalculator from "@/components/calculators/fintech-calculator";
 
 export default function FintechService() {
@@ -62,7 +65,35 @@ export default function FintechService() {
         title="Fintech Solutions"
         description="Build secure, compliant, and scalable financial technology platforms with PCI-DSS compliance, real-time fraud detection, and enterprise-grade security. Trusted by leading financial institutions."
         keywords={["Fintech Solutions", "Payment Processing", "Financial Software", "Banking Technology", "PCI-DSS Compliance", "Fraud Detection", "Blockchain Integration", "Mobile Banking"]}
-        url="https://cehpoint.co.in/services/fintech"
+        url="https://www.cehpoint.co.in/services/fintech"
+        canonical="https://www.cehpoint.co.in/services/fintech"
+      />
+
+      {/* Structured Data Schemas */}
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.cehpoint.co.in/" },
+          { name: "Services", url: "https://www.cehpoint.co.in/services" },
+          { name: "Fintech Solutions", url: "https://www.cehpoint.co.in/services/fintech" }
+        ]}
+      />
+      <ServiceSchema
+        name="Fintech Application Development"
+        description="Build secure, compliant, and scalable financial technology platforms with PCI-DSS compliance, real-time fraud detection, and enterprise-grade security."
+        serviceType="Financial Technology Services"
+        category="Financial Software Development"
+        url="https://www.cehpoint.co.in/services/fintech"
+        hasOfferCatalog={true}
+      />
+      <FAQSchema
+        pageId="fintech"
+        faqs={[
+          { question: "How long does it take to build a fintech platform?", answer: "Timeline varies based on complexity, but typically ranges from 4-9 months for a full-featured platform. We follow an agile approach with regular releases, so you can start seeing value within the first 6-8 weeks." },
+          { question: "Do you handle regulatory compliance?", answer: "Yes, compliance is built into our development process. We have extensive experience with PCI-DSS, KYC/AML, GDPR, SOX, and regional banking regulations. Our team includes compliance specialists who ensure your platform meets all requirements." },
+          { question: "What security measures do you implement?", answer: "We implement end-to-end encryption, multi-factor authentication, real-time fraud detection, secure API gateways, regular security audits, and comprehensive audit logging. All our solutions are built with security-first architecture." },
+          { question: "Can you integrate with existing banking systems?", answer: "Absolutely. We have extensive experience integrating with core banking systems, payment gateways, credit bureaus, and third-party financial services through secure APIs and industry-standard protocols." },
+          { question: "What ongoing support do you provide?", answer: "We offer 24/7 monitoring, regular security updates, performance optimization, compliance updates, and dedicated support teams. Our SLA guarantees 99.9% uptime with rapid incident response." }
+        ]}
       />
 
       {/* Hero Section */}
