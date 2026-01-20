@@ -57,9 +57,11 @@ export default function Navbar() {
         { name: "Free Security Scheme", href: "/security-scheme" },
         { name: "IT Services", href: "/services#innovative-it-services" },
         { name: "Cyber Security", href: "/services/cyber-security" },
+        { name: "Cyber Crime Investigation", href: "/services/cyber-crime-investigation" },
         { name: "E-commerce", href: "/services/ecommerce" },
         { name: "Edutech", href: "/services/edutech" },
         { name: "Fintech", href: "/services/fintech" },
+        { name: "Business App Catalog", href: "/services/business-app-catalog" },
       ]
     },
     { name: "AI Solutions", href: "/ai-solutions" },
@@ -75,6 +77,19 @@ export default function Navbar() {
         { name: "Leadership Search", href: "/leadership-search" },
         { name: "Investor Connect", href: "/investor-connect" },
         { name: "Portfolio", href: "https://portfolios.cehpoint.co.in/", external: true },
+      ]
+    },
+    {
+      name: "Employees Corner",
+      href: "#",
+      children: [
+        { name: "Projects Portal", href: "https://projects.cehpoint.co.in/", external: true },
+        { name: "Developer Docs", href: "https://developer-document.cehpoint.co.in/", external: true },
+        { name: "Proposal Maker", href: "https://proposal-maker.cehpoint.co.in/", external: true },
+        { name: "CCIE Portal", href: "https://ccie.cehpoint.co.in/", external: true },
+        { name: "CPIS Portal", href: "http://cpis.cehpoint.co.in/", external: true },
+        { name: "Outreach AI", href: "http://outreach-ai.cehpoint.co.in/", external: true },
+        { name: "Outreach Portal", href: "https://outreach.cehpoint.co.in/", external: true },
       ]
     },
     {

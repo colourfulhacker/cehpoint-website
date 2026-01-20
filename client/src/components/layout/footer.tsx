@@ -10,9 +10,12 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 
+import { WorldClock } from "@/components/ui/world-clock"
+
 export default function Footer() {
   const serviceLinks = [
     { name: "Free Security Scheme", href: "/security-scheme" },
+    { name: "Cyber Crime Investigation", href: "/services/cyber-crime-investigation" },
     { name: "E-commerce Development", href: "/services/ecommerce" },
     { name: "Edutech Solutions", href: "/services/edutech" },
     { name: "Fintech Applications", href: "/services/fintech" },
@@ -49,37 +52,50 @@ export default function Footer() {
       id: "US",
       country: "United States",
       flag: "🇺🇸",
-      address: "5 Penn Plaza, 14th Floor, New York, NY 10001, US"
+      address: "5 Penn Plaza, 14th Floor, New York, NY 10001, US",
+      timezone: "America/New_York"
     },
     {
       id: "UK",
       country: "United Kingdom",
       flag: "🇬🇧",
-      address: "12 Steward Street, The Steward Building, London, E1 6FQ, Great Britain"
+      address: "12 Steward Street, The Steward Building, London, E1 6FQ, Great Britain",
+      timezone: "Europe/London"
     },
     {
       id: "DE",
       country: "Germany",
       flag: "🇩🇪",
-      address: "Banking Circle S.A. - German Branch, Maximilianstraße 54, 80538 München"
+      address: "Banking Circle S.A. - German Branch, Maximilianstraße 54, 80538 München",
+      timezone: "Europe/Berlin"
     },
     {
       id: "AU",
       country: "Australia",
       flag: "🇦🇺",
-      address: "Level 11/10 Carrington St, Sydney NSW 2000, Australia"
+      address: "Level 11/10 Carrington St, Sydney NSW 2000, Australia",
+      timezone: "Australia/Sydney"
     },
     {
       id: "CA",
       country: "Canada",
       flag: "🇨🇦",
-      address: "736 Meridian Road N.E, Calgary, Alberta, CA"
+      address: "736 Meridian Road N.E, Calgary, Alberta, CA",
+      timezone: "America/Edmonton"
     },
     {
       id: "IN",
       country: "India",
       flag: "🇮🇳",
-      address: "Cehpoint, Labpur, Sandipan Patsala Para, Birbhum, Bolpur, West Bengal - 731303, India"
+      address: "Cehpoint, Labpur, Sandipan Patsala Para, Birbhum, Bolpur, West Bengal - 731303, India",
+      timezone: "Asia/Kolkata"
+    },
+    {
+      id: "AE",
+      country: "United Arab Emirates",
+      flag: "🇦🇪",
+      address: "1st Floor, Emaar Square, Building 6, Dubai, United Arab Emirates",
+      timezone: "Asia/Dubai"
     }
   ]
 
@@ -280,6 +296,9 @@ export default function Footer() {
                     <address className="not-italic text-sm text-foreground/70 leading-relaxed group-hover:text-foreground/90 transition-colors duration-300">
                       {location.address}
                     </address>
+                    {location.timezone && (
+                      <WorldClock timezone={location.timezone} label={location.country} />
+                    )}
                   </div>
                 </div>
               </div>

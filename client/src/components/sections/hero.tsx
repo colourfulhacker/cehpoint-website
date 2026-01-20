@@ -138,6 +138,17 @@ export default function Hero() {
               </Button>
             </Link>
 
+            <Link href="/services/business-app-catalog" className="w-full sm:w-auto">
+              <Button
+                variant="outline"
+                className="glass hover-lift rounded-2xl text-lg font-semibold hover:bg-secondary/50 transition-all duration-300 w-full sm:w-auto px-8 py-6 group border-primary/20 text-foreground"
+                data-testid="hero-cta-catalog"
+                aria-label="View Business App Catalog"
+              >
+                <span className="mr-2">🚀</span> Business App Catalog
+              </Button>
+            </Link>
+
             <a
               href="https://portfolios.cehpoint.co.in/"
               target="_blank"

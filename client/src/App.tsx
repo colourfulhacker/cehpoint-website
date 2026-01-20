@@ -14,7 +14,9 @@ import EcommerceService from "@/pages/services/ecommerce";
 import EdutechService from "@/pages/services/edutech";
 import FintechService from "@/pages/services/fintech";
 import ServicesPage from "@/pages/services/index";
+import BusinessAppCatalog from "@/pages/services/business-app-catalog";
 import CyberSecurity from "@/pages/services/cyber-security";
+import CyberCrimeInvestigation from "@/pages/services/cyber-crime-investigation";
 import CostEstimatorPage from "@/pages/cost-estimator";
 import DemoDelivery from "@/pages/demo-delivery";
 import Quotation from "@/pages/quotation";
@@ -25,6 +27,16 @@ import Careers from "@/pages/careers";
 import InvestorConnect from "@/pages/investor-connect";
 import LeadershipSearch from "@/pages/leadership-search";
 import CompanyProfile from "@/pages/company-profile";
+
+// Cyber Crime Investigation Platform
+import InvestigationLanding from "@/pages/services/investigation/landing";
+import InvestigationProcess from "@/pages/services/investigation/process";
+import InvestigationMethodology from "@/pages/services/investigation/methodology";
+import InvestigationClients from "@/pages/services/investigation/clients";
+import InvestigationPricing from "@/pages/services/investigation/pricing";
+import InvestigationRequest from "@/pages/services/investigation/request";
+import InvestigationLegal from "@/pages/services/investigation/legal";
+
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import ScrollToTop from "@/components/layout/scroll-to-top";
@@ -50,6 +62,18 @@ function Router() {
           <Route path="/services/edutech" component={EdutechService} />
           <Route path="/services/fintech" component={FintechService} />
           <Route path="/services/cyber-security" component={CyberSecurity} />
+          <Route path="/services/cyber-security" component={CyberSecurity} />
+          <Route path="/services/business-app-catalog" component={BusinessAppCatalog} />
+
+          {/* Cyber Crime Investigation Platform Routes */}
+          <Route path="/services/cyber-crime-investigation" component={InvestigationLanding} />
+          <Route path="/services/cyber-crime-investigation/process" component={InvestigationProcess} />
+          <Route path="/services/cyber-crime-investigation/methodology" component={InvestigationMethodology} />
+          <Route path="/services/cyber-crime-investigation/clients" component={InvestigationClients} />
+          <Route path="/services/cyber-crime-investigation/pricing" component={InvestigationPricing} />
+          <Route path="/services/cyber-crime-investigation/request" component={InvestigationRequest} />
+          <Route path="/services/cyber-crime-investigation/legal" component={InvestigationLegal} />
+
           <Route path="/ai-solutions" component={AISolutions} />
           <Route path="/training" component={Training} />
           <Route path="/privacy" component={Privacy} />
