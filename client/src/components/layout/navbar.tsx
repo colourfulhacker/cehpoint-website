@@ -174,7 +174,7 @@ export default function Navbar() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="block px-4 py-2 text-sm text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors whitespace-nowrap focus:outline-none focus:bg-secondary/50"
-                                onClick={() => setOpenDropdown(null)}
+                                onClick={() => setTimeout(() => setOpenDropdown(null), 150)}
                                 role="menuitem"
                                 data-testid={`nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
                               >
@@ -265,7 +265,7 @@ export default function Navbar() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="block text-sm text-foreground/80 hover:text-foreground transition-colors focus:outline-none focus:text-foreground focus:underline"
-                                onClick={() => setIsMenuOpen(false)}
+                                onClick={() => setTimeout(() => setIsMenuOpen(false), 150)}
                                 role="menuitem"
                                 data-testid={`mobile-nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
                               >
@@ -292,7 +292,7 @@ export default function Navbar() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block text-foreground/80 hover:text-foreground transition-colors focus:outline-none focus:text-foreground focus:underline"
-                        onClick={() => setIsMenuOpen(false)}
+                        onClick={() => setTimeout(() => setIsMenuOpen(false), 150)}
                         role="menuitem"
                         data-testid={`mobile-nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                       >
