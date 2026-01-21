@@ -544,21 +544,27 @@ const allApps: AppIdea[] = [
         businessIdea: "Launch a 'Book Exchange' library. Users donate old books to get credits, and use credits to take other books. You charge a small transaction fee. Ideally suits dense student hubs or residential complexes."
     },
     {
-        id: 38, title: "Home Decor App", description: "Curtains, bedsheets, wall items.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Selling"),
+        id: 38, title: "Home Decor App", description: "Curtains, bedsheets, wall items.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/38-home-decor-app.png",
+        techStack: commonTechStack, features: getFeatures("Selling"),
         objective: "Lifestyle and aesthetic home improvement.",
         howItWorks: "Browse categories (Bedroom/Living) -> AR View (optional) -> Order.",
         whyThisApp: "Growing interest in home aesthetics and interior design.",
         businessIdea: "Offer 'Room Makeover Kits'. Instead of selling just a cushion, sell a 'Boho Living Room Look' (Curtains + Cushion + Rug). It simplifies decision making for customers and increases your basket size."
     },
     {
-        id: 39, title: "Gift & Hampers App", description: "Festival-focused sales.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Selling"),
+        id: 39, title: "Gift & Hampers App", description: "Festival-focused sales.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/39-gift-hampers-app.png",
+        techStack: commonTechStack, features: getFeatures("Selling"),
         objective: "Curated gifting solutions.",
         howItWorks: "Choose occasion -> Select hamper -> Add personal note -> Schedule delivery.",
         whyThisApp: "Convenience is king in the gifting market.",
         businessIdea: "Corporate Gifting is a goldmine. Use the app to let HRs customize hampers for employees. Bulk orders means high volume. Position yourself as the 'Employee Engagement Partner' for companies."
     },
     {
-        id: 40, title: "Kids Toy Store App", description: "Local toy delivery.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Selling"),
+        id: 40, title: "Kids Toy Store App", description: "Local toy delivery.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/40-kids-toy-store-app.png",
+        techStack: commonTechStack, features: getFeatures("Selling"),
         objective: "Instant joy for children.",
         howItWorks: "Browse by Age Group -> Video demo of toy -> Order -> Same-day delivery.",
         whyThisApp: "Parents spend willingly on kids; emotional purchase.",
@@ -567,14 +573,18 @@ const allApps: AppIdea[] = [
 
     // DIGITAL & MODERN BUSINESS IDEAS
     {
-        id: 41, title: "Local Job Posting App", description: "Employers post jobs, candidates apply.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Digital"),
+        id: 41, title: "Local Job Posting App", description: "Employers post jobs, candidates apply.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        image: "/assets/apps/41-local-job-posting-app.png",
+        techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Connect local employers with blue-collar workforce.",
         howItWorks: "Shop owner posts 'Helper Wanted' -> Candidates apply -> Call directly.",
         whyThisApp: "Massive gap in local hiring for non-corporate jobs.",
         businessIdea: "Focus on 'Hyperlocal Blue Collar' jobs. Cooks, maids, drivers usually find work via word of mouth. Your app organizes this. Verify candidates with Aadhaar to offer safety to employers. Charge a small fee for contact details."
     },
     {
-        id: 42, title: "Real Estate Listing App", description: "Flat, land & rental leads.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Digital"),
+        id: 42, title: "Real Estate Listing App", description: "Flat, land & rental leads.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        image: "/assets/apps/42-real-estate-listing-app.png",
+        techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Property discovery without heavy brokerage.",
         howItWorks: "Owner lists property -> Buyer filters by area/budget -> Contact Owner.",
         whyThisApp: "High-value transactions; demand for direct connections.",
