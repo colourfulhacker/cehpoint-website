@@ -15,12 +15,22 @@ interface SEOProps {
     twitterSite?: string;
     robots?: string;
     themeColor?: string;
+    schema?: string; // JSON-LD schema as a string
 }
 
 export default function SEO({
     title,
     description,
-    keywords = ["IT Consultancy", "Enterprise Outsourcing", "Software Development", "AI Solutions", "Digital Transformation", "Cloud Services"],
+    keywords = [
+        "IT Consultancy",
+        "Enterprise Outsourcing",
+        "Software Development",
+        "AI Solutions",
+        "Digital Transformation",
+        "Cloud Services",
+        "IT Company India",
+        "Best IT Company Kolkata"
+    ],
     image = "/og-image.png",
     url,
     canonical,
@@ -31,7 +41,8 @@ export default function SEO({
     twitterCreator = "@cehpoint",
     twitterSite = "@cehpoint",
     robots = "index, follow",
-    themeColor = "#0EA5E9"
+    themeColor = "#0EA5E9",
+    schema
 }: SEOProps) {
     const siteTitle = "Cehpoint - Innovative IT Solutions";
     const fullTitle = title === "Home" ? siteTitle : `${title} | ${siteTitle}`;
@@ -93,6 +104,13 @@ export default function SEO({
             {/* Additional Meta Tags */}
             <meta name="robots" content={robots} />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+            {/* Structured Data (JSON-LD) */}
+            {schema && (
+                <script type="application/ld+json">
+                    {schema}
+                </script>
+            )}
         </Helmet>
     );
 }

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, XCircle, ArrowRight, ShoppingCart, Landmark, Stethoscope, Factory, Briefcase } from "lucide-react";
+import { CheckCircle, XCircle, ArrowRight, ShoppingCart, Landmark, Stethoscope, Factory, Briefcase, Sparkles } from "lucide-react";
 
 export default function IndustryUseCaseExplorer() {
     const [activeTab, setActiveTab] = useState("retail");
@@ -145,15 +145,15 @@ export default function IndustryUseCaseExplorer() {
             </div>
 
             <Tabs defaultValue="retail" value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <div className="flex justify-center mb-8 overflow-x-auto pb-4">
+                <div className="flex justify-center mb-12 overflow-x-auto pb-4">
                     <TabsList className="h-auto p-1 bg-secondary/30 backdrop-blur-sm rounded-full">
                         {industries.map((industry) => (
                             <TabsTrigger
                                 key={industry.id}
                                 value={industry.id}
-                                className="rounded-full px-6 py-3 text-sm md:text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
+                                className="rounded-full px-6 py-3 text-sm md:text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2"
                             >
-                                <industry.icon className="w-4 h-4 mr-2 hidden md:inline-block" />
+                                <industry.icon className="w-4 h-4 hidden md:inline-block" />
                                 {industry.name}
                             </TabsTrigger>
                         ))}
@@ -161,55 +161,82 @@ export default function IndustryUseCaseExplorer() {
                 </div>
 
                 {industries.map((industry) => (
-                    <TabsContent key={industry.id} value={industry.id} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {useCases[industry.id as keyof typeof useCases].map((useCase, index) => (
-                                <Card key={index} className="glass-intense hover-lift border-t-4 border-primary/50 overflow-hidden flex flex-col">
-                                    <CardHeader className="pb-4">
-                                        <CardTitle className="text-xl font-bold">{useCase.title}</CardTitle>
-                                        <div className="flex flex-wrap gap-2 mt-3">
-                                            {useCase.tech.map((t, i) => (
-                                                <Badge key={i} variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
-                                                    {t}
-                                                </Badge>
-                                            ))}
+                    <TabsContent key={industry.id} value={industry.id} className="mt-0">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                            {/* Industry Image Panel */}
+                            <div className="lg:col-span-5 space-y-6">
+                                <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-video lg:aspect-auto lg:h-full group bg-muted border border-border/50">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+                                    <img
+                                        src={`/images/ai/${industry.id}.png`}
+                                        alt={`${industry.name} AI Solutions`}
+                                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                    />
+                                    <div className="absolute bottom-0 left-0 p-6 z-20">
+                                        <h3 className="text-2xl font-bold text-white mb-2">{industry.name}</h3>
+                                        <div className="flex items-center text-white/90 text-sm font-medium">
+                                            <Sparkles className="w-4 h-4 mr-2 text-primary" />
+                                            <span>AI-Powered Transformation</span>
                                         </div>
-                                    </CardHeader>
-                                    <CardContent className="space-y-4 flex-grow flex flex-col justify-between">
-                                        <div className="space-y-3">
-                                            <div className="bg-red-500/10 p-3 rounded-lg border border-red-500/20">
-                                                <div className="flex items-start gap-2">
-                                                    <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                                                    <div>
-                                                        <span className="text-xs font-bold text-red-500 uppercase tracking-wider block mb-1">The Pain</span>
-                                                        <p className="text-sm text-foreground/80 leading-snug">{useCase.pain}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Use Cases Grid */}
+                            <div className="lg:col-span-7">
+                                <div className="grid grid-cols-1 gap-6">
+                                    {useCases[industry.id as keyof typeof useCases].map((useCase, index) => (
+                                        <Card key={index} className="bg-card border border-border shadow-sm hover:shadow-md transition-shadow">
+                                            <CardHeader className="pb-3">
+                                                <div className="flex justify-between items-start gap-4">
+                                                    <CardTitle className="text-lg font-bold text-foreground leading-tight">{useCase.title}</CardTitle>
+                                                    <Badge variant="outline" className="shrink-0 bg-primary/5 text-primary border-primary/20">
+                                                        Use Case #{index + 1}
+                                                    </Badge>
+                                                </div>
+                                            </CardHeader>
+                                            <CardContent className="space-y-4">
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div className="bg-red-500/5 p-3 rounded-lg border border-red-500/10">
+                                                        <div className="flex gap-2">
+                                                            <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                                                            <div>
+                                                                <span className="text-xs font-bold text-red-500 uppercase block mb-1">Pain Point</span>
+                                                                <p className="text-sm text-foreground/80 leading-snug">{useCase.pain}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="bg-blue-500/5 p-3 rounded-lg border border-blue-500/10">
+                                                        <div className="flex gap-2">
+                                                            <ArrowRight className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                                                            <div>
+                                                                <span className="text-xs font-bold text-blue-500 uppercase block mb-1">AI Solution</span>
+                                                                <p className="text-sm text-foreground/80 leading-snug">{useCase.fix}</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div className="bg-blue-500/10 p-3 rounded-lg border border-blue-500/20">
-                                                <div className="flex items-start gap-2">
-                                                    <ArrowRight className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
-                                                    <div>
-                                                        <span className="text-xs font-bold text-blue-500 uppercase tracking-wider block mb-1">The Fix</span>
-                                                        <p className="text-sm text-foreground/80 leading-snug">{useCase.fix}</p>
+                                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2 border-t border-border/50">
+                                                    <div className="flex items-center gap-2">
+                                                        <CheckCircle className="w-4 h-4 text-green-500" />
+                                                        <span className="text-sm font-medium text-foreground">
+                                                            Impact: <span className="text-green-600 font-bold">{useCase.gain}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {useCase.tech.map((t, i) => (
+                                                            <Badge key={i} variant="secondary" className="text-[10px] h-5 px-1.5">
+                                                                {t}
+                                                            </Badge>
+                                                        ))}
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="bg-green-500/10 p-4 rounded-xl border border-green-500/20 mt-4">
-                                            <div className="flex items-center gap-3">
-                                                <CheckCircle className="w-6 h-6 text-green-500 shrink-0" />
-                                                <div>
-                                                    <span className="text-xs font-bold text-green-500 uppercase tracking-wider block">The Gain</span>
-                                                    <p className="font-bold text-foreground">{useCase.gain}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            ))}
+                                            </CardContent>
+                                        </Card>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </TabsContent>
                 ))}

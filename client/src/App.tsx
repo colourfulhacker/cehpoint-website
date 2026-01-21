@@ -36,6 +36,11 @@ import InvestigationClients from "@/pages/services/investigation/clients";
 import InvestigationPricing from "@/pages/services/investigation/pricing";
 import InvestigationRequest from "@/pages/services/investigation/request";
 import InvestigationLegal from "@/pages/services/investigation/legal";
+import Insights from "@/pages/insights/index";
+import EthicalStandardsArticle from "@/pages/insights/ethical-standards";
+import PartnerNetwork from "@/pages/partner-network";
+import AIvsRealityArticle from "@/pages/insights/ai-vs-reality";
+import HiddenCostsArticle from "@/pages/insights/hidden-costs";
 
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
@@ -88,6 +93,11 @@ function Router() {
           <Route path="/investor-connect" component={InvestorConnect} />
           <Route path="/leadership-search" component={LeadershipSearch} />
           <Route path="/company-profile" component={CompanyProfile} />
+          <Route path="/insights" component={Insights} />
+          <Route path="/insights/ethical-standards" component={EthicalStandardsArticle} />
+          <Route path="/insights/ai-vs-reality" component={AIvsRealityArticle} />
+          <Route path="/insights/hidden-costs" component={HiddenCostsArticle} />
+          <Route path="/partner-network" component={PartnerNetwork} />
           <Route component={NotFound} />
         </Switch>
       </main>

@@ -90,7 +90,12 @@ export default function Navbar() {
         { name: "CPIS Portal", href: "http://cpis.cehpoint.co.in/", external: true },
         { name: "Outreach AI", href: "http://outreach-ai.cehpoint.co.in/", external: true },
         { name: "Outreach Portal", href: "https://outreach.cehpoint.co.in/", external: true },
+        { name: "Partner Network", href: "/partner-network" },
       ]
+    },
+    {
+      name: "Insights",
+      href: "/insights",
     },
     {
       name: "Careers",

@@ -191,6 +191,10 @@ const premiumTrainings = [
     },
 ];
 
+import SEO from "@/components/seo";
+
+// ... existing imports
+
 export default function Training() {
     const searchString = useSearch();
     const [activeTab, setActiveTab] = useState("entrepreneurs");
@@ -336,8 +340,40 @@ export default function Training() {
         setIsBookingOpen(false);
     };
 
+    // Generate Schema for Premium Trainings
+    const courseSchema = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": premiumTrainings.map((course, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+                "@type": "Course",
+                "name": course.title,
+                "description": course.solution + " " + course.outcome,
+                "provider": {
+                    "@type": "Organization",
+                    "name": "Cehpoint",
+                    "sameAs": "https://www.cehpoint.co.in"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "category": "Paid",
+                    "price": course.price,
+                    "priceCurrency": "INR"
+                }
+            }
+        }))
+    });
+
     return (
         <div className="min-h-screen bg-background text-foreground">
+            <SEO
+                title="Business Automation & AI Training"
+                description="Master business automation, AI sales systems, and cyber security with Cehpoint's premium training for entrepreneurs and students. Live implementation via Google Meet."
+                keywords={["Business Automation Training", "AI Course India", "Entrepreneur Mentorship", "Sales Automation", "Cyber Security Training", "Cehpoint Academy"]}
+                schema={courseSchema}
+            />
             {/* Hero Section */}
             <section className="relative py-24 overflow-hidden">
                 <div className="absolute inset-0 bg-secondary/5" />

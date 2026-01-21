@@ -1199,66 +1199,65 @@ export default function BusinessAppCatalog() {
                             </div>
                         ))}
                     </div>
-            </div>
-        </section >
+                </section>
 
-            {/* SEO Content Section - Footer/FAQs */ }
-            < section className = "container mx-auto px-4 mt-20 mb-12" >
-                <div className="max-w-3xl mx-auto">
-                    <div className="text-center mb-10">
-                        <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-                        <p className="text-muted-foreground">Everything you need to know about starting your app business.</p>
+                {/* SEO Content Section - Footer/FAQs */}
+                <section className="container mx-auto px-4 mt-20 mb-12">
+                    <div className="max-w-3xl mx-auto">
+                        <div className="text-center mb-10">
+                            <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+                            <p className="text-muted-foreground">Everything you need to know about starting your app business.</p>
+                        </div>
+
+                        <div className="space-y-4">
+                            {faqs.map((faq, index) => (
+                                <div key={index} className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                                    <details className="group">
+                                        <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
+                                            <h3 className="font-semibold text-lg text-foreground pr-4">{faq.question}</h3>
+                                            <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform group-open:rotate-180" />
+                                        </summary>
+                                        <div className="px-4 pb-4 text-muted-foreground leading-relaxed border-t border-border/50 pt-2">
+                                            {faq.answer}
+                                        </div>
+                                    </details>
+                                </div>
+                            ))}
+                        </div>
                     </div>
+                </section>
 
-                    <div className="space-y-4">
-                        {faqs.map((faq, index) => (
-                            <div key={index} className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow">
-                                <details className="group">
-                                    <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
-                                        <h3 className="font-semibold text-lg text-foreground pr-4">{faq.question}</h3>
-                                        <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform group-open:rotate-180" />
-                                    </summary>
-                                    <div className="px-4 pb-4 text-muted-foreground leading-relaxed border-t border-border/50 pt-2">
-                                        {faq.answer}
-                                    </div>
-                                </details>
+                {/* CTA Section */}
+                <section className="container mx-auto px-4 mt-20">
+                    <div className="bg-gradient-to-r from-primary/90 to-primary text-primary-foreground rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden text-center">
+                        <div className="absolute top-0 right-0 p-12 bg-white/10 rounded-full transform translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
+                        <div className="absolute bottom-0 left-0 p-12 bg-black/10 rounded-full transform -translate-x-1/2 translate-y-1/2 blur-2xl"></div>
+
+                        <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Journey?</h2>
+                            <p className="text-lg opacity-90 mb-8">
+                                Don't wait! Grab this opportunity to launch your own business with our affordable, high-quality app solutions.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                <BusinessAppInquiryDialog
+                                    trigger={
+                                        <Button size="lg" variant="secondary" className="font-bold text-primary rounded-full px-8 shadow-lg">
+                                            Book Your App Now
+                                        </Button>
+                                    }
+                                />
+                                <BusinessAppInquiryDialog
+                                    trigger={
+                                        <Button size="lg" variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-full px-8">
+                                            Contact Expert
+                                        </Button>
+                                    }
+                                />
                             </div>
-                        ))}
+                        </div>
                     </div>
-                </div>
-                </section >
-
-        {/* CTA Section */ }
-        < section className = "container mx-auto px-4 mt-20" >
-            <div className="bg-gradient-to-r from-primary/90 to-primary text-primary-foreground rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden text-center">
-                <div className="absolute top-0 right-0 p-12 bg-white/10 rounded-full transform translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
-                <div className="absolute bottom-0 left-0 p-12 bg-black/10 rounded-full transform -translate-x-1/2 translate-y-1/2 blur-2xl"></div>
-
-                <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Journey?</h2>
-                    <p className="text-lg opacity-90 mb-8">
-                        Don't wait! Grab this opportunity to launch your own business with our affordable, high-quality app solutions.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <BusinessAppInquiryDialog
-                            trigger={
-                                <Button size="lg" variant="secondary" className="font-bold text-primary rounded-full px-8 shadow-lg">
-                                    Book Your App Now
-                                </Button>
-                            }
-                        />
-                        <BusinessAppInquiryDialog
-                            trigger={
-                                <Button size="lg" variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-full px-8">
-                                    Contact Expert
-                                </Button>
-                            }
-                        />
-                    </div>
-                </div>
+                </section>
             </div>
-                </section >
-            </div >
         </>
     );
 }

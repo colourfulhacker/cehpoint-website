@@ -23,19 +23,18 @@ export default function OrganizationSchema({
     description = "Leading IT consultancy offering enterprise outsourcing, custom software development, AI solutions, cybersecurity, and digital transformation services.",
     url = "https://www.cehpoint.co.in",
     logo = "https://www.cehpoint.co.in/logo.png",
-    email = "info@cehpoint.co.in",
-    phone = "+91-XXX-XXX-XXXX",
+    email = "contact@cehpoint.co.in",
+    phone = "+91 33690 29331",
     address = {
-        streetAddress: "",
-        addressLocality: "India",
-        addressRegion: "",
-        postalCode: "",
+        streetAddress: "Cehpoint, Labpur, Sandipan Patsala Para, Birbhum, Bolpur",
+        addressLocality: "Bolpur",
+        addressRegion: "West Bengal",
+        postalCode: "731303",
         addressCountry: "IN"
     },
     socialProfiles = [
         "https://www.linkedin.com/company/cehpoint",
-        "https://twitter.com/cehpoint",
-        "https://www.facebook.com/cehpoint"
+        "https://twitter.com/cehpoint"
     ],
     sameAs = [
         "https://www.linkedin.com/company/cehpoint",

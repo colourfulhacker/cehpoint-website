@@ -5,10 +5,68 @@ import AIROICalculator from "@/components/calculators/ai-roi-calculator";
 import IndustryUseCaseExplorer from "@/components/sections/industry-use-cases";
 import AISolutionsSection from "@/components/sections/ai-solutions";
 import { Badge } from "@/components/ui/badge";
+import SEO from "@/components/seo";
 
 export default function AISolutions() {
+  const serviceSchema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "AI Solutions & Consulting",
+    "provider": {
+      "@type": "Organization",
+      "name": "Cehpoint",
+      "sameAs": "https://www.cehpoint.co.in"
+    },
+    "areaServed": "IN",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "AI Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Generative AI Integration",
+            "description": "Custom GPT models and content generation solutions."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Intelligent Automation",
+            "description": "End-to-end process automation with AI decision-making."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Predictive Analytics",
+            "description": "Machine learning models for business forecasting."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Computer Vision",
+            "description": "Image recognition and video analysis systems."
+          }
+        }
+      ]
+    }
+  });
+
   return (
     <div className="pt-24 min-h-screen" data-testid="ai-solutions-page">
+      <SEO
+        title="Enterprise AI Solutions & Consulting | Generative AI, ML, & Automation services in India"
+        description="Transform your business with Cehpoint's AI solutions. We specialize in Generative AI, Computer Vision, Predictive Analytics, and Intelligent Process Automation for Indian enterprises."
+        keywords={["AI Solutions India", "Generative AI Consulting", "Computer Vision Services", "Predictive Analytics Company", "AI Automation India", "Machine Learning Services"]}
+        schema={serviceSchema}
+        image="/images/ai/ai-hero.png"
+      />
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-background via-primary/5 to-background relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
