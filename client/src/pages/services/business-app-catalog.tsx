@@ -499,35 +499,45 @@ const allApps: AppIdea[] = [
         businessIdea: "Offer 'Try at Home' for premium sarees. Customers shortlists 5 designs, you send a rep. They buy one. This high-touch model works wonders for expensive purchases where touch-and-feel is crucial."
     },
     {
-        id: 33, title: "Handicraft Selling App", description: "Bengal artisan products.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Selling"),
+        id: 33, title: "Handicraft Selling App", description: "Bengal artisan products.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/33-handicraft-selling-app.png",
+        techStack: commonTechStack, features: getFeatures("Selling"),
         objective: "Global platform for local artisans.",
         howItWorks: "Artisan lists product -> Global buyer orders -> Shipping partner integrated -> Delivery.",
         whyThisApp: "Unique products with high export potential.",
         businessIdea: "Tell the story of the artisan. Don't just sell a 'Bamboo Basket'; sell 'Ram kaka's 40 years of weaving'. Storytelling increases the perceived value of handicrafts massively for urban and international buyers."
     },
     {
-        id: 34, title: "Jewellery Showcase App", description: "Inquiry-based sales.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Selling"),
+        id: 34, title: "Jewellery Showcase App", description: "Inquiry-based sales.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/34-jewellery-showcase-app.png",
+        techStack: commonTechStack, features: getFeatures("Selling"),
         objective: "Safe comparison and inquiry for expensive items.",
         howItWorks: "User browses designs -> 'Request Price' -> Video Call setup -> Finalize deal offline/securely.",
         whyThisApp: "High-ticket items require a trust-building interface.",
         businessIdea: "Virtual Try-On using AR (Augmented Reality). Let users see how a necklace looks on their selfie. It reduces the friction of buying expensive items online and sets you apart as a high-tech jeweller."
     },
     {
-        id: 35, title: "Mobile Accessories App", description: "COD local delivery.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Selling"),
+        id: 35, title: "Mobile Accessories App", description: "COD local delivery.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/35-mobile-accessories-app.png",
+        techStack: commonTechStack, features: getFeatures("Selling"),
         objective: "High-volume sales of trending accessories.",
         howItWorks: "Select phone model -> Show covers/guards -> Fast local delivery.",
         whyThisApp: "Impulse buy market with high margins.",
         businessIdea: "Create 'Style Boxes' - a curated set of phone cover, cable protector, and grip holder matching a theme (e.g., Marvel, Floral). Bundling increases average order value significantly."
     },
     {
-        id: 36, title: "Second-Hand Goods App", description: "Buy/sell locally.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Selling"),
+        id: 36, title: "Second-Hand Goods App", description: "Buy/sell locally.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/36-second-hand-goods-app.png",
+        techStack: commonTechStack, features: getFeatures("Selling"),
         objective: "Hyperlocal classifieds for used items.",
         howItWorks: "Seller snaps photo -> Posts ad -> Buyer chats -> Meet & Exchange.",
         whyThisApp: "Sustainable and economically viable for cost-conscious users.",
         businessIdea: "Focus on 'Verified Refurbished' mobiles or laptops. Run 50 quality checks and offer a 6-month warranty. Trust is the missing link in the second-hand market. If you build trust, you build a brand."
     },
     {
-        id: 37, title: "Book Reselling App", description: "Academic & exam books.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Selling"),
+        id: 37, title: "Book Reselling App", description: "Academic & exam books.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/37-book-reselling-app.png",
+        techStack: commonTechStack, features: getFeatures("Selling"),
         objective: "Circular economy for educational books.",
         howItWorks: "Student sells old books -> Junior buys them -> Platform takes commission.",
         whyThisApp: "Textbooks are expensive; students always look for second-hand options.",
