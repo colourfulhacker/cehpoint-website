@@ -38,9 +38,76 @@ const GRADIENTS = [
     "from-fuchsia-600 to-purple-600",
     "from-lime-500 to-green-600",
     "from-sky-500 to-indigo-500",
+    "from-violet-600 to-fuchsia-600",
+    "from-indigo-500 to-purple-500",
+    "from-pink-500 to-rose-500",
+    "from-teal-400 to-emerald-500",
+    "from-blue-500 to-cyan-400"
+];
+
+const PATTERNS = [
+    "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+    "linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.05) 75%, transparent 75%, transparent)",
+    "repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 10px)",
+    "radial-gradient(circle at 0% 0%, rgba(255,255,255,0.15) 0%, transparent 50%)",
+    "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%)"
 ];
 
 const getGradient = (id: number) => GRADIENTS[id % GRADIENTS.length];
+const getPattern = (id: number) => PATTERNS[id % PATTERNS.length];
+
+const AppVisual = ({ id, title, icon, image, className = "h-40" }: { id: number, title: string, icon: JSX.Element, image?: string, className?: string }) => {
+    const gradient = getGradient(id);
+    const pattern = getPattern(id);
+
+    if (image) {
+        return (
+            <div className={`relative w-full ${className} overflow-hidden rounded-t-xl group transition-all duration-300`}>
+                <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+                <img
+                    src={image}
+                    alt={title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+                <div className="absolute top-3 right-3 bg-black/20 backdrop-blur-md p-2 rounded-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="scale-75 text-white">
+                        {icon}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    return (
+        <div className={`relative w-full ${className} overflow-hidden rounded-t-xl bg-gradient-to-br ${gradient} flex flex-col items-center justify-center p-6 group transition-all duration-300`}>
+            {/* Pattern Overlay */}
+            <div className="absolute inset-0 opacity-30" style={{ backgroundImage: pattern, backgroundSize: '20px 20px' }} />
+
+            {/* Glossy Effect */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-gradient-to-br from-white/10 to-transparent rotate-45 pointer-events-none" />
+
+            {/* Icon & Content */}
+            <div className="relative z-10 flex flex-col items-center gap-3 transform group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-white/20 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/20">
+                    {/* Make icon larger via cloneElement or wrapper */}
+                    <div className="scale-150 text-white">
+                        {icon}
+                    </div>
+                </div>
+                <h3 className="text-white font-bold text-lg text-center leading-tight drop-shadow-md opacity-0 group-hover:opacity-100 absolute -bottom-8 transition-all duration-300 translate-y-4 group-hover:translate-y-0 w-max max-w-[200px]">
+                    {title}
+                </h3>
+            </div>
+
+            {/* Floating particles/shapes for extra dynamism (randomized by ID) */}
+            <div className={`absolute top-4 left-4 w-12 h-12 rounded-full bg-white/5 blur-xl animate-pulse delay-${(id % 3) * 100}`} />
+            <div className={`absolute bottom-4 right-4 w-20 h-20 rounded-full bg-black/5 blur-xl`} />
+        </div>
+    );
+};
 
 const getIconForApp = (title: string, category: string) => {
     const text = (title + category).toLowerCase();
@@ -98,6 +165,7 @@ interface AppIdea {
     description: string;
     category: string;
     icon: JSX.Element;
+    image?: string; // New field for app cover image
     techStack: string[];
     features: string[];
     objective: string;
@@ -108,6 +176,16 @@ interface AppIdea {
 
 // --- Data ---
 
+const commonTechStack = ["React Native (PWA)", "Firebase Auth", "Firestore DB", "Cloud Functions"];
+
+const getFeatures = (category: string) => {
+    if (category === "Service-Based") return ["Booking System", "Live Location Tracking", "Provider Rating"];
+    if (category === "Education") return ["Live Classes", "PDF Notes Support", "Student Attendance"];
+    if (category === "Selling") return ["Product Catalog", "WhatsApp Integration", "Order Managment"];
+    if (category === "Digital") return ["User Profiles", "In-App Chat", "Payment Gateway"];
+    return ["User Dashboard", "Admin Panel", "Push Notifications"];
+};
+
 const categories = [
     "Local & Daily-Need",
     "Service-Based",
@@ -117,91 +195,100 @@ const categories = [
 ];
 
 const categoryDescriptions: Record<string, string> = {
-    "Local & Daily-Need": "Essential apps connecting local vendors with daily customers for recurring needs.",
-    "Service-Based": "On-demand platforms connecting customers with skilled professionals nearby.",
-    "Education & Skill": "Digital learning platforms for coaching centers, tutors, and institutes.",
-    "Selling & Reselling": "E-commerce solutions for boutiques, retailers, and homepreneurs.",
-    "Digital & Modern": "Innovative apps for niche markets, events, and community services."
-};
-
-const commonTechStack = ["PWA (React/Vite)", "Firebase Auth", "Firestore DB", "Cloud Functions"];
-
-// Helper to generate generic features if specific ones aren't needed
-const getFeatures = (category: string) => {
-    if (category.includes("Local")) return ["User App: Browse & Order", "Vendor App: Manage Orders", "Admin Panel: Analytics"];
-    if (category.includes("Service")) return ["User App: Book Service", "Partner App: Accept Jobs", "GPS Tracking"];
-    if (category.includes("Education")) return ["Student Portal: Videos/Notes", "Live Class Integration", "Fee Management"];
-    if (category.includes("Selling")) return ["Product Catalog", "Cart & Checkout", "Order Tracking"];
-    return ["User Dashboard", "Secure Payments", "Notification System"];
+    "Local & Daily-Need": "High-frequency daily essentials and hyper-local delivery services.",
+    "Service-Based": "On-demand home services and professional consultations.",
+    "Education & Skill": "platforms for coaching classes, tutors, and learning management.",
+    "Selling & Reselling": "E-commerce solutions for boutiques, shops, and resellers.",
+    "Digital & Modern": "New-age digital businesses, content platforms, and aggregators."
 };
 
 const allApps: AppIdea[] = [
     // LOCAL & DAILY-NEED BENEFITS
     {
-        id: 1, title: "Local Grocery Ordering App", description: "Customers order daily groceries; owner delivers locally.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: ["Inventory Management", "Delivery Scheduling", "WhatsApp Order Alerts"],
+        id: 1, title: "Local Grocery Ordering App", description: "Customers order daily groceries; owner delivers locally.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/1-local-grocery-ordering-app.webp",
+        techStack: commonTechStack, features: ["Inventory Management", "Delivery Scheduling", "WhatsApp Order Alerts"],
         objective: "Digitize local kirana stores to compete with quick-commerce giants.",
         howItWorks: "Customers browse local stock -> Place order -> Shop owner accepts & packs -> Delivery boy delivers.",
         whyThisApp: "High recurrence; everyone needs groceries daily. Builds loyal local customer base.",
         businessIdea: "Start a dark store model in your neighborhood. Partner with 10-15 local kirana stores to fulfill orders. You manage the platform and delivery, they manage the stock. With a small delivery fleet, you can offer 30-min delivery, beating big players on speed and trust."
     },
     {
-        id: 2, title: "Fish & Meat Booking App", description: "Morning pre-orders, evening pickup or delivery.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: ["Pre-order System", "Freshness Guarantee Badge", "Slot Booking"],
+        id: 2, title: "Fish & Meat Booking App", description: "Morning pre-orders, evening pickup or delivery.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/2-fish-and-meat-booking-app.webp",
+        techStack: commonTechStack, features: ["Pre-order System", "Freshness Guarantee Badge", "Slot Booking"],
         objective: "Reduce waste by taking pre-orders for perishable goods.",
         howItWorks: "Users pre-book previous night -> Vendor buys exact quantity -> Fresh delivery in morning.",
         whyThisApp: "Solves the 'freshness' trust issue and eliminates vendor stock waste.",
         businessIdea: "Hygiene is the biggest concern for meat buyers. Position this as a premium, 'antibiotic-free' or 'fresh-catch' delivery service. Source directly from local fishermen or quality butchers. The pre-order model ensures zero wastage for you and guaranteed fresh produce for customers."
     },
     {
-        id: 3, title: "Vegetable Vendor App", description: "Fixed customer list, daily fresh supply.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: ["Subscription Management", "Daily Route Optimization", "Bill Book"],
+        id: 3, title: "Vegetable Vendor App", description: "Fixed customer list, daily fresh supply.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/3-vegetable-vendor-app.webp",
+        techStack: commonTechStack, features: ["Subscription Management", "Daily Route Optimization", "Bill Book"],
         objective: "Manage fixed daily routes and customer credit (khata) digitally.",
         howItWorks: "Vendor sets daily route -> App shows customer orders -> Auto-generates bills -> Tracks payments.",
         whyThisApp: "Organizes the unorganized street vendor sector; huge user base.",
         businessIdea: "Empower local cart vendors. Create a subscription model where customers get a 'daily fresh basket' delivered. Vendors get a fixed route and assured income, while you take a commission. It revolutionizes the chaotic street vending market."
     },
     {
-        id: 4, title: "Milk Subscription App", description: "Monthly prepaid milk delivery management.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: ["Calendar View", "Pause/Resume Subscription", "Monthly Billing"],
+        id: 4, title: "Milk Subscription App", description: "Monthly prepaid milk delivery management.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/4-milk-subscription-app.webp",
+        techStack: commonTechStack, features: ["Calendar View", "Pause/Resume Subscription", "Monthly Billing"],
         objective: "Automate tracking of daily milk delivery and monthly billing.",
         howItWorks: "User subscribes -> Daily auto-entry -> User marks 'vacation' if away -> Monthly auto-invoice.",
         whyThisApp: "Eliminates manual card/diary entry errors; ensures timely payments.",
         businessIdea: "Combine milk delivery with other morning essentials like bread, eggs, and newspapers. The 'Morning Basket' concept is verified and successful. Your app digitizes the billing, which is the biggest pain point for traditional milkmen."
     },
     {
-        id: 5, title: "Rice & Ration Supply App", description: "Bulk local ration orders.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: ["Bulk Quantity Discounts", "Repeat Order", "Ledger Management"],
+        id: 5, title: "Rice & Ration Supply App", description: "Bulk local ration orders.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/5-rice-and-ration-supply-app.webp",
+        techStack: commonTechStack, features: ["Bulk Quantity Discounts", "Repeat Order", "Ledger Management"],
         objective: "Wholesale/Bulk delivery management for heavy staples.",
         howItWorks: "Households order monthly staples -> Vendor aggregates orders -> Bulk delivery planned.",
         whyThisApp: "High average order value; steady recurring revenue.",
         businessIdea: "Target housing societies for bulk group buying. Residents pool their orders for rice, flour, and pulses to get wholesale rates. You negotiate with millers directly, cutting out middlemen and passing savings to customers while keeping a healthy margin."
     },
     {
-        id: 6, title: "Home Tiffin Service App", description: "Daily meal booking with weekly plans.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: ["Meal Planner Menu", "Veg/Non-Veg Toggle", "Feedback System"],
+        id: 6, title: "Home Tiffin Service App", description: "Daily meal booking with weekly plans.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/6-home-tiffin-service-app.webp",
+        techStack: commonTechStack, features: ["Meal Planner Menu", "Veg/Non-Veg Toggle", "Feedback System"],
         objective: "Connect home cooks with office goers/students for healthy food.",
         howItWorks: "Cook posts weekly menu -> User subscribes/orders -> Delivery partner collects & drops.",
         whyThisApp: "Growing demand for hygienic, home-cooked meals in metro cities.",
         businessIdea: "Market this to corporate offices and PG students who crave 'Maa ke haath ka khana'. Onboard 5-10 tailored home chefs who specialize in different cuisines. The subscription model guarantees monthly recurring revenue effectively."
     },
     {
-        id: 7, title: "Sweet Shop Pre-Order App", description: "Order sweets before festivals.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: ["Festival Catalog", "Gift Packing Options", "Advance Payment"],
+        id: 7, title: "Sweet Shop Pre-Order App", description: "Order sweets before festivals.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/7-sweet-shop-pre-order-app.webp",
+        techStack: commonTechStack, features: ["Festival Catalog", "Gift Packing Options", "Advance Payment"],
         objective: "Manage festival rush and advance orders for bulk sweets.",
         howItWorks: "Shop lists festival specials -> Customers pre-book & pay -> Express pickup counter at shop.",
         whyThisApp: "Prevents overcrowding at shops during festivals; guarantees stock.",
         businessIdea: "Become the aggregator for famous local sweet shops that don't offer delivery. During festivals like Diwali or Durga Puja, offer 'Assorted Festival Boxes' containing specialties from multiple shops. This exclusive curated offering commands a premium."
     },
     {
-        id: 8, title: "Bakery Order App", description: "Cake and snack pre-booking.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: ["Custom Cake Builder", "Pickup Scheduling", "Photo Upload"],
+        id: 8, title: "Bakery Order App", description: "Cake and snack pre-booking.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/8-bakery-order-app.webp",
+        techStack: commonTechStack, features: ["Custom Cake Builder", "Pickup Scheduling", "Photo Upload"],
         objective: "Custom cake ordering and daily snack inventory management.",
         howItWorks: "Customer customizes cake (flavor/design) -> Baker confirms -> Delivery or Pickup scheduled.",
         whyThisApp: "Niche market with high emotional value (birthdays/events).",
         businessIdea: "Focus on customized celebration cakes. Allow users to upload designs from Pinterest/Instagram and get quotes from top local home-bakers. This 'Cake Concierge' service fills the gap between generic shop cakes and expensive boutique bakers."
     },
     {
-        id: 9, title: "Water Jar Supply App", description: "Monthly water delivery subscription.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: ["QR Code Jar Tracking", "Stock Management", "Monthly Cards"],
+        id: 9, title: "Water Jar Supply App", description: "Monthly water delivery subscription.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/9-water-jar-supply-app.webp",
+        techStack: commonTechStack, features: ["QR Code Jar Tracking", "Stock Management", "Monthly Cards"],
         objective: "Track returnable assets (jars) and manage subscriptions.",
         howItWorks: "Driver scans jar QR on delivery -> App tracks inventory -> Monthly bill generated based on usage.",
         whyThisApp: "Solves the 'lost jar' problem and simplifies collection.",
         businessIdea: "The drinking water supply market is fragmented. Create a branded localized delivery service. Use the app to track jar assets (which often get lost) and automate monthly billing. You can eventually white-label the water jars for higher brand recall."
     },
     {
-        id: 10, title: "Gas Stove Repair Booking App", description: "Local service booking.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: ["Service History", "Spare Parts Catalog", "Instant Calling"],
+        id: 10, title: "Gas Stove Repair Booking App", description: "Local service booking.", category: "Local & Daily-Need", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/10-gas-stove-repair-booking-app.webp",
+        techStack: commonTechStack, features: ["Service History", "Spare Parts Catalog", "Instant Calling"],
         objective: "Quick access to emergency kitchen repair services.",
         howItWorks: "User books issue -> Technician gets alert -> Visits home -> Bills via app.",
         whyThisApp: "Essential utility service with urgent demand.",
@@ -210,70 +297,90 @@ const allApps: AppIdea[] = [
 
     // SERVICE-BASED APPS
     {
-        id: 11, title: "Electrician Booking App", description: "Per-visit service charges.", category: "Service-Based", icon: <User className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Service-Based"),
+        id: 11, title: "Electrician Booking App", description: "Per-visit service charges.", category: "Service-Based", icon: <User className="w-6 h-6" />,
+        image: "/assets/apps/11-electrician-booking-app.png",
+        techStack: commonTechStack, features: getFeatures("Service-Based"),
         objective: "On-demand access to verified electricians for small jobs.",
         howItWorks: "User selects issue (Fan/Light) -> App finds nearby electrician -> Fix & Pay.",
         whyThisApp: "High frequency of small electrical faults in every household.",
         businessIdea: "Launch a 'Quick-Fix' subscription for societies. For a small annual fee, households get priority visits and no visiting charges. This ensures customer loyalty and a steady cash flow, while mechanics get consistent work."
     },
     {
-        id: 12, title: "Plumber Booking App", description: "Location-based job requests.", category: "Service-Based", icon: <User className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Service-Based"),
+        id: 12, title: "Plumber Booking App", description: "Location-based job requests.", category: "Service-Based", icon: <User className="w-6 h-6" />,
+        image: "/assets/apps/12-plumber-booking-app.png",
+        techStack: commonTechStack, features: getFeatures("Service-Based"),
         objective: "Emergency plumbing assistance platform.",
         howItWorks: "User reports leak/blockage -> Plumber accepts request -> Visits & resolves.",
         whyThisApp: "Urgent nature of plumbing issues creates instant demand.",
         businessIdea: "Target older apartment complexes with aging plumbing. Offer 'preventive maintenance packages' where you check for leaks and blocks quarterly. Positioning as 'Home Health Checkup' changes the perception from emergency repair to wellness."
     },
     {
-        id: 13, title: "AC Repair Booking App", description: "Seasonal high-demand service.", category: "Service-Based", icon: <User className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Service-Based"),
+        id: 13, title: "AC Repair Booking App", description: "Seasonal high-demand service.", category: "Service-Based", icon: <User className="w-6 h-6" />,
+        image: "/assets/apps/13-ac-repair-booking-app.png",
+        techStack: commonTechStack, features: getFeatures("Service-Based"),
         objective: "Manage seasonal peaks for AC service and repair.",
         howItWorks: "User books AMC or one-time service -> Technician assigned -> Service history logged.",
         whyThisApp: "Extremely high demand in summer; recurring annual business.",
         businessIdea: "Offer an 'AC Health Pass' before summer. It includes servicing, gas top-up, and breakdown cover. During peak heat, getting a mechanic is hard; your subscribers get priority. This creates huge demand during the pre-season."
     },
     {
-        id: 14, title: "Car Wash at Home App", description: "Doorstep car cleaning.", category: "Service-Based", icon: <User className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Service-Based"),
+        id: 14, title: "Car Wash at Home App", description: "Doorstep car cleaning.", category: "Service-Based", icon: <User className="w-6 h-6" />,
+        image: "/assets/apps/14-car-wash-at-home-app.png",
+        techStack: commonTechStack, features: getFeatures("Service-Based"),
         objective: "Convenient doorstep car cleaning service.",
         howItWorks: "User selects package (Interior/Exterior) -> Washer arrives on bike -> Washes car -> Payment.",
         whyThisApp: "Saves time for car owners; low investment for service providers.",
         businessIdea: "Eco-friendly waterless car wash at home. Market it to luxury car owners who fear scratches from daily cleaners. Use microfiber cloths and premium wax. The convenience of 'while you sleep' cleaning is a massive USP."
     },
     {
-        id: 15, title: "Bike Repair On-Demand App", description: "Local mechanic discovery.", category: "Service-Based", icon: <User className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Service-Based"),
+        id: 15, title: "Bike Repair On-Demand App", description: "Local mechanic discovery.", category: "Service-Based", icon: <User className="w-6 h-6" />,
+        image: "/assets/apps/15-bike-repair-on-demand-app.png",
+        techStack: commonTechStack, features: getFeatures("Service-Based"),
         objective: "Breakdown assistance and doorstep servicing for bikes.",
         howItWorks: "User sends location -> Mechanic arrives with tools -> Fixes puncture/engine -> Paid.",
         whyThisApp: "Critical for stranded riders; consistent servicing needs.",
         businessIdea: "Roadside assistance subscription for bikers. Partner with garages every 5km. If a bike breaks down, the nearest mechanic is dispatched. It's like 'AAA for Bikes' in your city. Great for students and office commuters."
     },
     {
-        id: 16, title: "House Cleaning App", description: "Per-room cleaning packages.", category: "Service-Based", icon: <User className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Service-Based"),
+        id: 16, title: "House Cleaning App", description: "Per-room cleaning packages.", category: "Service-Based", icon: <User className="w-6 h-6" />,
+        image: "/assets/apps/16-house-cleaning-app.png",
+        techStack: commonTechStack, features: getFeatures("Service-Based"),
         objective: "Professional deep cleaning services for homes.",
         howItWorks: "User chooses rooms/area -> Team arrives with equipment -> Deep cleans -> Rating.",
         whyThisApp: "Rising trend in metro cities for professional cleaning.",
         businessIdea: "Specialize in 'Deep Cleaning' for move-in/move-out tenants. Landlords want clean flats to show; tenants want their deposit back. Partner with real estate brokers to get leads automatically."
     },
     {
-        id: 17, title: "Pest Control Lead App", description: "Generate service leads.", category: "Service-Based", icon: <User className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Service-Based"),
+        id: 17, title: "Pest Control Lead App", description: "Generate service leads.", category: "Service-Based", icon: <User className="w-6 h-6" />,
+        image: "/assets/apps/17-pest-control-lead-app.png",
+        techStack: commonTechStack, features: getFeatures("Service-Based"),
         objective: "Connect users with reliable pest control experts.",
         howItWorks: "User inputs infestation details -> Agencies bid or accept -> Service scheduled.",
         whyThisApp: "Health and hygiene necessity; high ticket size.",
         businessIdea: "Offer an odorless, herbal pest control service. Parents and pet owners worry about chemicals. Market this strongly as 'Safe for Kids & Pets'. The annual contract model ensures you get paid year-round."
     },
     {
-        id: 18, title: "RO Service Booking App", description: "Filter replacement & AMC.", category: "Service-Based", icon: <User className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Service-Based"),
+        id: 18, title: "RO Service Booking App", description: "Filter replacement & AMC.", category: "Service-Based", icon: <User className="w-6 h-6" />,
+        image: "/assets/apps/18-ro-service-booking-app.png",
+        techStack: commonTechStack, features: getFeatures("Service-Based"),
         objective: "Maintenance tracking for water purifiers.",
         howItWorks: "App tracks filter life -> Reminds user -> Auto-books technician for replacement.",
         whyThisApp: "Pure water is a necessity; AMC model ensures recurring income.",
         businessIdea: "The water quality in many areas is poor. Don't just repair; rent out RO machines. 'Pure water as a service' - customers pay a monthly fee for the machine and service. Zero ownership cost for them, lifetime value for you."
     },
     {
-        id: 19, title: "Painter Booking App", description: "Home renovation leads.", category: "Service-Based", icon: <User className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Service-Based"),
+        id: 19, title: "Painter Booking App", description: "Home renovation leads.", category: "Service-Based", icon: <User className="w-6 h-6" />,
+        image: "/assets/apps/19-painter-booking-app.png",
+        techStack: commonTechStack, features: getFeatures("Service-Based"),
         objective: "Simplifying home painting projects.",
         howItWorks: "User requests quote -> Painter visits for measurement -> Estimate provided -> Work starts.",
         whyThisApp: "High value projects; organizes a chaotic market.",
         businessIdea: "Focus on 'Express Painting' - painting a room in a day using mechanized tools. Traditional painting takes weeks. Speed and cleanliness are your USPs to charge a premium from busy urban professionals."
     },
     {
-        id: 20, title: "Appliance Installation App", description: "TV, geyser, chimney setup.", category: "Service-Based", icon: <User className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Service-Based"),
+        id: 20, title: "Appliance Installation App", description: "TV, geyser, chimney setup.", category: "Service-Based", icon: <User className="w-6 h-6" />,
+        image: "/assets/apps/20-appliance-installation-app.png",
+        techStack: commonTechStack, features: getFeatures("Service-Based"),
         objective: "Expert installation for new appliances.",
         howItWorks: "User buys appliance -> Books installation -> Certified expert installs correctly.",
         whyThisApp: "Ensures safety and warranty compliance for expensive appliances.",
@@ -282,49 +389,63 @@ const allApps: AppIdea[] = [
 
     // EDUCATION & SKILL BUSINESSES
     {
-        id: 21, title: "Local Tuition App", description: "Class-wise student enrollment.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Education"),
+        id: 21, title: "Local Tuition App", description: "Class-wise student enrollment.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />,
+        image: "/assets/apps/21-local-tuition-app.png",
+        techStack: commonTechStack, features: getFeatures("Education"),
         objective: "Manage local tuition batches and fees.",
         howItWorks: "Tutor adds students -> Schedules classes -> Marks attendance -> Sends notes/homework.",
         whyThisApp: "Organizes the massive shadow education sector.",
         businessIdea: "Create a hyperlocal 'Star Tutor' network. Vetting is key. Parents trust recommendations. If you certify tutors after a test, parents will pay a premium for 'verified' tutors. Charge a commission on the first month's fee."
     },
     {
-        id: 22, title: "Spoken English Coaching App", description: "Monthly batch management.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Education"),
+        id: 22, title: "Spoken English Coaching App", description: "Monthly batch management.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />,
+        image: "/assets/apps/22-spoken-english-coaching-app.png",
+        techStack: commonTechStack, features: getFeatures("Education"),
         objective: "Virtual or hybrid coaching for language skills.",
         howItWorks: "Student enrolls -> Gets access to video lessons -> Practices via audio tasks -> Feedback.",
         whyThisApp: "High aspiration for English fluency in non-metro areas.",
         businessIdea: "Focus on 'Job-Interview Readiness'. Don't just teach grammar; teach confidence. Conduct mock AI interviews or peer-to-peer practice sessions. Aspiring job seekers in Tier-2 cities are desperate for this specific skill."
     },
     {
-        id: 23, title: "Computer Training Institute App", description: "Course listings & fees.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Education"),
+        id: 23, title: "Computer Training Institute App", description: "Course listings & fees.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />,
+        image: "/assets/apps/23-computer-training-institute-app.png",
+        techStack: commonTechStack, features: getFeatures("Education"),
         objective: "Digitize operations for local computer centers.",
         howItWorks: "Institute lists courses (DCA, PGDCA) -> Students register -> Fee tracking -> Certification.",
         whyThisApp: "Essential for skill development institutes to look professional.",
         businessIdea: "Offer 'Weekend Bootcamps' for working professionals or college students (e.g., Advanced Excel, PowerBI). Local institutes often lack updated curriculum. Bring in industry experts for guest lectures via the app to add immense value."
     },
     {
-        id: 24, title: "Abacus / Vedic Math App", description: "Parent-focused enrollment.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Education"),
+        id: 24, title: "Abacus / Vedic Math App", description: "Parent-focused enrollment.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />,
+        image: "/assets/apps/24-abacus-vedic-math-app.png",
+        techStack: commonTechStack, features: getFeatures("Education"),
         objective: "Gamified learning for kids.",
         howItWorks: "Child plays math games -> Progress tracked -> Parents view reports -> Monthly subscription.",
         whyThisApp: "Parents invest heavily in child development activities.",
         businessIdea: "Organize monthly 'Math Olympiads' via the app. Competition drives parental engagement. Winners get scholarships. This effectively gamifies the learning process and creates a viral loop among parents."
     },
     {
-        id: 25, title: "Music / Dance Academy App", description: "Class schedules & fees.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Education"),
+        id: 25, title: "Music / Dance Academy App", description: "Class schedules & fees.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />,
+        image: "/assets/apps/25-music-dance-academy-app.png",
+        techStack: commonTechStack, features: getFeatures("Education"),
         objective: "Schedule management for performing arts.",
         howItWorks: "Academy schedules slots -> Students book slots -> Practice videos shared -> Showcase.",
         whyThisApp: "Streamlines scheduling and fee collection for hobby classes.",
         businessIdea: "Launch 'Hybrid Learning'. Students learn basics via app videos and attend weekly physical jam sessions. This scales the teacher's time (one-to-many online) while keeping the personal touch (physical jams)."
     },
     {
-        id: 26, title: "Competitive Exam Prep App", description: "Paid notes & test series.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Education"),
+        id: 26, title: "Competitive Exam Prep App", description: "Paid notes & test series.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />,
+        image: "/assets/apps/26-competitive-exam-prep-app.png",
+        techStack: commonTechStack, features: getFeatures("Education"),
         objective: "Sell study material and mock tests.",
         howItWorks: "Admin uploads PDF notes/Tests -> User buys pack -> Attempts test -> Gets analytics.",
         whyThisApp: "Scalable model; create content once, sell many times.",
         businessIdea: "Niche down to state-level exams (like WBPSC, TNPSC) where big ed-tech players aren't focused. The content is specific and competition is lower. Community features for doubt solving build high retention."
     },
     {
-        id: 27, title: "Online Bengali Course App", description: "Regional language advantage.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Education"),
+        id: 27, title: "Online Bengali Course App", description: "Regional language advantage.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />,
+        image: "/assets/apps/27-online-bengali-course-app.png",
+        techStack: commonTechStack, features: getFeatures("Education"),
         objective: "Teach regional culture and literature.",
         howItWorks: "Course structure defined -> Video lectures uploaded -> Community discussion forum.",
         whyThisApp: "Targeted audience with strong cultural connection.",
@@ -892,40 +1013,41 @@ export default function BusinessAppCatalog() {
                                                 transition={{ duration: 0.3, delay: index * 0.05 }}
                                             >
                                                 <AppDetailDialog app={app}>
-                                                    <div className="group relative bg-card hover:bg-secondary/20 border border-border/50 hover:border-primary/50 transition-all duration-300 rounded-3xl p-5 cursor-pointer h-full flex flex-col hover:shadow-2xl hover:shadow-primary/5">
+                                                    <div className="group relative bg-card hover:bg-secondary/20 border border-border/50 hover:border-primary/50 transition-all duration-300 rounded-3xl overflow-hidden cursor-pointer h-full flex flex-col hover:shadow-2xl hover:shadow-primary/5">
 
-                                                        <div className="flex items-start gap-4 mb-4">
-                                                            {/* Generated App Icon */}
-                                                            <AppIconBox id={app.id} title={app.title} category={app.category} />
+                                                        <AppVisual id={app.id} title={app.title} icon={app.icon} image={app.image} className="h-48" />
 
-                                                            <div className="space-y-1">
-                                                                <h4 className="font-bold text-lg leading-tight group-hover:text-primary transition-colors line-clamp-2">
-                                                                    {app.title}
-                                                                </h4>
-                                                                <span className="inline-flex items-center text-xs font-medium text-muted-foreground bg-secondary/50 px-2 py-0.5 rounded-full">
-                                                                    {app.category}
-                                                                </span>
+                                                        <div className="p-5 flex flex-col flex-grow">
+                                                            <div className="flex items-start gap-4 mb-4">
+                                                                <div className="space-y-1">
+                                                                    <h4 className="font-bold text-lg leading-tight group-hover:text-primary transition-colors line-clamp-2">
+                                                                        {app.title}
+                                                                    </h4>
+                                                                    <span className="inline-flex items-center text-xs font-medium text-muted-foreground bg-secondary/50 px-2 py-0.5 rounded-full">
+                                                                        {app.category}
+                                                                    </span>
+                                                                </div>
                                                             </div>
+
+                                                            <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-grow">
+                                                                {app.description}
+                                                            </p>
+
+                                                            <div className="mt-auto pt-4 border-t border-border/50 flex items-center justify-between">
+                                                                <div className="flex -space-x-2">
+                                                                    {[1, 2, 3].map(i => (
+                                                                        <div key={i} className="w-6 h-6 rounded-full bg-slate-800 border-2 border-background flex items-center justify-center text-[8px] text-white font-bold">
+                                                                            {["U", "V", "A"][i - 1]}
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                                <div className="text-xs font-bold text-primary flex items-center bg-primary/10 px-3 py-1.5 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
+                                                                    OPEN APP <ArrowRight className="w-3 h-3 ml-1" />
+                                                                </div>
+                                                            </div>
+
+                                                            {/* Decorative 'Install' Overlay effect on hover could go here, keeping it clean for now */}
                                                         </div>
-
-                                                        <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-grow">
-                                                            {app.description}
-                                                        </p>
-
-                                                        <div className="mt-auto pt-4 border-t border-border/50 flex items-center justify-between">
-                                                            <div className="flex -space-x-2">
-                                                                {[1, 2, 3].map(i => (
-                                                                    <div key={i} className="w-6 h-6 rounded-full bg-slate-800 border-2 border-background flex items-center justify-center text-[8px] text-white font-bold">
-                                                                        {["U", "V", "A"][i - 1]}
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-                                                            <div className="text-xs font-bold text-primary flex items-center bg-primary/10 px-3 py-1.5 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
-                                                                OPEN APP <ArrowRight className="w-3 h-3 ml-1" />
-                                                            </div>
-                                                        </div>
-
-                                                        {/* Decorative 'Install' Overlay effect on hover could go here, keeping it clean for now */}
                                                     </div>
                                                 </AppDetailDialog>
                                             </motion.div>
@@ -934,10 +1056,10 @@ export default function BusinessAppCatalog() {
                             </div>
                         ))}
                     </div>
-                </section>
+                </section >
 
                 {/* CTA Section */}
-                <section className="container mx-auto px-4 mt-20">
+                < section className="container mx-auto px-4 mt-20" >
                     <div className="bg-gradient-to-r from-primary/90 to-primary text-primary-foreground rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden text-center">
                         <div className="absolute top-0 right-0 p-12 bg-white/10 rounded-full transform translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
                         <div className="absolute bottom-0 left-0 p-12 bg-black/10 rounded-full transform -translate-x-1/2 translate-y-1/2 blur-2xl"></div>
@@ -965,8 +1087,8 @@ export default function BusinessAppCatalog() {
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
+                </section >
+            </div >
         </>
     );
 }
