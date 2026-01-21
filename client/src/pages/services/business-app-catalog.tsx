@@ -591,14 +591,18 @@ const allApps: AppIdea[] = [
         businessIdea: "No-Brokerage model for PGs and Hostels. Students move cities annually. They need cheap, reliable accommodation fast. Verify listings personally to avoid scams. Students will readily pay a small convenience fee."
     },
     {
-        id: 43, title: "Astrology Consultation App", description: "Paid chat/call booking.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Digital"),
+        id: 43, title: "Astrology Consultation App", description: "Paid chat/call booking.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        image: "/assets/apps/43-astrology-consultation-app.png",
+        techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Monetize astrological expertise.",
         howItWorks: "User recharges wallet -> Selects Astrologer -> Chat/Call per minute -> Advice given.",
         whyThisApp: "Huge cultural belief system drives massive traffic.",
         businessIdea: "Offer 'Micro-Consultations' - one question for ₹50. It lowers the entry barrier. Users who get a good answer often upgrade to a full session. It's a classic 'freemium' model adapted for astrology."
     },
     {
-        id: 44, title: "Temple Donation App", description: "Online puja booking.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Digital"),
+        id: 44, title: "Temple Donation App", description: "Online puja booking.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        image: "/assets/apps/44-temple-donation-app.png",
+        techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Remote spiritual access and donations.",
         howItWorks: "Devotee selects Puja -> Pays donation -> Priest performs puja -> Video/Prasad sent.",
         whyThisApp: "Connects distant devotees with their innovative temples.",
