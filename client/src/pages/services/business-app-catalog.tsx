@@ -452,21 +452,27 @@ const allApps: AppIdea[] = [
         businessIdea: "Target the diaspora (Probashi Bengalis) who want their kids to learn their mother tongue. Connect them with retired teachers in Kolkata. It's high emotional value service with currency arbitrage potential."
     },
     {
-        id: 28, title: "Skill Certification App", description: "Paid short-term courses.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Education"),
+        id: 28, title: "Skill Certification App", description: "Paid short-term courses.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />,
+        image: "/assets/apps/28-skill-certification-app.png",
+        techStack: commonTechStack, features: getFeatures("Education"),
         objective: "Offer valid certificates for vocational skills.",
         howItWorks: "User completes modules -> Passes quiz -> Auto-generates verifiable certificate.",
         whyThisApp: "Certificates add value to job seekers' resumes.",
         businessIdea: "Partner with local MSMEs who need specific skills (e.g., GST filing, Tally). Create a course that guarantees an internship. 'Learn & Earn' is a powerful motivator for youth in small towns."
     },
     {
-        id: 29, title: "School Assignment App", description: "Homework & notes distribution.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Education"),
+        id: 29, title: "School Assignment App", description: "Homework & notes distribution.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />,
+        image: "/assets/apps/29-school-assignment-app.png",
+        techStack: commonTechStack, features: getFeatures("Education"),
         objective: "Communication bridge between teachers and parents/students.",
         howItWorks: "Teacher uploads assignment -> Student gets notification -> Submits photo of work -> Teacher grades.",
         whyThisApp: "Reduces communication gap and paper usage.",
         businessIdea: "Pitch this to affordable private schools that can't afford big ERPs. Offer it as a 'Digital Diary'. It saves printing costs for the school and gives parents real-time updates, making it a win-win."
     },
     {
-        id: 30, title: "Coaching Centre CRM App", description: "Student & fee tracking.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Education"),
+        id: 30, title: "Coaching Centre CRM App", description: "Student & fee tracking.", category: "Education & Skill", icon: <BookOpen className="w-6 h-6" />,
+        image: "/assets/apps/30-coaching-centre-crm-app.png",
+        techStack: commonTechStack, features: getFeatures("Education"),
         objective: "Business management for coaching owners.",
         howItWorks: "Admin dashboard shows due fees, inquiries, and attendance trends -> Auto-SMS reminders.",
         whyThisApp: "Increases revenue collection and inquiry conversion.",
@@ -475,14 +481,18 @@ const allApps: AppIdea[] = [
 
     // SELLING & RESELLING BUSINESSES
     {
-        id: 31, title: "Local Clothing Store App", description: "WhatsApp-integrated orders.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Selling"),
+        id: 31, title: "Local Clothing Store App", description: "WhatsApp-integrated orders.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/31-local-clothing-store-app.png",
+        techStack: commonTechStack, features: getFeatures("Selling"),
         objective: "Take a physical boutique online.",
         howItWorks: "Upload latest stock photos -> Share link on WhatsApp Status -> Customer clicks & buys.",
         whyThisApp: "Leverages existing customer trust to increase sales.",
         businessIdea: "Enable 'Live Selling'. Shop owners can go live on the app to show new stock. Customers can book instantly. It mimics the in-store experience and creates urgency ('Only 1 piece left!')."
     },
     {
-        id: 32, title: "Saree & Boutique App", description: "Catalog-based selling.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Selling"),
+        id: 32, title: "Saree & Boutique App", description: "Catalog-based selling.", category: "Selling & Reselling", icon: <ShoppingBag className="w-6 h-6" />,
+        image: "/assets/apps/32-saree-boutique-app.png",
+        techStack: commonTechStack, features: getFeatures("Selling"),
         objective: "Showcase extensive saree collections easily.",
         howItWorks: "Filter by fabric/occasion -> Zoom in on designs -> Add to cart -> COD/Online Pay.",
         whyThisApp: "Visual appeal drives high sales in fashion.",
