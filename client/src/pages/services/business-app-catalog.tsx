@@ -609,42 +609,54 @@ const allApps: AppIdea[] = [
         businessIdea: "Partner with smaller, ancient temples that need funds for renovation but lack reach. Tell their history. Devotees love to support heritage restoration. You take a small platform fee for facilitating the transaction."
     },
     {
-        id: 45, title: "Event Management App", description: "Birthday & wedding bookings.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Digital"),
+        id: 45, title: "Event Management App", description: "Birthday & wedding bookings.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        image: "/assets/apps/45-event-management-app.png",
+        techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "One-stop shop for celebration planning.",
         howItWorks: "User posts requirement -> Venues/Caterers send quotes -> Compare & Book.",
         whyThisApp: "Simplifies the complex process of event organization.",
         businessIdea: "Create 'Party in a Box' packages. You coordinate everything - decoration, cake, snacks. The customer just clicks 'Book 5th Birthday Party'. Convenience for busy parents is your biggest selling point."
     },
     {
-        id: 46, title: "Influencer Portfolio App", description: "Brand inquiry generation.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Digital"),
+        id: 46, title: "Influencer Portfolio App", description: "Brand inquiry generation.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        image: "/assets/apps/46-influencer-portfolio-app.png",
+        techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Professional showcase for content creators.",
         howItWorks: "Influencer connects social stats -> Brands view reach/engagement -> Request collab.",
         whyThisApp: "Creator economy is booming; influencers need professional tools.",
         businessIdea: "Micro-influencers (5k-50k followers) have high engagement but no managers. Build a platform where local brands (cafes, boutiques) can hire them for small barter or paid collabs. You democratize influencer marketing."
     },
     {
-        id: 47, title: "Local News & Ads App", description: "Paid local advertisements.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Digital"),
+        id: 47, title: "Local News & Ads App", description: "Paid local advertisements.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        image: "/assets/apps/47-local-news-ads-app.png",
+        techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Hyperlocal news and advertising platform.",
         howItWorks: "Reporter posts local news -> Users read free -> Businesses pay for banner ads.",
         whyThisApp: "People care deeply about what happens in their immediate neighborhood.",
         businessIdea: "Citizen Journalism. Reward users for reporting local potholes, accidents, or events. Verify and publish. Local businesses are desperate to advertise to a hyper-local audience which Google/FB ads often miss."
     },
     {
-        id: 48, title: "Travel & Tour Booking App", description: "Local tour packages.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Digital"),
+        id: 48, title: "Travel & Tour Booking App", description: "Local tour packages.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        image: "/assets/apps/48-travel-tour-booking-app.png",
+        techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Promote and sell local travel experiences.",
         howItWorks: "Agency lists weekend trips -> User books seat -> Itinerary managed via app.",
         whyThisApp: "Short, frequent trips are a growing lifestyle trend.",
         businessIdea: "Curate 'Unseen Weekend Getaways'. Don't sell Digha or Darjeeling. Sell hidden villages or farmstays nearby. Urban folks are bored of standard spots and crave unique, offbeat experiences."
     },
     {
-        id: 49, title: "Wedding Vendor App", description: "Photographer, caterer listings.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Digital"),
+        id: 49, title: "Wedding Vendor App", description: "Photographer, caterer listings.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        image: "/assets/apps/49-wedding-vendor-app.png",
+        techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Directory for wedding services.",
         howItWorks: "Vendors list portfolios -> Couples shortlists -> In-app chat/inquiry.",
         whyThisApp: "Wedding industry is recession-proof and high-spending.",
         businessIdea: "'Last Minute Wedding Deals'. Wedding dates are fixed. If a photographer or venue is unbooked for a date, they lose money. Help them sell these slots at a discount to couples with tighter budgets."
     },
     {
-        id: 50, title: "Community Marketplace App", description: "Hyperlocal buying/selling.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />, techStack: commonTechStack, features: getFeatures("Digital"),
+        id: 50, title: "Community Marketplace App", description: "Hyperlocal buying/selling.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        image: "/assets/apps/50-community-marketplace-app.png",
+        techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Build a self-sustaining local economy.",
         howItWorks: "Residents list services/products -> Neighbors buy/barter -> Community grows.",
         whyThisApp: "Fosters community spirit and supports local economy.",
