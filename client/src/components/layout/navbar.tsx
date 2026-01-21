@@ -206,14 +206,6 @@ export default function Navbar() {
                     >
                       {item.name}
                     </a>
-                  ) : item.href.startsWith('#') ? (
-                    <a
-                      href={item.href}
-                      className="text-foreground/80 hover:text-foreground transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1"
-                      data-testid={`nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
-                    >
-                      {item.name}
-                    </a>
                   ) : (
                     <Link
                       href={item.href}

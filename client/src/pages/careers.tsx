@@ -17,6 +17,10 @@ import {
   MapPin,
   Mail,
   ExternalLink,
+  AlertTriangle,
+  Ban,
+  CheckCircle2,
+  XCircle,
 } from "lucide-react";
 
 import AIInterviewPopup from "@/components/careers/ai-interview-popup";
@@ -509,6 +513,139 @@ export default function Careers() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+
+      {/* The Brutal Truth Section */}
+      <section className="py-24 bg-red-50 dark:bg-red-950/10 border-t border-red-100 dark:border-red-900/30 overflow-hidden relative">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center justify-center p-4 bg-red-100 dark:bg-red-900/30 rounded-full mb-6">
+              <AlertTriangle className="w-12 h-12 text-red-600 dark:text-red-500" />
+            </div>
+
+            <h2 className="text-3xl md:text-5xl font-black mb-6 text-red-700 dark:text-red-500 uppercase tracking-tight">
+              We Are a “Bad Company”
+            </h2>
+            <h3 className="text-xl md:text-2xl font-bold mb-8 text-foreground/80">
+              For Anyone Who Puts Our Clients at Risk
+            </h3>
+
+            <div className="max-w-3xl mx-auto text-lg leading-relaxed text-foreground/70 space-y-4">
+              <p className="font-medium text-foreground">
+                We would like to be very clear and very honest.
+              </p>
+              <p>
+                We win clients through hard work, long sales cycles, trust, and delivery promises.
+                <br className="hidden md:block" />
+                <span className="font-bold text-red-600 dark:text-red-400"> Not shortcuts. Not cheating. Not fake skills.</span>
+              </p>
+              <p className="font-semibold text-lg pt-2">So yes, we openly admit:</p>
+            </div>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-background rounded-2xl p-8 shadow-xl border-t-4 border-red-500 hover:shadow-2xl transition-all"
+            >
+              <h4 className="text-xl font-bold mb-6 flex items-center text-red-600 dark:text-red-500">
+                <Ban className="w-6 h-6 mr-3 flex-shrink-0" />
+                We will choose to be bad to you if:
+              </h4>
+              <ul className="space-y-4">
+                {[
+                  "You cheat during interviews or bypass AI screening using external help",
+                  "You pass assessments unethically and misrepresent your capability",
+                  "You accept client-facing work without the skill or seriousness to deliver",
+                  "You respond to deadlines with excuses instead of outcomes",
+                  "You compromise quality that directly affects our clients"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start group">
+                    <XCircle className="w-5 h-5 mr-3 text-red-400 mt-0.5 flex-shrink-0 group-hover:text-red-600 transition-colors" />
+                    <span className="text-foreground/80">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-background rounded-2xl p-8 shadow-xl border-t-4 border-slate-600 hover:shadow-2xl transition-all"
+            >
+              <h4 className="text-xl font-bold mb-6 flex items-center text-foreground">
+                <Shield className="w-6 h-6 mr-3 flex-shrink-0" />
+                If any of the above happens, we will:
+              </h4>
+              <ul className="space-y-4">
+                {[
+                  "Decline or reduce payments",
+                  "Cancel internships or engagements",
+                  "Withdraw benefits and certificates",
+                  "Protect our clients first, always"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start group">
+                    <CheckCircle2 className="w-5 h-5 mr-3 text-slate-400 mt-0.5 flex-shrink-0 group-hover:text-slate-600 transition-colors" />
+                    <span className="text-foreground/80">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-red-50 to-slate-50 dark:from-red-950/20 dark:to-slate-900/20 rounded-3xl p-8 md:p-12 text-center border border-red-100 dark:border-red-900/30"
+          >
+            <div className="max-w-3xl mx-auto space-y-8">
+              <div>
+                <h4 className="text-xl font-semibold mb-6 text-foreground/70">And when that happens, the pattern is familiar:</h4>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {["Performance stops.", "Accountability disappears.", "Anonymous reviews appear."].map((text, i) => (
+                    <span key={i} className="bg-background px-4 py-2 rounded-lg shadow-sm border border-slate-200 dark:border-slate-800 font-mono text-red-600 dark:text-red-400 text-sm font-medium">
+                      {text}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-red-200 dark:via-red-800 to-transparent" />
+
+              <div className="space-y-4">
+                <h3 className="text-2xl md:text-3xl font-black uppercase text-foreground">
+                  Let us expose ourselves clearly:
+                </h3>
+                <p className="text-xl md:text-2xl font-bold text-red-600 dark:text-red-500">
+                  We are a bad company for people who endanger client trust.
+                </p>
+                <p className="text-lg text-foreground/80 font-medium">
+                  We will not reward dishonesty, low effort, or unethical behavior.
+                  <br className="hidden sm:block" />
+                  We will not sacrifice client delivery to keep everyone “happy.”
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </section>
 
