@@ -2,12 +2,34 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, ArrowRight, ShieldAlert, Lock, Eye, Clock, MapPin, TrendingUp, Coins, Rocket } from "lucide-react";
+import { Calendar, ArrowRight, ShieldAlert, Lock, Eye, Clock, MapPin, TrendingUp, Coins, Rocket, Store, UserX, UserCheck } from "lucide-react";
 import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 
 export default function Insights() {
     const articles = [
+        {
+            id: "cto-trap",
+            title: "The CTO Trap: Why Hiring a Technical Co-Founder is a Liability",
+            excerpt: "Stop giving away 50% equity for code. Learn why smart founders hire tools, not bosses.",
+            date: "October 28, 2025",
+            author: "Startup Advisor",
+            category: "Founder Advice",
+            readTime: "4 min read",
+            slug: "/insights/cto-trap",
+            icon: UserX
+        },
+        {
+            id: "hyperlocal-future",
+            title: "E-commerce is Dead. Long Live Hyperlocal.",
+            excerpt: "Don't fight Amazon. Own your neighborhood. The future of retail is 10-minute delivery from the store next door.",
+            date: "October 27, 2025",
+            author: "Strategy Team",
+            category: "Retail Evolution",
+            readTime: "5 min read",
+            slug: "/insights/hyperlocal-future",
+            icon: Store
+        },
         {
             id: "rural-goldmine",
             title: "The Untapped Goldmine in Tier-3 India: Why The Next Unicorn Will Come From a Village",
@@ -32,7 +54,7 @@ export default function Insights() {
         },
         {
             id: "escape-9-5",
-            title: "The Salary Trap: Why Your 9-5 is Killing Your Potential (And Handling)",
+            title: "The Salary Trap: Why Your 9-5 is Killing Your Potential",
             excerpt: "Stop trading time for money. Learn how smart professionals are building automated digital assets on the side.",
             date: "October 22, 2025",
             author: "Career Coach",
@@ -40,6 +62,28 @@ export default function Insights() {
             readTime: "6 min read",
             slug: "/insights/escape-9-5",
             icon: Rocket
+        },
+        {
+            id: "ransomware-paradox",
+            title: "The Ransomware Paradox: Why Paying is a Trap",
+            excerpt: "Paying the ransom doesn't save your business. It marks you as a target. Learn the reality of ransomware negotiation and why you shouldn't pay.",
+            date: "October 26, 2025",
+            author: "Defensive Security",
+            category: "Cyber Threat",
+            readTime: "6 min read",
+            slug: "/insights/ransomware-paradox",
+            icon: ShieldAlert
+        },
+        {
+            id: "hr-forensics",
+            title: "The Internal Threat: Is Your Employee Selling Your Data?",
+            excerpt: "80% of data breaches involve insider threats. Learn how digital forensics can secure your HR process and protect your IP.",
+            date: "October 29, 2025",
+            author: "Corporate Intel",
+            category: "HR Prevention",
+            readTime: "5 min read",
+            slug: "/insights/hr-forensics",
+            icon: UserCheck
         },
         {
             id: "ethical-standards-digital-investigation",

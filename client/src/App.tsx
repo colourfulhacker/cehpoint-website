@@ -44,6 +44,10 @@ import HiddenCostsArticle from "@/pages/insights/hidden-costs";
 import RuralGoldmineArticle from "@/pages/insights/rural-goldmine";
 import Escape95Article from "@/pages/insights/escape-9-5";
 import StartupRevolutionArticle from "@/pages/insights/15k-revolution";
+import RansomwareParadox from "@/pages/insights/ransomware-paradox";
+import HyperlocalFutureArticle from "@/pages/insights/hyperlocal-future";
+import CTOTrapArticle from "@/pages/insights/cto-trap";
+import HRForensicsArticle from "@/pages/insights/hr-forensics";
 
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
@@ -103,6 +107,10 @@ function Router() {
           <Route path="/insights/rural-goldmine" component={RuralGoldmineArticle} />
           <Route path="/insights/escape-9-5" component={Escape95Article} />
           <Route path="/insights/15k-revolution" component={StartupRevolutionArticle} />
+          <Route path="/insights/ransomware-paradox" component={RansomwareParadox} />
+          <Route path="/insights/hyperlocal-future" component={HyperlocalFutureArticle} />
+          <Route path="/insights/cto-trap" component={CTOTrapArticle} />
+          <Route path="/insights/hr-forensics" component={HRForensicsArticle} />
           <Route path="/partner-network" component={PartnerNetwork} />
           <Route component={NotFound} />
         </Switch>
