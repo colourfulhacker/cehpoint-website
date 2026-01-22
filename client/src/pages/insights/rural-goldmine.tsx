@@ -62,7 +62,7 @@ export default function RuralGoldmineArticle() {
                             </p>
                         </div>
                         <div className="bg-card border p-6 rounded-xl shadow-sm">
-                            <h4 className="text-xl font-bold mb-4 flex items-center text-green-600 dark:text-green-500">
+                            <h4 className="text-xl font-bold mb-4 flex items-center text-green-600 dark:text-green-400">
                                 <IndianRupee className="w-5 h-5 mr-2" aria-hidden="true" /> The Investment
                             </h4>
                             <p className="text-sm text-foreground/90">

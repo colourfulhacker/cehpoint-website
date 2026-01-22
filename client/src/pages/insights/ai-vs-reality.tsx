@@ -61,7 +61,7 @@ export default function AIvsRealityArticle() {
 
                     <div className="grid md:grid-cols-2 gap-8 my-12">
                         <div className="bg-card border p-6 rounded-xl shadow-sm">
-                            <h4 className="text-xl font-bold mb-4 flex items-center text-red-700 dark:text-red-500">
+                            <h4 className="text-xl font-bold mb-4 flex items-center text-red-700 dark:text-red-400">
                                 <XCircle className="w-5 h-5 mr-2" aria-hidden="true" /> Fake AI (The Scam)
                             </h4>
                             <ul className="space-y-3 text-sm text-foreground/90">
@@ -72,7 +72,7 @@ export default function AIvsRealityArticle() {
                         </div>
 
                         <div className="bg-card border p-6 rounded-xl shadow-sm">
-                            <h4 className="text-xl font-bold mb-4 flex items-center text-green-700 dark:text-green-500">
+                            <h4 className="text-xl font-bold mb-4 flex items-center text-green-700 dark:text-green-400">
                                 <CheckCircle2 className="w-5 h-5 mr-2" aria-hidden="true" /> True AI (Cehpoint)
                             </h4>
                             <ul className="space-y-3 text-sm text-foreground/90">

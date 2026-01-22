@@ -26,7 +26,7 @@ export default function RansomwareParadox() {
                 >
                     <Badge className="mb-4" variant="destructive">Cyber Threat</Badge>
                     <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
-                        The Ransomware Paradox: <span className="text-red-600 dark:text-red-500">Why Paying is a Trap</span>
+                        The Ransomware Paradox: <span className="text-red-600 dark:text-red-400">Why Paying is a Trap</span>
                     </h1>
                     <div className="flex items-center space-x-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">

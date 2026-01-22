@@ -73,7 +73,7 @@ export default function EthicalStandardsArticle() {
                         </div>
                         <div className="p-8 grid md:grid-cols-2 gap-8">
                             <div className="space-y-4">
-                                <h4 className="text-red-700 dark:text-red-500 font-bold flex items-center">
+                                <h4 className="text-red-700 dark:text-red-400 font-bold flex items-center">
                                     <XCircle className="w-5 h-5 mr-2" aria-hidden="true" /> The "Budget" Approach
                                 </h4>
                                 <ul className="space-y-2 text-sm text-foreground/90">
@@ -84,7 +84,7 @@ export default function EthicalStandardsArticle() {
                                 </ul>
                             </div>
                             <div className="space-y-4">
-                                <h4 className="text-green-700 dark:text-green-500 font-bold flex items-center">
+                                <h4 className="text-green-700 dark:text-green-400 font-bold flex items-center">
                                     <CheckCircle2 className="w-5 h-5 mr-2" aria-hidden="true" /> The Cehpoint Standard
                                 </h4>
                                 <ul className="space-y-2 text-sm text-foreground/90">

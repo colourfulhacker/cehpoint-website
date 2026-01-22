@@ -59,8 +59,8 @@ export default function HiddenCostsArticle() {
                             <thead>
                                 <tr className="bg-muted border-b">
                                     <th scope="col" className="p-4 font-bold text-foreground">Feature</th>
-                                    <th scope="col" className="p-4 font-bold text-red-700 dark:text-red-500">Vendor B (The Cheap Option)</th>
-                                    <th scope="col" className="p-4 font-bold text-green-700 dark:text-green-500">Cehpoint Standard</th>
+                                    <th scope="col" className="p-4 font-bold text-red-700 dark:text-red-400">Vendor B (The Cheap Option)</th>
+                                    <th scope="col" className="p-4 font-bold text-green-700 dark:text-green-400">Cehpoint Standard</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-border">
@@ -95,7 +95,7 @@ export default function HiddenCostsArticle() {
                     </ul>
 
                     <div className="my-12 p-8 bg-green-50/10 border border-green-200/20 rounded-2xl">
-                        <h3 className="text-2xl font-bold mb-4 flex items-center text-green-700 dark:text-green-500">
+                        <h3 className="text-2xl font-bold mb-4 flex items-center text-green-700 dark:text-green-400">
                             <DollarSign className="w-6 h-6 mr-3" aria-hidden="true" />
                             The ROI of Competence
                         </h3>

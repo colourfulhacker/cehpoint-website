@@ -55,25 +55,25 @@ export default function StartupRevolutionArticle() {
                             <thead>
                                 <tr className="bg-muted border-b">
                                     <th scope="col" className="p-4 font-bold text-foreground">Expense</th>
-                                    <th scope="col" className="p-4 font-bold text-red-500">Traditional Way</th>
-                                    <th scope="col" className="p-4 font-bold text-green-600">The Cehpoint Way</th>
+                                    <th scope="col" className="p-4 font-bold text-red-500 dark:text-red-400">Traditional Way</th>
+                                    <th scope="col" className="p-4 font-bold text-green-600 dark:text-green-400">The Cehpoint Way</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-border">
                                 <tr>
                                     <th scope="row" className="p-4 font-semibold text-foreground border-r bg-muted/20">Development</th>
                                     <td className="p-4 text-sm text-foreground/90">₹5,00,000+</td>
-                                    <td className="p-4 text-sm text-foreground/90 text-green-600 font-bold">Starts @ ₹15,000</td>
+                                    <td className="p-4 text-sm text-green-600 dark:text-green-400 font-bold">Starts @ ₹15,000</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" className="p-4 font-semibold text-foreground border-r bg-muted/20">Time to Market</th>
                                     <td className="p-4 text-sm text-foreground/90">6 Months</td>
-                                    <td className="p-4 text-sm text-foreground/90 text-green-600 font-bold">48 Hours</td>
+                                    <td className="p-4 text-sm text-green-600 dark:text-green-400 font-bold">48 Hours</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" className="p-4 font-semibold text-foreground border-r bg-muted/20">Tech Knowledge</th>
                                     <td className="p-4 text-sm text-foreground/90">Required (or expensive CTO)</td>
-                                    <td className="p-4 text-sm text-foreground/90 text-green-600 font-bold">None (We handle it)</td>
+                                    <td className="p-4 text-sm text-green-600 dark:text-green-400 font-bold">None (We handle it)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -84,11 +84,11 @@ export default function StartupRevolutionArticle() {
                         Let's do the math on a ₹15k investment for a "Local Service Finder" app.
                     </p>
                     <div className="pl-6 border-l-4 border-green-500 my-6 space-y-2">
-                        <p className="text-lg font-bold flex items-center"><Calculator className="w-5 h-5 mr-2" /> Daily Goal: 1 Subscription @ ₹500</p>
-                        <p>If you convince just <strong>ONE</strong> local plumber or electrician to join your platform daily.</p>
-                        <p><strong>Monthly Revenue:</strong> ₹15,000</p>
-                        <p><strong>Break Even:</strong> 30 Days.</p>
-                        <p><strong>Year 1 Profit:</strong> ₹1,65,000 (with literally 1 sale a day).</p>
+                        <p className="text-lg font-bold flex items-center text-foreground"><Calculator className="w-5 h-5 mr-2" aria-hidden="true" /> Daily Goal: 1 Subscription @ ₹500</p>
+                        <p className="text-foreground/90">If you convince just <strong>ONE</strong> local plumber or electrician to join your platform daily.</p>
+                        <p className="text-foreground/90"><strong>Monthly Revenue:</strong> ₹15,000</p>
+                        <p className="text-foreground/90"><strong>Break Even:</strong> 30 Days.</p>
+                        <p className="text-foreground/90"><strong>Year 1 Profit:</strong> ₹1,65,000 (with literally 1 sale a day).</p>
                     </div>
 
                     <p className="text-foreground/90 font-bold mt-8">
