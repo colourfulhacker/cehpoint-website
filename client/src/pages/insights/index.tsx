@@ -2,16 +2,49 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, User, ArrowRight, ShieldAlert, Lock, Eye, Clock } from "lucide-react";
+import { Calendar, ArrowRight, ShieldAlert, Lock, Eye, Clock, MapPin, TrendingUp, Coins, Rocket } from "lucide-react";
 import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 
 export default function Insights() {
     const articles = [
         {
+            id: "rural-goldmine",
+            title: "The Untapped Goldmine in Tier-3 India: Why The Next Unicorn Will Come From a Village",
+            excerpt: "Forget Bangalore. The 700 million users in rural India are waiting for YOU. Discover how a ₹15k app can dominate a district.",
+            date: "October 24, 2025",
+            author: "Strategy Team",
+            category: "Market Analysis",
+            readTime: "4 min read",
+            slug: "/insights/rural-goldmine",
+            icon: MapPin
+        },
+        {
+            id: "15k-revolution",
+            title: "The ₹15,000 Startup Revolution: Launch a Tech Business for the Price of a Smartphone",
+            excerpt: "Break the myth that you need millions. We break down the exact math of how a 15k investment can generate a full-time income.",
+            date: "October 20, 2025",
+            author: "Finance Team",
+            category: "Financial Freedom",
+            readTime: "5 min read",
+            slug: "/insights/15k-revolution",
+            icon: Coins
+        },
+        {
+            id: "escape-9-5",
+            title: "The Salary Trap: Why Your 9-5 is Killing Your Potential (And Handling)",
+            excerpt: "Stop trading time for money. Learn how smart professionals are building automated digital assets on the side.",
+            date: "October 22, 2025",
+            author: "Career Coach",
+            category: "Entrepreneurship",
+            readTime: "6 min read",
+            slug: "/insights/escape-9-5",
+            icon: Rocket
+        },
+        {
             id: "ethical-standards-digital-investigation",
             title: "The Silent Crisis in Digital Investigation: Why Transparency is the New Gold Standard",
-            excerpt: "In an industry plagued by overpromises and hidden costs, business leaders are waking up to a harsh reality. Discover why 'Certified Ethical' isn't just a buzzword—it's your only legal safeguard.",
+            excerpt: "In an industry plagued by overpromises and hidden costs, business leaders are waking up to a harsh reality. Discover why 'Certified Ethical' isn't just a buzzword.",
             date: "October 24, 2025",
             author: "Cehpoint Research Team",
             category: "Industry Standards",
@@ -46,8 +79,8 @@ export default function Insights() {
     return (
         <main className="min-h-screen pt-24 pb-16 bg-background">
             <Helmet>
-                <title>Industry Insights & Investigation Reports - Cehpoint</title>
-                <meta name="description" content="In-depth analysis of digital investigation standards, AI forensics, and cybersecurity case studies. Read why ethical transparency is the only legal safeguard." />
+                <title>Industry Insights & Business Ideas - Cehpoint</title>
+                <meta name="description" content="Unlock your potential with our insights. From low-cost startup ideas to deep industry analysis, we provide the blueprint for your success." />
             </Helmet>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
@@ -60,11 +93,11 @@ export default function Insights() {
                         Industry Insights
                     </Badge>
                     <h1 className="text-4xl md:text-6xl font-black text-gradient mb-6">
-                        The Unspoken Truths
+                        Unlock Your <span className="text-primary">Empire</span>
                     </h1>
                     <p className="text-xl text-foreground max-w-3xl mx-auto">
-                        We don't just solve crimes; we expose the flaws in the industry.
-                        Read our latest reports on what really happens behind the scenes of digital investigation.
+                        Whether you are fighting cybercrime or building a business, knowledge is your weapon.
+                        Read the blueprints that are creating the next generation of leaders.
                     </p>
                 </motion.div>
 
@@ -109,7 +142,7 @@ export default function Insights() {
                                     </CardContent>
                                     <CardFooter>
                                         <Link href={article.slug} className="w-full flex justify-between items-center py-2 px-4 rounded-md text-sm font-medium transition-colors hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 text-foreground/80 hover:text-foreground">
-                                            Read In-Depth Analysis
+                                            Read More
                                             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </CardFooter>

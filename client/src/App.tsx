@@ -41,6 +41,9 @@ import EthicalStandardsArticle from "@/pages/insights/ethical-standards";
 import PartnerNetwork from "@/pages/partner-network";
 import AIvsRealityArticle from "@/pages/insights/ai-vs-reality";
 import HiddenCostsArticle from "@/pages/insights/hidden-costs";
+import RuralGoldmineArticle from "@/pages/insights/rural-goldmine";
+import Escape95Article from "@/pages/insights/escape-9-5";
+import StartupRevolutionArticle from "@/pages/insights/15k-revolution";
 
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
@@ -97,6 +100,9 @@ function Router() {
           <Route path="/insights/ethical-standards" component={EthicalStandardsArticle} />
           <Route path="/insights/ai-vs-reality" component={AIvsRealityArticle} />
           <Route path="/insights/hidden-costs" component={HiddenCostsArticle} />
+          <Route path="/insights/rural-goldmine" component={RuralGoldmineArticle} />
+          <Route path="/insights/escape-9-5" component={Escape95Article} />
+          <Route path="/insights/15k-revolution" component={StartupRevolutionArticle} />
           <Route path="/partner-network" component={PartnerNetwork} />
           <Route component={NotFound} />
         </Switch>
