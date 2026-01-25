@@ -89,7 +89,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  
+
   // Handle preflight OPTIONS requests
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -112,8 +112,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Initialize AI
-const ai = new GoogleGenAI({ 
-  apiKey: process.env.GEMINI_API_KEY || "" 
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY || ""
 });
 
 // AI Consultation function
@@ -189,7 +189,7 @@ Please provide a comprehensive cloud architecture recommendation in the specifie
     }
   } catch (error) {
     console.error("Error generating AI consultation:", error);
-    
+
     // Fallback consultation based on basic analysis
     return generateFallbackConsultation(answers);
   }
@@ -358,7 +358,7 @@ Please provide a comprehensive quotation analysis in the specified JSON format w
           },
           required: [
             "estimatedCost",
-            "timeline", 
+            "timeline",
             "teamSize",
             "suggestedStack",
             "dependencies",
@@ -378,12 +378,12 @@ Please provide a comprehensive quotation analysis in the specified JSON format w
 
     if (rawJson) {
       const analysis: QuotationAnalysis = JSON.parse(rawJson);
-      
+
       // Validate and adjust the response
       if (analysis.estimatedCost < 10000) {
         analysis.estimatedCost = Math.max(analysis.estimatedCost, 50000);
       }
-      
+
       if (analysis.teamSize < 1) {
         analysis.teamSize = Math.max(analysis.teamSize, 2);
       }
@@ -394,7 +394,7 @@ Please provide a comprehensive quotation analysis in the specified JSON format w
     }
   } catch (error) {
     console.error("Error generating quotation with Gemini:", error);
-    
+
     // Fallback quotation based on basic analysis
     return generateFallbackQuotation(request);
   }
@@ -412,7 +412,7 @@ function generateFallbackQuotation(request: QuotationRequest): QuotationAnalysis
 
   const timelineMap: Record<string, string> = {
     "1-2 months": "8 weeks",
-    "3-6 months": "16 weeks", 
+    "3-6 months": "16 weeks",
     "6-12 months": "32 weeks",
     "12+ months": "48 weeks",
   };
@@ -444,7 +444,7 @@ function generateFallbackQuotation(request: QuotationRequest): QuotationAnalysis
     ],
     risks: [
       "Scope creep during development",
-      "Third-party integration delays", 
+      "Third-party integration delays",
       "Performance optimization challenges",
       "Compliance requirement changes",
       "Resource availability constraints"
@@ -457,7 +457,7 @@ function generateFallbackQuotation(request: QuotationRequest): QuotationAnalysis
       },
       {
         milestone: "Core Development",
-        duration: "6-8 weeks", 
+        duration: "6-8 weeks",
         deliverables: ["Main functionality implementation", "API development", "Frontend components", "Database integration", "Basic testing"]
       },
       {
@@ -498,15 +498,15 @@ app.route("/api/quotation")
       console.log('POST /api/quotation - Received body:', req.body);
 
       const validatedRequest = quotationRequestSchema.parse(req.body);
-      
+
       const quotationAnalysis = await generateQuotation(validatedRequest);
       const validatedResponse = quotationResponseSchema.parse(quotationAnalysis);
-      
+
       console.log('Sending quotation response:', validatedResponse);
       res.json(validatedResponse);
     } catch (error) {
       console.error('Quotation generation error:', error);
-      res.status(500).json({ 
+      res.status(500).json({
         error: "Unable to generate quotation at the moment. Please try again.",
         details: error instanceof Error ? error.message : 'Unknown error'
       });
@@ -520,43 +520,43 @@ app.route("/api/quotation")
 app.route("/api/ai-consultation")
   .post(async (req, res) => {
     try {
-   //   console.log('POST /api/ai-consultation - Received body:', req.body);
+      //   console.log('POST /api/ai-consultation - Received body:', req.body);
 
       // Validate that answers object exists
       const { answers } = req.body;
-      
+
       if (!answers) {
-        return res.status(400).json({ 
-          error: "Missing answers in request body" 
+        return res.status(400).json({
+          error: "Missing answers in request body"
         });
       }
 
       // Basic validation of required fields - now checking if arrays have content
       if (!answers.primaryGoal || !Array.isArray(answers.primaryGoal) || answers.primaryGoal.length === 0) {
-        return res.status(400).json({ 
-          error: "Missing required answers: primaryGoal must be a non-empty array" 
+        return res.status(400).json({
+          error: "Missing required answers: primaryGoal must be a non-empty array"
         });
       }
-      
+
       if (!answers.workloadType || !Array.isArray(answers.workloadType) || answers.workloadType.length === 0) {
-        return res.status(400).json({ 
-          error: "Missing required answers: workloadType must be a non-empty array" 
+        return res.status(400).json({
+          error: "Missing required answers: workloadType must be a non-empty array"
         });
       }
-      
+
       if (!answers.importantFactor || !Array.isArray(answers.importantFactor) || answers.importantFactor.length === 0) {
-        return res.status(400).json({ 
-          error: "Missing required answers: importantFactor must be a non-empty array" 
+        return res.status(400).json({
+          error: "Missing required answers: importantFactor must be a non-empty array"
         });
       }
-      
+
       const consultation = await generateAIConsultation(answers);
-      
-  //    console.log('Sending AI consultation response:', consultation);
+
+      //    console.log('Sending AI consultation response:', consultation);
       res.json(consultation);
     } catch (error) {
       console.error('AI consultation generation error:', error);
-      res.status(500).json({ 
+      res.status(500).json({
         error: "Unable to generate AI consultation at the moment. Please try again.",
         details: error instanceof Error ? error.message : 'Unknown error'
       });
@@ -566,15 +566,137 @@ app.route("/api/ai-consultation")
     res.status(405).json({ error: `Method ${req.method} not allowed` });
   });
 
+// ... existing code ...
+
+// AI Strategy Estimate Interface
+interface AIStrategyResponse {
+  roiProjection: string;
+  roadmap: {
+    phase: string;
+    action: string;
+    timeline: string;
+  }[];
+  complianceChecklist: string[];
+  executiveSummary: string;
+  riskAssessment: string;
+}
+
+// Generate AI Strategy function
+async function generateAIStrategy(data: { infrastructure: string; dataVolume: string; industry: string }): Promise<AIStrategyResponse> {
+  const systemPrompt = `You are a World-Class AI Strategy Consultant for Cehpoint. Your goal is to provide a high-level, impressive strategic estimate for a client's AI implementation. 
+  
+  CONTEXT:
+  - Year: 2026
+  - Focus: Modern, High-ROI, Scalable AI Solutions
+  
+  OUTPUT FORMAT (JSON):
+  {
+    "executiveSummary": "Compelling 2-3 sentence overview of the opportunity.",
+    "roiProjection": "Specific ROI prediction (e.g., '150% ROI within 18 months via automation of X')",
+    "roadmap": [
+      { "phase": "Phase 1: Foundation", "action": "Key action item", "timeline": "Month 1-2" },
+      { "phase": "Phase 2: Implementation", "action": "Key action item", "timeline": "Month 3-6" },
+      { "phase": "Phase 3: Scaling", "action": "Key action item", "timeline": "Month 7-12" }
+    ],
+    "complianceChecklist": ["Key compliance item 1", "Key compliance item 2", "Key compliance item 3"],
+    "riskAssessment": "One major risk and how to mitigate it."
+  }`;
+
+  const userPrompt = `
+  Generate an AI Strategy Estimate for:
+  - Infrastructure: ${data.infrastructure}
+  - Data Volume: ${data.dataVolume}
+  - Industry: ${data.industry}
+  
+  Make it sound professional, forward-thinking, and tailored to the industry.`;
+
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      config: {
+        systemInstruction: systemPrompt,
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: "object",
+          properties: {
+            executiveSummary: { type: "string" },
+            roiProjection: { type: "string" },
+            roadmap: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  phase: { type: "string" },
+                  action: { type: "string" },
+                  timeline: { type: "string" }
+                },
+                required: ["phase", "action", "timeline"]
+              }
+            },
+            complianceChecklist: {
+              type: "array",
+              items: { type: "string" }
+            },
+            riskAssessment: { type: "string" }
+          },
+          required: ["executiveSummary", "roiProjection", "roadmap", "complianceChecklist", "riskAssessment"]
+        }
+      },
+      contents: userPrompt,
+    });
+
+    const rawJson = response.text;
+    console.log(`Gemini Strategy Response: ${rawJson}`);
+
+    if (rawJson) {
+      return JSON.parse(rawJson);
+    } else {
+      throw new Error("Empty response from Gemini");
+    }
+  } catch (error) {
+    console.error("Error generating strategy:", error);
+    // Fallback info
+    return {
+      executiveSummary: "Leverage standard AI adoption frameworks to optimize efficiency.",
+      roiProjection: "Estimated 20-30% operational cost reduction over 2 years.",
+      roadmap: [
+        { phase: "Assessment", action: "Data readiness audit", timeline: "Month 1" },
+        { phase: "Pilot", action: "Proof of concept implementation", timeline: "Month 2-3" },
+        { phase: "Deployment", action: "Production rollout", timeline: "Month 4-6" }
+      ],
+      complianceChecklist: ["GDPR Compliance", "Data Privacy Impact Assessment"],
+      riskAssessment: "Data quality issues may delay model training."
+    };
+  }
+}
+
+// AI Strategy API Route
+app.route("/api/ai-strategy-estimate")
+  .post(async (req, res) => {
+    try {
+      const { infrastructure, dataVolume, industry } = req.body;
+      if (!infrastructure || !dataVolume || !industry) {
+        return res.status(400).json({ error: "Missing required fields" });
+      }
+
+      const strategy = await generateAIStrategy({ infrastructure, dataVolume, industry });
+      res.json(strategy);
+    } catch (error) {
+      console.error("Strategy API Error:", error);
+      res.status(500).json({ error: "Failed to generate strategy" });
+    }
+  });
+
 // Production: Serve React build files (only in non-serverless environments)
 if (process.env.NODE_ENV === 'production' && !process.env.VERCEL) {
+  // ... rest of file
   const distPath = path.resolve(__dirname, '..');
-  
+
   console.log(`[Production] Serving static files from: ${distPath}`);
-  
+
   // Serve static files (CSS, JS, images)
   app.use(express.static(distPath));
-  
+
   // Catch-all handler: send back React's index.html file for client-side routing
   app.get('*', (req, res) => {
     const indexPath = path.resolve(distPath, 'index.html');
@@ -588,7 +710,7 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   const status = err.status || err.statusCode || 500;
   const message = err.message || "Internal Server Error";
   console.error('Server error:', err);
-  res.status(status).json({ 
+  res.status(status).json({
     message,
     error: process.env.NODE_ENV === 'development' ? err.stack : undefined
   });
