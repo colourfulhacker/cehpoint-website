@@ -1,8 +1,8 @@
-
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { globalLocations } from '../client/src/data/global-locations';
+import { regionalTrends } from '../client/src/data/regional-trends';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -60,22 +60,42 @@ const staticRoutes = [
 function generateSitemap() {
     const routes = [...staticRoutes];
 
-    // Add dynamic routes
+    // Add Dynamic City Locations (/location/:slug)
+    // This covers both International Cities (New York/London) and Indian Cities (Mumbai/Kolkata)
     globalLocations.forEach(location => {
         if (location.slug) {
-            routes.push(`/services/global/${location.slug}`);
             routes.push(`/location/${location.slug}`);
         }
+    });
+
+    // Add Dynamic Global Regions (/services/global/:region)
+    // This covers specific region/country pages like 'us-ca', 'uk', 'de', 'in'
+    Object.keys(regionalTrends).forEach(regionKey => {
+        routes.push(`/services/global/${regionKey}`);
     });
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes
             .map(route => {
+                // Calculate priority
+                let priority = '0.8';
+                let changefreq = 'weekly';
+
+                if (route === '/') {
+                    priority = '1.0';
+                } else if (route.startsWith('/services/')) {
+                    priority = '0.9';
+                } else if (route.startsWith('/location/')) {
+                    priority = '0.85'; // High priority for local landing pages
+                } else if (route.startsWith('/insights')) {
+                    priority = '0.7';
+                }
+
                 return `  <url>
     <loc>${BASE_URL}${route}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>${route === '/' ? '1.0' : '0.8'}</priority>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
   </url>`;
             })
             .join('\n')}
