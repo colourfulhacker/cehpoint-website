@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import NotFound from "@/pages/not-found";
 import AIServiceEstimator from "@/components/calculators/ai-service-estimator";
+import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
 
 // Map string icon names to Lucide components
 const iconMap: Record<string, any> = {
@@ -149,12 +150,6 @@ export default function RegionalService() {
                                 ))}
                             </div>
                         )}
-
-                        import {WhatsAppInquiryDialog} from "@/components/shared/whatsapp-inquiry-dialog";
-
-                        // ... (existing imports, but WhatsAppInquiryDialog added)
-
-                        /* ... inside component ... */
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <WhatsAppInquiryDialog
