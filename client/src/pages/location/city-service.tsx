@@ -5,7 +5,7 @@ import { allApps, AppIdea, getIconForApp } from "@/data/business-apps";
 import { cityTrends, defaultTrend, CityTrend } from "@/data/city-trends"; // Import trends
 import SEO from "@/components/seo";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Zap } from "lucide-react";
+import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Zap, Code, Cpu, BarChart, Heart, Sun, Home } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import { motion } from "framer-motion";
 import ProjectCostEstimator from "@/components/calculators/project-cost-estimator";
@@ -278,37 +278,42 @@ export default function CityServicePage() {
 
                         {/* Popular Services Tags (SEO Rich) */}
                         <div className="flex flex-wrap justify-center gap-3">
-                            {trendData.popularServices.map((service, idx) => (
+                            {trendData.popularServices.slice(0, 5).map((service, idx) => (
                                 <span key={idx} className="px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-sm font-medium">
                                     <Zap className="w-3 h-3 inline mr-2 text-purple-400" />
-                                    {service}
+                                    {service.title}
                                 </span>
                             ))}
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {/* Card 1 */}
-                        <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group">
-                            <ShieldCheck className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform" />
-                            <h3 className="text-xl font-bold text-white mb-3">Cyber Security & Investigation</h3>
-                            <p className="text-gray-400 mb-6">Proactive threat detection, VAPT, and Digital Forensics services for businesses requiring high security.</p>
-                            <Link href="/services/cyber-security" className="text-primary font-bold hover:underline">Learn More &rarr;</Link>
-                        </div>
-                        {/* Card 2 */}
-                        <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-colors group">
-                            <Bot className="w-12 h-12 text-purple-500 mb-6 group-hover:scale-110 transition-transform" />
-                            <h3 className="text-xl font-bold text-white mb-3">AI & Automation</h3>
-                            <p className="text-gray-400 mb-6">Deploy Custom AI Agents, Chatbots, and Predictive Analytics models to automate your operations.</p>
-                            <Link href="/ai-solutions" className="text-purple-500 font-bold hover:underline">Explore AI &rarr;</Link>
-                        </div>
-                        {/* Card 3 */}
-                        <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-colors group">
-                            <Globe className="w-12 h-12 text-blue-500 mb-6 group-hover:scale-110 transition-transform" />
-                            <h3 className="text-xl font-bold text-white mb-3">Web & E-Commerce</h3>
-                            <p className="text-gray-400 mb-6">Scalable Web Platforms, Custom E-commerce stores, and high-performance Progressive Web Apps.</p>
-                            <Link href="/services/ecommerce" className="text-blue-500 font-bold hover:underline">View Services &rarr;</Link>
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {trendData.popularServices.map((service, idx) => {
+                            const IconMap: any = {
+                                code: Code, cpu: Cpu, globe: Globe, shield: ShieldCheck, zap: Zap,
+                                "bar-chart": BarChart, "chart-bar": BarChart,
+                                building: Building2, star: Star, heart: Heart, sun: Sun, home: Home
+                            };
+                            const Icon = IconMap[service.icon] || Zap;
+
+                            return (
+                                <div key={idx} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group h-full flex flex-col">
+                                    <Icon className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform" />
+                                    <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                                    <p className="text-gray-400 mb-6 flex-grow">{service.description}</p>
+                                    <WhatsAppInquiryDialog
+                                        appName={service.title}
+                                        locationName={cityData.name}
+                                        title={`Inquire about ${service.title}`}
+                                        trigger={
+                                            <Button variant="link" className="text-primary font-bold hover:underline p-0 h-auto justify-start">
+                                                Request Quote &rarr;
+                                            </Button>
+                                        }
+                                    />
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
                 {/* --- PROCESS AUTOMATION SECTION --- */}
