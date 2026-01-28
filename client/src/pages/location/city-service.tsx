@@ -5,7 +5,7 @@ import { allApps, AppIdea, getIconForApp } from "@/data/business-apps";
 import { cityTrends, defaultTrend, CityTrend } from "@/data/city-trends"; // Import trends
 import SEO from "@/components/seo";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Zap, Code, Cpu, BarChart, Heart, Sun, Home, Video, Book, ShoppingBag, Diamond, Flag, Edit, Camera, Gem, Anchor, Search, Leaf, Calendar, Briefcase, Mic, BookOpen, Snowflake, HardHat, Activity, CloudRain, Circle, Layers, Settings, Calculator, Eye, Smile, Coffee, Send, MessageCircle, ShoppingCart, Music, Map, CreditCard, Lock, Beer, Recycle, Truck, Mountain, Tool, Bitcoin, Users } from "lucide-react";
+import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Zap, Code, Cpu, BarChart, Heart, Sun, Home, Video, Book, ShoppingBag, Diamond, Flag, Edit, Camera, Gem, Anchor, Search, Leaf, Calendar, Briefcase, Mic, BookOpen, Snowflake, HardHat, Activity, CloudRain, Circle, Layers, Settings, Calculator, Eye, Smile, Coffee, Send, MessageCircle, ShoppingCart, Music, Map, CreditCard, Lock, Beer, Recycle, Truck, Mountain, Wrench, Bitcoin, Users } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import { motion } from "framer-motion";
 import ProjectCostEstimator from "@/components/calculators/project-cost-estimator";
@@ -32,7 +32,7 @@ const ICON_MAP: Record<string, any> = {
     eye: Eye, smile: Smile, coffee: Coffee, "check-circle": CheckCircle,
     send: Send, "message-circle": MessageCircle, "shopping-cart": ShoppingCart,
     music: Music, map: Map, "credit-card": CreditCard, lock: Lock, beer: Beer,
-    recycle: Recycle, truck: Truck, mountain: Mountain, tool: Tool, bitcoin: Bitcoin,
+    recycle: Recycle, truck: Truck, mountain: Mountain, tool: Wrench, bitcoin: Bitcoin,
     users: Users
 };
 
