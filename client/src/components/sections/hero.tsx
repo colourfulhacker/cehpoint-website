@@ -1,15 +1,16 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState, useRef } from "react";
-import { ArrowRight, CheckCircle2, Rocket, Building2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Rocket, Building2, Volume2, VolumeX } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
 
 export default function Hero() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMuted, setIsMuted] = useState(false); // Try custom sound logic
-  const [shouldLoop, setShouldLoop] = useState(false);
+  const [isIntroPlaying, setIsIntroPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const [showUnmuteHint, setShowUnmuteHint] = useState(false);
 
   const rotatingTexts = [
     "Digital Excellence",
@@ -28,57 +29,80 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    // Initial play attempt
+    // Initial Intro Play Logic
     if (videoRef.current) {
-      // Try playing with sound first
+      // 1. Reset video to start
+      videoRef.current.currentTime = 0;
+      videoRef.current.loop = false; // Don't loop intro
+
+      // 2. Try playing with sound
       videoRef.current.muted = false;
-      videoRef.current.play().catch((error: any) => {
+      videoRef.current.play().catch((error) => {
         console.log("Autoplay with sound blocked, falling back to muted:", error);
-        // If blocked, fallback to muted autoplay
+        // 3. Fallback: Muted autoplay + Show Unmute Hint
         if (videoRef.current) {
-          setIsMuted(true);
           videoRef.current.muted = true;
-          videoRef.current.play().catch((e: any) => console.error("Muted autoplay failed", e));
+          setIsMuted(true);
+          setShowUnmuteHint(true);
+          videoRef.current.play().catch((e) => console.error("Muted autoplay failed", e));
         }
       });
     }
   }, []);
 
   const handleVideoEnded = () => {
-    // When video ends, switch to looping muted
-    setShouldLoop(true);
-    setIsMuted(true);
+    // Transition to Content Phase
+    setIsIntroPlaying(false);
+
+    // Switch to background loop mode
     if (videoRef.current) {
       videoRef.current.muted = true;
       videoRef.current.loop = true;
-      videoRef.current.play();
+      setIsMuted(true);
+      setShowUnmuteHint(false); // Hide hint if shown
+      videoRef.current.play().catch((e) => console.error("Loop play failed", e));
     }
   };
 
-  const handleHeroClick = () => {
-    // Restart with sound
-    setShouldLoop(false);
-    setIsMuted(false);
+  const handleUnmute = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (videoRef.current) {
-      videoRef.current.currentTime = 0;
       videoRef.current.muted = false;
-      videoRef.current.loop = false;
-      videoRef.current.play().catch((e: any) => console.error("Play failed on click", e));
+      setIsMuted(false);
+      setShowUnmuteHint(false);
     }
+  };
+
+  const skipIntro = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    handleVideoEnded();
   };
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-0 pb-20 cursor-pointer"
+      className={`relative min-h-screen flex items-center overflow-hidden ${isIntroPlaying ? "bg-black z-50 fixed inset-0" : "pt-20 pb-20 cursor-pointer"}`}
       data-testid="hero-section"
-      onClick={handleHeroClick}
     >
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/40 z-10 transition-opacity duration-1000"></div> {/* Overlay for readability */}
+      {/* 
+        Video Container 
+        - Intro: Fixed, Centered, Object-Contain (No crop)
+        - Content: Absolute, Cover (Background)
+      */}
+      <motion.div
+        layout
+        className={`absolute inset-0 z-0 transition-all duration-1000 ${isIntroPlaying ? "bg-black" : "bg-black"}`}
+      >
+        {/* Helper gradient for Content Phase ONLY */}
+        {!isIntroPlaying && (
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent z-10 transition-opacity duration-1000"></div>
+        )}
+
         <video
           ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover"
+          className={`w-full h-full transition-all duration-1000 ${isIntroPlaying
+            ? "object-contain max-h-screen"  // Intro: Fit whole video ("each and every corner")
+            : "object-cover absolute inset-0" // Content: Fill background
+            }`}
           playsInline
           onEnded={handleVideoEnded}
         >
@@ -86,178 +110,197 @@ export default function Hero() {
           Your browser does not support the video tag.
         </video>
 
-        {/* Fallback gradients if video fails or just to add flavor? Kept transparent or adjust opacity if needed. 
-            Removing the old gradients to let video shine, but keeping grid pattern if transparent enough.
-            Actually, user wants "modern websites who are using same video as there first section". 
-            Usually this means CLEAN video. I will remove the conflicting heavy gradients but keep a subtle overlay.
-        */}
-        <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(112,66,248,0.1),transparent_70%)] pointer-events-none"></div>
-      </div>
+        {/* Intro Controls (Maximum Visibility Updates) */}
+        {isIntroPlaying && (
+          <div className="absolute bottom-12 right-6 md:bottom-20 md:right-10 z-50 flex flex-col items-end gap-4 pointer-events-auto">
+            {showUnmuteHint && isMuted && (
+              <Button
+                onClick={handleUnmute}
+                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-6 shadow-[0_0_30px_rgba(37,99,235,0.6)] border-2 border-white/50 transition-all hover:scale-105 animate-pulse"
+              >
+                <VolumeX className="w-6 h-6 mr-2" />
+                <span className="font-bold text-lg tracking-wide">TAP FOR SOUND</span>
+              </Button>
+            )}
 
-      <div className="relative z-20 max-w-7xl pt-40 mx-auto px-4 sm:px-6 lg:px-8 text-center pointers-events-none">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="pointer-events-auto" // Re-enable clicks for buttons inside
-        >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center px-5 py-2.5 rounded-full glass mb-8 border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors cursor-default"
-          >
-            <Building2 className="w-4 h-4 text-primary mr-2" />
-            <span className="text-sm font-semibold text-primary tracking-wide uppercase">
-              Enterprise-Grade Development
-            </span>
-          </motion.div>
+            <Button
+              onClick={skipIntro}
+              className="bg-zinc-900/90 hover:bg-black text-white border-2 border-white/30 rounded-full px-8 py-4 transition-all hover:border-blue-500 hover:text-blue-400 group shadow-xl"
+            >
+              <span className="mr-2 text-base font-bold tracking-wide uppercase group-hover:text-blue-400 transition-colors">Skip Intro</span>
+              <ArrowRight className="w-5 h-5 text-white/70 group-hover:text-blue-400 transition-colors" />
+            </Button>
+          </div>
+        )}
+      </motion.div>
 
-          {/* Main Title */}
-          <h1
-            className="font-display font-bold text-5xl sm:text-7xl md:text-8xl mb-8 tracking-tight leading-[1.1]"
-            data-testid="hero-title"
-          >
-            Transform Ideas Into
-            <br />
-            <div className="relative inline-grid grid-cols-1 items-baseline align-bottom min-w-[300px]">
-              <AnimatePresence mode="popLayout">
-                <motion.span
-                  key={currentTextIndex}
-                  initial={{ y: "100%", opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: "-100%", opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "backOut" }}
-                  className="col-start-1 row-start-1 text-gradient font-extrabold pb-2 block"
-                >
-                  {rotatingTexts[currentTextIndex]}
-                </motion.span>
-              </AnimatePresence>
-            </div>
-          </h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-lg sm:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed font-light"
-            data-testid="hero-subtitle"
-            onClick={(e) => e.stopPropagation()} // Optional: keep text clicks from restarting? User said "if checking website must be visible". Actually user said "if we repress then it will start again". Clicking anywhere is fine.
-          >
-            Enterprise-grade software development across all industries with{" "}
-            <span className="text-white font-medium relative inline-block">
-              24-hour demo delivery
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary/50"></span>
-            </span>{" "}
-            and{" "}
-            <span className="text-white font-medium relative inline-block">
-              pay-after-demo
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary/50"></span>
-            </span>{" "}
-            model.
-          </motion.p>
-
-          {/* Checkmarks */}
+      {/* Hero Content - Only visible AFTER intro */}
+      <AnimatePresence>
+        {!isIntroPlaying && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-12"
+            transition={{ duration: 1.0 }}
+            className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full"
           >
-            {["MVP to Enterprise", "24h Delivery", "Pay After Demo"].map((item, i) => (
-              <div key={item} className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground/80 bg-white/5 px-4 py-2 rounded-full border border-white/5 backdrop-blur-sm">
-                <CheckCircle2 className="w-4 h-4 text-primary" />
-                <span>{item}</span>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-20"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <WhatsAppInquiryDialog
-              appName="Enterprise Project"
-              locationName="Home Page"
-              title="Get AI-Powered Quote"
-              trigger={
-                <Button
-                  className="btn-primary w-full sm:w-auto px-8 py-7 text-lg font-bold group shadow-[0_0_20px_rgba(112,66,248,0.3)] hover:shadow-[0_0_30px_rgba(112,66,248,0.6)]"
-                  data-testid="hero-cta-primary"
-                >
-                  Get AI-Powered Quote
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              }
-            />
-
-            <Link href="/services/business-app-catalog" className="w-full sm:w-auto">
-              <Button
-                variant="outline"
-                className="w-full sm:w-auto px-8 py-7 text-lg font-semibold bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50 transition-all backdrop-blur-sm group"
-                data-testid="hero-cta-catalog"
-              >
-                <Rocket className="mr-2 w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-                Business App Catalog
-              </Button>
-            </Link>
-
-            <a
-              href="https://portfolios.cehpoint.co.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 py-4 flex justify-center items-center text-lg font-semibold text-muted-foreground hover:text-white transition-colors group"
-            >
-              Explore Portfolio
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </motion.div>
-
-          {/* Stats Section with Glass Cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto"
-            data-testid="hero-stats"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {[
-              { value: "24h", label: "Demo Delivery", sublabel: "Record Time" },
-              { value: "0%", label: "Upfront Payment", sublabel: "Pay After Demo" },
-              { value: "25+", label: "Industries", sublabel: "Expertise" },
-              { value: "500+", label: "Projects", sublabel: "Delivered" }
-            ].map((stat, index) => (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div
-                key={stat.label}
-                whileHover={{ y: -5, boxShadow: "0 10px 30px -10px rgba(0,0,0,0.5)" }}
-                className="glass-card p-6 md:p-8 rounded-2xl border border-white/5 bg-gradient-to-br from-white/5 to-transparent relative overflow-hidden group"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="text-left pointer-events-auto"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative z-10">
-                  <div
-                    className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 mb-2"
-                  >
-                    {stat.value}
+                {/* Badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="inline-flex items-center px-4 py-2 rounded-full glass mb-6 border border-primary/20 bg-primary/10 hover:bg-primary/20 transition-colors cursor-default"
+                >
+                  <Building2 className="w-4 h-4 text-primary mr-2" />
+                  <span className="text-xs sm:text-sm font-semibold text-primary tracking-wide uppercase">
+                    Enterprise-Grade Development
+                  </span>
+                </motion.div>
+
+                {/* Main Title */}
+                <h1
+                  className="font-display font-bold text-5xl sm:text-7xl md:text-8xl mb-6 tracking-tight leading-[1.1]"
+                  data-testid="hero-title"
+                >
+                  Transform Ideas Into
+                  <br />
+                  <div className="relative inline-block min-w-[300px]">
+                    <AnimatePresence mode="popLayout">
+                      <motion.span
+                        key={currentTextIndex}
+                        initial={{ y: "100%", opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: "-100%", opacity: 0 }}
+                        transition={{ duration: 0.5, ease: "backOut" }}
+                        className="text-gradient font-extrabold pb-2 block"
+                      >
+                        {rotatingTexts[currentTextIndex]}
+                      </motion.span>
+                    </AnimatePresence>
                   </div>
-                  <div className="text-sm font-semibold text-primary mb-1">
-                    {stat.label}
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    {stat.sublabel}
-                  </div>
-                </div>
+                </h1>
+
+                {/* Subtitle */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed font-light"
+                  data-testid="hero-subtitle"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Enterprise-grade software development across all industries with{" "}
+                  <span className="text-white font-medium relative inline-block">
+                    24-hour demo delivery
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary/50"></span>
+                  </span>{" "}
+                  and{" "}
+                  <span className="text-white font-medium relative inline-block">
+                    pay-after-demo
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary/50"></span>
+                  </span>{" "}
+                  model.
+                </motion.p>
+
+                {/* Checkmarks */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  className="flex flex-wrap gap-4 mb-10"
+                >
+                  {["MVP to Enterprise", "24h Delivery", "Pay After Demo"].map((item, i) => (
+                    <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground/90 bg-black/20 px-3 py-1.5 rounded-md border border-white/5 backdrop-blur-sm">
+                      <CheckCircle2 className="w-4 h-4 text-primary" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* CTA Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.6 }}
+                  className="flex flex-col sm:flex-row gap-4 justify-start items-center"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <WhatsAppInquiryDialog
+                    appName="Enterprise Project"
+                    locationName="Home Page"
+                    title="Get AI-Powered Quote"
+                    trigger={
+                      <Button
+                        className="btn-primary w-full sm:w-auto px-8 py-6 text-lg font-bold group shadow-[0_0_20px_rgba(112,66,248,0.3)] hover:shadow-[0_0_30px_rgba(112,66,248,0.6)]"
+                        data-testid="hero-cta-primary"
+                      >
+                        Get AI-Powered Quote
+                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    }
+                  />
+
+                  <Link href="/services/business-app-catalog" className="w-full sm:w-auto">
+                    <Button
+                      variant="outline"
+                      className="w-full sm:w-auto px-8 py-6 text-lg font-semibold bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50 transition-all backdrop-blur-sm group"
+                      data-testid="hero-cta-catalog"
+                    >
+                      <Rocket className="mr-2 w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+                      Business App Catalog
+                    </Button>
+                  </Link>
+                </motion.div>
               </motion.div>
-            ))}
+
+              {/* Right side spacer to keep video visible */}
+              <div className="hidden lg:block h-full min-h-[500px]"></div>
+            </div>
           </motion.div>
-        </motion.div>
-      </div>
+        )}
+      </AnimatePresence>
+
+      {/* Bottom Stats Bar - Docked at bottom (Only Content Phase) */}
+      <AnimatePresence>
+        {!isIntroPlaying && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0, duration: 0.8 }}
+            className="absolute bottom-0 left-0 right-0 z-30 bg-black/40 backdrop-blur-md border-t border-white/10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+                {[
+                  { value: "24h", label: "Demo Delivery", sublabel: "Record Time" },
+                  { value: "0%", label: "Upfront Payment", sublabel: "Pay After Demo" },
+                  { value: "25+", label: "Industries", sublabel: "Expertise" },
+                  { value: "500+", label: "Projects", sublabel: "Delivered" }
+                ].map((stat, index) => (
+                  <div key={stat.label} className="py-6 px-4 text-center group hover:bg-white/5 transition-colors cursor-default">
+                    <div className="text-2xl sm:text-3xl font-bold text-white mb-1 group-hover:scale-105 transition-transform duration-300">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs sm:text-sm font-medium text-primary uppercase tracking-wider mb-0.5">
+                      {stat.label}
+                    </div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground">
+                      {stat.sublabel}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

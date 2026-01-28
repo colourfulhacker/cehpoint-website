@@ -1,189 +1,170 @@
-import { Brain, Bot, TrendingUp, Eye, Cpu, Shield, Target, Code } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Link } from "wouter"
+import { Brain, Bot, TrendingUp, Eye, Cpu, Shield, Target, Code, Sparkles, ArrowUpRight } from "lucide-react"
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 
+// Premium Holographic Card Component
+function AISolutionCard({ solution }: { solution: any }) {
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
 
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect()
+    mouseX.set(clientX - left)
+    mouseY.set(clientY - top)
+  }
+
+  return (
+    <div
+      className="group relative rounded-3xl border border-white/5 bg-zinc-900/50 overflow-hidden hover:border-primary/30 transition-all duration-500"
+      onMouseMove={handleMouseMove}
+      data-testid={`ai-solution-${solution.title.toLowerCase().replace(/\s+/g, "-")}`}
+    >
+      {/* Holographic Spotlight */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-500 group-hover:opacity-100"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              600px circle at ${mouseX}px ${mouseY}px,
+              rgba(124, 58, 237, 0.1),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+
+      <div className="relative p-8 h-full flex flex-col">
+        {/* Header */}
+        <div className="flex justify-between items-start mb-6">
+          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-500">
+            <solution.icon className="w-6 h-6 text-zinc-400 group-hover:text-primary transition-colors" />
+          </div>
+          <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${solution.complexity === 'Expert' ? 'border-red-500/30 text-red-400 bg-red-500/10' :
+              solution.complexity === 'Advanced' ? 'border-purple-500/30 text-purple-400 bg-purple-500/10' :
+                'border-blue-500/30 text-blue-400 bg-blue-500/10'
+            }`}>
+            {solution.complexity}
+          </div>
+        </div>
+
+        {/* Content */}
+        <h3 className="font-display font-medium text-xl text-white mb-3 group-hover:text-primary-foreground transition-colors">
+          {solution.title}
+        </h3>
+        <p className="text-sm text-zinc-400 font-light leading-relaxed mb-6 group-hover:text-zinc-300 transition-colors">
+          {solution.description}
+        </p>
+
+        {/* Features List (Compact) */}
+        <div className="mt-auto space-y-3 pt-6 border-t border-white/5">
+          <div className="flex flex-wrap gap-2 mb-4">
+            {solution.features.slice(0, 3).map((feature: string, i: number) => (
+              <span key={i} className="text-[10px] px-2 py-1 rounded-md bg-white/5 text-zinc-400 border border-white/5">
+                {feature}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-between text-xs">
+            <div className="flex items-center text-primary/80">
+              <Sparkles className="w-3 h-3 mr-1.5" />
+              <span className="font-medium">{solution.benefits}</span>
+            </div>
+            <ArrowUpRight className="w-4 h-4 text-zinc-600 group-hover:text-white transition-colors" />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function AISolutions() {
   const aiSolutions = [
     {
       icon: Brain,
       title: "Generative AI Integration",
-      description:
-        "Custom GPT models, content generation, and AI-powered user experiences with cutting-edge language models.",
-      features: ["Custom AI models", "Content generation", "AI chatbots", "Smart recommendations"],
-      benefits: "40% increase in user engagement",
+      description: "Custom GPT models and neural networks architected for enterprise-scale content and decision automation.",
+      features: ["LLM Fine-tuning", "RAG Pipelines", "Cognitive Agents"],
+      benefits: "+40% Operational Efficiency",
       complexity: "Advanced",
-      technologies: "OpenAI GPT-4, Google Gemini, Claude",
     },
     {
       icon: Bot,
       title: "Intelligent Automation",
-      description:
-        "End-to-end process automation with AI decision-making, workflow optimization, and smart task management.",
-      features: ["Process automation", "Smart workflows", "Decision engines", "Task optimization"],
-      benefits: "60% reduction in manual tasks",
+      description: "Autonomous agentic workflows that orchestrate complex business logic without human intervention.",
+      features: ["Process Orchestration", "Decision Engines", "Self-Healing Workflows"],
+      benefits: "60% Cost Reduction",
       complexity: "Intermediate",
-      technologies: "LangChain, AutoGPT, n8n",
     },
     {
       icon: TrendingUp,
       title: "Predictive Analytics",
-      description: "Machine learning models for business forecasting, trend analysis, and data-driven decision making.",
-      features: ["ML pipelines", "Forecasting models", "Trend analysis", "Business intelligence"],
-      benefits: "25% improvement in predictions",
+      description: "High-dimensional forecasting models leveraging deep learning for market and operational foresight.",
+      features: ["Time-series Forecasting", "Risk Modeling", "Demand Sensing"],
+      benefits: "95% Forecast Accuracy",
       complexity: "Advanced",
-      technologies: "TensorFlow, PyTorch, Scikit-learn",
     },
     {
       icon: Eye,
       title: "Computer Vision",
-      description:
-        "Image recognition, video analysis, and visual AI for quality control, security, and user experiences.",
-      features: ["Image recognition", "Video analysis", "Quality control", "Visual search"],
-      benefits: "90% accuracy in detection",
-      complexity: "Advanced",
-      technologies: "OpenCV, YOLO, TensorFlow Vision",
+      description: "Edge-optimized visual intelligence for real-time quality assurance and biometric security.",
+      features: ["Object Detection", "Visual QC", "Biometric Auth"],
+      benefits: "Zero-Defect Manufacturing",
+      complexity: "Expert",
     },
     {
       icon: Cpu,
-      title: "Real-time AI Processing",
-      description: "Edge AI deployment, real-time inference, and low-latency AI applications for instant responses.",
-      features: ["Edge deployment", "Real-time inference", "Low latency", "Instant responses"],
-      benefits: "Sub-100ms response times",
+      title: "Edge AI Processing",
+      description: "Low-latency inference engines deployed on distributed edge infrastructure for instant responsiveness.",
+      features: ["On-Device Training", "Tensor Optimization", "5G Integration"],
+      benefits: "<10ms Latency",
       complexity: "Expert",
-      technologies: "TensorFlow Lite, ONNX Runtime, Edge TPU",
     },
     {
       icon: Shield,
-      title: "AI Security & Compliance",
-      description:
-        "AI-powered security monitoring, fraud detection, and compliance automation for enterprise applications.",
-      features: ["Fraud detection", "Security monitoring", "Compliance automation", "Risk assessment"],
-      benefits: "99.5% threat detection rate",
+      title: "AI Security Operations",
+      description: "Real-time anomaly detection and automated threat neutralization using behavioral AI models.",
+      features: ["Zero-Day Defense", "Fraud Detection", "Compliance AI"],
+      benefits: "Proactive Defense",
       complexity: "Advanced",
-      technologies: "Anomaly Detection ML, XGBoost, Isolation Forest",
     },
     {
       icon: Target,
-      title: "Personalization Engine",
-      description: "AI-driven user personalization, dynamic content delivery, and behavioral analysis for enhanced UX.",
-      features: ["User personalization", "Dynamic content", "Behavioral analysis", "A/B testing"],
-      benefits: "35% increase in conversions",
+      title: "Hyper-Personalization",
+      description: "Real-time behavioral adaptation engines that curate unique user journeys at scale.",
+      features: ["Dynamic UX", "Propensity Scoring", "User Cloning"],
+      benefits: "3x Conversion Rate",
       complexity: "Intermediate",
-      technologies: "Recommendation Systems, Collaborative Filtering",
     },
     {
       icon: Code,
-      title: "AI Code Generation",
-      description: "Automated code generation, smart refactoring, and AI-assisted development for faster delivery.",
-      features: ["Code generation", "Smart refactoring", "Bug detection", "Performance optimization"],
-      benefits: "3x faster development",
+      title: "Next-Gen DevTools",
+      description: "AI-augmented development environments accelerating the software lifecycle from spec to deploy.",
+      features: ["Code Synthesis", "Auto-Testing", "Arch. Validation"],
+      benefits: "4x Dev Velocity",
       complexity: "Advanced",
-      technologies: "GitHub Copilot, OpenAI Codex, CodeLlama",
     },
   ]
 
   return (
-    <section id="ai-solutions" className="py-24" data-testid="ai-solutions-section">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20 animate-fade-up">
-          <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-6">
-            <span className="text-sm font-medium text-accent">🤖 Powered by Enterprise AI</span>
-          </div>
-          <h2
-            className="font-display font-bold text-4xl md:text-7xl mb-8 tracking-tight"
-            data-testid="ai-solutions-title"
-          >
-            AI-First
-            <span className="text-gradient">Innovation</span>
+    <section id="ai-solutions" className="py-32 bg-black relative overflow-hidden" data-testid="ai-solutions-section">
+      {/* Background Ambience */}
+      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-primary/5 blur-[150px] rounded-full pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mb-20">
+          <h2 className="font-display font-medium text-5xl md:text-7xl mb-6 tracking-tight text-white leading-tight">
+            Intelligence <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/50">Architected.</span>
           </h2>
-          <p
-            className="text-xl md:text-2xl text-foreground/80 max-w-4xl mx-auto leading-relaxed font-light"
-            data-testid="ai-solutions-subtitle"
-          >
-            From generative AI to predictive analytics, we integrate cutting-edge artificial intelligence to transform
-            your business processes and drive exponential growth.
+          <p className="text-xl text-zinc-400 font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
+            We move beyond simple chatbots to engineer cognitive architectures that redefine what's possible in your industry.
           </p>
-          <div className="mt-8 flex justify-center gap-8 text-sm text-foreground/70">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              <span>Enterprise-Grade AI</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-              <span>Custom Model Training</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-              <span>Real-time Processing</span>
-            </div>
-          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {aiSolutions.map((solution, index) => {
-            const IconComponent = solution.icon
-            const complexityColor =
-              {
-                Intermediate: "text-blue-400 bg-blue-400/10",
-                Advanced: "text-purple-400 bg-purple-400/10",
-                Expert: "text-red-400 bg-red-400/10",
-              }[solution.complexity] || "text-green-400 bg-green-400/10"
-
-            return (
-              <div
-                key={solution.title}
-                className="glass-intense rounded-3xl p-8 hover-lift group relative overflow-hidden"
-                data-testid={`ai-solution-${solution.title.toLowerCase().replace(/\s+/g, "-")}`}
-              >
-                <div className="absolute top-4 right-4">
-                  <span className={`text-xs font-medium px-2 py-1 rounded-full ${complexityColor}`}>
-                    {solution.complexity}
-                  </span>
-                </div>
-
-                <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <IconComponent className="w-8 h-8 text-white" />
-                </div>
-
-                <h3
-                  className="font-display font-bold text-xl mb-3 group-hover:text-primary transition-colors"
-                  data-testid={`ai-title-${solution.title.toLowerCase().replace(/\s+/g, "-")}`}
-                >
-                  {solution.title}
-                </h3>
-
-                <p
-                  className="text-foreground/70 text-sm mb-4 leading-relaxed"
-                  data-testid={`ai-description-${solution.title.toLowerCase().replace(/\s+/g, "-")}`}
-                >
-                  {solution.description}
-                </p>
-
-                <div className="space-y-2 mb-4">
-                  {solution.features.slice(0, 3).map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center text-xs">
-                      <div className="w-1.5 h-1.5 gradient-accent rounded-full mr-2 flex-shrink-0"></div>
-                      <span className="text-foreground/70">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="text-xs font-medium text-green-400 bg-green-400/10 px-2 py-1 rounded-full inline-block mb-3">
-                  {solution.benefits}
-                </div>
-
-                <div className="pt-3 border-t border-white/5">
-                  <p className="text-xs text-foreground/70">
-                    <span className="font-medium text-accent">Tech:</span> {solution.technologies}
-                  </p>
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-              </div>
-            )
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {aiSolutions.map((solution, index) => (
+            <AISolutionCard key={index} solution={solution} />
+          ))}
         </div>
       </div>
     </section>

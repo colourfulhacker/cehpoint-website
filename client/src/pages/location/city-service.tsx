@@ -2,9 +2,10 @@
 import { useRoute, Link } from "wouter";
 import { globalLocations, GlobalLocation } from "@/data/global-locations";
 import { allApps, AppIdea, getIconForApp } from "@/data/business-apps";
+import { cityTrends, defaultTrend, CityTrend } from "@/data/city-trends"; // Import trends
 import SEO from "@/components/seo";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot } from "lucide-react";
+import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Zap } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import { motion } from "framer-motion";
 import ProjectCostEstimator from "@/components/calculators/project-cost-estimator";
@@ -24,6 +25,19 @@ export default function CityServicePage() {
     const cityData = globalLocations.find(c => c.slug === params.city.toLowerCase());
     if (!cityData) { return <NotFound />; }
 
+    // SEO Data Logic
+    const trendData: CityTrend = cityTrends.find(t => t.slug === cityData.slug) || defaultTrend;
+    const isDefaultTrend = trendData === defaultTrend;
+
+    // Dynamic Hero Content (fallback to generic if no specific trend)
+    const heroTitle = isDefaultTrend
+        ? <span>Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-500">Empire</span><br /> in {cityData.name}</span>
+        : <span dangerouslySetInnerHTML={{ __html: trendData.heroTitle.replace(cityData.name, `<span class="text-primary">${cityData.name}</span>`) }} />;
+
+    const heroSubtitle = isDefaultTrend
+        ? <span>Don't just run a business. <span className="text-white font-medium">Dominate the market.</span> <br /> We provide the technology Top Startups use.</span>
+        : trendData.heroSubtitle;
+
     // Get Recommended Apps
     const recommendedApps = cityData.recommendedAppIds
         ? allApps.filter(app => cityData.recommendedAppIds.includes(app.id))
@@ -33,7 +47,7 @@ export default function CityServicePage() {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": `Cehpoint ${cityData.name}`,
-        "description": `Leading Tech Partner in ${cityData.name}. Launch your business app for ${cityData.currency} ${cityData.currency === 'INR' ? '15,000' : '200'}.`,
+        "description": trendData.metaDescription,
         "url": `https://www.cehpoint.co.in/location/${cityData.slug}`,
         "telephone": cityData.phone,
         "address": {
@@ -48,38 +62,46 @@ export default function CityServicePage() {
     return (
         <div className="pt-36 min-h-screen bg-black text-white selection:bg-primary/30">
             <SEO
-                title={`Start Business in ${cityData.name} @ ${cityData.currency === 'INR' ? '₹15000' : '$200'} | App Development`}
-                description={`Launch your startup in ${cityData.name} with Cehpoint. Best Website & App Development Company in ${cityData.name}. Get Local Business Apps starting ${cityData.currency === 'INR' ? '₹15k' : '$200'}.`}
-                keywords={[`Business App ${cityData.name}`, `App Developers ${cityData.name}`, `Startup Ideas ${cityData.name}`, `Software Company ${cityData.name}`, cityData.techFocus]}
+                title={`${trendData.heroTitle} | Cehpoint ${cityData.name}`}
+                description={trendData.metaDescription}
+                keywords={[...trendData.keywords, `Business App ${cityData.name}`, `App Developers ${cityData.name}`, `Software Company ${cityData.name}`, cityData.techFocus]}
                 url={`https://www.cehpoint.co.in/location/${cityData.slug}`}
                 schema={JSON.stringify(jsonLd)}
             />
 
             {/* --- HERO SECTION --- */}
-            <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
                 {/* Dynamic Background */}
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')] bg-cover bg-center opacity-20" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-black" />
                 <div className="absolute inset-0 bg-grid-white/[0.03] bg-[size:60px_60px]" />
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
                         <div className="inline-flex items-center px-4 py-2 rounded-full glass border border-white/10 mb-8 backdrop-blur-md">
                             <MapPin className="w-4 h-4 text-primary mr-2" />
-                            <span className="text-sm font-medium tracking-wide uppercasetext-gray-200">
+                            <span className="text-sm font-medium tracking-wide uppercase text-gray-200">
                                 Powering {cityData.name}, {cityData.state}
                             </span>
                         </div>
 
                         <h1 className="font-display font-bold text-5xl md:text-8xl mb-6 tracking-tight leading-tight">
-                            Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-500">Empire</span>
-                            <br /> in {cityData.name}
+                            {heroTitle}
                         </h1>
 
-                        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 font-light leading-relaxed">
-                            Don't just run a business. <span className="text-white font-medium">Dominate the market.</span> <br />
-                            We provide the technology Top Startups use, at prices {cityData.name}'s entrepreneurs love.
+                        <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-10 font-light leading-relaxed">
+                            {heroSubtitle}
                         </p>
+
+                        {/* Market Trends Badges (New for SEO) */}
+                        <div className="flex flex-wrap justify-center gap-4 mb-12">
+                            {trendData.marketTrends.map((trend, i) => (
+                                <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 transition-colors cursor-default">
+                                    <TrendingUp className="w-4 h-4 text-primary" />
+                                    <span className="text-sm font-medium text-gray-300">{trend.title}: <span className="text-white">{trend.stat}</span></span>
+                                </div>
+                            ))}
+                        </div>
 
                         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                             {/* Updated to use WhatsApp Dialog */}
@@ -249,10 +271,20 @@ export default function CityServicePage() {
                         <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-white">
                             Complete IT Solutions in {cityData.name}
                         </h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                        <p className="text-gray-400 max-w-2xl mx-auto text-lg mb-8">
                             We don't just build apps. We secure them, scale them, and infuse them with AI.
                             Our full-stack services are available for enterprises in {cityData.name}.
                         </p>
+
+                        {/* Popular Services Tags (SEO Rich) */}
+                        <div className="flex flex-wrap justify-center gap-3">
+                            {trendData.popularServices.map((service, idx) => (
+                                <span key={idx} className="px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-sm font-medium">
+                                    <Zap className="w-3 h-3 inline mr-2 text-purple-400" />
+                                    {service}
+                                </span>
+                            ))}
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
