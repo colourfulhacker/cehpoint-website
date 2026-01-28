@@ -5,7 +5,7 @@ import { allApps, AppIdea, getIconForApp } from "@/data/business-apps";
 import { cityTrends, defaultTrend, CityTrend } from "@/data/city-trends"; // Import trends
 import SEO from "@/components/seo";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Zap, Code, Cpu, BarChart, Heart, Sun, Home, Video, Book, ShoppingBag, Diamond, Flag, Edit, Camera, Gem, Anchor, Search, Leaf, Calendar, Briefcase, Mic, BookOpen, Snowflake, HardHat, Activity, CloudRain, Circle, Layers, Settings, Calculator, Eye, Smile, Coffee, Send, MessageCircle, ShoppingCart, Music, Map, CreditCard, Lock, Beer, Recycle, Truck, Mountain, Wrench, Bitcoin, Users } from "lucide-react";
+import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Zap, Code, Cpu, BarChart, Heart, Sun, Home, Video, Book, ShoppingBag, Diamond, Flag, Edit, Camera, Gem, Anchor, Search, Leaf, Calendar, Briefcase, Mic, BookOpen, Snowflake, HardHat, Activity, CloudRain, Circle, Layers, Settings, Calculator, Eye, Smile, Coffee, Send, MessageCircle, ShoppingCart, Music, Map, CreditCard, Lock, Beer, Recycle, Truck, Mountain, Wrench, Bitcoin, Users, Landmark, Utensils, GraduationCap, Palette, Gavel, Scissors, Feather, Car, Ticket, Stethoscope, Smartphone, Database, Cloud, Laptop, ChefHat, Bus, Plane } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import { motion } from "framer-motion";
 import ProjectCostEstimator from "@/components/calculators/project-cost-estimator";
@@ -33,7 +33,10 @@ const ICON_MAP: Record<string, any> = {
     send: Send, "message-circle": MessageCircle, "shopping-cart": ShoppingCart,
     music: Music, map: Map, "credit-card": CreditCard, lock: Lock, beer: Beer,
     recycle: Recycle, truck: Truck, mountain: Mountain, tool: Wrench, bitcoin: Bitcoin,
-    users: Users
+    users: Users, landmark: Landmark, utensils: Utensils, "graduation-cap": GraduationCap,
+    palette: Palette, gavel: Gavel, scissors: Scissors, feather: Feather, car: Car,
+    ticket: Ticket, stethoscope: Stethoscope, smartphone: Smartphone, database: Database,
+    cloud: Cloud, laptop: Laptop, "chef-hat": ChefHat, bus: Bus, plane: Plane
 };
 
 export default function CityServicePage() {

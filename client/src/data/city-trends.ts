@@ -2,7 +2,7 @@
 export interface ServiceDetail {
     title: string;
     description: string;
-    icon: "code" | "cpu" | "globe" | "shield" | "zap" | "bar-chart" | "chart-bar" | "building" | "star" | "heart" | "sun" | "home" | "video" | "book" | "phone" | "bag" | "diamond" | "flag" | "edit" | "camera" | "gem" | "anchor" | "search" | "dollar-sign" | "leaf" | "shopping-bag" | "calendar" | "briefcase" | "mic" | "book-open" | "snowflake" | "hard-hat" | "activity" | "cloud-rain" | "circle" | "layers" | "settings" | "calculator" | "eye" | "smile" | "coffee" | "check-circle" | "send" | "message-circle" | "shopping-cart" | "music" | "map" | "credit-card" | "lock" | "beer" | "recycle" | "truck" | "mountain" | "tool" | "bitcoin" | "users"; // Extended icon mapping
+    icon: "code" | "cpu" | "globe" | "shield" | "zap" | "bar-chart" | "chart-bar" | "building" | "star" | "heart" | "sun" | "home" | "video" | "book" | "phone" | "bag" | "diamond" | "flag" | "edit" | "camera" | "gem" | "anchor" | "search" | "dollar-sign" | "leaf" | "shopping-bag" | "calendar" | "briefcase" | "mic" | "book-open" | "snowflake" | "hard-hat" | "activity" | "cloud-rain" | "circle" | "layers" | "settings" | "calculator" | "eye" | "smile" | "coffee" | "check-circle" | "send" | "message-circle" | "shopping-cart" | "music" | "map" | "credit-card" | "lock" | "beer" | "recycle" | "truck" | "mountain" | "tool" | "bitcoin" | "users" | "landmark" | "utensils" | "graduation-cap" | "palette" | "gavel" | "scissors" | "feather" | "car" | "ticket" | "stethoscope" | "smartphone" | "database" | "cloud" | "laptop" | "chef-hat" | "bus" | "plane"; // Extended icon mapping
 }
 
 export interface CitySegment {
@@ -56,7 +56,7 @@ export const cityTrends: CityTrend[] = [
                 ideas: [
                     { title: "Hedge Fund Dashboard", description: "Real-time portfolio analytics.", icon: "bar-chart" },
                     { title: "PropTech Management", description: "Tenant apps for skyscrapers.", icon: "building" },
-                    { title: "LegalTech AI", description: "Automating contract reviews.", icon: "shield" }
+                    { title: "LegalTech AI", description: "Automating contract reviews.", icon: "gavel" }
                 ]
             },
             {
@@ -64,7 +64,7 @@ export const cityTrends: CityTrend[] = [
                 title: "FinTech Careers",
                 description: "Breaking into NYC finance.",
                 ideas: [
-                    { title: "Quant Interview Prep", description: "Practice for algo roles.", icon: "code" },
+                    { title: "Quant Interview Prep", description: "Practice for algo roles.", icon: "graduation-cap" },
                     { title: "NYU/Columbia Marketplace", description: "Buying/selling textbooks.", icon: "book" },
                     { title: "Subway Navigator", description: "Real-time train tracking.", icon: "map" }
                 ]
@@ -74,8 +74,8 @@ export const cityTrends: CityTrend[] = [
                 title: "Fashion & Media",
                 description: "Leading global trends.",
                 ideas: [
-                    { title: "Fashion Tech Agency", description: "Digital showrooms for designers.", icon: "shopping-bag" },
-                    { title: "Art Gallery App", description: "Virtual tours of Chelsea galleries.", icon: "camera" },
+                    { title: "Fashion Tech Agency", description: "Digital showrooms for designers.", icon: "scissors" },
+                    { title: "Art Gallery App", description: "Virtual tours of Chelsea galleries.", icon: "palette" },
                     { title: "PR Mgmt Platform", description: "Managing media relationships.", icon: "message-circle" }
                 ]
             }
@@ -106,7 +106,7 @@ export const cityTrends: CityTrend[] = [
                 title: "FinTech & InsurTech",
                 description: "Innovating in the City.",
                 ideas: [
-                    { title: "Neobank White Label", description: "Launch your own digital bank.", icon: "credit-card" },
+                    { title: "Neobank White Label", description: "Launch your own digital bank.", icon: "landmark" },
                     { title: "InsurTech Risk Model", description: "AI underwriting for Lloyds.", icon: "shield" },
                     { title: "GDPR Compliance Tool", description: "Automated data privacy checks.", icon: "lock" }
                 ]
@@ -158,7 +158,7 @@ export const cityTrends: CityTrend[] = [
                 title: "Auto & Industry 4.0",
                 description: "Engineering excellence.",
                 ideas: [
-                    { title: "Auto Supply Chain", description: "Just-in-time parts tracking.", icon: "truck" },
+                    { title: "Auto Supply Chain", description: "Just-in-time parts tracking.", icon: "car" },
                     { title: "Smart Factory IoT", description: "Predictive maintenance.", icon: "cpu" },
                     { title: "Green Energy Audit", description: "Carbon footprint tracking.", icon: "leaf" }
                 ]
@@ -210,7 +210,7 @@ export const cityTrends: CityTrend[] = [
                 title: "PropTech & Solar",
                 description: "Capitalizing on the housing boom.",
                 ideas: [
-                    { title: "Real Estate Auction", description: "Live bidding apps.", icon: "home" },
+                    { title: "Real Estate Auction", description: "Live bidding apps.", icon: "gavel" },
                     { title: "Solar Power Grid", description: "Managing feed-in tariffs.", icon: "sun" },
                     { title: "Beach Safety Tech", description: "Drone monitoring for sharks.", icon: "eye" }
                 ]
@@ -282,7 +282,7 @@ export const cityTrends: CityTrend[] = [
                 title: "Arts & Sustainability",
                 description: "Diverse voices of Canada.",
                 ideas: [
-                    { title: "Indigenous Art Market", description: "Global platform for local art.", icon: "heart" },
+                    { title: "Indigenous Art Market", description: "Global platform for local art.", icon: "palette" },
                     { title: "Sustainable Living", description: "Blog and eco-store.", icon: "leaf" },
                     { title: "Winter Event Planning", description: "Corporate retreats in Banff.", icon: "calendar" }
                 ]
@@ -315,7 +315,7 @@ export const cityTrends: CityTrend[] = [
                 description: "Building the future city.",
                 ideas: [
                     { title: "Crypto Estate Agent", description: "Buying property with BTC.", icon: "bitcoin" },
-                    { title: "Luxury Concierge", description: "Booking supercars and yachts.", icon: "star" },
+                    { title: "Luxury Concierge", description: "Booking supercars and yachts.", icon: "diamond" },
                     { title: "Free Zone Setup AI", description: "Navigating business laws.", icon: "briefcase" }
                 ]
             },
