@@ -5,7 +5,7 @@ import { allApps, AppIdea, getIconForApp } from "@/data/business-apps";
 import { cityTrends, defaultTrend, CityTrend } from "@/data/city-trends"; // Import trends
 import SEO from "@/components/seo";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Zap, Code, Cpu, BarChart, Heart, Sun, Home } from "lucide-react";
+import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Zap, Code, Cpu, BarChart, Heart, Sun, Home, Video, Book, ShoppingBag, Diamond, Flag, Edit, Camera, Gem, Anchor, Search, Leaf, Calendar, Briefcase, Mic, BookOpen, Snowflake, HardHat, Activity, CloudRain, Circle, Layers, Settings, Calculator, Eye, Smile, Coffee, Send, MessageCircle, ShoppingCart, Music, Map, CreditCard, Lock, Beer, Recycle, Truck, Mountain, Tool, Bitcoin, Users } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import { motion } from "framer-motion";
 import ProjectCostEstimator from "@/components/calculators/project-cost-estimator";
@@ -15,8 +15,26 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
+
+const ICON_MAP: Record<string, any> = {
+    code: Code, cpu: Cpu, globe: Globe, shield: ShieldCheck, zap: Zap,
+    "bar-chart": BarChart, "chart-bar": BarChart,
+    building: Building2, star: Star, heart: Heart, sun: Sun, home: Home,
+    video: Video, book: Book, phone: Phone, bag: ShoppingBag, diamond: Diamond,
+    flag: Flag, edit: Edit, camera: Camera, gem: Gem, anchor: Anchor,
+    search: Search, "dollar-sign": DollarSign, leaf: Leaf, "shopping-bag": ShoppingBag,
+    calendar: Calendar, briefcase: Briefcase, mic: Mic, "book-open": BookOpen,
+    snowflake: Snowflake, "hard-hat": HardHat, activity: Activity, "cloud-rain": CloudRain,
+    circle: Circle, layers: Layers, settings: Settings, calculator: Calculator,
+    eye: Eye, smile: Smile, coffee: Coffee, "check-circle": CheckCircle,
+    send: Send, "message-circle": MessageCircle, "shopping-cart": ShoppingCart,
+    music: Music, map: Map, "credit-card": CreditCard, lock: Lock, beer: Beer,
+    recycle: Recycle, truck: Truck, mountain: Mountain, tool: Tool, bitcoin: Bitcoin,
+    users: Users
+};
 
 export default function CityServicePage() {
     const [match, params] = useRoute("/location/:city");
@@ -183,7 +201,79 @@ export default function CityServicePage() {
                         ))}
                     </div>
                 </div>
-            </section>
+
+            </section >
+
+            {/* --- SEGMENTED OPPORTUNITIES (NEW) --- */}
+            {
+                trendData.segments && (
+                    <section className="py-24 bg-black relative border-t border-white/5">
+                        <div className="max-w-7xl mx-auto px-4">
+                            <div className="text-center mb-16">
+                                <span className="text-primary font-bold tracking-widest uppercase text-sm">Tailored For You</span>
+                                <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-white">
+                                    Unlock <span className="text-gradient">Potential</span>
+                                </h2>
+                                <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+                                    Curated business ideas specifically designed for the key drivers of {cityData.name}'s economy.
+                                </p>
+                            </div>
+
+                            <Tabs defaultValue="Business Owners" className="w-full">
+                                <TabsList className="flex flex-col md:grid md:grid-cols-3 w-full max-w-2xl mx-auto bg-white/5 p-1 rounded-[2rem] mb-12 h-auto gap-2 md:gap-0">
+                                    {trendData.segments.map((segment, idx) => (
+                                        <TabsTrigger
+                                            key={idx}
+                                            value={segment.audience}
+                                            className="rounded-[1.5rem] py-4 text-lg font-medium data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg transition-all"
+                                        >
+                                            {segment.audience}
+                                        </TabsTrigger>
+                                    ))}
+                                </TabsList>
+
+                                {trendData.segments.map((segment, idx) => (
+                                    <TabsContent key={idx} value={segment.audience} className="mt-0 focus-visible:outline-none">
+                                        <div className="text-center mb-12">
+                                            <h3 className="text-2xl font-bold text-white mb-2">{segment.title}</h3>
+                                            <p className="text-gray-400 max-w-lg mx-auto">{segment.description}</p>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                            {segment.ideas.map((idea, i) => {
+                                                const Icon = ICON_MAP[idea.icon] || Zap;
+                                                return (
+                                                    <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all hover:shadow-[0_0_30px_-10px_rgba(124,58,237,0.3)] hover:-translate-y-1 group relative overflow-hidden">
+                                                        <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
+                                                            <Icon className="w-32 h-32 text-primary rotate-12" />
+                                                        </div>
+                                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-black border border-white/10 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform shadow-lg">
+                                                            <Icon className="w-7 h-7" />
+                                                        </div>
+                                                        <h4 className="text-xl font-bold text-white mb-3 relative z-10">{idea.title}</h4>
+                                                        <p className="text-gray-400 mb-6 text-sm leading-relaxed relative z-10 min-h-[60px]">{idea.description}</p>
+                                                        <div className="relative z-10 pt-4 border-t border-white/5">
+                                                            <WhatsAppInquiryDialog
+                                                                appName={idea.title}
+                                                                locationName={cityData.name}
+                                                                title={`Connect for ${idea.title}`}
+                                                                trigger={
+                                                                    <Button variant="ghost" className="text-white hover:text-primary hover:bg-white/5 font-bold p-0 h-auto w-full justify-between group-hover:px-2 transition-all">
+                                                                        Get Blueprint <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                                                                    </Button>
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </TabsContent>
+                                ))}
+                            </Tabs>
+                        </div>
+                    </section>
+                )
+            }
 
             {/* --- PRICING & ROI --- */}
             <section className="py-24 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
@@ -289,12 +379,7 @@ export default function CityServicePage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {trendData.popularServices.map((service, idx) => {
-                            const IconMap: any = {
-                                code: Code, cpu: Cpu, globe: Globe, shield: ShieldCheck, zap: Zap,
-                                "bar-chart": BarChart, "chart-bar": BarChart,
-                                building: Building2, star: Star, heart: Heart, sun: Sun, home: Home
-                            };
-                            const Icon = IconMap[service.icon] || Zap;
+                            const Icon = ICON_MAP[service.icon] || Zap;
 
                             return (
                                 <div key={idx} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group h-full flex flex-col">
@@ -436,6 +521,6 @@ export default function CityServicePage() {
                     />
                 </div>
             </section>
-        </div>
+        </div >
     );
 }

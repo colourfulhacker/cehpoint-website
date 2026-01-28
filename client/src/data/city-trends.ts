@@ -2,7 +2,14 @@
 export interface ServiceDetail {
     title: string;
     description: string;
-    icon: "code" | "cpu" | "globe" | "shield" | "zap" | "bar-chart" | "chart-bar" | "building" | "star" | "heart" | "sun" | "home"; // Extended icon mapping
+    icon: "code" | "cpu" | "globe" | "shield" | "zap" | "bar-chart" | "chart-bar" | "building" | "star" | "heart" | "sun" | "home" | "video" | "book" | "phone" | "bag" | "diamond" | "flag" | "edit" | "camera" | "gem" | "anchor" | "search" | "dollar-sign" | "leaf" | "shopping-bag" | "calendar" | "briefcase" | "mic" | "book-open" | "snowflake" | "hard-hat" | "activity" | "cloud-rain" | "circle" | "layers" | "settings" | "calculator" | "eye" | "smile" | "coffee" | "check-circle" | "send" | "message-circle" | "shopping-cart" | "music" | "map" | "credit-card" | "lock" | "beer" | "recycle" | "truck" | "mountain" | "tool" | "bitcoin" | "users"; // Extended icon mapping
+}
+
+export interface CitySegment {
+    audience: "Business Owners" | "Students & Grads" | "Women Entrepreneurs";
+    title: string;
+    description: string;
+    ideas: ServiceDetail[];
 }
 
 export interface CityTrend {
@@ -17,6 +24,7 @@ export interface CityTrend {
         stat: string;
     }[];
     popularServices: ServiceDetail[];
+    segments?: CitySegment[]; // New field for segmented audience content
 }
 
 export const cityTrends: CityTrend[] = [
@@ -39,6 +47,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Hedge Fund Analytics", description: "Custom data visualization tools converting complex datasets into actionable investment insights.", icon: "cpu" },
             { title: "InsurTech Claims Bots", description: "AI-driven claims processing ensuring 24/7 responsiveness for global insurance providers.", icon: "zap" },
             { title: "High-Frequency Algo Bots", description: "Custom algorithmic trading bots optimized for speed and strategy execution.", icon: "code" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Wall Street Tech",
+                description: "Dominate the financial capital.",
+                ideas: [
+                    { title: "Hedge Fund Dashboard", description: "Real-time portfolio analytics.", icon: "bar-chart" },
+                    { title: "PropTech Management", description: "Tenant apps for skyscrapers.", icon: "building" },
+                    { title: "LegalTech AI", description: "Automating contract reviews.", icon: "shield" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "FinTech Careers",
+                description: "Breaking into NYC finance.",
+                ideas: [
+                    { title: "Quant Interview Prep", description: "Practice for algo roles.", icon: "code" },
+                    { title: "NYU/Columbia Marketplace", description: "Buying/selling textbooks.", icon: "book" },
+                    { title: "Subway Navigator", description: "Real-time train tracking.", icon: "map" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Fashion & Media",
+                description: "Leading global trends.",
+                ideas: [
+                    { title: "Fashion Tech Agency", description: "Digital showrooms for designers.", icon: "shopping-bag" },
+                    { title: "Art Gallery App", description: "Virtual tours of Chelsea galleries.", icon: "camera" },
+                    { title: "PR Mgmt Platform", description: "Managing media relationships.", icon: "message-circle" }
+                ]
+            }
         ]
     },
     {
@@ -59,6 +99,38 @@ export const cityTrends: CityTrend[] = [
             { title: "ESG Impact Trackers", description: "Dashboards monitoring and reporting sustainability metrics for Green Finance initiatives.", icon: "bar-chart" },
             { title: "Wealth Management Portals", description: "Secure client-facing portals for high-net-worth individual asset tracking.", icon: "shield" },
             { title: "Cross-Border Payment Hubs", description: "Multi-currency wallet systems optimized for post-Brexit global trade.", icon: "globe" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "FinTech & InsurTech",
+                description: "Innovating in the City.",
+                ideas: [
+                    { title: "Neobank White Label", description: "Launch your own digital bank.", icon: "credit-card" },
+                    { title: "InsurTech Risk Model", description: "AI underwriting for Lloyds.", icon: "shield" },
+                    { title: "GDPR Compliance Tool", description: "Automated data privacy checks.", icon: "lock" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "LSE & Imperial",
+                description: "Tools for London's scholars.",
+                ideas: [
+                    { title: "Student Housing App", description: "Finding flats in Zone 2.", icon: "home" },
+                    { title: "Gig Economy Aggregator", description: "Finding flexible work.", icon: "search" },
+                    { title: "Pub Finder AR", description: "Historic pub guide.", icon: "beer" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Green & Design",
+                description: "Sustainable British business.",
+                ideas: [
+                    { title: "Sustainable Fashion", description: "Renting designer dresses.", icon: "recycle" },
+                    { title: "FinTech Consultancy", description: "Advising on open banking.", icon: "briefcase" },
+                    { title: "Wellness App", description: "Mental health for city workers.", icon: "heart" }
+                ]
+            }
         ]
     },
     {
@@ -79,6 +151,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Smart Grid Energy Mgmt", description: "Algorithms optimizing power usage across manufacturing plants to reduce carbon footprint.", icon: "zap" },
             { title: "Digital Twin Modeling", description: "Create virtual replicas of physical assets for simulation and stress testing.", icon: "building" },
             { title: "Supply Chain Traceability", description: "Blockchain-based tracking ensuring parts authenticity in the auto supply chain.", icon: "shield" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Auto & Industry 4.0",
+                description: "Engineering excellence.",
+                ideas: [
+                    { title: "Auto Supply Chain", description: "Just-in-time parts tracking.", icon: "truck" },
+                    { title: "Smart Factory IoT", description: "Predictive maintenance.", icon: "cpu" },
+                    { title: "Green Energy Audit", description: "Carbon footprint tracking.", icon: "leaf" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "TUM & Engineering",
+                description: "Tech for technical innovators.",
+                ideas: [
+                    { title: "Engineering Calc App", description: "Complex formula solver.", icon: "calculator" },
+                    { title: "Language Learning AI", description: "Mastering Technical German.", icon: "mic" },
+                    { title: "Oktoberfest Guide", description: "Tent bookings and maps.", icon: "beer" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Eco & Craft",
+                description: "Quality and sustainability.",
+                ideas: [
+                    { title: "Eco-Tourism Bavaria", description: "Hiking and nature tours.", icon: "mountain" },
+                    { title: "Craft Beer Branding", description: "Marketing for microbreweries.", icon: "beer" },
+                    { title: "Vocational Training", description: "Skill workshops organization.", icon: "tool" }
+                ]
+            }
         ]
     },
     {
@@ -99,6 +203,38 @@ export const cityTrends: CityTrend[] = [
             { title: "On-Demand Service Marketplaces", description: "Uber-like platforms for local tradespeople and services.", icon: "code" },
             { title: "HealthTech Patient Portals", description: "Secure booking and telehealth interfaces for private practices.", icon: "shield" },
             { title: "Fintech Personal Finance", description: "Budgeting and investment tracking apps tailored to Australian tax laws.", icon: "bar-chart" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "PropTech & Solar",
+                description: "Capitalizing on the housing boom.",
+                ideas: [
+                    { title: "Real Estate Auction", description: "Live bidding apps.", icon: "home" },
+                    { title: "Solar Power Grid", description: "Managing feed-in tariffs.", icon: "sun" },
+                    { title: "Beach Safety Tech", description: "Drone monitoring for sharks.", icon: "eye" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Surf & Study",
+                description: "Lifestyle for Sydney uni.",
+                ideas: [
+                    { title: "Surfing Forecast App", description: "Wave height and tides.", icon: "anchor" },
+                    { title: "Uni Sydney Notes", description: "Sharing lecture summaries.", icon: "book" },
+                    { title: "Barista Training VR", description: "Learning coffee art.", icon: "coffee" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Coastal & Wellness",
+                description: "Healthy Aussie lifestyle.",
+                ideas: [
+                    { title: "Coastal Decor E-com", description: "Selling beach home goods.", icon: "shopping-bag" },
+                    { title: "Wellness Retreat", description: "Booking yoga escapes.", icon: "heart" },
+                    { title: "Organic Skincare", description: "Native Australian ingredients.", icon: "smile" }
+                ]
+            }
         ]
     },
     {
@@ -119,6 +255,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Precision AgTech Apps", description: "Satellite and sensor data analysis for maximizing crop yields.", icon: "globe" },
             { title: "Logistics Fleet Tracking", description: "Optimizing heavy haulage routes across the province.", icon: "zap" },
             { title: "Geospatial Mapping (GIS)", description: "Custom mapping solutions for land surveying and asset location.", icon: "globe" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Energy & Logistics",
+                description: "Powering the province.",
+                ideas: [
+                    { title: "Oil Rig IoT Dashboard", description: "Remote sensor monitoring.", icon: "activity" },
+                    { title: "Carbon Credit Trade", description: "Buying and selling offsets.", icon: "leaf" },
+                    { title: "Logistics Fleet AI", description: "Winter route optimization.", icon: "truck" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Field & Snow",
+                description: "Tools for Alberta's terrain.",
+                ideas: [
+                    { title: "Geology Field App", description: "Mapping rock formations.", icon: "map" },
+                    { title: "Winter Sports Rental", description: "Ski and snowboard gear.", icon: "snowflake" },
+                    { title: "Petro-Eng Tools", description: "Calculators for drilling.", icon: "tool" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Arts & Sustainability",
+                description: "Diverse voices of Canada.",
+                ideas: [
+                    { title: "Indigenous Art Market", description: "Global platform for local art.", icon: "heart" },
+                    { title: "Sustainable Living", description: "Blog and eco-store.", icon: "leaf" },
+                    { title: "Winter Event Planning", description: "Corporate retreats in Banff.", icon: "calendar" }
+                ]
+            }
         ]
     },
     {
@@ -139,6 +307,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Smart City GovTech", description: "Interfaces for citizen services and municipal payments.", icon: "globe" },
             { title: "Tourism Experience AR", description: "Augmented reality guides for malls and landmarks.", icon: "zap" },
             { title: "Trade Zone ERPs", description: "Management software for Free Zone logistics and operations.", icon: "bar-chart" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Crypto & Luxury",
+                description: "Building the future city.",
+                ideas: [
+                    { title: "Crypto Estate Agent", description: "Buying property with BTC.", icon: "bitcoin" },
+                    { title: "Luxury Concierge", description: "Booking supercars and yachts.", icon: "star" },
+                    { title: "Free Zone Setup AI", description: "Navigating business laws.", icon: "briefcase" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Expat & Arabic",
+                description: "Thriving in the UAE.",
+                ideas: [
+                    { title: "Expat Community App", description: "Finding flatmates and events.", icon: "users" },
+                    { title: "Arabic Learning Game", description: "Fun way to learn language.", icon: "book" },
+                    { title: "Desert Safari Booking", description: "Adventure tour aggregator.", icon: "sun" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Fashion & Lifestyle",
+                description: "Elegance and enterprise.",
+                ideas: [
+                    { title: "Modest Fashion Brand", description: "Modern Abaya designs.", icon: "shopping-bag" },
+                    { title: "Perfume Customizer", description: "Creating signature scents.", icon: "smile" },
+                    { title: "Influencer Mgmt", description: "Agency for social stars.", icon: "camera" }
+                ]
+            }
         ]
     },
 
@@ -161,6 +361,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Banking VAPT Audits", description: "Rigorous penetration testing for RBI compliance.", icon: "shield" },
             { title: "Media Streaming Apps", description: "High-concurrency OTT platforms for Bollywood and entertainment content.", icon: "zap" },
             { title: "Corporate HRK Systems", description: "Employee management suites for large conglomerates.", icon: "building" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Scale Your Enterprise",
+                description: "High-impact solutions for Mumbai's competitive market.",
+                ideas: [
+                    { title: "Equity Research Dashboard", description: "Real-time market analysis tools for investment firms.", icon: "bar-chart" },
+                    { title: "Video KYC Platform", description: "Automated customer onboarding for NBFCs and Banks.", icon: "shield" },
+                    { title: "Corporate Event Planner", description: "Managing large-scale corporate conferences and expos.", icon: "star" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Launch Your Startup",
+                description: "Trendy ideas for Mumbai's vibrant youth culture.",
+                ideas: [
+                    { title: "Creator Economy Hub", description: "Connecting brands with micro-influencers in Mumbai.", icon: "zap" },
+                    { title: "Film Casting Portal", description: "Aggregating auditions for Bollywood aspirants.", icon: "star" },
+                    { title: "Gig Economy Aggregator", description: "Finding quick gigs for delivery and events.", icon: "globe" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Empower Your Business",
+                description: "Flexible business models perfect for women leaders.",
+                ideas: [
+                    { title: "Boutique Cloud Kitchen", description: "Managing delivery-only food brands from home.", icon: "heart" },
+                    { title: "Virtual Stylist App", description: "Personal fashion consulting via video calls.", icon: "star" },
+                    { title: "Wellness Subscription", description: "Curated yoga and mental health plans.", icon: "sun" }
+                ]
+            }
         ]
     },
     {
@@ -181,6 +413,38 @@ export const cityTrends: CityTrend[] = [
             { title: "IOT Edge Computing", description: "Processing data locally on devices for smart factory latency reduction.", icon: "chart-bar" },
             { title: "Web3 DApps", description: "Decentralized applications for the next generation Internet.", icon: "shield" },
             { title: "Developer Tools", description: "Building CLI tools and APIs for other developers.", icon: "code" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "SaaS & Enterprise",
+                description: "Build the next unicorn with scalable tech.",
+                ideas: [
+                    { title: "B2B SaaS Boilerplate", description: "Rapidly launching enterprise software tools.", icon: "code" },
+                    { title: "GenAI Customer Support", description: "Automating L1 support with custom LLMs.", icon: "cpu" },
+                    { title: "HR Tech Platform", description: "Recruitment automation for tech hiring.", icon: "building" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Tech Innovation",
+                description: "Deep tech ideas for engineering students.",
+                ideas: [
+                    { title: "Hackathon Platform", description: "Organizing and judging coding competitions.", icon: "code" },
+                    { title: "Skill-Share App", description: "P2P coding mentorship marketplace.", icon: "globe" },
+                    { title: "AI Note Taker", description: "Summarizing lectures and meetings automatically.", icon: "zap" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Creative & Tech",
+                description: "Leading in design and niche markets.",
+                ideas: [
+                    { title: "Tech-Returnship Portal", description: "Helping women get back into tech jobs.", icon: "shield" },
+                    { title: "Home Bakers Market", description: "Selling artisanal cakes and breads online.", icon: "heart" },
+                    { title: "Kids Coding Academy", description: "Online platform for teaching kids to code.", icon: "star" }
+                ]
+            }
         ]
     },
     {
@@ -201,6 +465,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Logistics Aggregators", description: "Apps connecting shippers with trucking fleets across North India.", icon: "zap" },
             { title: "EdTech Learning Management", description: "Platforms for Delhi's vast network of coaching centers and universities.", icon: "code" },
             { title: "Smart City Traffic AI", description: "Computer vision systems for traffic monitoring and management.", icon: "cpu" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Trade & Commerce",
+                description: "Digitizing Delhi's massive wholesale markets.",
+                ideas: [
+                    { title: "Wholesale B2B Portal", description: "Connecting Sadar Bazar traders to retailers.", icon: "bar-chart" },
+                    { title: "Political Campaign CRM", description: "Managing voter data and outreach.", icon: "building" },
+                    { title: "Import/Export ERP", description: "Handling customs and documentation.", icon: "globe" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Exam & Career",
+                description: "Solutions for the UPSC/JEE capital.",
+                ideas: [
+                    { title: "Competitive Exam Prep", description: "Mock tests and analytics for aspirants.", icon: "code" },
+                    { title: "PG/Hostel Finder", description: "Finding accommodation for students in North Campus.", icon: "home" },
+                    { title: "Used Book Marketplace", description: "Buying and selling second-hand study materials.", icon: "star" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Lifestyle & Reselling",
+                description: "Tapping into fashion and beauty markets.",
+                ideas: [
+                    { title: "Social Reselling App", description: "Selling fashion items via WhatsApp/Instagram.", icon: "heart" },
+                    { title: "Beauty Service Aggregator", description: "Booking salon services at home.", icon: "star" },
+                    { title: "Wedding Planner Suite", description: "Managing logistics for Delhi weddings.", icon: "zap" }
+                ]
+            }
         ]
     },
     {
@@ -221,6 +517,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Lab Automation Software", description: "Robotic process automation for pharmaceutical testing labs.", icon: "zap" },
             { title: "SpaceTech Data Analysis", description: "Processing satellite imagery and telemetry data.", icon: "globe" },
             { title: "VR Training Modules", description: "Immersive training for pharma manufacturing safety.", icon: "cpu" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Pharma & Infra",
+                description: "High-tech solutions for Genome Valley.",
+                ideas: [
+                    { title: "Pharma Supply Chain", description: "Cold chain monitoring for drugs.", icon: "shield" },
+                    { title: "Real Estate CRM", description: "Managing Hyderabad's booming property market.", icon: "building" },
+                    { title: "Lab Inventory Mgmt", description: "Tracking chemicals and equipment.", icon: "bar-chart" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Global Careers",
+                description: "Apps for the US-bound demographic.",
+                ideas: [
+                    { title: "Study Abroad Consultant", description: "Application tracking and visa guidance.", icon: "globe" },
+                    { title: "Coding Bootcamp LMS", description: "Learning platform for full-stack dev.", icon: "code" },
+                    { title: "GRE/IELTS Prep", description: "Vocabulary and practice test apps.", icon: "star" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Service Industry",
+                description: "Catering to the IT workforce.",
+                ideas: [
+                    { title: "Nutritious Tiffin Service", description: "Healthy meals for Hitech City employees.", icon: "heart" },
+                    { title: "Daycare Management", description: "Software for managing child care centers.", icon: "sun" },
+                    { title: "Event Decor Planner", description: "Organizing parties and corporate events.", icon: "star" }
+                ]
+            }
         ]
     },
     {
@@ -241,6 +569,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Supply Chain Optimization", description: "Algorithms to reduce waste in auto-manufacturing logistics.", icon: "code" },
             { title: "Cloud Infrastructure Mgmt", description: "DevOps services for scaling SaaS applications globally.", icon: "globe" },
             { title: "R&D Simulation Tools", description: "Software for virtual testing of automotive components.", icon: "cpu" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Auto & SaaS",
+                description: "Solutions for Chennai's industrial giants.",
+                ideas: [
+                    { title: "Automotive Supply Chain", description: "Tracking parts for manufacturers.", icon: "zap" },
+                    { title: "SaaS Billing Engine", description: "Subscription management for software companies.", icon: "bar-chart" },
+                    { title: "Export Documentation", description: "Automating customs for Chennai port.", icon: "globe" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Engineering Hub",
+                description: "Projects for Anna University talent.",
+                ideas: [
+                    { title: "Engineering Project Hub", description: "Marketplace for final year project components.", icon: "cpu" },
+                    { title: "Carnatic Music App", description: "Learning and streaming classical music.", icon: "heart" },
+                    { title: "EV Charging Finder", description: "Locating stations for electric bikes.", icon: "zap" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Tradition & Tech",
+                description: "Modernizing traditional businesses.",
+                ideas: [
+                    { title: "Filter Coffee Brand", description: "D2C subscription for authentic coffee.", icon: "star" },
+                    { title: "Silk Saree Marketplace", description: "Selling Kanchipuram silk globally.", icon: "heart" },
+                    { title: "Music Tuition App", description: "Teaching instruments online.", icon: "video" }
+                ]
+            }
         ]
     },
     {
@@ -261,6 +621,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Automotive Design Software", description: "CAD/CAM plugins and tools for vehicle design.", icon: "zap" },
             { title: "Corporate eLearning", description: "Training platforms for upskilling large IT workforces.", icon: "globe" },
             { title: "Financial Services IT", description: "Backend support for Pune's growing fintech back-offices.", icon: "shield" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Industrial & IT",
+                description: "Digitizing Hinjewadi and Chakan.",
+                ideas: [
+                    { title: "Smart Factory Dashboard", description: "IoT monitoring for manufacturing lines.", icon: "cpu" },
+                    { title: "Corporate Training LMS", description: "Upskilling IT employees.", icon: "code" },
+                    { title: "Inventory Optimization", description: "Just-in-time stock management.", icon: "bar-chart" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Oxford of the East",
+                description: "Apps for Pune's massive student base.",
+                ideas: [
+                    { title: "Student Housing Finder", description: "PGs and flats in Viman Nagar/Kothrud.", icon: "home" },
+                    { title: "Language Learning App", description: "German/Japanese classes for auto jobs.", icon: "globe" },
+                    { title: "Exam Notes Exchange", description: "Sharing university study materials.", icon: "code" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Modern Lifestyle",
+                description: "Catering to the urban IT crowd.",
+                ideas: [
+                    { title: "Organic Farm to Table", description: "Delivering fresh produce to societies.", icon: "sun" },
+                    { title: "Corporate Gifting", description: "Curated gift hampers for offices.", icon: "star" },
+                    { title: "Fitness trainer App", description: "Yoga and Zumba classes significantly.", icon: "heart" }
+                ]
+            }
         ]
     },
     {
@@ -281,6 +673,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Digital Marketing Automation", description: "Tools to automate social media and email campaigns for small biz.", icon: "bar-chart" },
             { title: "Hospital Management", description: "OPD booking and patient record systems for nursing homes.", icon: "shield" },
             { title: "Creative Portfolio Sites", description: "Showcasing the work of Kolkata's artists and designers.", icon: "star" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Trade & Tea",
+                description: "Modernizing Burrabazar and Tea Gardens.",
+                ideas: [
+                    { title: "Tea Garden ERP", description: "Managing workforce and production in Darjeeling.", icon: "sun" },
+                    { title: "Distribution Management", description: "Supply chain for FMCG distributors.", icon: "home" },
+                    { title: "Hospital Queue Mgmt", description: "Reducing wait times in clinics.", icon: "heart" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Arts & Academics",
+                description: "For the intellectuals of College Street.",
+                ideas: [
+                    { title: "Literature & Art Blog", description: "Publishing platform for Bengali writers.", icon: "code" },
+                    { title: "Private Tutor Finder", description: "Connecting students with home tutors.", icon: "book" },
+                    { title: "Used Gadget Reselling", description: "Buying/selling phones in Chandni Chowk.", icon: "phone" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Boutique & Food",
+                description: "Turning passion into business.",
+                ideas: [
+                    { title: "Boutique Saree Store", description: "Selling handloom sarees online.", icon: "star" },
+                    { title: "Home-Cooked Bengali Meals", description: "Delivery app for office goers.", icon: "heart" },
+                    { title: "Art & Craft Workshop", description: "Booking platform for creative classes.", icon: "sun" }
+                ]
+            }
         ]
     },
     {
@@ -301,6 +725,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Tourism Homestay Booking", description: "Platforms promoting local homestays in Shantiniketan.", icon: "star" },
             { title: "Agri-Advisory Apps", description: "Providing crop advice and weather alerts to local farmers.", icon: "zap" },
             { title: "NGO Impact Dashboards", description: "Reporting tools for non-profits to visualize their social impact.", icon: "chart-bar" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Rural Industry",
+                description: "Tech for Rice Mills and Hospitality.",
+                ideas: [
+                    { title: "Rice Mill Automation", description: "Inventory and processing tracking.", icon: "cpu" },
+                    { title: "Resort Booking Engine", description: "Direct bookings for weekend getaways.", icon: "home" },
+                    { title: "Cold Storage Management", description: "IoT for preserving perishable produce.", icon: "sun" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Culture & Tech",
+                description: "Bridging tradition with modern tech.",
+                ideas: [
+                    { title: "Shantiniketan Guide", description: "Tourism app with audio guides.", icon: "globe" },
+                    { title: "Rural EdTech Center", description: "Teaching computer skills to village kids.", icon: "code" },
+                    { title: "Local News Portal", description: "Hyperlocal news in Bengali.", icon: "zap" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Artisan Global",
+                description: "Taking local art to the world.",
+                ideas: [
+                    { title: "Kantha Stitch Store", description: "Global e-commerce for embroidery.", icon: "heart" },
+                    { title: "Handicraft Reselling", description: "Aggregating products from rural women.", icon: "star" },
+                    { title: "Homemade Pickle Brand", description: "Selling organic food products online.", icon: "bag" }
+                ]
+            }
         ]
     },
     {
@@ -321,6 +777,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Chemical Plant IoT", description: "Monitoring reactor safety and efficiency in real-time.", icon: "zap" },
             { title: "Family Office Wealth Tools", description: "Investment tracking for Gujarat's high-net-worth families.", icon: "building" },
             { title: "Diamond Inventory Cloud", description: "Secure tracking of high-value inventory for the gem industry.", icon: "star" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Global Trade",
+                description: "Tools for Gujarat's export giants.",
+                ideas: [
+                    { title: "Stock Trading Terminal", description: "Low latency trading for GIFT City.", icon: "bar-chart" },
+                    { title: "Textile Export ERP", description: "Managing international fabric orders.", icon: "globe" },
+                    { title: "Chemical Lab Management", description: "Quality control for pharma units.", icon: "shield" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Finance & Event",
+                description: "Opportunities in the business capital.",
+                ideas: [
+                    { title: "CA/CS Exam Prep", description: "Coaching app for commerce students.", icon: "book" },
+                    { title: "Event Management App", description: "Organizing Garba and corporate events.", icon: "star" },
+                    { title: "Startup Pitch Deck Tool", description: "Helping new founders raise capital.", icon: "zap" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Food & Fashion",
+                description: "Scaling household businesses.",
+                ideas: [
+                    { title: "Home Decor Reselling", description: "Selling handicrafts and furniture.", icon: "home" },
+                    { title: "Gujarati Snacks D2C", description: "Shipping Thepla/Khakhra globally.", icon: "heart" },
+                    { title: "Tiffin Service Manager", description: "Managing daily meal orders.", icon: "sun" }
+                ]
+            }
         ]
     },
     {
@@ -341,6 +829,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Destination Wedding Planners", description: "Apps to manage logistics for big palace weddings.", icon: "heart" },
             { title: "Hotel Management Systems", description: "PMS for heritage hotels and boutique havellis.", icon: "building" },
             { title: "Textile Sourcing Apps", description: "Connecting designers with Block Print artisans.", icon: "zap" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Tourism & Jewels",
+                description: "High-value industries of Rajasthan.",
+                ideas: [
+                    { title: "Gemstone Inventory", description: "Tracking high-value stones.", icon: "diamond" },
+                    { title: "Heritage Hotel PMS", description: "Booking system for palaces.", icon: "home" },
+                    { title: "Export Catalog App", description: "Digital showcases for B2B buyers.", icon: "globe" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Design & Guide",
+                description: "Creative careers in Jaipur.",
+                ideas: [
+                    { title: "Tourism Guide Training", description: "Certification for local guides.", icon: "flag" },
+                    { title: "Handicraft Design Tool", description: "Creating new patterns digitially.", icon: "edit" },
+                    { title: "Pre-Wedding Shoot Booking", description: "Finding locations and photographers.", icon: "camera" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Art & Wedding",
+                description: "Thriving in the creative sector.",
+                ideas: [
+                    { title: "Block Print Online Store", description: "Selling Jaipuri prints globally.", icon: "star" },
+                    { title: "Wedding Planning Asst", description: "Coordinating vendors for weddings.", icon: "heart" },
+                    { title: "Jewelry Reselling", description: "Selling imitation jewelry online.", icon: "gem" }
+                ]
+            }
         ]
     },
     {
@@ -361,6 +881,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Food Delivery Aggregators", description: "Hyperlocal delivery apps for Indore's famous food culture.", icon: "star" },
             { title: "Warehousing Automation", description: "Inventory systems for large distribution centers.", icon: "code" },
             { title: "Smart Traffic Control", description: "AI monitoring for traffic signals and violations.", icon: "cpu" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Logistics & CleanTech",
+                description: "Solutions for Central India's hub.",
+                ideas: [
+                    { title: "Fleet Management ERP", description: "Tracking trucks across MP.", icon: "globe" },
+                    { title: "Waste Recycling Tech", description: "Processing plant automation.", icon: "zap" },
+                    { title: "FMCG Distribution", description: "Supply chain for snacks.", icon: "bar-chart" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Food & Tech",
+                description: "Innovating for the foodie city.",
+                ideas: [
+                    { title: "Street Food Discovery", description: "Guide to Sarafa Bazaar gems.", icon: "star" },
+                    { title: "Civic Hackathon App", description: "Solving city problems with code.", icon: "code" },
+                    { title: "Local Event Finder", description: "Concerts and meetups in Indore.", icon: "music" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Culinary & Art",
+                description: "Turning skills into brands.",
+                ideas: [
+                    { title: "Sustainable Waste Art", description: "Selling upcycled products.", icon: "heart" },
+                    { title: "Farsan Cloud Kitchen", description: "Homemade snacks delivery.", icon: "sun" },
+                    { title: "Event Decor Services", description: "Wedding and party planning.", icon: "star" }
+                ]
+            }
         ]
     },
     {
@@ -381,6 +933,38 @@ export const cityTrends: CityTrend[] = [
             { title: "NRI Remittance Apps", description: "Fintech solutions for the Kerala diaspora.", icon: "bar-chart" },
             { title: "Houseboat Booking Engines", description: "Specialized travel portals for backwater tourism.", icon: "star" },
             { title: "Start-up Incubation Portals", description: "Management tools for Kochi's vibrant startup village.", icon: "code" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Marine & Wellness",
+                description: "Exporting Kerala's best.",
+                ideas: [
+                    { title: "Seafood Export Chain", description: "Cold chain for fish exports.", icon: "anchor" },
+                    { title: "Ayurveda Resort Mgmt", description: "Booking and patient tracking.", icon: "sun" },
+                    { title: "Shipping Agency ERP", description: "Managing port documentation.", icon: "globe" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Tech Village",
+                description: "Ideas for the Startup Village.",
+                ideas: [
+                    { title: "Marine Bio-Tech App", description: "Researching ocean life.", icon: "search" },
+                    { title: "Tourism Vlogging Platform", description: "Showcasing God's Own Country.", icon: "video" },
+                    { title: "Fintech for Remittance", description: "Simpler money transfer apps.", icon: "dollar-sign" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Tourism & Care",
+                description: "Hospitality and wellness ventures.",
+                ideas: [
+                    { title: "Spice Garden Tours", description: "Booking guided farm visits.", icon: "leaf" },
+                    { title: "Wellness Yoga Brand", description: "Online yoga classes.", icon: "heart" },
+                    { title: "Homestay Management", description: "Running BnBs for tourists.", icon: "home" }
+                ]
+            }
         ]
     },
     {
@@ -401,6 +985,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Food Processing ERP", description: "Managing production lines for wheat and dairy processing.", icon: "building" },
             { title: "Real Estate CRM", description: "Managing property sales in the expanding Mohali/Zirakpur belt.", icon: "home" },
             { title: "Govt Citizen Portals", description: "Streamlined interfaces for public services.", icon: "shield" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Retail & Planning",
+                description: "Serving the affluent Tricity.",
+                ideas: [
+                    { title: "Luxury Retail CRM", description: "Managing high-net-worth clients.", icon: "star" },
+                    { title: "Real Estate Portal", description: "Selling properties in Mohali.", icon: "home" },
+                    { title: "Urban Town Planning", description: "Software for architects.", icon: "map" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Study & Fashion",
+                description: "Trends in Punjab University.",
+                ideas: [
+                    { title: "Visa Consultant App", description: "Tracking immigration applications.", icon: "globe" },
+                    { title: "Fashion Design Portfolio", description: "Showcasing student designs.", icon: "camera" },
+                    { title: "IELTS Coahing App", description: "Practice for english tests.", icon: "book" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Boutique & Events",
+                description: "High-end lifestyle businesses.",
+                ideas: [
+                    { title: "Designer Boutique", description: "Custom Punjabi suits online.", icon: "shopping-bag" },
+                    { title: "Event Planner App", description: "Organizing kitty parties and launches.", icon: "calendar" },
+                    { title: "Diet & Nutrition App", description: "Personalized meal plans.", icon: "heart" }
+                ]
+            }
         ]
     },
     {
@@ -421,6 +1037,38 @@ export const cityTrends: CityTrend[] = [
             { title: "E-Governance Kiosks", description: "Touchscreen interfaces for public service delivery.", icon: "cpu" },
             { title: "Handicraft(Chikankari) E-com", description: "Global platforms for Lucknow's famous embroidery.", icon: "star" },
             { title: "Smart City Surveillance", description: "Integration of CCTV feeds for city safety.", icon: "shield" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "GovTech & Export",
+                description: "Navigating UP's massive market.",
+                ideas: [
+                    { title: "Cold Storage WMS", description: "Storing mangoes and produce.", icon: "snowflake" },
+                    { title: "Chikankari Export House", description: "Global B2B sales of embroidery.", icon: "globe" },
+                    { title: "Govt Contractor ERP", description: "Managing tender projects.", icon: "briefcase" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Gov Jobs & Arts",
+                description: "For the aspirants of Lucknow.",
+                ideas: [
+                    { title: "Gov Exam Prep (Hindi)", description: "Study materials for UPPSC.", icon: "book" },
+                    { title: "Poetry/Shayari App", description: "Platform for local poets.", icon: "mic" },
+                    { title: "Used Book Exchange", description: "Marketplace for Aminabad books.", icon: "book-open" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Tradition & Taste",
+                description: "Monetizing heritage skills.",
+                ideas: [
+                    { title: "Awadhi Cloud Kitchen", description: "Delivering Galouti Kebabs.", icon: "heart" },
+                    { title: "Home Boutique", description: "Selling Kurti sets from home.", icon: "shopping-bag" },
+                    { title: "Online Tuition Class", description: "Teaching Hindi/Sanskrit.", icon: "video" }
+                ]
+            }
         ]
     },
     {
@@ -441,6 +1089,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Disaster Management Tools", description: "Early warning systems for cyclones and floods.", icon: "globe" },
             { title: "Hockey League Mgmt", description: "Tournament software for India's sports capital.", icon: "star" },
             { title: "Tourism Circuits App", description: "Guides for Temple City and eco-tourism spots.", icon: "globe" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Industry & Sports",
+                description: "Tech for Mines and Stadiums.",
+                ideas: [
+                    { title: "Mining Safety System", description: "IoT for worker protection.", icon: "hard-hat" },
+                    { title: "Sports Academy Mgmt", description: "Managing Kalinga Stadium events.", icon: "activity" },
+                    { title: "Hotel Booking Engine", description: "For Puri/Konark tourists.", icon: "home" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Tech & Relief",
+                description: "Innovating for social good.",
+                ideas: [
+                    { title: "Disaster Relief App", description: "Coordinating volunteers during cyclones.", icon: "cloud-rain" },
+                    { title: "Hockey Fan App", description: "News and stats for indian hockey.", icon: "circle" },
+                    { title: "Odia Learning App", description: "Teaching local language.", icon: "book" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Handloom & Tour",
+                description: "Promoting Odisha's culture.",
+                ideas: [
+                    { title: "Handloom Saree Store", description: "Direct sales for weavers.", icon: "shopping-bag" },
+                    { title: "Temple Tour Guide", description: "Organized tours for older women.", icon: "map" },
+                    { title: "Odia Sweet Shop", description: "Online orders for Rasagola.", icon: "heart" }
+                ]
+            }
         ]
     },
     {
@@ -461,6 +1141,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Export Documentation", description: "Automating customs paperwork for global shipping.", icon: "globe" },
             { title: "Foundry Management", description: "Process tracking for casting and molding units.", icon: "zap" },
             { title: "Employee Shift Mgmt", description: "Scheduling tools for large factory workforces.", icon: "building" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Manuf. & Textiles",
+                description: "Automation for the Manchester of South.",
+                ideas: [
+                    { title: "Textile Production ERP", description: "Managing spinning mills.", icon: "layers" },
+                    { title: "Pump Inventory System", description: "Tracking motor parts.", icon: "settings" },
+                    { title: "Foundry Analytics", description: "Optimizing casting processes.", icon: "bar-chart" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Core Engineering",
+                description: "Tools for mechanical students.",
+                ideas: [
+                    { title: "Engineering Formula Tool", description: "Quick ref for calculations.", icon: "calculator" },
+                    { title: "Robotics Club App", description: "Managing college tech fests.", icon: "cpu" },
+                    { title: "CAD Design Viewer", description: "Mobile app for diagrams.", icon: "eye" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Cotton & Food",
+                description: "Sustainable business ideas.",
+                ideas: [
+                    { title: "Organic Cotton Brand", description: "Baby clothes D2C.", icon: "smile" },
+                    { title: "Home Catering Service", description: "South Indian meals for hostels.", icon: "coffee" },
+                    { title: "Terrace Garden Consultant", description: "Helping set up green roofs.", icon: "sun" }
+                ]
+            }
         ]
     },
     {
@@ -481,6 +1193,38 @@ export const cityTrends: CityTrend[] = [
             { title: "Port Terminal OS", description: "Managing movement of goods within the harbor.", icon: "building" },
             { title: "Beach Tourism Apps", description: "Guides and booking for coastal experiences.", icon: "sun" },
             { title: "Naval Defense Tech", description: "Secure communications software for defense partners.", icon: "shield" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Port & Fintech",
+                description: "Leveraging the coast and code.",
+                ideas: [
+                    { title: "Container Tracking", description: "Live updates for logistics.", icon: "globe" },
+                    { title: "Fintech Sandbox", description: "Testing new payment apps.", icon: "code" },
+                    { title: "Fisheries Supply Chain", description: "Cold storage for exports.", icon: "anchor" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Marine & Tech",
+                description: "Careers in the blue economy.",
+                ideas: [
+                    { title: "Marine Biology App", description: "Identifying local fish species.", icon: "search" },
+                    { title: "Beach Sports Booking", description: "Volleyball/Surfing slots.", icon: "sun" },
+                    { title: "Defense Exam Prep", description: "Navy recruitment coaching.", icon: "shield" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Sea & Wellness",
+                description: "Coastal lifestyle business.",
+                ideas: [
+                    { title: "Seafood Restaurant App", description: "Delivery of fresh catches.", icon: "coffee" },
+                    { title: "Wellness Retreat", description: "Yoga by the beach bookings.", icon: "heart" },
+                    { title: "Pearl Jewelry Store", description: "Selling local pearls online.", icon: "gem" }
+                ]
+            }
         ]
     },
     {
@@ -501,6 +1245,38 @@ export const cityTrends: CityTrend[] = [
             { title: "EV Fleet Charging Ops", description: "Managing charging schedules for electric trucks.", icon: "cpu" },
             { title: "Multi-Modal Logistics", description: "Syncing rail and road transport data.", icon: "code" },
             { title: "Driver Safety App", description: "Monitoring fatigue and secure driving practices.", icon: "shield" }
+        ],
+        segments: [
+            {
+                audience: "Business Owners",
+                title: "Logistics Hub",
+                description: "Zero Mile connectivity solutions.",
+                ideas: [
+                    { title: "Transport Mgmt (TMS)", description: "Route planning for trucks.", icon: "map" },
+                    { title: "Orange Export Chain", description: "Quality check for exports.", icon: "check-circle" },
+                    { title: "Warehouse Space Finder", description: "Leasing helps.", icon: "home" }
+                ]
+            },
+            {
+                audience: "Students & Grads",
+                title: "Agri & Transport",
+                description: "Modernizing traditional sectors.",
+                ideas: [
+                    { title: "Agri Drone Service", description: "Spraying and monitoring crops.", icon: "send" },
+                    { title: "Transport Logistics App", description: "Driver communication tool.", icon: "message-circle" },
+                    { title: "Railway Exam Prep", description: "Coaching for railway jobs.", icon: "book" }
+                ]
+            },
+            {
+                audience: "Women Entrepreneurs",
+                title: "Food Processing",
+                description: "Value addition to local produce.",
+                ideas: [
+                    { title: "Fruit Processing Unit", description: "Making juices/jams.", icon: "heart" },
+                    { title: "Organic Jam Brand", description: "D2C sales of orange marmalade.", icon: "shopping-cart" },
+                    { title: "Tution Center Mgmt", description: "Managing classes at home.", icon: "edit" }
+                ]
+            }
         ]
     }
 ];
