@@ -87,7 +87,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
     ];
 
     return (
-        <div className="pt-16 md:pt-24 min-h-screen bg-background text-foreground overflow-x-hidden">
+        <div className="pt-36 min-h-screen bg-background text-foreground overflow-x-hidden">
             {/* Hero Section */}
             <section className="relative py-12 md:py-24 lg:py-32 overflow-hidden px-4 md:px-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
@@ -141,7 +141,10 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                                             </div>
                                             <div>
                                                 <h3 className="font-bold text-sm md:text-base tracking-wide uppercase text-muted-foreground">Wazuh Dashboard</h3>
-                                                <p className="text-xs font-mono text-green-400">● System Operational</p>
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                                                    <p className="text-xs font-mono text-green-400">System Operational</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="text-right hidden sm:block">

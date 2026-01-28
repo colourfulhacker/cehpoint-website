@@ -1,7 +1,8 @@
 import { Link, useLocation } from "wouter";
 import { useState, useRef, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
 
 interface NavItem {
   name: string;
@@ -122,12 +123,12 @@ export default function Navbar() {
         Skip to main content
       </a>
 
-      <nav className="fixed top-10 w-full z-40 glass" data-testid="navbar" role="navigation" aria-label="Main navigation">
+      <nav className="fixed top-14 left-0 right-0 mx-auto w-[95%] max-w-7xl z-50 glass rounded-full px-2 shadow-2xl transition-all duration-300 border border-white/10" data-testid="navbar" role="navigation" aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Link href="/" data-testid="logo-link" aria-label="Cehpoint Home">
-                <div className="font-display font-bold text-2xl text-gradient hover:scale-105 transition-transform cursor-pointer">
+                <div className="font-display font-bold text-xl sm:text-2xl text-gradient hover:scale-105 transition-transform cursor-pointer">
                   Cehpoint
                 </div>
               </Link>
@@ -224,19 +225,25 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="flex items-center space-x-4">
-              <Link href="/quotation">
-                <Button
-                  className="btn-primary hover-glow magnetic-hover px-6 py-3 rounded-xl text-primary-foreground font-bold"
-                  data-testid="cta-get-quote"
-                  aria-label="Get AI Quote - Request a proposal"
-                >
-                  🚀 Get AI Quote
-                </Button>
-              </Link>
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <WhatsAppInquiryDialog
+                appName="Global Navbar"
+                locationName="Navbar"
+                title="Get AI Quote"
+                trigger={
+                  <Button
+                    className="btn-primary hover-glow magnetic-hover px-3 sm:px-6 py-2 sm:py-3 rounded-xl text-primary-foreground font-bold text-sm sm:text-base"
+                    data-testid="cta-get-quote"
+                    aria-label="Get AI Quote - Request a proposal"
+                  >
+                    <Bot className="w-5 h-5 sm:mr-2" />
+                    <span className="hidden sm:inline">Get AI Quote</span>
+                  </Button>
+                }
+              />
 
               <button
-                className="lg:hidden text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md p-2"
+                className="lg:hidden text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md p-1 sm:p-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}

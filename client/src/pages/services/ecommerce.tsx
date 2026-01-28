@@ -1,4 +1,4 @@
-import { ShoppingCart, CreditCard, BarChart3, Shield, Smartphone, Globe, Star, TrendingUp, Users, Award, CheckCircle2, Clock, ArrowRight, Package } from "lucide-react";
+import { ShoppingCart, CreditCard, BarChart3, Shield, Smartphone, Globe, Star, TrendingUp, Users, Award, CheckCircle2, Clock, ArrowRight, Package, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
@@ -60,7 +60,7 @@ export default function EcommerceService() {
   ];
 
   return (
-    <div className="pt-24 min-h-screen" data-testid="ecommerce-service-page">
+    <div className="pt-36 min-h-screen" data-testid="ecommerce-service-page">
       <SEO
         title="E-commerce Solutions"
         description="Build scalable, conversion-optimized e-commerce platforms with PCI-DSS compliance, advanced fraud detection, and multi-channel integration. Drive revenue and customer satisfaction."
@@ -343,23 +343,23 @@ export default function EcommerceService() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span>Two-Factor Authentication</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Data Encryption at Rest</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Regular Security Audits</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>WAF Protection</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>DDoS Mitigation</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
               </div>
             </div>

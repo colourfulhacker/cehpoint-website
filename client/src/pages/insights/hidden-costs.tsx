@@ -1,7 +1,7 @@
 
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { DollarSign, ArrowLeft, BarChart3 } from "lucide-react";
+import { DollarSign, ArrowLeft, BarChart3, MessageCircle } from "lucide-react";
 import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 
@@ -39,7 +39,8 @@ export default function HiddenCostsArticle() {
                     </div>
                 </motion.div>
 
-                <article className="prose prose-lg dark:prose-invert max-w-none text-foreground">
+                <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
+                    <img src="/assets/blog/cyber-hero-generic.png" alt="Hidden Costs of Cheap Security" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
                     <p className="lead text-xl text-foreground/90 font-medium mb-8 italic border-l-4 border-red-500 pl-4">
                         "We saved ₹50 Lakhs on the contract. We lost ₹5 Crores in the breach."
                     </p>
@@ -59,8 +60,8 @@ export default function HiddenCostsArticle() {
                             <thead>
                                 <tr className="bg-muted border-b">
                                     <th scope="col" className="p-4 font-bold text-foreground">Feature</th>
-                                    <th scope="col" className="p-4 font-bold text-red-700 dark:text-red-400">Vendor B (The Cheap Option)</th>
-                                    <th scope="col" className="p-4 font-bold text-green-700 dark:text-green-400">Cehpoint Standard</th>
+                                    <th scope="col" className="p-4 font-bold text-red-400">Vendor B (The Cheap Option)</th>
+                                    <th scope="col" className="p-4 font-bold text-green-400">Cehpoint Standard</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-border">
@@ -94,8 +95,8 @@ export default function HiddenCostsArticle() {
                         <li><strong>Reputation Damage:</strong> Immeasurable</li>
                     </ul>
 
-                    <div className="my-12 p-8 bg-green-50/10 border border-green-200/20 rounded-2xl">
-                        <h3 className="text-2xl font-bold mb-4 flex items-center text-green-700 dark:text-green-400">
+                    <div className="my-12 p-8 bg-green-900/20 border border-green-200/20 rounded-2xl">
+                        <h3 className="text-2xl font-bold mb-4 flex items-center text-green-400">
                             <DollarSign className="w-6 h-6 mr-3" aria-hidden="true" />
                             The ROI of Competence
                         </h3>
@@ -113,9 +114,15 @@ export default function HiddenCostsArticle() {
                     className="mt-16 text-center"
                 >
                     <h2 className="text-2xl font-bold mb-6 text-foreground">Stop Gambling with Your Data</h2>
-                    <Link href="/quotation" className="inline-flex items-center justify-center rounded-md text-lg font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8">
-                        Get a Serious Quote
-                    </Link>
+                    <a
+                        href="https://wa.me/919091156095?text=Hi%20Cehpoint%20team%2C%20I%20read%20your%20case%20study%20on%20the%20'Price%20of%20Cheap%20Security'%20and%20I%20would%20like%20to%20request%20a%20technical%20audit%20and%20quote%20for%20my%20organization."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center rounded-md text-lg font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#25D366] text-white hover:bg-[#128C7E] h-12 px-8 shadow-lg transform hover:scale-105 duration-200"
+                    >
+                        <MessageCircle className="w-5 h-5 mr-2" />
+                        Chat on WhatsApp
+                    </a>
                 </motion.div>
 
             </div>

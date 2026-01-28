@@ -8,7 +8,7 @@ export default function InvestigationLegal() {
                 title="Legal, Confidentiality & Compliance | Cehpoint"
                 description="Our legal adherence, confidentiality guarantees, and compliance standards for digital forensics."
             />
-            <section className="pt-32 pb-20 max-w-4xl mx-auto px-4">
+            <section className="pt-36 pb-20 max-w-4xl mx-auto px-4">
                 <h1 className="text-4xl font-display font-bold mb-12">Legal & Compliance</h1>
 
                 <div className="space-y-12 text-muted-foreground leading-relaxed">

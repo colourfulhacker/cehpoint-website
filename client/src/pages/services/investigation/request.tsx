@@ -9,7 +9,7 @@ export default function InvestigationRequest() {
                 title="Secure Investigation Request | Cehpoint"
                 description="Secure intake form for initiating confidential cyber crime investigations."
             />
-            <section className="pt-32 pb-20 max-w-7xl mx-auto px-4">
+            <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-display font-bold mb-6">Open A Secure Inquiry</h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

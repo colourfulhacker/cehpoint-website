@@ -15,9 +15,9 @@ import {
     Store, Truck, Utensils, Car, Wrench, GraduationCap, Shirt, Smartphone,
     Home, Gift, Briefcase, Camera, Music, Video, Gamepad2, Coffee, Plane,
     Hammer, Stethoscope, Pill, Ticket, Map, Palette, Code, Cpu, Database,
-    Cloud, Wifi, Landmark, Briefcase as WorkIcon, Gem, Crown, Rocket, Sparkles,
+    Cloud, Wifi, Landmark, Briefcase as WorkIcon, Gem, Crown, Rocket,
     Fish, Carrot, Milk, Warehouse, Armchair, MonitorPlay, HeartHandshake, Newspaper, Copy,
-    ChevronDown, HelpCircle, Star
+    ChevronDown, HelpCircle, Star, Lightbulb, SprayCan, Sun
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -160,7 +160,7 @@ const getIconForApp = (title: string, category: string) => {
     if (text.includes("repair") || text.includes("ac") || text.includes("service")) return <Wrench className="w-6 h-6 text-white" />;
     if (text.includes("electric")) return <Zap className="w-6 h-6 text-white" />;
     if (text.includes("paint") || text.includes("decor")) return <Palette className="w-6 h-6 text-white" />;
-    if (text.includes("clean") || text.includes("pest")) return <Sparkles className="w-6 h-6 text-white" />;
+    if (text.includes("clean") || text.includes("pest")) return <SprayCan className="w-6 h-6 text-white" />;
     if (text.includes("plumb")) return <Hammer className="w-6 h-6 text-white" />;
 
     if (text.includes("tuition") || text.includes("coaching") || text.includes("school")) return <GraduationCap className="w-6 h-6 text-white" />;
@@ -176,13 +176,13 @@ const getIconForApp = (title: string, category: string) => {
 
     if (text.includes("job")) return <Briefcase className="w-6 h-6 text-white" />;
     if (text.includes("real estate") || text.includes("property")) return <Building2 className="w-6 h-6 text-white" />;
-    if (text.includes("astrology") || text.includes("temple")) return <Sparkles className="w-6 h-6 text-white" />;
+    if (text.includes("astrology") || text.includes("temple")) return <Sun className="w-6 h-6 text-white" />;
     if (text.includes("event") || text.includes("wedding")) return <HeartHandshake className="w-6 h-6 text-white" />;
     if (text.includes("news")) return <Newspaper className="w-6 h-6 text-white" />;
     if (text.includes("travel") || text.includes("tour")) return <Plane className="w-6 h-6 text-white" />;
     if (text.includes("influencer")) return <Camera className="w-6 h-6 text-white" />;
 
-    return <Rocket className="w-6 h-6 text-white" />; // Default
+    return <Layers className="w-6 h-6 text-white" />; // Default
 };
 
 const AppIconBox = ({ id, title, category }: { id: number, title: string, category: string }) => {
@@ -879,7 +879,7 @@ ${app.features.join(", ")}`.trim();
                         {app.businessIdea && (
                             <div className="bg-primary/5 p-4 rounded-lg space-y-2 border border-primary/10">
                                 <h4 className="font-semibold flex items-center gap-2 text-primary">
-                                    <Sparkles className="w-4 h-4" /> Business Opportunity
+                                    <Lightbulb className="w-4 h-4" /> Business Opportunity
                                 </h4>
                                 <p className="text-sm text-foreground/90 leading-relaxed italic">
                                     "{app.businessIdea}"

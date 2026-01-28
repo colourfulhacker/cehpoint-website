@@ -9,7 +9,7 @@ export default function InvestigationMethodology() {
                 title="Investigation Methodology & Standards | Cehpoint"
                 description="Our rigorous investigation framework, digital forensics standards, and intelligence correlation methodologies."
             />
-            <section className="pt-32 pb-20 max-w-7xl mx-auto px-4">
+            <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl font-display font-bold mb-6">Methodology & Standards</h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

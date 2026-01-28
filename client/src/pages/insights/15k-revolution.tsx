@@ -39,7 +39,8 @@ export default function StartupRevolutionArticle() {
                     </div>
                 </motion.div>
 
-                <article className="prose prose-lg dark:prose-invert max-w-none text-foreground">
+                <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
+                    <img src="/assets/blog/business-hero-generic.png" alt="Startup Cost Comparison" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         They told you business is expensive. They told you that you need an MBA. They told you that you need investors. They lied.
                     </p>

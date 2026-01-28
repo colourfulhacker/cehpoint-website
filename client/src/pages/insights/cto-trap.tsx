@@ -39,7 +39,8 @@ export default function CTOTrapArticle() {
                     </div>
                 </motion.div>
 
-                <article className="prose prose-lg dark:prose-invert max-w-none text-foreground">
+                <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
+                    <img src="/assets/blog/business-hero-generic.png" alt="CTO Trap Diagram" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         "I have the idea, I just need someone to build it." This sentence has killed more startups than bad economy. You usually find a "CTO", give them 30-50% equity, and 6 months later, you have no product and a co-founder dispute.
                     </p>

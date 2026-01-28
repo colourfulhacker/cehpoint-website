@@ -39,7 +39,8 @@ export default function HyperlocalFutureArticle() {
                     </div>
                 </motion.div>
 
-                <article className="prose prose-lg dark:prose-invert max-w-none text-foreground">
+                <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
+                    <img src="/assets/blog/hyperlocal-hero.png" alt="Hyperlocal Delivery Service" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         Trying to build the "Next Amazon" is a suicide mission. You cannot compete with their logistics. You cannot compete with their pricing. But you can beat them where they are weakest: <span className="text-primary font-bold">Time.</span>
                     </p>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles, Clock, ArrowRight, Bot } from "lucide-react";
+import { X, Clock, ArrowRight, Bot, Radio } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function AIInterviewPopup() {
@@ -67,7 +67,7 @@ export default function AIInterviewPopup() {
                                         </div>
                                         <div>
                                             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-2">
-                                                <Sparkles className="w-3 h-3" />
+                                                <Radio className="w-3 h-3 animate-pulse" />
                                                 Live Now
                                             </div>
                                             <h3 className="text-2xl font-display font-bold leading-tight">

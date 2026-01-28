@@ -100,12 +100,16 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="relative bg-secondary/50 border-t border-border overflow-hidden" data-testid="footer">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 pointer-events-none" />
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-primary/3 rounded-full blur-2xl pointer-events-none" />
+    <footer className="relative border-t border-white/10 overflow-hidden" data-testid="footer">
+      <div className="absolute inset-0 bg-[#020010] z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(112,66,248,0.1),transparent_50%)] z-0" />
+      <div className="absolute bottom-0 left-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute top-0 right-[-10%] w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none animate-pulse-slow" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 z-0"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand Column */}
           <div className="space-y-6">
@@ -233,6 +237,108 @@ export default function Footer() {
                       <p className="opacity-80 font-mono text-xs">{item.name}</p>
                     </div>
                   </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* City Navigation Links */}
+        <div className="mt-16 pt-12 border-t border-border/50 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          {/* International */}
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <h4 className="font-semibold text-lg text-foreground">International</h4>
+              <div className="w-8 h-1 bg-primary/50 rounded-full" />
+            </div>
+            <ul className="space-y-2">
+              {[
+                { name: "New York", href: "/location/new-york" },
+                { name: "London", href: "/location/london" },
+                { name: "Dubai (UAE)", href: "/location/dubai" },
+                { name: "Munich (Germany)", href: "/location/munich" },
+                { name: "Sydney (Australia)", href: "/location/sydney" },
+                { name: "Calgary (Canada)", href: "/location/calgary" },
+              ].map(city => (
+                <li key={city.name}>
+                  <Link href={city.href} className="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1.5 h-1.5 bg-primary/40 rounded-full mr-2 group-hover:bg-primary group-hover:scale-125 transition-all" />
+                    {city.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* India 1 */}
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <h4 className="font-semibold text-lg text-foreground">India (Metro)</h4>
+              <div className="w-8 h-1 bg-primary/50 rounded-full" />
+            </div>
+            <ul className="space-y-2">
+              {[
+                { name: "Mumbai", href: "/location/mumbai" },
+                { name: "Delhi NCR", href: "/location/delhi" },
+                { name: "Bangalore", href: "/location/bangalore" },
+                { name: "Hyderabad", href: "/location/hyderabad" },
+                { name: "Chennai", href: "/location/chennai" },
+                { name: "Kolkata", href: "/location/kolkata" },
+              ].map(city => (
+                <li key={city.name}>
+                  <Link href={city.href} className="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1.5 h-1.5 bg-primary/40 rounded-full mr-2 group-hover:bg-primary group-hover:scale-125 transition-all" />
+                    {city.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* India 2 */}
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <h4 className="font-semibold text-lg text-foreground">India (Tech Hubs)</h4>
+              <div className="w-8 h-1 bg-primary/50 rounded-full" />
+            </div>
+            <ul className="space-y-2">
+              {[
+                { name: "Pune", href: "/location/pune" },
+                { name: "Ahmedabad", href: "/location/ahmedabad" },
+                { name: "Jaipur", href: "/location/jaipur" },
+                { name: "Indore", href: "/location/indore" },
+                { name: "Kochi", href: "/location/kochi" },
+                { name: "Chandigarh", href: "/location/chandigarh" },
+              ].map(city => (
+                <li key={city.name}>
+                  <Link href={city.href} className="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1.5 h-1.5 bg-primary/40 rounded-full mr-2 group-hover:bg-primary group-hover:scale-125 transition-all" />
+                    {city.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* India 3 - Emerging */}
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <h4 className="font-semibold text-lg text-foreground">India (Emerging)</h4>
+              <div className="w-8 h-1 bg-primary/50 rounded-full" />
+            </div>
+            <ul className="space-y-2">
+              {[
+                { name: "Lucknow", href: "/location/lucknow" },
+                { name: "Bhubaneswar", href: "/location/bhubaneswar" },
+                { name: "Coimbatore", href: "/location/coimbatore" },
+                { name: "Visakhapatnam", href: "/location/visakhapatnam" },
+                { name: "Nagpur", href: "/location/nagpur" },
+                { name: "Bolpur (HQ)", href: "/location/bolpur" },
+              ].map(city => (
+                <li key={city.name}>
+                  <Link href={city.href} className="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center group">
+                    <span className="w-1.5 h-1.5 bg-primary/40 rounded-full mr-2 group-hover:bg-primary group-hover:scale-125 transition-all" />
+                    {city.name}
+                  </Link>
                 </li>
               ))}
             </ul>

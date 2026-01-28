@@ -34,7 +34,7 @@ export default function InvestigationLanding() {
             />
 
             {/* Hero */}
-            <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-32 pb-16">
+            <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-36 pb-16">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/50" />
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/20 via-background/0 to-background/0" />

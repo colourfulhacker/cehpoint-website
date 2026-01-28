@@ -43,7 +43,8 @@ export default function EthicalStandardsArticle() {
                 </motion.div>
 
                 {/* Article Body */}
-                <article className="prose prose-lg dark:prose-invert max-w-none text-foreground">
+                <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
+                    <img src="/assets/blog/cyber-hero-generic.png" alt="Ethical Investigation Standards" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         In the shadows of the digital world, a silent crisis is brewing. Businesses, desperate for answers after a cyber breach or fraud, are turning to the "fastest" and "cheapest" providers. But what they are buying isn't a solution—it's often a legal time bomb.
                     </p>

@@ -39,7 +39,8 @@ export default function HRForensicsArticle() {
                     </div>
                 </motion.div>
 
-                <article className="prose prose-lg dark:prose-invert max-w-none text-foreground">
+                <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
+                    <img src="/assets/blog/cyber-hero-generic.png" alt="HR Forensics" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         You build firewalls to keep hackers out. But what about the person sitting in your office with legitimate access to your entire client list? The most dangerous hacker is the disgruntled employee.
                     </p>

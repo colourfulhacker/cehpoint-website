@@ -9,7 +9,7 @@ export default function InvestigationClients() {
                 title="Who We Serve - Investigation Clients | Cehpoint"
                 description="Specialized cyber investigation services for Corporates, Government, Law Firms, and Individuals."
             />
-            <section className="pt-32 pb-20 max-w-7xl mx-auto px-4">
+            <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl font-display font-bold mb-6">Who We Serve</h1>
                     <p className="text-xl text-muted-foreground">

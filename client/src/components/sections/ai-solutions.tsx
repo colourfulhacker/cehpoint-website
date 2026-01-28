@@ -89,7 +89,7 @@ export default function AISolutions() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20 animate-fade-up">
           <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-6">
-            <span className="text-sm font-medium text-accent">🤖 Powered by Gemini AI</span>
+            <span className="text-sm font-medium text-accent">🤖 Powered by Enterprise AI</span>
           </div>
           <h2
             className="font-display font-bold text-4xl md:text-7xl mb-8 tracking-tight"

@@ -2,12 +2,34 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, ArrowRight, ShieldAlert, Lock, Eye, Clock, MapPin, TrendingUp, Coins, Rocket, Store, UserX, UserCheck } from "lucide-react";
+import { Calendar, ArrowRight, ShieldAlert, Lock, Eye, Clock, MapPin, TrendingUp, Coins, Rocket, Store, UserX, UserCheck, GraduationCap, ShoppingBag, Wrench } from "lucide-react";
 import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 
 export default function Insights() {
     const articles = [
+        {
+            id: "cyber-security-myths",
+            title: "5 Cyber Security Myths That Will Bankrupt Your Business",
+            excerpt: "Stop believing that you are 'too small to target'. We debunk the 5 most dangerous myths leaving your business exposed.",
+            date: "October 31, 2025",
+            author: "Security Team",
+            category: "Security Awareness",
+            readTime: "5 min read",
+            slug: "/insights/cyber-security-myths",
+            icon: ShieldAlert
+        },
+        {
+            id: "digital-forensics-roi",
+            title: "The ROI of Digital Forensics: Why It's an Investment, Not an Expense",
+            excerpt: "Most companies treat digital forensics as a clean-up crew. Smart leaders use it as a proactive shield that pays for itself. 100x ROI explained.",
+            date: "October 30, 2025",
+            author: "Business Strategy",
+            category: "Business Strategy",
+            readTime: "5 min read",
+            slug: "/insights/digital-forensics-roi",
+            icon: TrendingUp
+        },
         {
             id: "cto-trap",
             title: "The CTO Trap: Why Hiring a Technical Co-Founder is a Liability",
@@ -117,6 +139,39 @@ export default function Insights() {
             readTime: "6 min read",
             slug: "/insights/hidden-costs",
             icon: Eye
+        },
+        {
+            id: "gig-economy-upgrade",
+            title: "The Gig Economy Upgrade: Professionalizing Home Services",
+            excerpt: "Turn chaotic home services into a professional empire. Discover how to organize electricians, plumbers, and cleaners with a simple app.",
+            date: "November 2, 2025",
+            author: "Service Industry Lead",
+            category: "Service Industry",
+            readTime: "5 min read",
+            slug: "/insights/gig-economy-upgrade",
+            icon: Wrench
+        },
+        {
+            id: "edtech-evolution",
+            title: "EdTech 2.0: Moving Beyond the Classroom",
+            excerpt: "Local coaching centers are dying. Digital academies are thriving. Learn how to transform your teaching skill into a scalable global business.",
+            date: "November 5, 2025",
+            author: "EdTech Strategist",
+            category: "Education Technology",
+            readTime: "5 min read",
+            slug: "/insights/edtech-evolution",
+            icon: GraduationCap
+        },
+        {
+            id: "fashion-tech-revolution",
+            title: "From Home Boutique to Global Brand: The Digital Fashion Wave",
+            excerpt: "Turn your small boutique into a national brand. Discover how local fashion sellers are using apps to beat algorithms and build loyal communities.",
+            date: "November 8, 2025",
+            author: "Fashion Tech Expert",
+            category: "Direct to Consumer",
+            readTime: "5 min read",
+            slug: "/insights/fashion-tech-revolution",
+            icon: ShoppingBag
         }
     ];
 

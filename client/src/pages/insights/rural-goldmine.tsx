@@ -39,7 +39,8 @@ export default function RuralGoldmineArticle() {
                     </div>
                 </motion.div>
 
-                <article className="prose prose-lg dark:prose-invert max-w-none text-foreground">
+                <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
+                    <img src="/assets/blog/business-hero-generic.png" alt="Rural Market Opportunity" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         Everyone is looking at Bangalore and Mumbai. But the real money? It's sitting right in your village, your town, your district. While the giants fight for the 1%, the 99% of India is waiting for YOU.
                     </p>

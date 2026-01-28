@@ -63,7 +63,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)"],
+        sans: ["var(--font-body)", "var(--font-sans)"],
+        heading: ["var(--font-heading)"],
+        body: ["var(--font-body)"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
         display: ["var(--font-display)"],
@@ -113,6 +115,10 @@ export default {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        glow: {
+          "0%, 100%": { boxShadow: "0 0 10px -10px var(--primary)" },
+          "50%": { boxShadow: "0 0 20px 5px var(--primary)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -121,6 +127,8 @@ export default {
         "fade-in": "fadeIn 0.8s ease-out",
         "slide-in": "slideIn 0.5s ease-out",
         "float": "float 3s ease-in-out infinite",
+        "glow": "glow 2s ease-in-out infinite alternate",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },

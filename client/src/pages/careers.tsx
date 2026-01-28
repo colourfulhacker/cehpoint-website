@@ -26,10 +26,13 @@ import {
 import AIInterviewPopup from "@/components/careers/ai-interview-popup";
 import JobPostingSchema from "@/components/seo/job-posting-schema";
 
+import { TermsAndConditionsModal } from "@/components/careers/terms-modal";
+
 export default function Careers() {
   const fullTimeJobs = [
     {
       title: "Senior Cybersecurity Engineer",
+
       department: "Security",
       location: "Remote/Hybrid",
       salary: "₹60,000/month",
@@ -243,6 +246,12 @@ export default function Careers() {
               solutions. We offer competitive compensation, flexible work
               arrangements, and exceptional growth opportunities.
             </p>
+
+            {/* Policy Modal Trigger in Hero */}
+            <div className="flex justify-center mt-6">
+              <TermsAndConditionsModal triggerText="View our Hiring Policy & Terms" className="bg-background/20 backdrop-blur border-white/10 hover:bg-background/30" />
+            </div>
+
           </motion.div>
         </div>
       </section>
@@ -371,6 +380,87 @@ export default function Careers() {
           </motion.div>
         </div>
       </section>
+      {/* Verified Project Work Section */}
+      <section className="py-20 bg-primary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Verified Project Work
+            </h2>
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-8">
+              Don't need a job but want verified project work? We've got you covered.
+            </p>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Card className="hover:shadow-lg transition-shadow border-primary/20 bg-background/50 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-center md:text-left">Freelance & Project-Based Opportunities</CardTitle>
+                  <CardDescription className="text-lg text-center md:text-left">
+                    Access a curated stream of vetted projects without key hassles.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="grid md:grid-cols-2 gap-8 items-center">
+                  <div className="space-y-6">
+                    <ul className="space-y-4">
+                      <li className="flex items-start">
+                        <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-4 flex-shrink-0">
+                          <CheckCircle2 className="w-5 h-5 text-green-500" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-lg">Weekly Payouts</h4>
+                          <p className="text-muted-foreground">Get paid on time, every week.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center mr-4 flex-shrink-0">
+                          <Shield className="w-5 h-5 text-blue-500" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-lg">No Client Chasing</h4>
+                          <p className="text-muted-foreground">We handle the clients and the scope.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-8 h-8 rounded-full bg-purple-500/10 flex items-center justify-center mr-4 flex-shrink-0">
+                          <Code className="w-5 h-5 text-purple-500" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-lg">Focus on Work</h4>
+                          <p className="text-muted-foreground">You build. We manage payments and logistics.</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="text-center md:text-right space-y-4">
+                    <p className="text-lg font-medium text-foreground/90 italic">
+                      "We will handle the clients, the scope, and the payments—so you can focus on the work."
+                    </p>
+                    <Button size="lg" asChild className="w-full md:w-auto text-lg py-6 font-bold shadow-lg shadow-primary/20">
+                      <a href="https://works.cehpoint.co.in/" target="_blank" rel="noopener noreferrer">
+                        Explore Verified Projects <ExternalLink className="ml-2 w-5 h-5" />
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Internship Opportunities */}
       <section className="py-20 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -516,138 +606,88 @@ export default function Careers() {
         </div>
       </section>
 
-
-      {/* The Brutal Truth Section */}
-      <section className="py-24 bg-red-50 dark:bg-red-950/10 border-t border-red-100 dark:border-red-900/30 overflow-hidden relative">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center justify-center p-4 bg-red-100 dark:bg-red-900/30 rounded-full mb-6">
-              <AlertTriangle className="w-12 h-12 text-red-600 dark:text-red-500" />
-            </div>
-
-            <h2 className="text-3xl md:text-5xl font-black mb-6 text-red-700 dark:text-red-500 uppercase tracking-tight">
-              We Are a “Bad Company”
-            </h2>
-            <h3 className="text-xl md:text-2xl font-bold mb-8 text-foreground/80">
-              For Anyone Who Puts Our Clients at Risk
-            </h3>
-
-            <div className="max-w-3xl mx-auto text-lg leading-relaxed text-foreground/70 space-y-4">
-              <p className="font-medium text-foreground">
-                We would like to be very clear and very honest.
-              </p>
-              <p>
-                We win clients through hard work, long sales cycles, trust, and delivery promises.
-                <br className="hidden md:block" />
-                <span className="font-bold text-red-600 dark:text-red-400"> Not shortcuts. Not cheating. Not fake skills.</span>
-              </p>
-              <p className="font-semibold text-lg pt-2">So yes, we openly admit:</p>
-            </div>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-background rounded-2xl p-8 shadow-xl border-t-4 border-red-500 hover:shadow-2xl transition-all"
-            >
-              <h4 className="text-xl font-bold mb-6 flex items-center text-red-600 dark:text-red-500">
-                <Ban className="w-6 h-6 mr-3 flex-shrink-0" />
-                We will choose to be bad to you if:
-              </h4>
-              <ul className="space-y-4">
-                {[
-                  "You cheat during interviews or bypass AI screening using external help",
-                  "You pass assessments unethically and misrepresent your capability",
-                  "You accept client-facing work without the skill or seriousness to deliver",
-                  "You respond to deadlines with excuses instead of outcomes",
-                  "You compromise quality that directly affects our clients"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start group">
-                    <XCircle className="w-5 h-5 mr-3 text-red-400 mt-0.5 flex-shrink-0 group-hover:text-red-600 transition-colors" />
-                    <span className="text-foreground/80">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="bg-background rounded-2xl p-8 shadow-xl border-t-4 border-slate-600 hover:shadow-2xl transition-all"
-            >
-              <h4 className="text-xl font-bold mb-6 flex items-center text-foreground">
-                <Shield className="w-6 h-6 mr-3 flex-shrink-0" />
-                If any of the above happens, we will:
-              </h4>
-              <ul className="space-y-4">
-                {[
-                  "Decline or reduce payments",
-                  "Cancel internships or engagements",
-                  "Withdraw benefits and certificates",
-                  "Protect our clients first, always"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start group">
-                    <CheckCircle2 className="w-5 h-5 mr-3 text-slate-400 mt-0.5 flex-shrink-0 group-hover:text-slate-600 transition-colors" />
-                    <span className="text-foreground/80">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+      {/* Careers Structure & FAQ */}
+      <section className="py-20 bg-background relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Careers at Cehpoint – FAQ</h2>
+            <p className="text-lg text-foreground/70">Understanding our structured journey</p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-br from-red-50 to-slate-50 dark:from-red-950/20 dark:to-slate-900/20 rounded-3xl p-8 md:p-12 text-center border border-red-100 dark:border-red-900/30"
-          >
-            <div className="max-w-3xl mx-auto space-y-8">
-              <div>
-                <h4 className="text-xl font-semibold mb-6 text-foreground/70">And when that happens, the pattern is familiar:</h4>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {["Performance stops.", "Accountability disappears.", "Anonymous reviews appear."].map((text, i) => (
-                    <span key={i} className="bg-background px-4 py-2 rounded-lg shadow-sm border border-slate-200 dark:border-slate-800 font-mono text-red-600 dark:text-red-400 text-sm font-medium">
-                      {text}
-                    </span>
-                  ))}
+          <div className="space-y-8">
+            {/* Q1 */}
+            <Card className="border-l-4 border-l-primary shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-xl">1. What is the structure of internships and full-time hiring at Cehpoint?</CardTitle>
+              </CardHeader>
+              <CardContent className="text-foreground/80 space-y-4">
+                <p className="font-medium">Cehpoint follows a six-month structured journey:</p>
+                <ul className="space-y-3">
+                  <li className="flex items-center p-3 bg-secondary/5 rounded-lg border border-secondary/10">
+                    <Clock className="w-5 h-5 mr-3 text-primary flex-shrink-0" />
+                    <span><span className="font-bold text-primary">First 2 months:</span> Mandatory Internship</span>
+                  </li>
+                  <li className="flex items-center p-3 bg-secondary/5 rounded-lg border border-secondary/10">
+                    <Code className="w-5 h-5 mr-3 text-primary flex-shrink-0" />
+                    <span><span className="font-bold text-primary">Next 4 months:</span> Mandatory Skill & Project-Based Training</span>
+                  </li>
+                </ul>
+                <p className="bg-secondary/10 p-4 rounded-lg border border-secondary/20 flex flex-col sm:flex-row gap-3 items-center text-center sm:text-left">
+                  <Target className="w-8 h-8 text-primary flex-shrink-0" />
+                  <span>
+                    Only after successful completion of both phases does a candidate become eligible for <span className="font-semibold text-primary">PPO consideration</span>.
+                    <br /><span className="text-sm italic opacity-70">Eligibility does not imply entitlement.</span>
+                  </span>
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Q2 */}
+            <Card className="border-l-4 border-l-red-500 shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-xl flex items-start gap-3">
+                  <span className="text-red-500 font-bold text-2xl">2.</span>
+                  Is the two-month internship mandatory, and what if someone leaves early?
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-foreground/80 space-y-6">
+                <p className="font-bold text-lg border-b border-border pb-2">Yes. The two-month internship is mandatory and non-negotiable.</p>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="bg-red-950/40 p-6 rounded-xl border border-red-500/30">
+                    <h4 className="font-bold text-red-400 mb-4 flex items-center border-b border-red-500/20 pb-2">
+                      <XCircle className="w-5 h-5 mr-2" /> If a candidate:
+                    </h4>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      <li className="flex items-start"><span className="w-1.5 h-1.5 bg-red-400 rounded-full mt-1.5 mr-2" /> Leaves before completing 2 months</li>
+                      <li className="flex items-start"><span className="w-1.5 h-1.5 bg-red-400 rounded-full mt-1.5 mr-2" /> Is terminated due to non-performance</li>
+                      <li className="flex items-start"><span className="w-1.5 h-1.5 bg-red-400 rounded-full mt-1.5 mr-2" /> Violates company policy</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                    <h4 className="font-bold text-white mb-4 flex items-center border-b border-white/10 pb-2">
+                      <Shield className="w-5 h-5 mr-2" /> Then Cehpoint reserves the right to:
+                    </h4>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      <li className="flex items-start"><Ban className="w-4 h-4 mr-2 mt-0.5 text-red-500 flex-shrink-0" /> Withhold internship certificate</li>
+                      <li className="flex items-start"><Ban className="w-4 h-4 mr-2 mt-0.5 text-red-500 flex-shrink-0" /> Deny experience letters or documents</li>
+                      <li className="flex items-start"><Ban className="w-4 h-4 mr-2 mt-0.5 text-red-500 flex-shrink-0" /> Refuse stipend (fully or partially)</li>
+                      <li className="flex items-start"><Ban className="w-4 h-4 mr-2 mt-0.5 text-red-500 flex-shrink-0" /> Prohibit public disclosure of association</li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-
-              <div className="h-px w-full bg-gradient-to-r from-transparent via-red-200 dark:via-red-800 to-transparent" />
-
-              <div className="space-y-4">
-                <h3 className="text-2xl md:text-3xl font-black uppercase text-foreground">
-                  Let us expose ourselves clearly:
-                </h3>
-                <p className="text-xl md:text-2xl font-bold text-red-600 dark:text-red-500">
-                  We are a bad company for people who endanger client trust.
+                <p className="text-center font-bold text-red-400 mt-2 uppercase tracking-widest text-sm bg-red-950/50 p-2 rounded-lg border border-red-500/20">
+                  No exceptions apply.
                 </p>
-                <p className="text-lg text-foreground/80 font-medium">
-                  We will not reward dishonesty, low effort, or unethical behavior.
-                  <br className="hidden sm:block" />
-                  We will not sacrifice client delivery to keep everyone “happy.”
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
+
+
+
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-primary/80">

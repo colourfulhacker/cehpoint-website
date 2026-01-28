@@ -4,7 +4,7 @@ import { Sparkles } from "lucide-react";
 import AIROICalculator from "@/components/calculators/ai-roi-calculator";
 import IndustryUseCaseExplorer from "@/components/sections/industry-use-cases";
 import AISolutionsSection from "@/components/sections/ai-solutions";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "lucide-react";
 import SEO from "@/components/seo";
 
 export default function AISolutions() {
@@ -59,7 +59,7 @@ export default function AISolutions() {
   });
 
   return (
-    <div className="pt-24 min-h-screen" data-testid="ai-solutions-page">
+    <div className="pt-36 min-h-screen" data-testid="ai-solutions-page">
       <SEO
         title="Enterprise AI Solutions & Consulting | Generative AI, ML, & Automation services in India"
         description="Transform your business with Cehpoint's AI solutions. We specialize in Generative AI, Computer Vision, Predictive Analytics, and Intelligent Process Automation for Indian enterprises."
@@ -74,7 +74,7 @@ export default function AISolutions() {
           <div className="animate-fade-up">
             <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-6 border-primary/20">
               <span className="text-sm font-medium text-primary flex items-center gap-2">
-                <Sparkles className="w-4 h-4" /> AI That Actually Works
+                <Badge className="w-4 h-4 mr-2" /> AI That Actually Works
               </span>
             </div>
 

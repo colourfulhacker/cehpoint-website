@@ -1,4 +1,4 @@
-import { BookOpen, Users, Award, Monitor, Brain, Globe, Star, TrendingUp, CheckCircle2, Clock, ArrowRight, GraduationCap } from "lucide-react";
+import { BookOpen, Users, Award, Monitor, Brain, Globe, Star, TrendingUp, CheckCircle2, Clock, ArrowRight, GraduationCap, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
@@ -60,7 +60,7 @@ export default function EdutechService() {
   ];
 
   return (
-    <div className="pt-24 min-h-screen" data-testid="edutech-service-page">
+    <div className="pt-36 min-h-screen" data-testid="edutech-service-page">
       <SEO
         title="Edutech Solutions"
         description="Transform education with cutting-edge learning platforms featuring AI-powered analytics, virtual classrooms, and personalized learning paths. WCAG 2.1 AA compliant and FERPA certified."
@@ -343,23 +343,23 @@ export default function EdutechService() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span>Adaptive Learning Paths</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Real-time Collaboration</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Advanced Analytics</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Mobile Learning Apps</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Gamification Elements</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
               </div>
             </div>

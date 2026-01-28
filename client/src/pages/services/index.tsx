@@ -85,7 +85,7 @@ export default function ServicesPage() {
     ];
 
     return (
-        <div className="pt-24 min-h-screen" data-testid="services-page">
+        <div className="pt-36 min-h-screen" data-testid="services-page">
             <SEO
                 title="Services"
                 description="Comprehensive IT services including custom software development, cybersecurity, e-commerce, edutech, fintech solutions, and enterprise software. Transform your business with cutting-edge technology."
@@ -225,6 +225,77 @@ export default function ServicesPage() {
                                 </motion.div>
                             );
                         })}
+                    </div>
+                </div>
+            </section>
+
+            {/* Global Trends 2026 Section */}
+            <section className="py-24 bg-gradient-to-r from-blue-900/10 to-purple-900/10 relative overflow-hidden">
+                <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02] bg-[size:40px_40px]" />
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 mb-4">
+                            <Globe className="w-4 h-4 text-primary mr-2" />
+                            <span className="text-sm font-medium text-primary">Global Strategic Trends 2026</span>
+                        </div>
+                        <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
+                            tailored for <span className="text-gradient">Your Region</span>
+                        </h2>
+                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                            Explore specialized IT and Cybersecurity strategies designed for key global markets.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {(() => {
+                            const regions = [
+                                { id: "us-ca", name: "United States & Canada", flag: "US | CA", desc: "AI Governance & Zero Trust", timezone: "America" },
+                                { id: "uk", name: "United Kingdom", flag: "UK", desc: "FinOps & MDR Security", timezone: "Europe/London" },
+                                { id: "de", name: "Germany", flag: "DE", desc: "Industry 4.0 & IoT Security", timezone: "Europe/Berlin" },
+                                { id: "au", name: "Australia", flag: "AU", desc: "SaaS Modernization & Cyber Resilience", timezone: "Australia" },
+                                { id: "ae", name: "UAE (Dubai)", flag: "UAE", desc: "Smart Cities & Blockchain", timezone: "Asia/Dubai" },
+                                { id: "in", name: "India", flag: "IND", desc: "AI-Native Dev & SOC Services", timezone: "Asia/Kolkata" }
+                            ];
+
+                            // Robust timezone prioritization
+                            const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+                            const sortedRegions = [...regions].sort((a, b) => {
+                                // Explicit check for India/Asia timezones
+                                const isUserIndia = userTimezone.includes("Asia/Kolkata") || userTimezone.includes("Asia/Calcutta") || userTimezone.includes("IST");
+
+                                if (isUserIndia) {
+                                    if (a.id === "in") return -1;
+                                    if (b.id === "in") return 1;
+                                }
+
+                                if (userTimezone.includes(a.timezone) && !userTimezone.includes(b.timezone)) return -1;
+                                if (!userTimezone.includes(a.timezone) && userTimezone.includes(b.timezone)) return 1;
+                                return 0;
+                            });
+
+                            return sortedRegions.map((region, index) => (
+                                <motion.div
+                                    key={region.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <Link href={`/services/global/${region.id}`}>
+                                        <div className={`glass p-6 rounded-2xl hover:bg-primary/5 transition-colors cursor-pointer border border-border/50 hover:border-primary/50 group h-full ${index === 0 ? 'ring-2 ring-primary/20 bg-primary/5' : ''}`}>
+                                            <div className="flex items-center justify-between mb-4">
+                                                <span className="text-4xl">{region.flag}</span>
+                                                {index === 0 && <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">NEAR YOU</span>}
+                                                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                                            </div>
+                                            <h3 className="font-bold text-xl mb-2 group-hover:text-primary transition-colors">{region.name}</h3>
+                                            <p className="text-sm text-muted-foreground">{region.desc}</p>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            ));
+                        })()}
                     </div>
                 </div>
             </section>

@@ -39,7 +39,8 @@ export default function Escape95Article() {
                     </div>
                 </motion.div>
 
-                <article className="prose prose-lg dark:prose-invert max-w-none text-foreground">
+                <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
+                    <img src="/assets/blog/business-hero-generic.png" alt="Asset vs Salary Mindset" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         You work 9 hours a day. You commute for 2. You get paid once a month. If you stop working, the money stops. That's not a career; that's a subscription to survival.
                     </p>

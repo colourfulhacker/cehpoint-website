@@ -111,10 +111,22 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
-// Initialize AI
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY || ""
-});
+// Initialize AI Lazy Loader
+let aiInstance: GoogleGenAI | null = null;
+function getAI() {
+  if (!aiInstance) {
+    try {
+      aiInstance = new GoogleGenAI({
+        apiKey: process.env.GEMINI_API_KEY || ""
+      });
+    } catch (error) {
+      console.warn("Failed to initialize GoogleGenAI:", error);
+      // We don't throw here, just return null, and handle it in the caller
+      return null;
+    }
+  }
+  return aiInstance;
+}
 
 // AI Consultation function
 async function generateAIConsultation(answers: ConsultationAnswers): Promise<CloudSolutionResponse> {
@@ -155,6 +167,10 @@ Important Factor: ${answers.importantFactor}
 Additional Context: ${answers.customQuestion || 'None provided'}
 
 Please provide a comprehensive cloud architecture recommendation in the specified JSON format with specific AWS and GCP service recommendations tailored to these requirements.`;
+
+    const ai = getAI();
+
+    if (!ai) throw new Error("AI client failed to initialize");
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
@@ -200,26 +216,26 @@ function generateFallbackConsultation(answers: ConsultationAnswers): CloudSoluti
   const goalMap: Record<string, string> = {
     "cost-savings": "cost optimization and efficient resource utilization",
     "scalability": "auto-scaling architecture with performance optimization",
-    "security": "security-first architecture with compliance controls",
-    "innovation": "AI/ML and analytics-driven solutions"
+    "security": "zero-trust security architecture with strict compliance controls",
+    "innovation": "cutting-edge AI/ML integration and data analytics"
   };
 
   const workloadMap: Record<string, { aws: string[], gcp: string[] }> = {
     "web-apps": {
-      aws: ["EC2", "ELB", "RDS", "CloudFront", "S3"],
-      gcp: ["Compute Engine", "Cloud Load Balancing", "Cloud SQL", "Cloud CDN", "Cloud Storage"]
+      aws: ["AWS Lambda (Serverless)", "Amazon ECS (Container Orchestration)", "Amazon Aurora (Database)", "Amazon CloudFront (CDN)", "AWS WAF (Security)"],
+      gcp: ["Google Cloud Run (Serverless)", "GKE (Kubernetes)", "Cloud SQL (Managed DB)", "Cloud CDN", "Cloud Armor (Security)"]
     },
     "databases": {
-      aws: ["RDS", "DynamoDB", "Redshift", "ElastiCache"],
-      gcp: ["Cloud SQL", "Firestore", "BigQuery", "Memorystore"]
+      aws: ["Amazon RDS for PostgreSQL", "Amazon DynamoDB (NoSQL)", "Amazon Redshift (Warehousing)", "Amazon ElastiCache (Caching)", "AWS Database Migration Service"],
+      gcp: ["Cloud SQL for PostgreSQL", "Firestore (NoSQL)", "BigQuery (Warehousing)", "Memorystore (Caching)", "Database Migration Service"]
     },
     "ai-ml": {
-      aws: ["SageMaker", "Bedrock", "Lambda", "S3", "EC2"],
-      gcp: ["Vertex AI", "AutoML", "Cloud Functions", "BigQuery ML", "Compute Engine"]
+      aws: ["Amazon SageMaker", "AWS Bedrock (Generative AI)", "AWS Lambda", "Amazon S3 Data Lake", "Amazon EC2 P4 Instances"],
+      gcp: ["Vertex AI Platform", "Google Kubernetes Engine (GKE) for ML", "Cloud Functions", "BigQuery ML", "Cloud TPUs"]
     },
     "devops": {
-      aws: ["CodePipeline", "CodeBuild", "ECS", "ECR", "CloudFormation"],
-      gcp: ["Cloud Build", "Cloud Deploy", "GKE", "Artifact Registry", "Cloud Deployment Manager"]
+      aws: ["AWS CodePipeline", "AWS CodeBuild", "Amazon EKS", "Amazon ECR", "AWS CloudFormation"],
+      gcp: ["Cloud Build", "Google Cloud Deploy", "Google Kubernetes Engine", "Artifact Registry", "Terraform on GCP"]
     }
   };
 
@@ -227,15 +243,15 @@ function generateFallbackConsultation(answers: ConsultationAnswers): CloudSoluti
   const goal = goalMap[answers.primaryGoal] || "balanced cloud architecture";
 
   return {
-    recommendation: `Based on your focus on ${goal} for ${answers.workloadType} workloads, I recommend a managed services approach that prioritizes ${answers.importantFactor}. This will provide the scalability and reliability you need while optimizing for your key priorities.`,
-    awsSolution: `For AWS, I recommend using ${services.aws.join(", ")} as your core services. This combination provides excellent ${goal} with AWS's mature ecosystem. Start with ${services.aws[0]} for compute, integrate ${services.aws[1]} for networking, and leverage ${services.aws[2]} for data persistence. This architecture scales automatically and provides enterprise-grade reliability.`,
-    gcpSolution: `For GCP, consider ${services.gcp.join(", ")} as your primary stack. Google Cloud excels in ${goal} with innovative managed services. Begin with ${services.gcp[0]} for your workloads, utilize ${services.gcp[1]} for distribution, and implement ${services.gcp[2]} for data management. GCP's AI/ML integration and competitive pricing make it ideal for modern applications.`,
+    recommendation: `Given your primary objective of ${goal} for ${answers.workloadType} workloads, a managed service architecture is highly recommended. This approach minimizes operational overhead while maximizing ${answers.importantFactor}, ensuring your team can focus on business logic rather than infrastructure maintenance.`,
+    awsSolution: `On AWS, construct a robust solution using ${services.aws[0]} and ${services.aws[1]} for your core compute needs. Leverage ${services.aws[2]} for reliable data storage. To align with your goal of ${goal}, integrate ${services.aws[3]} and ${services.aws[4]}. This combination offers a mature, scalable ecosystem perfect for your requirements.`,
+    gcpSolution: `For Google Cloud, utilizing ${services.gcp[0]} and ${services.gcp[1]} will provide the agility and scaling you need. ${services.gcp[2]} serves as a high-performance database layer. To specifically address ${answers.importantFactor}, incorporate ${services.gcp[3]} and ${services.gcp[4]}. GCP's strength in data and AI makes this a powerful stack for ${answers.workloadType}.`,
     nextSteps: [
-      "Conduct a detailed assessment of your current infrastructure and requirements",
-      "Set up a proof-of-concept environment in your preferred cloud platform",
-      "Design a migration strategy with phased rollout approach",
-      "Implement monitoring and cost optimization from day one",
-      "Establish security and compliance frameworks for your workloads"
+      `Perform a total cost of ownership (TCO) analysis for ${answers.workloadType} on both clouds.`,
+      "Develop a proof-of-concept (POC) using the recommended serverless/managed services.",
+      "Design a security framework incorporating the recommended security services.",
+      "Plan a phased migration or deployment strategy to minimize downtime.",
+      "Establish monitoring dashboards using CloudWatch (AWS) or Cloud Monitoring (GCP)."
     ]
   };
 }
@@ -300,6 +316,10 @@ Compliance Needs: ${request.complianceNeeds || 'Standard web application require
 Additional Context: ${request.additionalContext || 'None provided'}
 
 Please provide a comprehensive quotation analysis in the specified JSON format with realistic cost estimates, timeline projections, and detailed recommendations.`;
+
+    const ai = getAI();
+
+    if (!ai) throw new Error("AI client failed to initialize");
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
@@ -611,6 +631,10 @@ async function generateAIStrategy(data: { infrastructure: string; dataVolume: st
   Make it sound professional, forward-thinking, and tailored to the industry.`;
 
   try {
+    const ai = getAI();
+
+    if (!ai) throw new Error("AI client failed to initialize");
+
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       config: {
@@ -655,17 +679,37 @@ async function generateAIStrategy(data: { infrastructure: string; dataVolume: st
     }
   } catch (error) {
     console.error("Error generating strategy:", error);
-    // Fallback info
+
+    // Dynamic Fallback generation
+    const isCloud = data.infrastructure.toLowerCase().includes('cloud') || data.infrastructure.toLowerCase().includes('aws') || data.infrastructure.toLowerCase().includes('azure');
+    const isLargeData = data.dataVolume.toLowerCase().includes('tb') || data.dataVolume.toLowerCase().includes('petabytes');
+
     return {
-      executiveSummary: "Leverage standard AI adoption frameworks to optimize efficiency.",
-      roiProjection: "Estimated 20-30% operational cost reduction over 2 years.",
+      executiveSummary: `For the ${data.industry} sector, leveraging your current ${data.infrastructure} setup offers a prime opportunity to accelerate AI adoption. By capitalizing on ${isLargeData ? 'your substantial data assets' : 'efficient data processing'}, we can drive significant operational efficiencies and competitive advantage in 2026.`,
+      roiProjection: `Projected 180-220% ROI over 24 months through ${isCloud ? 'cloud-native AI scaling' : 'hybrid infrastructure optimization'} and automated decision-making workflows.`,
       roadmap: [
-        { phase: "Assessment", action: "Data readiness audit", timeline: "Month 1" },
-        { phase: "Pilot", action: "Proof of concept implementation", timeline: "Month 2-3" },
-        { phase: "Deployment", action: "Production rollout", timeline: "Month 4-6" }
+        {
+          phase: "Phase 1: Foundation",
+          action: `Audit ${data.infrastructure} readiness and establish data governance for ${data.dataVolume} datasets.`,
+          timeline: "Month 1-2"
+        },
+        {
+          phase: "Phase 2: Implementation",
+          action: `Deploy pilot AI models specifically tuned for ${data.industry} use cases and integrate with core systems.`,
+          timeline: "Month 3-6"
+        },
+        {
+          phase: "Phase 3: Scaling",
+          action: "Expand model deployment across business units and implement automated MLOps pipelines.",
+          timeline: "Month 7-12"
+        }
       ],
-      complianceChecklist: ["GDPR Compliance", "Data Privacy Impact Assessment"],
-      riskAssessment: "Data quality issues may delay model training."
+      complianceChecklist: [
+        `${data.industry} specific data privacy regulations`,
+        "Algorithmic Transparency & Fairness Standards",
+        "Enterprise Security & Access Control Audits"
+      ],
+      riskAssessment: `Primary risk: Data silos within ${data.infrastructure} preventing unified model training. Mitigation: Implement a federated data layer or centralized data lakehouse early in Phase 1.`
     };
   }
 }

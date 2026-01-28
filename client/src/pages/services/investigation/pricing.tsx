@@ -9,7 +9,7 @@ export default function InvestigationPricing() {
                 title="Investigation Pricing & Cost Estimator | Cehpoint"
                 description="Transparent pricing and cost estimation for cyber crime investigation services."
             />
-            <section className="pt-32 pb-20 max-w-7xl mx-auto px-4">
+            <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-display font-bold mb-6">Transparent Costing</h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, XCircle, ArrowRight, ShoppingCart, Landmark, Stethoscope, Factory, Briefcase, Sparkles } from "lucide-react";
+import { CheckCircle, XCircle, ArrowRight, ShoppingCart, Landmark, Stethoscope, Factory, Briefcase, Zap } from "lucide-react";
 
 export default function IndustryUseCaseExplorer() {
     const [activeTab, setActiveTab] = useState("retail");
@@ -175,7 +175,7 @@ export default function IndustryUseCaseExplorer() {
                                     <div className="absolute bottom-0 left-0 p-6 z-20">
                                         <h3 className="text-2xl font-bold text-white mb-2">{industry.name}</h3>
                                         <div className="flex items-center text-white/90 text-sm font-medium">
-                                            <Sparkles className="w-4 h-4 mr-2 text-primary" />
+                                            <Zap className="w-4 h-4 mr-2 text-primary" />
                                             <span>AI-Powered Transformation</span>
                                         </div>
                                     </div>

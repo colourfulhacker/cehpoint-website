@@ -26,7 +26,7 @@ export default function RansomwareParadox() {
                 >
                     <Badge className="mb-4" variant="destructive">Cyber Threat</Badge>
                     <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
-                        The Ransomware Paradox: <span className="text-red-600 dark:text-red-400">Why Paying is a Trap</span>
+                        The Ransomware Paradox: <span className="text-red-400">Why Paying is a Trap</span>
                     </h1>
                     <div className="flex items-center space-x-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
@@ -39,17 +39,18 @@ export default function RansomwareParadox() {
                     </div>
                 </motion.div>
 
-                <article className="prose prose-lg dark:prose-invert max-w-none text-foreground">
+                <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
+                    <img src="/assets/blog/cyber-hero-generic.png" alt="Ransomware Paradox" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
                     <p className="lead text-xl text-foreground font-medium mb-8">
-                        Your screen is locked. Your files are encrypted. The clock is ticking. The hackers want 5 Bitcoin. The fastest way out is to pay, right? <span className="text-red-600 dark:text-red-400 font-bold">Wrong.</span>
+                        Your screen is locked. Your files are encrypted. The clock is ticking. The hackers want 5 Bitcoin. The fastest way out is to pay, right? <span className="text-red-400 font-bold">Wrong.</span>
                     </p>
 
                     <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground">The "Sucker List" Reality</h2>
                     <p className="text-foreground/90">
                         When you pay a ransom, you aren't just buying your data back. You are purchasing a permanent spot on the Dark Web's "Sucker List"—a database of companies known to pay up.
                     </p>
-                    <div className="my-8 p-6 bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500 rounded-r-lg">
-                        <p className="text-lg font-bold text-red-700 dark:text-red-400 mb-2">Statistically Speaking:</p>
+                    <div className="my-8 p-6 bg-red-900/20 border-l-4 border-red-500 rounded-r-lg">
+                        <p className="text-lg font-bold text-red-400 mb-2">Statistically Speaking:</p>
                         <ul className="list-disc pl-4 space-y-2 text-foreground/90">
                             <li><strong>80%</strong> of organizations that pay are attacked again within 6 months.</li>
                             <li><strong>40%</strong> never get their data back even after paying.</li>
@@ -64,7 +65,7 @@ export default function RansomwareParadox() {
 
                     <div className="grid md:grid-cols-2 gap-8 my-12">
                         <div className="bg-card border p-6 rounded-xl shadow-sm">
-                            <h4 className="text-xl font-bold mb-4 flex items-center text-red-600 dark:text-red-400">
+                            <h4 className="text-xl font-bold mb-4 flex items-center text-red-400">
                                 <XCircle className="w-5 h-5 mr-2" aria-hidden="true" /> The Panic Response
                             </h4>
                             <p className="text-sm text-foreground/90">
@@ -74,7 +75,7 @@ export default function RansomwareParadox() {
                             </p>
                         </div>
                         <div className="bg-card border p-6 rounded-xl shadow-sm">
-                            <h4 className="text-xl font-bold mb-4 flex items-center text-green-600 dark:text-green-500">
+                            <h4 className="text-xl font-bold mb-4 flex items-center text-green-500">
                                 <Lock className="w-5 h-5 mr-2" aria-hidden="true" /> The Cehpoint Response
                             </h4>
                             <p className="text-sm text-foreground/90">

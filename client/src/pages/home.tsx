@@ -16,7 +16,7 @@ import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 export default function Home() {
   return (
-    <div className="pt-[105px]" data-testid="home-page">
+    <div className="" data-testid="home-page">
       <SEO
         title="Home"
         description="Cehpoint is a leading IT consultancy offering enterprise outsourcing, custom software development, AI solutions, cybersecurity, and digital transformation services. Partner with us to accelerate innovation and drive business growth."

@@ -4,7 +4,7 @@ import { globalLocations, GlobalLocation } from "@/data/global-locations";
 import { allApps, AppIdea, getIconForApp } from "@/data/business-apps";
 import SEO from "@/components/seo";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, CheckCircle, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot } from "lucide-react";
+import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import { motion } from "framer-motion";
 import ProjectCostEstimator from "@/components/calculators/project-cost-estimator";
@@ -46,7 +46,7 @@ export default function CityServicePage() {
     };
 
     return (
-        <div className="pt-20 min-h-screen bg-black text-white selection:bg-primary/30">
+        <div className="pt-36 min-h-screen bg-black text-white selection:bg-primary/30">
             <SEO
                 title={`Start Business in ${cityData.name} @ ${cityData.currency === 'INR' ? '₹15000' : '$200'} | App Development`}
                 description={`Launch your startup in ${cityData.name} with Cehpoint. Best Website & App Development Company in ${cityData.name}. Get Local Business Apps starting ${cityData.currency === 'INR' ? '₹15k' : '$200'}.`}
@@ -279,6 +279,89 @@ export default function CityServicePage() {
                         </div>
                     </div>
                 </div>
+                {/* --- PROCESS AUTOMATION SECTION --- */}
+                <section className="py-24 bg-gradient-to-b from-black to-gray-900 border-t border-white/5">
+                    <div className="max-w-7xl mx-auto px-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <div className="inline-flex items-center px-4 py-2 rounded-full glass border border-purple-500/30 mb-6">
+                                    <Bot className="w-4 h-4 text-purple-400 mr-2" />
+                                    <span className="text-sm font-bold text-purple-400 tracking-wide uppercase">Business Process Automation</span>
+                                </div>
+                                <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 text-white leading-tight">
+                                    Automate Your Boring Work. <br />
+                                    <span className="text-gray-400">Scale Your Business.</span>
+                                </h2>
+                                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                                    Why hire 10 people for data entry when 1 AI Bot can do it 24/7?
+                                    We build custom automation workflows for {cityData.name}'s businesses to reduce costs by 60%.
+                                </p>
+
+                                <ul className="space-y-4 mb-8">
+                                    {[
+                                        "Auto-Invoice Generation from WhatsApp Orders",
+                                        "Customer Service Chatbots for Website",
+                                        "Inventory Sync across Amazon/Flipkart",
+                                        "Automated Lead Follow-ups via Email/SMS"
+                                    ].map((item, i) => (
+                                        <li key={i} className="flex items-center text-gray-300">
+                                            <CheckCircle2 className="w-5 h-5 text-green-500 mr-3" />
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <WhatsAppInquiryDialog
+                                    appName="Automation Consultation"
+                                    locationName={cityData.name}
+                                    title="Automate My Business"
+                                    trigger={
+                                        <Button className="h-12 px-8 rounded-full text-lg font-bold bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-900/20">
+                                            Get Automation Audit <ArrowRight className="ml-2 w-5 h-5" />
+                                        </Button>
+                                    }
+                                />
+                            </div>
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-purple-600/20 rounded-3xl blur-3xl animate-pulse" />
+                                <div className="relative glass-intense rounded-3xl p-8 border border-white/10">
+                                    <div className="space-y-4">
+                                        <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400"><DollarSign className="w-5 h-5" /></div>
+                                                <div>
+                                                    <p className="text-sm text-gray-400">Payroll Processing</p>
+                                                    <p className="font-bold text-white">Automated</p>
+                                                </div>
+                                            </div>
+                                            <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">Saved 40hrs</span>
+                                        </div>
+                                        <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400"><Bot className="w-5 h-5" /></div>
+                                                <div>
+                                                    <p className="text-sm text-gray-400">Customer Queries</p>
+                                                    <p className="font-bold text-white">AI Handled</p>
+                                                </div>
+                                            </div>
+                                            <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">24/7 Active</span>
+                                        </div>
+                                        <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400"><TrendingUp className="w-5 h-5" /></div>
+                                                <div>
+                                                    <p className="text-sm text-gray-400">Sales Reporting</p>
+                                                    <p className="font-bold text-white">Real-time sync</p>
+                                                </div>
+                                            </div>
+                                            <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">Zero Errors</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </section>
 
             {/* --- TRUST SIGNALS --- */}

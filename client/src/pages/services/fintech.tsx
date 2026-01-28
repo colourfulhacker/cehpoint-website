@@ -1,4 +1,4 @@
-import { DollarSign, Shield, BarChart3, Smartphone, Globe, Lock, Star, TrendingUp, Users, Award, CheckCircle2, Clock, ArrowRight } from "lucide-react";
+import { DollarSign, Shield, BarChart3, Smartphone, Globe, Lock, Star, TrendingUp, Users, Award, CheckCircle2, Clock, ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
@@ -60,7 +60,7 @@ export default function FintechService() {
   ];
 
   return (
-    <div className="pt-24 min-h-screen" data-testid="fintech-service-page">
+    <div className="pt-36 min-h-screen" data-testid="fintech-service-page">
       <SEO
         title="Fintech Solutions"
         description="Build secure, compliant, and scalable financial technology platforms with PCI-DSS compliance, real-time fraud detection, and enterprise-grade security. Trusted by leading financial institutions."
@@ -347,27 +347,27 @@ export default function FintechService() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span>End-to-End Encryption</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Multi-Factor Authentication</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Biometric Authentication</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Real-time Fraud Detection</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Blockchain Security</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span>Audit Trail & Logging</span>
-                  <span className="text-green-500 font-semibold">✓ Included</span>
+                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
                 </div>
               </div>
             </div>

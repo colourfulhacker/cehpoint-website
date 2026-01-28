@@ -39,13 +39,14 @@ export default function AIvsRealityArticle() {
                     </div>
                 </motion.div>
 
-                <article className="prose prose-lg dark:prose-invert max-w-none text-foreground">
+                <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
+                    <img src="/assets/blog/ai-hero-generic.png" alt="AI vs Reality" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         "We use advanced AI algorithms to recover your data." It sounds impressive. It justifies a high price tag. But in 90% of cases we've audited, it is a complete lie.
                     </p>
 
-                    <div className="my-12 p-8 bg-blue-50/10 border border-blue-200/20 rounded-2xl">
-                        <h3 className="text-2xl font-bold mb-4 flex items-center text-blue-700 dark:text-blue-400">
+                    <div className="my-12 p-8 bg-blue-900/20 border border-blue-200/20 rounded-2xl">
+                        <h3 className="text-2xl font-bold mb-4 flex items-center text-blue-400">
                             <BrainCircuit className="w-6 h-6 mr-3" aria-hidden="true" />
                             What is "AI-Washing"?
                         </h3>
@@ -61,7 +62,7 @@ export default function AIvsRealityArticle() {
 
                     <div className="grid md:grid-cols-2 gap-8 my-12">
                         <div className="bg-card border p-6 rounded-xl shadow-sm">
-                            <h4 className="text-xl font-bold mb-4 flex items-center text-red-700 dark:text-red-400">
+                            <h4 className="text-xl font-bold mb-4 flex items-center text-red-400">
                                 <XCircle className="w-5 h-5 mr-2" aria-hidden="true" /> Fake AI (The Scam)
                             </h4>
                             <ul className="space-y-3 text-sm text-foreground/90">
@@ -72,7 +73,7 @@ export default function AIvsRealityArticle() {
                         </div>
 
                         <div className="bg-card border p-6 rounded-xl shadow-sm">
-                            <h4 className="text-xl font-bold mb-4 flex items-center text-green-700 dark:text-green-400">
+                            <h4 className="text-xl font-bold mb-4 flex items-center text-green-400">
                                 <CheckCircle2 className="w-5 h-5 mr-2" aria-hidden="true" /> True AI (Cehpoint)
                             </h4>
                             <ul className="space-y-3 text-sm text-foreground/90">
@@ -101,7 +102,7 @@ export default function AIvsRealityArticle() {
                     className="mt-16 bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6"
                 >
                     <div>
-                        <h3 className="text-xl font-bold text-red-700 dark:text-red-500 flex items-center mb-2">
+                        <h3 className="text-xl font-bold text-red-500 flex items-center mb-2">
                             <AlertTriangle className="w-5 h-5 mr-2" aria-hidden="true" />
                             Don't be a victim of Tech Buzzwords
                         </h3>

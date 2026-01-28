@@ -4,7 +4,7 @@ import SwipeDeck from "@/components/investor/swipe-deck";
 import MatchReveal from "@/components/investor/match-reveal";
 import InvestorFAQ from "@/components/investor/investor-faq";
 // import FinalPitch from "@/components/investor/final-pitch";
-import { Sparkles } from "lucide-react";
+import { Handshake } from "lucide-react";
 import { Idea } from "@/data/investor-ideas";
 
 export default function InvestorConnect() {
@@ -41,7 +41,7 @@ export default function InvestorConnect() {
                             <div className="text-center mb-4 md:mb-8">
                                 <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-4 border-primary/20">
                                     <span className="text-sm font-medium text-primary flex items-center gap-2">
-                                        <Sparkles className="w-4 h-4" /> Investor Connect
+                                        <Handshake className="w-4 h-4" /> Investor Connect
                                     </span>
                                 </div>
                                 <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">

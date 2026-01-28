@@ -14,6 +14,8 @@ import EcommerceService from "@/pages/services/ecommerce";
 import EdutechService from "@/pages/services/edutech";
 import FintechService from "@/pages/services/fintech";
 import ServicesPage from "@/pages/services/index";
+import RegionalService from "@/pages/services/regional-service";
+import CityServicePage from "@/pages/location/city-service";
 import BusinessAppCatalog from "@/pages/services/business-app-catalog";
 import CyberSecurity from "@/pages/services/cyber-security";
 import CyberCrimeInvestigation from "@/pages/services/cyber-crime-investigation";
@@ -48,6 +50,11 @@ import RansomwareParadox from "@/pages/insights/ransomware-paradox";
 import HyperlocalFutureArticle from "@/pages/insights/hyperlocal-future";
 import CTOTrapArticle from "@/pages/insights/cto-trap";
 import HRForensicsArticle from "@/pages/insights/hr-forensics";
+import DigitalForensicsROI from "@/pages/insights/digital-forensics-roi";
+import CyberSecurityMyths from "@/pages/insights/cyber-security-myths";
+import GigEconomyUpgradeArticle from "@/pages/insights/gig-economy-upgrade";
+import EdtechEvolutionArticle from "@/pages/insights/edtech-evolution";
+import FashionTechRevolutionArticle from "@/pages/insights/fashion-tech-revolution";
 
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
@@ -76,6 +83,13 @@ function Router() {
           <Route path="/services/cyber-security" component={CyberSecurity} />
           <Route path="/services/cyber-security" component={CyberSecurity} />
           <Route path="/services/business-app-catalog" component={BusinessAppCatalog} />
+
+          {/* Regional Service Dynamic Route */}
+          {/* Regional Service Dynamic Route */}
+          <Route path="/services/global/:region" component={RegionalService} />
+
+          {/* Hyper-Localized SEO City Route */}
+          <Route path="/location/:city" component={CityServicePage} />
 
           {/* Cyber Crime Investigation Platform Routes */}
           <Route path="/services/cyber-crime-investigation" component={InvestigationLanding} />
@@ -111,6 +125,11 @@ function Router() {
           <Route path="/insights/hyperlocal-future" component={HyperlocalFutureArticle} />
           <Route path="/insights/cto-trap" component={CTOTrapArticle} />
           <Route path="/insights/hr-forensics" component={HRForensicsArticle} />
+          <Route path="/insights/digital-forensics-roi" component={DigitalForensicsROI} />
+          <Route path="/insights/cyber-security-myths" component={CyberSecurityMyths} />
+          <Route path="/insights/gig-economy-upgrade" component={GigEconomyUpgradeArticle} />
+          <Route path="/insights/edtech-evolution" component={EdtechEvolutionArticle} />
+          <Route path="/insights/fashion-tech-revolution" component={FashionTechRevolutionArticle} />
           <Route path="/partner-network" component={PartnerNetwork} />
           <Route component={NotFound} />
         </Switch>
