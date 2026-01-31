@@ -1,25 +1,48 @@
 
+import {
+    Brain, ShieldCheck, Lock, Cloud, Eye, Briefcase,
+    Factory, Car, Server, RefreshCw, Activity, Bot,
+    Building2, Flame, Link as LinkIcon, Cpu, Siren, Fingerprint,
+    ArrowRight, Shield, Globe, PoundSterling, Network, ShieldAlert,
+    BrainCircuit, Building, Code, Play
+} from "lucide-react";
+
 export interface RegionData {
     id: string;
     name: string;
     flag: string;
     focus: string;
+    marketAnalysis: string; // Strategic overview
     topITService: {
-        title: string; // H2 Primary Innovative Service
+        title: string;
         description: string;
-        icon: string;
+        icon: string; // String name for dynamic mapping
     };
     topCybersecurity: {
-        title: string; // High-Demand Cybersecurity Focus
+        title: string;
         description: string;
         icon: string;
     };
     innovativeTech: {
-        title: string; // Essential IT Development
+        title: string;
         description: string;
         icon: string;
     };
-    complianceBadges?: string[];
+    challenges: Array<{
+        title: string;
+        description: string;
+    }>;
+    aiSolutions: Array<{
+        title: string;
+        description: string;
+        impact: string;
+    }>;
+    industries: Array<{
+        name: string;
+        needs: string;
+    }>;
+    techStack: string[]; // Preferred technologies
+    complianceBadges: string[];
     localBusiness?: {
         streetAddress: string;
         addressLocality: string;
@@ -41,6 +64,7 @@ export const regionalTrends: Record<string, RegionData> = {
         name: "United States & Canada",
         flag: "🇺🇸 🇨🇦",
         focus: "AI Governance, Cloud Resilience, and Compliance",
+        marketAnalysis: "The North American market is pivoting sharply towards 'Responsible AI' and operational resilience. With the SEC's new cyber disclosure rules and the EU AI Act influencing global standards, US enterprises are prioritizing governance over raw speed. The focus is on integrating GenAI into improved workflows without compromising data sanctity or regulatory standing.",
         topITService: {
             title: "Agentic AI & LLMOps Integration",
             description: "Moving from pilot to production with autonomous AI agents and robust Large Language Model Operations (LLMOps) frameworks.",
@@ -48,7 +72,7 @@ export const regionalTrends: Record<string, RegionData> = {
         },
         topCybersecurity: {
             title: "Identity-Bound Zero Trust",
-            description: "Implementing Zero Trust architectures where identity is the new perimeter, securing remote and hybrid workforces against sophisticated breaches.",
+            description: "Implementing Zero Trust architectures where identity is the new perimeter, securing remote and hybrid workforces.",
             icon: "ShieldCheck"
         },
         innovativeTech: {
@@ -56,13 +80,28 @@ export const regionalTrends: Record<string, RegionData> = {
             description: "Designing scalable, cloud-native infrastructures specifically optimized for high-performance AI workloads.",
             icon: "Cloud"
         },
-        complianceBadges: ["SOC2 Type II", "HIPAA Compliant"],
+        challenges: [
+            { title: "Legacy Modernization Debt", description: "Huge backlogs of monolithic legacy systems preventing agility." },
+            { title: "Regulatory Fragmentation", description: "Navigating state-level privacy laws (CCPA, CPRA) alongside federal mandates." },
+            { title: "AI Hallucination Risks", description: "Enterprises fear deploying GenAI in customer-facing roles due to accuracy concerns." }
+        ],
+        aiSolutions: [
+            { title: "RAG-Based Knowledge Bots", description: "Retrieval-Augmented Generation bots that only reference internal, verified documents.", impact: "99% reduction in hallucination for customer support." },
+            { title: "Predictive Compliance Engines", description: "AI models that scan codebases and logs for real-time compliance violations.", impact: "Automated audit readiness 24/7." }
+        ],
+        industries: [
+            { name: "Fintech & Banking", needs: "Fraud detection, HFT latency reduction, and regulatory reporting." },
+            { name: "Healthcare", needs: "HIPAA-compliant patient data processing and predictive diagnostics." },
+            { name: "SaaS Platforms", needs: "Scalable multi-tenant architectures and churn prediction." }
+        ],
+        techStack: ["AWS", "Azure", "Snowflake", "Kubernetes", "Python", "React", "Terraform"],
+        complianceBadges: ["SOC2 Type II", "HIPAA Compliant", "CCPA Ready", "NIST Framework"],
         localBusiness: {
             streetAddress: "5 Penn Plaza, 14th Floor",
             addressLocality: "New York, NY",
             addressCountry: "US",
             postalCode: "10001",
-            telephone: "+1-212-555-0123" // Placeholder or leave undefined if not strictly known, but footer implies US presence.
+            telephone: "+1-212-555-0123"
         },
         seoJson: {
             title: "US & Canada IT Services | Agentic AI, LLMOps & Zero Trust",
@@ -79,6 +118,7 @@ export const regionalTrends: Record<string, RegionData> = {
         name: "United Kingdom",
         flag: "🇬🇧",
         focus: "Data Privacy (Post-GDPR evolution) and Hybrid Cloud",
+        marketAnalysis: "The UK market is characterized by a pragmatic approach to digital transformation, driven by cost-efficiency (FinOps) and rigorous data sovereignty requirements. Post-Brexit data adequacy deals and the new UK Data Reform Bill are shaping how businesses handle personal information, making 'Privacy by Design' a critical competitive advantage.",
         topITService: {
             title: "FinOps & Cloud Cost Optimization",
             description: "Strategic cloud financial management to maximize value and minimize waste in complex hybrid cloud environments.",
@@ -86,7 +126,7 @@ export const regionalTrends: Record<string, RegionData> = {
         },
         topCybersecurity: {
             title: "Managed Detection & Response (MDR)",
-            description: "24/7 outsourced security operations providing rapid detection and remediation of advanced threats for UK businesses.",
+            description: "24/7 outsourced security operations providing rapid detection and remediation of advanced threats.",
             icon: "Eye"
         },
         innovativeTech: {
@@ -94,7 +134,22 @@ export const regionalTrends: Record<string, RegionData> = {
             description: "Seamless management and automation of workloads across on-premise, private, and public cloud infrastructures.",
             icon: "Network"
         },
-        complianceBadges: ["GDPR Compliant", "ISO/IEC 27001", "Cyber Essentials"],
+        challenges: [
+            { title: "Cloud Overspending", description: "Uncontrolled cloud sprawl leading to inflated operational costs." },
+            { title: "Talent Shortage", description: "Critical lack of specialized cybersecurity and DevOps professionals in the local market." },
+            { title: "Data Sovereignty", description: "Strict requirements on where and how customer data is stored and processed." }
+        ],
+        aiSolutions: [
+            { title: "AI-Driven FinOps", description: "Machine learning models that predict cloud spikes and automate resource rightsizing.", impact: "Average 30% reduction in cloud bills." },
+            { title: "Automated SOC Analysts", description: "AI agents handling Tier-1 security alerts to relieve pressure on human teams.", impact: "60% faster Mean Time to Respond (MTTR)." }
+        ],
+        industries: [
+            { name: "Financial Services (City of London)", needs: "High-frequency trading infrastructure and strict FCA compliance." },
+            { name: "Retail & E-commerce", needs: "Personalization engines and supply chain visibility." },
+            { name: "Public Sector", needs: "G-Cloud compatible services and citizen-facing digital portals." }
+        ],
+        techStack: ["Azure", "AWS", "Java", "C# .NET", "Angular", "SQL Server"],
+        complianceBadges: ["GDPR Compliant", "ISO/IEC 27001", "Cyber Essentials Plus", "FCA Aligned"],
         localBusiness: {
             streetAddress: "12 Steward Street, The Steward Building",
             addressLocality: "London",
@@ -116,6 +171,7 @@ export const regionalTrends: Record<string, RegionData> = {
         name: "Germany",
         flag: "🇩🇪",
         focus: "Industry 4.0, IoT Security, and Automotive Tech",
+        marketAnalysis: "Germany remains the industrial heart of Europe. The convergence of OT (Operational Technology) and IT is the primary driver here. 'Industrie 4.0' is no longer a buzzword but an operational reality requiring extreme reliability, real-time processing, and unshakeable security for connected factories and vehicles.",
         topITService: {
             title: "Industrial IoT (IIoT) & Digital Twins",
             description: "Creating virtual replicas of physical systems to optimize manufacturing processes and predict maintenance needs.",
@@ -131,6 +187,21 @@ export const regionalTrends: Record<string, RegionData> = {
             description: "Migrating sensitive data to sovereign cloud solutions that ensure strict compliance with German data residency laws.",
             icon: "Server"
         },
+        challenges: [
+            { title: "Legacy OT Integration", description: "Connecting 20-year-old machinery to modern cloud analytics platforms." },
+            { title: "Supply Chain Attacks", description: "Vulnerabilities introduced through third-party component suppliers." },
+            { title: "Strict Data Residency", description: "Requirement to keep data physically within German borders (Bundesdatenschutzgesetz)." }
+        ],
+        aiSolutions: [
+            { title: "Predictive Maintenance AI", description: "Models analyzing vibration and heat sensors to predict machine failure days in advance.", impact: "Zero unplanned downtime." },
+            { title: "Visual QA Inspection", description: "Computer vision systems checking product quality on high-speed assembly lines.", impact: "99.99% defect detection rate." }
+        ],
+        industries: [
+            { name: "Automotive", needs: "Embedded software, V2X communication, and production line automation." },
+            { name: "Manufacturing (Mittelstand)", needs: "ERP modernization and IoT integration." },
+            { name: "Pharma & Chemical", needs: "Process control optimization and IP protection." }
+        ],
+        techStack: ["SAP", "Siemens Mindsphere", "Azure IoT", "Java", "C++", "Python"],
         complianceBadges: ["GDPR Compliant", "ISO/IEC 27001", "BSI Standards", "TISAX"],
         localBusiness: {
             streetAddress: "Maximilianstraße 54",
@@ -153,6 +224,7 @@ export const regionalTrends: Record<string, RegionData> = {
         name: "Australia",
         flag: "🇦🇺",
         focus: "Critical Infrastructure Protection and SaaS Modernization",
+        marketAnalysis: "Australia is facing a surge in cyber threats targeting critical infrastructure, prompting severe regulatory updates (SOCI Act). Simultaneously, the remote nature of the continent drives a heavy reliance on efficient, resilient SaaS applications. The market demands robust business continuity and high-availability systems.",
         topITService: {
             title: "Cyber Resilience & Business Continuity",
             description: "Comprehensive strategies to maintain essential functions during adverse cyber events and ensure rapid recovery.",
@@ -168,7 +240,22 @@ export const regionalTrends: Record<string, RegionData> = {
             description: "Modernizing legacy applications to SaaS models while ensuring robust data recovery mechanisms.",
             icon: "RefreshCw"
         },
-        complianceBadges: ["Essential Eight", "ISO 22301"],
+        challenges: [
+            { title: "Ransomware Epidemic", description: "High frequency of attacks targeting healthcare and logistics sectors." },
+            { title: "Skills Gap", description: "Shortage of local talent for niche technologies." },
+            { title: "Network Latency", description: "Ensuring responsive apps despite geographic isolation." }
+        ],
+        aiSolutions: [
+            { title: "AI-Powered Threat Hunting", description: "Behavioral analysis of network traffic to identify zero-day ransomware actors.", impact: "Pre-encryption attack neutralisation." },
+            { title: "Intelligent Edge Caching", description: "AI aiming to predict user data needs and pre-cache content locally.", impact: "Sub-50ms app experience nationwide." }
+        ],
+        industries: [
+            { name: "Mining & Resources", needs: "Remote asset monitoring and autonomous operations." },
+            { name: "Healthcare", needs: "Patient data security and interoperability (FHIR)." },
+            { name: "Public Sector", needs: "Secure citizen portals and sovereign data handling." }
+        ],
+        techStack: ["AWS", "Atlassian Suite", ".NET Core", "React", "Node.js"],
+        complianceBadges: ["Essential Eight", "ISO 22301", "SOCI Act Aligned"],
         localBusiness: {
             streetAddress: "Level 11/10 Carrington St",
             addressLocality: "Sydney NSW",
@@ -190,6 +277,7 @@ export const regionalTrends: Record<string, RegionData> = {
         name: "United Arab Emirates (Dubai)",
         flag: "🇦🇪",
         focus: "Smart Cities, FinTech, and Secure Communications",
+        marketAnalysis: "Information technology in the UAE is synonymous with 'Vision'. The aggressive push towards the Digital Economy Strategy means high demand for Web3, Blockchain, and AI-driven citizen services. Security is paramount, but it must be frictionless to support the rapid pace of business in Dubai and Abu Dhabi.",
         topITService: {
             title: "Web3 & Blockchain for Smart Cities",
             description: "Building decentralized infrastructure for identity, property, and logistics to support Dubai's Smart City vision.",
@@ -205,7 +293,22 @@ export const regionalTrends: Record<string, RegionData> = {
             description: "Enabling seamless, paperless government services through secure and efficient digital platforms.",
             icon: "Building"
         },
-        complianceBadges: ["NESA Compliant", "DESC Standards"],
+        challenges: [
+            { title: "Rapid Digitization Risk", description: "Speed of adoption often outpaces security controls." },
+            { title: "Cryptocurrency Regulation", description: "Navigating the evolving VARA compliance landscape." },
+            { title: "Talent Retention", description: "High turnover of expatriate technical staff." }
+        ],
+        aiSolutions: [
+            { title: "Smart City Traffic AI", description: "Reinforcement learning for optimizing traffic flow and public transport.", impact: "20% reduction in congestion." },
+            { title: "AML/KYC Automation", description: "AI verifying documents and transactions for crypto exchanges.", impact: "Instantonboarding with bank-grade security." }
+        ],
+        industries: [
+            { name: "Real Estate", needs: "Tokenization of assets and virtual tours." },
+            { name: "Fintech & Crypto", needs: "Secure exchange architecture and wallet management." },
+            { name: "Logistics", needs: "Route optimization and customs blockchain integration." }
+        ],
+        techStack: ["Solidity", "Python", "Go", "Flutter", "Azure"],
+        complianceBadges: ["NESA Compliant", "DESC Standards", "VARA Aligned"],
         localBusiness: {
             streetAddress: "1st Floor, Emaar Square, Building 6",
             addressLocality: "Dubai",
@@ -227,6 +330,7 @@ export const regionalTrends: Record<string, RegionData> = {
         name: "India",
         flag: "🇮🇳",
         focus: "Global Capability Centers (GCCs) and AI-Led Development",
+        marketAnalysis: "India has evolved from a back-office outsource hub to the world's R&D engine. The trend is 'Value upwards'—shifting from maintenance to full-stack product ownership and AI innovation. GCCs (Global Capability Centers) are burgeoning, requiring rapid scaling of high-performance teams and secure, compliant infrastructure.",
         topITService: {
             title: "Full-Stack AI-Native Development",
             description: "End-to-end development of applications where AI is the core functionality, not just an add-on.",
@@ -242,7 +346,22 @@ export const regionalTrends: Record<string, RegionData> = {
             description: "Setting up and scaling technology centers of excellence for global enterprises within India.",
             icon: "Globe"
         },
-        complianceBadges: ["ISO 27001", "CERT-In Aligned"],
+        challenges: [
+            { title: "Attrition & Skilling", description: "High competition for top-tier full-stack and AI talent." },
+            { title: "Infrastructure Scalability", description: "Handling sudden bursts in data and user load for super-apps." },
+            { title: "Data Privacy Bill", description: "Adapting to the new DPDP Act requirements." }
+        ],
+        aiSolutions: [
+            { title: "AI Code Assistants", description: "Custom-trained LLMs to assist developers with proprietary codebases.", impact: "40% increase in developer productivity." },
+            { title: "HR Analytics AI", description: "Predictive models to identify attrition risk and optimization recruitment.", impact: "Better retention strategies." }
+        ],
+        industries: [
+            { name: "GCC (Global Capability Centers)", needs: "Rapid team scaling, remote infrastructure, and complianc." },
+            { name: "E-commerce & Retail", needs: "High-concurrency platforms and recommendation engines." },
+            { name: "BFSI", needs: "Secure payments & UPI integration." }
+        ],
+        techStack: ["MERN Stack", "Java Spring Boot", "Python (Django/FastAPI)", "AWS", "Flutter"],
+        complianceBadges: ["ISO 27001", "CERT-In Aligned", "DPDP Ready"],
         localBusiness: {
             streetAddress: "Sandipan Patsala Para, Birbhum",
             addressLocality: "Bolpur, West Bengal",

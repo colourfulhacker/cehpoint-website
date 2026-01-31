@@ -165,3 +165,17 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
 }
+
+/* Intro Video Mode - Hide Navbar */
+body.intro-playing nav[data-testid="navbar"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+/* Also hide the Banner if it exists with a known class or standard structure */
+body.intro-playing .banner-container,
+body.intro-playing div.relative.z-50:has(> div[role="banner"]) {
+  display: none !important;
+}

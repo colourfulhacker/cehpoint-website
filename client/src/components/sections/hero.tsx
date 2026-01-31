@@ -29,6 +29,20 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
+    // Sync body class for global styling (hiding navbar)
+    if (isIntroPlaying) {
+      document.body.classList.add("intro-playing");
+    } else {
+      document.body.classList.remove("intro-playing");
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove("intro-playing");
+    };
+  }, [isIntroPlaying]);
+
+  useEffect(() => {
     // Initial Intro Play Logic
     if (videoRef.current) {
       // 1. Reset video to start
@@ -80,7 +94,7 @@ export default function Hero() {
 
   return (
     <section
-      className={`relative min-h-screen flex items-center overflow-hidden ${isIntroPlaying ? "bg-black z-50 fixed inset-0" : "pt-20 pb-20 cursor-pointer"}`}
+      className={`relative min-h-screen flex items-center overflow-hidden ${isIntroPlaying ? "bg-black z-[100] fixed inset-0" : "pt-20 pb-20 cursor-pointer"}`}
       data-testid="hero-section"
     >
       {/* 
