@@ -105,6 +105,7 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
         }
         setIsVoiceConnected(false);
         setMode("text");
+        addMessage("system", "📞 Voice Call Ended");
     };
 
     // --- Text Mode Logic ---
