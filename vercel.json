@@ -13,6 +13,10 @@
       "destination": "/api/voice-health"
     },
     {
+      "source": "/api/gemini-config",
+      "destination": "/api/config"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/index"
     },
