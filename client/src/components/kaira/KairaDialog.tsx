@@ -61,20 +61,29 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
 
     const handleConnect = async () => {
         try {
-            // Fetch API Key securely
-            const res = await fetch("/api/gemini-config");
-            let data;
-            const contentType = res.headers.get("content-type");
-            if (contentType && contentType.indexOf("application/json") !== -1) {
-                data = await res.json();
-            } else {
-                const text = await res.text();
-                throw new Error(`Server returned non-JSON response: ${text.slice(0, 100)}...`);
+            let apiKey = "";
+            try {
+                // Method 1: Secure Server Endpoint
+                const res = await fetch("/api/gemini-config");
+                const contentType = res.headers.get("content-type");
+                if (contentType && contentType.includes("application/json")) {
+                    const data = await res.json();
+                    if (data.apiKey) apiKey = data.apiKey;
+                } else {
+                    console.warn("Server config returned non-JSON, trying fallback.");
+                }
+            } catch (e) {
+                console.warn("Server config fetch failed, trying fallback.", e);
             }
 
-            if (!data.apiKey) throw new Error("No API Key found in config");
+            // Method 2: Client-side Env Var (Fallback)
+            if (!apiKey) {
+                apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
+            }
 
-            const client = new GeminiLiveClient(data.apiKey);
+            if (!apiKey) throw new Error("No API Key found (Server or VITE_GEMINI_API_KEY)");
+
+            const client = new GeminiLiveClient(apiKey);
             client.onTextData = (text, isUser) => {
                 addMessage(isUser ? "user" : "ai", text);
                 checkForFallback(text);
