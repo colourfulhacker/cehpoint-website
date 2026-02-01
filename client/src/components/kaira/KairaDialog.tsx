@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { X, Mic, MicOff, MessageSquare, Phone, User, Send } from "lucide-react";
+import { X, Mic, MicOff, MessageSquare, Phone, User, Send, Trash2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,10 +19,10 @@ interface Message {
     text: string;
 }
 
+const STORAGE_KEY = "kaira_chat_history";
+
 export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
-    const [messages, setMessages] = useState<Message[]>([
-        { role: "ai", text: "Hello, I'm Kaira AI. How can I assist you today?" }
-    ]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [inputText, setInputText] = useState("");
     const [isMeetingMode, setIsMeetingMode] = useState(false);
     const [isConnected, setIsConnected] = useState(false);
@@ -30,6 +30,28 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
 
     const clientRef = useRef<GeminiLiveClient | null>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
+
+    // Load history on mount
+    useEffect(() => {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            try {
+                setMessages(JSON.parse(saved));
+            } catch (e) {
+                console.error("Failed to load chat history", e);
+                setMessages([{ role: "ai", text: "Hello, I'm Kaira AI. How can I assist you today?" }]);
+            }
+        } else {
+            setMessages([{ role: "ai", text: "Hello, I'm Kaira AI. How can I assist you today?" }]);
+        }
+    }, []);
+
+    // Save history on update
+    useEffect(() => {
+        if (messages.length > 0) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+        }
+    }, [messages]);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -79,6 +101,12 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
         setMessages(prev => [...prev, { role, text }]);
     };
 
+    const clearHistory = () => {
+        const initial: Message[] = [{ role: "ai", text: "Hello, I'm Kaira AI. How can I assist you today?" }];
+        setMessages(initial);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
+    };
+
     const checkForFallback = (text: string) => {
         // Simple heuristic: if AI says "I don't know" or similar, trigger fallback
         const lower = text.toLowerCase();
@@ -107,13 +135,15 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
         <AnimatePresence>
             {isOpen && (
                 <motion.div
+                    drag
+                    dragMomentum={false}
                     initial={{ opacity: 0, scale: 0.9, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                    className="fixed bottom-24 right-6 w-[400px] h-[600px] bg-background/95 backdrop-blur-xl border border-primary/20 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+                    className="fixed bottom-24 right-6 w-[400px] h-[600px] bg-background border border-primary/20 rounded-2xl shadow-2xl z-[9999] flex flex-col overflow-hidden"
                 >
                     {/* Header */}
-                    <div className="p-4 border-b border-primary/10 flex items-center justify-between bg-gradient-to-r from-primary/10 to-transparent">
+                    <div className="p-4 border-b border-primary/10 flex items-center justify-between bg-primary/5 cursor-move">
                         <div className="flex items-center gap-3">
                             <Avatar className="h-10 w-10 border-2 border-primary">
                                 <AvatarImage src="/kaira.png" />
@@ -128,6 +158,9 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                             </div>
                         </div>
                         <div className="flex items-center gap-1">
+                            <Button variant="ghost" size="icon" title="Clear History" onClick={clearHistory}>
+                                <Trash2 className="h-4 w-4 text-muted-foreground hover:text-destructive" />
+                            </Button>
                             <Button variant="ghost" size="icon" onClick={() => {
                                 setIsMeetingMode(!isMeetingMode);
                                 if (isConnected && !isMeetingMode) {
@@ -149,7 +182,7 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                                 initial={{ height: 0 }}
                                 animate={{ height: 120 }}
                                 exit={{ height: 0 }}
-                                className="bg-black/5 flex items-center justify-center overflow-hidden relative"
+                                className="bg-accent/10 flex items-center justify-center overflow-hidden relative border-b border-primary/10"
                             >
                                 {/* Fake Visualizer for Demo */}
                                 <div className="flex items-center gap-1 h-8">
@@ -169,7 +202,7 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
 
 
                     {/* Chat Area */}
-                    <ScrollArea className="flex-1 p-4" ref={scrollRef}>
+                    <ScrollArea className="flex-1 p-4 bg-background" ref={scrollRef}>
                         <div className="space-y-4">
                             {messages.map((m, i) => (
                                 <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
@@ -177,7 +210,7 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                                             ? "bg-primary text-primary-foreground"
                                             : m.role === "system"
                                                 ? "bg-muted text-xs text-center w-full"
-                                                : "bg-muted/50 border border-primary/10"
+                                                : "bg-secondary text-secondary-foreground border border-border"
                                         }`}>
                                         {m.text}
                                     </div>
@@ -191,7 +224,7 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                                     animate={{ opacity: 1, y: 0 }}
                                     className="mt-4"
                                 >
-                                    <Card className="border-l-4 border-l-primary bg-card/50">
+                                    <Card className="border-l-4 border-l-primary bg-card">
                                         <CardContent className="p-4">
                                             <p className="text-sm font-medium mb-2">I recommend speaking with this expert:</p>
                                             <div className="flex items-center gap-3">
@@ -216,7 +249,7 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                     </ScrollArea>
 
                     {/* Input Area */}
-                    <div className="p-4 border-t border-primary/10 bg-background/50 backdrop-blur-sm">
+                    <div className="p-4 border-t border-primary/10 bg-background">
                         {!isConnected ? (
                             <Button className="w-full" onClick={handleConnect}>
                                 Connect to Kaira AI
