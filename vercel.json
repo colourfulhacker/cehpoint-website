@@ -9,6 +9,10 @@
       "destination": "/api/health"
     },
     {
+      "source": "/api/voice-health",
+      "destination": "/api/voice-health"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/index"
     },
