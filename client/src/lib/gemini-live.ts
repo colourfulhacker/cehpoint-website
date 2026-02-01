@@ -47,9 +47,10 @@ export class GeminiLiveClient {
         if (!this.ws) return;
         const setup = {
             setup: {
-                model: "models/gemini-2.5-flash-preview-native-audio-dialog", // Using direct model requested
+                model: "models/gemini-2.0-flash-exp", // Standard experimental model for Live API
             }
         };
+
         this.ws.send(JSON.stringify(setup));
     }
 
