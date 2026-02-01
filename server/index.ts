@@ -3,7 +3,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const require = createRequire(import.meta.url);
 
@@ -595,24 +595,28 @@ app.post("/api/kaira-chat", async (req, res) => {
     const { message, history } = req.body;
     if (!message) return res.status(400).json({ error: "Message is required" });
 
-    const ai = getAI();
-    if (!ai) throw new Error("AI client failed to initialize");
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) throw new Error("GEMINI_API_KEY not configured");
+
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); // Use 2.0 Flash or 1.5 Flash
 
     // Construct prompt with history
     const context = "You are Kaira, an advanced AI Assistant for Cehpoint (a Cyber Security & Digital Solutions firm). You are professional, concise, and helpful. You help users with navigation, services info, and general queries about Cehpoint.";
+
+    // Convert generic history to Gemini format if possible, or just append to prompt for simplicity in "text-only" mode
+    // For this simple implementation, we'll use a large prompt context.
     const chatHistory = history ? history.map((msg: any) => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.text}`).join('\n') : '';
     const fullPrompt = `${context}\n\nChat History:\n${chatHistory}\n\nUser: ${message}\nAssistant:`;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: fullPrompt,
-    });
+    const result = await model.generateContent(fullPrompt);
+    const response = result.response;
+    const text = response.text();
 
-    const text = response.text;
     res.json({ response: text });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Kaira Chat Error:", error);
-    res.status(500).json({ error: "Failed to generate chat response" });
+    res.status(500).json({ error: `Failed to generate response: ${error.message}` });
   }
 });
 
