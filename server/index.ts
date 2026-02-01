@@ -5,8 +5,44 @@ import { fileURLToPath } from "url";
 import { createRequire } from "module";
 import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
-// Static import for Vercel bundling
-import { quotationRequestSchema, quotationResponseSchema } from "../shared/schema.js"; // TS resolves to .ts
+import { z } from "zod";
+
+// Zod Schemas (Inlined to avoid shared dependency issues on Vercel)
+const quotationRequestSchema = z.object({
+  projectSummary: z.string(),
+  industry: z.string(),
+  expectedUsers: z.string(),
+  timeline: z.string(),
+  budgetRange: z.string(),
+  features: z.array(z.string()),
+  techPreferences: z.string().optional(),
+  complianceNeeds: z.string().optional(),
+  contactEmail: z.string(),
+  contactName: z.string(),
+});
+
+const quotationResponseSchema = z.object({
+  estimatedCost: z.number(),
+  timeline: z.string(),
+  teamSize: z.number(),
+  suggestedStack: z.array(z.string()),
+  dependencies: z.array(z.string()),
+  risks: z.array(z.string()),
+  mvpPlan: z.array(z.object({
+    milestone: z.string(),
+    duration: z.string(),
+    deliverables: z.array(z.string())
+  })),
+  aiAnalysis: z.string(),
+  costBreakdown: z.object({
+    development: z.number(),
+    design: z.number(),
+    testing: z.number(),
+    deployment: z.number(),
+    projectManagement: z.number()
+  }).optional(),
+  recommendations: z.array(z.string())
+});
 
 // Type definitions
 
