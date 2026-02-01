@@ -121,6 +121,11 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                 body: JSON.stringify({ message: msg, history: messages.slice(-5) }) // Send last 5 context
             });
 
+            if (!res.ok) {
+                const errText = await res.text();
+                throw new Error(`API Error ${res.status}: ${errText.slice(0, 100)}`);
+            }
+
             const data = await res.json();
             if (data.response) {
                 addMessage("ai", data.response);
@@ -128,9 +133,9 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
             } else {
                 throw new Error("No response from server");
             }
-        } catch (e) {
+        } catch (e: any) {
             console.error("Text Chat Error", e);
-            addMessage("system", "I'm having trouble connecting right now. Please try again.");
+            addMessage("system", `I'm having trouble connecting right now. Details: ${e.message}`);
         } finally {
             setIsLoading(false);
         }
@@ -221,10 +226,10 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                                     {messages.map((m, i) => (
                                         <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                                             <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm ${m.role === "user"
-                                                    ? "bg-primary text-primary-foreground rounded-br-none"
-                                                    : m.role === "system"
-                                                        ? "bg-muted text-xs text-center w-full shadow-none my-2"
-                                                        : "bg-secondary text-secondary-foreground border border-border/50 rounded-bl-none"
+                                                ? "bg-primary text-primary-foreground rounded-br-none"
+                                                : m.role === "system"
+                                                    ? "bg-muted text-xs text-center w-full shadow-none my-2"
+                                                    : "bg-secondary text-secondary-foreground border border-border/50 rounded-bl-none"
                                                 }`}>
                                                 {m.text}
                                             </div>
