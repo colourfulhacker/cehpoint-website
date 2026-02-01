@@ -2,7 +2,10 @@ import "dotenv/config";
 import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import { createRequire } from "module";
 import { GoogleGenAI } from "@google/genai";
+
+const require = createRequire(import.meta.url);
 
 // Import with fallback for Vercel deployment
 let quotationRequestSchema: any, quotationResponseSchema: any;

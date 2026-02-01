@@ -63,8 +63,16 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
         try {
             // Fetch API Key securely
             const res = await fetch("/api/gemini-config");
-            const data = await res.json();
-            if (!data.apiKey) throw new Error("No API Key found");
+            let data;
+            const contentType = res.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                data = await res.json();
+            } else {
+                const text = await res.text();
+                throw new Error(`Server returned non-JSON response: ${text.slice(0, 100)}...`);
+            }
+
+            if (!data.apiKey) throw new Error("No API Key found in config");
 
             const client = new GeminiLiveClient(data.apiKey);
             client.onTextData = (text, isUser) => {
