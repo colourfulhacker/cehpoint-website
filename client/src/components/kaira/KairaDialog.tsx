@@ -236,7 +236,7 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                                                 {m.role === "user" ? (
                                                     m.text
                                                 ) : (
-                                                    <div className="prose prose-sm dark:prose-invert max-w-none">
+                                                    <div className="prose prose-sm dark:prose-invert max-w-none text-white prose-p:text-white prose-headings:text-white prose-strong:text-white prose-ul:text-white">
                                                         <ReactMarkdown>{m.text}</ReactMarkdown>
                                                     </div>
                                                 )}
