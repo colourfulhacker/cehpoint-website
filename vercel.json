@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/api/kaira-chat",
+      "destination": "/api/kaira-chat"
+    },
+    {
+      "source": "/api/health",
+      "destination": "/api/health"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/index"
     },
