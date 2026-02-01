@@ -2,7 +2,6 @@ import "dotenv/config";
 import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { createRequire } from "module";
 import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
 import { z } from "zod";
@@ -127,6 +126,16 @@ app.use((req, res, next) => {
     return res.status(200).end();
   }
   next();
+});
+
+// Health Check Endpoint
+app.get("/api/health", (req, res) => {
+  const hasKey = !!process.env.GEMINI_API_KEY;
+  res.json({
+    status: "ok",
+    apiKeyConfigured: hasKey,
+    environment: process.env.VERCEL ? "vercel" : "development"
+  });
 });
 
 // Logging middleware (only in development)
