@@ -3,7 +3,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
 const require = createRequire(import.meta.url);
 
@@ -76,6 +76,18 @@ interface ConsultationAnswers {
   workloadType: string;
   importantFactor: string;
   customQuestion?: string;
+}
+
+interface AIStrategyResponse {
+  roiProjection: string;
+  roadmap: {
+    phase: string;
+    action: string;
+    timeline: string;
+  }[];
+  complianceChecklist: string[];
+  executiveSummary: string;
+  riskAssessment: string;
 }
 
 const __filename = fileURLToPath(import.meta.url);
@@ -190,14 +202,14 @@ Please provide a comprehensive cloud architecture recommendation in the specifie
       generationConfig: {
         responseMimeType: "application/json",
         responseSchema: {
-          type: "object",
+          type: SchemaType.OBJECT,
           properties: {
-            recommendation: { type: "string" },
-            awsSolution: { type: "string" },
-            gcpSolution: { type: "string" },
+            recommendation: { type: SchemaType.STRING },
+            awsSolution: { type: SchemaType.STRING },
+            gcpSolution: { type: SchemaType.STRING },
             nextSteps: {
-              type: "array",
-              items: { type: "string" }
+              type: SchemaType.ARRAY,
+              items: { type: SchemaType.STRING }
             }
           },
           required: ["recommendation", "awsSolution", "gcpSolution", "nextSteps"]
@@ -288,39 +300,39 @@ Please provide a comprehensive quotation analysis in the specified JSON format w
       generationConfig: {
         responseMimeType: "application/json",
         responseSchema: {
-          type: "object",
+          type: SchemaType.OBJECT,
           properties: {
-            estimatedCost: { type: "number" },
-            timeline: { type: "string" },
-            teamSize: { type: "number" },
-            suggestedStack: { type: "array", items: { type: "string" } },
-            dependencies: { type: "array", items: { type: "string" } },
-            risks: { type: "array", items: { type: "string" } },
+            estimatedCost: { type: SchemaType.NUMBER },
+            timeline: { type: SchemaType.STRING },
+            teamSize: { type: SchemaType.NUMBER },
+            suggestedStack: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+            dependencies: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+            risks: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
             mvpPlan: {
-              type: "array",
+              type: SchemaType.ARRAY,
               items: {
-                type: "object",
+                type: SchemaType.OBJECT,
                 properties: {
-                  milestone: { type: "string" },
-                  duration: { type: "string" },
-                  deliverables: { type: "array", items: { type: "string" } }
+                  milestone: { type: SchemaType.STRING },
+                  duration: { type: SchemaType.STRING },
+                  deliverables: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
                 },
                 required: ["milestone", "duration", "deliverables"]
               }
             },
-            aiAnalysis: { type: "string" },
+            aiAnalysis: { type: SchemaType.STRING },
             costBreakdown: {
-              type: "object",
+              type: SchemaType.OBJECT,
               properties: {
-                development: { type: "number" },
-                design: { type: "number" },
-                testing: { type: "number" },
-                deployment: { type: "number" },
-                projectManagement: { type: "number" }
+                development: { type: SchemaType.NUMBER },
+                design: { type: SchemaType.NUMBER },
+                testing: { type: SchemaType.NUMBER },
+                deployment: { type: SchemaType.NUMBER },
+                projectManagement: { type: SchemaType.NUMBER }
               },
               required: ["development", "design", "testing", "deployment", "projectManagement"]
             },
-            recommendations: { type: "array", items: { type: "string" } }
+            recommendations: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
           },
           required: ["estimatedCost", "timeline", "teamSize", "suggestedStack", "dependencies", "risks", "mvpPlan", "aiAnalysis", "costBreakdown", "recommendations"]
         }
@@ -433,6 +445,140 @@ app.get("/api/gemini-config", (req, res) => {
   res.json({ apiKey });
 });
 
+// Fallback consultation generator
+function generateFallbackConsultation(answers: ConsultationAnswers): CloudSolutionResponse {
+  const goalMap: Record<string, string> = {
+    "cost-savings": "cost optimization and efficient resource utilization",
+    "scalability": "auto-scaling architecture with performance optimization",
+    "security": "zero-trust security architecture with strict compliance controls",
+    "innovation": "cutting-edge AI/ML integration and data analytics"
+  };
+
+  const workloadMap: Record<string, { aws: string[], gcp: string[] }> = {
+    "web-apps": {
+      aws: ["AWS Lambda (Serverless)", "Amazon ECS (Container Orchestration)", "Amazon Aurora (Database)", "Amazon CloudFront (CDN)", "AWS WAF (Security)"],
+      gcp: ["Google Cloud Run (Serverless)", "GKE (Kubernetes)", "Cloud SQL (Managed DB)", "Cloud CDN", "Cloud Armor (Security)"]
+    },
+    "databases": {
+      aws: ["Amazon RDS for PostgreSQL", "Amazon DynamoDB (NoSQL)", "Amazon Redshift (Warehousing)", "Amazon ElastiCache (Caching)", "AWS Database Migration Service"],
+      gcp: ["Cloud SQL for PostgreSQL", "Firestore (NoSQL)", "BigQuery (Warehousing)", "Memorystore (Caching)", "Database Migration Service"]
+    },
+    "ai-ml": {
+      aws: ["Amazon SageMaker", "AWS Bedrock (Generative AI)", "AWS Lambda", "Amazon S3 Data Lake", "Amazon EC2 P4 Instances"],
+      gcp: ["Vertex AI Platform", "Google Kubernetes Engine (GKE) for ML", "Cloud Functions", "BigQuery ML", "Cloud TPUs"]
+    },
+    "devops": {
+      aws: ["AWS CodePipeline", "AWS CodeBuild", "Amazon EKS", "Amazon ECR", "AWS CloudFormation"],
+      gcp: ["Cloud Build", "Google Cloud Deploy", "Google Kubernetes Engine", "Artifact Registry", "Terraform on GCP"]
+    }
+  };
+
+  const services = workloadMap[answers.workloadType] || workloadMap["web-apps"];
+  const goal = goalMap[answers.primaryGoal] || "balanced cloud architecture";
+
+  return {
+    recommendation: `Given your primary objective of ${goal} for ${answers.workloadType} workloads, a managed service architecture is highly recommended. This approach minimizes operational overhead while maximizing ${answers.importantFactor}, ensuring your team can focus on business logic rather than infrastructure maintenance.`,
+    awsSolution: `On AWS, construct a robust solution using ${services.aws[0]} and ${services.aws[1]} for your core compute needs. Leverage ${services.aws[2]} for reliable data storage. To align with your goal of ${goal}, integrate ${services.aws[3]} and ${services.aws[4]}. This combination offers a mature, scalable ecosystem perfect for your requirements.`,
+    gcpSolution: `For Google Cloud, utilizing ${services.gcp[0]} and ${services.gcp[1]} will provide the agility and scaling you need. ${services.gcp[2]} serves as a high-performance database layer. To specifically address ${answers.importantFactor}, incorporate ${services.gcp[3]} and ${services.gcp[4]}. GCP's strength in data and AI makes this a powerful stack for ${answers.workloadType}.`,
+    nextSteps: [
+      `Perform a total cost of ownership (TCO) analysis for ${answers.workloadType} on both clouds.`,
+      "Develop a proof-of-concept (POC) using the recommended serverless/managed services.",
+      "Design a security framework incorporating the recommended security services.",
+      "Plan a phased migration or deployment strategy to minimize downtime.",
+      "Establish monitoring dashboards using CloudWatch (AWS) or Cloud Monitoring (GCP)."
+    ]
+  };
+}
+
+// Fallback quotation generator
+function generateFallbackQuotation(request: QuotationRequest): QuotationAnalysis {
+  // Basic cost estimation based on budget range and features
+  const budgetMap: Record<string, number> = {
+    "₹8L-₹20L": 1200000,
+    "₹20L-₹40L": 2800000,
+    "₹40L-₹80L": 6000000,
+    "₹80L+": 9600000,
+  };
+
+  const timelineMap: Record<string, string> = {
+    "1-2 months": "8 weeks",
+    "3-6 months": "16 weeks",
+    "6-12 months": "32 weeks",
+    "12+ months": "48 weeks",
+  };
+
+  const industryStacks: Record<string, string[]> = {
+    ecommerce: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS", "Redis"],
+    edutech: ["React", "Node.js", "MongoDB", "WebRTC", "AWS", "Socket.io"],
+    fintech: ["React", "Node.js", "PostgreSQL", "Blockchain", "AWS", "Redis"],
+    healthcare: ["React", "Node.js", "PostgreSQL", "HIPAA Compliance", "AWS", "Encryption"],
+    default: ["React", "Node.js", "PostgreSQL", "AWS", "Docker"]
+  };
+
+  const estimatedCost = budgetMap[request.budgetRange] || 500000;
+  const timeline = timelineMap[request.timeline] || "16 weeks";
+  const teamSize = request.features.length > 6 ? 5 : request.features.length > 3 ? 3 : 2;
+  const suggestedStack = industryStacks[request.industry.toLowerCase()] || industryStacks.default;
+
+  return {
+    estimatedCost,
+    timeline,
+    teamSize,
+    suggestedStack,
+    dependencies: [
+      "Client requirements finalization",
+      "Design system approval",
+      "Third-party API access credentials",
+      "Production environment setup",
+      "Domain and SSL certificate setup"
+    ],
+    risks: [
+      "Scope creep during development",
+      "Third-party integration delays",
+      "Performance optimization challenges",
+      "Compliance requirement changes",
+      "Resource availability constraints"
+    ],
+    mvpPlan: [
+      {
+        milestone: "Project Foundation",
+        duration: "2 weeks",
+        deliverables: ["Project setup", "Database design", "Authentication system", "Basic UI framework", "Development environment"]
+      },
+      {
+        milestone: "Core Development",
+        duration: "6-8 weeks",
+        deliverables: ["Main functionality implementation", "API development", "Frontend components", "Database integration", "Basic testing"]
+      },
+      {
+        milestone: "Integration & Testing",
+        duration: "3-4 weeks",
+        deliverables: ["Third-party integrations", "Comprehensive testing", "Performance optimization", "Security audit", "Bug fixes"]
+      },
+      {
+        milestone: "Deployment & Launch",
+        duration: "2 weeks",
+        deliverables: ["Production deployment", "Documentation", "User training", "Go-live support", "Post-launch monitoring"]
+      }
+    ],
+    aiAnalysis: `Based on your ${request.industry} project requirements, this estimation considers the complexity of implementing ${request.features.length} key features for ${request.expectedUsers} expected users. The project scope includes modern web development practices, security considerations, and scalability planning. The timeline accounts for iterative development with regular client feedback and comprehensive testing phases.`,
+    costBreakdown: {
+      development: Math.round(estimatedCost * 0.6),
+      design: Math.round(estimatedCost * 0.15),
+      testing: Math.round(estimatedCost * 0.12),
+      deployment: Math.round(estimatedCost * 0.08),
+      projectManagement: Math.round(estimatedCost * 0.05)
+    },
+    recommendations: [
+      "Start with MVP to validate core concepts",
+      "Implement robust testing from the beginning",
+      "Plan for scalability from day one",
+      "Regular client feedback sessions recommended",
+      "Consider phased rollout approach"
+    ]
+  };
+}
+
 // AI Strategy function (simplified refactor)
 async function generateAIStrategy(data: { infrastructure: string; dataVolume: string; industry: string }): Promise<AIStrategyResponse> {
   const systemPrompt = "You are a World-Class AI Strategy Consultant for Cehpoint... (same prompt)";
@@ -452,20 +598,20 @@ async function generateAIStrategy(data: { infrastructure: string; dataVolume: st
       generationConfig: {
         responseMimeType: "application/json",
         responseSchema: {
-          type: "object",
+          type: SchemaType.OBJECT,
           properties: {
-            executiveSummary: { type: "string" },
-            roiProjection: { type: "string" },
+            executiveSummary: { type: SchemaType.STRING },
+            roiProjection: { type: SchemaType.STRING },
             roadmap: {
-              type: "array",
+              type: SchemaType.ARRAY,
               items: {
-                type: "object",
-                properties: { phase: { type: "string" }, action: { type: "string" }, timeline: { type: "string" } },
+                type: SchemaType.OBJECT,
+                properties: { phase: { type: SchemaType.STRING }, action: { type: SchemaType.STRING }, timeline: { type: SchemaType.STRING } },
                 required: ["phase", "action", "timeline"]
               }
             },
-            complianceChecklist: { type: "array", items: { type: "string" } },
-            riskAssessment: { type: "string" }
+            complianceChecklist: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+            riskAssessment: { type: SchemaType.STRING }
           },
           required: ["executiveSummary", "roiProjection", "roadmap", "complianceChecklist", "riskAssessment"]
         }
@@ -521,21 +667,7 @@ if (process.env.NODE_ENV === 'production' && !process.env.VERCEL) {
   });
 }
 
-// ... rest of file
-const distPath = path.resolve(__dirname, '..');
 
-console.log(`[Production] Serving static files from: ${distPath}`);
-
-// Serve static files (CSS, JS, images)
-app.use(express.static(distPath));
-
-// Catch-all handler: send back React's index.html file for client-side routing
-app.get('*', (req, res) => {
-  const indexPath = path.resolve(distPath, 'index.html');
-  console.log(`[Production] Serving index.html from: ${indexPath}`);
-  res.sendFile(indexPath);
-});
-}
 
 // Error handling middleware
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
