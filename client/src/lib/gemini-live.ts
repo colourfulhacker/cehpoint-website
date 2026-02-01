@@ -40,14 +40,22 @@ export class GeminiLiveClient {
                 console.error("Gemini WebSocket Error:", error);
                 reject(error);
             };
+
+            this.ws.onclose = (event) => {
+                console.log("Gemini WebSocket Closed:", event.code, event.reason);
+                if (event.code !== 1000) {
+                    console.error("WebSocket closed abnormally", event);
+                }
+            };
         });
     }
 
     sendSetup() {
         if (!this.ws) return;
+        console.log("Sending setup with model: models/gemini-2.0-flash-exp");
         const setup = {
             setup: {
-                model: "models/gemini-live-2.5-flash-native-audio", // GA Native Audio model for Live API
+                model: "models/gemini-2.0-flash-exp",
             }
         };
 
