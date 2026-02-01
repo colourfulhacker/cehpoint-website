@@ -80,10 +80,12 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
 
             clientRef.current = client;
             setIsConnected(true);
-            addMessage("system", "Connected to Gemini 2.5 Live");
-        } catch (e) {
+            addMessage("system", "Connected to Gemini 2.0 Flash Exp");
+        } catch (e: any) {
             console.error(e);
-            addMessage("system", "Connection failed. Please try again.");
+            let errorMsg = "Connection failed.";
+            if (e.message) errorMsg += ` Error: ${e.message}`;
+            addMessage("system", errorMsg);
         }
     };
 
@@ -207,10 +209,10 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                             {messages.map((m, i) => (
                                 <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                                     <div className={`max-w-[80%] rounded-lg px-4 py-2 ${m.role === "user"
-                                            ? "bg-primary text-primary-foreground"
-                                            : m.role === "system"
-                                                ? "bg-muted text-xs text-center w-full"
-                                                : "bg-secondary text-secondary-foreground border border-border"
+                                        ? "bg-primary text-primary-foreground"
+                                        : m.role === "system"
+                                            ? "bg-muted text-xs text-center w-full"
+                                            : "bg-secondary text-secondary-foreground border border-border"
                                         }`}>
                                         {m.text}
                                     </div>

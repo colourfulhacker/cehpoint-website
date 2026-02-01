@@ -63,21 +63,32 @@ export class GeminiLiveClient {
     }
 
     async startAudioInput() {
-        this.audioContext = new AudioContext({ sampleRate: 16000 });
-        await this.audioContext.audioWorklet.addModule("/audio-processor.js");
+        try {
+            this.audioContext = new AudioContext({ sampleRate: 16000 });
 
-        this.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        const source = this.audioContext.createMediaStreamSource(this.mediaStream);
+            try {
+                await this.audioContext.audioWorklet.addModule("/audio-processor.js");
+            } catch (e) {
+                console.error("Failed to load audio-processor.js", e);
+                throw new Error("Failed to load audio processor (404 or CORS)");
+            }
 
-        this.audioWorkletNode = new AudioWorkletNode(this.audioContext, "audio-processor");
+            this.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const source = this.audioContext.createMediaStreamSource(this.mediaStream);
 
-        this.audioWorkletNode.port.onmessage = (event) => {
-            const audioData = event.data.audio;
-            this.sendAudioChunk(audioData);
-        };
+            this.audioWorkletNode = new AudioWorkletNode(this.audioContext, "audio-processor");
 
-        source.connect(this.audioWorkletNode);
-        this.audioWorkletNode.connect(this.audioContext.destination);
+            this.audioWorkletNode.port.onmessage = (event) => {
+                const audioData = event.data.audio;
+                this.sendAudioChunk(audioData);
+            };
+
+            source.connect(this.audioWorkletNode);
+            this.audioWorkletNode.connect(this.audioContext.destination);
+        } catch (error) {
+            console.error("Audio Input Error:", error);
+            throw error;
+        }
     }
 
     sendAudioChunk(float32Array: Float32Array) {
