@@ -47,7 +47,7 @@ export class GeminiLiveClient {
         if (!this.ws) return;
         const setup = {
             setup: {
-                model: "models/gemini-2.0-flash-exp", // Standard experimental model for Live API
+                model: "models/gemini-live-2.5-flash-native-audio", // GA Native Audio model for Live API
             }
         };
 
