@@ -24,30 +24,85 @@ export default function AIServiceEstimator() {
 
     const [strategy, setStrategy] = useState<any>(null);
 
+    // Offline Strategy Generator
+    const generateOfflineStrategy = (data: typeof formData) => {
+        const { industry, infrastructure, dataVolume } = data;
+
+        // Dynamic Content Generation
+        let summary = "";
+        let roi = "";
+        let risk = "";
+        let roadmap = [];
+        let compliance = [];
+
+        // Industry Specifics
+        switch (industry) {
+            case "finance":
+                summary = `For a Financial Institution managing ${dataVolume === 'high' ? 'massive' : 'critical'} data volumes on ${infrastructure} infrastructure, we recommend a Federated Learning approach to enhance Fraud Detection and Risk Analysis without compromising data privacy.`;
+                roi = "25-40% reduction in operational costs via automated compliance reporting and fraud prevention.";
+                risk = "Data Privacy & Model Explainability (ensure AI decisions are auditable).";
+                compliance = ["SOC2 Type II", "GDPR/CCPA", "Basel III"];
+                break;
+            case "healthcare":
+                summary = `Implementing Privacy-Preserving AI is crucial for healthcare. Given your ${infrastructure} setup, we suggest a hybrid edge-cloud architecture to process patient data locally while leveraging cloud for heavy model training (Diagnostics/R&D).`;
+                roi = "30% faster diagnosis cycles and 50% reduction in administrative overhead.";
+                risk = "HIPAA Compliance violations & Bias in diagnostic models.";
+                compliance = ["HIPAA", "HITECH", "FDA AI/ML Guidelines"];
+                break;
+            case "retail":
+                summary = `To dominate in Retail, hyper-personalization is key. We propose a Customer 360 AI engine that unifies data from your ${dataVolume} volume streams to predict trends and automate inventory management on your ${infrastructure} stack.`;
+                roi = "15-20% revenue uplift through personalized recommendations and dynamic pricing.";
+                risk = "Supply chain disruptions & Consumer data privacy trust.";
+                compliance = ["PCI-DSS", "CCPA", "GDPR"];
+                break;
+            case "manufacturing":
+                summary = `For Manufacturing 4.0, we recommend a Digital Twin implementation. Your ${infrastructure} environment is prime for integrating IoT sensors to drive Predictive Maintenance and optimize production lines in real-time.`;
+                roi = "Minimize downtime by 35-50% and extend equipment lifespan by years.";
+                risk = "IoT Security vulnerabilities & Integration with legacy OT systems.";
+                compliance = ["ISO 27001", "IEC 62443", "OSHA"];
+                break;
+            default:
+                summary = "A custom AI transformation roadmap tailored to your specific infrastructure and data needs.";
+                roi = "Estimated 20-30% efficiency gain across core operations.";
+                risk = "Change management & Technology adoption curve.";
+                compliance = ["General Data Protection Regulations"];
+        }
+
+        // Roadmap Modification based on Infrastructure
+        const baseRoadmap = [
+            { timeline: "Week 1-4", phase: "Discovery & Data Audit", action: "Assess data quality and security posture." },
+            { timeline: "Week 5-12", phase: "Pilot Implementation", action: "Deploy MVP model on selected high-impact use case." },
+            { timeline: "Month 4-6", phase: "Full Scale Integration", action: "Expand to production environment and integrate with ERP/CRM." }
+        ];
+
+        if (infrastructure === 'on-prem') {
+            baseRoadmap.splice(1, 0, { timeline: "Week 4-8", phase: "Hybrid Gateway Setup", action: "Establish secure tunnels for hybrid model deployment." });
+        } else if (infrastructure === 'cloud-native') {
+            baseRoadmap[0].action += " & Cloud cost optimization analysis.";
+        }
+
+        return {
+            executiveSummary: summary,
+            roiProjection: roi,
+            riskAssessment: risk,
+            roadmap: baseRoadmap,
+            complianceChecklist: compliance
+        };
+    };
+
     const handleEstimate = async () => {
         setLoading(true);
-        try {
-            const response = await fetch('/api/ai-strategy-estimate', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-            const data = await response.json();
-            setStrategy(data);
+        // Simulate API latency for better UX
+        setTimeout(() => {
+            const generatedStrategy = generateOfflineStrategy(formData);
+            setStrategy(generatedStrategy);
             setStep(2);
+            setLoading(false);
             toast({
                 title: "AI Strategy Ready",
-                description: "Your personalized strategy has been generated by our Advanced AI Models.",
+                description: "Your personalized strategy has been generated.",
             });
-        } catch (error) {
-            toast({
-                title: "Error",
-                description: "Failed to generate estimate. Please try again.",
-                variant: "destructive"
-            });
-        } finally {
-            setLoading(false);
-        }
+        }, 1500);
     };
 
     const reset = () => {

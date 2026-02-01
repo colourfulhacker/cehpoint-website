@@ -1,3 +1,4 @@
+
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -29,6 +30,11 @@ import Careers from "@/pages/careers";
 import InvestorConnect from "@/pages/investor-connect";
 import LeadershipSearch from "@/pages/leadership-search";
 import CompanyProfile from "@/pages/company-profile";
+import ContactPage from "@/pages/contact";
+
+// New Service Pages
+import RuralDigitalizationPage from "@/pages/services/rural-digitalization";
+import GameDevelopmentPage from "@/pages/services/game-development";
 
 // Cyber Crime Investigation Platform
 import InvestigationLanding from "@/pages/services/investigation/landing";
@@ -60,6 +66,8 @@ import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import ScrollToTop from "@/components/layout/scroll-to-top";
 import { Banner } from "./components/sections/Banner";
+import { KairaWidget } from "@/components/kaira/KairaWidget";
+
 
 function Router() {
   return (
@@ -80,11 +88,11 @@ function Router() {
           <Route path="/services/ecommerce" component={EcommerceService} />
           <Route path="/services/edutech" component={EdutechService} />
           <Route path="/services/fintech" component={FintechService} />
-          <Route path="/services/cyber-security" component={CyberSecurity} />
+          <Route path="/services/rural-digitalization" component={RuralDigitalizationPage} />
+          <Route path="/services/game-development" component={GameDevelopmentPage} />
           <Route path="/services/cyber-security" component={CyberSecurity} />
           <Route path="/services/business-app-catalog" component={BusinessAppCatalog} />
 
-          {/* Regional Service Dynamic Route */}
           {/* Regional Service Dynamic Route */}
           <Route path="/services/global/:region" component={RegionalService} />
 
@@ -131,11 +139,14 @@ function Router() {
           <Route path="/insights/edtech-evolution" component={EdtechEvolutionArticle} />
           <Route path="/insights/fashion-tech-revolution" component={FashionTechRevolutionArticle} />
           <Route path="/partner-network" component={PartnerNetwork} />
+          <Route path="/contact" component={ContactPage} />
           <Route component={NotFound} />
         </Switch>
       </main>
       <Footer />
+      <KairaWidget />
     </div>
+
   );
 }
 

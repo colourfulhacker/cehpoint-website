@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "wouter";
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown, Bot } from "lucide-react";
@@ -62,6 +63,8 @@ export default function Navbar() {
         { name: "E-commerce", href: "/services/ecommerce" },
         { name: "Edutech", href: "/services/edutech" },
         { name: "Fintech", href: "/services/fintech" },
+        { name: "Rural Digitalization", href: "/services/rural-digitalization" },
+        { name: "Game Development", href: "/services/game-development" },
         { name: "Business App Catalog", href: "/services/business-app-catalog" },
       ]
     },
@@ -106,6 +109,10 @@ export default function Navbar() {
         { name: "Internship Program", href: "/interns" },
         { name: "Campus Ambassador", href: "https://cehpoint-campus-ambassador-portal.cehpoint.co.in/", external: true },
       ]
+    },
+    {
+      name: "Contact Us",
+      href: "/contact",
     },
   ];
 

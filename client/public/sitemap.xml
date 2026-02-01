@@ -20,7 +20,19 @@
   </url>
   <url>
     <loc>https://www.cehpoint.co.in/contact</loc>
-    <lastmod>2026-01-28</lastmod>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cehpoint.co.in/services/rural-digitalization</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cehpoint.co.in/services/game-development</loc>
+    <lastmod>2026-02-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
