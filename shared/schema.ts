@@ -33,10 +33,10 @@ export const quotationResponses = pgTable("quotation_responses", {
   suggestedStack: jsonb("suggested_stack").notNull().$type<string[]>(),
   dependencies: jsonb("dependencies").notNull().$type<string[]>(),
   risks: jsonb("risks").notNull().$type<string[]>(),
-  mvpPlan: jsonb("mvp_plan").notNull().$type<{ 
-    milestone: string; 
-    duration: string; 
-    deliverables: string[]; 
+  mvpPlan: jsonb("mvp_plan").notNull().$type<{
+    milestone: string;
+    duration: string;
+    deliverables: string[];
   }[]>(),
   aiAnalysis: text("ai_analysis").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -57,7 +57,12 @@ export const insertQuotationResponseSchema = createInsertSchema(quotationRespons
   createdAt: true,
 });
 
+
+export const quotationRequestSchema = insertQuotationRequestSchema;
+export const quotationResponseSchema = insertQuotationResponseSchema;
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
+
 export type User = typeof users.$inferSelect;
 export type QuotationRequest = typeof quotationRequests.$inferSelect;
 export type InsertQuotationRequest = z.infer<typeof insertQuotationRequestSchema>;

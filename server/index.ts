@@ -5,30 +5,11 @@ import { fileURLToPath } from "url";
 import { createRequire } from "module";
 import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
-const require = createRequire(import.meta.url);
-
-// Import with fallback for Vercel deployment
-let quotationRequestSchema: any, quotationResponseSchema: any;
-try {
-  const schema = require("../shared/schema.js");
-  quotationRequestSchema = schema.quotationRequestSchema;
-  quotationResponseSchema = schema.quotationResponseSchema;
-} catch (error) {
-  console.warn("Could not load schema, using basic validation");
-  // Basic fallback validation
-  quotationRequestSchema = {
-    parse: (data: any) => {
-      if (!data.industry) throw new Error("Industry is required");
-      if (!data.projectSummary) throw new Error("Project summary is required");
-      return data;
-    }
-  };
-  quotationResponseSchema = {
-    parse: (data: any) => data
-  };
-}
+// Static import for Vercel bundling
+import { quotationRequestSchema, quotationResponseSchema } from "../shared/schema.js"; // TS resolves to .ts
 
 // Type definitions
+
 interface QuotationRequest {
   industry: string;
   projectSummary: string;
@@ -365,7 +346,7 @@ app.route("/api/quotation")
     try {
       console.log('POST /api/quotation - Received body:', req.body);
       const validatedRequest = quotationRequestSchema.parse(req.body);
-      const quotationAnalysis = await generateQuotation(validatedRequest);
+      const quotationAnalysis = await generateQuotation(validatedRequest as unknown as QuotationRequest);
       const validatedResponse = quotationResponseSchema.parse(quotationAnalysis);
       console.log('Sending quotation response:', validatedResponse);
       res.json(validatedResponse);
