@@ -589,6 +589,33 @@ app.route("/api/ai-consultation")
     res.status(405).json({ error: `Method ${req.method} not allowed` });
   });
 
+// Kaira Text Chat API Route
+app.post("/api/kaira-chat", async (req, res) => {
+  try {
+    const { message, history } = req.body;
+    if (!message) return res.status(400).json({ error: "Message is required" });
+
+    const ai = getAI();
+    if (!ai) throw new Error("AI client failed to initialize");
+
+    // Construct prompt with history
+    const context = "You are Kaira, an advanced AI Assistant for Cehpoint (a Cyber Security & Digital Solutions firm). You are professional, concise, and helpful. You help users with navigation, services info, and general queries about Cehpoint.";
+    const chatHistory = history ? history.map((msg: any) => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.text}`).join('\n') : '';
+    const fullPrompt = `${context}\n\nChat History:\n${chatHistory}\n\nUser: ${message}\nAssistant:`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: fullPrompt,
+    });
+
+    const text = response.text;
+    res.json({ response: text });
+  } catch (error) {
+    console.error("Kaira Chat Error:", error);
+    res.status(500).json({ error: "Failed to generate chat response" });
+  }
+});
+
 // Gemini Config API route
 app.get("/api/gemini-config", (req, res) => {
   const apiKey = process.env.GEMINI_API_KEY;

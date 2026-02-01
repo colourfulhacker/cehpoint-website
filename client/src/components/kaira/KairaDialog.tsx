@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { X, Mic, MicOff, MessageSquare, Phone, User, Send, Trash2 } from "lucide-react";
+import { X, Mic, MicOff, MessageSquare, Phone, User, Send, Trash2, StopCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,8 +24,9 @@ const STORAGE_KEY = "kaira_chat_history";
 export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputText, setInputText] = useState("");
-    const [isMeetingMode, setIsMeetingMode] = useState(false);
-    const [isConnected, setIsConnected] = useState(false);
+    const [mode, setMode] = useState<"text" | "voice">("text");
+    const [isVoiceConnected, setIsVoiceConnected] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [fallbackLeader, setFallbackLeader] = useState<Leader | null>(null);
 
     const clientRef = useRef<GeminiLiveClient | null>(null);
@@ -46,108 +47,111 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
         }
     }, []);
 
-    // Save history on update
+    // Save history
     useEffect(() => {
         if (messages.length > 0) {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
         }
     }, [messages]);
 
+    // Auto-scroll
     useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
-    }, [messages]);
+    }, [messages, mode]);
 
-    const handleConnect = async () => {
+    // --- Voice Mode Logic ---
+    const startVoiceMode = async () => {
         try {
+            setMode("voice");
             let apiKey = "";
             try {
-                // Method 1: Secure Server Endpoint
                 const res = await fetch("/api/gemini-config");
                 const contentType = res.headers.get("content-type");
                 if (contentType && contentType.includes("application/json")) {
                     const data = await res.json();
                     if (data.apiKey) apiKey = data.apiKey;
-                } else {
-                    console.warn("Server config returned non-JSON, trying fallback.");
                 }
-            } catch (e) {
-                console.warn("Server config fetch failed, trying fallback.", e);
-            }
+            } catch (e) { /* Fallback handled below */ }
 
-            // Method 2: Client-side Env Var (Fallback)
-            if (!apiKey) {
-                apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
-            }
-
-            if (!apiKey) throw new Error("No API Key found (Server or VITE_GEMINI_API_KEY)");
+            if (!apiKey) apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
+            if (!apiKey) throw new Error("No API Key found");
 
             const client = new GeminiLiveClient(apiKey);
             client.onTextData = (text, isUser) => {
-                addMessage(isUser ? "user" : "ai", text);
-                checkForFallback(text);
+                // In voice mode, we might optionally show live captions, but let's keep it clean or minimal
+                // For now, let's just log or transiently show
+                console.log(`[Voice] ${isUser ? 'User' : 'AI'}: ${text}`);
             };
 
             await client.connect();
-
-            if (isMeetingMode) {
-                await client.startAudioInput();
-            }
+            await client.startAudioInput();
 
             clientRef.current = client;
-            setIsConnected(true);
-            addMessage("system", "Connected to Gemini 2.0 Flash Exp");
+            setIsVoiceConnected(true);
         } catch (e: any) {
-            console.error(e);
-            let errorMsg = "Connection failed.";
-            if (e.message) errorMsg += ` Error: ${e.message}`;
-            addMessage("system", errorMsg);
+            console.error("Voice Connection Failed", e);
+            setMode("text");
+            addMessage("system", `Voice connection failed: ${e.message}`);
         }
     };
 
-    const handleDisconnect = () => {
+    const stopVoiceMode = () => {
         if (clientRef.current) {
             clientRef.current.disconnect();
             clientRef.current = null;
         }
-        setIsConnected(false);
-        setIsMeetingMode(false);
-        addMessage("system", "Disconnected");
+        setIsVoiceConnected(false);
+        setMode("text");
+    };
+
+    // --- Text Mode Logic ---
+    const sendTextMessage = async () => {
+        if (!inputText.trim()) return;
+        const msg = inputText.trim();
+        setInputText("");
+        addMessage("user", msg);
+        setIsLoading(true);
+
+        try {
+            const res = await fetch("/api/kaira-chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: msg, history: messages.slice(-5) }) // Send last 5 context
+            });
+
+            const data = await res.json();
+            if (data.response) {
+                addMessage("ai", data.response);
+                checkForFallback(data.response);
+            } else {
+                throw new Error("No response from server");
+            }
+        } catch (e) {
+            console.error("Text Chat Error", e);
+            addMessage("system", "I'm having trouble connecting right now. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const addMessage = (role: "user" | "ai" | "system", text: string) => {
         setMessages(prev => [...prev, { role, text }]);
     };
 
-    const clearHistory = () => {
-        const initial: Message[] = [{ role: "ai", text: "Hello, I'm Kaira AI. How can I assist you today?" }];
-        setMessages(initial);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
-    };
-
     const checkForFallback = (text: string) => {
-        // Simple heuristic: if AI says "I don't know" or similar, trigger fallback
         const lower = text.toLowerCase();
-        if (lower.includes("consultant") || lower.includes("leadership") || lower.includes("don't know") || lower.includes("unable to answer")) {
-            // Find a random leader for now, or based on keywords
-            // In real implementation, we would extract topics from 'text'
+        if (lower.includes("consultant") || lower.includes("leadership") || lower.includes("don't know")) {
             const randomLeader = leadershipData[Math.floor(Math.random() * leadershipData.length)];
             setFallbackLeader(randomLeader);
         }
     };
 
-    const sendMessage = () => {
-        if (!inputText.trim()) return;
-        if (clientRef.current) {
-            clientRef.current.sendTextMessage(inputText);
-        } else {
-            // Fallback if not connected to WS (simulate chat) or auto-connect
-            handleConnect().then(() => {
-                clientRef.current?.sendTextMessage(inputText);
-            });
-        }
-        setInputText("");
+    const clearHistory = () => {
+        const initial: Message[] = [{ role: "ai", text: "Hello, I'm Kaira AI. How can I assist you today?" }];
+        setMessages(initial);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
     };
 
     return (
@@ -159,34 +163,26 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                     initial={{ opacity: 0, scale: 0.9, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                    className="fixed bottom-24 right-6 w-[400px] h-[600px] bg-background border border-primary/20 rounded-2xl shadow-2xl z-[9999] flex flex-col overflow-hidden"
+                    className="fixed bottom-24 right-6 w-[400px] h-[600px] bg-background border border-primary/20 rounded-2xl shadow-2xl z-[9999] flex flex-col overflow-hidden font-sans"
                 >
                     {/* Header */}
-                    <div className="p-4 border-b border-primary/10 flex items-center justify-between bg-primary/5 cursor-move">
+                    <div className="p-4 border-b border-primary/10 flex items-center justify-between bg-primary/5 cursor-move select-none">
                         <div className="flex items-center gap-3">
                             <Avatar className="h-10 w-10 border-2 border-primary">
                                 <AvatarImage src="/kaira.png" />
-                                <AvatarFallback>KA</AvatarFallback>
+                                <AvatarFallback>K</AvatarFallback>
                             </Avatar>
                             <div>
                                 <h3 className="font-bold text-foreground">Kaira AI</h3>
                                 <p className="text-xs text-muted-foreground flex items-center gap-1">
-                                    <span className={`w-2 h-2 rounded-full ${isConnected ? "bg-green-500" : "bg-gray-400"}`} />
-                                    {isConnected ? "Live" : "Offline"}
+                                    <span className={`w-2 h-2 rounded-full ${mode === 'voice' && isVoiceConnected ? "bg-red-500 animate-pulse" : "bg-green-500"}`} />
+                                    {mode === 'voice' ? "Voice Mode" : "Online"}
                                 </p>
                             </div>
                         </div>
                         <div className="flex items-center gap-1">
-                            <Button variant="ghost" size="icon" title="Clear History" onClick={clearHistory}>
-                                <Trash2 className="h-4 w-4 text-muted-foreground hover:text-destructive" />
-                            </Button>
-                            <Button variant="ghost" size="icon" onClick={() => {
-                                setIsMeetingMode(!isMeetingMode);
-                                if (isConnected && !isMeetingMode) {
-                                    clientRef.current?.startAudioInput();
-                                }
-                            }}>
-                                {isMeetingMode ? <Phone className="h-4 w-4 text-green-500 fill-current" /> : <Phone className="h-4 w-4" />}
+                            <Button variant="ghost" size="icon" onClick={clearHistory} title="Clear Chat">
+                                <Trash2 className="h-4 w-4 text-muted-foreground" />
                             </Button>
                             <Button variant="ghost" size="icon" onClick={onClose}>
                                 <X className="h-4 w-4" />
@@ -194,103 +190,111 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                         </div>
                     </div>
 
-                    {/* Visualizer (Meeting Mode) */}
-                    <AnimatePresence>
-                        {isMeetingMode && (
-                            <motion.div
-                                initial={{ height: 0 }}
-                                animate={{ height: 120 }}
-                                exit={{ height: 0 }}
-                                className="bg-accent/10 flex items-center justify-center overflow-hidden relative border-b border-primary/10"
-                            >
-                                {/* Fake Visualizer for Demo */}
-                                <div className="flex items-center gap-1 h-8">
-                                    {[...Array(5)].map((_, i) => (
-                                        <motion.div
-                                            key={i}
-                                            animate={{ height: [10, 30, 10] }}
-                                            transition={{ repeat: Infinity, duration: 0.5 + Math.random() * 0.5 }}
-                                            className="w-1 bg-primary rounded-full"
-                                        />
-                                    ))}
-                                </div>
-                                <p className="absolute bottom-2 text-xs text-muted-foreground">Listening...</p>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-
-
-                    {/* Chat Area */}
-                    <ScrollArea className="flex-1 p-4 bg-background" ref={scrollRef}>
-                        <div className="space-y-4">
-                            {messages.map((m, i) => (
-                                <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
-                                    <div className={`max-w-[80%] rounded-lg px-4 py-2 ${m.role === "user"
-                                        ? "bg-primary text-primary-foreground"
-                                        : m.role === "system"
-                                            ? "bg-muted text-xs text-center w-full"
-                                            : "bg-secondary text-secondary-foreground border border-border"
-                                        }`}>
-                                        {m.text}
-                                    </div>
-                                </div>
-                            ))}
-
-                            {/* Fallback Card */}
-                            {fallbackLeader && (
+                    {/* Content Area */}
+                    <div className="flex-1 flex flex-col relative overflow-hidden bg-background">
+                        {mode === 'voice' ? (
+                            // Voice Mode UI
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 space-y-8 bg-gradient-to-b from-background to-primary/5">
                                 <motion.div
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="mt-4"
+                                    animate={{ scale: [1, 1.2, 1] }}
+                                    transition={{ repeat: Infinity, duration: 2 }}
+                                    className="relative"
                                 >
-                                    <Card className="border-l-4 border-l-primary bg-card">
-                                        <CardContent className="p-4">
-                                            <p className="text-sm font-medium mb-2">I recommend speaking with this expert:</p>
-                                            <div className="flex items-center gap-3">
-                                                <div className="bg-primary/20 p-2 rounded-full">
-                                                    <User className="h-5 w-5 text-primary" />
-                                                </div>
-                                                <div>
-                                                    <p className="font-bold text-sm">{fallbackLeader.name}</p>
-                                                    <p className="text-xs text-muted-foreground">{fallbackLeader.designation}</p>
-                                                </div>
-                                            </div>
-                                            <Button size="sm" variant="outline" className="w-full mt-3 gap-2" asChild>
-                                                <a href={`mailto:${fallbackLeader.email}`}>
-                                                    <Send className="h-3 w-3" /> Contact
-                                                </a>
-                                            </Button>
-                                        </CardContent>
-                                    </Card>
+                                    <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl animate-pulse" />
+                                    <Avatar className="h-32 w-32 border-4 border-primary z-10 relative">
+                                        <AvatarImage src="/kaira.png" />
+                                        <AvatarFallback>AI</AvatarFallback>
+                                    </Avatar>
                                 </motion.div>
-                            )}
-                        </div>
-                    </ScrollArea>
-
-                    {/* Input Area */}
-                    <div className="p-4 border-t border-primary/10 bg-background">
-                        {!isConnected ? (
-                            <Button className="w-full" onClick={handleConnect}>
-                                Connect to Kaira AI
-                            </Button>
+                                <div className="text-center space-y-2">
+                                    <h2 className="text-2xl font-bold">Listening...</h2>
+                                    <p className="text-muted-foreground">Speak freely with Kaira</p>
+                                </div>
+                                <Button size="lg" variant="destructive" className="rounded-full px-8 gap-2" onClick={stopVoiceMode}>
+                                    <StopCircle className="h-5 w-5" /> End Call
+                                </Button>
+                            </div>
                         ) : (
-                            <div className="flex gap-2">
+                            // Text Mode UI
+                            <ScrollArea className="flex-1 p-4" ref={scrollRef}>
+                                <div className="space-y-4 pb-4">
+                                    {messages.map((m, i) => (
+                                        <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+                                            <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm ${m.role === "user"
+                                                    ? "bg-primary text-primary-foreground rounded-br-none"
+                                                    : m.role === "system"
+                                                        ? "bg-muted text-xs text-center w-full shadow-none my-2"
+                                                        : "bg-secondary text-secondary-foreground border border-border/50 rounded-bl-none"
+                                                }`}>
+                                                {m.text}
+                                            </div>
+                                        </div>
+                                    ))}
+                                    {isLoading && (
+                                        <div className="flex justify-start">
+                                            <div className="bg-secondary px-4 py-3 rounded-2xl rounded-bl-none flex gap-1 items-center">
+                                                <span className="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                                                <span className="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                                                <span className="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Fallback Leader Card */}
+                                    {fallbackLeader && (
+                                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-2">
+                                            <Card className="border-l-4 border-l-primary bg-card/50">
+                                                <CardContent className="p-4 flex items-center gap-4">
+                                                    <Avatar className="h-10 w-10">
+                                                        <AvatarFallback>Ex</AvatarFallback>
+                                                    </Avatar>
+                                                    <div>
+                                                        <p className="font-semibold text-sm">Recommended Expert</p>
+                                                        <p className="text-sm font-bold">{fallbackLeader.name}</p>
+                                                        <a href={`mailto:${fallbackLeader.email}`} className="text-xs text-primary hover:underline">
+                                                            {fallbackLeader.email}
+                                                        </a>
+                                                    </div>
+                                                </CardContent>
+                                            </Card>
+                                        </motion.div>
+                                    )}
+                                </div>
+                            </ScrollArea>
+                        )}
+                    </div>
+
+                    {/* Footer Controls */}
+                    {mode === 'text' && (
+                        <div className="p-4 bg-background border-t border-border flex items-center gap-2">
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="rounded-full shrink-0 border-primary/20 hover:bg-primary/10 hover:border-primary/50"
+                                onClick={startVoiceMode}
+                                title="Start Voice Call"
+                            >
+                                <Phone className="h-5 w-5 text-primary" />
+                            </Button>
+                            <div className="relative flex-1">
                                 <Input
                                     value={inputText}
                                     onChange={(e) => setInputText(e.target.value)}
+                                    onKeyDown={(e) => e.key === "Enter" && sendTextMessage()}
                                     placeholder="Type a message..."
-                                    onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                                    className="flex-1"
+                                    className="pr-10 rounded-full border-primary/20 focus-visible:ring-primary/30"
                                 />
-                                <Button size="icon" onClick={sendMessage}>
+                                <Button
+                                    size="icon"
+                                    className="absolute right-1 top-1 h-8 w-8 rounded-full"
+                                    onClick={sendTextMessage}
+                                    disabled={!inputText.trim() || isLoading}
+                                >
                                     <Send className="h-4 w-4" />
                                 </Button>
-                                <Button size="icon" variant="destructive" onClick={handleDisconnect}>
-                                    <Phone className="h-4 w-4 rotate-[135deg]" />
-                                </Button>
                             </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </motion.div>
             )}
         </AnimatePresence>
