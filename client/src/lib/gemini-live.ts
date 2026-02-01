@@ -56,6 +56,18 @@ export class GeminiLiveClient {
         const setup = {
             setup: {
                 model: "models/gemini-2.0-flash-exp",
+                system_instruction: {
+                    parts: [{
+                        text: `You are Kaira, the AI Assistant for Cehpoint.
+                        Help users navigate the site verbally.
+                        KEY PAGES:
+                        - Cost Estimator: /calculator
+                        - Services: /services
+                        - Careers: /careers
+                        - Contact: /contact
+                        If a user asks about these topics, mention they can find the page on our website.`
+                    }]
+                }
             }
         };
 
