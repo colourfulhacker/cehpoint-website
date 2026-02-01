@@ -66,6 +66,11 @@ export class GeminiLiveClient {
         try {
             this.audioContext = new AudioContext({ sampleRate: 16000 });
 
+            // Mobile Safari/Chrome requirement: Resume context if suspended
+            if (this.audioContext.state === 'suspended') {
+                await this.audioContext.resume();
+            }
+
             try {
                 await this.audioContext.audioWorklet.addModule("/audio-processor.js");
             } catch (e) {

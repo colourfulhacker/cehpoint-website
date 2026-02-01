@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { GeminiLiveClient } from "@/lib/gemini-live";
 import { leadershipData, Leader } from "@/data/leadership";
+import ReactMarkdown from "react-markdown";
 
 interface KairaDialogProps {
     isOpen: boolean;
@@ -231,7 +232,13 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                                                     ? "bg-muted text-xs text-center w-full shadow-none my-2"
                                                     : "bg-secondary text-secondary-foreground border border-border/50 rounded-bl-none"
                                                 }`}>
-                                                {m.text}
+                                                {m.role === "user" ? (
+                                                    m.text
+                                                ) : (
+                                                    <div className="prose prose-sm dark:prose-invert max-w-none">
+                                                        <ReactMarkdown>{m.text}</ReactMarkdown>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                     ))}
