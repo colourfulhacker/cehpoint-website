@@ -145,7 +145,7 @@ export default function Navbar() {
               </Link>
             </div>
 
-            <div className="hidden lg:flex items-center space-x-6 lg:space-x-8">
+            <div className="hidden xl:flex items-center space-x-4 xl:space-x-6">
               {navigation.map((item) => (
                 <div
                   key={item.name}
@@ -238,7 +238,7 @@ export default function Navbar() {
 
             <div className="flex items-center space-x-2 sm:space-x-4">
               {/* Desktop CTA - Hidden on Mobile */}
-              <div className="hidden lg:block">
+              <div className="hidden xl:block">
                 <Link href="/quotation">
                   <Button
                     className="btn-primary hover-glow magnetic-hover px-6 py-3 rounded-xl text-primary-foreground font-bold"
@@ -252,7 +252,7 @@ export default function Navbar() {
               </div>
 
               <button
-                className="lg:hidden text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md p-1 sm:p-2"
+                className="xl:hidden text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md p-1 sm:p-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
@@ -266,7 +266,7 @@ export default function Navbar() {
           {/* Mobile menu */}
           {isMenuOpen && (
             <div
-              className="lg:hidden glass rounded-lg mt-2 p-4 max-h-[calc(100vh-120px)] overflow-y-auto relative z-50"
+              className="xl:hidden glass rounded-lg mt-2 p-4 max-h-[calc(100vh-120px)] overflow-y-auto relative z-50"
               data-testid="mobile-menu"
               role="menu"
               aria-label="Mobile navigation menu"
