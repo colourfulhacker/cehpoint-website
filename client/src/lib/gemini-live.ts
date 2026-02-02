@@ -2,20 +2,59 @@
 export class GeminiLiveClient {
     private ws: WebSocket | null = null;
     private audioContext: AudioContext | null = null;
-    private audioWorkletNode: AudioWorkletNode | null = null;
     private mediaStream: MediaStream | null = null;
     private apiKey: string;
+    public selectedDeviceId: string = "";
+    public modelId: string = "models/gemini-2.0-flash-exp"; // Stable Live Model
 
     public onAudioData: ((data: ArrayBuffer) => void) | null = null;
     public onTextData: ((text: string, isUser: boolean) => void) | null = null;
     public onInterrupted: (() => void) | null = null;
     public onTurnComplete: (() => void) | null = null;
+    public onStatusChange: ((status: string) => void) | null = null;
+    public onError: ((error: string) => void) | null = null;
+    public onModelChange: ((model: string) => void) | null = null; // New callback for UI reporting
+    public onDebugLog: ((log: string) => void) | null = null;
+    public onVolumeChange: ((vol: number) => void) | null = null;
+
+    private useFallbackTTS = false; // DISABLED: Pure Native Audio requested
 
     constructor(apiKey: string) {
         this.apiKey = apiKey;
     }
 
+    private emitStatus(status: string) {
+        if (this.onStatusChange) this.onStatusChange(status);
+        this.emitDebug(`Status: ${status}`);
+    }
+
+    private emitError(error: string) {
+        if (this.onError) this.onError(error);
+        this.emitDebug(`ERROR: ${error}`);
+    }
+
+    private emitDebug(msg: string) {
+        if (this.onDebugLog) this.onDebugLog(`[${new Date().toLocaleTimeString()}] ${msg}`);
+    }
+
+    // FALLBACK TTS
+    public speakText(text: string) {
+        if (!this.useFallbackTTS) {
+            this.emitDebug("TTS Skipped (Native Audio active)");
+            return;
+        }
+        this.emitDebug(`TTS Attempting to speak: "${text.substring(0, 20)}..."`);
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.1;
+
+        utterance.onstart = () => this.emitDebug("TTS: Started Speaking");
+        utterance.onerror = (e) => this.emitDebug(`TTS Error: ${e.error}`);
+
+        window.speechSynthesis.speak(utterance);
+    }
+
     async connect() {
+        this.emitStatus("Connecting...");
         const url = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=${this.apiKey}`;
         this.ws = new WebSocket(url);
 
@@ -24,13 +63,15 @@ export class GeminiLiveClient {
 
             this.ws.onopen = () => {
                 console.log("Gemini Live WebSocket Connected");
+                this.emitStatus("Connected. Configuring...");
+                this.useFallbackTTS = true; // Reset fallback
                 this.sendSetup();
                 resolve();
             };
 
             this.ws.onmessage = async (event) => {
                 if (event.data instanceof Blob) {
-                    this.handleServerAudio(await event.data.arrayBuffer());
+                    this.handleServerAudio(await event.data.arrayBuffer() as ArrayBuffer);
                 } else {
                     this.handleServerMessage(JSON.parse(event.data));
                 }
@@ -38,6 +79,7 @@ export class GeminiLiveClient {
 
             this.ws.onerror = (error) => {
                 console.error("Gemini WebSocket Error:", error);
+                this.emitError("Connection Error (WS).");
                 reject(error);
             };
 
@@ -52,79 +94,108 @@ export class GeminiLiveClient {
 
     sendSetup() {
         if (!this.ws) return;
-        console.log("Sending setup with model: models/gemini-2.0-flash-exp");
+
+        console.log(`Sending setup with model: ${this.modelId}`);
+        this.emitStatus(`Configuring Model: ${this.modelId.split('/').pop()}...`);
+        if (this.onModelChange) this.onModelChange(this.modelId);
+
         const setup = {
             setup: {
-                model: "models/gemini-2.0-flash-exp",
+                model: this.modelId,
+                generation_config: {
+                    response_modalities: ["AUDIO"],
+                    speech_config: {
+                        voice_config: {
+                            prebuilt_voice_config: {
+                                voice_name: "Aoede"
+                            }
+                        }
+                    }
+                },
                 system_instruction: {
                     parts: [{
-                        text: `You are Kaira, the AI Assistant for Cehpoint.
-                        Your goal is to help users find the right service or page on our website.
-                        When a user asks about a topic, providing the Direct Link is your PRIORITY.
+                        text: `You are Kaira, Cehpoint's AI Assistant.
+                    Your goal: Help users find services using strict paths or connect with leadership.
+                    
+                    LANGUAGE PROTOCOL:
+                    - Primary: Professional English.
+                    - If user speaks Bengali -> Reply in English, then briefly ask if they want Bengali. Switch ONLY if asked.
 
-                        SITE MAP & SERVICES:
-                        - ** Cost Estimator **: /cost-estimator (Use this for "pricing", "cost", "quote")
-                    - ** Services Main **: /services
-                    - ** E - Commerce **: /services/ecommerce
-                    - ** Edutech **: /services/edutech
-                    - ** Fintech **: /services/fintech
-                    - ** Cyber Security **: /services/cyber - security
-                    - ** Cyber Crime Investigation **: /services/cyber - crime - investigation
-                    - ** Rural Digitalization **: /services/rural - digitalization
-                    - ** Game Development **: /services/game - development
-                    - ** Business Apps **: /services/business - app - catalog
-                    - ** AI Solutions **: /ai-solutions
-                    - ** Training **: /training
-                    - ** Incubation **: /incubation
-                    - ** Internships **: /interns
-                    - ** Careers **: /careers
-                    - ** Investor Connect **: /investor-connect
-                    - ** Leadership Search **: /leadership-search
-                    - ** Company Profile **: /company-profile
-                    - ** Insights / Blog **: /insights
-                    - ** Contact **: /contact
-                    - ** Privacy Policy **: /privacy
-                        
-                        If the user is vague, ask them to clarify which service they need.
-                        Always use the exact paths above.`
+                    SITEMAP:
+                    - Services: /services (Ecommerce, Fintech, Cyber Security, etc)
+                    - Cyber Crime: /services/cyber-crime-investigation
+                    - Cost Estimator: /cost-estimator (NOT /calculator)
+                    - Careers: /careers
+                    - Contact: /contact
+                    - Leadership: /leadership-search
+
+                    LEADERSHIP (Recommended for high-stakes/complex queries):
+                    - Jit Banerjee (CEO)
+                    - Siddharth Jain (Zero-Trust Lead)
+                    - Meenakshi Rao (Privacy Lead)
+                    - Vikas Nair (Forensics Lead)
+                    - Aditi Kulkarni (Cybercrime Training)
+                    
+                    PROTOCOL:
+                    - Speak concisely.
+                    - If complex inquiry -> Recommend specific leader from list (e.g. "For Forensics, please contact Vikas Nair").
+                    - If unsure -> Refer to /leadership-search.
+                    - User is speaking via Voice. Keep answers short.`
                     }]
                 }
             }
         };
 
+        this.emitDebug("TX: Setup (Audio Modality Requested)");
         this.ws.send(JSON.stringify(setup));
     }
 
     async startAudioInput() {
         try {
+            this.emitStatus("Requesting Microphone...");
             this.audioContext = new AudioContext({ sampleRate: 16000 });
+            console.log(`[AudioContext] Sample Rate: ${this.audioContext.sampleRate}`);
 
-            // Mobile Safari/Chrome requirement: Resume context if suspended
+            // HARDWARE TEST: Play a 440Hz beep to confirm speakers work
+            this.playTestBeep();
+
+            // PRIMING
+            this.sendTextMessage("Hello");
+
             if (this.audioContext.state === 'suspended') {
+                console.log("Resuming Audio Context...");
                 await this.audioContext.resume();
             }
 
-            try {
-                await this.audioContext.audioWorklet.addModule("/audio-processor.js");
-            } catch (e) {
-                console.error("Failed to load audio-processor.js", e);
-                throw new Error("Failed to load audio processor (404 or CORS)");
-            }
+            // AUDIO INPUT
+            this.emitStatus("Requesting Microphone...");
 
-            this.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            // Use selected device if available, otherwise default
+            const constraints = this.selectedDeviceId
+                ? { audio: { deviceId: { exact: this.selectedDeviceId } } }
+                : { audio: true };
+
+            console.log("Requesting Mic with Constraints:", JSON.stringify(constraints));
+            this.mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
             const source = this.audioContext.createMediaStreamSource(this.mediaStream);
 
-            this.audioWorkletNode = new AudioWorkletNode(this.audioContext, "audio-processor");
+            // ROBUST FALLBACK: Use ScriptProcessor
+            // Buffer size 512 gives ~32ms latency @ 16kHz (Target: 20-40ms).
+            const processor = this.audioContext.createScriptProcessor(512, 1, 1);
 
-            this.audioWorkletNode.port.onmessage = (event) => {
-                const audioData = event.data.audio;
-                this.sendAudioChunk(audioData);
+            processor.onaudioprocess = (e) => {
+                const inputData = e.inputBuffer.getChannelData(0);
+                this.sendAudioChunk(inputData);
             };
 
-            source.connect(this.audioWorkletNode);
-            this.audioWorkletNode.connect(this.audioContext.destination);
+            source.connect(processor);
+            processor.connect(this.audioContext.destination); // Required for Chrome to activate
+
+            this.emitStatus("Listening (Legacy Mode)...");
+            console.log("Audio Input Started: ScriptProcessor (Legacy)");
         } catch (error) {
             console.error("Audio Input Error:", error);
+            this.emitError("Microphone Access Failing.");
             throw error;
         }
     }
@@ -141,6 +212,18 @@ export class GeminiLiveClient {
 
         // Base64 encode
         const base64Audio = this.arrayBufferToBase64(int16Array.buffer);
+
+        // Calculate RMS (Volume) for debugging
+        let sum = 0;
+        for (let i = 0; i < float32Array.length; i++) {
+            sum += float32Array[i] * float32Array[i];
+        }
+        const rms = Math.sqrt(sum / float32Array.length);
+        if (this.onVolumeChange) this.onVolumeChange(rms * 5); // Scale up for visibility
+
+        if (Math.random() < 0.05) {
+            this.emitDebug(`Microphone RMS: ${rms.toFixed(4)}`);
+        }
 
         const msg = {
             realtime_input: {
@@ -173,17 +256,44 @@ export class GeminiLiveClient {
     }
 
     handleServerMessage(data: any) {
-        // console.log("Server Msg:", data);
+        // console.log("Server Msg:", data); 
+        this.emitDebug(`RX: ${JSON.stringify(data).substring(0, 50)}...`);
+
+        // Handle Protocol Errors
+        if (data.error) {
+            console.error("Gemini Protocol Error:", data.error);
+            this.emitError(`AI Error: ${data.error.message || "Unknown Protocol Error"}`);
+            return;
+        }
+
         if (data.serverContent) {
             if (data.serverContent.modelTurn) {
                 const parts = data.serverContent.modelTurn.parts;
+
                 if (parts) {
                     for (const part of parts) {
-                        if (part.text && this.onTextData) {
-                            this.onTextData(part.text, false);
-                        }
+                        // 1. Native Audio (Priority)
                         if (part.inlineData && part.inlineData.mimeType.startsWith("audio/")) {
+                            // If TTS is active, KILL IT immediately. Native audio has arrived.
+                            if (window.speechSynthesis.speaking || this.useFallbackTTS) {
+                                window.speechSynthesis.cancel();
+                                this.useFallbackTTS = false;
+                                this.emitDebug("Native Audio RX -> Stopping TTS");
+                            }
                             this.playAudioChunk(part.inlineData.data);
+                        }
+
+                        // 2. Text (Fallback/UI)
+                        if (part.text) {
+                            // Log incoming text to prove connection is alive
+                            this.emitDebug(`AI Text: ${part.text.substring(0, 30)}...`);
+
+                            if (this.onTextData) this.onTextData(part.text, false);
+
+                            // Try TTS immediately if we are still dependent on it
+                            if (this.useFallbackTTS) {
+                                this.speakText(part.text);
+                            }
                         }
                     }
                 }
@@ -215,6 +325,7 @@ export class GeminiLiveClient {
         const int16 = new Int16Array(bytes.buffer);
 
         // Convert Int16 to Float32
+        // Fix for "SharedArrayBuffer" lint: Cast the buffer explicitly to ArrayBuffer
         const float32 = new Float32Array(int16.length);
         for (let i = 0; i < int16.length; i++) {
             float32[i] = int16[i] / 32768.0;
@@ -232,6 +343,7 @@ export class GeminiLiveClient {
         }
 
         const buffer = this.audioContext.createBuffer(1, audioData.length, 24000); // Gemini 2.0 output is 24kHz
+        // @ts-ignore
         buffer.copyToChannel(audioData, 0);
 
         const source = this.audioContext.createBufferSource();
@@ -245,6 +357,20 @@ export class GeminiLiveClient {
 
         source.start(this.scheduledTime);
         this.scheduledTime += buffer.duration;
+    }
+
+    playTestBeep() {
+        if (!this.audioContext) return;
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(440, this.audioContext.currentTime); // A4 tone
+        gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime); // Low volume
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+        oscillator.start();
+        oscillator.stop(this.audioContext.currentTime + 0.2); // Beep for 200ms
+        console.log("Hardware Test: Beep played.");
     }
 
     stopAudioPlayback() {

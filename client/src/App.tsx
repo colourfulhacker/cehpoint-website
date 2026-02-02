@@ -61,6 +61,7 @@ import CyberSecurityMyths from "@/pages/insights/cyber-security-myths";
 import GigEconomyUpgradeArticle from "@/pages/insights/gig-economy-upgrade";
 import EdtechEvolutionArticle from "@/pages/insights/edtech-evolution";
 import FashionTechRevolutionArticle from "@/pages/insights/fashion-tech-revolution";
+import TendersPage from "@/pages/tenders";
 
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
@@ -138,6 +139,8 @@ function Router() {
           <Route path="/insights/gig-economy-upgrade" component={GigEconomyUpgradeArticle} />
           <Route path="/insights/edtech-evolution" component={EdtechEvolutionArticle} />
           <Route path="/insights/fashion-tech-revolution" component={FashionTechRevolutionArticle} />
+
+          <Route path="/tenders" component={TendersPage} />
           <Route path="/partner-network" component={PartnerNetwork} />
           <Route path="/contact" component={ContactPage} />
           <Route component={NotFound} />

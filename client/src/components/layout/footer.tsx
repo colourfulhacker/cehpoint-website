@@ -27,6 +27,7 @@ export default function Footer() {
     { name: "Company Profile", href: "/company-profile" },
     { name: "24-Hour Demo", href: "/demo-delivery" },
     { name: "Careers", href: "/careers" },
+    { name: "Official Tenders", href: "/tenders" },
     { name: "Get Quote", href: "/quotation" },
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Use", href: "/terms" },

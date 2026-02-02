@@ -700,126 +700,7 @@ const allApps: AppIdea[] = [
     },
 ];
 
-const inquirySchema = z.object({
-    name: z.string().min(2, "Name is required"),
-    businessName: z.string().min(2, "Business name is required"),
-    appName: z.string().optional(),
-    location: z.string().min(2, "Location is required"),
-    additionalInfo: z.string().optional(),
-});
 
-function BusinessAppInquiryDialog({ selectedApp, trigger }: { selectedApp?: string, trigger: React.ReactNode }) {
-    const form = useForm<z.infer<typeof inquirySchema>>({
-        resolver: zodResolver(inquirySchema),
-        defaultValues: {
-            name: "",
-            businessName: "",
-            appName: selectedApp || "",
-            location: "",
-            additionalInfo: "",
-        },
-    });
-
-    const onSubmit = (data: z.infer<typeof inquirySchema>) => {
-        const message = `*New Business App Inquiry*
-Name: ${data.name}
-Business Name: ${data.businessName}
-App Idea: ${data.appName || "Not specified"}
-Location: ${data.location}
-Other Info: ${data.additionalInfo || "N/A"}
-`;
-        const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/919091156095?text=${encodedMessage}`, "_blank");
-    };
-
-    return (
-        <Dialog>
-            <DialogTrigger asChild>
-                {trigger}
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle>Start Your Business Journey</DialogTitle>
-                    <DialogDescription>
-                        Fill in the details below to discuss your app idea with our experts on WhatsApp.
-                    </DialogDescription>
-                </DialogHeader>
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                        <FormField
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Your Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="John Doe" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="businessName"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Business Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="My Dream Store" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="appName"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>App Name / Idea</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="e.g. Local Grocery App" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="location"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Location</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Kolkata, West Bengal" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="additionalInfo"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Other Requirements</FormLabel>
-                                    <FormControl>
-                                        <Textarea placeholder="Any specific features or questions?" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <Button type="submit" className="w-full gap-2 bg-green-600 hover:bg-green-700 text-white">
-                            <MessageSquare className="w-4 h-4" /> Send via WhatsApp
-                        </Button>
-                    </form>
-                </Form>
-            </DialogContent>
-        </Dialog>
-    );
-}
 
 function AppDetailDialog({ app, children }: { app: AppIdea, children: React.ReactNode }) {
     const { toast } = useToast();
@@ -950,14 +831,11 @@ ${app.features.join(", ")}`.trim();
                 </div>
 
                 <DialogFooter className="flex-col sm:flex-row gap-3 pt-4 border-t sticky bottom-0 bg-background/95 backdrop-blur z-10">
-                    <BusinessAppInquiryDialog
-                        selectedApp={app.title}
-                        trigger={
-                            <Button size="lg" className="w-full sm:w-auto shadow-md">
-                                Start {app.title} Now
-                            </Button>
-                        }
-                    />
+                    <Link href="/quotation">
+                        <Button size="lg" className="w-full sm:w-auto shadow-md">
+                            Start {app.title} Now
+                        </Button>
+                    </Link>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
@@ -1059,13 +937,11 @@ export default function BusinessAppCatalog() {
                                 </div>
 
                                 <div className="flex flex-wrap gap-4 pt-2">
-                                    <BusinessAppInquiryDialog
-                                        trigger={
-                                            <Button size="lg" className="rounded-full px-8 shadow-lg hover:shadow-primary/25 transition-all">
-                                                Get Started <ArrowRight className="ml-2 w-4 h-4" />
-                                            </Button>
-                                        }
-                                    />
+                                    <Link href="/quotation">
+                                        <Button size="lg" className="rounded-full px-8 shadow-lg hover:shadow-primary/25 transition-all">
+                                            Get Started <ArrowRight className="ml-2 w-4 h-4" />
+                                        </Button>
+                                    </Link>
                                     <Link href="#apps">
                                         <Button variant="outline" size="lg" className="rounded-full px-8">
                                             View Catalog
@@ -1239,20 +1115,16 @@ export default function BusinessAppCatalog() {
                                 Don't wait! Grab this opportunity to launch your own business with our affordable, high-quality app solutions.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <BusinessAppInquiryDialog
-                                    trigger={
-                                        <Button size="lg" variant="secondary" className="font-bold text-primary rounded-full px-8 shadow-lg">
-                                            Book Your App Now
-                                        </Button>
-                                    }
-                                />
-                                <BusinessAppInquiryDialog
-                                    trigger={
-                                        <Button size="lg" variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-full px-8">
-                                            Contact Expert
-                                        </Button>
-                                    }
-                                />
+                                <Link href="/quotation">
+                                    <Button size="lg" variant="secondary" className="font-bold text-primary rounded-full px-8 shadow-lg">
+                                        Book Your App Now
+                                    </Button>
+                                </Link>
+                                <Link href="/quotation">
+                                    <Button size="lg" variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-full px-8">
+                                        Contact Expert
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
                     </div>

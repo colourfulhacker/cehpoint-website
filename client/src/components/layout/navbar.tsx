@@ -102,6 +102,10 @@ export default function Navbar() {
       href: "/insights",
     },
     {
+      name: "Tenders",
+      href: "/tenders",
+    },
+    {
       name: "Careers",
       href: "/careers",
       children: [
@@ -233,21 +237,24 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center space-x-2 sm:space-x-4">
-              <WhatsAppInquiryDialog
-                appName="Global Navbar"
-                locationName="Navbar"
-                title="Get AI Quote"
-                trigger={
-                  <Button
-                    className="btn-primary hover-glow magnetic-hover px-3 sm:px-6 py-2 sm:py-3 rounded-xl text-primary-foreground font-bold text-sm sm:text-base"
-                    data-testid="cta-get-quote"
-                    aria-label="Get AI Quote - Request a proposal"
-                  >
-                    <Bot className="w-5 h-5 sm:mr-2" />
-                    <span className="hidden sm:inline">Get AI Quote</span>
-                  </Button>
-                }
-              />
+              {/* Desktop CTA - Hidden on Mobile */}
+              <div className="hidden lg:block">
+                <WhatsAppInquiryDialog
+                  appName="Global Navbar"
+                  locationName="Navbar"
+                  title="Get AI Quote"
+                  trigger={
+                    <Button
+                      className="btn-primary hover-glow magnetic-hover px-6 py-3 rounded-xl text-primary-foreground font-bold"
+                      data-testid="cta-get-quote"
+                      aria-label="Get AI Quote - Request a proposal"
+                    >
+                      <Bot className="w-5 h-5 mr-2" />
+                      <span>Get AI Quote</span>
+                    </Button>
+                  }
+                />
+              </div>
 
               <button
                 className="lg:hidden text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md p-1 sm:p-2"
@@ -330,6 +337,24 @@ export default function Navbar() {
                     )}
                   </div>
                 ))}
+
+                {/* Mobile Menu CTA */}
+                <div className="pt-4 border-t border-primary/20">
+                  <WhatsAppInquiryDialog
+                    appName="Mobile Menu"
+                    locationName="MobileNavbar"
+                    title="Get AI Quote"
+                    trigger={
+                      <Button
+                        className="w-full btn-primary hover-glow rounded-xl font-bold"
+                        data-testid="mobile-cta-get-quote"
+                      >
+                        <Bot className="w-5 h-5 mr-2" />
+                        Get AI Quote
+                      </Button>
+                    }
+                  />
+                </div>
               </div>
             </div>
           )}
