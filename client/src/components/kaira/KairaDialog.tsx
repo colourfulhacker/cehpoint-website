@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { leadershipData, Leader } from "@/data/leadership";
 import ReactMarkdown from "react-markdown";
+import { useLocation } from "wouter";
 
 interface KairaDialogProps {
     isOpen: boolean;
@@ -23,6 +24,7 @@ interface Message {
 const STORAGE_KEY = "kaira_chat_history";
 
 export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
+    const [location] = useLocation();
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputText, setInputText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -80,6 +82,20 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
 
         window.speechSynthesis.speak(utterance);
     };
+    // Context-Aware Greeting Fallback
+    const getGreeting = (path: string) => {
+        if (path.includes("/careers") || path.includes("/jobs") || path.includes("/interns")) {
+            return "Hey, can I assist you in your career? We have exciting opportunities!";
+        }
+        if (path.includes("/services") || path.includes("/business-app")) {
+            return "Hello! Looking for enterprise solutions or business apps? I can help you find the right service.";
+        }
+        if (path.includes("/contact")) {
+            return "Hello! How can we connect with you today?";
+        }
+        return "Hello, I'm Kaira AI. How can I assist you today?";
+    };
+
     // Load history on mount
     useEffect(() => {
         const saved = localStorage.getItem(STORAGE_KEY);
@@ -88,12 +104,19 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                 setMessages(JSON.parse(saved));
             } catch (e) {
                 console.error("Failed to load chat history", e);
-                setMessages([{ role: "ai", text: "Hello, I'm Kaira AI. How can I assist you today?" }]);
+                setMessages([{ role: "ai", text: getGreeting(location) }]);
             }
         } else {
-            setMessages([{ role: "ai", text: "Hello, I'm Kaira AI. How can I assist you today?" }]);
+            setMessages([{ role: "ai", text: getGreeting(location) }]);
         }
     }, []);
+
+    // Update greeting if user navigates and chat is empty/reset state
+    useEffect(() => {
+        if (messages.length === 1 && messages[0].role === 'ai') {
+            setMessages([{ role: "ai", text: getGreeting(location) }]);
+        }
+    }, [location]);
 
     // Save history
     useEffect(() => {
