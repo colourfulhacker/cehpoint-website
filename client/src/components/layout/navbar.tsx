@@ -239,21 +239,16 @@ export default function Navbar() {
             <div className="flex items-center space-x-2 sm:space-x-4">
               {/* Desktop CTA - Hidden on Mobile */}
               <div className="hidden lg:block">
-                <WhatsAppInquiryDialog
-                  appName="Global Navbar"
-                  locationName="Navbar"
-                  title="Get AI Quote"
-                  trigger={
-                    <Button
-                      className="btn-primary hover-glow magnetic-hover px-6 py-3 rounded-xl text-primary-foreground font-bold"
-                      data-testid="cta-get-quote"
-                      aria-label="Get AI Quote - Request a proposal"
-                    >
-                      <Bot className="w-5 h-5 mr-2" />
-                      <span>Get AI Quote</span>
-                    </Button>
-                  }
-                />
+                <Link href="/quotation">
+                  <Button
+                    className="btn-primary hover-glow magnetic-hover px-6 py-3 rounded-xl text-primary-foreground font-bold"
+                    data-testid="cta-get-quote"
+                    aria-label="Get AI Quote - Request a proposal"
+                  >
+                    <Bot className="w-5 h-5 mr-2" />
+                    <span>Get AI Quote</span>
+                  </Button>
+                </Link>
               </div>
 
               <button
@@ -340,20 +335,15 @@ export default function Navbar() {
 
                 {/* Mobile Menu CTA */}
                 <div className="pt-4 border-t border-primary/20">
-                  <WhatsAppInquiryDialog
-                    appName="Mobile Menu"
-                    locationName="MobileNavbar"
-                    title="Get AI Quote"
-                    trigger={
-                      <Button
-                        className="w-full btn-primary hover-glow rounded-xl font-bold"
-                        data-testid="mobile-cta-get-quote"
-                      >
-                        <Bot className="w-5 h-5 mr-2" />
-                        Get AI Quote
-                      </Button>
-                    }
-                  />
+                  <Link href="/quotation">
+                    <Button
+                      className="w-full btn-primary hover-glow rounded-xl font-bold"
+                      data-testid="mobile-cta-get-quote"
+                    >
+                      <Bot className="w-5 h-5 mr-2" />
+                      Get AI Quote
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

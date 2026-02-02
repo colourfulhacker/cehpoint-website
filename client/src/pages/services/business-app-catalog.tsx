@@ -937,11 +937,16 @@ export default function BusinessAppCatalog() {
                                 </div>
 
                                 <div className="flex flex-wrap gap-4 pt-2">
-                                    <Link href="/quotation">
-                                        <Button size="lg" className="rounded-full px-8 shadow-lg hover:shadow-primary/25 transition-all">
-                                            Get Started <ArrowRight className="ml-2 w-4 h-4" />
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        size="lg"
+                                        className="rounded-full px-8 shadow-lg hover:shadow-primary/25 transition-all"
+                                        onClick={() => {
+                                            const msg = encodeURIComponent("I am interested in starting a business app. Please guide me.");
+                                            window.open(`https://wa.me/919091156095?text=${msg}`, "_blank");
+                                        }}
+                                    >
+                                        Get Started <ArrowRight className="ml-2 w-4 h-4" />
+                                    </Button>
                                     <Link href="#apps">
                                         <Button variant="outline" size="lg" className="rounded-full px-8">
                                             View Catalog
@@ -1115,16 +1120,28 @@ export default function BusinessAppCatalog() {
                                 Don't wait! Grab this opportunity to launch your own business with our affordable, high-quality app solutions.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Link href="/quotation">
-                                    <Button size="lg" variant="secondary" className="font-bold text-primary rounded-full px-8 shadow-lg">
-                                        Book Your App Now
-                                    </Button>
-                                </Link>
-                                <Link href="/quotation">
-                                    <Button size="lg" variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-full px-8">
-                                        Contact Expert
-                                    </Button>
-                                </Link>
+                                <Button
+                                    size="lg"
+                                    variant="secondary"
+                                    className="font-bold text-primary rounded-full px-8 shadow-lg"
+                                    onClick={() => {
+                                        const msg = encodeURIComponent("I want to book my app now. Please help.");
+                                        window.open(`https://wa.me/919091156095?text=${msg}`, "_blank");
+                                    }}
+                                >
+                                    Book Your App Now
+                                </Button>
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-full px-8"
+                                    onClick={() => {
+                                        const msg = encodeURIComponent("I want to speak with an expert regarding business apps.");
+                                        window.open(`https://wa.me/919091156095?text=${msg}`, "_blank");
+                                    }}
+                                >
+                                    Contact Expert
+                                </Button>
                             </div>
                         </div>
                     </div>

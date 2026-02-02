@@ -363,8 +363,13 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                                                         ? "bg-muted text-xs text-center w-full shadow-none my-2"
                                                         : "bg-secondary text-secondary-foreground border border-border/50 rounded-bl-none"
                                                 }
-                                            ${isLastAiMessage ? "ring-2 ring-primary/30 shadow-md bg-secondary/80" : ""}
+                                            ${isLastAiMessage ? "ring-2 ring-primary shadow-[0_0_15px_rgba(112,66,248,0.3)] bg-secondary/90 transform scale-[1.02]" : ""}
                                         `}>
+                                                {isLastAiMessage && (
+                                                    <span className="inline-block px-1.5 py-0.5 mb-2 text-[10px] font-bold bg-primary text-white rounded-full animate-pulse">
+                                                        NEW
+                                                    </span>
+                                                )}
                                                 {m.role === "user" ? (
                                                     m.text
                                                 ) : (

@@ -245,20 +245,15 @@ export default function Hero() {
                   className="flex flex-col sm:flex-row gap-4 justify-start items-center"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <WhatsAppInquiryDialog
-                    appName="Enterprise Project"
-                    locationName="Home Page"
-                    title="Get AI-Powered Quote"
-                    trigger={
-                      <Button
-                        className="btn-primary w-full sm:w-auto px-8 py-6 text-lg font-bold group shadow-[0_0_20px_rgba(112,66,248,0.3)] hover:shadow-[0_0_30px_rgba(112,66,248,0.6)]"
-                        data-testid="hero-cta-primary"
-                      >
-                        Get AI-Powered Quote
-                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    }
-                  />
+                  <Link href="/quotation" className="w-full sm:w-auto">
+                    <Button
+                      className="btn-primary w-full sm:w-auto px-8 py-6 text-lg font-bold group shadow-[0_0_20px_rgba(112,66,248,0.3)] hover:shadow-[0_0_30px_rgba(112,66,248,0.6)]"
+                      data-testid="hero-cta-primary"
+                    >
+                      Get AI-Powered Quote
+                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
 
                   <Link href="/services/business-app-catalog" className="w-full sm:w-auto">
                     <Button
