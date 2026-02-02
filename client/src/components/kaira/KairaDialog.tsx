@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { X, Mic, MicOff, Send, Trash2, Minus, Plus, Volume2, VolumeX } from "lucide-react";
+import { X, Mic, MicOff, Send, Trash2, Minus, Plus, Volume2, VolumeX, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,27 +33,41 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
     const [isMinimized, setIsMinimized] = useState(false);
     const [isListening, setIsListening] = useState(false);
     const [isTtsEnabled, setIsTtsEnabled] = useState(false);
-    const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
+    const [showToast, setShowToast] = useState(false);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
 
-    // Load and Lock Voice Once (STRICT GOOGLE ONLY)
+    // Initial Sound for Toast
     useEffect(() => {
-        const loadVoice = () => {
-            const voices = window.speechSynthesis.getVoices();
-            if (voices.length > 0 && !selectedVoice) {
-                // User Request: "Only use Google voice... Remove Microsoft"
-                // Priority: Google US English > Any Google English > Default
-                const voice = voices.find(v => v.name === "Google US English") ||
-                    voices.find(v => v.name.includes("Google") && v.lang.startsWith("en")) ||
-                    voices.find(v => v.default) || // Last resort if no Google voice
-                    voices[0];
-                setSelectedVoice(voice);
-            }
-        };
+        audioRef.current = new Audio("/assets/sounds/notification.mp3"); // Assuming asset exists, or I will use a simple beep URL
+    }, []);
 
-        loadVoice();
-        window.speechSynthesis.onvoiceschanged = loadVoice;
-        return () => { window.speechSynthesis.onvoiceschanged = null; };
-    }, [selectedVoice]);
+    const playToastSound = () => {
+        // Simple Beep if file missing? Or generate using Web Audio API to be safe
+        const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.frequency.setValueAtTime(800, ctx.currentTime);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.15); // Short beep
+    };
+
+    // Trigger Toast on route change
+    useEffect(() => {
+        if (!isOpen) {
+            // Reset
+            setShowToast(false);
+
+            const timer = setTimeout(() => {
+                setShowToast(true);
+                playToastSound();
+            }, 5000); // 5s delay
+
+            return () => clearTimeout(timer);
+        }
+    }, [location, isOpen]);
 
     // Speak function (Natural human-like pace)
     const speakText = (text: string) => {
