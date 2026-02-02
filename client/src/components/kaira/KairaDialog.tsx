@@ -35,6 +35,7 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
     const [isTtsEnabled, setIsTtsEnabled] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
 
     // Initial Sound for Toast
     useEffect(() => {
@@ -53,6 +54,26 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
         osc.start();
         osc.stop(ctx.currentTime + 0.15); // Short beep
     };
+
+    // Load and Lock Voice Once (STRICT GOOGLE ONLY)
+    useEffect(() => {
+        const loadVoice = () => {
+            const voices = window.speechSynthesis.getVoices();
+            if (voices.length > 0 && !selectedVoice) {
+                // User Request: "Only use Google voice... Remove Microsoft"
+                // Priority: Google US English > Any Google English > Default
+                const voice = voices.find(v => v.name === "Google US English") ||
+                    voices.find(v => v.name.includes("Google") && v.lang.startsWith("en")) ||
+                    voices.find(v => v.default) || // Last resort if no Google voice
+                    voices[0];
+                setSelectedVoice(voice);
+            }
+        };
+
+        loadVoice();
+        window.speechSynthesis.onvoiceschanged = loadVoice;
+        return () => { window.speechSynthesis.onvoiceschanged = null; };
+    }, [selectedVoice]);
 
     // Trigger Toast on route change
     useEffect(() => {
