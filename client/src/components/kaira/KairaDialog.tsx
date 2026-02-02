@@ -255,13 +255,13 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                         dragMomentum={false}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className={`fixed z-[9999] bg-background border border-primary/20 shadow-2xl flex items-center justify-between p-3 font-sans
-                            ${isMobile ? "bottom-20 right-4 w-[calc(100%-32px)] rounded-xl" : "bottom-24 right-6 w-[300px] rounded-t-xl"}
+                        className={`fixed z-[9999] bg-background border border-primary/20 shadow-lg flex items-center justify-between p-3 font-sans rounded-md
+                            ${isMobile ? "bottom-20 right-4 w-[calc(100%-32px)]" : "bottom-5 right-5 w-[300px]"}
                         `}
                     >
-                        <div className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                            <span className="font-bold text-sm">Kaira AI</span>
+                        <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                            <span className="font-semibold text-sm tracking-wide">Kaira AI Assistant</span>
                         </div>
                         <div className="flex gap-1">
                             <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsMinimized(false)}>
@@ -290,11 +290,11 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                         opacity: 1,
                         scale: 1,
                         y: 0,
-                        width: isMaximized ? "100%" : "400px",
+                        width: isMaximized ? "100%" : "380px",
                         height: isMaximized ? "100%" : "600px",
-                        borderRadius: isMaximized ? "0px" : "16px",
-                        bottom: isMaximized ? "0px" : "96px", // 96px = bottom-24
-                        right: isMaximized ? "0px" : "24px"  // 24px = right-6
+                        borderRadius: isMaximized ? "0px" : "8px",
+                        bottom: isMaximized ? "0px" : "20px",
+                        right: isMaximized ? "0px" : "20px"
                     }}
                     exit={{ opacity: 0, scale: 0.9, y: 20 }}
                     className={`fixed bg-background border border-primary/20 shadow-2xl z-[9999] flex flex-col overflow-hidden font-sans
@@ -302,17 +302,17 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                     `}
                 >
                     {/* Header */}
-                    <div className="p-4 border-b border-primary/10 flex items-center justify-between bg-primary/5 cursor-move select-none" onDoubleClick={() => !isMobile && setIsFullscreen(!isFullscreen)}>
+                    <div className="px-4 py-3 border-b border-border bg-card flex items-center justify-between cursor-move select-none" onDoubleClick={() => !isMobile && setIsFullscreen(!isFullscreen)}>
                         <div className="flex items-center gap-3">
-                            <Avatar className="h-10 w-10 border-2 border-primary">
+                            <Avatar className="h-8 w-8 border border-border rounded-md">
                                 <AvatarImage src="/kaira.png" />
-                                <AvatarFallback>K</AvatarFallback>
+                                <AvatarFallback className="rounded-md bg-primary/10 text-primary">K</AvatarFallback>
                             </Avatar>
                             <div>
-                                <h3 className="font-bold text-foreground">Kaira AI</h3>
-                                <p className="text-xs text-muted-foreground flex items-center gap-1">
-                                    <span className="w-2 h-2 rounded-full bg-green-500" />
-                                    Online
+                                <h3 className="font-semibold text-sm leading-none mb-1">Kaira AI</h3>
+                                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium flex items-center gap-1.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                                    Active
                                 </p>
                             </div>
                         </div>
