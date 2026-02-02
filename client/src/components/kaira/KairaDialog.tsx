@@ -338,6 +338,58 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
     const isMaximized = isMobile || isFullscreen;
 
     return (
+        {/* Proactive Speech Bubble Notification */ }
+        <AnimatePresence>
+                {
+        showToast && !isOpen && (
+            <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                className={`fixed z-[9998] cursor-pointer flex flex-col items-end
+                             ${isMobile ? "bottom-20 right-4 max-w-[280px]" : "bottom-24 right-8 max-w-[320px]"}
+                        `}
+                onClick={() => {
+                    setIsOpen(true);
+                    setShowToast(false);
+                    if (messages.length === 0) {
+                        setMessages([{ role: "ai", text: getGreeting(location) }]);
+                    }
+                }}
+            >
+                {/* Bubble Container */}
+                <div className="bg-white text-slate-800 px-5 py-4 rounded-2xl rounded-br-sm shadow-[0_4px_20px_rgba(0,0,0,0.15)] border border-slate-100 flex items-start gap-3 relative transform transition-transform hover:scale-105">
+                    {/* Avatar Icon inside bubble */}
+                    <div className="bg-primary/10 p-2 rounded-full shrink-0">
+                        <MessageCircle className="w-5 h-5 text-primary" />
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                        <span className="text-xs font-bold text-primary uppercase tracking-wider">Kaira AI</span>
+                        <span className="text-sm font-medium leading-relaxed">
+                            {getGreeting(location)}
+                        </span>
+                    </div>
+
+                    {/* Close Button (Small) */}
+                    <button
+                        className="absolute -top-2 -right-2 bg-white text-slate-400 hover:text-red-500 rounded-full p-1 shadow-md border hover:bg-slate-50 transition-colors"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setShowToast(false);
+                        }}
+                    >
+                        <X className="w-3 h-3" />
+                    </button>
+                </div>
+
+                {/* Speech Bubble Arrow/Tail */}
+                <div className="w-0 h-0 border-l-[12px] border-l-transparent border-t-[12px] border-t-white border-r-[0px] border-r-transparent mt-[-1px] mr-6 filter drop-shadow-sm"></div>
+            </motion.div>
+        )
+    }
+            </AnimatePresence >
+
         <AnimatePresence>
             {isOpen && (
                 <motion.div
@@ -350,28 +402,31 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                         y: 0,
                         width: isMaximized ? "100%" : "380px",
                         height: isMaximized ? "100%" : "600px",
-                        borderRadius: isMaximized ? "0px" : "8px",
+                        borderRadius: isMaximized ? "0px" : "12px",
                         bottom: isMaximized ? "0px" : "20px",
                         right: isMaximized ? "0px" : "20px"
                     }}
                     exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                    className={`fixed bg-background border border-primary/20 shadow-2xl z-[9999] flex flex-col overflow-hidden font-sans
+                    className={`fixed bg-background border border-border shadow-2xl z-[9999] flex flex-col overflow-hidden font-sans
                         ${isMaximized ? "inset-0 m-0" : ""}
                     `}
                 >
                     {/* Header */}
                     <div className="px-4 py-3 border-b border-border bg-card flex items-center justify-between cursor-move select-none" onDoubleClick={() => !isMobile && setIsFullscreen(!isFullscreen)}>
                         <div className="flex items-center gap-3">
-                            <Avatar className="h-8 w-8 border border-border rounded-md">
+                            <Avatar className="h-9 w-9 border border-border/50">
                                 <AvatarImage src="/kaira.png" />
-                                <AvatarFallback className="rounded-md bg-primary/10 text-primary">K</AvatarFallback>
+                                <AvatarFallback className="bg-primary/10 text-primary font-bold">K</AvatarFallback>
                             </Avatar>
                             <div>
-                                <h3 className="font-semibold text-sm leading-none mb-1">Kaira AI</h3>
-                                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium flex items-center gap-1.5">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                                    Active
-                                </p>
+                                <h3 className="font-bold text-sm leading-none mb-1">Kaira AI</h3>
+                                <div className="flex items-center gap-1.5">
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                    </span>
+                                    <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Online</span>
+                                </div>
                             </div>
                         </div>
                         <div className="flex items-center gap-1">
@@ -441,10 +496,10 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
                                 })}
                                 {isLoading && (
                                     <div className="flex justify-start">
-                                        <div className="bg-secondary px-4 py-3 rounded-2xl rounded-bl-none flex gap-1 items-center">
-                                            <span className="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                                            <span className="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                                            <span className="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                                        <div className="bg-secondary px-4 py-3 rounded-2xl rounded-bl-none flex gap-1 items-center shadow-sm">
+                                            <span className="w-1.5 h-1.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                                            <span className="w-1.5 h-1.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                                            <span className="w-1.5 h-1.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                                         </div>
                                     </div>
                                 )}
