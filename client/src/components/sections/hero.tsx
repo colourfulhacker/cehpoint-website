@@ -94,7 +94,7 @@ export default function Hero() {
 
   return (
     <section
-      className={`relative min-h-screen flex items-center overflow-hidden ${isIntroPlaying ? "bg-black z-[100] fixed inset-0" : "pt-20 pb-20 cursor-pointer"}`}
+      className={`relative min-h-screen flex items-center ${isIntroPlaying ? "bg-black z-[100] fixed inset-0 overflow-hidden" : "pt-20 pb-20 cursor-pointer z-10"}`}
       data-testid="hero-section"
     >
       {/* 
@@ -282,10 +282,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 0.8 }}
-            className="absolute bottom-0 left-0 right-0 z-30 bg-black/40 backdrop-blur-md border-t border-white/10"
+            className="absolute bottom-0 left-0 right-0 z-30 bg-black/40 backdrop-blur-md border-t border-white/10 pointer-events-none"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-auto">
               <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
                 {[
                   { value: "24h", label: "Demo Delivery", sublabel: "Record Time" },
