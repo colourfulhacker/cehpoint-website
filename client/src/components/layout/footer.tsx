@@ -22,8 +22,15 @@ export default function Footer() {
     { name: "AI Solutions", href: "/ai-solutions" },
   ]
 
+  const departmentLinks = [
+    { name: "School of Advanced Studies", href: "https://school-of-advanced-studies.cehpoint.co.in/", external: true },
+    { name: "Cehpoint E-Learning", href: "https://elearning.cehpoint.co.in/", external: true },
+    { name: "Artificial Intelligence in Real Life", href: "/ai-in-real-life" },
+  ]
+
   const companyLinks = [
     { name: "Portfolio", href: "https://portfolios.cehpoint.co.in/", external: true },
+    { name: "Work Portal", href: "https://works.cehpoint.co.in/", external: true },
     { name: "Company Profile", href: "/company-profile" },
     { name: "24-Hour Demo", href: "/demo-delivery" },
     { name: "Careers", href: "/careers" },
@@ -41,8 +48,8 @@ export default function Footer() {
       label: "Email Us"
     },
     {
-      name: "+91 33690 29331",
-      href: "tel:+913369029331",
+      name: "+91 90911 56095",
+      href: "tel:+919091156095",
       icon: Phone,
       label: "Call Now"
     }
@@ -111,7 +118,7 @@ export default function Footer() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 z-0"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           {/* Brand Column */}
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
@@ -170,6 +177,44 @@ export default function Footer() {
                     <div className="w-1 h-1 bg-primary/40 rounded-full group-hover:bg-primary group-hover:scale-150 transition-all duration-200" />
                     <span>{link.name}</span>
                   </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Departments Column */}
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <h4 className="font-semibold text-lg text-foreground" data-testid="footer-departments-title">
+                Departments
+              </h4>
+              <div className="w-8 h-1 bg-primary/50 rounded-full" />
+            </div>
+            <ul className="space-y-3">
+              {departmentLinks.map((link) => (
+                <li key={link.name}>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center space-x-3 text-sm text-foreground/70 hover:text-primary transition-colors duration-200"
+                      data-testid={`footer-department-${link.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    >
+                      <div className="w-1 h-1 bg-primary/40 rounded-full group-hover:bg-primary group-hover:scale-150 transition-all duration-200" />
+                      <span>{link.name}</span>
+                      <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-200" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="group flex items-center space-x-3 text-sm text-foreground/70 hover:text-primary transition-colors duration-200"
+                      data-testid={`footer-department-${link.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    >
+                      <div className="w-1 h-1 bg-primary/40 rounded-full group-hover:bg-primary group-hover:scale-150 transition-all duration-200" />
+                      <span>{link.name}</span>
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

@@ -30,6 +30,7 @@ import Careers from "@/pages/careers";
 import InvestorConnect from "@/pages/investor-connect";
 import LeadershipSearch from "@/pages/leadership-search";
 import CompanyProfile from "@/pages/company-profile";
+import AIInRealLife from "@/pages/ai-in-real-life";
 import ContactPage from "@/pages/contact";
 
 // New Service Pages
@@ -61,6 +62,20 @@ import CyberSecurityMyths from "@/pages/insights/cyber-security-myths";
 import GigEconomyUpgradeArticle from "@/pages/insights/gig-economy-upgrade";
 import EdtechEvolutionArticle from "@/pages/insights/edtech-evolution";
 import FashionTechRevolutionArticle from "@/pages/insights/fashion-tech-revolution";
+
+// New Case Studies
+import HealthcareAITriage from "@/pages/insights/healthcare-ai-triage";
+import LogisticsRouteAutomation from "@/pages/insights/logistics-route-automation";
+import RetailInventoryAI from "@/pages/insights/retail-inventory-ai";
+import LegalContractAutomation from "@/pages/insights/legal-contract-automation";
+import FinanceFraudML from "@/pages/insights/finance-fraud-ml";
+import ManufacturingRPA from "@/pages/insights/manufacturing-rpa";
+import RealEstateAIValuation from "@/pages/insights/real-estate-ai-valuation";
+import EdtechAutomatedEnrollment from "@/pages/insights/edtech-automated-enrollment";
+import AgricultureIoTAutomation from "@/pages/insights/agriculture-iot-automation";
+import ConstructionComplianceAI from "@/pages/insights/construction-compliance-ai";
+import HospitalityAIConcierge from "@/pages/insights/hospitality-ai-concierge";
+
 import TendersPage from "@/pages/tenders";
 
 import Navbar from "@/components/layout/navbar";
@@ -110,6 +125,7 @@ function Router() {
           <Route path="/services/cyber-crime-investigation/legal" component={InvestigationLegal} />
 
           <Route path="/ai-solutions" component={AISolutions} />
+          <Route path="/ai-in-real-life" component={AIInRealLife} />
           <Route path="/training" component={Training} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
@@ -139,6 +155,17 @@ function Router() {
           <Route path="/insights/gig-economy-upgrade" component={GigEconomyUpgradeArticle} />
           <Route path="/insights/edtech-evolution" component={EdtechEvolutionArticle} />
           <Route path="/insights/fashion-tech-revolution" component={FashionTechRevolutionArticle} />
+          <Route path="/insights/healthcare-ai-triage" component={HealthcareAITriage} />
+          <Route path="/insights/logistics-route-automation" component={LogisticsRouteAutomation} />
+          <Route path="/insights/retail-inventory-ai" component={RetailInventoryAI} />
+          <Route path="/insights/legal-contract-automation" component={LegalContractAutomation} />
+          <Route path="/insights/finance-fraud-ml" component={FinanceFraudML} />
+          <Route path="/insights/manufacturing-rpa" component={ManufacturingRPA} />
+          <Route path="/insights/real-estate-ai-valuation" component={RealEstateAIValuation} />
+          <Route path="/insights/edtech-automated-enrollment" component={EdtechAutomatedEnrollment} />
+          <Route path="/insights/agriculture-iot-automation" component={AgricultureIoTAutomation} />
+          <Route path="/insights/construction-compliance-ai" component={ConstructionComplianceAI} />
+          <Route path="/insights/hospitality-ai-concierge" component={HospitalityAIConcierge} />
 
           <Route path="/tenders" component={TendersPage} />
           <Route path="/partner-network" component={PartnerNetwork} />
