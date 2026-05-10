@@ -1,51 +1,30 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
-interface FAQItem {
-    question: string;
-    answer: string;
-}
-
-interface FAQSchemaProps {
-    faqs: FAQItem[];
+interface FAQPageSchemaProps {
     pageId?: string;
+    faqs: Array<{
+        question: string;
+        answer: string;
+    }>;
 }
 
-export default function FAQSchema({ faqs, pageId = "default" }: FAQSchemaProps) {
-    useEffect(() => {
-        if (!faqs || faqs.length === 0) return;
-
-        const schema = {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text: faq.answer
-                }
-            }))
-        };
-
-        const scriptId = `faq-schema-${pageId}`;
-        let scriptTag = document.getElementById(scriptId) as HTMLScriptElement;
-
-        if (!scriptTag) {
-            scriptTag = document.createElement("script");
-            scriptTag.id = scriptId;
-            scriptTag.type = "application/ld+json";
-            document.head.appendChild(scriptTag);
-        }
-
-        scriptTag.textContent = JSON.stringify(schema);
-
-        return () => {
-            const existingScript = document.getElementById(scriptId);
-            if (existingScript) {
-                document.head.removeChild(existingScript);
-            }
-        };
-    }, [faqs, pageId]);
-
-    return null;
+export default function FAQPageSchema({ pageId = "faq-schema", faqs }: FAQPageSchemaProps) {
+    return (
+        <Helmet>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": faqs.map((q) => ({
+                        "@type": "Question",
+                        "name": q.question,
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": q.answer
+                        }
+                    }))
+                })}
+            </script>
+        </Helmet>
+    );
 }

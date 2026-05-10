@@ -306,7 +306,7 @@ export default function Incubation() {
               <Rocket className="w-4 h-4 mr-2" />
               Startup Incubation Program
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold text-gradient mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6">
               Launch Your Revolutionary Idea
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">

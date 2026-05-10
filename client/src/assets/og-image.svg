@@ -1,0 +1,70 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- White Background -->
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+  
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop stop-color="#7064F8"/>
+      <stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.5"/>
+  
+  <!-- Accent color strip at top -->
+  <rect x="0" y="0" width="1200" height="6" fill="url(#accentGrad)"/>
+  
+  <!-- Logo Area - Centered -->
+  <g transform="translate(600, 180)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="120" font-weight="800" fill="#000000" text-anchor="middle" letter-spacing="-2">CEHPOINT</text>
+  </g>
+  
+  <!-- Tagline under logo -->
+  <text x="600" y="240" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#6B7280" text-anchor="middle" letter-spacing="8">INNOVATIVE IT SOLUTIONS</text>
+  
+  <!-- Divider -->
+  <line x1="400" y1="280" x2="800" y2="280" stroke="#D1D5DB" stroke-width="2"/>
+  
+  <!-- Main Headline -->
+  <text x="600" y="360" font-family="Arial, sans-serif" font-size="48" font-weight="700" fill="#111827" text-anchor="middle">Enterprise Software Development</text>
+  
+  <!-- Sub-services -->
+  <text x="600" y="410" font-family="Arial, sans-serif" font-size="28" font-weight="500" fill="#7064F8" text-anchor="middle">AI Solutions  |  Cybersecurity  |  Digital Transformation</text>
+  
+  <!-- Stats Row -->
+  <g transform="translate(600, 480)">
+    <line x1="-300" y1="0" x2="-100" y2="0" stroke="#E5E7EB" stroke-width="1"/>
+    <line x1="100" y1="0" x2="300" y2="0" stroke="#E5E7EB" stroke-width="1"/>
+    
+    <!-- 500+ -->
+    <g transform="translate(-200, 0)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#000000" text-anchor="middle">500+</text>
+      <text x="0" y="24" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#6B7280" text-anchor="middle">Projects</text>
+    </g>
+    
+    <!-- 24h -->
+    <g transform="translate(0, 0)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#000000" text-anchor="middle">24h</text>
+      <text x="0" y="24" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#6B7280" text-anchor="middle">Demo Delivery</text>
+    </g>
+    
+    <!-- 0% -->
+    <g transform="translate(200, 0)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#000000" text-anchor="middle">0%</text>
+      <text x="0" y="24" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#6B7280" text-anchor="middle">Upfront Payment</text>
+    </g>
+  </g>
+  
+  <!-- Website URL -->
+  <text x="600" y="580" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#9CA3AF" text-anchor="middle">www.cehpoint.co.in</text>
+  
+  <!-- Contact info -->
+  <text x="600" y="610" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#9CA3AF" text-anchor="middle">contact@cehpoint.co.in  |  +91 90911 56095</text>
+  
+  <!-- Bottom accent strip -->
+  <rect x="0" y="624" width="1200" height="6" fill="url(#accentGrad)"/>
+</svg>

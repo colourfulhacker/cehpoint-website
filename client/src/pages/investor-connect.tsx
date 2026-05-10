@@ -45,7 +45,7 @@ export default function InvestorConnect() {
                                     </span>
                                 </div>
                                 <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
-                                    Discover Your Next <span className="text-gradient">Unicorn</span>
+                                    Discover Your Next <span className="text-primary">Unicorn</span>
                                 </h1>
                                 <p className="text-muted-foreground max-w-xl mx-auto">
                                     Swipe right on ideas you love. We'll match you with the perfect opportunity to own 100% of a profitable tech startup.

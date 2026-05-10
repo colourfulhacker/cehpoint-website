@@ -25,11 +25,11 @@ interface LocalBusinessSchemaProps {
 
 export default function LocalBusinessSchema({
     name = "Cehpoint",
-    description = "Leading IT consultancy offering enterprise outsourcing, custom software development, AI solutions, cybersecurity, and digital transformation services.",
+    description = "Best IT Company in West Bengal. Cehpoint is a leading IT consultancy in Kolkata offering enterprise outsourcing, custom software development, AI solutions, cybersecurity, and digital transformation services.",
     url = "https://www.cehpoint.co.in",
-    logo = "https://www.cehpoint.co.in/logo.png",
+    logo = "https://www.cehpoint.co.in/favicon.svg",
     email = "contact@cehpoint.co.in",
-    phone = "+91 33690 29331",
+    phone = "+91 90911 56095",
     address = {
         streetAddress: "Cehpoint, Labpur, Sandipan Patsala Para, Birbhum, Bolpur",
         addressLocality: "Bolpur",
@@ -37,7 +37,10 @@ export default function LocalBusinessSchema({
         postalCode: "731303",
         addressCountry: "IN"
     },
-    geo,
+    geo = {
+        latitude: 24.1353,
+        longitude: 87.7847
+    },
     openingHours = [
         "Monday-Friday 09:00-18:00",
         "Saturday 09:00-14:00"

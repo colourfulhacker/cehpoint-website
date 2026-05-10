@@ -9,7 +9,7 @@ import {
     Shield,
     MessageCircle,
     ArrowRight,
-    Zap,
+    Cpu,
     Heart
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -160,7 +160,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
 
                             <div className="glass-intense p-8 rounded-3xl">
                                 <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-                                    <Zap className="w-6 h-6 text-primary" />
+                                    <Cpu className="w-6 h-6 text-primary" />
                                     Competitive Advantage
                                 </h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

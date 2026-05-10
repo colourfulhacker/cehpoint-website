@@ -21,7 +21,7 @@ import {
   Home,
   Briefcase,
   ArrowUpRight,
-  Sparkles
+  Globe
 } from "lucide-react";
 
 // --- Data (Strictly Professional - No Themes) ---
@@ -267,12 +267,11 @@ export default function IndustrySolutions() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-medium uppercase tracking-widest mb-6 backdrop-blur-md">
-              <span className="text-xl">🌐</span>
+              <Globe className="w-5 h-5 text-primary" />
               <span>Global Expertise</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-display font-medium text-white tracking-tight leading-[1.1]">
-              Industries <br />
-              <span className="text-zinc-500">Reimagined.</span>
+              Industry Coverage
             </h2>
           </div>
           <div className="max-w-xs text-zinc-400 text-sm font-light leading-relaxed mb-2">

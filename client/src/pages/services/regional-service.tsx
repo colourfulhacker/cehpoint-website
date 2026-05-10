@@ -6,7 +6,7 @@ import {
     Building2, Flame, Link as LinkIcon, Cpu, Siren, Fingerprint,
     ArrowRight, Shield, Globe, PoundSterling, Network, ShieldAlert,
     BrainCircuit, Building, Code, Play, CheckCircle2, TrendingUp,
-    Zap, Globe2, Target, Users
+    Globe2, Target, Users
 } from "lucide-react";
 import { regionalTrends } from "@/data/regional-trends";
 import SEO from "@/components/seo";
@@ -147,7 +147,7 @@ export default function RegionalService() {
 
                         <h1 className="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.1]">
                             {regionData.name} <br />
-                            <span className="text-gradient">Tech Frontiers</span>
+                            <span className="text-primary">Tech Frontiers</span>
                         </h1>
 
                         <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -192,7 +192,7 @@ export default function RegionalService() {
                         variants={staggerContainer}
                         className="mb-14 text-center md:text-left"
                     >
-                        <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">Regional <span className="text-gradient">Challenges</span> We Solve</h2>
+                        <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">Regional <span className="text-primary">Challenges</span> We Solve</h2>
                         <p className="text-muted-foreground text-lg max-w-2xl">Targeted intervention for the unique pain points of the {regionData.name} market.</p>
                     </motion.div>
 
@@ -223,7 +223,7 @@ export default function RegionalService() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <Badge variant="outline" className="mb-4">Core Competencies</Badge>
-                        <h2 className="font-display text-3xl md:text-5xl font-bold">Strategic <span className="text-gradient">Capabilities</span></h2>
+                        <h2 className="font-display text-3xl md:text-5xl font-bold">Strategic <span className="text-primary">Capabilities</span></h2>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -260,7 +260,7 @@ export default function RegionalService() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                         <div className="max-w-2xl">
-                            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">Applied <span className="text-gradient">AI Innovation</span></h2>
+                            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">Applied <span className="text-primary">AI Innovation</span></h2>
                             <p className="text-lg text-muted-foreground">Moving beyond hype to deliver measurable business impact in the {regionData.name} ecosystem.</p>
                         </div>
                         <Button variant="outline" className="rounded-full">
@@ -296,7 +296,7 @@ export default function RegionalService() {
             {/* --- Industries (ICP) --- */}
             <section className="py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center">Powering Key <span className="text-gradient">Industries</span></h2>
+                    <h2 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center">Powering Key <span className="text-primary">Industries</span></h2>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {regionData.industries.map((ind, idx) => (

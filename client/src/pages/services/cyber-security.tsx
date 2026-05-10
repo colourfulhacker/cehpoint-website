@@ -143,7 +143,7 @@ export default function CyberSecurity() {
                             { label: "Clients Secured", value: "200+" }
                         ].map((stat, index) => (
                             <div key={index} className="space-y-2">
-                                <div className="text-4xl md:text-5xl font-bold text-gradient">{stat.value}</div>
+                                <div className="text-4xl md:text-5xl font-bold text-primary">{stat.value}</div>
                                 <div className="text-muted-foreground font-medium">{stat.label}</div>
                             </div>
                         ))}

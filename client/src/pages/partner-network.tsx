@@ -110,7 +110,7 @@ export default function PartnerNetwork() {
                     className="text-center mb-16"
                 >
                     <Badge variant="outline" className="mb-4">Work With Us</Badge>
-                    <h1 className="text-4xl md:text-6xl font-black text-gradient mb-6">
+                    <h1 className="text-4xl md:text-6xl font-black text-primary mb-6">
                         The Partner Network
                     </h1>
                     <p className="text-xl text-foreground/80 max-w-3xl mx-auto">

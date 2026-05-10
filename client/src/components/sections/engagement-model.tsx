@@ -23,7 +23,7 @@ export default function EngagementModel() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="engagement-model-title">
-                Our <span className="text-gradient">Engagement Model</span>
+                Our <span className="text-primary">Engagement Model</span>
               </h2>
               <p className="text-xl text-foreground/80 mb-8" data-testid="engagement-model-subtitle">
                 Pay after demo, transparent scope, and rapid MVP delivery that sets us apart from traditional development agencies.

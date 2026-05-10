@@ -21,7 +21,7 @@ import { LucideProps, Layers } from "lucide-react";
 import React from "react";
 
 // Default fallback icon
-import { Zap } from "lucide-react";
+import { Cpu } from "lucide-react";
 
 export const TechnologyIcons: Record<string, React.ElementType> = {
     // AI & ML
@@ -125,5 +125,5 @@ export const TechnologyIcons: Record<string, React.ElementType> = {
 };
 
 export function getTechIcon(toolName: string) {
-    return TechnologyIcons[toolName] || Zap;
+    return TechnologyIcons[toolName] || Cpu;
 }

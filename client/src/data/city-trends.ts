@@ -396,7 +396,7 @@ export const cityTrends: CityTrend[] = [
         ]
     },
     {
-        slug: "bengaluru",
+        slug: "bangalore",
         heroTitle: "Build in India's Silicon Valley",
         heroSubtitle: "Advanced AI, DeepTech, and SaaS Engineering for Bangalore's Unicorns.",
         metaDescription: "Best App Development Company in Bangalore (Bengaluru). Experts in AI Agents, SaaS Platforms, and DeepTech. Partner with Bangalore's top engineering talent.",

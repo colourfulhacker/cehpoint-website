@@ -22,7 +22,7 @@ export default function DemoProcess() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-display font-bold text-4xl md:text-6xl mb-6" data-testid="demo-process-title">
-            How 24-Hour <span className="text-gradient">Demo Works</span>
+            How 24-Hour <span className="text-primary">Demo Works</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="demo-process-subtitle">
             Experience your idea as a working application in just 24 hours. See it, test it, love it - then decide to proceed.

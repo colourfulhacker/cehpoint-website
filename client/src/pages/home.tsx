@@ -18,9 +18,9 @@ export default function Home() {
   return (
     <div className="" data-testid="home-page">
       <SEO
-        title="Home"
-        description="Cehpoint is a leading IT consultancy offering enterprise outsourcing, custom software development, AI solutions, cybersecurity, and digital transformation services. Partner with us to accelerate innovation and drive business growth."
-        keywords={["IT Consultancy", "Enterprise Outsourcing", "Custom Software Development", "AI Solutions", "Digital Transformation", "Cloud Services", "Agile Development", "Tech Innovation", "Cybersecurity", "Software Company India"]}
+        title="Best IT Company in Kolkata & West Bengal"
+        description="Cehpoint is the leading IT & Software Company in West Bengal, offering custom software development, AI solutions, and enterprise outsourcing from Kolkata to the world."
+        keywords={["Best IT Company in Kolkata", "Top IT Company in West Bengal", "Software Development Kolkata", "AI Solutions West Bengal", "IT Consultancy Kolkata", "Enterprise Outsourcing", "Digital Transformation", "Cehpoint Bolpur"]}
         url="https://www.cehpoint.co.in/"
         canonical="https://www.cehpoint.co.in/"
       />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Zap, FileText, Download, ShieldCheck, ArrowRight } from "lucide-react";
+import { X, Cpu, FileText, Download, ShieldCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function ProposalPopup() {
@@ -67,7 +67,7 @@ export default function ProposalPopup() {
                                         </div>
                                         <div>
                                             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-2">
-                                                <Zap className="w-3 h-3" />
+                                                <Cpu className="w-3 h-3" />
                                                 Instant Access
                                             </div>
                                             <h3 className="text-2xl font-display font-bold leading-tight">

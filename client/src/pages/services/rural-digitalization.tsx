@@ -50,7 +50,7 @@ export default function RuralDigitalizationPage() {
 
                         <h1 className="font-display font-bold text-4xl sm:text-6xl md:text-7xl mb-6 tracking-tight leading-tight">
                             Empowering <span className="text-green-600">Rural India</span> with <br />
-                            <span className="text-gradient">Digital Innovation</span>
+                            <span className="text-primary">Digital Innovation</span>
                         </h1>
 
                         <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed">
@@ -106,7 +106,7 @@ export default function RuralDigitalizationPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
-                            Tailored <span className="text-gradient">Rural Solutions</span>
+                            Tailored <span className="text-primary">Rural Solutions</span>
                         </h2>
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                             Affordable, effective, and easy-to-use technology designed specifically for the needs of rural entrepreneurs.

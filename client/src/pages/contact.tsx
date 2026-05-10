@@ -37,7 +37,7 @@ export default function ContactPage() {
         console.log(values);
         // Open WhatsApp with the message
         const waMessage = `Name: ${values.name}%0AEmail: ${values.email}%0APhone: ${values.phone}%0ASubject: ${values.subject}%0AMessage: ${values.message}`;
-        window.open(`https://wa.me/917015129364?text=${waMessage}`, '_blank');
+        window.open(`https://wa.me/919091156095?text=${waMessage}`, '_blank');
     }
 
     return (
@@ -71,7 +71,7 @@ export default function ContactPage() {
                             <span className="text-sm font-bold">We'd Love to Hear From You</span>
                         </div>
                         <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl mb-6 tracking-tight">
-                            Let's Start a <span className="text-gradient">Conversation</span>
+                            Let's Start a <span className="text-primary">Conversation</span>
                         </h1>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
                             Whether you have a question about our services, need a demo, or want to discuss a partnership, our team is ready to answer all your questions.
@@ -115,7 +115,7 @@ export default function ContactPage() {
                                         <div>
                                             <h3 className="font-bold text-lg mb-1">Call Us</h3>
                                             <p className="text-muted-foreground">Mon-Fri from 10am to 7pm</p>
-                                            <a href="tel:+913369029331" className="text-xl font-bold mt-1 block hover:text-blue-500 transition-colors">+91 33690 29331</a>
+                                            <a href="tel:+919091156095" className="text-xl font-bold mt-1 block hover:text-blue-500 transition-colors">+91 90911 56095</a>
                                         </div>
                                     </CardContent>
                                 </Card>
@@ -191,7 +191,7 @@ export default function ContactPage() {
                                                     <FormItem>
                                                         <FormLabel>Full Name</FormLabel>
                                                         <FormControl>
-                                                            <Input placeholder="John Doe" {...field} className="bg-secondary/20" />
+                                                            <Input placeholder="John Doe" {...field} className="h-12 bg-secondary/20" />
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
@@ -204,7 +204,7 @@ export default function ContactPage() {
                                                     <FormItem>
                                                         <FormLabel>Phone Number</FormLabel>
                                                         <FormControl>
-                                                            <Input placeholder="+91 98765 43210" {...field} className="bg-secondary/20" />
+                                                            <Input placeholder="+91 98765 43210" {...field} className="h-12 bg-secondary/20" />
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
@@ -219,7 +219,7 @@ export default function ContactPage() {
                                                 <FormItem>
                                                     <FormLabel>Email Address</FormLabel>
                                                     <FormControl>
-                                                        <Input placeholder="john@example.com" {...field} className="bg-secondary/20" />
+                                                        <Input placeholder="john@example.com" {...field} className="h-12 bg-secondary/20" />
                                                     </FormControl>
                                                     <FormMessage />
                                                 </FormItem>
@@ -233,7 +233,7 @@ export default function ContactPage() {
                                                 <FormItem>
                                                     <FormLabel>Subject</FormLabel>
                                                     <FormControl>
-                                                        <Input placeholder="Project Inquiry..." {...field} className="bg-secondary/20" />
+                                                        <Input placeholder="Project Inquiry..." {...field} className="h-12 bg-secondary/20" />
                                                     </FormControl>
                                                     <FormMessage />
                                                 </FormItem>
@@ -273,7 +273,7 @@ export default function ContactPage() {
             <section className="py-20 bg-secondary/10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="font-display font-bold text-3xl sm:text-4xl mb-4">Global <span className="text-gradient">Presence</span></h2>
+                        <h2 className="font-display font-bold text-3xl sm:text-4xl mb-4">Global <span className="text-primary">Presence</span></h2>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                             We operate seamlessly across borders with virtual and physical offices in key global financial and technology hubs.
                         </p>

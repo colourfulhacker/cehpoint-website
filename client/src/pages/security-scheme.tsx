@@ -34,7 +34,7 @@ Phone: ${formData.phone}
 I am interested in the Free Cyber Security Services Scheme. Please guide me through the registration process.`;
 
         const encodedMessage = encodeURIComponent(message);
-        const whatsappLink = `https://wa.me/913369029331?text=${encodedMessage}`;
+        const whatsappLink = `https://wa.me/919091156095?text=${encodedMessage}`;
 
         window.open(whatsappLink, '_blank');
         setIsDialogOpen(false);
@@ -102,7 +102,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                             </div>
 
                             <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-7xl leading-tight animate-fade-up">
-                                Cyber Security is a <span className="text-gradient">Right</span>, Not a Privilege.
+                                Cyber Security is a <span className="text-primary">Right</span>, Not a Privilege.
                             </h1>
 
                             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed animate-fade-up delay-100 max-w-xl mx-auto lg:mx-0">
@@ -224,7 +224,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
                         <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6">
-                            Security with a <span className="text-gradient">Purpose</span>
+                            Security with a <span className="text-primary">Purpose</span>
                         </h2>
                         <p className="text-lg md:text-xl text-muted-foreground">
                             We recognize that 60% of small businesses close within 6 months of a cyber attack.
@@ -255,7 +255,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none" />
 
                         <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl mb-12 md:mb-16 relative z-10">
-                            Get Secured in <span className="text-gradient">4 Simple Steps</span>
+                            Get Secured in <span className="text-primary">4 Simple Steps</span>
                         </h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 relative z-10">

@@ -1,17 +1,21 @@
 
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, UserCheck, Eye, FileWarning, Fingerprint } from "lucide-react";
+import { ArrowLeft, UserCheck, Eye, FileWarning, Fingerprint, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
-import { Helmet } from "react-helmet-async";
+import { InsightSEO } from "@/components/seo/insight-seo";
+import { getYesterdayDate } from "@/lib/date-utils";
 
-export default function HRForensicsArticle() {
+export default function HRForensics() {
     return (
         <main className="min-h-screen bg-background pt-24 pb-16">
-            <Helmet>
-                <title>The Internal Threat: Is Your Employee Selling Your Data? - Cehpoint Insights</title>
-                <meta name="description" content="80% of data breaches involve insider threats. Learn how digital forensics can secure your HR process." />
-            </Helmet>
+            <InsightSEO
+                title="The Internal Threat: Is Your Employee Selling Your Data?"
+                description="80% of data breaches involve insider threats. Learn how digital forensics can secure your HR process and protect your IP."
+                articleSlug="hr-forensics"
+                publishedDate="2024-03-24"
+                category="HR Prevention"
+            />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link href="/insights" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4 mb-8 pl-0 hover:pl-2">
@@ -28,13 +32,18 @@ export default function HRForensicsArticle() {
                     <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
                         The Internal Threat: <span className="text-red-600 dark:text-red-500">Is Your Employee Selling Your Data?</span>
                     </h1>
-                    <div className="flex items-center space-x-6 text-muted-foreground border-b border-border pb-8">
+                    <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
                             <UserCheck className="w-4 h-4 mr-2" aria-hidden="true" />
                             <span>HR Forensics</span>
                         </div>
                         <div className="flex items-center">
-                            <span>October 29, 2025</span>
+                            <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
+                            <span>Published: {getYesterdayDate()}</span>
+                        </div>
+                        <div className="flex items-center">
+                            <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
+                            <span>Updated: Today</span>
                         </div>
                     </div>
                 </motion.div>
@@ -60,12 +69,12 @@ export default function HRForensicsArticle() {
                         Most companies call us *after* the leak. By then, the damage is done. Smart companies integrate Digital Forensics into their Offboarding process.
                     </p>
 
-                    <h3 className="text-2xl font-bold mt-8 mb-4 text-foreground">What We Audit:</h3>
+                    <h3 className="text-2xl font-bold mt-8 mb-4 text-foreground">Advanced Exit Audit:</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground/90">
-                        <li><strong>USB History:</strong> Did they plug in a mass storage device recently?</li>
-                        <li><strong>Cloud Uploads:</strong> Did gigabytes of data move to a personal Google Drive?</li>
-                        <li><strong>Email Logs:</strong> Were confidential documents forwarded to a personal address?</li>
-                        <li><strong>Deleted Files:</strong> Did they try to cover their tracks? (We recover it all).</li>
+                        <li><strong>Volatility RAM Analysis:</strong> Detection of "incognito" browser sessions or un-saved draft exfiltration.</li>
+                        <li><strong>Registry & ShellBags:</strong> Verifying exactly which folders were browsed and which USB drives were connected in the final 48 hours.</li>
+                        <li><strong>MFT (Master File Table) Analysis:</strong> Recovery of evidence even if the employee performed "Shift+Delete" or used file shredders.</li>
+                        <li><strong>Shadow Copy Audits:</strong> Comparing current system state with month-old snapshots to detect slow, low-volume data leaks.</li>
                     </ul>
 
                     <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground">Trust, But Verify</h2>

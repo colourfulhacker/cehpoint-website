@@ -1,24 +1,20 @@
-
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ShoppingBag, Globe, Camera, Heart } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Globe, Camera, Heart, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
-import { Helmet } from "react-helmet-async";
+import { InsightSEO } from "@/components/seo/insight-seo";
+import { getYesterdayDate } from "@/lib/date-utils";
 
-export default function FashionTechRevolutionArticle() {
+export default function FashionTechRevolution() {
     return (
         <main className="min-h-screen bg-background pt-24 pb-16">
-            <Helmet>
-                <title>From Home Boutique to Global Brand: The Digital Fashion Wave - Cehpoint Insights</title>
-                <meta name="description" content="Turn your small boutique into a national brand. Discover how local fashion sellers are using apps to beat algorithms and build loyal communities." />
-                <meta name="keywords" content="fashion tech, boutique app, online selling, live selling, ecommerce app, startup ideas" />
-                <meta property="og:title" content="From Home Boutique to Global Brand: The Digital Fashion Wave" />
-                <meta property="og:description" content="Turn your small boutique into a national brand. Discover how local fashion sellers are using apps to beat algorithms and build loyal communities." />
-                <meta property="og:image" content="/assets/blog/fashion-hero.png" />
-                <meta property="og:type" content="article" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:image" content="/assets/blog/fashion-hero.png" />
-            </Helmet>
+            <InsightSEO
+                title="Direct to Consumer: The Digital Fashion Wave"
+                description="Turn your small boutique into a national brand. Discover how local fashion sellers are using apps to beat algorithms and build loyal communities."
+                articleSlug="fashion-tech-revolution"
+                publishedDate="2024-03-24"
+                category="Direct to Consumer"
+            />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link href="/insights" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4 mb-8 pl-0 hover:pl-2">
@@ -35,13 +31,18 @@ export default function FashionTechRevolutionArticle() {
                     <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
                         From Home Boutique to Global Brand: <span className="text-gradient">The Digital Fashion Wave</span>
                     </h1>
-                    <div className="flex items-center space-x-6 text-muted-foreground border-b border-border pb-8">
+                    <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
                             <ShoppingBag className="w-4 h-4 mr-2" aria-hidden="true" />
                             <span>Retail Freedom</span>
                         </div>
                         <div className="flex items-center">
-                            <span>November 8, 2025</span>
+                            <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
+                            <span>Published: {getYesterdayDate()}</span>
+                        </div>
+                        <div className="flex items-center">
+                            <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
+                            <span>Updated: Today</span>
                         </div>
                     </div>
                 </motion.div>
@@ -63,11 +64,13 @@ export default function FashionTechRevolutionArticle() {
                     <div className="my-12 p-8 bg-secondary/10 rounded-2xl border-l-4 border-primary">
                         <h3 className="text-2xl font-bold mb-4 flex items-center text-foreground">
                             <Heart className="w-6 h-6 mr-3 text-primary" aria-hidden="true" />
-                            The "VIP" Feeling
+                            Premium Retail Tech Stack
                         </h3>
-                        <p className="mb-0 text-foreground/90">
-                            Apps create exclusivity. Give your app users "Early Access" to new sarees or jewellery designs 24 hours before you post on Instagram. This trains your customers to check your app daily, building a habit that drives massive loyalty.
-                        </p>
+                        <ul className="text-foreground/90 list-none p-0 space-y-2">
+                            <li>• <strong>Virtual Try-On:</strong> Using <strong>AR.js</strong>, customers can see how jewellery or eyewear looks on them directly through the app camera, reducing purchase hesitation.</li>
+                            <li>• <strong>Instant Engagement:</strong> <strong>FCM (Firebase Cloud Messaging)</strong> allows for hyper-targeted "flash sale" notifications that have a 25% higher click-through rate than Instagram posts.</li>
+                            <li>• <strong>Smart Suggestions:</strong> A <strong>Collaborative Filtering</strong> engine suggests matching accessories based on what other VIP users are buying.</li>
+                        </ul>
                     </div>
 
                     <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground">What You Can Sell?</h2>
@@ -114,6 +117,6 @@ export default function FashionTechRevolutionArticle() {
                     </Link>
                 </motion.div>
             </div>
-        </main>
+        </main >
     );
 }

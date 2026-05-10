@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
-    Download, Globe, Shield, Target, Users, Zap, Building2, TrendingUp,
+    Download, Globe, Shield, Target, Users, Cpu, Building2, TrendingUp,
     Award, Server, Layout, Database, CheckCircle2, Briefcase, Rocket, Landmark,
-    Cpu, Lock, Search, GraduationCap, Coins, Stethoscope, Factory, Truck
+    Lock, Search, GraduationCap, Coins, Stethoscope, Factory, Truck
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import html2canvas from 'html2canvas';
@@ -99,7 +99,7 @@ export default function CompanyProfile() {
         },
         {
             title: "AI & Innovation",
-            icon: Zap,
+            icon: Cpu,
             desc: "Future-Ready Automation",
             services: ["Generative AI Models", "Predictive Analytics", "Process Automation", "Computer Vision Systems"]
         },

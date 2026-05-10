@@ -10,7 +10,7 @@ import {
   Globe, 
   Award, 
   ArrowRight,
-  Zap,
+  Bot,
   Code
 } from "lucide-react";
 import { 
@@ -57,7 +57,7 @@ export default function AIInRealLife() {
     {
       title: "Business Automation",
       description: "Build custom AI agents and automate repetitive business workflows.",
-      icon: <Zap className="w-6 h-6 text-primary" />,
+      icon: <Bot className="w-6 h-6 text-primary" />,
       topics: ["AI Agents (AutoGPT/BabyAGI)", "Workflow Automation", "No-code AI Tools", "CRM Integration"]
     },
     {
@@ -114,7 +114,7 @@ export default function AIInRealLife() {
             className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight"
           >
             Artificial Intelligence <br /> 
-            <span className="text-gradient">In Real Life</span>
+            <span className="text-primary">In Real Life</span>
           </motion.h1>
           
           <motion.p 
@@ -157,7 +157,7 @@ export default function AIInRealLife() {
                     <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:30px_30px]" />
                     <DialogHeader className="relative z-10">
                       <DialogTitle className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-tight">
-                         AI In <span className="text-gradient">Real Life</span>
+                         AI In <span className="text-primary">Real Life</span>
                       </DialogTitle>
                       <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
                         A 3-Month Transformative Journey into Applied Artificial Intelligence
@@ -306,7 +306,7 @@ export default function AIInRealLife() {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold mb-6"
             >
-              What You'll <span className="text-gradient">Master</span>
+              What You'll <span className="text-primary">Master</span>
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0 }}
@@ -419,7 +419,7 @@ export default function AIInRealLife() {
             <Award className="w-8 h-8" />
             <span className="text-lg font-bold uppercase tracking-tighter">Globally Certified</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-12">Step into the <span className="text-gradient">Global Market</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-12">Step into the <span className="text-primary">Global Market</span></h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             <div className="p-8 rounded-3xl bg-secondary/10 border border-white/5">
               <Globe className="w-10 h-10 text-primary mx-auto mb-6" />
@@ -455,7 +455,7 @@ export default function AIInRealLife() {
           className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-secondary/10 p-16 rounded-[40px] border border-white/5 relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.05),transparent_70%)]" />
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 relative z-10 leading-tight">Ready to <span className="text-gradient">Rewrite</span> <br /> Your Career?</h2>
+          <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 relative z-10 leading-tight">Ready to <span className="text-primary">Rewrite</span> <br /> Your Career?</h2>
           <p className="text-xl text-foreground/70 mb-12 max-w-2xl mx-auto relative z-10 leading-relaxed">
             Join the elite club of professionals using AI to define the future. Limited seats available for the upcoming cohort.
           </p>

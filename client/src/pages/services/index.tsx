@@ -2,8 +2,9 @@
 import { Link } from "wouter";
 import {
     ShoppingCart, BookOpen, DollarSign, Shield, Brain, Blocks,
-    ArrowRight, CheckCircle2, TrendingUp, Users, Award, Zap,
-    Code, Cloud, Lock, Smartphone, Globe, BarChart3, Gamepad2, Sprout
+    ArrowRight, CheckCircle2, TrendingUp, Users, Award,
+    Code, Cloud, Lock, Smartphone, Globe, BarChart3, Gamepad2, Sprout,
+    Handshake, Briefcase
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/seo";
@@ -84,6 +85,15 @@ export default function ServicesPage() {
             gradient: "from-violet-600 to-fuchsia-600",
             href: "/services/game-development",
             stats: "300% Engagement"
+        },
+        {
+            icon: Handshake,
+            title: "Professional Partner Network",
+            description: "Elite partnerships for traditional businesses with 45-min payouts and client supply.",
+            features: ["Client Pipeline", "Fixed Rate Model", "45-Min Payout", "Priority Delivery"],
+            gradient: "from-blue-600 to-indigo-600",
+            href: "/services/professional-partner",
+            stats: "Elite Program"
         }
     ];
 
@@ -141,14 +151,10 @@ export default function ServicesPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center"
                     >
-                        <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-6">
-                            <Zap className="w-4 h-4 text-primary mr-2" />
-                            <span className="text-sm font-medium text-primary">Enterprise-Grade Solutions</span>
-                        </div>
+                        
 
-                        <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight">
-                            Transform Your Business with
-                            <span className="text-gradient block mt-2">Cutting-Edge Technology</span>
+                        <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight text-white">
+                            Our Services
                         </h1>
 
                         <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-10 max-w-4xl mx-auto leading-relaxed">
@@ -222,8 +228,8 @@ export default function ServicesPage() {
                             <Globe className="w-4 h-4 text-primary mr-2" />
                             <span className="text-sm font-medium text-primary">Global Strategic Trends 2026</span>
                         </div>
-                        <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-                            tailored for <span className="text-gradient">Your Region</span>
+                        <h2 className="font-display font-bold text-4xl md:text-5xl mb-6 text-white">
+                            Global Strategic Trends
                         </h2>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                             Explore specialized IT and Cybersecurity strategies designed for key global markets.
@@ -288,8 +294,8 @@ export default function ServicesPage() {
             <section id="featured-services" className="py-24 scroll-mt-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-                            Our <span className="text-gradient">Featured Services</span>
+                        <h2 className="font-display font-bold text-4xl md:text-5xl mb-6 text-white">
+                            Services Overview
                         </h2>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                             Comprehensive technology solutions tailored to drive innovation and growth across your organization
@@ -355,7 +361,7 @@ export default function ServicesPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-                            <span className="text-gradient">15+ Industries</span> We Serve
+                            <span className="text-primary">15+ Industries</span> We Serve
                         </h2>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
                             Delivering specialized solutions across every business vertical with proven expertise and measurable outcomes
@@ -417,7 +423,7 @@ export default function ServicesPage() {
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="glass rounded-3xl p-12">
                         <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
-                            Ready to Build Something <span className="text-gradient">Amazing?</span>
+                            Ready to Build Something <span className="text-primary">Amazing?</span>
                         </h2>
                         <p className="text-lg md:text-xl text-muted-foreground mb-8">
                             Get a detailed quotation with AI-powered analysis and technical recommendations for your project.

@@ -43,7 +43,7 @@ export default function Interns() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-up">
             <h1 className="font-display font-bold text-5xl md:text-7xl mb-6 tracking-tight" data-testid="page-title">
-              Join Our <span className="text-gradient">Internship Program</span>
+              Join Our <span className="text-primary">Internship Program</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
               Performance-based internships with stipends up to <span className="text-primary font-semibold">₹15,000/month</span> and PPO opportunities worth <span className="text-primary font-semibold">₹6 LPA</span>.
@@ -68,7 +68,7 @@ export default function Interns() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl mb-6" data-testid="benefits-title">
-              Why Choose <span className="text-gradient">Cehpoint</span>
+              Why Choose <span className="text-primary">Cehpoint</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Our internship program is designed to accelerate your growth as a software developer
@@ -101,7 +101,7 @@ export default function Interns() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl mb-6" data-testid="tech-stack-title">
-              Technologies <span className="text-gradient">You'll Master</span>
+              Technologies <span className="text-primary">You'll Master</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Gain hands-on experience with industry-leading technologies and frameworks
@@ -128,7 +128,7 @@ export default function Interns() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="program-details-title">
-                Program <span className="text-gradient">Details</span>
+                Program <span className="text-primary">Details</span>
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
                 A comprehensive internship experience designed to prepare you for a successful career in software development.
@@ -219,7 +219,7 @@ export default function Interns() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl mb-6" data-testid="application-process-title">
-              Application <span className="text-gradient">Process</span>
+              Application <span className="text-primary">Process</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Simple and straightforward application process to join our internship program
@@ -267,7 +267,7 @@ export default function Interns() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl mb-6">
-              Life at <span className="text-gradient">Cehpoint</span>
+              Life at <span className="text-primary">Cehpoint</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               More than just code - it's about community, growth, and innovation
@@ -311,7 +311,7 @@ export default function Interns() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="glass rounded-3xl p-12">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="cta-title">
-              Ready to Start Your <span className="text-gradient">Tech Career?</span>
+              Ready to Start Your <span className="text-primary">Tech Career?</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8" data-testid="cta-description">
               Join our internship program and gain valuable experience working on real-world projects with cutting-edge technologies.

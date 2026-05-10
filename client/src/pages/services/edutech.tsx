@@ -101,7 +101,7 @@ export default function EdutechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-up">
             <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight" data-testid="page-title">
-              Edutech <span className="text-gradient">Solutions</span>
+              Edutech <span className="text-primary">Solutions</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
               Transform education with cutting-edge learning platforms that engage students and empower educators.
@@ -164,7 +164,7 @@ export default function EdutechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="problems-title">
-              Educational <span className="text-gradient">Challenges We Solve</span>
+              Educational <span className="text-primary">Challenges We Solve</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Modern education faces unique challenges that require innovative technology solutions
@@ -189,7 +189,7 @@ export default function EdutechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="architecture-title">
-              Educational <span className="text-gradient">Architecture</span>
+              Educational <span className="text-primary">Architecture</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Comprehensive platform architecture designed for modern educational institutions
@@ -225,7 +225,7 @@ export default function EdutechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-              Success <span className="text-gradient">Stories</span>
+              Success <span className="text-primary">Stories</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Real impact from our educational technology solutions
@@ -306,7 +306,7 @@ export default function EdutechService() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="compliance-title">
-                Privacy & <span className="text-gradient">Compliance</span>
+                Privacy & <span className="text-primary">Compliance</span>
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
                 Educational platforms built with student privacy and regulatory compliance at their core.
@@ -372,7 +372,7 @@ export default function EdutechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">
-              Certified & <span className="text-gradient">Compliant</span>
+              Certified & <span className="text-primary">Compliant</span>
             </h2>
           </div>
 
@@ -416,7 +416,7 @@ export default function EdutechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="kpis-title">
-              Educational <span className="text-gradient">Outcomes</span>
+              Educational <span className="text-primary">Outcomes</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Measurable improvements in learning effectiveness and platform performance
@@ -446,7 +446,7 @@ export default function EdutechService() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-              Frequently Asked <span className="text-gradient">Questions</span>
+              Frequently Asked <span className="text-primary">Questions</span>
             </h2>
           </div>
 
@@ -498,7 +498,7 @@ export default function EdutechService() {
               Free demo available this week
             </div>
             <h2 className="font-display font-bold text-3xl md:text-5xl mb-6" data-testid="cta-title">
-              Ready to Revolutionize <span className="text-gradient">Education?</span>
+              Ready to Revolutionize <span className="text-primary">Education?</span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground mb-8" data-testid="cta-description">
               Get a comprehensive quotation with AI-powered analysis, feature roadmap, and implementation timeline for your educational technology project.

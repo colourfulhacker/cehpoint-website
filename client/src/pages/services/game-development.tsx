@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Gamepad2, Trophy, Coins, Zap, Monitor, Code2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Gamepad2, Trophy, Coins, Monitor, Code2, Layers, ShieldCheck, Cpu, Globe, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
@@ -61,7 +61,7 @@ export default function GameDevelopmentPage() {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/contact">
                                 <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-5 rounded-xl text-lg font-bold shadow-[0_0_20px_rgba(79,70,229,0.5)] transition-all hover:scale-105 border-0">
-                                    Start Building <Zap className="ml-2 w-5 h-5 fill-yellow-400 text-yellow-400" />
+                                    Start Building <Gamepad2 className="ml-2 w-5 h-5" />
                                 </Button>
                             </Link>
                             <Link href="#game-types">
@@ -108,10 +108,14 @@ export default function GameDevelopmentPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {/* Card 1 */}
                         <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
                             whileHover={{ y: -10 }}
                             className="bg-[#131330] rounded-3xl p-8 border border-white/5 hover:border-indigo-500/50 transition-all group"
                         >
-                            <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                            <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(99,102,241,0.3)]">
                                 <Coins className="w-8 h-8 text-white" />
                             </div>
                             <h3 className="text-2xl font-bold mb-4">Play-to-Earn (P2E)</h3>
@@ -127,11 +131,15 @@ export default function GameDevelopmentPage() {
 
                         {/* Card 2 */}
                         <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
                             whileHover={{ y: -10 }}
                             className="bg-[#131330] rounded-3xl p-8 border border-white/5 hover:border-indigo-500/50 transition-all group relative overflow-hidden"
                         >
-                            <div className="absolute top-0 right-0 bg-indigo-600 text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase">Best Seller</div>
-                            <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                            <div className="absolute top-0 right-0 bg-indigo-600 text-[10px] font-extrabold px-3 py-1 rounded-bl-xl uppercase tracking-wider z-20">Best Seller</div>
+                            <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(236,72,153,0.3)]">
                                 <Trophy className="w-8 h-8 text-white" />
                             </div>
                             <h3 className="text-2xl font-bold mb-4">eSports Platforms</h3>
@@ -147,10 +155,14 @@ export default function GameDevelopmentPage() {
 
                         {/* Card 3 */}
                         <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
                             whileHover={{ y: -10 }}
                             className="bg-[#131330] rounded-3xl p-8 border border-white/5 hover:border-indigo-500/50 transition-all group"
                         >
-                            <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                            <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(34,211,238,0.3)]">
                                 <Monitor className="w-8 h-8 text-white" />
                             </div>
                             <h3 className="text-2xl font-bold mb-4">Educational Gaming</h3>
@@ -168,17 +180,44 @@ export default function GameDevelopmentPage() {
             </section>
 
             {/* Tech Stack */}
-            <section className="py-24 bg-[#0d0d25] text-white border-t border-white/10">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="font-display font-bold text-3xl mb-12">Powered by Industry Standard Tech</h2>
-                    <div className="flex flex-wrap justify-center gap-6 md:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                        {/* Placeholders for tech logos - using text for now */}
-                        <span className="text-2xl font-bold font-mono">UNITY</span>
-                        <span className="text-2xl font-bold font-mono">UNREAL ENGINE 5</span>
-                        <span className="text-2xl font-bold font-mono">WEBGL</span>
-                        <span className="text-2xl font-bold font-mono">NODE.JS</span>
-                        <span className="text-2xl font-bold font-mono">SOLIDITY</span>
-                        <span className="text-2xl font-bold font-mono">AWS GAMELIFT</span>
+            <section className="py-24 bg-[#0d0d25] text-white border-t border-white/10 relative overflow-hidden">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
+                
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="font-display font-bold text-3xl md:text-5xl mb-4 italic tracking-tight">The Tech That Wins</h2>
+                        <p className="text-gray-400 max-w-xl mx-auto uppercase tracking-[0.3em] text-[10px] font-black">Industrial Grade Infrastructure</p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                        {[
+                            { name: "UNITY", icon: <Gamepad2 className="w-6 h-6" />, color: "bg-black" },
+                            { name: "UNREAL 5", icon: <Cpu className="w-6 h-6" />, color: "bg-slate-900" },
+                            { name: "WEBGL", icon: <Globe className="w-6 h-6" />, color: "bg-[#2d2d2d]" },
+                            { name: "NODE.JS", icon: <Code2 className="w-6 h-6" />, color: "bg-green-900/20" },
+                            { name: "SOLIDITY", icon: <Layers className="w-6 h-6" />, color: "bg-indigo-900/20" },
+                            { name: "AWS", icon: <ShieldCheck className="w-6 h-6" />, color: "bg-orange-900/20" }
+                        ].map((tech, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: idx * 0.1 }}
+                                whileHover={{ y: -5, boxShadow: "0 0 30px rgba(99, 102, 241, 0.2)" }}
+                                className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition-all duration-300 flex flex-col items-center justify-center gap-4 backdrop-blur-sm"
+                            >
+                                <div className={`p-4 rounded-xl ${tech.color} border border-white/10 group-hover:scale-110 transition-transform duration-300 text-indigo-400 group-hover:text-indigo-300`}>
+                                    {tech.icon}
+                                </div>
+                                <span className="text-sm font-black tracking-widest font-mono text-gray-300 group-hover:text-white transition-colors">{tech.name}</span>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>

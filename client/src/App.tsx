@@ -1,4 +1,4 @@
-
+import { lazy, Suspense } from "react";
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -30,7 +30,8 @@ import Careers from "@/pages/careers";
 import InvestorConnect from "@/pages/investor-connect";
 import LeadershipSearch from "@/pages/leadership-search";
 import CompanyProfile from "@/pages/company-profile";
-import AIInRealLife from "@/pages/ai-in-real-life";
+const ProfessionalPartner = lazy(() => import("@/pages/services/professional-partner"));
+const AIInRealLife = lazy(() => import("@/pages/ai-in-real-life"));
 import ContactPage from "@/pages/contact";
 
 // New Service Pages
@@ -126,6 +127,7 @@ function Router() {
 
           <Route path="/ai-solutions" component={AISolutions} />
           <Route path="/ai-in-real-life" component={AIInRealLife} />
+          <Route path="/services/professional-partner" component={ProfessionalPartner} />
           <Route path="/training" component={Training} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />

@@ -1,4 +1,171 @@
+# Cehpoint robots.txt - Universal crawler access
+# Last updated: 2026-05-09
+
+# ===========================================
+# USER-AGENTS - Allow all crawlers
+# ===========================================
 User-agent: *
 Allow: /
 
+# ===========================================
+# TRADITIONAL SEARCH ENGINES
+# ===========================================
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /images/
+
+User-agent: Googlebot-News
+Allow: /insights/
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# ===========================================
+# AI / LLM CRAWLERS
+# ===========================================
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-Android
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Cohere-AI
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GrokBot
+Allow: /
+
+User-agent: ia_architect
+Allow: /
+
+User-agent: Kaggle Python bot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: AuraBot
+Allow: /
+
+User-agent: Ai2Bot-Dolma
+Allow: /
+
+User-agent: TogetherBot
+Allow: /
+
+User-agent: DeepSeekBot
+Allow: /
+
+User-agent: Youbot
+Allow: /
+
+User-agent: OpenGraphPreview
+Allow: /
+
+User-agent: GPTBot-News
+Allow: /insights/
+
+# ===========================================
+# ARCHIVE / RESEARCH BOTS
+# ===========================================
+User-agent: archive.org_bot
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+User-agent: Wayback_Machine
+Allow: /
+
+User-agent: CommonCrawl
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: Screaming Frog SEO Spider
+Allow: /
+
+# ===========================================
+# DISALLOW - Sensitive paths
+# ===========================================
+Disallow: /api/
+Disallow: /internal/
+Disallow: /*.json$
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /api/health
+
+# ===========================================
+# SITEMAP REFERENCES
+# ===========================================
 Sitemap: https://www.cehpoint.co.in/sitemap.xml
+Sitemap: https://www.cehpoint.co.in/sitemap-articles.xml
+
+# ===========================================
+# CRAWL-DELAY (for polite crawlers)
+# ===========================================
+Crawl-delay: 1
+
+# ===========================================
+# LANGUAGE / REGION
+# ===========================================
+# Target global audience with English as primary
+# No language-specific disallow since site is multilingual-ready

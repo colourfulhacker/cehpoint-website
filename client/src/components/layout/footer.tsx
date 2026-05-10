@@ -26,6 +26,7 @@ export default function Footer() {
     { name: "School of Advanced Studies", href: "https://school-of-advanced-studies.cehpoint.co.in/", external: true },
     { name: "Cehpoint E-Learning", href: "https://elearning.cehpoint.co.in/", external: true },
     { name: "Artificial Intelligence in Real Life", href: "/ai-in-real-life" },
+    { name: "Professional Partner Program", href: "/services/professional-partner" },
   ]
 
   const companyLinks = [
@@ -122,7 +123,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="font-display font-bold text-3xl text-gradient" data-testid="footer-logo">
+              <div className="font-display font-bold text-3xl text-primary" data-testid="footer-logo">
                 Cehpoint
               </div>
             </div>
@@ -404,7 +405,7 @@ export default function Footer() {
               </DialogTrigger>
               <DialogContent className="glass-intense border-primary/20 max-w-2xl">
                 <DialogHeader>
-                  <DialogTitle className="text-2xl font-display font-bold text-gradient mb-4">
+                  <DialogTitle className="text-2xl font-display font-bold text-primary mb-4">
                     Global Digital-First Operations
                   </DialogTitle>
                   <DialogDescription className="text-base space-y-4 text-foreground/90">

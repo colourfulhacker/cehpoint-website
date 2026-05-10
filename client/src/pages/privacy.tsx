@@ -10,9 +10,9 @@ export default function Privacy() {
                 description="Cehpoint's Privacy Policy outlining how we collect, use, and protect your data in compliance with GDPR and DPDP Act."
             />
 
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="text-center mb-12">
-                    <h1 className="font-display font-bold text-4xl md:text-5xl mb-4 text-gradient">Privacy Policy</h1>
+                    <h1 className="font-display font-bold text-4xl md:text-5xl mb-4 text-primary">Privacy Policy</h1>
                     <p className="text-muted-foreground text-lg">Last Updated: December 2025</p>
                 </div>
 

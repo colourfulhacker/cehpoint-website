@@ -56,7 +56,7 @@ export default function FintechService() {
     { metric: "Fraud Detection", target: "99.9%", description: "AI-powered fraud prevention accuracy" },
     { metric: "Compliance Score", target: "100%", description: "Full regulatory compliance adherence" },
     { metric: "Mobile Adoption", target: "80%+", description: "Mobile-first user engagement" },
-    { metric: "API Response", target: "<50ms", description: "Lightning-fast API performance" }
+    { metric: "API Response", target: "<50ms", description: "High-speed API performance" }
   ];
 
   return (
@@ -101,7 +101,7 @@ export default function FintechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-up">
             <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight" data-testid="page-title">
-              Fintech <span className="text-gradient">Solutions</span>
+              Fintech <span className="text-primary">Solutions</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
               Build secure, compliant, and scalable financial technology platforms that power the future of finance.
@@ -164,7 +164,7 @@ export default function FintechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="problems-title">
-              Financial <span className="text-gradient">Challenges We Solve</span>
+              Financial <span className="text-primary">Challenges We Solve</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Complex financial technology challenges require specialized expertise and proven solutions
@@ -189,7 +189,7 @@ export default function FintechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="architecture-title">
-              Financial <span className="text-gradient">Architecture</span>
+              Financial <span className="text-primary">Architecture</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Enterprise-grade fintech architecture designed for security, compliance, and scalability
@@ -225,7 +225,7 @@ export default function FintechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-              Success <span className="text-gradient">Stories</span>
+              Success <span className="text-primary">Stories</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Real results from our fintech implementations
@@ -306,7 +306,7 @@ export default function FintechService() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="compliance-title">
-                Regulatory <span className="text-gradient">Compliance</span>
+                Regulatory <span className="text-primary">Compliance</span>
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
                 Financial platforms built with comprehensive regulatory compliance and security frameworks.
@@ -380,7 +380,7 @@ export default function FintechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">
-              Certified & <span className="text-gradient">Trusted</span>
+              Certified & <span className="text-primary">Trusted</span>
             </h2>
           </div>
 
@@ -424,7 +424,7 @@ export default function FintechService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="kpis-title">
-              Performance <span className="text-gradient">Metrics</span>
+              Performance <span className="text-primary">Metrics</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Mission-critical performance standards for financial technology platforms
@@ -454,7 +454,7 @@ export default function FintechService() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-              Frequently Asked <span className="text-gradient">Questions</span>
+              Frequently Asked <span className="text-primary">Questions</span>
             </h2>
           </div>
 
@@ -506,7 +506,7 @@ export default function FintechService() {
               Limited slots available this month
             </div>
             <h2 className="font-display font-bold text-3xl md:text-5xl mb-6" data-testid="cta-title">
-              Ready to Build the <span className="text-gradient">Future of Finance?</span>
+              Ready to Build the <span className="text-primary">Future of Finance?</span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground mb-8" data-testid="cta-description">
               Get a detailed quotation with AI-powered analysis, compliance roadmap, and technical architecture for your fintech project.

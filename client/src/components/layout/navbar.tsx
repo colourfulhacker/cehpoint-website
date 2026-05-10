@@ -2,8 +2,9 @@
 import { Link, useLocation } from "wouter";
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown, Bot } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
+import { cn } from "@/lib/utils";
 
 interface NavItem {
   name: string;
@@ -112,6 +113,7 @@ export default function Navbar() {
         { name: "Full-time Jobs", href: "/careers" },
         { name: "Internship Program", href: "/interns" },
         { name: "Campus Ambassador", href: "https://cehpoint-campus-ambassador-portal.cehpoint.co.in/", external: true },
+        { name: "Work Portal", href: "https://works.cehpoint.co.in/", external: true },
       ]
     },
     {
@@ -139,13 +141,13 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Link href="/" data-testid="logo-link" aria-label="Cehpoint Home">
-                <div className="font-display font-bold text-xl sm:text-2xl text-gradient hover:scale-105 transition-transform cursor-pointer">
+                <div className="font-display font-bold text-xl sm:text-2xl text-primary hover:scale-105 transition-transform cursor-pointer">
                   Cehpoint
                 </div>
               </Link>
             </div>
 
-            <div className="hidden xl:flex items-center space-x-4 xl:space-x-6">
+            <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
               {navigation.map((item) => (
                 <div
                   key={item.name}
@@ -166,7 +168,7 @@ export default function Navbar() {
                             toggleDropdown(item.name);
                           }
                         }}
-                        className="flex items-center text-foreground/80 hover:text-foreground transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1"
+                        className="flex items-center text-gray-200 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
                         aria-expanded={openDropdown === item.name}
                         aria-haspopup="true"
                         data-testid={`${item.name.toLowerCase()}-dropdown`}
@@ -190,7 +192,7 @@ export default function Navbar() {
                                 href={child.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block px-4 py-2 text-sm text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors whitespace-nowrap focus:outline-none focus:bg-secondary/50"
+                                className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 transition-colors whitespace-nowrap focus:outline-none focus:bg-white/10"
                                 onClick={() => setTimeout(() => setOpenDropdown(null), 150)}
                                 role="menuitem"
                                 data-testid={`nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
@@ -201,7 +203,7 @@ export default function Navbar() {
                               <Link
                                 key={child.name}
                                 href={child.href}
-                                className="block px-4 py-2 text-sm text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors whitespace-nowrap focus:outline-none focus:bg-secondary/50"
+                                className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 transition-colors whitespace-nowrap focus:outline-none focus:bg-white/10"
                                 onClick={() => setOpenDropdown(null)}
                                 role="menuitem"
                                 data-testid={`nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
@@ -218,7 +220,7 @@ export default function Navbar() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-foreground/80 hover:text-foreground transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1"
+                      className="text-gray-200 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
                       data-testid={`nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {item.name}
@@ -226,7 +228,7 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="text-foreground/80 hover:text-foreground transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1"
+                      className="text-gray-200 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
                       data-testid={`nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {item.name}
@@ -237,22 +239,21 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center space-x-2 sm:space-x-4">
-              {/* Desktop CTA - Hidden on Mobile */}
-              <div className="hidden xl:block">
-                <Link href="/quotation">
-                  <Button
-                    className="btn-primary hover-glow magnetic-hover px-6 py-3 rounded-xl text-primary-foreground font-bold"
-                    data-testid="cta-get-quote"
-                    aria-label="Get AI Quote - Request a proposal"
-                  >
-                    <Bot className="w-5 h-5 mr-2" />
-                    <span>Get AI Quote</span>
-                  </Button>
+              {/* Desktop CTA - Hidden on Mobile/Tablet */}
+              <div className="hidden lg:block">
+                <Link
+                  href="/quotation"
+                  className={cn(buttonVariants({ size: "default" }), "btn-primary hover-glow magnetic-hover px-6 py-3 rounded-xl text-primary-foreground font-bold")}
+                  data-testid="cta-get-quote"
+                  aria-label="Get AI Quote - Request a proposal"
+                >
+                  <Bot className="w-5 h-5 mr-2" />
+                  <span>Get AI Quote</span>
                 </Link>
               </div>
 
               <button
-                className="xl:hidden text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md p-1 sm:p-2"
+                className="lg:hidden text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md p-1 sm:p-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
@@ -266,7 +267,7 @@ export default function Navbar() {
           {/* Mobile menu */}
           {isMenuOpen && (
             <div
-              className="xl:hidden glass rounded-lg mt-2 p-4 max-h-[calc(100vh-120px)] overflow-y-auto relative z-50"
+              className="lg:hidden glass rounded-lg mt-2 p-4 max-h-[calc(100vh-120px)] overflow-y-auto relative z-50"
               data-testid="mobile-menu"
               role="menu"
               aria-label="Mobile navigation menu"
@@ -335,14 +336,14 @@ export default function Navbar() {
 
                 {/* Mobile Menu CTA */}
                 <div className="pt-4 border-t border-primary/20">
-                  <Link href="/quotation">
-                    <Button
-                      className="w-full btn-primary hover-glow rounded-xl font-bold"
-                      data-testid="mobile-cta-get-quote"
-                    >
-                      <Bot className="w-5 h-5 mr-2" />
-                      Get AI Quote
-                    </Button>
+                  <Link
+                    href="/quotation"
+                    className={cn(buttonVariants({ size: "default" }), "w-full btn-primary hover-glow rounded-xl font-bold")}
+                    onClick={() => setIsMenuOpen(false)}
+                    data-testid="mobile-cta-get-quote"
+                  >
+                    <Bot className="w-5 h-5 mr-2" />
+                    Get AI Quote
                   </Link>
                 </div>
               </div>

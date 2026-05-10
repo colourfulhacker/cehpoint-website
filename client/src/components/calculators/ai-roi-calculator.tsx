@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
-import { Calculator, TrendingUp, Clock, Zap, MessageCircle } from "lucide-react";
+import { Calculator, TrendingUp, Clock, Cpu, MessageCircle } from "lucide-react";
 
 export default function AIROICalculator() {
     const [industry, setIndustry] = useState("ecommerce");
@@ -40,15 +39,31 @@ export default function AIROICalculator() {
                 break;
             case "healthcare":
                 efficiencyFactor = 0.45; // Admin tasks, scheduling
-                rec = "Patient Scheduling & Admin Automation";
+                rec = "Patient Scheduling & Admin AI";
+                break;
+            case "manufacturing":
+                efficiencyFactor = 0.35; // QA, predictive maintenance
+                rec = "Predictive Maintenance & Visual QC";
+                break;
+            case "real_estate":
+                efficiencyFactor = 0.55; // Lead gen, doc review
+                rec = "24/7 AI Leasing Agent & Automated Follow-ups";
+                break;
+            case "education":
+                efficiencyFactor = 0.5; // Grading, student support
+                rec = "Automated Grading & Student Support Chatbots";
+                break;
+            case "logistics":
+                efficiencyFactor = 0.4; // Route optimization, tracking
+                rec = "AI Route Optimization & Automated Tracking";
+                break;
+            case "legal":
+                efficiencyFactor = 0.5; // Doc review, research
+                rec = "Automated Contract Review & Document AI";
                 break;
             case "marketing":
                 efficiencyFactor = 0.7; // Content gen, analytics
                 rec = "Generative AI Content & Predictive Analytics";
-                break;
-            case "manufacturing":
-                efficiencyFactor = 0.35; // QA, predictive maintenance
-                rec = "Predictive Maintenance & Quality Control";
                 break;
             default:
                 efficiencyFactor = 0.4;
@@ -77,7 +92,7 @@ export default function AIROICalculator() {
     const handleWhatsApp = () => {
         const message = `Hi, I used the AI ROI Calculator on Cehpoint. Here are my business details:
 
-*Industry:* ${industry.charAt(0).toUpperCase() + industry.slice(1)}
+*Industry:* ${industry.charAt(0).toUpperCase() + industry.slice(1).replace('_', ' ')}
 *Team Size:* ${teamSize[0]} Employees
 *Manual Work:* ${hoursPerWeek[0]} Hours/Week/Employee
 *Avg. Hourly Cost:* ₹${hourlyRate[0]}
@@ -92,17 +107,17 @@ I would like to discuss implementing this solution.`;
     };
 
     return (
-        <Card className="glass-intense w-full max-w-4xl mx-auto overflow-hidden border-primary/20 shadow-2xl">
+        <Card className="glass w-full max-w-4xl mx-auto overflow-hidden border-primary/20 shadow-[0_0_40px_-10px_rgba(139,92,246,0.2)]">
             <CardHeader className="bg-primary/5 border-b border-primary/10 pb-8">
                 <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 bg-primary/20 rounded-lg">
                         <Calculator className="w-6 h-6 text-primary" />
                     </div>
                     <CardTitle className="text-2xl md:text-3xl font-display font-bold">
-                        AI Reality Check: <span className="text-gradient">ROI Calculator</span>
+                        AI Reality Check: <span className="text-primary">ROI Calculator</span>
                     </CardTitle>
                 </div>
-                <CardDescription className="text-lg">
+                <CardDescription className="text-lg text-gray-200 font-medium">
                     See exactly how much time and money AI automation can save your business.
                 </CardDescription>
             </CardHeader>
@@ -120,9 +135,13 @@ I would like to discuss implementing this solution.`;
                                 <SelectContent>
                                     <SelectItem value="ecommerce">E-commerce & Retail</SelectItem>
                                     <SelectItem value="finance">Finance & Banking</SelectItem>
-                                    <SelectItem value="healthcare">Healthcare</SelectItem>
-                                    <SelectItem value="marketing">Marketing & Sales</SelectItem>
+                                    <SelectItem value="healthcare">Healthcare & Clinics</SelectItem>
                                     <SelectItem value="manufacturing">Manufacturing</SelectItem>
+                                    <SelectItem value="real_estate">Real Estate & PropTech</SelectItem>
+                                    <SelectItem value="education">Education & EdTech</SelectItem>
+                                    <SelectItem value="logistics">Logistics & Supply Chain</SelectItem>
+                                    <SelectItem value="legal">Legal & Professional</SelectItem>
+                                    <SelectItem value="marketing">Marketing & Agencies</SelectItem>
                                     <SelectItem value="other">Other Services</SelectItem>
                                 </SelectContent>
                             </Select>
@@ -156,7 +175,7 @@ I would like to discuss implementing this solution.`;
                                 step={1}
                                 className="py-4"
                             />
-                            <p className="text-xs text-muted-foreground">Time spent on repetitive tasks like data entry, support, reporting, etc.</p>
+                            <p className="text-sm text-gray-300 font-medium">Time spent on repetitive tasks like data entry, support, reporting, etc.</p>
                         </div>
 
                         <div className="space-y-4">
@@ -178,8 +197,8 @@ I would like to discuss implementing this solution.`;
                     {/* Results */}
                     <div className="p-6 md:p-8 bg-secondary/20 flex flex-col justify-center space-y-8">
                         <div className="text-center space-y-2">
-                            <p className="text-muted-foreground font-medium uppercase tracking-wider text-sm">Potential Annual Savings</p>
-                            <div className="text-4xl md:text-5xl font-bold text-gradient animate-in fade-in zoom-in duration-500">
+                            <p className="text-gray-100 font-bold uppercase tracking-wider text-sm">Potential Annual Savings</p>
+                            <div className="text-4xl md:text-5xl font-bold text-primary animate-in fade-in zoom-in duration-500">
                                 {formatCurrency(savings)}
                             </div>
                             <p className="text-sm text-green-500 font-medium flex items-center justify-center gap-1">
@@ -190,14 +209,14 @@ I would like to discuss implementing this solution.`;
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="bg-background/50 rounded-xl p-4 text-center border border-primary/10">
-                                <Zap className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
+                                <Cpu className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                                 <div className="text-2xl font-bold">{efficiency}%</div>
-                                <div className="text-xs text-muted-foreground">Efficiency Gain</div>
+                                <div className="text-sm text-gray-300 font-bold">Efficiency Gain</div>
                             </div>
                             <div className="bg-background/50 rounded-xl p-4 text-center border border-primary/10">
                                 <Clock className="w-6 h-6 text-blue-500 mx-auto mb-2" />
                                 <div className="text-2xl font-bold">{Math.round(teamSize[0] * hoursPerWeek[0] * 52 * (efficiency / 100))}</div>
-                                <div className="text-xs text-muted-foreground">Hours Saved/Year</div>
+                                <div className="text-sm text-gray-300 font-bold">Hours Saved/Year</div>
                             </div>
                         </div>
 
@@ -213,7 +232,7 @@ I would like to discuss implementing this solution.`;
                             >
                                 <MessageCircle className="mr-2 w-5 h-5" /> Get Detailed Analysis via WhatsApp
                             </Button>
-                            <p className="text-xs text-center text-muted-foreground">
+                            <p className="text-sm text-center text-gray-400 font-medium">
                                 Based on industry benchmarks. Actual results may vary.
                             </p>
                         </div>

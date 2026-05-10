@@ -128,7 +128,7 @@ export default function DemoDelivery() {
 
             <div>
               <h1 className="font-display font-bold text-5xl md:text-7xl mb-6 tracking-tight" data-testid="page-title">
-                {currentConfig.title} <span className="text-gradient">Demo Delivery</span>
+                {currentConfig.title} <span className="text-primary">Demo Delivery</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
                 {currentConfig.subtitle} See your ideas come to life with our rapid development process.
@@ -149,7 +149,7 @@ export default function DemoDelivery() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl mb-6" data-testid="included-title">
-              What's <span className="text-gradient">Included</span>
+              What's <span className="text-primary">Included</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Everything you need to evaluate our technical capabilities and project approach
@@ -174,7 +174,7 @@ export default function DemoDelivery() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl mb-6" data-testid="timeline-title">
-              {currentConfig.timelineTitle} <span className="text-gradient">Development Timeline</span>
+              {currentConfig.timelineTitle} <span className="text-primary">Development Timeline</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Our proven process for rapid prototype development and delivery
@@ -220,7 +220,7 @@ export default function DemoDelivery() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="scope-title">
-                Demo <span className="text-gradient">Scope Rules</span>
+                Demo <span className="text-primary">Scope Rules</span>
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
                 Clear boundaries ensure we deliver a functional prototype within the {projectType === 'web' ? '24-hour' : '7-day'} timeframe.
@@ -268,7 +268,7 @@ export default function DemoDelivery() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-6xl mb-6" data-testid="handoff-title">
-              Demo <span className="text-gradient">Handoff Process</span>
+              Demo <span className="text-primary">Handoff Process</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Professional delivery with comprehensive documentation and next steps
@@ -314,7 +314,7 @@ export default function DemoDelivery() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="glass rounded-3xl p-12">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="cta-title">
-              Ready to See Your Idea <span className="text-gradient">Come to Life?</span>
+              Ready to See Your Idea <span className="text-primary">Come to Life?</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8" data-testid="cta-description">
               Get your {currentConfig.timelineTitle} demo started with our intelligent quotation system.

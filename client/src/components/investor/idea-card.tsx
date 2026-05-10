@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useTransform, useAnimation } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { DollarSign, TrendingUp, Clock, Sparkles } from "lucide-react";
+import { DollarSign, TrendingUp, Clock, Cpu } from "lucide-react";
 
 interface Idea {
     id: string;
@@ -103,7 +103,7 @@ export default function IdeaCard({ idea, onSwipe, index }: IdeaCardProps) {
                                 {idea.industry}
                             </Badge>
                             <div className="bg-white/20 backdrop-blur-md rounded-full p-1">
-                                <Sparkles className="w-3 h-3 text-yellow-300" />
+                                <Cpu className="w-3 h-3 text-yellow-300" />
                             </div>
                         </div>
                         <h2 className="text-3xl md:text-4xl font-display font-bold leading-tight mb-3 drop-shadow-xl text-white">

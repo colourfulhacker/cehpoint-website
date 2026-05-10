@@ -150,7 +150,7 @@ Thank you!`;
                     <Crown className="w-12 h-12 drop-shadow-md" />
                 </motion.div>
                 <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight">
-                    The <span className="text-gradient">Final Offer</span>
+                    The <span className="text-primary">Final Offer</span>
                 </h1>
                 <p className="text-xl md:text-2xl text-foreground/60 max-w-2xl mx-auto font-light">
                     You don't just fund it. You <span className="text-foreground font-semibold">own it completely.</span>

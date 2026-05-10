@@ -10,9 +10,9 @@ export default function Terms() {
                 description="Cehpoint's Terms of Use governing the access and use of our website and services."
             />
 
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="text-center mb-12">
-                    <h1 className="font-display font-bold text-4xl md:text-5xl mb-4 text-gradient">Terms of Use</h1>
+                    <h1 className="font-display font-bold text-4xl md:text-5xl mb-4 text-primary">Terms of Use</h1>
                     <p className="text-muted-foreground text-lg">Last Updated: December 2025</p>
                 </div>
 
@@ -76,7 +76,7 @@ export default function Terms() {
                             <p className="mt-4 font-semibold text-foreground">
                                 Cehpoint<br />
                                 contact@cehpoint.co.in<br />
-                                +91 33690 29331
+                                +91 90911 56095
                             </p>
                         </CardContent>
                     </Card>

@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import {
     Rocket,
@@ -26,8 +27,9 @@ import {
     ShieldCheck,
     Lightbulb,
     Target,
-    Zap,
-    Globe
+    Cpu,
+    Globe,
+    Monitor
 } from "lucide-react";
 
 // --- Visual Assets ---
@@ -374,24 +376,110 @@ export default function Training() {
                 keywords={["Business Automation Training", "AI Course India", "Entrepreneur Mentorship", "Sales Automation", "Cyber Security Training", "Cehpoint Academy"]}
                 schema={courseSchema}
             />
+
+            {/* Premium Background Elements */}
+            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+                <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-500/10 blur-[120px] rounded-full animate-pulse" />
+                <div className="absolute top-[20%] -right-[5%] w-[30%] h-[30%] bg-purple-500/10 blur-[100px] rounded-full" />
+                <div className="absolute -bottom-[5%] left-[20%] w-[35%] h-[35%] bg-yellow-500/5 blur-[130px] rounded-full" />
+            </div>
+
             {/* Hero Section */}
-            <section className="relative py-24 overflow-hidden">
-                <div className="absolute inset-0 bg-secondary/5" />
+            <section className="relative py-24 md:py-32 overflow-hidden z-10">
+                <div className="absolute inset-0 bg-gradient-to-b from-secondary/10 via-background to-background" />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+                
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                    <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20 px-4 py-1.5 text-sm border-primary/20 backdrop-blur-sm">
-                        {activeTab === "entrepreneurs" ? "Business Growth Hub" : "Student Career Launchpad"}
-                    </Badge>
-                    <h1 className="font-display font-bold text-5xl md:text-7xl mb-6 tracking-tight">
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <Badge className="mb-6 bg-primary/10 text-primary hover:bg-primary/20 px-4 py-1.5 text-sm border-primary/20 backdrop-blur-md shadow-sm">
+                            {activeTab === "entrepreneurs" ? "Business Growth Hub" : "Student Career Launchpad"}
+                        </Badge>
+                    </motion.div>
+                    
+                    <motion.h1 
+                        className="font-display font-bold text-5xl md:text-8xl mb-6 tracking-tight"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                    >
                         {activeTab === "entrepreneurs" ? "Solve Real Business Problems" : "Fast-Track Your Career"} <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 pb-2">
                             {activeTab === "entrepreneurs" ? "With Technology" : "With Future Tech"}
                         </span>
-                    </h1>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+                    </motion.h1>
+                    
+                    <motion.p 
+                        className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
                         {activeTab === "entrepreneurs"
                             ? "From free automation audits to premium hand-holding implementation sessions."
                             : "Learn high-demand skills like AI and Cloud that colleges miss."}
-                    </p>
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="flex flex-wrap justify-center gap-6"
+                    >
+                        <div className="flex items-center gap-3 px-5 py-2.5 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                            <Users className="w-5 h-5 text-blue-400" />
+                            <span className="text-sm font-medium">5000+ Students Trained</span>
+                        </div>
+                        <div className="flex items-center gap-3 px-5 py-2.5 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                            <span className="text-sm font-medium">4.9/5 Rating</span>
+                        </div>
+                        <div className="flex items-center gap-3 px-5 py-2.5 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                            <span className="text-sm font-medium">100% Practical</span>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Why Choose Section */}
+            <section className="py-20 relative z-10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {[
+                            {
+                                icon: <Monitor className="w-8 h-8 text-yellow-500" />,
+                                title: "Live Implementation",
+                                desc: "No passive videos. We build systems together on live calls (Zoom/Meet)."
+                            },
+                            {
+                                icon: <BrainCircuit className="w-8 h-8 text-blue-500" />,
+                                title: "AI-First Approach",
+                                desc: "Learn to leverage Gen-AI for coding, marketing, and business automation."
+                            },
+                            {
+                                icon: <Target className="w-8 h-8 text-purple-500" />,
+                                title: "Job-Ready Outcomes",
+                                desc: "Our students work on real-world projects that get them hired instantly."
+                            }
+                        ].map((feature, idx) => (
+                            <motion.div 
+                                key={idx}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="group p-8 rounded-3xl bg-secondary/20 border border-white/5 hover:border-primary/20 hover:bg-secondary/30 transition-all duration-300"
+                            >
+                                <div className="mb-4 p-3 w-fit rounded-2xl bg-background/50 border border-white/5 shadow-inner">
+                                    <Monitor className="w-8 h-8 text-yellow-500" />
+                                </div>
+                                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Live Implementation</h3>
+                                <p className="text-muted-foreground leading-relaxed">No passive videos. We build systems together on live calls (Zoom/Meet).</p>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
@@ -446,7 +534,7 @@ export default function Training() {
                                                 <Globe className="w-4 h-4 text-blue-400" /> Online via Google Meet & Zoom
                                             </div>
                                             <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10">
-                                                <Zap className="w-4 h-4 text-yellow-400" /> Live Implementation
+                                                <Monitor className="w-4 h-4 text-yellow-400" /> Live Implementation
                                             </div>
                                         </div>
                                     </div>
@@ -469,93 +557,103 @@ export default function Training() {
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
-                                        {premiumTrainings.map((training) => (
-                                            <Card key={training.id} className="bg-slate-900/50 border-white/10 hover:border-yellow-500/50 transition-all duration-300 group overflow-hidden flex flex-col h-full shadow-lg hover:shadow-yellow-900/20">
-                                                {/* IMAGE HEADER */}
-                                                <div className="h-48 relative overflow-hidden bg-slate-800">
-                                                    {/* Fallback pattern if image fails or while loading */}
-                                                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/90 z-10" />
-                                                    {/* In a real app we'd use the actual image path. For this demo, using abstract colors/gradients based on ID to simulate variety if images aren't moved yet. */}
-                                                    {/* But I WILL generate them. So I'll render the img tag. */}
-                                                    <img
-                                                        src={`/assets/${training.image}`}
-                                                        alt={training.title}
-                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
-                                                        onError={(e) => {
-                                                            e.currentTarget.style.display = 'none'; // Hide if not found
-                                                            e.currentTarget.parentElement?.classList.add('bg-gradient-to-br', 'from-slate-800', 'to-slate-900');
-                                                        }}
-                                                    />
-                                                    <div className="absolute top-4 right-4 z-20">
-                                                        <Badge className="bg-yellow-500 text-slate-900 hover:bg-yellow-400 font-bold border-0 text-sm px-3 py-1 shadow-lg">
-                                                            ₹{training.price}
-                                                        </Badge>
-                                                    </div>
-                                                </div>
-
-                                                <CardHeader className="pb-3 relative z-10 -mt-12">
-                                                    <div className="p-3 w-fit rounded-xl bg-slate-900 border border-white/10 text-yellow-500 shadow-xl mb-3">
-                                                        <Gem className="w-6 h-6" />
-                                                    </div>
-                                                    <CardTitle className="text-xl md:text-2xl text-white group-hover:text-yellow-400 transition-colors leading-tight min-h-[3.5rem]">
-                                                        {training.title}
-                                                    </CardTitle>
-                                                    <div className="space-y-3 mt-4 bg-white/5 p-4 rounded-lg border border-white/5">
-                                                        <div className="flex items-start gap-3">
-                                                            <Target className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
-                                                            <div>
-                                                                <span className="text-xs uppercase font-bold text-red-400 tracking-wider">The Problem</span>
-                                                                <p className="text-sm text-slate-300 leading-snug">{training.problem}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="w-full h-px bg-white/5" />
-                                                        <div className="flex items-start gap-3">
-                                                            <Lightbulb className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
-                                                            <div>
-                                                                <span className="text-xs uppercase font-bold text-green-400 tracking-wider">The Solution</span>
-                                                                <p className="text-sm text-slate-300 leading-snug">{training.solution}</p>
+                                        {premiumTrainings.map((training, index) => (
+                                            <motion.div
+                                                key={training.id}
+                                                initial={{ opacity: 0, y: 30 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                            >
+                                                <Card className="bg-slate-900/50 border-white/10 hover:border-yellow-500/50 transition-all duration-300 group overflow-hidden flex flex-col h-full shadow-lg hover:shadow-yellow-900/40 backdrop-blur-sm relative">
+                                                    {/* IMAGE HEADER */}
+                                                    <div className="h-56 relative overflow-hidden bg-slate-800">
+                                                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900 z-10" />
+                                                        <img
+                                                            src={`/assets/${training.image}`}
+                                                            alt={training.title}
+                                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-90 group-hover:opacity-100"
+                                                            onError={(e) => {
+                                                                e.currentTarget.style.display = 'none';
+                                                                e.currentTarget.parentElement?.classList.add('bg-gradient-to-br', 'from-slate-800', 'to-slate-900');
+                                                            }}
+                                                        />
+                                                        <div className="absolute top-4 right-4 z-20">
+                                                            <div className="bg-white/10 backdrop-blur-md text-yellow-400 font-bold border border-yellow-500/30 text-sm px-4 py-1.5 rounded-full shadow-xl">
+                                                                ₹{training.price.toLocaleString()}
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </CardHeader>
 
-                                                <CardContent className="pb-4 flex-grow">
-                                                    <Accordion type="single" collapsible className="w-full">
-                                                        <AccordionItem value="item-1" className="border-white/10 px-1">
-                                                            <AccordionTrigger className="text-slate-400 hover:text-white py-3 text-sm font-medium">
-                                                                View Full Curriculum ({training.curriculum.length} Modules)
-                                                            </AccordionTrigger>
-                                                            <AccordionContent>
-                                                                <div className="space-y-4 pt-2">
-                                                                    <ul className="space-y-3">
-                                                                        {training.curriculum.map((item, i) => (
-                                                                            <li key={i} className="flex items-start gap-3 text-sm text-slate-300">
-                                                                                <CheckCircle2 className="w-4 h-4 mt-0.5 text-yellow-500/70 shrink-0" />
-                                                                                <span className="leading-snug">{item}</span>
-                                                                            </li>
-                                                                        ))}
-                                                                    </ul>
-                                                                    <div className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 p-4 rounded-lg border border-yellow-500/20 mt-4">
-                                                                        <h4 className="text-xs font-bold text-yellow-500 uppercase tracking-wide mb-1 flex items-center gap-2">
-                                                                            <ShieldCheck className="w-3 h-3" /> Guaranteed Outcome
-                                                                        </h4>
-                                                                        <p className="text-sm text-white font-medium italic">"{training.outcome}"</p>
-                                                                    </div>
+                                                    <CardHeader className="pb-3 relative z-10 -mt-16">
+                                                        <div className="p-3.5 w-fit rounded-2xl bg-slate-900 border border-white/10 text-yellow-500 shadow-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                                                            <Gem className="w-6 h-6" />
+                                                        </div>
+                                                        <CardTitle className="text-xl md:text-2xl text-white group-hover:text-yellow-400 transition-colors leading-tight min-h-[3.5rem] font-bold">
+                                                            {training.title}
+                                                        </CardTitle>
+                                                        
+                                                        <div className="space-y-4 mt-6">
+                                                            <div className="bg-red-500/5 p-4 rounded-2xl border border-red-500/10 group-hover:border-red-500/20 transition-colors">
+                                                                <div className="flex items-center gap-2 mb-2">
+                                                                    <Target className="w-4 h-4 text-red-400 shrink-0" />
+                                                                    <span className="text-[10px] uppercase font-black text-red-400/80 tracking-[0.2em]">The Challenge</span>
                                                                 </div>
-                                                            </AccordionContent>
-                                                        </AccordionItem>
-                                                    </Accordion>
-                                                </CardContent>
+                                                                <p className="text-sm text-slate-300 leading-relaxed font-medium">{training.problem}</p>
+                                                            </div>
 
-                                                <CardFooter className="pt-2">
-                                                    <Button
-                                                        onClick={() => handleOpenBooking("premium", training.title)}
-                                                        className="w-full bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500 text-white font-bold border-0 py-6 text-base shadow-lg hover:shadow-yellow-500/25 transition-all"
-                                                    >
-                                                        Secure Seat • ₹{training.price}
-                                                    </Button>
-                                                </CardFooter>
-                                            </Card>
+                                                            <div className="bg-green-500/5 p-4 rounded-2xl border border-green-500/10 group-hover:border-green-500/20 transition-colors">
+                                                                <div className="flex items-center gap-2 mb-2">
+                                                                    <Lightbulb className="w-4 h-4 text-green-400 shrink-0" />
+                                                                    <span className="text-[10px] uppercase font-black text-green-400/80 tracking-[0.2em]">The Solution</span>
+                                                                    <Badge variant="outline" className="ml-auto text-[10px] bg-green-500/10 border-green-500/20 text-green-400 py-0 h-5">Proven Method</Badge>
+                                                                </div>
+                                                                <p className="text-sm text-slate-300 leading-relaxed font-medium">{training.solution}</p>
+                                                            </div>
+                                                        </div>
+                                                    </CardHeader>
+
+                                                    <CardContent className="pb-4 flex-grow">
+                                                        <Accordion type="single" collapsible className="w-full">
+                                                            <AccordionItem value="item-1" className="border-white/5 px-2">
+                                                                <AccordionTrigger className="text-slate-400 hover:text-white py-4 text-sm font-semibold transition-colors">
+                                                                    Curriculum Overview ({training.curriculum.length} Core Modules)
+                                                                </AccordionTrigger>
+                                                                <AccordionContent>
+                                                                    <div className="space-y-5 pt-2 pb-4">
+                                                                        <ul className="space-y-3.5">
+                                                                            {training.curriculum.map((item, i) => (
+                                                                                <li key={i} className="flex items-start gap-3.5 text-sm text-slate-300 group/item">
+                                                                                    <div className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-yellow-500/60 group-hover/item:bg-yellow-400 transition-colors" />
+                                                                                    <span className="leading-snug group-hover/item:text-white transition-colors">{item}</span>
+                                                                                </li>
+                                                                            ))}
+                                                                        </ul>
+                                                                        <div className="bg-gradient-to-br from-yellow-500/10 to-transparent p-5 rounded-2xl border border-yellow-500/20 mt-6 relative overflow-hidden">
+                                                                            <div className="absolute top-0 right-0 p-8 bg-yellow-500/5 blur-2xl rounded-full" />
+                                                                            <h4 className="text-[10px] font-black text-yellow-500 uppercase tracking-[0.2em] mb-2 flex items-center gap-2 relative z-10">
+                                                                                <ShieldCheck className="w-3.5 h-3.5" /> Guaranteed Outcome
+                                                                            </h4>
+                                                                            <p className="text-sm text-white font-semibold italic relative z-10 leading-relaxed">
+                                                                                "{training.outcome}"
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </AccordionContent>
+                                                            </AccordionItem>
+                                                        </Accordion>
+                                                    </CardContent>
+
+                                                    <CardFooter className="p-6 pt-2">
+                                                        <Button
+                                                            onClick={() => handleOpenBooking("premium", training.title)}
+                                                            className="w-full bg-gradient-to-r from-yellow-600 via-orange-600 to-yellow-600 bg-[length:200%_auto] hover:bg-right transition-all duration-500 text-white font-black border-0 py-7 text-lg shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-yellow-500/40 rounded-2xl group"
+                                                        >
+                                                            Secure Your Throne <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                                                        </Button>
+                                                    </CardFooter>
+                                                </Card>
+                                            </motion.div>
                                         ))}
                                     </div>
 

@@ -1,17 +1,21 @@
 
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { DollarSign, ArrowLeft, BarChart3, MessageCircle } from "lucide-react";
+import { DollarSign, ArrowLeft, BarChart3, MessageCircle, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
-import { Helmet } from "react-helmet-async";
+import { getYesterdayDate } from "@/lib/date-utils";
+import { InsightSEO } from "@/components/seo/insight-seo";
 
-export default function HiddenCostsArticle() {
+export default function HiddenCosts() {
     return (
         <main className="min-h-screen bg-background pt-24 pb-16">
-            <Helmet>
-                <title>The True Cost of 'Cheap' Cyber Security: Case Study - Cehpoint Insights</title>
-                <meta name="description" content="A case study on how cutting corners on cybersecurity costs led to a massive financial loss for a mid-sized firm." />
-            </Helmet>
+            <InsightSEO
+                title="The True Cost of 'Cheap' Cyber Security: A Case Study"
+                description="When the invoice is low, the price is paid in data. An anonymous look at how a mid-sized firm lost ₹50L by choosing the cheapest vendor."
+                articleSlug="hidden-costs"
+                publishedDate="2024-03-24"
+                category="Case Study"
+            />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link href="/insights" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4 mb-8 pl-0 hover:pl-2">
@@ -28,13 +32,18 @@ export default function HiddenCostsArticle() {
                     <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
                         The Price of <span className="text-red-500">"Cheap"</span> Security
                     </h1>
-                    <div className="flex items-center space-x-6 text-muted-foreground border-b border-border pb-8">
+                    <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
                             <BarChart3 className="w-4 h-4 mr-2" aria-hidden="true" />
                             <span>Senior Analyst</span>
                         </div>
                         <div className="flex items-center">
-                            <span>September 28, 2025</span>
+                            <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
+                            <span>Published: {getYesterdayDate()}</span>
+                        </div>
+                        <div className="flex items-center">
+                            <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
+                            <span>Updated: Today</span>
                         </div>
                     </div>
                 </motion.div>
@@ -67,16 +76,21 @@ export default function HiddenCostsArticle() {
                             <tbody className="divide-y divide-border">
                                 <tr>
                                     <th scope="row" className="p-4 font-semibold text-foreground border-r bg-muted/20">Tools Used</th>
-                                    <td className="p-4 text-sm text-foreground/90">Cracked/Free Scanners</td>
-                                    <td className="p-4 text-sm text-foreground/90">Enterprise Licensed Suites</td>
+                                    <td className="p-4 text-sm text-foreground/90">Cracked/Free Scanners (Outdated)</td>
+                                    <td className="p-4 text-sm text-foreground/90">Enterprise Suites (<strong>Burp Suite Pro, Nessus</strong>)</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" className="p-4 font-semibold text-foreground border-r bg-muted/20">Report</th>
-                                    <td className="p-4 text-sm text-foreground/90">Automated PDF Export</td>
-                                    <td className="p-4 text-sm text-foreground/90">Manual POC Validation</td>
+                                    <th scope="row" className="p-4 font-semibold text-foreground border-r bg-muted/20">False Positives</th>
+                                    <td className="p-4 text-sm text-foreground/90">High (Waste of Dev Time)</td>
+                                    <td className="p-4 text-sm text-foreground/90">Zero (<strong>Manual POC Validation</strong>)</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" className="p-4 font-semibold text-foreground border-r bg-muted/20">Liability</th>
+                                    <th scope="row" className="p-4 font-semibold text-foreground border-r bg-muted/20">The Result</th>
+                                    <td className="p-4 text-sm text-foreground/90">False Sense of Security</td>
+                                    <td className="p-4 text-sm text-foreground/90"><strong>Defensive Hardening</strong></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="p-4 font-semibold text-foreground border-r bg-muted/20">Liability & Support</th>
                                     <td className="p-4 text-sm text-foreground/90">Zero (Ghosted after payment)</td>
                                     <td className="p-4 text-sm text-foreground/90">Contractual Guarantee</td>
                                 </tr>
@@ -125,7 +139,7 @@ export default function HiddenCostsArticle() {
                     </a>
                 </motion.div>
 
-            </div>
-        </main>
+            </div >
+        </main >
     );
 }

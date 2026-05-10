@@ -5,7 +5,7 @@ import { allApps, AppIdea, getIconForApp } from "@/data/business-apps";
 import { cityTrends, defaultTrend, CityTrend } from "@/data/city-trends"; // Import trends
 import SEO from "@/components/seo";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Zap, Code, Cpu, BarChart, Heart, Sun, Home, Video, Book, ShoppingBag, Diamond, Flag, Edit, Camera, Gem, Anchor, Search, Leaf, Calendar, Briefcase, Mic, BookOpen, Snowflake, HardHat, Activity, CloudRain, Circle, Layers, Settings, Calculator, Eye, Smile, Coffee, Send, MessageCircle, ShoppingCart, Music, Map, CreditCard, Lock, Beer, Recycle, Truck, Mountain, Wrench, Bitcoin, Users, Landmark, Utensils, GraduationCap, Palette, Gavel, Scissors, Feather, Car, Ticket, Stethoscope, Smartphone, Database, Cloud, Laptop, ChefHat, Bus, Plane } from "lucide-react";
+import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Code, Cpu, BarChart, Heart, Sun, Home, Video, Book, ShoppingBag, Diamond, Flag, Edit, Camera, Gem, Anchor, Search, Leaf, Calendar, Briefcase, Mic, BookOpen, Snowflake, HardHat, Activity, CloudRain, Circle, Layers, Settings, Calculator, Eye, Smile, Coffee, Send, MessageCircle, ShoppingCart, Music, Map, CreditCard, Lock, Beer, Recycle, Truck, Mountain, Wrench, Bitcoin, Users, Landmark, Utensils, GraduationCap, Palette, Gavel, Scissors, Feather, Car, Ticket, Stethoscope, Smartphone, Database, Cloud, Laptop, ChefHat, Bus, Plane } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import { motion } from "framer-motion";
 import ProjectCostEstimator from "@/components/calculators/project-cost-estimator";
@@ -20,7 +20,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
 
 const ICON_MAP: Record<string, any> = {
-    code: Code, cpu: Cpu, globe: Globe, shield: ShieldCheck, zap: Zap,
+    code: Code, cpu: Cpu, globe: Globe, shield: ShieldCheck,
     "bar-chart": BarChart, "chart-bar": BarChart,
     building: Building2, star: Star, heart: Heart, sun: Sun, home: Home,
     video: Video, book: Book, phone: Phone, bag: ShoppingBag, diamond: Diamond,
@@ -158,7 +158,7 @@ export default function CityServicePage() {
                     <div className="text-center mb-16">
                         <span className="text-primary font-bold tracking-widest uppercase text-sm">Hyper-Local Opportunities</span>
                         <h2 className="text-4xl md:text-6xl font-display font-bold mt-2 mb-6">
-                            Top Businesses to Start <br /> in <span className="text-gradient">{cityData.name}</span>
+                            Top Businesses to Start <br /> in <span className="text-primary">{cityData.name}</span>
                         </h2>
                         <p className="text-gray-400 max-w-2xl mx-auto text-lg">
                             We analyzed the {cityData.name} market and found these high-demand business ideas.
@@ -193,7 +193,7 @@ export default function CityServicePage() {
                                             appName={app.title}
                                             locationName={cityData.name}
                                             trigger={
-                                                <Button className="w-full bg-white text-black hover:bg-gray-200 font-bold rounded-xl">
+                                                <Button className="w-full bg-zinc-100 text-zinc-900 hover:bg-zinc-200 font-bold rounded-xl">
                                                     View Demo
                                                 </Button>
                                             }
@@ -215,7 +215,7 @@ export default function CityServicePage() {
                             <div className="text-center mb-16">
                                 <span className="text-primary font-bold tracking-widest uppercase text-sm">Tailored For You</span>
                                 <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-white">
-                                    Unlock <span className="text-gradient">Potential</span>
+                                    Unlock <span className="text-primary">Potential</span>
                                 </h2>
                                 <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
                                     Curated business ideas specifically designed for the key drivers of {cityData.name}'s economy.
@@ -243,7 +243,7 @@ export default function CityServicePage() {
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                             {segment.ideas.map((idea, i) => {
-                                                const Icon = ICON_MAP[idea.icon] || Zap;
+                                                const Icon = ICON_MAP[idea.icon] || Cpu;
                                                 return (
                                                     <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all hover:shadow-[0_0_30px_-10px_rgba(124,58,237,0.3)] hover:-translate-y-1 group relative overflow-hidden">
                                                         <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
@@ -346,7 +346,7 @@ export default function CityServicePage() {
                                 </div>
 
                                 <Link href="/services/business-app-catalog">
-                                    <Button className="w-full h-12 rounded-xl text-lg font-bold bg-white text-black hover:bg-gray-200">
+                                    <Button className="w-full h-12 rounded-xl text-lg font-bold bg-zinc-100 text-zinc-900 hover:bg-zinc-200">
                                         Browse All 50+ Apps
                                     </Button>
                                 </Link>
@@ -373,7 +373,7 @@ export default function CityServicePage() {
                         <div className="flex flex-wrap justify-center gap-3">
                             {trendData.popularServices.slice(0, 5).map((service, idx) => (
                                 <span key={idx} className="px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-sm font-medium">
-                                    <Zap className="w-3 h-3 inline mr-2 text-purple-400" />
+                                    <Cpu className="w-3 h-3 inline mr-2 text-purple-400" />
                                     {service.title}
                                 </span>
                             ))}
@@ -382,7 +382,7 @@ export default function CityServicePage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {trendData.popularServices.map((service, idx) => {
-                            const Icon = ICON_MAP[service.icon] || Zap;
+                            const Icon = ICON_MAP[service.icon] || Cpu;
 
                             return (
                                 <div key={idx} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group h-full flex flex-col">
@@ -504,12 +504,12 @@ export default function CityServicePage() {
             </section>
 
             {/* --- CTA --- */}
-            <section className="py-24 bg-primary text-black text-center px-4">
+            <section className="py-24 bg-primary text-primary-foreground text-center px-4">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 text-white">
                         {cityData.name} is Waiting.
                     </h2>
-                    <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+                    <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
                         Your customers are searching for your service right now. Be the first to launch {cityData.name}'s next big app.
                     </p>
                     <WhatsAppInquiryDialog

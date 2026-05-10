@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { X, Mic, MicOff, Send, Trash2, Minus, Plus, Volume2, VolumeX, MessageCircle } from "lucide-react";
+import { X, Mic, MicOff, Send, Trash2, Minus, Plus, Volume2, VolumeX, MessageCircle, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,6 +13,7 @@ import { useLocation } from "wouter";
 
 interface KairaDialogProps {
     isOpen: boolean;
+    onOpen: () => void;
     onClose: () => void;
 }
 
@@ -23,12 +25,25 @@ interface Message {
 
 const STORAGE_KEY = "kaira_chat_history";
 
-export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
+export function KairaDialog({ isOpen, onOpen, onClose }: KairaDialogProps) {
     const [location] = useLocation();
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputText, setInputText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [fallbackLeader, setFallbackLeader] = useState<Leader | null>(null);
+    const [fallbackLeader, setFallbackLeader] = useState<(Leader & { reason?: string }) | null>(null);
+
+    // Kaira's Persona - Adaptive, Professional & Context-Aware
+    const SYSTEM_PROMPT = `
+You are Kaira, the Senior AI Executive Assistant for CEHPOINT.
+
+PHASE-BASED PROTOCOL:
+- Phase 1 (Discovery): First 6 exchanges. MUST ask deep clarifying questions. NO handoffs.
+- Phase 2 (Analysis): Summarize user needs. Ensure they align with the current page intent.
+- Phase 3 (Handoff): ONLY suggest an expert if the requirement is high-stakes and Turn 7+.
+
+TONE: Elite, Professional, Human-centric.
+CURRENCY: Always use INR.
+`;
     const scrollRef = useRef<HTMLDivElement>(null);
     const [isMinimized, setIsMinimized] = useState(false);
     const [isListening, setIsListening] = useState(false);
@@ -120,15 +135,18 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
     // Context-Aware Greeting Fallback
     const getGreeting = (path: string) => {
         if (path.includes("/careers") || path.includes("/jobs") || path.includes("/interns")) {
-            return "Hey, can I assist you in your career? We have exciting opportunities!";
+            return "Looking for a career change? I'm Kaira, and I can guide you through our latest openings. What's your area of expertise?";
+        }
+        if (path.includes("/services/cybercrime-investigation")) {
+            return "Cyber security concerns? I'm here to help. Could you tell me more about what happened?";
         }
         if (path.includes("/services") || path.includes("/business-app")) {
-            return "Hello! Looking for enterprise solutions or business apps? I can help you find the right service.";
+            return "Looking for tech solutions? I can help you find the right enterprise tools for your business. What are you looking to build?";
         }
         if (path.includes("/contact")) {
-            return "Hello! How can we connect with you today?";
+            return "How can we assist you today? Whether it's an inquiry or a specific project, I'm here to help.";
         }
-        return "Hello, I'm Kaira AI. How can I assist you today?";
+        return "Hello, I'm Kaira AI from CEHPOINT. How can I assist you with our services or career opportunities today?";
     };
 
     // Load history on mount
@@ -193,19 +211,57 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
         if (role === 'ai') playNotificationSound();
     };
 
-    const checkForFallback = (text: string) => {
-        const lower = text.toLowerCase();
-        if (lower.includes("consultant") || lower.includes("leadership") || lower.includes("don't know")) {
-            const randomLeader = leadershipData[Math.floor(Math.random() * leadershipData.length)];
-            setFallbackLeader(randomLeader);
+    const checkForFallback = (aiResponseText: string) => {
+        // HARD CONSTRAINT: At least 13 messages (Greeting + 6 pairs)
+        // This aligns with the Turn 7+ handoff logic.
+        if (messages.length < 13) {
+            console.log("Kaira: Handoff blocked by strict turn count (Turn 7 requirement).");
+            return;
+        }
+
+        // Regex to find [RECOMMEND_LEADER: ...]
+        const match = aiResponseText.match(/\[RECOMMEND_LEADER:\s*([^\]]+)\]/);
+
+        if (match) {
+            let targetDept = match[1].trim();
+
+            // PAGE-SPECIFIC OVERRIDE
+            if (location.includes("/careers") || location.includes("/jobs")) {
+                targetDept = "People, Culture & Workforce Strategy";
+            }
+
+            // Derive reasoning
+            let reason = "Recommended based on your requirements";
+            if (targetDept.includes("Cybercrime")) reason = "Specialist in Cyber Investigation & Forensics";
+            else if (targetDept.includes("People")) reason = "Head of Talent & Culture";
+            else if (targetDept.includes("Tech")) reason = "Expert in Technical Solutions & Development";
+            else if (targetDept.includes("Exec")) reason = "Strategy & Business Consultant";
+
+            // Filter experts by valid department
+            const experts = leadershipData.filter(l =>
+                (l.department?.toLowerCase() || "").includes(targetDept.toLowerCase())
+            );
+
+            if (experts.length > 0) {
+                const selected = experts[Math.floor(Math.random() * experts.length)];
+                setFallbackLeader({ ...selected, reason });
+            }
         }
     };
 
     const clearHistory = () => {
         const initial: Message[] = [{ role: "ai", text: "Hello, I'm Kaira AI. How can I assist you today?" }];
         setMessages(initial);
+        setFallbackLeader(null); // Fix: Clear previous leader suggestion
         localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
     };
+
+    // SAFETY CHECK: Ensure we never show a leader with no history (e.g. after clear)
+    useEffect(() => {
+        if (messages.length < 2) {
+            setFallbackLeader(null);
+        }
+    }, [messages]);
 
     // Voice Typing Logic (Web Speech API)
     const startListening = () => {
@@ -255,29 +311,81 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
         addMessage("user", msg);
         setIsLoading(true);
 
+        // Calculate conversation turns (exclude greeting)
+        const conversationTurns = Math.floor((messages.length - 1) / 2) + 1;
+
         try {
-            const res = await fetch("/api/kaira-chat", {
+            const response = await fetch("/api/kaira-chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: msg, history: messages.slice(-5) })
+                body: JSON.stringify({
+                    message: msg,
+                    location: window.location.pathname,
+                    conversationTurn: conversationTurns,
+                    history: messages.filter(m => m.role !== 'system').slice(-6)
+                })
             });
 
-            if (!res.ok) {
-                const errText = await res.text();
-                throw new Error(`API Error ${res.status}: ${errText.slice(0, 100)}`);
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`API Error ${response.status}: ${errText.slice(0, 100)}`);
             }
 
-            const data = await res.json();
-            if (data.response) {
-                addMessage("ai", data.response);
-                checkForFallback(data.response);
-                speakText(data.response);
-            } else {
-                throw new Error("No response from server");
+            const reader = response.body?.getReader();
+            const decoder = new TextDecoder();
+            let accumulatedResponse = "";
+
+            if (!reader) throw new Error("No reader available");
+
+            // Add placeholder AI message
+            setMessages(prev => [...prev, { role: "ai", text: "" }]);
+            playNotificationSound();
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                accumulatedResponse += chunk;
+
+                // Update the last message (the placeholder we just added)
+                setMessages(prev => {
+                    const newMessages = [...prev];
+                    newMessages[newMessages.length - 1] = {
+                        role: "ai",
+                        text: accumulatedResponse
+                    };
+                    return newMessages;
+                });
             }
+
+            // Post-processing after stream ends
+            let cleanResponse = accumulatedResponse;
+
+            // AGGRESSIVE TAG SUPPRESSION: Strip [RECOMMEND_LEADER] tags from first 6 turns
+            if (conversationTurns <= 6) {
+                cleanResponse = cleanResponse.replace(/\[RECOMMEND_LEADER:\s*[^\]]+\]/g, "").trim();
+                console.log(`Turn ${conversationTurns}: Handoff tag suppressed (too early)`);
+            } else {
+                checkForFallback(accumulatedResponse);
+                cleanResponse = cleanResponse.replace(/\[RECOMMEND_LEADER:\s*[^\]]+\]/g, "").trim();
+            }
+
+            // Update final clean response and speak
+            setMessages(prev => {
+                const newMessages = [...prev];
+                newMessages[newMessages.length - 1] = {
+                    role: "ai",
+                    text: cleanResponse
+                };
+                return newMessages;
+            });
+
+            speakText(cleanResponse);
+
         } catch (e: any) {
             console.error("Text Chat Error", e);
-            addMessage("system", `I'm having trouble connecting right now. Details: ${e.message}`);
+            addMessage("system", `I'm having a bit of trouble connecting to my knowledge base. Error: ${e.message}. Please try refreshing or check back in a moment.`);
         } finally {
             setIsLoading(false);
         }
@@ -338,232 +446,257 @@ export function KairaDialog({ isOpen, onClose }: KairaDialogProps) {
     const isMaximized = isMobile || isFullscreen;
 
     return (
-        {/* Proactive Speech Bubble Notification */ }
-        <AnimatePresence>
-                {
-        showToast && !isOpen && (
-            <motion.div
-                initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                className={`fixed z-[9998] cursor-pointer flex flex-col items-end
+        <>
+            {/* Proactive Speech Bubble Notification */}
+            <AnimatePresence>
+                {showToast && !isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className={`fixed z-[9998] cursor-pointer flex flex-col items-end
                              ${isMobile ? "bottom-20 right-4 max-w-[280px]" : "bottom-24 right-8 max-w-[320px]"}
                         `}
-                onClick={() => {
-                    setIsOpen(true);
-                    setShowToast(false);
-                    if (messages.length === 0) {
-                        setMessages([{ role: "ai", text: getGreeting(location) }]);
-                    }
-                }}
-            >
-                {/* Bubble Container */}
-                <div className="bg-white text-slate-800 px-5 py-4 rounded-2xl rounded-br-sm shadow-[0_4px_20px_rgba(0,0,0,0.15)] border border-slate-100 flex items-start gap-3 relative transform transition-transform hover:scale-105">
-                    {/* Avatar Icon inside bubble */}
-                    <div className="bg-primary/10 p-2 rounded-full shrink-0">
-                        <MessageCircle className="w-5 h-5 text-primary" />
-                    </div>
-
-                    <div className="flex flex-col gap-1">
-                        <span className="text-xs font-bold text-primary uppercase tracking-wider">Kaira AI</span>
-                        <span className="text-sm font-medium leading-relaxed">
-                            {getGreeting(location)}
-                        </span>
-                    </div>
-
-                    {/* Close Button (Small) */}
-                    <button
-                        className="absolute -top-2 -right-2 bg-white text-slate-400 hover:text-red-500 rounded-full p-1 shadow-md border hover:bg-slate-50 transition-colors"
-                        onClick={(e) => {
-                            e.stopPropagation();
+                        onClick={() => {
+                            onOpen();
                             setShowToast(false);
+                            if (messages.length === 0) {
+                                setMessages([{ role: "ai", text: getGreeting(location) }]);
+                            }
                         }}
                     >
-                        <X className="w-3 h-3" />
-                    </button>
-                </div>
+                        {/* Bubble Container */}
+                        <div className="glass-intense px-5 py-4 rounded-2xl rounded-br-sm shadow-2xl border border-white/10 flex items-start gap-3 relative transform transition-transform hover:scale-105">
+                            {/* Avatar Icon inside bubble */}
+                            <div className="bg-primary/10 p-2 rounded-full shrink-0">
+                                <MessageCircle className="w-5 h-5 text-primary" />
+                            </div>
 
-                {/* Speech Bubble Arrow/Tail */}
-                <div className="w-0 h-0 border-l-[12px] border-l-transparent border-t-[12px] border-t-white border-r-[0px] border-r-transparent mt-[-1px] mr-6 filter drop-shadow-sm"></div>
-            </motion.div>
-        )
-    }
-            </AnimatePresence >
+                            <div className="flex flex-col gap-1">
+                                <span className="text-xs font-bold text-primary uppercase tracking-wider">Kaira AI</span>
+                                <span className="text-sm font-medium leading-relaxed text-white">
+                                    {getGreeting(location)}
+                                </span>
+                            </div>
 
-        <AnimatePresence>
-            {isOpen && (
-                <motion.div
-                    drag={!isMaximized}
-                    dragMomentum={false}
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    animate={{
-                        opacity: 1,
-                        scale: 1,
-                        y: 0,
-                        width: isMaximized ? "100%" : "380px",
-                        height: isMaximized ? "100%" : "600px",
-                        borderRadius: isMaximized ? "0px" : "12px",
-                        bottom: isMaximized ? "0px" : "20px",
-                        right: isMaximized ? "0px" : "20px"
-                    }}
-                    exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                    className={`fixed bg-background border border-border shadow-2xl z-[9999] flex flex-col overflow-hidden font-sans
+                            {/* Close Button (Small) */}
+                            <button
+                                className="absolute -top-2 -right-2 bg-background/80 text-white/40 hover:text-red-500 rounded-full p-1 shadow-md border border-white/10 hover:bg-secondary/50 transition-colors"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setShowToast(false);
+                                }}
+                            >
+                                <X className="w-3 h-3" />
+                            </button>
+                        </div>
+
+                        {/* Speech Bubble Arrow/Tail */}
+                        <div className="w-0 h-0 border-l-[12px] border-l-transparent border-t-[12px] border-t-background/40 border-r-[0px] border-r-transparent mt-[-1px] mr-6 filter drop-shadow-sm"></div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        drag={!isMaximized}
+                        dragMomentum={false}
+                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                        animate={{
+                            opacity: 1,
+                            scale: 1,
+                            y: 0,
+                            width: isMaximized ? "100%" : "380px",
+                            height: isMaximized ? "100%" : "600px",
+                            borderRadius: isMaximized ? "0px" : "12px",
+                            bottom: isMaximized ? "0px" : "20px",
+                            right: isMaximized ? "0px" : "20px"
+                        }}
+                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                        className={`fixed bg-background border border-border shadow-2xl z-[9999] flex flex-col overflow-hidden font-sans
                         ${isMaximized ? "inset-0 m-0" : ""}
                     `}
-                >
-                    {/* Header */}
-                    <div className="px-4 py-3 border-b border-border bg-card flex items-center justify-between cursor-move select-none" onDoubleClick={() => !isMobile && setIsFullscreen(!isFullscreen)}>
-                        <div className="flex items-center gap-3">
-                            <Avatar className="h-9 w-9 border border-border/50">
-                                <AvatarImage src="/kaira.png" />
-                                <AvatarFallback className="bg-primary/10 text-primary font-bold">K</AvatarFallback>
-                            </Avatar>
-                            <div>
-                                <h3 className="font-bold text-sm leading-none mb-1">Kaira AI</h3>
-                                <div className="flex items-center gap-1.5">
-                                    <span className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                                    </span>
-                                    <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Online</span>
+                    >
+                        {/* Header */}
+                        <div className="px-4 py-3 border-b border-border bg-card flex items-center justify-between cursor-move select-none" onDoubleClick={() => !isMobile && setIsFullscreen(!isFullscreen)}>
+                            <div className="flex items-center gap-3">
+                                <Avatar className="h-9 w-9 border border-border/50">
+                                    <AvatarImage src="/kaira.png" />
+                                    <AvatarFallback className="bg-primary/10 text-primary font-bold">K</AvatarFallback>
+                                </Avatar>
+                                <div>
+                                    <h3 className="font-bold text-sm leading-none mb-1">Kaira AI</h3>
+                                    <div className="flex items-center gap-1.5">
+                                        <span className="relative flex h-2 w-2">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                        </span>
+                                        <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Online</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="flex items-center gap-1">
-                            {/* Toggle Fullscreen (Desktop Only) */}
-                            {!isMobile && (
-                                <Button variant="ghost" size="icon" onClick={() => setIsFullscreen(!isFullscreen)} title={isFullscreen ? "Restore" : "Maximize"}>
-                                    {isFullscreen ? <Minus className="h-4 w-4 rotate-90" /> : <div className="w-4 h-4 border-2 border-muted-foreground rounded-sm" />}
+                            <div className="flex items-center gap-1">
+                                {/* Toggle Fullscreen (Desktop Only) */}
+                                {!isMobile && (
+                                    <Button variant="ghost" size="icon" onClick={() => setIsFullscreen(!isFullscreen)} title={isFullscreen ? "Restore" : "Maximize"}>
+                                        {isFullscreen ? <Minus className="h-4 w-4 rotate-90" /> : <div className="w-4 h-4 border-2 border-muted-foreground rounded-sm" />}
+                                    </Button>
+                                )}
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => {
+                                        if (isTtsEnabled) window.speechSynthesis.cancel();
+                                        setIsTtsEnabled(!isTtsEnabled);
+                                    }}
+                                    title={isTtsEnabled ? "Mute TTS" : "Enable TTS"}
+                                >
+                                    {isTtsEnabled ? <Volume2 className="h-4 w-4 text-primary" /> : <VolumeX className="h-4 w-4 text-muted-foreground" />}
                                 </Button>
-                            )}
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => {
-                                    if (isTtsEnabled) window.speechSynthesis.cancel();
-                                    setIsTtsEnabled(!isTtsEnabled);
-                                }}
-                                title={isTtsEnabled ? "Mute TTS" : "Enable TTS"}
-                            >
-                                {isTtsEnabled ? <Volume2 className="h-4 w-4 text-primary" /> : <VolumeX className="h-4 w-4 text-muted-foreground" />}
-                            </Button>
-                            <Button variant="ghost" size="icon" onClick={() => setIsMinimized(true)} title="Minimize">
-                                <Minus className="h-4 w-4 text-muted-foreground" />
-                            </Button>
-                            <Button variant="ghost" size="icon" onClick={clearHistory} title="Clear Chat">
-                                <Trash2 className="h-4 w-4 text-muted-foreground" />
-                            </Button>
-                            <Button variant="ghost" size="icon" onClick={onClose}>
-                                <X className="h-4 w-4" />
-                            </Button>
+                                <Button variant="ghost" size="icon" onClick={() => setIsMinimized(true)} title="Minimize">
+                                    <Minus className="h-4 w-4 text-muted-foreground" />
+                                </Button>
+                                <Button variant="ghost" size="icon" onClick={clearHistory} title="Clear Chat">
+                                    <Trash2 className="h-4 w-4 text-muted-foreground" />
+                                </Button>
+                                <Button variant="ghost" size="icon" onClick={onClose}>
+                                    <X className="h-4 w-4" />
+                                </Button>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Content Area */}
-                    <div className="flex-1 flex flex-col relative overflow-hidden bg-background">
-                        <ScrollArea className="flex-1 p-4" ref={scrollRef}>
-                            <div className="space-y-4 pb-4">
-                                {messages.map((m, i) => {
-                                    // Highlight logic: if it's the last message AND it's from AI
-                                    const isLastAiMessage = i === messages.length - 1 && m.role === "ai";
+                        {/* Content Area */}
+                        <div className="flex-1 flex flex-col relative overflow-hidden bg-background">
+                            <ScrollArea className="flex-1 p-4" ref={scrollRef}>
+                                <div className="space-y-4 pb-4">
+                                    {messages.map((m, i) => {
+                                        // Highlight logic: if it's the last message AND it's from AI
+                                        const isLastAiMessage = i === messages.length - 1 && m.role === "ai";
 
-                                    return (
-                                        <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
-                                            <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm transition-all duration-500
+                                        return (
+                                            <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+                                                <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm transition-all duration-500
                                             ${m.role === "user"
-                                                    ? "bg-primary text-primary-foreground rounded-br-none"
-                                                    : m.role === "system"
-                                                        ? "bg-muted text-xs text-center w-full shadow-none my-2"
-                                                        : "bg-secondary text-secondary-foreground border border-border/50 rounded-bl-none"
-                                                }
+                                                        ? "bg-primary text-primary-foreground rounded-br-none"
+                                                        : m.role === "system"
+                                                            ? "bg-muted text-xs text-center w-full shadow-none my-2"
+                                                            : "bg-secondary text-secondary-foreground border border-border/50 rounded-bl-none"
+                                                    }
                                             ${isLastAiMessage ? "ring-2 ring-primary shadow-[0_0_15px_rgba(112,66,248,0.3)] bg-secondary/90 transform scale-[1.02]" : ""}
                                         `}>
-                                                {isLastAiMessage && (
-                                                    <span className="inline-block px-1.5 py-0.5 mb-2 text-[10px] font-bold bg-primary text-white rounded-full animate-pulse">
-                                                        NEW
-                                                    </span>
-                                                )}
-                                                {m.role === "user" ? (
-                                                    m.text
-                                                ) : (
-                                                    <div className="prose prose-sm dark:prose-invert max-w-none text-white prose-p:text-white prose-headings:text-white prose-strong:text-white prose-ul:text-white prose-a:text-blue-400 prose-a:underline prose-a:font-bold">
-                                                        <ReactMarkdown>{m.text}</ReactMarkdown>
-                                                    </div>
-                                                )}
+                                                    {isLastAiMessage && (
+                                                        <span className="inline-block px-1.5 py-0.5 mb-2 text-[10px] font-bold bg-primary text-white rounded-full animate-pulse">
+                                                            NEW
+                                                        </span>
+                                                    )}
+                                                    {m.role === "user" ? (
+                                                        m.text
+                                                    ) : (
+                                                        <div className="prose prose-sm dark:prose-invert max-w-none text-white prose-p:text-white prose-headings:text-white prose-strong:text-white prose-ul:text-white prose-a:text-blue-400 prose-a:underline prose-a:font-bold">
+                                                            <ReactMarkdown>{m.text}</ReactMarkdown>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                    {isLoading && (
+                                        <div className="flex justify-start">
+                                            <div className="bg-secondary px-4 py-3 rounded-2xl rounded-bl-none flex gap-1 items-center shadow-sm">
+                                                <span className="w-1.5 h-1.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                                                <span className="w-1.5 h-1.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                                                <span className="w-1.5 h-1.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                                             </div>
                                         </div>
-                                    )
-                                })}
-                                {isLoading && (
-                                    <div className="flex justify-start">
-                                        <div className="bg-secondary px-4 py-3 rounded-2xl rounded-bl-none flex gap-1 items-center shadow-sm">
-                                            <span className="w-1.5 h-1.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                                            <span className="w-1.5 h-1.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                                            <span className="w-1.5 h-1.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                                        </div>
-                                    </div>
-                                )}
+                                    )}
 
-                                {fallbackLeader && (
-                                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-2">
-                                        <Card className="border-l-4 border-l-primary bg-card/50">
-                                            <CardContent className="p-4 flex items-center gap-4">
-                                                <Avatar className="h-10 w-10">
-                                                    <AvatarFallback>Ex</AvatarFallback>
-                                                </Avatar>
-                                                <div>
-                                                    <p className="font-semibold text-sm">Recommended Expert</p>
-                                                    <p className="text-sm font-bold">{fallbackLeader.name}</p>
-                                                    <a href={`mailto:${fallbackLeader.email}`} className="text-xs text-primary hover:underline">
-                                                        {fallbackLeader.email}
-                                                    </a>
+                                    {fallbackLeader && (
+                                        <motion.div initial={{ opacity: 0, y: 15, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} className="mt-6 mx-2 mb-6 group">
+                                            <div className="bg-slate-900/40 backdrop-blur-md border border-primary/30 rounded-2xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.2)] transition-all duration-300 hover:shadow-primary/10 hover:border-primary/50">
+                                                <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent px-5 py-2.5 border-b border-white/5 flex justify-between items-center">
+                                                    <div className="flex items-center gap-2">
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                                                        <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-primary-foreground/90">
+                                                            Strategic Contact
+                                                        </span>
+                                                    </div>
+                                                    <Badge variant="outline" className="text-[9px] h-5 bg-primary/20 text-primary-foreground border-primary/20 px-2 font-semibold">
+                                                        {fallbackLeader.department?.split('&')[0].trim() || "Leadership"}
+                                                    </Badge>
                                                 </div>
-                                            </CardContent>
-                                        </Card>
-                                    </motion.div>
-                                )}
-                                <div ref={messagesEndRef} />
-                            </div>
-                        </ScrollArea>
-                    </div>
+                                                <div className="p-5 flex items-center gap-5">
+                                                    <div className="relative">
+                                                        <Avatar className="h-16 w-16 border-2 border-primary/20 shadow-xl">
+                                                            <AvatarFallback className="bg-gradient-to-br from-primary to-primary/60 text-white font-bold text-xl uppercase">
+                                                                {fallbackLeader.name.charAt(0)}
+                                                            </AvatarFallback>
+                                                        </Avatar>
+                                                        <div className="absolute -bottom-1 -right-1 bg-green-500 w-4 h-4 rounded-full border-2 border-slate-900 flex items-center justify-center">
+                                                            <div className="bg-white w-1.5 h-1.5 rounded-full" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <h4 className="font-bold text-base text-white truncate tracking-tight">{fallbackLeader.name}</h4>
+                                                        <p className="text-xs text-slate-400 mb-4 font-medium leading-tight">
+                                                            {fallbackLeader.designation}
+                                                        </p>
 
-                    {/* Footer Controls */}
-                    <div className="p-4 bg-background border-t border-border flex items-center gap-2">
-                        <div className="relative flex-1">
-                            {/* Input Field with Mic Button Inside */}
-                            <Input
-                                value={inputText}
-                                onChange={(e) => setInputText(e.target.value)}
-                                onKeyDown={(e) => e.key === "Enter" && sendTextMessage()}
-                                placeholder={isListening ? "Listening..." : "Type a message..."}
-                                className={`pr-20 rounded-full border-primary/20 focus-visible:ring-primary/30 h-10 ${isListening ? "border-green-500 ring-1 ring-green-500/50" : ""}`}
-                            />
-
-                            {/* Mic Button */}
-                            <Button
-                                size="icon"
-                                variant="ghost"
-                                className={`absolute right-10 top-1 h-8 w-8 rounded-full ${isListening ? "text-red-500 animate-pulse hover:bg-red-500/10" : "text-muted-foreground hover:bg-primary/10 hover:text-primary"}`}
-                                onClick={startListening}
-                                disabled={isListening}
-                                title="Voice Typing"
-                            >
-                                {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
-                            </Button>
-
-                            {/* Send Button */}
-                            <Button
-                                size="icon"
-                                className="absolute right-1 top-1 h-8 w-8 rounded-full"
-                                onClick={sendTextMessage}
-                                disabled={!inputText.trim() || isLoading}
-                            >
-                                <Send className="h-4 w-4" />
-                            </Button>
+                                                        <a
+                                                            href={`mailto:${fallbackLeader.email}?subject=Inquiry via Kaira AI&body=Hi ${fallbackLeader.name}, I was recommended to contact you regarding...`}
+                                                            className="flex items-center justify-center gap-2 text-xs font-bold text-white bg-primary hover:bg-primary/90 transition-all px-4 py-2.5 rounded-xl shadow-lg shadow-primary/20 active:scale-95 group-hover:translate-y-[-2px]"
+                                                        >
+                                                            <Mail className="w-3.5 h-3.5" />
+                                                            Connect with Executive
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                    <div ref={messagesEndRef} />
+                                </div>
+                            </ScrollArea>
                         </div>
-                    </div>
-                </motion.div>
-            )}
-        </AnimatePresence>
+
+                        {/* Footer Controls */}
+                        <div className="p-4 bg-background border-t border-border flex items-center gap-2">
+                            <div className="relative flex-1">
+                                {/* Input Field with Mic Button Inside */}
+                                <Input
+                                    value={inputText}
+                                    onChange={(e) => setInputText(e.target.value)}
+                                    onKeyDown={(e) => e.key === "Enter" && sendTextMessage()}
+                                    placeholder={isListening ? "Listening..." : "Type a message..."}
+                                    className={`pr-20 rounded-full border-primary/20 focus-visible:ring-primary/30 h-10 ${isListening ? "border-green-500 ring-1 ring-green-500/50" : ""}`}
+                                />
+
+                                {/* Mic Button */}
+                                <Button
+                                    size="icon"
+                                    variant="ghost"
+                                    className={`absolute right-10 top-1 h-8 w-8 rounded-full ${isListening ? "text-red-500 animate-pulse hover:bg-red-500/10" : "text-muted-foreground hover:bg-primary/10 hover:text-primary"}`}
+                                    onClick={startListening}
+                                    disabled={isListening}
+                                    title="Voice Typing"
+                                >
+                                    {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+                                </Button>
+
+                                {/* Send Button */}
+                                <Button
+                                    size="icon"
+                                    className="absolute right-1 top-1 h-8 w-8 rounded-full"
+                                    onClick={sendTextMessage}
+                                    disabled={!inputText.trim() || isLoading}
+                                >
+                                    <Send className="h-4 w-4" />
+                                </Button>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     );
 }

@@ -26,7 +26,7 @@ export function KairaWidget() {
                 </Button>
             </motion.div>
 
-            <KairaDialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
+            <KairaDialog isOpen={isOpen} onOpen={() => setIsOpen(true)} onClose={() => setIsOpen(false)} />
         </>
     );
 }

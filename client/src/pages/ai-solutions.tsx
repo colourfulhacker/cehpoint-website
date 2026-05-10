@@ -1,10 +1,10 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import AIROICalculator from "@/components/calculators/ai-roi-calculator";
+import AutomationRecommender from "@/components/calculators/automation-recommender";
 import IndustryUseCaseExplorer from "@/components/sections/industry-use-cases";
-import AISolutionsSection from "@/components/sections/ai-solutions";
-import { Badge } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import SEO from "@/components/seo";
 
 export default function AISolutions() {
@@ -69,18 +69,19 @@ export default function AISolutions() {
       />
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-background via-primary/5 to-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.1)_0,transparent_100%)]"></div>
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="animate-fade-up">
             <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-6 border-primary/20">
               <span className="text-sm font-medium text-primary flex items-center gap-2">
-                <Badge className="w-4 h-4 mr-2" /> AI That Actually Works
+                <ShieldCheck className="w-4 h-4 mr-2" /> AI That Actually Works
               </span>
             </div>
 
             <h1 className="font-display font-bold text-5xl md:text-7xl mb-6 tracking-tight" data-testid="page-title">
               Stop Guessing. <br />
-              Start <span className="text-gradient">Automating.</span>
+              Start <span className="text-primary">Automating.</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-foreground/80 mb-12 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
@@ -89,30 +90,55 @@ export default function AISolutions() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <Button
-                onClick={() => window.open("https://wa.me/919091156095?text=Hi%2C%20I%20want%20to%20start%20a%207-Day%20AI%20Sprint.%20I'm%20interested%20in%20automating%20my%20business%20processes.", "_blank")}
+                onClick={() => document.getElementById('automation-planner')?.scrollIntoView({ behavior: 'smooth' })}
                 className="btn-primary hover-glow px-8 py-6 rounded-2xl text-lg font-bold text-primary-foreground shadow-xl shadow-primary/20"
+                data-testid="hero-cta-planner"
+              >
+                Plan & Create Automation
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => window.open("https://wa.me/919091156095?text=Hi%2C%20I%20want%20to%20start%20a%207-Day%20AI%20Sprint.%20I'm%20interested%20in%20automating%20my%20business%20processes.", "_blank")}
+                className="px-8 py-6 rounded-2xl text-lg font-bold text-foreground hover:bg-white/10"
                 data-testid="hero-cta-primary"
               >
-                Start Your 7-Day Sprint
+                Talk to an Expert
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Reality Check - ROI Calculator */}
-      <section className="py-24 bg-secondary/30 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-              The <span className="text-gradient">Reality Check</span>
-            </h2>
-            <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-              Don't just take our word for it. Calculate exactly what manual processes are costing your business right now.
-            </p>
-          </div>
+      {/* Reality Check - ROI Calculator Banner */}
+      <section className="py-24 bg-secondary/30 relative border-y border-white/5">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.05),transparent_70%)]"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
+            The <span className="text-primary">Reality Check</span>
+          </h2>
+          <p className="text-xl text-foreground/80 mb-10">
+            Don't just take our word for it. Calculate exactly what manual processes are costing your business right now.
+          </p>
 
-          <AIROICalculator />
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="btn-outline px-10 py-6 text-lg font-bold rounded-full">
+                Calculate Your ROI
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-5xl glass-intense border-white/10 p-0 overflow-hidden bg-transparent shadow-none">
+              <AIROICalculator />
+            </DialogContent>
+          </Dialog>
+        </div>
+      </section>
+
+      {/* Custom Automation Blueprint Generator */}
+      <section className="py-24 bg-background relative overflow-hidden" id="automation-planner">
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.15),transparent_50%)]"></div>
+        <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
+          <AutomationRecommender />
         </div>
       </section>
 
@@ -121,12 +147,10 @@ export default function AISolutions() {
         <IndustryUseCaseExplorer />
       </section>
 
-      {/* Comprehensive Solutions Grid */}
-      <AISolutionsSection />
-
       {/* The Promise */}
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+        <div className="absolute inset-0 bg-grid-white/[0.1] bg-[size:50px_50px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="font-display font-bold text-4xl md:text-6xl mb-8">
             The 7-Day Promise

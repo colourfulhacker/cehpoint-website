@@ -29,11 +29,8 @@ export default function ProcessWorkflow() {
         <section className="py-24 bg-secondary/30" data-testid="process-section">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-20 animate-fade-up">
-                    <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-6">
-                        <span className="text-sm font-medium text-accent">🔄 How We Work</span>
-                    </div>
-                    <h2 className="font-display font-bold text-4xl md:text-6xl mb-6 tracking-tight">
-                        Our Development <span className="text-gradient">Process</span>
+                    <h2 className="font-display font-bold text-4xl md:text-6xl mb-6 tracking-tight text-white">
+                        How We Work
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                         A streamlined workflow designed to deliver excellence from concept to launch and beyond.

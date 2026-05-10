@@ -1,24 +1,21 @@
 
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Wrench, Hammer, UserCheck, Smartphone } from "lucide-react";
+import { ArrowLeft, Wrench, Hammer, UserCheck, Smartphone, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
-import { Helmet } from "react-helmet-async";
+import { getYesterdayDate } from "@/lib/date-utils";
+import { InsightSEO } from "@/components/seo/insight-seo";
 
-export default function GigEconomyUpgradeArticle() {
+export default function GigEconomyUpgrade() {
     return (
         <main className="min-h-screen bg-background pt-24 pb-16">
-            <Helmet>
-                <title>The Gig Economy Upgrade: Professionalizing Home Services - Cehpoint Insights</title>
-                <meta name="description" content="Turn chaotic home services into a professional empire. Discover how to organize electricians, plumbers, and cleaners with a simple app." />
-                <meta name="keywords" content="gig economy, service app, electrician app, plumber app, home services business, startup ideas 2025" />
-                <meta property="og:title" content="The Gig Economy Upgrade: Professionalizing Home Services" />
-                <meta property="og:description" content="Turn chaotic home services into a professional empire. Discover how to organize electricians, plumbers, and cleaners with a simple app." />
-                <meta property="og:image" content="/assets/blog/service-hero.png" />
-                <meta property="og:type" content="article" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:image" content="/assets/blog/service-hero.png" />
-            </Helmet>
+            <InsightSEO
+                title="The Gig Economy Upgrade: Professionalizing Home Services"
+                description="Turn chaotic home services into a professional empire. Discover how to organize electricians, plumbers, and cleaners with a simple app."
+                articleSlug="gig-economy-upgrade"
+                publishedDate="2024-03-24"
+                category="Service Industry"
+            />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link href="/insights" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4 mb-8 pl-0 hover:pl-2">
@@ -35,13 +32,18 @@ export default function GigEconomyUpgradeArticle() {
                     <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
                         The Gig Economy Upgrade: <span className="text-gradient">Professionalizing Home Services</span>
                     </h1>
-                    <div className="flex items-center space-x-6 text-muted-foreground border-b border-border pb-8">
+                    <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
                             <Wrench className="w-4 h-4 mr-2" aria-hidden="true" />
                             <span>Service Revolution</span>
                         </div>
                         <div className="flex items-center">
-                            <span>November 2, 2025</span>
+                            <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
+                            <span>Published: {getYesterdayDate()}</span>
+                        </div>
+                        <div className="flex items-center">
+                            <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
+                            <span>Updated: Today</span>
                         </div>
                     </div>
                 </motion.div>
@@ -63,11 +65,13 @@ export default function GigEconomyUpgradeArticle() {
                     <div className="my-12 p-8 bg-secondary/10 rounded-2xl border-l-4 border-primary">
                         <h3 className="text-2xl font-bold mb-4 flex items-center text-foreground">
                             <UserCheck className="w-6 h-6 mr-3 text-primary" aria-hidden="true" />
-                            Build the "Urban Company" of Your City
+                            Marketplace Engineering Stack
                         </h3>
-                        <p className="mb-0 text-foreground/90">
-                            You don't need to be an electrician. You need to be the <strong>Platform</strong>. By aggregating local professionals under one verified brand, you offer what individual workers cannot: Reliability, Standard Pricing, and Accountability.
-                        </p>
+                        <ul className="text-foreground/90 list-none p-0 space-y-2">
+                            <li>• <strong>Proximity Matching:</strong> Using <strong>Google Maps Distance Matrix API</strong> to route the closest verified professional to the customer, minimizing travel time and fuel costs.</li>
+                            <li>• <strong>Frictionless Payments:</strong> <strong>Stripe Connect</strong> handles complex split-payments, automatically taking your 20% commission and sending the 80% balance to the professional's bank account.</li>
+                            <li>• <strong>Secure Privacy:</strong> <strong>Twilio Number Masking</strong> allows customers and professionals to communicate without ever seeing each other's private mobile numbers.</li>
+                        </ul>
                     </div>
 
                     <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground">Why Service Apps Scale Fast</h2>
@@ -114,6 +118,6 @@ export default function GigEconomyUpgradeArticle() {
                     </Link>
                 </motion.div>
             </div>
-        </main>
+        </main >
     );
 }

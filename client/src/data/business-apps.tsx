@@ -1,5 +1,5 @@
 import {
-    ShoppingBag, Store, Fish, Carrot, Milk, Utensils, Coffee, Car, MapPin, Wrench, Zap, Palette, SprayCan, Hammer,
+    ShoppingBag, Store, Fish, Carrot, Milk, Utensils, Coffee, Car, MapPin, Wrench, Cpu, Palette, SprayCan, Hammer,
     GraduationCap, BookOpen, Laptop, Music, Shirt, Gem, Smartphone, Gift, Gamepad2, Briefcase, Building2, Sun,
     HeartHandshake, Newspaper, Plane, Camera, Layers, User, Calendar, Landmark, Users, Moon
 } from "lucide-react";
@@ -42,7 +42,7 @@ export const getIconForApp = (title: string, category: string) => {
     if (text.includes("car") || text.includes("vehicle") || text.includes("transport")) return <Car className="w-6 h-6 text-white" />;
     if (text.includes("bike") || text.includes("scooter")) return <MapPin className="w-6 h-6 text-white" />;
     if (text.includes("repair") || text.includes("ac") || text.includes("service")) return <Wrench className="w-6 h-6 text-white" />;
-    if (text.includes("electric")) return <Zap className="w-6 h-6 text-white" />;
+    if (text.includes("electric")) return <Cpu className="w-6 h-6 text-white" />;
     if (text.includes("paint") || text.includes("decor")) return <Palette className="w-6 h-6 text-white" />;
     if (text.includes("clean") || text.includes("pest")) return <SprayCan className="w-6 h-6 text-white" />;
     if (text.includes("plumb")) return <Hammer className="w-6 h-6 text-white" />;

@@ -24,7 +24,7 @@ export default function OrganizationSchema({
     url = "https://www.cehpoint.co.in",
     logo = "https://www.cehpoint.co.in/logo.png",
     email = "contact@cehpoint.co.in",
-    phone = "+91 33690 29331",
+    phone = "+91 90911 56095",
     address = {
         streetAddress: "Cehpoint, Labpur, Sandipan Patsala Para, Birbhum, Bolpur",
         addressLocality: "Bolpur",

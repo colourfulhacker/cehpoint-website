@@ -1,7 +1,8 @@
 import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { useEffect, useState, useRef } from "react";
-import { ArrowRight, CheckCircle2, Rocket, Building2, Volume2, VolumeX } from "lucide-react";
+import { ArrowRight, CheckCircle2, Building2, Volume2, VolumeX, Briefcase } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
 
@@ -94,7 +95,7 @@ export default function Hero() {
 
   return (
     <section
-      className={`relative min-h-screen flex items-center ${isIntroPlaying ? "bg-black z-[100] fixed inset-0 overflow-hidden" : "pt-20 pb-20 cursor-pointer z-10"}`}
+      className={`relative min-h-[100svh] flex flex-col justify-center ${isIntroPlaying ? "bg-black z-[100] fixed inset-0 overflow-hidden" : "pt-[15vh] pb-40 lg:pb-48 cursor-pointer z-10"}`}
       data-testid="hero-section"
     >
       {/* 
@@ -192,7 +193,7 @@ export default function Hero() {
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: "-100%", opacity: 0 }}
                         transition={{ duration: 0.5, ease: "backOut" }}
-                        className="text-gradient font-extrabold pb-2 block"
+                        className="text-primary font-extrabold pb-2 block"
                       >
                         {rotatingTexts[currentTextIndex]}
                       </motion.span>
@@ -245,25 +246,22 @@ export default function Hero() {
                   className="flex flex-col sm:flex-row gap-4 justify-start items-center"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Link href="/quotation" className="w-full sm:w-auto">
-                    <Button
-                      className="btn-primary w-full sm:w-auto px-8 py-6 text-lg font-bold group shadow-[0_0_20px_rgba(112,66,248,0.3)] hover:shadow-[0_0_30px_rgba(112,66,248,0.6)]"
-                      data-testid="hero-cta-primary"
-                    >
-                      Get AI-Powered Quote
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Button>
+                  <Link
+                    href="/quotation"
+                    className={cn(buttonVariants({ size: "lg" }), "btn-primary w-full sm:w-auto px-8 py-6 text-lg font-bold group shadow-[0_0_20px_rgba(112,66,248,0.3)] hover:shadow-[0_0_30px_rgba(112,66,248,0.6)]")}
+                    data-testid="hero-cta-primary"
+                  >
+                    Get AI-Powered Quote
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
 
-                  <Link href="/services/business-app-catalog" className="w-full sm:w-auto">
-                    <Button
-                      variant="outline"
-                      className="w-full sm:w-auto px-8 py-6 text-lg font-semibold bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50 transition-all backdrop-blur-sm group"
-                      data-testid="hero-cta-catalog"
-                    >
-                      <Rocket className="mr-2 w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-                      Business App Catalog
-                    </Button>
+                  <Link
+                    href="/services/business-app-catalog"
+                    className={cn(buttonVariants({ variant: "outline", size: "lg" }), "btn-outline w-full sm:w-auto px-8 py-6 text-lg font-semibold group shadow-xl")}
+                    data-testid="hero-cta-catalog"
+                  >
+                    <Briefcase className="mr-2 w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+                    Business App Catalog
                   </Link>
                 </motion.div>
               </motion.div>

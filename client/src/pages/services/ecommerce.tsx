@@ -101,7 +101,7 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-up">
             <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight" data-testid="page-title">
-              E-commerce <span className="text-gradient">Solutions</span>
+              E-commerce <span className="text-primary">Solutions</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
               Build scalable, conversion-optimized e-commerce platforms that drive revenue and customer satisfaction.
@@ -164,7 +164,7 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="problems-title">
-              E-commerce <span className="text-gradient">Challenges We Solve</span>
+              E-commerce <span className="text-primary">Challenges We Solve</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Common pain points that prevent e-commerce businesses from reaching their full potential
@@ -189,7 +189,7 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="architecture-title">
-              Reference <span className="text-gradient">Architecture</span>
+              Reference <span className="text-primary">Architecture</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Enterprise-grade e-commerce architecture designed for scale, performance, and reliability
@@ -225,7 +225,7 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-              Success <span className="text-gradient">Stories</span>
+              Success <span className="text-primary">Stories</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Real revenue growth from our e-commerce solutions
@@ -306,7 +306,7 @@ export default function EcommerceService() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="compliance-title">
-                Security & <span className="text-gradient">Compliance</span>
+                Security & <span className="text-primary">Compliance</span>
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
                 Built-in security measures and compliance standards to protect your business and customers.
@@ -372,7 +372,7 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">
-              Certified & <span className="text-gradient">Secure</span>
+              Certified & <span className="text-primary">Secure</span>
             </h2>
           </div>
 
@@ -416,7 +416,7 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="kpis-title">
-              Target <span className="text-gradient">KPIs</span>
+              Target <span className="text-primary">KPIs</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Measurable outcomes we deliver for e-commerce success
@@ -446,7 +446,7 @@ export default function EcommerceService() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-              Frequently Asked <span className="text-gradient">Questions</span>
+              Frequently Asked <span className="text-primary">Questions</span>
             </h2>
           </div>
 
@@ -498,7 +498,7 @@ export default function EcommerceService() {
               Special offer: Free conversion audit
             </div>
             <h2 className="font-display font-bold text-3xl md:text-5xl mb-6" data-testid="cta-title">
-              Ready to Transform Your <span className="text-gradient">E-commerce Business?</span>
+              Ready to Transform Your <span className="text-primary">E-commerce Business?</span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground mb-8" data-testid="cta-description">
               Get a detailed quotation with AI-powered analysis, conversion optimization strategy, and technical recommendations for your e-commerce project.

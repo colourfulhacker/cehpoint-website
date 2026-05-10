@@ -1,4 +1,4 @@
-import { Brain, Bot, TrendingUp, Eye, Cpu, Shield, Target, Code, Sparkles, ArrowUpRight } from "lucide-react"
+import { Brain, Bot, TrendingUp, Eye, Cpu, Shield, Target, Code, Activity, ArrowUpRight } from "lucide-react"
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 
 // Premium Holographic Card Component
@@ -39,8 +39,8 @@ function AISolutionCard({ solution }: { solution: any }) {
             <solution.icon className="w-6 h-6 text-zinc-400 group-hover:text-primary transition-colors" />
           </div>
           <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${solution.complexity === 'Expert' ? 'border-red-500/30 text-red-400 bg-red-500/10' :
-              solution.complexity === 'Advanced' ? 'border-purple-500/30 text-purple-400 bg-purple-500/10' :
-                'border-blue-500/30 text-blue-400 bg-blue-500/10'
+            solution.complexity === 'Advanced' ? 'border-purple-500/30 text-purple-400 bg-purple-500/10' :
+              'border-blue-500/30 text-blue-400 bg-blue-500/10'
             }`}>
             {solution.complexity}
           </div>
@@ -66,7 +66,7 @@ function AISolutionCard({ solution }: { solution: any }) {
 
           <div className="flex items-center justify-between text-xs">
             <div className="flex items-center text-primary/80">
-              <Sparkles className="w-3 h-3 mr-1.5" />
+              <Activity className="w-3 h-3 mr-1.5" />
               <span className="font-medium">{solution.benefits}</span>
             </div>
             <ArrowUpRight className="w-4 h-4 text-zinc-600 group-hover:text-white transition-colors" />
@@ -153,11 +153,10 @@ export default function AISolutions() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-20">
           <h2 className="font-display font-medium text-5xl md:text-7xl mb-6 tracking-tight text-white leading-tight">
-            Intelligence <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/50">Architected.</span>
+            AI Solutions
           </h2>
           <p className="text-xl text-zinc-400 font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
-            We move beyond simple chatbots to engineer cognitive architectures that redefine what's possible in your industry.
+            Beyond chatbots - we engineer cognitive architectures that redefine what's possible in your industry.
           </p>
         </div>
 

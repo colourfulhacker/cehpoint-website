@@ -334,7 +334,7 @@ Please provide a formal quotation for these services.`;
                                             }`}>
                                             <div className="flex items-start justify-between mb-4">
                                                 <div className="flex items-center gap-3">
-                                                    <div className={`p-2 rounded-lg bg-background/50 ${option.color}`}>
+                                                    <div className={`p-2 rounded-lg bg-background/50 ${option.color} pointer-events-none`}>
                                                         <option.icon className="w-5 h-5" />
                                                     </div>
                                                     <Label htmlFor={`check-${option.id}`} className="font-medium cursor-pointer">

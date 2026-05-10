@@ -1,0 +1,13 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- White Background -->
+  <rect width="512" height="512" fill="#FFFFFF"/>
+  
+  <!-- Purple top border -->
+  <rect x="0" y="0" width="512" height="24" fill="#7064F8"/>
+  
+  <!-- Purple bottom border -->
+  <rect x="0" y="488" width="512" height="24" fill="#7064F8"/>
+  
+  <!-- CEHPOINT text - centered and scaled -->
+  <text x="256" y="320" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="800" fill="#000000" text-anchor="middle" letter-spacing="-2">CEHPOINT</text>
+</svg>

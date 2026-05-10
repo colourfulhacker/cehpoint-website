@@ -10,11 +10,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-    MessageSquare, Laptop, ShoppingBag, BookOpen, User, Zap, ArrowRight,
+    MessageSquare, Laptop, ShoppingBag, BookOpen, User, Cpu, ArrowRight,
     CheckCircle2, ShieldCheck, Layers, Info, MapPin, Building2, Phone, Target,
     Store, Truck, Utensils, Car, Wrench, GraduationCap, Shirt, Smartphone,
     Home, Gift, Briefcase, Camera, Music, Video, Gamepad2, Coffee, Plane,
-    Hammer, Stethoscope, Pill, Ticket, Map, Palette, Code, Cpu, Database,
+    Hammer, Stethoscope, Pill, Ticket, Map, Palette, Code, Database,
     Cloud, Wifi, Landmark, Briefcase as WorkIcon, Gem, Crown, Rocket,
     Fish, Carrot, Milk, Warehouse, Armchair, MonitorPlay, HeartHandshake, Newspaper, Copy,
     ChevronDown, HelpCircle, Star, Lightbulb, SprayCan, Sun
@@ -158,7 +158,7 @@ const getIconForApp = (title: string, category: string) => {
     if (text.includes("car") || text.includes("vehicle") || text.includes("transport")) return <Car className="w-6 h-6 text-white" />;
     if (text.includes("bike") || text.includes("scooter")) return <MapPin className="w-6 h-6 text-white" />; // Bike icon replacement
     if (text.includes("repair") || text.includes("ac") || text.includes("service")) return <Wrench className="w-6 h-6 text-white" />;
-    if (text.includes("electric")) return <Zap className="w-6 h-6 text-white" />;
+    if (text.includes("electric")) return <Cpu className="w-6 h-6 text-white" />;
     if (text.includes("paint") || text.includes("decor")) return <Palette className="w-6 h-6 text-white" />;
     if (text.includes("clean") || text.includes("pest")) return <SprayCan className="w-6 h-6 text-white" />;
     if (text.includes("plumb")) return <Hammer className="w-6 h-6 text-white" />;
@@ -609,7 +609,7 @@ const allApps: AppIdea[] = [
 
     // DIGITAL & MODERN BUSINESS IDEAS
     {
-        id: 41, title: "Local Job Posting App", description: "Employers post jobs, candidates apply.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        id: 41, title: "Local Job Posting App", description: "Employers post jobs, candidates apply.", category: "Digital & Modern", icon: <Cpu className="w-6 h-6" />,
         image: "/assets/apps/41-local-job-posting-app.png",
         techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Connect local employers with blue-collar workforce.",
@@ -618,7 +618,7 @@ const allApps: AppIdea[] = [
         businessIdea: "Focus on 'Hyperlocal Blue Collar' jobs. Cooks, maids, drivers usually find work via word of mouth. Your app organizes this. Verify candidates with Aadhaar to offer safety to employers. Charge a small fee for contact details."
     },
     {
-        id: 42, title: "Real Estate Listing App", description: "Flat, land & rental leads.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        id: 42, title: "Real Estate Listing App", description: "Flat, land & rental leads.", category: "Digital & Modern", icon: <Cpu className="w-6 h-6" />,
         image: "/assets/apps/42-real-estate-listing-app.png",
         techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Property discovery without heavy brokerage.",
@@ -627,7 +627,7 @@ const allApps: AppIdea[] = [
         businessIdea: "No-Brokerage model for PGs and Hostels. Students move cities annually. They need cheap, reliable accommodation fast. Verify listings personally to avoid scams. Students will readily pay a small convenience fee."
     },
     {
-        id: 43, title: "Astrology Consultation App", description: "Paid chat/call booking.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        id: 43, title: "Astrology Consultation App", description: "Paid chat/call booking.", category: "Digital & Modern", icon: <Cpu className="w-6 h-6" />,
         image: "/assets/apps/43-astrology-consultation-app.png",
         techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Monetize astrological expertise.",
@@ -636,7 +636,7 @@ const allApps: AppIdea[] = [
         businessIdea: "Offer 'Micro-Consultations' - one question for ₹50. It lowers the entry barrier. Users who get a good answer often upgrade to a full session. It's a classic 'freemium' model adapted for astrology."
     },
     {
-        id: 44, title: "Temple Donation App", description: "Online puja booking.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        id: 44, title: "Temple Donation App", description: "Online puja booking.", category: "Digital & Modern", icon: <Cpu className="w-6 h-6" />,
         image: "/assets/apps/44-temple-donation-app.png",
         techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Remote spiritual access and donations.",
@@ -645,7 +645,7 @@ const allApps: AppIdea[] = [
         businessIdea: "Partner with smaller, ancient temples that need funds for renovation but lack reach. Tell their history. Devotees love to support heritage restoration. You take a small platform fee for facilitating the transaction."
     },
     {
-        id: 45, title: "Event Management App", description: "Birthday & wedding bookings.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        id: 45, title: "Event Management App", description: "Birthday & wedding bookings.", category: "Digital & Modern", icon: <Cpu className="w-6 h-6" />,
         image: "/assets/apps/45-event-management-app.png",
         techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "One-stop shop for celebration planning.",
@@ -654,7 +654,7 @@ const allApps: AppIdea[] = [
         businessIdea: "Create 'Party in a Box' packages. You coordinate everything - decoration, cake, snacks. The customer just clicks 'Book 5th Birthday Party'. Convenience for busy parents is your biggest selling point."
     },
     {
-        id: 46, title: "Influencer Portfolio App", description: "Brand inquiry generation.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        id: 46, title: "Influencer Portfolio App", description: "Brand inquiry generation.", category: "Digital & Modern", icon: <Cpu className="w-6 h-6" />,
         image: "/assets/apps/46-influencer-portfolio-app.png",
         techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Professional showcase for content creators.",
@@ -663,7 +663,7 @@ const allApps: AppIdea[] = [
         businessIdea: "Micro-influencers (5k-50k followers) have high engagement but no managers. Build a platform where local brands (cafes, boutiques) can hire them for small barter or paid collabs. You democratize influencer marketing."
     },
     {
-        id: 47, title: "Local News & Ads App", description: "Paid local advertisements.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        id: 47, title: "Local News & Ads App", description: "Paid local advertisements.", category: "Digital & Modern", icon: <Cpu className="w-6 h-6" />,
         image: "/assets/apps/47-local-news-ads-app.png",
         techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Hyperlocal news and advertising platform.",
@@ -672,7 +672,7 @@ const allApps: AppIdea[] = [
         businessIdea: "Citizen Journalism. Reward users for reporting local potholes, accidents, or events. Verify and publish. Local businesses are desperate to advertise to a hyper-local audience which Google/FB ads often miss."
     },
     {
-        id: 48, title: "Travel & Tour Booking App", description: "Local tour packages.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        id: 48, title: "Travel & Tour Booking App", description: "Local tour packages.", category: "Digital & Modern", icon: <Cpu className="w-6 h-6" />,
         image: "/assets/apps/48-travel-tour-booking-app.png",
         techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Promote and sell local travel experiences.",
@@ -681,7 +681,7 @@ const allApps: AppIdea[] = [
         businessIdea: "Curate 'Unseen Weekend Getaways'. Don't sell Digha or Darjeeling. Sell hidden villages or farmstays nearby. Urban folks are bored of standard spots and crave unique, offbeat experiences."
     },
     {
-        id: 49, title: "Wedding Vendor App", description: "Photographer, caterer listings.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        id: 49, title: "Wedding Vendor App", description: "Photographer, caterer listings.", category: "Digital & Modern", icon: <Cpu className="w-6 h-6" />,
         image: "/assets/apps/49-wedding-vendor-app.png",
         techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Directory for wedding services.",
@@ -690,7 +690,7 @@ const allApps: AppIdea[] = [
         businessIdea: "'Last Minute Wedding Deals'. Wedding dates are fixed. If a photographer or venue is unbooked for a date, they lose money. Help them sell these slots at a discount to couples with tighter budgets."
     },
     {
-        id: 50, title: "Community Marketplace App", description: "Hyperlocal buying/selling.", category: "Digital & Modern", icon: <Zap className="w-6 h-6" />,
+        id: 50, title: "Community Marketplace App", description: "Hyperlocal buying/selling.", category: "Digital & Modern", icon: <Cpu className="w-6 h-6" />,
         image: "/assets/apps/50-community-marketplace-app.png",
         techStack: commonTechStack, features: getFeatures("Digital"),
         objective: "Build a self-sustaining local economy.",
@@ -779,7 +779,7 @@ ${app.features.join(", ")}`.trim();
 
                         <div className="space-y-3">
                             <h4 className="font-semibold flex items-center gap-2">
-                                <Zap className="w-4 h-4 text-primary" /> Key Market Advantage
+                                <Cpu className="w-4 h-4 text-primary" /> Key Market Advantage
                             </h4>
                             <p className="text-sm border-l-2 border-primary pl-3 italic text-muted-foreground">
                                 "{app.whyThisApp}"
@@ -930,7 +930,7 @@ export default function BusinessAppCatalog() {
                                             <span>No Maintenance Required</span>
                                         </div>
                                         <div className="flex items-center gap-2">
-                                            <Zap className="w-4 h-4 text-green-500" />
+                                            <Cpu className="w-4 h-4 text-green-500" />
                                             <span>Launch Fast</span>
                                         </div>
                                     </div>

@@ -1,106 +1,54 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 interface ServiceSchemaProps {
     name: string;
     description: string;
-    serviceType: string;
-    provider?: {
-        name: string;
-        url: string;
-    };
-    areaServed?: string | string[];
-    hasOfferCatalog?: boolean;
+    url: string;
     category?: string;
-    url?: string;
+    serviceType?: string;
+    provider?: string;
+    hasOfferCatalog?: boolean;
 }
 
 export default function ServiceSchema({
     name,
     description,
-    serviceType,
-    provider = {
-        name: "Cehpoint",
-        url: "https://www.cehpoint.co.in"
-    },
-    areaServed = ["IN", "US", "UK", "Global"],
-    hasOfferCatalog = false,
-    category = "Information Technology",
-    url
+    url,
+    category = "IT Services",
+    serviceType = "IT Services",
+    provider = "Cehpoint",
+    hasOfferCatalog = false
 }: ServiceSchemaProps) {
-    useEffect(() => {
-        const currentUrl = url || (typeof window !== 'undefined' ? window.location.href : provider.url);
-
-        const schema: any = {
-            "@context": "https://schema.org",
-            "@type": "Service",
-            name: name,
-            description: description,
-            serviceType: serviceType,
-            provider: {
-                "@type": "Organization",
-                name: provider.name,
-                url: provider.url,
-                "@id": `${provider.url}/#organization`
-            },
-            category: category,
-            url: currentUrl
-        };
-
-        // Add area served
-        if (Array.isArray(areaServed)) {
-            schema.areaServed = areaServed.map((area) => ({
-                "@type": "Country",
-                name: area
-            }));
-        } else {
-            schema.areaServed = {
-                "@type": "Country",
-                name: areaServed
-            };
-        }
-
-        // Add offer catalog if specified
-        if (hasOfferCatalog) {
-            schema.hasOfferCatalog = {
-                "@type": "OfferCatalog",
-                name: `${name} Services`,
-                itemListElement: [
-                    {
-                        "@type": "OfferCatalog",
-                        name: "Consultation Services"
+    return (
+        <Helmet>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "name": name,
+                    "description": description,
+                    "url": url,
+                    "provider": {
+                        "@type": "Organization",
+                        "name": provider,
+                        "url": "https://www.cehpoint.co.in"
                     },
-                    {
-                        "@type": "OfferCatalog",
-                        name: "Development Services"
-                    },
-                    {
-                        "@type": "OfferCatalog",
-                        name: "Support Services"
-                    }
-                ]
-            };
-        }
-
-        // Generate unique ID based on service name
-        const scriptId = `service-schema-${name.toLowerCase().replace(/\s+/g, '-')}`;
-        let scriptTag = document.getElementById(scriptId) as HTMLScriptElement;
-
-        if (!scriptTag) {
-            scriptTag = document.createElement("script");
-            scriptTag.id = scriptId;
-            scriptTag.type = "application/ld+json";
-            document.head.appendChild(scriptTag);
-        }
-
-        scriptTag.textContent = JSON.stringify(schema);
-
-        return () => {
-            const existingScript = document.getElementById(scriptId);
-            if (existingScript) {
-                document.head.removeChild(existingScript);
-            }
-        };
-    }, [name, description, serviceType, provider, areaServed, hasOfferCatalog, category, url]);
-
-    return null;
+                    "serviceType": serviceType || category,
+                    "areaServed": "Worldwide",
+                    ...(hasOfferCatalog && {
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": `${name} Services`,
+                            "itemListElement": [
+                                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultation" } },
+                                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Development" } },
+                                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Implementation" } },
+                                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Support & Maintenance" } }
+                            ]
+                        }
+                    })
+                })}
+            </script>
+        </Helmet>
+    );
 }

@@ -9,7 +9,7 @@ import {
     Store,
     Smartphone,
     Globe,
-    Zap,
+    Cpu,
     Box,
     BarChart3,
     CreditCard,
@@ -86,7 +86,7 @@ export default function EcommerceCalculator() {
 
     const featuresList = [
         { id: "multivendor", label: "Multi-vendor Marketplace", icon: Store },
-        { id: "ai", label: "AI Recommendations & Search", icon: Zap },
+        { id: "ai", label: "AI Recommendations & Search", icon: Cpu },
         { id: "crm", label: "Integrated CRM/ERP", icon: BarChart3 },
         { id: "global", label: "Multi-currency/Global Support", icon: Globe },
         { id: "pwa", label: "Progressive Web App (PWA)", icon: Smartphone },
@@ -201,7 +201,7 @@ Please provide a formal quotation.`;
                         <Card className="glass-intense border-white/10">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
-                                    <Zap className="w-5 h-5 text-yellow-400" />
+                                    <Cpu className="w-5 h-5 text-yellow-400" />
                                     Advanced Features
                                 </CardTitle>
                             </CardHeader>

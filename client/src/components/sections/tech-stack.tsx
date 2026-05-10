@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { serviceTechStacks } from "@/data/service-tech-stacks";
 import {
-    Code2, Database, Smartphone, Globe, Layers, Zap,
-    Shield, Brain, Cloud, Terminal, Cpu, Lock,
+    Code2, Database, Smartphone, Globe, Layers, Cpu,
+    Shield, Brain, Cloud, Terminal, Lock,
     Layout, Server, Activity, ShoppingCart, ArrowRight
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -33,11 +33,10 @@ export default function TechStack() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="mb-20">
                     <h2 className="font-display font-medium text-5xl md:text-7xl mb-6 tracking-tight text-white leading-tight">
-                        Powering <br />
-                        <span className="text-zinc-500">The Future.</span>
+                        Tech Stack
                     </h2>
                     <p className="text-xl text-zinc-400 font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
-                        Our engineering DNA consists of 150+ enterprise-grade technologies, carefully selected for scalability and security.
+                        Enterprise-grade technologies selected for scalability, security, and maintainability.
                     </p>
                 </div>
 
@@ -82,7 +81,7 @@ export default function TechStack() {
                             >
                                 <div className="flex items-center gap-4 mb-8">
                                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center border border-white/5 group-hover:border-primary/30 transition-colors">
-                                        <Zap className="w-5 h-5 text-zinc-400 group-hover:text-primary transition-colors" />
+                                        <Cpu className="w-5 h-5 text-zinc-400 group-hover:text-primary transition-colors" />
                                     </div>
                                     <h3 className="font-display font-medium text-lg text-white group-hover:text-primary-foreground transition-colors">
                                         {category.name}

@@ -78,7 +78,7 @@ export default function AIInterviewPopup() {
 
                                     <div className="space-y-4 mb-8">
                                         <p className="text-lg text-foreground/90 leading-relaxed">
-                                            Why wait for HR? Our AI Recruiter is ready to interview you <span className="font-bold text-primary">right now</span>.
+                                            Why wait? Our AI Recruiter is ready to interview you <span className="font-bold text-primary">right now</span>.
                                         </p>
 
                                         <div className="space-y-3">

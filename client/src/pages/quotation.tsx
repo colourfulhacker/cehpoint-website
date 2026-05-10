@@ -11,7 +11,7 @@ export default function Quotation() {
           <div className="text-center mb-16 animate-fade-up">
             <h1 className="font-display font-bold text-4xl md:text-7xl mb-8 tracking-tight" data-testid="quotation-title">
               Get Your
-              <span className="text-gradient"> Project Proposal</span>
+              <span className="text-primary"> Project Proposal</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light" data-testid="quotation-subtitle">
               Choose your path to success: Enterprise outsourcing for established companies or our IT Portal for new entrepreneurs.
@@ -22,7 +22,7 @@ export default function Quotation() {
             <div className="space-y-8">
               <div className="text-center mb-12">
                 <h2 className="font-display font-bold text-3xl md:text-4xl mb-4" data-testid="options-title">
-                  Choose Your <span className="text-gradient">Development Path</span>
+                  Choose Your <span className="text-primary">Development Path</span>
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                   Select the option that best fits your business needs and development requirements.
