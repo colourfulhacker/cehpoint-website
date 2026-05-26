@@ -41,6 +41,7 @@ import {
 import AIInterviewPopup from "@/components/careers/ai-interview-popup";
 import JobPostingSchema from "@/components/seo/job-posting-schema";
 import { TermsAndConditionsModal } from "@/components/careers/terms-modal";
+import SEO from "@/components/seo";
 
 export default function Careers() {
   const [formData, setFormData] = useState({
@@ -330,6 +331,11 @@ I'm looking forward to discussing this!`;
 
   return (
     <div className="min-h-screen pt-16 bg-background">
+      <SEO 
+        title="Careers | Join the Cehpoint Team" 
+        description="Join Cehpoint to build secure AI-powered software and work on diverse projects from startup MVPs to enterprise systems." 
+        url="https://www.cehpoint.co.in/careers" 
+      />
       <AIInterviewPopup />
 
       {/* SEO Schema Objects */}

@@ -154,19 +154,90 @@ if (process.env.NODE_ENV === 'development') {
 
 // Initialize AI Lazy Loader
 // Initialize AI Lazy Loader
+// Helper for resilient AI calls with fallback and retry
+async function callGeminiWithFallback(
+  prompt: string,
+  systemInstruction?: string,
+  config?: any,
+  preferredModel: string = "gemini-flash-latest"
+): Promise<any> {
+  const models = [
+    preferredModel,
+    "gemini-1.5-flash",
+    "gemini-pro-latest",
+    "gemini-1.5-pro",
+    "gemini-2.0-flash-exp",
+    "gemini-1.0-pro"
+  ];
+  let lastError: any = null;
+
+  for (const modelName of models) {
+    try {
+      const genAI = getAI();
+      if (!genAI) throw new Error("AI initialization failed");
+
+      const model = genAI.getGenerativeModel({
+        model: modelName,
+        systemInstruction
+      });
+
+      console.log(`[AI-DEBUG] Attempting ${modelName}...`);
+
+      // Simple implementation of exponential backoff for 429s (max 2 retries per model)
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          const result = await model.generateContent(config || prompt);
+          // If we are here, it worked
+          return result;
+        } catch (err: any) {
+          const isRetryable = err.message?.includes("429") || err.message?.includes("500") || err.message?.includes("503");
+          if (isRetryable && attempt < 1) {
+            const delay = Math.pow(2, attempt) * 1000;
+            console.warn(`Gemini ${modelName} hit retryable error. Retrying in ${delay}ms... (Attempt ${attempt + 1})`);
+            await new Promise(r => setTimeout(r, delay));
+            continue;
+          }
+          throw err; // Not retryable or max attempts reached
+        }
+      }
+    } catch (err: any) {
+      lastError = err;
+      const isQuotaOrModelError = err.message?.includes("429") || err.message?.includes("404") || err.message?.includes("not found");
+
+      if (isQuotaOrModelError) {
+        console.warn(`[AI-RETRY] Gemini model ${modelName} failed/limited. Error: ${err.message.substring(0, 50)}`);
+        // If it's a 429, wait longer and potentially skip further fallbacks if it's a persistent key issue
+        if (err.message?.includes("429")) {
+          await new Promise(r => setTimeout(r, 3000));
+          // If we've already tried a couple of models and still getting 429, stop to avoid key suspension
+          if (models.indexOf(modelName) >= 1) {
+             throw new Error(`Rate limit reached across multiple models. Final attempted: ${modelName}. Details: ${err.message}`);
+          }
+        }
+        continue; // Try next model in list
+      }
+      throw err; // Stop if it's a critical error like auth or invalid prompt
+    }
+  }
+
+  throw lastError || new Error("All Gemini models failed to respond");
+}
+
 let aiInstance: GoogleGenerativeAI | null = null;
 function getAI() {
   if (!aiInstance) {
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = (process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY)?.trim();
     if (apiKey) {
       try {
+        const maskedKey = `${apiKey.substring(0, 6)}...${apiKey.substring(apiKey.length - 4)}`;
+        console.log(`[AI-INIT] Initializing GoogleGenerativeAI with key: ${maskedKey}`);
         aiInstance = new GoogleGenerativeAI(apiKey);
       } catch (error) {
         console.warn("Failed to initialize GoogleGenerativeAI:", error);
         return null;
       }
     } else {
-      console.warn("GEMINI_API_KEY missing");
+      console.warn("GEMINI_API_KEY or VITE_GEMINI_API_KEY missing");
       return null;
     }
   }
@@ -215,35 +286,31 @@ Additional Context: ${answers.customQuestion || 'None provided'}
 
 Please provide a comprehensive cloud architecture recommendation in the specified JSON format with specific AWS and GCP service recommendations tailored to these requirements.`;
 
-    const genAI = getAI();
-    if (!genAI) throw new Error("AI client failed to initialize");
-
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
-      systemInstruction: sysInstr
-    });
-
-    const result = await model.generateContent({
-      contents: [{ role: "user", parts: [{ text: userPrompt }] }],
-      generationConfig: {
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: SchemaType.OBJECT,
-          properties: {
-            recommendation: { type: SchemaType.STRING },
-            awsSolution: { type: SchemaType.STRING },
-            gcpSolution: { type: SchemaType.STRING },
-            nextSteps: {
-              type: SchemaType.ARRAY,
-              items: { type: SchemaType.STRING }
-            }
-          },
-          required: ["recommendation", "awsSolution", "gcpSolution", "nextSteps"]
+    const result = await callGeminiWithFallback(
+      userPrompt,
+      sysInstr,
+      {
+        contents: [{ role: "user", parts: [{ text: userPrompt }] }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: SchemaType.OBJECT,
+            properties: {
+              recommendation: { type: SchemaType.STRING },
+              awsSolution: { type: SchemaType.STRING },
+              gcpSolution: { type: SchemaType.STRING },
+              nextSteps: {
+                type: SchemaType.ARRAY,
+                items: { type: SchemaType.STRING }
+              }
+            },
+            required: ["recommendation", "awsSolution", "gcpSolution", "nextSteps"]
+          }
         }
       }
-    });
+    );
 
-    const response = result.response;
+    const response = await result.response;
     const rawJson = response.text();
     console.log(`Gemini AI Consultation Response: ${rawJson}`);
 
@@ -313,57 +380,53 @@ Additional Context: ${request.additionalContext || 'None provided'}
 
 Please provide a comprehensive quotation analysis in the specified JSON format with realistic cost estimates, timeline projections, and detailed recommendations.`;
 
-    const genAI = getAI();
-    if (!genAI) throw new Error("AI client failed to initialize");
-
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
-      systemInstruction: systemPrompt
-    });
-
-    const result = await model.generateContent({
-      contents: [{ role: "user", parts: [{ text: userPrompt }] }],
-      generationConfig: {
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: SchemaType.OBJECT,
-          properties: {
-            estimatedCost: { type: SchemaType.NUMBER },
-            timeline: { type: SchemaType.STRING },
-            teamSize: { type: SchemaType.NUMBER },
-            suggestedStack: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
-            dependencies: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
-            risks: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
-            mvpPlan: {
-              type: SchemaType.ARRAY,
-              items: {
+    const result = await callGeminiWithFallback(
+      userPrompt,
+      systemPrompt,
+      {
+        contents: [{ role: "user", parts: [{ text: userPrompt }] }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: SchemaType.OBJECT,
+            properties: {
+              estimatedCost: { type: SchemaType.NUMBER },
+              timeline: { type: SchemaType.STRING },
+              teamSize: { type: SchemaType.NUMBER },
+              suggestedStack: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+              dependencies: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+              risks: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+              mvpPlan: {
+                type: SchemaType.ARRAY,
+                items: {
+                  type: SchemaType.OBJECT,
+                  properties: {
+                    milestone: { type: SchemaType.STRING },
+                    duration: { type: SchemaType.STRING },
+                    deliverables: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
+                  },
+                  required: ["milestone", "duration", "deliverables"]
+                }
+              },
+              aiAnalysis: { type: SchemaType.STRING },
+              costBreakdown: {
                 type: SchemaType.OBJECT,
                 properties: {
-                  milestone: { type: SchemaType.STRING },
-                  duration: { type: SchemaType.STRING },
-                  deliverables: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
+                  development: { type: SchemaType.NUMBER },
+                  design: { type: SchemaType.NUMBER },
+                  testing: { type: SchemaType.NUMBER },
+                  deployment: { type: SchemaType.NUMBER },
+                  projectManagement: { type: SchemaType.NUMBER }
                 },
-                required: ["milestone", "duration", "deliverables"]
-              }
-            },
-            aiAnalysis: { type: SchemaType.STRING },
-            costBreakdown: {
-              type: SchemaType.OBJECT,
-              properties: {
-                development: { type: SchemaType.NUMBER },
-                design: { type: SchemaType.NUMBER },
-                testing: { type: SchemaType.NUMBER },
-                deployment: { type: SchemaType.NUMBER },
-                projectManagement: { type: SchemaType.NUMBER }
+                required: ["development", "design", "testing", "deployment", "projectManagement"]
               },
-              required: ["development", "design", "testing", "deployment", "projectManagement"]
+              recommendations: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
             },
-            recommendations: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } }
-          },
-          required: ["estimatedCost", "timeline", "teamSize", "suggestedStack", "dependencies", "risks", "mvpPlan", "aiAnalysis", "costBreakdown", "recommendations"]
+            required: ["estimatedCost", "timeline", "teamSize", "suggestedStack", "dependencies", "risks", "mvpPlan", "aiAnalysis", "costBreakdown", "recommendations"]
+          }
         }
       }
-    });
+    );
 
     const rawJson = result.response.text();
     console.log(`Gemini Quotation Response: ${rawJson}`);
@@ -440,49 +503,121 @@ app.route("/api/ai-consultation")
 // Kaira Text Chat API Route
 app.post("/api/kaira-chat", async (req, res) => {
   try {
-    const { message, history } = req.body;
+    const { message, history, location, conversationTurn } = req.body;
+    const apiKey = process.env.NVIDIA_API_KEY?.trim();
+    const model = process.env.NVIDIA_MODEL || "qwen/qwen2.5-coder-32b-instruct";
+
     if (!message) return res.status(400).json({ error: "Message is required" });
+    if (!apiKey) return res.status(500).json({ error: "NVIDIA_API_KEY not configured" });
 
-    const genAI = getAI();
-    if (!genAI) throw new Error("AI client failed to initialize");
+    const systemPrompt = `You are Kaira, the Senior AI Consultant for CEHPOINT.
 
-    const context = `You are Kaira, an advanced AI Assistant for Cehpoint. 
-    You are professional, concise, and helpful. 
-    Your primary goal is to guide users to the correct page.
-    
-    SITE MAP:
-    - Cost Estimator: /cost-estimator
-    - Services: /services
-    - Cyber Security: /services/cyber-security
-    - Cyber Investigation: /services/cyber-crime-investigation
-    - E-Commerce: /services/ecommerce
-    - Edutech: /services/edutech
-    - Fintech: /services/fintech
-    - Game Dev: /services/game-development
-    - Rural Digital: /services/rural-digitalization
-    - AI Solutions: /ai-solutions
-    - Training: /training
-    - Incubation: /incubation
-    - Interns: /interns
-    - Careers: /careers
-    - Contact: /contact
-    
-    If asked about pricing, ALWAYS link to /cost-estimator.
-    If asked about services, link to the specific service page if possible.`;
-    const chatHistory = history ? history.map((msg: any) => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.text}`).join('\n') : '';
-    const fullPrompt = `${context}\n\nChat History:\n${chatHistory}\n\nUser: ${message}\nAssistant:`;
+PHASE-BASED PROTOCOL:
+- Phase 1 (Discovery): First 6 exchanges. MUST ask 2-3 deep clarifying questions. NO handoffs.
+- Phase 2 (Analysis): Summarize user needs. Ensure they align with the current page intent.
+- Phase 3 (Handoff): ONLY suggest an expert if the requirement is high-stakes and Turn 7+. Use tag [RECOMMEND_LEADER: DepartmentName].
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-    const result = await model.generateContent(fullPrompt);
-    const response = result.response;
-    const text = response.text();
+LEADERSHIP EXPERTISE MAP:
+1. Cybercrime, Forensics & Security Intelligence: For hacking, scams, financial fraud.
+2. People, Culture & Workforce Strategy (HR): For jobs, internships, career growth.
+3. Technology, Engineering & Innovation: For software dev, VAPT audits, AI.
+4. Executive Leadership & Strategy: For partnerships, investor relations.
 
-    res.json({ response: text });
+CORE OPERATIONAL DIRECTIVE: "HUMAN-CENTRIC CONSULTANT MODE"
+- ACT AS A HIGH-VALUE CONSULTANT: PROVIDE IMMEDIATE VALUE.
+- VALUABLE INSIGHTS: Give professional reasoning and initial estimates/ranges (in INR) based on what the user says.
+- INTELLIGENT BUDGETING: If they ask for price, give a range (e.g., ₹4,00,000 to ₹7,00,000) and explain why.
+
+SILLY/FLIRTING PROTOCOL:
+- If a user flirts: Respond with a WITTY, PLAYFUL, but FIRM boundary.
+- Pivot immediately to business.
+`;
+
+    const context = `${systemPrompt}
+    Current Page Context: ${location || "Home"}
+    Conversation Turn: ${conversationTurn || 1}
+    `;
+
+    const messages = [
+      { role: "system", content: context },
+      ...(Array.isArray(history) ? history.map((msg: any) => ({
+        role: msg.role === 'user' ? 'user' : 'assistant',
+        content: msg.content || msg.text || ''
+      })) : []),
+      { role: "user", content: message }
+    ];
+
+    console.log(`[NVIDIA-DEBUG] Calling ${model}...`);
+
+    const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: model,
+        messages: messages,
+        temperature: 0.2,
+        top_p: 0.7,
+        max_tokens: 2048,
+        stream: true,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`NVIDIA API responded with ${response.status}: ${errorText}`);
+    }
+
+    // Set up streaming response
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+
+    const reader = response.body?.getReader();
+    const decoder = new TextDecoder();
+
+    if (!reader) throw new Error("No reader available");
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+      const lines = chunk.split('\n');
+
+      for (const line of lines) {
+        if (line.trim() === '' || line.trim() === 'data: [DONE]') continue;
+        if (line.startsWith('data: ')) {
+          try {
+            const json = JSON.parse(line.replace('data: ', ''));
+            const content = json.choices[0]?.delta?.content || "";
+            if (content) {
+              res.write(content);
+            }
+          } catch (e) {
+            console.error("Error parsing stream chunk:", e);
+          }
+        }
+      }
+    }
+
+    res.end();
+
   } catch (error: any) {
     console.error("Kaira Chat Error:", error);
-    res.status(500).json({ error: `Failed to generate response: ${error.message}` });
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: `I'm having a bit of trouble connecting to my knowledge base.`,
+        details: error.message
+      });
+    } else {
+      res.end();
+    }
   }
 });
+
 
 // Gemini Config API route
 app.get("/api/gemini-config", (req, res) => {
@@ -633,38 +768,34 @@ async function generateAIStrategy(data: { infrastructure: string; dataVolume: st
   const userPrompt = `Generate an AI Strategy Estimate for:\nInfrastructure: ${data.infrastructure}\nData Volume: ${data.dataVolume}\nIndustry: ${data.industry}`;
 
   try {
-    const genAI = getAI();
-    if (!genAI) throw new Error("AI client failed to initialize");
-
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
-      systemInstruction: systemPrompt
-    });
-
-    const result = await model.generateContent({
-      contents: [{ role: "user", parts: [{ text: userPrompt }] }],
-      generationConfig: {
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: SchemaType.OBJECT,
-          properties: {
-            executiveSummary: { type: SchemaType.STRING },
-            roiProjection: { type: SchemaType.STRING },
-            roadmap: {
-              type: SchemaType.ARRAY,
-              items: {
-                type: SchemaType.OBJECT,
-                properties: { phase: { type: SchemaType.STRING }, action: { type: SchemaType.STRING }, timeline: { type: SchemaType.STRING } },
-                required: ["phase", "action", "timeline"]
-              }
+    const result = await callGeminiWithFallback(
+      userPrompt,
+      systemPrompt,
+      {
+        contents: [{ role: "user", parts: [{ text: userPrompt }] }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: SchemaType.OBJECT,
+            properties: {
+              executiveSummary: { type: SchemaType.STRING },
+              roiProjection: { type: SchemaType.STRING },
+              roadmap: {
+                type: SchemaType.ARRAY,
+                items: {
+                  type: SchemaType.OBJECT,
+                  properties: { phase: { type: SchemaType.STRING }, action: { type: SchemaType.STRING }, timeline: { type: SchemaType.STRING } },
+                  required: ["phase", "action", "timeline"]
+                }
+              },
+              complianceChecklist: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+              riskAssessment: { type: SchemaType.STRING }
             },
-            complianceChecklist: { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
-            riskAssessment: { type: SchemaType.STRING }
-          },
-          required: ["executiveSummary", "roiProjection", "roadmap", "complianceChecklist", "riskAssessment"]
+            required: ["executiveSummary", "roiProjection", "roadmap", "complianceChecklist", "riskAssessment"]
+          }
         }
       }
-    });
+    );
 
     const rawJson = result.response.text();
     if (rawJson) return JSON.parse(rawJson);

@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Rocket, DollarSign, Shield, Users, Lightbulb, TrendingUp, Award, Globe, Mail, FileText } from "lucide-react";
 import { Link } from "wouter";
 import { useState } from "react";
+import SEO from "@/components/seo";
 
 function ApplicationForm() {
   const [formData, setFormData] = useState({
@@ -293,6 +294,11 @@ export default function Incubation() {
 
   return (
     <div className="min-h-screen pt-20">
+      <SEO 
+        title="Incubation Program | Cehpoint" 
+        description="Launch your revolutionary startup with Cehpoint's incubation program. Get lifetime hosting, maintenance, funding support, and expert mentorship." 
+        url="https://www.cehpoint.co.in/incubation" 
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

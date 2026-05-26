@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import SEO from "@/components/seo";
 
 export default function SecurityScheme() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -88,6 +89,11 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
 
     return (
         <div className="pt-36 min-h-screen bg-background text-foreground overflow-x-hidden">
+            <SEO 
+                title="Free Cyber Security Scheme | Cehpoint" 
+                description="Apply for Cehpoint's free cyber security services scheme. Enterprise-grade monitoring and threat detection for your business, zero cost." 
+                url="https://www.cehpoint.co.in/security-scheme" 
+            />
             {/* Hero Section */}
             <section className="relative py-12 md:py-24 lg:py-32 overflow-hidden px-4 md:px-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />

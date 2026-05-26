@@ -10,10 +10,11 @@
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "cross-env NODE_ENV=development tsx server/index.ts",
     "dev:client": "vite",
-    "build": "tsc && vite build",
+    "build": "node generate-sitemap.cjs && tsc && vite build",
     "start": "node dist/server/index.js"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "^1.4.0",
     "@google/genai": "^1.16.0",
     "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^3.10.0",

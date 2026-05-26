@@ -1,10 +1,16 @@
 import { Link } from "wouter";
 import ProposalPopup from "@/components/quotation/proposal-popup";
 import { Building2, Laptop } from "lucide-react";
+import SEO from "@/components/seo";
 
 export default function Quotation() {
   return (
     <div className="pt-36 min-h-screen" data-testid="quotation-page">
+      <SEO 
+        title="Get a Quote | Cehpoint" 
+        description="Get your project proposal. Choose from Enterprise Outsourcing or our IT Portal for startups and entrepreneurs." 
+        url="https://www.cehpoint.co.in/quotation" 
+      />
       <ProposalPopup />
       <section className="py-24 bg-secondary/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -73,9 +73,10 @@ export default function Navbar() {
     { name: "Investment Desk", href: "/cost-estimator" },
     { name: "Training", href: "/training" },
     {
-      name: "Founder's Hub",
+      name: "Company",
       href: "#",
       children: [
+        { name: "About Us", href: "/about" },
         { name: "Demo Process", href: "/demo-delivery" },
         { name: "Company Profile", href: "/company-profile" },
         { name: "Incubation", href: "/incubation" },
@@ -85,7 +86,7 @@ export default function Navbar() {
       ]
     },
     {
-      name: "Employees Corner",
+      name: "Portals",
       href: "#",
       children: [
         { name: "Projects Portal", href: "https://projects.cehpoint.co.in/", external: true },

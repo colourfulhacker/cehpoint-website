@@ -10,6 +10,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { globalLocations } from "@/data/global-locations";
 import { serviceTechStacks } from "@/data/service-tech-stacks";
+import SEO from "@/components/seo";
 
 export default function CompanyProfile() {
     const [isGenerating, setIsGenerating] = useState(false);
@@ -78,7 +79,7 @@ export default function CompanyProfile() {
     };
 
     const metrics = [
-        { label: "Global Projects", value: "200+", desc: "Successful Deliveries" },
+        { label: "Global Projects", value: "500+", desc: "Successful Deliveries" },
         { label: "YoY Growth", value: "35%", desc: "Consistent Revenue Scale" },
         { label: "Threats Blocked", value: "99.9%", desc: "Enterprise Security Efficiency" },
         { label: "Innovation Assets", value: "25+", desc: "Proprietary IP & Ventures" },
@@ -154,6 +155,11 @@ export default function CompanyProfile() {
 
     return (
         <div className="min-h-screen bg-neutral-50 text-neutral-900 font-sans pt-20 pb-20">
+            <SEO 
+                title="Company Profile | Cehpoint" 
+                description="View and download the complete company profile of Cehpoint, detailing our services, global presence, tech stack, and achievements." 
+                url="https://www.cehpoint.co.in/company-profile" 
+            />
             {/* Control Bar */}
             <div className="fixed bottom-8 right-8 z-50">
                 <Button

@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { leadershipData } from "@/data/leadership";
+import SEO from "@/components/seo";
 
 export default function LeadershipSearch() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -76,6 +77,11 @@ export default function LeadershipSearch() {
 
     return (
         <div className="min-h-screen bg-background pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+            <SEO 
+                title="Leadership Team | Cehpoint" 
+                description="Search and explore Cehpoint's global leadership team by country and department." 
+                url="https://www.cehpoint.co.in/leadership-search" 
+            />
             <div className="max-w-7xl mx-auto space-y-12">
                 <div className="text-center space-y-4">
                     <motion.h1

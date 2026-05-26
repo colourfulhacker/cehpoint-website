@@ -6,6 +6,7 @@ import InvestorFAQ from "@/components/investor/investor-faq";
 // import FinalPitch from "@/components/investor/final-pitch";
 import { Handshake } from "lucide-react";
 import { Idea } from "@/data/investor-ideas";
+import SEO from "@/components/seo";
 
 export default function InvestorConnect() {
     const [view, setView] = useState<"swipe" | "match" | "pitch">("swipe");
@@ -22,6 +23,11 @@ export default function InvestorConnect() {
 
     return (
         <div className="min-h-screen pt-20 bg-background overflow-x-hidden relative">
+            <SEO 
+                title="Investor Connect | Discover Unicorns" 
+                description="Swipe on top startup ideas, match with founders, and own 100% of a profitable tech startup." 
+                url="https://www.cehpoint.co.in/investor-connect" 
+            />
             {/* Dynamic Background */}
             <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />

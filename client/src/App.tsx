@@ -30,6 +30,7 @@ import Careers from "@/pages/careers";
 import InvestorConnect from "@/pages/investor-connect";
 import LeadershipSearch from "@/pages/leadership-search";
 import CompanyProfile from "@/pages/company-profile";
+import About from "@/pages/about";
 const ProfessionalPartner = lazy(() => import("@/pages/services/professional-partner"));
 const AIInRealLife = lazy(() => import("@/pages/ai-in-real-life"));
 import ContactPage from "@/pages/contact";
@@ -141,6 +142,7 @@ function Router() {
           <Route path="/investor-connect" component={InvestorConnect} />
           <Route path="/leadership-search" component={LeadershipSearch} />
           <Route path="/company-profile" component={CompanyProfile} />
+          <Route path="/about" component={About} />
           <Route path="/insights" component={Insights} />
           <Route path="/insights/ethical-standards" component={EthicalStandardsArticle} />
           <Route path="/insights/ai-vs-reality" component={AIvsRealityArticle} />

@@ -7,6 +7,7 @@ import WhyChooseUs from "@/components/sections/why-choose-us";
 import DemoProcess from "@/components/sections/demo-process";
 import EngagementModel from "@/components/sections/engagement-model";
 import ProjectCostEstimator from "@/components/calculators/project-cost-estimator";
+import ClientTestimonials from "@/components/sections/client-testimonials";
 import PortfolioCareers from "@/components/sections/portfolio-careers";
 import SEO from "@/components/seo";
 import OrganizationSchema from "@/components/seo/organization-schema";
@@ -44,6 +45,7 @@ export default function Home() {
         <ProcessWorkflow />
         <DemoProcess />
         <EngagementModel />
+        <ClientTestimonials />
         <ProjectCostEstimator />
         <PortfolioCareers />
       </main>

@@ -21,7 +21,7 @@ export default function ServicesPage() {
             features: ["Custom Development", "Cloud Architecture", "Digital Transformation", "Legacy Modernization"],
             gradient: "from-purple-500 to-pink-500",
             href: "/services#innovative-it-services",
-            stats: "200+ Projects"
+            stats: "500+ Projects"
         },
         {
             icon: Shield,

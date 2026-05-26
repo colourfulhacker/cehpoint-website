@@ -1,5 +1,6 @@
 import { ExternalLink, Users, Code, Award, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEO from "@/components/seo";
 
 export default function Interns() {
   const benefits = [
@@ -38,6 +39,11 @@ export default function Interns() {
 
   return (
     <div className="pt-36 min-h-screen" data-testid="interns-page">
+      <SEO 
+        title="Internship Program | Cehpoint" 
+        description="Join Cehpoint's performance-based internship program with stipends and PPO opportunities. Gain real-world experience in modern technologies." 
+        url="https://www.cehpoint.co.in/interns" 
+      />
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-background via-secondary to-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

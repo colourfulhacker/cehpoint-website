@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/seo";
 import {
     Briefcase,
     Code,
@@ -97,10 +97,11 @@ export default function PartnerNetwork() {
 
     return (
         <div className="min-h-screen pt-24 pb-16 bg-background">
-            <Helmet>
-                <title>Partner Network - Join Cehpoint as a Freelancer or Contractor</title>
-                <meta name="description" content="Join Cehpoint's elite network of freelancers, investigators, and developers. Apply now with your rate and experience." />
-            </Helmet>
+            <SEO 
+                title="Partner Network - Join Cehpoint as a Freelancer or Contractor" 
+                description="Join Cehpoint's elite network of freelancers, investigators, and developers. Apply now with your rate and experience." 
+                url="https://www.cehpoint.co.in/partner-network" 
+            />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
