@@ -268,7 +268,7 @@ Please provide a formal quotation for these services.`;
                     <div className="lg:col-span-2 space-y-6">
 
                         {/* Infrastructure Profile */}
-                        <Card className="glass-intense border-white/10">
+                        <Card className="glass-intense border-foreground/10">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     <Server className="w-5 h-5 text-indigo-400" />
@@ -312,7 +312,7 @@ Please provide a formal quotation for these services.`;
                         </Card>
 
                         {/* VAPT Section */}
-                        <Card className="glass-intense border-white/10 overflow-hidden relative">
+                        <Card className="glass-intense border-foreground/10 overflow-hidden relative">
                             <div className="absolute top-0 right-0 p-4 opacity-10">
                                 <ShieldCheck className="w-24 h-24" />
                             </div>
@@ -330,7 +330,7 @@ Please provide a formal quotation for these services.`;
                                             // @ts-ignore
                                             vaptCounts[option.id] > 0
                                                 ? 'bg-primary/5 border-primary/50'
-                                                : 'bg-white/5 border-white/10 hover:bg-white/10'
+                                                : 'bg-foreground/5 border-foreground/10 hover:bg-foreground/10'
                                             }`}>
                                             <div className="flex items-start justify-between mb-4">
                                                 <div className="flex items-center gap-3">
@@ -378,7 +378,7 @@ Please provide a formal quotation for these services.`;
                                                         />
 
                                                         {option.id === 'web' && (
-                                                            <div className="pt-2 border-t border-white/10">
+                                                            <div className="pt-2 border-t border-foreground/10">
                                                                 <div className="flex justify-between text-xs mb-2">
                                                                     <span className="text-muted-foreground">Subdomains</span>
                                                                     <span className="font-bold text-primary">{subdomainCount}</span>
@@ -393,7 +393,7 @@ Please provide a formal quotation for these services.`;
                                                         )}
 
                                                         {option.id === 'mobile' && (
-                                                            <div className="pt-2 border-t border-white/10">
+                                                            <div className="pt-2 border-t border-foreground/10">
                                                                 <div className="flex justify-between text-xs mb-2">
                                                                     <span className="text-muted-foreground">Target Platforms (iOS/Android)</span>
                                                                     <span className="font-bold text-primary">{mobilePlatforms}</span>
@@ -409,7 +409,7 @@ Please provide a formal quotation for these services.`;
                                                         )}
 
                                                         {option.id === 'network' && (
-                                                            <div className="pt-2 border-t border-white/10">
+                                                            <div className="pt-2 border-t border-foreground/10">
                                                                 <div className="flex justify-between text-xs mb-2">
                                                                     <span className="text-muted-foreground">IPs / Nodes per Network</span>
                                                                     <span className="font-bold text-primary">{networkIPs}</span>
@@ -425,7 +425,7 @@ Please provide a formal quotation for these services.`;
                                                         )}
 
                                                         {option.id === 'cloud' && (
-                                                            <div className="pt-2 border-t border-white/10">
+                                                            <div className="pt-2 border-t border-foreground/10">
                                                                 <div className="flex justify-between text-xs mb-2">
                                                                     <span className="text-muted-foreground">Resources per Account</span>
                                                                     <span className="font-bold text-primary">{cloudResources}</span>
@@ -441,7 +441,7 @@ Please provide a formal quotation for these services.`;
                                                         )}
 
                                                         {option.id === 'api' && (
-                                                            <div className="pt-2 border-t border-white/10">
+                                                            <div className="pt-2 border-t border-foreground/10">
                                                                 <div className="flex justify-between text-xs mb-2">
                                                                     <span className="text-muted-foreground">Endpoints per Service</span>
                                                                     <span className="font-bold text-primary">{apiEndpointsPerService}</span>
@@ -464,7 +464,7 @@ Please provide a formal quotation for these services.`;
                         </Card>
 
                         {/* SOC Section */}
-                        <Card className="glass-intense border-white/10 relative overflow-hidden">
+                        <Card className="glass-intense border-foreground/10 relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-4 opacity-10">
                                 <Activity className="w-24 h-24" />
                             </div>
@@ -498,7 +498,7 @@ Please provide a formal quotation for these services.`;
                         </Card>
 
                         {/* Compliance Section */}
-                        <Card className="glass-intense border-white/10 relative overflow-hidden">
+                        <Card className="glass-intense border-foreground/10 relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-4 opacity-10">
                                 <FileCheck className="w-24 h-24" />
                             </div>
@@ -551,7 +551,7 @@ Please provide a formal quotation for these services.`;
                                         </Select>
                                     </div>
 
-                                    <div className="pt-6 border-t border-white/10 text-center">
+                                    <div className="pt-6 border-t border-foreground/10 text-center">
                                         <div className="text-sm text-muted-foreground mb-2">Total Estimated Cost</div>
                                         <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-2">
                                             {formatCurrency(totalCost)}
@@ -576,7 +576,7 @@ Please provide a formal quotation for these services.`;
                                 </CardContent>
                             </Card>
 
-                            <div className="glass p-6 rounded-xl text-sm text-muted-foreground border border-white/5 bg-gradient-to-br from-white/5 to-transparent">
+                            <div className="glass p-6 rounded-xl text-sm text-muted-foreground border border-foreground/5 bg-gradient-to-br from-white/5 to-transparent">
                                 <h4 className="font-bold text-foreground mb-3 flex items-center gap-2">
                                     <ShieldCheck className="w-4 h-4 text-blue-400" />
                                     Why Choose Cehpoint?

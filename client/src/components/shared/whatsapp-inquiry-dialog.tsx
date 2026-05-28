@@ -48,10 +48,10 @@ Location: ${locationName}
     return (
         <Dialog>
             <DialogTrigger asChild>{trigger}</DialogTrigger>
-            <DialogContent className="sm:max-w-[400px] glass-intense border-white/20 text-white">
+            <DialogContent className="sm:max-w-[400px] glass-intense border-foreground/20 text-white">
                 <DialogHeader>
                     <DialogTitle className="text-2xl font-bold">{title}</DialogTitle>
-                    <DialogDescription className="text-gray-300">
+                    <DialogDescription className="text-muted-foreground">
                         {description || (
                             <>
                                 Get a quote & connect with experts for <strong>{appName}</strong> in {locationName}.
@@ -67,7 +67,7 @@ Location: ${locationName}
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>Name</FormLabel>
-                                    <FormControl><Input placeholder="Your Name" {...field} className="bg-white/10 border-white/20 text-white" /></FormControl>
+                                    <FormControl><Input placeholder="Your Name" {...field} className="bg-foreground/10 border-foreground/20 text-white" /></FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -78,7 +78,7 @@ Location: ${locationName}
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>Phone/WhatsApp</FormLabel>
-                                    <FormControl><Input placeholder="+91 XXXXX XXXXX" {...field} className="bg-white/10 border-white/20 text-white" /></FormControl>
+                                    <FormControl><Input placeholder="+91 XXXXX XXXXX" {...field} className="bg-foreground/10 border-foreground/20 text-white" /></FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}

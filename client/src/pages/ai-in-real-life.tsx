@@ -157,7 +157,7 @@ export default function AIInRealLife() {
                   View Brochure
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-4xl glass-intense border-white/10 p-0 overflow-hidden bg-background/95 backdrop-blur-2xl max-h-[90vh] overflow-y-auto">
+              <DialogContent className="max-w-4xl glass-intense border-foreground/10 p-0 overflow-hidden bg-background/95 backdrop-blur-2xl max-h-[90vh] overflow-y-auto">
                 <div className="relative">
                   {/* Brochure Header */}
                   <div className="bg-primary/20 p-12 text-center relative overflow-hidden">
@@ -180,19 +180,19 @@ export default function AIInRealLife() {
                           <CheckCircle className="w-6 h-6 text-primary" /> Core Program Stats
                         </h3>
                         <div className="grid grid-cols-2 gap-4">
-                          <div className="p-4 rounded-2xl bg-secondary/30 border border-white/5">
+                          <div className="p-4 rounded-2xl bg-secondary/30 border border-foreground/5">
                             <div className="text-3xl font-bold text-primary">12</div>
                             <div className="text-sm opacity-60">Intensive Weeks</div>
                           </div>
-                          <div className="p-4 rounded-2xl bg-secondary/30 border border-white/5">
+                          <div className="p-4 rounded-2xl bg-secondary/30 border border-foreground/5">
                             <div className="text-3xl font-bold text-primary">40+</div>
                             <div className="text-sm opacity-60">AI Tools Mastered</div>
                           </div>
-                          <div className="p-4 rounded-2xl bg-secondary/30 border border-white/5">
+                          <div className="p-4 rounded-2xl bg-secondary/30 border border-foreground/5">
                             <div className="text-3xl font-bold text-primary">5+</div>
                             <div className="text-sm opacity-60">Real Projects</div>
                           </div>
-                          <div className="p-4 rounded-2xl bg-secondary/30 border border-white/5">
+                          <div className="p-4 rounded-2xl bg-secondary/30 border border-foreground/5">
                             <div className="text-3xl font-bold text-primary">∞</div>
                             <div className="text-sm opacity-60">Community Access</div>
                           </div>
@@ -227,7 +227,7 @@ export default function AIInRealLife() {
                       </h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {weeklyBreakdown.map((item, idx) => (
-                          <div key={idx} className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors group">
+                          <div key={idx} className="p-6 rounded-2xl bg-foreground/5 border border-foreground/10 hover:border-primary/30 transition-colors group">
                             <div className="text-primary font-bold mb-1">Week {item.week}</div>
                             <h4 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{item.title}</h4>
                             <p className="text-sm text-foreground/60">{item.focus}</p>
@@ -237,13 +237,13 @@ export default function AIInRealLife() {
                     </div>
 
                     {/* Enhanced Section: Tools */}
-                    <div className="p-8 rounded-3xl bg-secondary/30 border border-white/5">
+                    <div className="p-8 rounded-3xl bg-secondary/30 border border-foreground/5">
                       <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                         <Code className="w-5 h-5 text-primary" /> Multi-Tool Ecosystem
                       </h3>
                       <div className="flex flex-wrap gap-3">
                         {["OpenAI", "Anthropic", "Midjourney", "Make.com", "Pinecone", "LangChain", "Cursor", "ElevenLabs", "Luma AI", "Stable Diffusion"].map((tool, i) => (
-                          <span key={i} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-medium">
+                          <span key={i} className="px-4 py-2 rounded-xl bg-foreground/5 border border-foreground/10 text-xs font-medium">
                             {tool}
                           </span>
                         ))}
@@ -287,7 +287,7 @@ export default function AIInRealLife() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="space-y-4 p-8 rounded-3xl glass border-white/5 hover:border-primary/20 transition-all duration-300 group"
+                className="space-y-4 p-8 rounded-3xl glass border-foreground/5 hover:border-primary/20 transition-all duration-300 group"
               >
                 <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
                   {prop.icon}
@@ -335,7 +335,7 @@ export default function AIInRealLife() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
               >
-                <Card className="glass h-full border-white/5 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+                <Card className="glass h-full border-foreground/5 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
                   <CardContent className="p-8 relative">
                     <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                       {module.icon}
@@ -375,14 +375,14 @@ export default function AIInRealLife() {
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="bg-white/20 p-2 rounded-lg mt-1"><Timer className="w-5 h-5" /></div>
+                  <div className="bg-foreground/20 p-2 rounded-lg mt-1"><Timer className="w-5 h-5" /></div>
                   <div>
                     <h4 className="text-xl font-bold">Weekday Evening Batch</h4>
                     <p className="opacity-80">Ideal for daily consistency after work hours.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="bg-white/20 p-2 rounded-lg mt-1"><Timer className="w-5 h-5" /></div>
+                  <div className="bg-foreground/20 p-2 rounded-lg mt-1"><Timer className="w-5 h-5" /></div>
                   <div>
                     <h4 className="text-xl font-bold">Weekend Intensive</h4>
                     <p className="opacity-80">Deep dive sessions for busy leaders.</p>
@@ -391,18 +391,18 @@ export default function AIInRealLife() {
               </div>
             </div>
             
-            <div className="glass-intense p-10 rounded-3xl border-white/20">
+            <div className="glass-intense p-10 rounded-3xl border-foreground/20">
               <h3 className="text-2xl font-bold mb-8 text-center underline decoration-primary underline-offset-8">Batch Availability</h3>
               <div className="space-y-6">
-                <div className="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/10">
+                <div className="flex justify-between items-center p-4 rounded-xl bg-foreground/5 border border-foreground/10">
                   <span className="font-semibold">Morning Track</span>
                   <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-bold ring-1 ring-green-500/30">Filling Fast</span>
                 </div>
-                <div className="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/10">
+                <div className="flex justify-between items-center p-4 rounded-xl bg-foreground/5 border border-foreground/10">
                   <span className="font-semibold">Evening Track</span>
                   <span className="px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold ring-1 ring-red-500/30">Last 3 Seats</span>
                 </div>
-                <div className="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/10">
+                <div className="flex justify-between items-center p-4 rounded-xl bg-foreground/5 border border-foreground/10">
                   <span className="font-semibold">Weekend Track</span>
                   <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold ring-1 ring-blue-500/30">Next Month</span>
                 </div>
@@ -428,22 +428,22 @@ export default function AIInRealLife() {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-12">Step into the <span className="text-primary">Global Market</span></h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            <div className="p-8 rounded-3xl bg-secondary/10 border border-white/5">
+            <div className="p-8 rounded-3xl bg-secondary/10 border border-foreground/5">
               <Globe className="w-10 h-10 text-primary mx-auto mb-6" />
               <h4 className="text-xl font-bold mb-3">Remote Work</h4>
               <p className="text-foreground/70 text-sm">Work for global AI startups from anywhere.</p>
             </div>
-            <div className="p-8 rounded-3xl bg-secondary/10 border border-white/5">
+            <div className="p-8 rounded-3xl bg-secondary/10 border border-foreground/5">
               <Users className="w-10 h-10 text-primary mx-auto mb-6" />
               <h4 className="text-xl font-bold mb-3">Consulting</h4>
               <p className="text-foreground/70 text-sm">Offer AI consulting services to SMEs globally.</p>
             </div>
-            <div className="p-8 rounded-3xl bg-secondary/10 border border-white/5">
+            <div className="p-8 rounded-3xl bg-secondary/10 border border-foreground/5">
                <TrendingUp className="w-10 h-10 text-primary mx-auto mb-6" />
               <h4 className="text-xl font-bold mb-3">Growth</h4>
               <p className="text-foreground/70 text-sm">Scale your earnings with specialized AI expertise.</p>
             </div>
-            <div className="p-8 rounded-3xl bg-secondary/10 border border-white/5">
+            <div className="p-8 rounded-3xl bg-secondary/10 border border-foreground/5">
                <CheckCircle className="w-10 h-10 text-primary mx-auto mb-6" />
               <h4 className="text-xl font-bold mb-3">Legacy</h4>
               <p className="text-foreground/70 text-sm">Stay ahead of the curve in a rapidly changing world.</p>
@@ -453,13 +453,13 @@ export default function AIInRealLife() {
       </section>
 
       {/* Final Call to Action */}
-      <section className="py-24 border-t border-white/5 relative overflow-hidden">
+      <section className="py-24 border-t border-foreground/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(139,92,246,0.1),transparent_70%)]" />
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-secondary/10 p-16 rounded-[40px] border border-white/5 relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
+          className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-secondary/10 p-16 rounded-[40px] border border-foreground/5 relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.05),transparent_70%)]" />
           <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 relative z-10 leading-tight">Ready to <span className="text-primary">Rewrite</span> <br /> Your Career?</h2>

@@ -481,7 +481,7 @@ ${formData.company}`;
                 ]}
             />
 
-            <div className="min-h-screen bg-slate-950 text-slate-100 pt-32 pb-20 relative overflow-hidden">
+            <div className="min-h-screen bg-background text-slate-100 pt-32 pb-20 relative overflow-hidden">
                 {/* Glowing Abstract Backdrops */}
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
                 <div className="absolute top-40 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
@@ -489,24 +489,24 @@ ${formData.company}`;
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
                     {/* Official Banner Header */}
-                    <div className="mb-12 border-b border-slate-800 pb-10">
+                    <div className="mb-12 border-b border-border pb-10">
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
-                                <div className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-xs text-slate-300 font-mono mb-4">
+                                <div className="inline-flex items-center gap-2 bg-card border border-border px-3 py-1 rounded-full text-xs text-muted-foreground font-mono mb-4">
                                     <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
                                     Procurement Notice Inviting Bids
                                 </div>
                                 <h1 className="text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-wider flex items-center gap-3">
                                     Notice Inviting Tenders
                                 </h1>
-                                <p className="text-slate-400 mt-3 text-lg font-light max-w-3xl">
+                                <p className="text-muted-foreground mt-3 text-lg font-light max-w-3xl">
                                     Cehpoint Procurement and Operations Directorate publishes Request for Proposals (RFP) for software audits, cyberdefense utilities, and public governance infrastructures.
                                 </p>
                             </div>
-                            <div className="bg-slate-900/60 border border-slate-800 p-4 rounded-xl text-left md:text-right glass min-w-[240px]">
-                                <div className="text-xs text-slate-400 uppercase tracking-widest font-mono">Authority Division</div>
+                            <div className="bg-card/60 border border-border p-4 rounded-xl text-left md:text-right glass min-w-[240px]">
+                                <div className="text-xs text-muted-foreground uppercase tracking-widest font-mono">Authority Division</div>
                                 <div className="font-bold text-lg text-white mt-1">Cehpoint Technical Board</div>
-                                <div className="text-xs text-slate-400 mt-1 font-mono">Ref: CEH-NIT-OPS-2026</div>
+                                <div className="text-xs text-muted-foreground mt-1 font-mono">Ref: CEH-NIT-OPS-2026</div>
                             </div>
                         </div>
                     </div>
@@ -520,21 +520,21 @@ ${formData.company}`;
                                 </div>
                                 <div>
                                     <div className="text-2xl font-bold text-white font-mono">{stat.value}</div>
-                                    <div className="text-xs text-slate-400 font-medium">{stat.label}</div>
+                                    <div className="text-xs text-muted-foreground font-medium">{stat.label}</div>
                                 </div>
                             </div>
                         ))}
                     </div>
 
                     {/* Search & Dynamic Filter Portal Section */}
-                    <div className="bg-slate-900/40 border border-slate-800/80 p-6 rounded-2xl mb-10 glass-intense">
+                    <div className="bg-card/40 border border-border/80 p-6 rounded-2xl mb-10 glass-intense">
                         <div className="flex flex-col gap-6">
                             <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
                                 <h2 className="text-xl font-bold text-white flex items-center gap-2">
                                     <Filter className="w-5 h-5 text-primary" />
                                     Contract Listings & Searches
                                 </h2>
-                                <div className="text-xs text-slate-400 font-mono">
+                                <div className="text-xs text-muted-foreground font-mono">
                                     Showing {filteredTenders.length} of {ALL_TENDERS.length} procurement listings
                                 </div>
                             </div>
@@ -542,10 +542,10 @@ ${formData.company}`;
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 {/* Search Bar */}
                                 <div className="relative">
-                                    <Search className="absolute left-3 top-3.5 w-4 h-4 text-slate-400" />
+                                    <Search className="absolute left-3 top-3.5 w-4 h-4 text-muted-foreground" />
                                     <Input
                                         placeholder="Search by ID, Title, Keyword..."
-                                        className="pl-10 bg-slate-950 border-slate-800 text-white placeholder-slate-400 focus:border-primary py-6"
+                                        className="pl-10 bg-background border-border text-white placeholder-slate-400 focus:border-primary py-6"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                     />
@@ -554,7 +554,7 @@ ${formData.company}`;
                                 {/* Category Selector */}
                                 <div>
                                     <select
-                                        className="w-full bg-slate-950 border border-slate-800 text-slate-300 rounded-lg p-3.5 focus:outline-none focus:border-primary font-medium"
+                                        className="w-full bg-background border border-border text-muted-foreground rounded-lg p-3.5 focus:outline-none focus:border-primary font-medium"
                                         value={selectedCategory}
                                         onChange={(e) => setSelectedCategory(e.target.value)}
                                     >
@@ -569,7 +569,7 @@ ${formData.company}`;
                                 {/* Status Selector */}
                                 <div>
                                     <select
-                                        className="w-full bg-slate-950 border border-slate-800 text-slate-300 rounded-lg p-3.5 focus:outline-none focus:border-primary font-medium"
+                                        className="w-full bg-background border border-border text-muted-foreground rounded-lg p-3.5 focus:outline-none focus:border-primary font-medium"
                                         value={selectedStatus}
                                         onChange={(e) => setSelectedStatus(e.target.value)}
                                     >
@@ -588,7 +588,7 @@ ${formData.company}`;
                                     <Button
                                         variant="outline"
                                         size="sm"
-                                        className="text-slate-400 hover:text-white border-slate-800 hover:bg-slate-800/50"
+                                        className="text-muted-foreground hover:text-white border-border hover:bg-slate-800/50"
                                         onClick={() => {
                                             setSearchQuery("");
                                             setSelectedCategory("All");
@@ -607,7 +607,7 @@ ${formData.company}`;
                     <div className="space-y-6 mb-16">
                         {filteredTenders.length > 0 ? (
                             filteredTenders.map((tender) => (
-                                <Card key={tender.id} className="bg-slate-900/50 border-slate-800 hover:border-primary/40 transition-all duration-300 glass hover:shadow-2xl hover:shadow-primary/5">
+                                <Card key={tender.id} className="bg-card/50 border-border hover:border-primary/40 transition-all duration-300 glass hover:shadow-2xl hover:shadow-primary/5">
                                     <CardContent className="p-6 md:p-8">
                                         <div className="flex flex-col lg:flex-row gap-6 lg:items-center justify-between">
                                             
@@ -615,14 +615,14 @@ ${formData.company}`;
                                             <div className="flex-1 space-y-4">
                                                 <div className="flex flex-wrap items-center gap-3">
                                                     <div 
-                                                        className="flex items-center gap-2 font-mono text-xs px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-primary hover:border-primary/50 cursor-pointer transition-colors"
+                                                        className="flex items-center gap-2 font-mono text-xs px-2.5 py-1 rounded bg-background border border-border text-primary hover:border-primary/50 cursor-pointer transition-colors"
                                                         onClick={(e) => handleCopyId(e, tender.id)}
                                                         title="Click to copy ID"
                                                     >
                                                         {tender.id}
-                                                        {copiedId === tender.id ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5 text-slate-400" />}
+                                                        {copiedId === tender.id ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5 text-muted-foreground" />}
                                                     </div>
-                                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+                                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-800 text-muted-foreground border border-slate-700">
                                                         {tender.category}
                                                     </span>
                                                     <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold uppercase border ${
@@ -638,31 +638,31 @@ ${formData.company}`;
 
                                                 <div>
                                                     <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{tender.title}</h3>
-                                                    <p className="text-slate-400 leading-relaxed max-w-4xl text-sm md:text-base">
+                                                    <p className="text-muted-foreground leading-relaxed max-w-4xl text-sm md:text-base">
                                                         {tender.description}
                                                     </p>
                                                 </div>
 
-                                                <div className="flex flex-wrap gap-4 text-xs md:text-sm text-slate-300 pt-2">
-                                                    <div className="flex items-center gap-2 bg-slate-950 border border-slate-800/80 px-3 py-1.5 rounded-lg">
+                                                <div className="flex flex-wrap gap-4 text-xs md:text-sm text-muted-foreground pt-2">
+                                                    <div className="flex items-center gap-2 bg-background border border-border/80 px-3 py-1.5 rounded-lg">
                                                         <Briefcase className="w-4 h-4 text-primary" />
                                                         <span>Eligibility: <strong className="text-white font-medium">{tender.eligibility}</strong></span>
                                                     </div>
-                                                    <div className="flex items-center gap-2 bg-slate-950 border border-slate-800/80 px-3 py-1.5 rounded-lg">
+                                                    <div className="flex items-center gap-2 bg-background border border-border/80 px-3 py-1.5 rounded-lg">
                                                         <Calendar className="w-4 h-4 text-primary" />
                                                         <span>Deadline: <strong className="text-white font-medium">{tender.deadline}</strong></span>
                                                     </div>
-                                                    <div className="flex items-center gap-2 bg-slate-950 border border-slate-800/80 px-3 py-1.5 rounded-lg">
-                                                        <Calendar className="w-4 h-4 text-slate-400" />
-                                                        <span>Published: <strong className="text-slate-400 font-medium">{tender.publishedDate}</strong></span>
+                                                    <div className="flex items-center gap-2 bg-background border border-border/80 px-3 py-1.5 rounded-lg">
+                                                        <Calendar className="w-4 h-4 text-muted-foreground" />
+                                                        <span>Published: <strong className="text-muted-foreground font-medium">{tender.publishedDate}</strong></span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             {/* Action / Budget Panel Right */}
-                                            <div className="flex flex-col sm:flex-row lg:flex-col gap-5 items-start lg:items-end lg:min-w-[240px] border-t lg:border-t-0 lg:border-l border-slate-800 pt-5 lg:pt-0 lg:pl-8">
+                                            <div className="flex flex-col sm:flex-row lg:flex-col gap-5 items-start lg:items-end lg:min-w-[240px] border-t lg:border-t-0 lg:border-l border-border pt-5 lg:pt-0 lg:pl-8">
                                                 <div className="text-left lg:text-right w-full">
-                                                    <div className="text-xs text-slate-400 uppercase tracking-widest font-mono">Estimated Tender Budget</div>
+                                                    <div className="text-xs text-muted-foreground uppercase tracking-widest font-mono">Estimated Tender Budget</div>
                                                     <div className="text-3xl font-bold text-white font-mono mt-1">{tender.budget}</div>
                                                 </div>
 
@@ -671,20 +671,20 @@ ${formData.company}`;
                                                         <DialogTrigger asChild>
                                                             <Button
                                                                 variant="outline"
-                                                                className="w-full border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white font-medium hover:bg-slate-800/40"
+                                                                className="w-full border-border hover:border-slate-700 text-muted-foreground hover:text-white font-medium hover:bg-slate-800/40"
                                                                 onClick={() => setViewingTenderId(tender.id)}
                                                             >
                                                                 <Eye className="w-4 h-4 mr-2 text-primary" />
                                                                 View RFP Details
                                                             </Button>
                                                         </DialogTrigger>
-                                                        <DialogContent className="bg-slate-900 border-slate-800 text-slate-100 sm:max-w-xl glass-intense max-h-[90vh] overflow-y-auto">
+                                                        <DialogContent className="bg-card border-border text-slate-100 sm:max-w-xl glass-intense max-h-[90vh] overflow-y-auto">
                                                             <DialogHeader>
                                                                 <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
                                                                     <FileText className="w-6 h-6 text-primary" />
                                                                     Request for Proposal (RFP) Details
                                                                 </DialogTitle>
-                                                                <DialogDescription className="text-slate-400 font-mono text-xs">
+                                                                <DialogDescription className="text-muted-foreground font-mono text-xs">
                                                                     Tender Ref: {tender.id} | Budget: {tender.budget}
                                                                 </DialogDescription>
                                                             </DialogHeader>
@@ -701,7 +701,7 @@ ${formData.company}`;
                                                                     <>
                                                                         <div>
                                                                             <h4 className="font-bold text-white text-sm uppercase tracking-wider mb-1.5 border-b border-slate-850 pb-1">Scope of Work</h4>
-                                                                            <ul className="list-disc pl-5 space-y-1 text-slate-400 text-xs md:text-sm">
+                                                                            <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-xs md:text-sm">
                                                                                 {TENDER_DETAILS[tender.id].scope.map((item, idx) => (
                                                                                     <li key={idx}>{item}</li>
                                                                                 ))}
@@ -710,7 +710,7 @@ ${formData.company}`;
 
                                                                         <div>
                                                                             <h4 className="font-bold text-white text-sm uppercase tracking-wider mb-1.5 border-b border-slate-850 pb-1">Technical Stack Requirements</h4>
-                                                                            <ul className="list-disc pl-5 space-y-1 text-slate-400 text-xs md:text-sm">
+                                                                            <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-xs md:text-sm">
                                                                                 {TENDER_DETAILS[tender.id].technical.map((item, idx) => (
                                                                                     <li key={idx}>{item}</li>
                                                                                 ))}
@@ -719,7 +719,7 @@ ${formData.company}`;
 
                                                                         <div>
                                                                             <h4 className="font-bold text-white text-sm uppercase tracking-wider mb-1.5 border-b border-slate-850 pb-1">Payment Milestones</h4>
-                                                                            <ul className="list-disc pl-5 space-y-1 text-slate-400 text-xs md:text-sm">
+                                                                            <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-xs md:text-sm">
                                                                                 {TENDER_DETAILS[tender.id].milestones.map((item, idx) => (
                                                                                     <li key={idx}>{item}</li>
                                                                                 ))}
@@ -729,18 +729,18 @@ ${formData.company}`;
                                                                 )}
 
                                                                 {/* Action Section inside RFP viewer */}
-                                                                <div className="bg-slate-950/80 border border-slate-800 p-4 rounded-xl space-y-3">
+                                                                <div className="bg-background/80 border border-border p-4 rounded-xl space-y-3">
                                                                     <h5 className="font-bold text-white text-sm flex items-center gap-1.5">
                                                                         <Lock className="w-4 h-4 text-primary" />
                                                                         Procurement Policy Inquiry
                                                                     </h5>
-                                                                    <p className="text-slate-400 text-xs leading-relaxed">
+                                                                    <p className="text-muted-foreground text-xs leading-relaxed">
                                                                         Official guidelines, clarification reports, or full packages can be requested securely. All bid actions are processed via pre-filled email transmission protocols.
                                                                     </p>
                                                                     <div className="flex flex-col sm:flex-row gap-2 pt-1.5">
                                                                         <Button 
                                                                             variant="outline" 
-                                                                            className="flex-1 border-slate-800 text-xs text-slate-300 hover:text-white"
+                                                                            className="flex-1 border-border text-xs text-muted-foreground hover:text-white"
                                                                             onClick={() => handleRequestRFPDetails(tender.id, tender.docName)}
                                                                         >
                                                                             <Mail className="w-3.5 h-3.5 mr-1.5 text-primary" />
@@ -748,7 +748,7 @@ ${formData.company}`;
                                                                         </Button>
                                                                         <Button 
                                                                             variant="outline" 
-                                                                            className="flex-1 border-slate-800 text-xs text-slate-300 hover:text-white"
+                                                                            className="flex-1 border-border text-xs text-muted-foreground hover:text-white"
                                                                             onClick={() => handleMailToRequest(
                                                                                 `Pre-Bid Clarification Request: ${tender.id}`,
                                                                                 `Dear Cehpoint Procurement,\n\nWe have a clarification query regarding Tender ID: ${tender.id}.\n\nQuery:\n- [Write your query here]\n\nRegards,\n[Name]`,
@@ -793,13 +793,13 @@ ${formData.company}`;
                                                                     Apply for Tender
                                                                 </Button>
                                                             </DialogTrigger>
-                                                            <DialogContent className="bg-slate-900 border-slate-800 text-slate-100 sm:max-w-xl glass-intense max-h-[90vh] overflow-y-auto">
+                                                            <DialogContent className="bg-card border-border text-slate-100 sm:max-w-xl glass-intense max-h-[90vh] overflow-y-auto">
                                                                 <DialogHeader>
                                                                     <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
                                                                         <Shield className="w-6 h-6 text-primary" />
                                                                         Bid Proposal Submission
                                                                     </DialogTitle>
-                                                                    <DialogDescription className="text-slate-400">
+                                                                    <DialogDescription className="text-muted-foreground">
                                                                         Enter your technical information and cost metrics. Submitting generates an email draft. You must manually attach your final document proposals in your mailbox client.
                                                                     </DialogDescription>
                                                                 </DialogHeader>
@@ -807,13 +807,13 @@ ${formData.company}`;
                                                                 <form onSubmit={handleFormSubmit} className="space-y-5 py-4">
                                                                     
                                                                     {/* Project Details Locked */}
-                                                                    <div className="bg-slate-950/80 border border-slate-800/80 p-4 rounded-xl flex items-center justify-between">
+                                                                    <div className="bg-background/80 border border-border/80 p-4 rounded-xl flex items-center justify-between">
                                                                         <div>
-                                                                            <div className="text-xs text-slate-400 font-mono">Applying For</div>
+                                                                            <div className="text-xs text-muted-foreground font-mono">Applying For</div>
                                                                             <div className="text-sm font-bold text-white mt-0.5">{tender.title}</div>
                                                                         </div>
                                                                         <div className="text-right">
-                                                                            <div className="text-xs text-slate-400 font-mono">Reference</div>
+                                                                            <div className="text-xs text-muted-foreground font-mono">Reference</div>
                                                                             <div className="text-xs font-mono font-bold text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20 mt-0.5">{selectedTender}</div>
                                                                         </div>
                                                                     </div>
@@ -828,25 +828,25 @@ ${formData.company}`;
 
                                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                                         <div className="space-y-2">
-                                                                            <Label className="text-slate-300 font-medium">Contact Person Name *</Label>
+                                                                            <Label className="text-muted-foreground font-medium">Contact Person Name *</Label>
                                                                             <Input
                                                                                 type="text"
                                                                                 autoComplete="name"
                                                                                 required
                                                                                 placeholder="John Doe"
-                                                                                className="bg-slate-950 border-slate-800 focus:border-primary text-white py-5 text-base"
+                                                                                className="bg-background border-border focus:border-primary text-white py-5 text-base"
                                                                                 value={formData.name}
                                                                                 onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                                                                             />
                                                                         </div>
                                                                         <div className="space-y-2">
-                                                                            <Label className="text-slate-300 font-medium">Company Name (or Legal Agency) *</Label>
+                                                                            <Label className="text-muted-foreground font-medium">Company Name (or Legal Agency) *</Label>
                                                                             <Input
                                                                                 type="text"
                                                                                 autoComplete="organization"
                                                                                 required
                                                                                 placeholder="Apex CyberCorp Ltd"
-                                                                                className="bg-slate-950 border-slate-800 focus:border-primary text-white py-5 text-base"
+                                                                                className="bg-background border-border focus:border-primary text-white py-5 text-base"
                                                                                 value={formData.company}
                                                                                 onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
                                                                             />
@@ -855,27 +855,27 @@ ${formData.company}`;
 
                                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                                         <div className="space-y-2">
-                                                                            <Label className="text-slate-300 font-medium">Official Email Address *</Label>
+                                                                            <Label className="text-muted-foreground font-medium">Official Email Address *</Label>
                                                                             <Input
                                                                                 type="email"
                                                                                 inputMode="email"
                                                                                 autoComplete="email"
                                                                                 required
                                                                                 placeholder="contracts@agency.com"
-                                                                                className="bg-slate-950 border-slate-800 focus:border-primary text-white py-5 text-base"
+                                                                                className="bg-background border-border focus:border-primary text-white py-5 text-base"
                                                                                 value={formData.email}
                                                                                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                                                                             />
                                                                         </div>
                                                                         <div className="space-y-2">
-                                                                            <Label className="text-slate-300 font-medium">Telephone / Mobile *</Label>
+                                                                            <Label className="text-muted-foreground font-medium">Telephone / Mobile *</Label>
                                                                             <Input
                                                                                 type="tel"
                                                                                 inputMode="tel"
                                                                                 autoComplete="tel"
                                                                                 required
                                                                                 placeholder="+91 90000 12345"
-                                                                                className="bg-slate-950 border-slate-800 focus:border-primary text-white py-5 text-base"
+                                                                                className="bg-background border-border focus:border-primary text-white py-5 text-base"
                                                                                 value={formData.phone}
                                                                                 onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                                                                             />
@@ -883,27 +883,27 @@ ${formData.company}`;
                                                                     </div>
 
                                                                     <div className="space-y-2">
-                                                                        <Label className="text-slate-300 font-medium">Financial Quote Proposal Bid (INR) *</Label>
+                                                                        <Label className="text-muted-foreground font-medium">Financial Quote Proposal Bid (INR) *</Label>
                                                                         <div className="relative">
-                                                                            <span className="absolute left-3 top-3.5 text-slate-400 text-sm font-mono font-bold">₹</span>
+                                                                            <span className="absolute left-3 top-3.5 text-muted-foreground text-sm font-mono font-bold">₹</span>
                                                                             <Input
                                                                                 type="text"
                                                                                 inputMode="numeric"
                                                                                 required
                                                                                 placeholder="1,40,000"
-                                                                                className="pl-8 bg-slate-950 border-slate-800 focus:border-primary text-white py-5 font-mono text-base"
+                                                                                className="pl-8 bg-background border-border focus:border-primary text-white py-5 font-mono text-base"
                                                                                 value={formData.bidValue}
                                                                                 onChange={(e) => setFormData(prev => ({ ...prev, bidValue: e.target.value }))}
                                                                             />
                                                                         </div>
-                                                                        <p className="text-xs text-slate-400">Provide your total commercial quote. This value is locked under security policies.</p>
+                                                                        <p className="text-xs text-muted-foreground">Provide your total commercial quote. This value is locked under security policies.</p>
                                                                     </div>
 
                                                                     {/* Mock Document Selection fields */}
                                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                                         <div className="space-y-2">
-                                                                            <Label className="text-slate-300 font-medium">Technical Proposal Form A (Simulated Selection)</Label>
-                                                                            <div className="border border-dashed border-slate-800 rounded-lg p-4 text-center hover:border-primary/50 transition-colors relative bg-slate-950/40">
+                                                                            <Label className="text-muted-foreground font-medium">Technical Proposal Form A (Simulated Selection)</Label>
+                                                                            <div className="border border-dashed border-border rounded-lg p-4 text-center hover:border-primary/50 transition-colors relative bg-background/40">
                                                                                 <input 
                                                                                     type="file" 
                                                                                     className="absolute inset-0 opacity-0 cursor-pointer" 
@@ -913,16 +913,16 @@ ${formData.company}`;
                                                                                         }
                                                                                     }}
                                                                                 />
-                                                                                <Upload className="w-5 h-5 mx-auto text-slate-400 mb-1" />
-                                                                                <span className="text-xs text-slate-300 block truncate">
+                                                                                <Upload className="w-5 h-5 mx-auto text-muted-foreground mb-1" />
+                                                                                <span className="text-xs text-muted-foreground block truncate">
                                                                                     {techFile ? techFile : "Select local PDF"}
                                                                                 </span>
                                                                             </div>
                                                                         </div>
 
                                                                         <div className="space-y-2">
-                                                                            <Label className="text-slate-300 font-medium">Financial Bid Form B (Simulated Selection)</Label>
-                                                                            <div className="border border-dashed border-slate-800 rounded-lg p-4 text-center hover:border-primary/50 transition-colors relative bg-slate-950/40">
+                                                                            <Label className="text-muted-foreground font-medium">Financial Bid Form B (Simulated Selection)</Label>
+                                                                            <div className="border border-dashed border-border rounded-lg p-4 text-center hover:border-primary/50 transition-colors relative bg-background/40">
                                                                                 <input 
                                                                                     type="file" 
                                                                                     className="absolute inset-0 opacity-0 cursor-pointer" 
@@ -932,8 +932,8 @@ ${formData.company}`;
                                                                                         }
                                                                                     }}
                                                                                 />
-                                                                                <Upload className="w-5 h-5 mx-auto text-slate-400 mb-1" />
-                                                                                <span className="text-xs text-slate-300 block truncate">
+                                                                                <Upload className="w-5 h-5 mx-auto text-muted-foreground mb-1" />
+                                                                                <span className="text-xs text-muted-foreground block truncate">
                                                                                     {finFile ? finFile : "Select local Excel"}
                                                                                 </span>
                                                                             </div>
@@ -941,11 +941,11 @@ ${formData.company}`;
                                                                     </div>
 
                                                                     <div className="space-y-2">
-                                                                        <Label className="text-slate-300 font-medium">Executive Technical Summary *</Label>
+                                                                        <Label className="text-muted-foreground font-medium">Executive Technical Summary *</Label>
                                                                         <Textarea
                                                                             required
                                                                             placeholder="Outline key deliverables, compliance frameworks, SLA commitments, and technology stacks..."
-                                                                            className="bg-slate-950 border-slate-800 focus:border-primary text-white min-h-[100px]"
+                                                                            className="bg-background border-border focus:border-primary text-white min-h-[100px]"
                                                                             value={formData.summary}
                                                                             onChange={(e) => setFormData(prev => ({ ...prev, summary: e.target.value }))}
                                                                         />
@@ -953,7 +953,7 @@ ${formData.company}`;
 
                                                                     {uploading ? (
                                                                         <div className="space-y-2 pt-2">
-                                                                            <div className="flex justify-between text-xs text-slate-400 font-mono">
+                                                                            <div className="flex justify-between text-xs text-muted-foreground font-mono">
                                                                                 <span>Packing bid metadata...</span>
                                                                                 <span>{uploadProgress}%</span>
                                                                             </div>
@@ -973,7 +973,7 @@ ${formData.company}`;
                                                                             Submit Official Bid Proposal
                                                                         </Button>
                                                                     )}
-                                                                    <p className="text-[10px] text-center text-slate-400">
+                                                                    <p className="text-[10px] text-center text-muted-foreground">
                                                                         By clicking Submit, your bid price, contact metrics, and summaries will be packaged, and a mail client prompt will open. You must manually attach your files in your mail application before transmitting.
                                                                     </p>
                                                                 </form>
@@ -987,12 +987,12 @@ ${formData.company}`;
                                                             </div>
                                                         </div>
                                                     ) : (
-                                                        <div className="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-center">
-                                                            <div className="flex items-center justify-center gap-1.5 text-slate-400 font-bold text-sm">
+                                                        <div className="w-full bg-card border border-border rounded-xl p-4 text-center">
+                                                            <div className="flex items-center justify-center gap-1.5 text-muted-foreground font-bold text-sm">
                                                                 <AlertCircle className="w-4 h-4 text-cyan-400" />
                                                                 Bid Under Review
                                                             </div>
-                                                            <div className="text-[10px] text-slate-400 mt-1">Bids are closed. Evaluating submissions.</div>
+                                                            <div className="text-[10px] text-muted-foreground mt-1">Bids are closed. Evaluating submissions.</div>
                                                         </div>
                                                     )}
                                                 </div>
@@ -1003,10 +1003,10 @@ ${formData.company}`;
                                 </Card>
                             ))
                         ) : (
-                            <div className="text-center py-16 bg-slate-900/20 border border-slate-800 rounded-2xl glass">
+                            <div className="text-center py-16 bg-card/20 border border-border rounded-2xl glass">
                                 <AlertCircle className="w-12 h-12 text-slate-600 mx-auto mb-3" />
                                 <h3 className="text-xl font-bold text-white">No Matching Procurement Notices</h3>
-                                <p className="text-slate-400 mt-1 text-sm max-w-md mx-auto">
+                                <p className="text-muted-foreground mt-1 text-sm max-w-md mx-auto">
                                     No tender matches your search criteria. Try modifying your search query or choosing another status category.
                                 </p>
                             </div>
@@ -1017,19 +1017,19 @@ ${formData.company}`;
                     <div className="mb-20">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl font-bold text-white tracking-tight uppercase">Procurement Workflow</h2>
-                            <p className="text-slate-400 mt-2 text-sm md:text-base max-w-2xl mx-auto">
+                            <p className="text-muted-foreground mt-2 text-sm md:text-base max-w-2xl mx-auto">
                                 Our transparent bidding cycle ensures fair opportunity and technical adherence across all projects.
                             </p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
                             {STEPS.map((step, idx) => (
-                                <div key={idx} className="bg-slate-900/30 border border-slate-800/80 rounded-2xl p-5 relative glass hover:border-primary/20 transition-all duration-300 group">
+                                <div key={idx} className="bg-card/30 border border-border/80 rounded-2xl p-5 relative glass hover:border-primary/20 transition-all duration-300 group">
                                     <div className="text-3xl font-extrabold text-slate-600 font-mono mb-3 group-hover:text-primary/60 transition-colors">
                                         {step.num}
                                     </div>
                                     <h4 className="font-bold text-white text-base mb-1.5 group-hover:text-primary transition-colors">{step.title}</h4>
-                                    <p className="text-slate-400 text-xs leading-relaxed">{step.desc}</p>
+                                    <p className="text-muted-foreground text-xs leading-relaxed">{step.desc}</p>
                                 </div>
                             ))}
                         </div>
@@ -1041,28 +1041,28 @@ ${formData.company}`;
                         <div className="space-y-6">
                             <div>
                                 <h2 className="text-2xl font-bold text-white tracking-tight uppercase">Procurement Guidelines & Bidding Templates</h2>
-                                <p className="text-slate-400 text-sm mt-1 max-w-xl">
+                                <p className="text-muted-foreground text-sm mt-1 max-w-xl">
                                     Official forms and policy guides can be requested via email redirection. Please complete proposals using these templates before submission.
                                 </p>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {RESOURCES.map((res, idx) => (
-                                    <div key={idx} className="p-4 bg-slate-900/40 border border-slate-800/60 rounded-xl glass hover:border-slate-700 transition-colors flex flex-col justify-between">
+                                    <div key={idx} className="p-4 bg-card/40 border border-border/60 rounded-xl glass hover:border-slate-700 transition-colors flex flex-col justify-between">
                                         <div>
                                             <div className="flex items-center justify-between mb-3">
-                                                <div className="p-2 rounded-lg bg-slate-950 border border-slate-800 text-primary">
+                                                <div className="p-2 rounded-lg bg-background border border-border text-primary">
                                                     <res.icon className="w-5 h-5" />
                                                 </div>
-                                                <span className="font-mono text-[10px] bg-slate-950 text-slate-400 border border-slate-800 px-2 py-0.5 rounded uppercase font-bold">
+                                                <span className="font-mono text-[10px] bg-background text-muted-foreground border border-border px-2 py-0.5 rounded uppercase font-bold">
                                                     {res.format}
                                                 </span>
                                             </div>
                                             <h4 className="font-bold text-white text-sm mb-1 line-clamp-1">{res.name}</h4>
-                                            <p className="text-slate-400 text-[11px] leading-snug line-clamp-2">{res.description}</p>
+                                            <p className="text-muted-foreground text-[11px] leading-snug line-clamp-2">{res.description}</p>
                                         </div>
-                                        <div className="pt-4 flex items-center justify-between border-t border-slate-800/40 mt-3">
-                                            <span className="text-[10px] text-slate-400 font-mono">{res.size}</span>
+                                        <div className="pt-4 flex items-center justify-between border-t border-border/40 mt-3">
+                                            <span className="text-[10px] text-muted-foreground font-mono">{res.size}</span>
                                             <Button 
                                                 variant="ghost" 
                                                 size="sm" 
@@ -1082,7 +1082,7 @@ ${formData.company}`;
                         <div className="space-y-6">
                             <div>
                                 <h2 className="text-2xl font-bold text-white tracking-tight uppercase">Procurement FAQ</h2>
-                                <p className="text-slate-400 text-sm mt-1">
+                                <p className="text-muted-foreground text-sm mt-1">
                                     Find quick clarifications on submission guidelines, evaluation criteria, and contract awards.
                                 </p>
                             </div>
@@ -1091,13 +1091,13 @@ ${formData.company}`;
                                 {FAQS.map((faq, idx) => {
                                     const isOpen = openFaq === idx;
                                     return (
-                                        <div key={idx} className="border border-slate-800 rounded-xl overflow-hidden glass">
+                                        <div key={idx} className="border border-border rounded-xl overflow-hidden glass">
                                             <button
-                                                className="w-full flex items-center justify-between p-4 bg-slate-900/20 text-left hover:bg-slate-900/50 transition-colors"
+                                                className="w-full flex items-center justify-between p-4 bg-card/20 text-left hover:bg-card/50 transition-colors"
                                                 onClick={() => setOpenFaq(isOpen ? null : idx)}
                                             >
                                                 <span className="font-semibold text-white text-sm md:text-base pr-4">{faq.q}</span>
-                                                <HelpCircle className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-primary' : ''}`} />
+                                                <HelpCircle className={`w-4 h-4 text-muted-foreground shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-primary' : ''}`} />
                                             </button>
                                             
                                             <AnimatePresence initial={false}>
@@ -1108,7 +1108,7 @@ ${formData.company}`;
                                                         exit={{ height: 0, opacity: 0 }}
                                                         transition={{ duration: 0.25, ease: "easeInOut" }}
                                                     >
-                                                        <div className="p-4 bg-slate-950/40 text-slate-400 text-xs md:text-sm leading-relaxed border-t border-slate-800/60">
+                                                        <div className="p-4 bg-background/40 text-muted-foreground text-xs md:text-sm leading-relaxed border-t border-border/60">
                                                             {faq.a}
                                                         </div>
                                                     </motion.div>
@@ -1122,27 +1122,27 @@ ${formData.company}`;
                     </div>
 
                     {/* Trust Banner / Legal Info / Helpdesk */}
-                    <div className="bg-slate-900/30 border border-slate-800 rounded-2xl p-6 md:p-8 glass flex flex-col md:flex-row gap-6 md:items-center justify-between">
+                    <div className="bg-card/30 border border-border rounded-2xl p-6 md:p-8 glass flex flex-col md:flex-row gap-6 md:items-center justify-between">
                         <div className="space-y-3 max-w-3xl">
                             <h4 className="font-bold text-white text-lg flex items-center gap-2">
                                 <Lock className="w-5 h-5 text-primary" />
                                 Anti-Corruption Policy & Encrypted Bids
                             </h4>
-                            <p className="text-slate-400 text-xs md:text-sm leading-relaxed">
+                            <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
                                 Cehpoint adheres strictly to international public procurement guidelines. Technical documentation and pricing data submitted via this portal are cryptographically registered. No commercial quotes are visible prior to the official opening date of financial evaluation.
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4 shrink-0">
                             <a 
                                 href="mailto:tenders@cehpoint.co.in" 
-                                className="flex items-center justify-center gap-2 bg-slate-950 border border-slate-800 hover:border-slate-700 text-white text-xs md:text-sm px-4 py-3 rounded-xl transition-all"
+                                className="flex items-center justify-center gap-2 bg-background border border-border hover:border-slate-700 text-white text-xs md:text-sm px-4 py-3 rounded-xl transition-all"
                             >
                                 <Mail className="w-4 h-4 text-primary" />
                                 tenders@cehpoint.co.in
                             </a>
                             <a 
                                 href="tel:+919876543210" 
-                                className="flex items-center justify-center gap-2 bg-slate-950 border border-slate-800 hover:border-slate-700 text-white text-xs md:text-sm px-4 py-3 rounded-xl transition-all"
+                                className="flex items-center justify-center gap-2 bg-background border border-border hover:border-slate-700 text-white text-xs md:text-sm px-4 py-3 rounded-xl transition-all"
                             >
                                 <Phone className="w-4 h-4 text-primary" />
                                 Procurement Hotline
@@ -1151,7 +1151,7 @@ ${formData.company}`;
                     </div>
 
                     {/* Official Footer Details */}
-                    <div className="mt-12 grid md:grid-cols-2 gap-8 text-slate-400 text-sm border-t border-slate-800 pt-8">
+                    <div className="mt-12 grid md:grid-cols-2 gap-8 text-muted-foreground text-sm border-t border-border pt-8">
                         <div>
                             <h4 className="font-bold text-white mb-2 flex items-center gap-2">
                                 <User className="w-4 h-4 text-primary" />

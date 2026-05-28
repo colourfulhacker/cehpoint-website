@@ -113,7 +113,7 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-lg mb-1">Call Us</h3>
-                                            <p className="text-muted-foreground">Mon-Fri from 10am to 7pm</p>
+                                            <p className="text-muted-foreground">Mon-Fri, 2:00 PM – 10:00 PM IST</p>
                                             <a href="tel:+919091156095" className="text-xl font-bold mt-1 block hover:text-blue-500 transition-colors">+91 90911 56095</a>
                                         </div>
                                     </CardContent>

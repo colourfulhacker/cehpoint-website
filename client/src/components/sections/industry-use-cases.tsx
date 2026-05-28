@@ -223,9 +223,9 @@ export default function IndustryUseCaseExplorer() {
                             <TabsTrigger
                                 key={industry.id}
                                 value={industry.id}
-                                className="rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap data-[state=inactive]:text-gray-400 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/10 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20 transition-all flex items-center gap-2"
+                                className="rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-foreground/10 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20 transition-all flex items-center gap-2"
                             >
-                                <industry.icon className={`w-4 h-4 ${activeTab === industry.id ? "text-white" : "text-gray-400 group-hover:text-white"}`} />
+                                <industry.icon className={`w-4 h-4 ${activeTab === industry.id ? "text-white" : "text-muted-foreground group-hover:text-white"}`} />
                                 <span className="inline-block">{industry.name}</span>
                             </TabsTrigger>
                         ))}
@@ -290,7 +290,7 @@ export default function IndustryUseCaseExplorer() {
                                                     </div>
                                                 </div>
 
-                                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-3 border-t border-white/5">
+                                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-3 border-t border-foreground/5">
                                                     <div className="flex items-center gap-2">
                                                         <CheckCircle className="w-5 h-5 text-green-500 shrink-0" />
                                                         <span className="text-sm font-medium text-foreground">

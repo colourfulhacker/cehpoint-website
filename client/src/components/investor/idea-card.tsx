@@ -99,10 +99,10 @@ export default function IdeaCard({ idea, onSwipe, index }: IdeaCardProps) {
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 space-y-4 md:space-y-6 z-10">
                     <div>
                         <div className="flex items-center gap-2 mb-4">
-                            <Badge variant="secondary" className="bg-white/20 hover:bg-white/30 text-white border-white/10 backdrop-blur-md px-3 py-1 text-xs font-bold uppercase tracking-wider shadow-lg">
+                            <Badge variant="secondary" className="bg-foreground/20 hover:bg-white/30 text-white border-foreground/10 backdrop-blur-md px-3 py-1 text-xs font-bold uppercase tracking-wider shadow-lg">
                                 {idea.industry}
                             </Badge>
-                            <div className="bg-white/20 backdrop-blur-md rounded-full p-1">
+                            <div className="bg-foreground/20 backdrop-blur-md rounded-full p-1">
                                 <Cpu className="w-3 h-3 text-yellow-300" />
                             </div>
                         </div>
@@ -115,23 +115,23 @@ export default function IdeaCard({ idea, onSwipe, index }: IdeaCardProps) {
                         {idea.elevatorPitch}
                     </p>
 
-                    <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/20">
+                    <div className="grid grid-cols-3 gap-4 pt-4 border-t border-foreground/20">
                         <div className="text-center group">
-                            <div className="w-10 h-10 mx-auto rounded-full bg-white/10 flex items-center justify-center mb-2 group-hover:bg-white/20 transition-colors backdrop-blur-sm">
+                            <div className="w-10 h-10 mx-auto rounded-full bg-foreground/10 flex items-center justify-center mb-2 group-hover:bg-foreground/20 transition-colors backdrop-blur-sm">
                                 <DollarSign className="w-5 h-5 text-green-300" />
                             </div>
                             <p className="text-[10px] uppercase tracking-widest text-white/80 mb-1 font-bold">Budget</p>
                             <p className="font-bold text-sm text-white">{idea.budget}</p>
                         </div>
-                        <div className="text-center border-l border-white/10 group">
-                            <div className="w-10 h-10 mx-auto rounded-full bg-white/10 flex items-center justify-center mb-2 group-hover:bg-white/20 transition-colors backdrop-blur-sm">
+                        <div className="text-center border-l border-foreground/10 group">
+                            <div className="w-10 h-10 mx-auto rounded-full bg-foreground/10 flex items-center justify-center mb-2 group-hover:bg-foreground/20 transition-colors backdrop-blur-sm">
                                 <TrendingUp className="w-5 h-5 text-blue-300" />
                             </div>
                             <p className="text-[10px] uppercase tracking-widest text-white/80 mb-1 font-bold">Profit</p>
                             <p className="font-bold text-sm text-white">{idea.profitPotential}</p>
                         </div>
-                        <div className="text-center border-l border-white/10 group">
-                            <div className="w-10 h-10 mx-auto rounded-full bg-white/10 flex items-center justify-center mb-2 group-hover:bg-white/20 transition-colors backdrop-blur-sm">
+                        <div className="text-center border-l border-foreground/10 group">
+                            <div className="w-10 h-10 mx-auto rounded-full bg-foreground/10 flex items-center justify-center mb-2 group-hover:bg-foreground/20 transition-colors backdrop-blur-sm">
                                 <Clock className="w-5 h-5 text-purple-300" />
                             </div>
                             <p className="text-[10px] uppercase tracking-widest text-white/80 mb-1 font-bold">Launch</p>
@@ -141,7 +141,7 @@ export default function IdeaCard({ idea, onSwipe, index }: IdeaCardProps) {
 
                     <div className="flex flex-wrap gap-2 pt-2">
                         {idea.tags.map((tag, i) => (
-                            <span key={i} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-black/30 text-white/80 border border-white/10 backdrop-blur-sm">
+                            <span key={i} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-black/30 text-white/80 border border-foreground/10 backdrop-blur-sm">
                                 #{tag}
                             </span>
                         ))}

@@ -41,6 +41,26 @@
   <link rel="dns-prefetch" href="https://images.unsplash.com">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+  <!-- Prevent FOUC: apply persisted theme before React mounts -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('cehpoint-theme');
+        var resolved = 'dark';
+        if (stored === 'light') resolved = 'light';
+        else if (stored === 'system') {
+          resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.classList.add(resolved);
+        document.documentElement.style.colorScheme = resolved;
+        document.documentElement.setAttribute('data-theme', resolved);
+      } catch (e) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
   <script type="module" src="/src/main.tsx"></script>
 </head>
 

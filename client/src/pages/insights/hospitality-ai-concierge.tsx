@@ -31,7 +31,7 @@ export default function HospitalityAIConcierge() {
                     <h1 className="text-4xl md:text-5xl font-black text-foreground mb-6 leading-tight">
                         Reviving the Digital Front Desk: The <span className="text-rose-500">$1,000 AI Concierge</span>
                     </h1>
-                    <div className="flex flex-wrap items-center gap-6 text-gray-300/80 border-b border-border pb-8">
+                    <div className="flex flex-wrap items-center gap-6 text-muted-foreground/80 border-b border-border pb-8">
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2 text-rose-500/70" />
                             <span>Published: {formatArticleDate("2024-10-22")}</span>
@@ -40,7 +40,7 @@ export default function HospitalityAIConcierge() {
                             <Clock className="w-4 h-4 mr-2" />
                             <span>Updated: October 22, 2024</span>
                         </div>
-                        <div className="flex items-center text-gray-200">
+                        <div className="flex items-center text-foreground/90">
                             <Coffee className="w-4 h-4 mr-2 text-rose-500/70" />
                             <span>Case Study</span>
                         </div>

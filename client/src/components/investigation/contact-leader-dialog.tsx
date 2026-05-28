@@ -63,12 +63,12 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-                <Button variant="outline" className="w-full mt-4 border-white/10 hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/30 transition-all group">
+                <Button variant="outline" className="w-full mt-4 border-foreground/10 hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/30 transition-all group">
                     <Mail className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
                     Contact Securely
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md bg-black/95 border-white/10 text-white backdrop-blur-xl">
+            <DialogContent className="sm:max-w-md bg-black/95 border-foreground/10 text-white backdrop-blur-xl">
                 <DialogHeader>
                     <DialogTitle className="text-xl font-display font-bold">Encrypted Inquiry Channel</DialogTitle>
                     <DialogDescription className="text-muted-foreground text-sm">
@@ -83,10 +83,10 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                             value={formData.selectedEmail}
                             onValueChange={(val) => setFormData({ ...formData, selectedEmail: val })}
                         >
-                            <SelectTrigger className="bg-white/5 border-white/10 focus:border-red-500/50">
+                            <SelectTrigger className="bg-foreground/5 border-foreground/10 focus:border-red-500/50">
                                 <SelectValue placeholder="Select Leader" />
                             </SelectTrigger>
-                            <SelectContent className="bg-black border-white/10 text-white">
+                            <SelectContent className="bg-black border-foreground/10 text-white">
                                 {allLeaders.map((leader, i) => (
                                     <SelectItem key={i} value={leader.email}>
                                         {leader.name} - {leader.role}
@@ -102,7 +102,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                             <Input
                                 id="name"
                                 placeholder="John Doe"
-                                className="bg-white/5 border-white/10 focus:border-red-500/50"
+                                className="bg-foreground/5 border-foreground/10 focus:border-red-500/50"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             />
@@ -112,7 +112,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                             <Input
                                 id="org"
                                 placeholder="Company Ltd"
-                                className="bg-white/5 border-white/10 focus:border-red-500/50"
+                                className="bg-foreground/5 border-foreground/10 focus:border-red-500/50"
                                 value={formData.organization}
                                 onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                             />
@@ -124,7 +124,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                         <Input
                             id="phone"
                             placeholder="+91..."
-                            className="bg-white/5 border-white/10 focus:border-red-500/50"
+                            className="bg-foreground/5 border-foreground/10 focus:border-red-500/50"
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         />
@@ -135,7 +135,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                         <Textarea
                             id="req"
                             placeholder="Briefly describe your case or requirement..."
-                            className="bg-white/5 border-white/10 focus:border-red-500/50 min-h-[100px]"
+                            className="bg-foreground/5 border-foreground/10 focus:border-red-500/50 min-h-[100px]"
                             value={formData.requirement}
                             onChange={(e) => setFormData({ ...formData, requirement: e.target.value })}
                         />
@@ -143,7 +143,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                 </div>
 
                 <div className="flex justify-end gap-3">
-                    <Button variant="ghost" onClick={() => setIsOpen(false)} className="hover:bg-white/5">Cancel</Button>
+                    <Button variant="ghost" onClick={() => setIsOpen(false)} className="hover:bg-foreground/5">Cancel</Button>
                     <Button
                         onClick={generateMailto}
                         disabled={!formData.name || !formData.requirement || !formData.selectedEmail}

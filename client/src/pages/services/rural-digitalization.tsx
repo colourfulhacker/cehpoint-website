@@ -160,7 +160,7 @@ export default function RuralDigitalizationPage() {
             <section className="py-24">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="bg-green-600 rounded-3xl p-12 text-white shadow-2xl relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-foreground/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
                         <div className="relative z-10">
                             <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
                                 Become a Local IT Leader

@@ -119,7 +119,7 @@ export default function DemoDelivery() {
                   "flex items-center space-x-2 px-6 py-3 rounded-xl transition-all duration-300 font-semibold text-sm",
                   projectType === "web"
                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                    : "text-muted-foreground hover:text-foreground hover:bg-foreground/5"
                 )}
               >
                 <Laptop className="w-4 h-4" />
@@ -131,7 +131,7 @@ export default function DemoDelivery() {
                   "flex items-center space-x-2 px-6 py-3 rounded-xl transition-all duration-300 font-semibold text-sm",
                   projectType === "mobile"
                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                    : "text-muted-foreground hover:text-foreground hover:bg-foreground/5"
                 )}
               >
                 <Smartphone className="w-4 h-4" />

@@ -20,7 +20,7 @@ export default function ServicesPage() {
             description: "Custom software development, cloud architecture, and digital transformation solutions.",
             features: ["Custom Development", "Cloud Architecture", "Digital Transformation", "Legacy Modernization"],
             gradient: "from-purple-500 to-pink-500",
-            href: "/services#innovative-it-services",
+            href: "/services/business-app-catalog",
             stats: "500+ Projects"
         },
         {
@@ -65,7 +65,7 @@ export default function ServicesPage() {
             description: "Scalable cloud-based software with multi-tenancy and enterprise integrations.",
             features: ["Multi-tenant", "API Development", "Subscription Billing", "Integrations"],
             gradient: "from-indigo-500 to-purple-500",
-            href: "/services#saas-enterprise-software",
+            href: "/services/business-app-catalog",
             stats: "110+ Solutions"
         },
         {

@@ -69,7 +69,7 @@ export default function IntakeForm() {
                     <CardDescription>Your case ID has been generated securely.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6 text-center">
-                    <div className="p-4 bg-background rounded-lg border border-white/10 font-mono text-xl">
+                    <div className="p-4 bg-background rounded-lg border border-foreground/10 font-mono text-xl">
                         {caseId}
                     </div>
                     <p className="text-muted-foreground text-sm">
@@ -85,14 +85,14 @@ export default function IntakeForm() {
     }
 
     return (
-        <Card className="max-w-2xl mx-auto glass border-white/10">
+        <Card className="max-w-2xl mx-auto glass border-foreground/10">
             <CardHeader>
                 <div className="flex justify-between items-center mb-6">
                     {steps.map((s, i) => (
                         <div key={i} className={`flex items-center gap-2 ${i <= step ? 'text-primary' : 'text-muted-foreground/30'}`}>
                             <div className={`
                         w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border
-                        ${i <= step ? 'border-primary bg-primary/20' : 'border-white/10 bg-white/5'}
+                        ${i <= step ? 'border-primary bg-primary/20' : 'border-foreground/10 bg-foreground/5'}
                     `}>
                                 {i + 1}
                             </div>
@@ -146,7 +146,7 @@ export default function IntakeForm() {
                                 <Label>Brief Description</Label>
                                 <Textarea
                                     placeholder="Describe the incident briefly (no sensitive data yet)..."
-                                    className="min-h-[120px] bg-white/5"
+                                    className="min-h-[120px] bg-foreground/5"
                                     {...form.register("description")}
                                 />
                             </div>
@@ -199,7 +199,7 @@ export default function IntakeForm() {
                                 <Input
                                     {...form.register("email")}
                                     placeholder="name@organization.com"
-                                    className="h-12 bg-white/5"
+                                    className="h-12 bg-foreground/5"
                                 />
                             </div>
 
@@ -210,7 +210,7 @@ export default function IntakeForm() {
                                     className="w-4 h-4 rounded border-gray-600 bg-transparent"
                                     {...form.register("ndaConsent")}
                                 />
-                                <label htmlFor="nda" className="text-sm text-gray-400 cursor-pointer select-none">
+                                <label htmlFor="nda" className="text-sm text-muted-foreground cursor-pointer select-none">
                                     I accept the{" "}
                                     <span
                                         className="text-primary underline hover:text-rose-400 transition-colors"
@@ -269,7 +269,7 @@ export default function IntakeForm() {
                 </DialogContent>
             </Dialog>
 
-            <CardFooter className="flex justify-between border-t border-white/5 pt-6">
+            <CardFooter className="flex justify-between border-t border-foreground/5 pt-6">
                 <Button
                     variant="ghost"
                     onClick={() => setStep(s => Math.max(0, s - 1))}

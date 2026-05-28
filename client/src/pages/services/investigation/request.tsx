@@ -9,6 +9,7 @@ export default function InvestigationRequest() {
             <SEO
                 title="Secure Investigation Request | Cehpoint"
                 description="Secure intake form for initiating confidential cyber crime investigations."
+                noIndex
             />
             <BreadcrumbSchema
                 items={[

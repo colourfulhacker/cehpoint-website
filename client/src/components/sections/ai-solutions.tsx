@@ -14,7 +14,7 @@ function AISolutionCard({ solution }: { solution: any }) {
 
   return (
     <div
-      className="group relative rounded-3xl border border-white/5 bg-zinc-900/50 overflow-hidden hover:border-primary/30 transition-all duration-500"
+      className="group relative rounded-3xl border border-foreground/5 bg-card/50 overflow-hidden hover:border-primary/30 transition-all duration-500"
       onMouseMove={handleMouseMove}
       data-testid={`ai-solution-${solution.title.toLowerCase().replace(/\s+/g, "-")}`}
     >
@@ -35,8 +35,8 @@ function AISolutionCard({ solution }: { solution: any }) {
       <div className="relative p-8 h-full flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-start mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-500">
-            <solution.icon className="w-6 h-6 text-zinc-300 group-hover:text-primary transition-colors" />
+          <div className="w-12 h-12 rounded-2xl bg-foreground/5 border border-foreground/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-500">
+            <solution.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
           </div>
           <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${solution.complexity === 'Expert' ? 'border-red-500/30 text-red-400 bg-red-500/10' :
             solution.complexity === 'Advanced' ? 'border-purple-500/30 text-purple-400 bg-purple-500/10' :
@@ -50,15 +50,15 @@ function AISolutionCard({ solution }: { solution: any }) {
         <h3 className="font-display font-medium text-xl text-white mb-3 group-hover:text-primary-foreground transition-colors">
           {solution.title}
         </h3>
-        <p className="text-sm text-zinc-300 font-light leading-relaxed mb-6 group-hover:text-zinc-200 transition-colors">
+        <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6 group-hover:text-foreground/90 transition-colors">
           {solution.description}
         </p>
 
         {/* Features List (Compact) */}
-        <div className="mt-auto space-y-3 pt-6 border-t border-white/5">
+        <div className="mt-auto space-y-3 pt-6 border-t border-foreground/5">
           <div className="flex flex-wrap gap-2 mb-4">
             {solution.features.slice(0, 3).map((feature: string, i: number) => (
-              <span key={i} className="text-[10px] px-2 py-1 rounded-md bg-white/5 text-zinc-300 border border-white/5">
+              <span key={i} className="text-[10px] px-2 py-1 rounded-md bg-foreground/5 text-muted-foreground border border-foreground/5">
                 {feature}
               </span>
             ))}
@@ -69,7 +69,7 @@ function AISolutionCard({ solution }: { solution: any }) {
               <Activity className="w-3 h-3 mr-1.5" />
               <span className="font-medium">{solution.benefits}</span>
             </div>
-            <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
+            <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-white transition-colors" />
           </div>
         </div>
       </div>
@@ -155,7 +155,7 @@ export default function AISolutions() {
           <h2 className="font-display font-medium text-5xl md:text-7xl mb-6 tracking-tight text-white leading-tight">
             AI Solutions
           </h2>
-          <p className="text-xl text-zinc-300 font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
+          <p className="text-xl text-muted-foreground font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
             Beyond chatbots - we engineer cognitive architectures that redefine what's possible in your industry.
           </p>
         </div>

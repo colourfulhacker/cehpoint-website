@@ -437,14 +437,14 @@ export default function Training() {
                         transition={{ duration: 0.5, delay: 0.3 }}
                         className="flex flex-wrap justify-center gap-6"
                     >
-                        <div className="flex items-center gap-3 px-5 py-2.5 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                        <div className="flex items-center gap-3 px-5 py-2.5 bg-foreground/5 backdrop-blur-sm rounded-2xl border border-foreground/10">
                             <Users className="w-5 h-5 text-blue-400" />
                             <span className="text-sm font-medium">5000+ Students Trained</span>
                         </div>
-                        <div className="flex items-center gap-3 px-5 py-2.5 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                        <div className="flex items-center gap-3 px-5 py-2.5 bg-foreground/5 backdrop-blur-sm rounded-2xl border border-foreground/10">
                             <span className="text-sm font-medium">4.9/5 Rating</span>
                         </div>
-                        <div className="flex items-center gap-3 px-5 py-2.5 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                        <div className="flex items-center gap-3 px-5 py-2.5 bg-foreground/5 backdrop-blur-sm rounded-2xl border border-foreground/10">
                             <span className="text-sm font-medium">100% Practical</span>
                         </div>
                     </motion.div>
@@ -478,9 +478,9 @@ export default function Training() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="group p-8 rounded-3xl bg-secondary/20 border border-white/5 hover:border-primary/20 hover:bg-secondary/30 transition-all duration-300"
+                                className="group p-8 rounded-3xl bg-secondary/20 border border-foreground/5 hover:border-primary/20 hover:bg-secondary/30 transition-all duration-300"
                             >
-                                <div className="mb-4 p-3 w-fit rounded-2xl bg-background/50 border border-white/5 shadow-inner">
+                                <div className="mb-4 p-3 w-fit rounded-2xl bg-background/50 border border-foreground/5 shadow-inner">
                                     <Monitor className="w-8 h-8 text-yellow-500" />
                                 </div>
                                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Live Implementation</h3>
@@ -519,7 +519,7 @@ export default function Training() {
                         <TabsContent value="entrepreneurs" className="space-y-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
 
                             {/* PREMIUM SECTION */}
-                            <div className="relative rounded-3xl overflow-hidden border border-yellow-500/30 shadow-2xl bg-slate-950">
+                            <div className="relative rounded-3xl overflow-hidden border border-yellow-500/30 shadow-2xl bg-background">
                                 <div className="absolute inset-0 bg-[url('/assets/grid-pattern.svg')] opacity-10 z-0" />
                                 <div className="absolute top-0 right-0 p-32 bg-yellow-500/10 blur-[120px] rounded-full pointer-events-none" />
 
@@ -532,16 +532,16 @@ export default function Training() {
                                             Run Your Business <br />
                                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-500">Like A Tech Giant</span>
                                         </h2>
-                                        <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                                        <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                                             Don't just survive in 2026. <span className="text-white font-semibold underline decoration-yellow-500/50 underline-offset-4">Dominate</span> it.
                                             Join elite 2-hour problem-solving sessions designed towards one goal: <span className="text-yellow-400 font-bold">Explosive Growth.</span>
                                         </p>
 
-                                        <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm font-medium text-slate-300">
-                                            <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10">
+                                        <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm font-medium text-muted-foreground">
+                                            <div className="flex items-center gap-2 px-3 py-1 bg-foreground/5 rounded-full border border-foreground/10">
                                                 <Globe className="w-4 h-4 text-blue-400" /> Online via Google Meet & Zoom
                                             </div>
-                                            <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10">
+                                            <div className="flex items-center gap-2 px-3 py-1 bg-foreground/5 rounded-full border border-foreground/10">
                                                 <Monitor className="w-4 h-4 text-yellow-400" /> Live Implementation
                                             </div>
                                         </div>
@@ -556,7 +556,7 @@ export default function Training() {
                                             </div>
                                             <div className="space-y-2">
                                                 <h3 className="text-2xl font-bold text-white">The "Lucky Winner" Bonus</h3>
-                                                <p className="text-slate-300">
+                                                <p className="text-muted-foreground">
                                                     Stand a chance to win <span className="text-yellow-400 font-bold">3 Days of Physical Mentorship</span>.
                                                     Mr. Banerjee will visit your office to restructure your business personally.
                                                 </p>
@@ -573,7 +573,7 @@ export default function Training() {
                                                 viewport={{ once: true }}
                                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                             >
-                                                <Card className="bg-slate-900/50 border-white/10 hover:border-yellow-500/50 transition-all duration-300 group overflow-hidden flex flex-col h-full shadow-lg hover:shadow-yellow-900/40 backdrop-blur-sm relative">
+                                                <Card className="bg-card/50 border-foreground/10 hover:border-yellow-500/50 transition-all duration-300 group overflow-hidden flex flex-col h-full shadow-lg hover:shadow-yellow-900/40 backdrop-blur-sm relative">
                                                     {/* IMAGE HEADER */}
                                                     <div className="h-56 relative overflow-hidden bg-slate-800">
                                                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900 z-10" />
@@ -589,14 +589,14 @@ export default function Training() {
                                                             }}
                                                         />
                                                         <div className="absolute top-4 right-4 z-20">
-                                                            <div className="bg-white/10 backdrop-blur-md text-yellow-400 font-bold border border-yellow-500/30 text-sm px-4 py-1.5 rounded-full shadow-xl">
+                                                            <div className="bg-foreground/10 backdrop-blur-md text-yellow-400 font-bold border border-yellow-500/30 text-sm px-4 py-1.5 rounded-full shadow-xl">
                                                                 ₹{training.price.toLocaleString()}
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <CardHeader className="pb-3 relative z-10 -mt-16">
-                                                        <div className="p-3.5 w-fit rounded-2xl bg-slate-900 border border-white/10 text-yellow-500 shadow-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                                                        <div className="p-3.5 w-fit rounded-2xl bg-card border border-foreground/10 text-yellow-500 shadow-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
                                                             <Gem className="w-6 h-6" />
                                                         </div>
                                                         <CardTitle className="text-xl md:text-2xl text-white group-hover:text-yellow-400 transition-colors leading-tight min-h-[3.5rem] font-bold">
@@ -609,7 +609,7 @@ export default function Training() {
                                                                     <Target className="w-4 h-4 text-red-400 shrink-0" />
                                                                     <span className="text-[10px] uppercase font-black text-red-400 tracking-[0.2em]">The Challenge</span>
                                                                 </div>
-                                                                <p className="text-sm text-slate-300 leading-relaxed font-medium">{training.problem}</p>
+                                                                <p className="text-sm text-muted-foreground leading-relaxed font-medium">{training.problem}</p>
                                                             </div>
 
                                                             <div className="bg-green-500/5 p-4 rounded-2xl border border-green-500/10 group-hover:border-green-500/20 transition-colors">
@@ -618,22 +618,22 @@ export default function Training() {
                                                                     <span className="text-[10px] uppercase font-black text-green-400 tracking-[0.2em]">The Solution</span>
                                                                     <Badge variant="outline" className="ml-auto text-[10px] bg-green-500/10 border-green-500/20 text-green-400 py-0 h-5">Proven Method</Badge>
                                                                 </div>
-                                                                <p className="text-sm text-slate-300 leading-relaxed font-medium">{training.solution}</p>
+                                                                <p className="text-sm text-muted-foreground leading-relaxed font-medium">{training.solution}</p>
                                                             </div>
                                                         </div>
                                                     </CardHeader>
 
                                                     <CardContent className="pb-4 flex-grow">
                                                         <Accordion type="single" collapsible className="w-full">
-                                                            <AccordionItem value="item-1" className="border-white/5 px-2">
-                                                                <AccordionTrigger className="text-slate-300 hover:text-white py-4 text-sm font-semibold transition-colors">
+                                                            <AccordionItem value="item-1" className="border-foreground/5 px-2">
+                                                                <AccordionTrigger className="text-muted-foreground hover:text-white py-4 text-sm font-semibold transition-colors">
                                                                     Curriculum Overview ({training.curriculum.length} Core Modules)
                                                                 </AccordionTrigger>
                                                                 <AccordionContent>
                                                                     <div className="space-y-5 pt-2 pb-4">
                                                                         <ul className="space-y-3.5">
                                                                             {training.curriculum.map((item, i) => (
-                                                                                <li key={i} className="flex items-start gap-3.5 text-sm text-slate-300 group/item">
+                                                                                <li key={i} className="flex items-start gap-3.5 text-sm text-muted-foreground group/item">
                                                                                     <div className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-yellow-500/60 group-hover/item:bg-yellow-400 transition-colors" />
                                                                                     <span className="leading-snug group-hover/item:text-white transition-colors">{item}</span>
                                                                                 </li>
@@ -667,8 +667,8 @@ export default function Training() {
                                         ))}
                                     </div>
 
-                                    <div className="mt-16 text-center border-t border-white/10 pt-8">
-                                        <p className="text-slate-400 text-sm">
+                                    <div className="mt-16 text-center border-t border-foreground/10 pt-8">
+                                        <p className="text-muted-foreground text-sm">
                                             * Prices are subject to increase. Sessions are conducted via Google Meet/Zoom upon booking confirmation.
                                         </p>
                                     </div>
@@ -812,7 +812,7 @@ export default function Training() {
 
             {/* Booking Dialog */}
             <Dialog open={isBookingOpen} onOpenChange={setIsBookingOpen}>
-                <DialogContent className="sm:max-w-[500px] glass-intense border-white/10">
+                <DialogContent className="sm:max-w-[500px] glass-intense border-foreground/10">
                     <DialogHeader>
                         <DialogTitle>
                             {bookingType === 'entrepreneur' ? 'Book Business Growth Session' :

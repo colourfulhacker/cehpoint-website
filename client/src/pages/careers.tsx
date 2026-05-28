@@ -396,34 +396,34 @@ I'm looking forward to discussing this!`;
 
           {/* Hero Content */}
           <div className="lg:w-1/2 text-left">
-            <Badge className="bg-white/10 text-white hover:bg-white/20 border-white/20 mb-6 px-4 py-2 text-sm backdrop-blur-md">
+            <Badge className="bg-foreground/10 text-white hover:bg-foreground/20 border-foreground/20 mb-6 px-4 py-2 text-sm backdrop-blur-md">
               <Rocket className="w-4 h-4 mr-2 text-primary" />
               Zero Trial Period - Real Work From Day One
             </Badge>
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-[1.1] tracking-tight">
               Build Secure <span className="text-primary">AI-Powered</span> Software
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl font-light leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl font-light leading-relaxed">
               We hire Secure Software Developers who can build enterprise-grade applications with AI automation, agentic workflows, and cybersecurity best practices. 7-day trial work is mandatory skill assessment - no offers without completing it.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-8">
-              <div className="flex items-center gap-2 text-sm text-gray-300 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground bg-foreground/5 border border-foreground/10 px-4 py-2 rounded-full backdrop-blur-sm">
                 <AlertTriangle className="w-4 h-4 text-red-400" />
                 <span>7-Day Trial (Mandatory)</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-300 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground bg-foreground/5 border border-foreground/10 px-4 py-2 rounded-full backdrop-blur-sm">
                 <Cpu className="w-4 h-4 text-cyan-400" />
                 <span>AI/Agentic Tech Skills</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-300 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground bg-foreground/5 border border-foreground/10 px-4 py-2 rounded-full backdrop-blur-sm">
                 <UserCheck className="w-4 h-4 text-green-400" />
                 <span>PPO Based on Performance</span>
               </div>
             </div>
 
             <div className="pt-4 flex flex-wrap gap-4">
-              <TermsAndConditionsModal triggerText="View our Hiring Policy & Terms" className="bg-transparent border border-white/20 text-white hover:bg-white/10" />
+              <TermsAndConditionsModal triggerText="View our Hiring Policy & Terms" className="bg-transparent border border-foreground/20 text-white hover:bg-foreground/10" />
               <Button
                 variant="outline"
                 className="bg-primary/10 border-primary/50 text-white hover:bg-primary/20"
@@ -437,27 +437,27 @@ I'm looking forward to discussing this!`;
 
           {/* Dream App Builder Form */}
           <div className="lg:w-1/2 w-full max-w-md mx-auto lg:mx-0">
-            <Card className="bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden relative">
+            <Card className="bg-black/40 backdrop-blur-xl border border-foreground/10 shadow-2xl overflow-hidden relative">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-purple-500 to-blue-500" />
-              <CardHeader className="pb-4 border-b border-white/5">
+              <CardHeader className="pb-4 border-b border-foreground/5">
                 <CardTitle className="text-2xl font-bold flex items-center text-white">
                   <MessageSquare className="w-6 h-6 mr-3 text-primary" />
                   Pitch Your Dream
                 </CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardDescription className="text-muted-foreground">
                   Fill this out to get instantly connected with Cehpoint via WhatsApp.
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-6">
                 <form onSubmit={handleWhatsAppSubmit} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-gray-300 text-xs uppercase tracking-wider">Your Name *</Label>
+                    <Label htmlFor="name" className="text-muted-foreground text-xs uppercase tracking-wider">Your Name *</Label>
                     <Input
                       id="name"
                       type="text"
                       autoComplete="name"
                       required
-                      className="h-12 bg-white/5 border-white/10 text-white focus:border-primary transition-colors text-base"
+                      className="h-12 bg-foreground/5 border-foreground/10 text-white focus:border-primary transition-colors text-base"
                       placeholder="John Doe"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -465,14 +465,14 @@ I'm looking forward to discussing this!`;
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="contact" className="text-gray-300 text-xs uppercase tracking-wider">Contact No. / LinkedIn *</Label>
+                    <Label htmlFor="contact" className="text-muted-foreground text-xs uppercase tracking-wider">Contact No. / LinkedIn *</Label>
                     <Input
                       id="contact"
                       type="text"
                       inputMode="text"
                       autoComplete="tel"
                       required
-                      className="h-12 bg-white/5 border-white/10 text-white focus:border-primary transition-colors text-base"
+                      className="h-12 bg-foreground/5 border-foreground/10 text-white focus:border-primary transition-colors text-base"
                       placeholder="+91 98765 43210 or linkedin.com/in/you"
                       value={formData.contact}
                       onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
@@ -480,12 +480,12 @@ I'm looking forward to discussing this!`;
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-gray-300 text-xs uppercase tracking-wider">Your path with us *</Label>
+                    <Label className="text-muted-foreground text-xs uppercase tracking-wider">Your path with us *</Label>
                     <Select required onValueChange={(value) => setFormData({ ...formData, opportunityType: value })}>
-                      <SelectTrigger className="h-12 bg-white/5 border-white/10 text-white focus:border-primary">
+                      <SelectTrigger className="h-12 bg-foreground/5 border-foreground/10 text-white focus:border-primary">
                         <SelectValue placeholder="Select Opportunity" />
                       </SelectTrigger>
-                      <SelectContent className="bg-zinc-900 border-white/10 text-white">
+                      <SelectContent className="bg-card border-foreground/10 text-white">
                         <SelectItem value="I have an Idea, let's build it!">I have an Idea, let's build it!</SelectItem>
                         <SelectItem value="Select a Project">Select a Project</SelectItem>
                         <SelectItem value="Project Collab">Project Collab</SelectItem>
@@ -502,7 +502,7 @@ I'm looking forward to discussing this!`;
                         className="space-y-4 overflow-hidden"
                       >
                         <div className="space-y-2">
-                          <Label className="text-gray-300 text-xs uppercase tracking-wider">Example Innovations (Select for inspiration)</Label>
+                          <Label className="text-muted-foreground text-xs uppercase tracking-wider">Example Innovations (Select for inspiration)</Label>
                           <div className="flex flex-wrap gap-2">
                             {appExamples.map((example) => (
                               <button
@@ -519,7 +519,7 @@ I'm looking forward to discussing this!`;
                                 }}
                                 className={`px-4 py-2 text-sm rounded-full border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ring-offset-background ${formData.selectedExamples.includes(example)
                                   ? "bg-primary/20 border-primary text-white"
-                                  : "bg-white/5 border-white/10 text-gray-300 hover:border-white/20"
+                                  : "bg-foreground/5 border-foreground/10 text-muted-foreground hover:border-foreground/20"
                                   }`}
                               >
                                 {example}
@@ -532,7 +532,7 @@ I'm looking forward to discussing this!`;
                           <Label htmlFor="idea" className="text-green-400 text-xs uppercase tracking-wider font-semibold">Pitch Your Idea Briefly</Label>
                           <Textarea
                             id="idea"
-                            className="bg-white/5 border-green-500/30 text-white focus:border-green-500 transition-colors min-h-[80px]"
+                            className="bg-foreground/5 border-green-500/30 text-white focus:border-green-500 transition-colors min-h-[80px]"
                             placeholder="I want to build a platform that does..."
                             value={formData.idea}
                             onChange={(e) => setFormData({ ...formData, idea: e.target.value })}
@@ -540,13 +540,13 @@ I'm looking forward to discussing this!`;
                         </div>
 
                         <div className="space-y-2">
-                          <Label className="text-gray-300 text-xs uppercase tracking-wider">What do you need from us? *</Label>
+                          <Label className="text-muted-foreground text-xs uppercase tracking-wider">What do you need from us? *</Label>
                           <div className="grid grid-cols-1 gap-2">
                             {supportOptions.map((option) => (
                               <label key={option} className="flex items-center gap-2 cursor-pointer group">
                                 <input
                                   type="checkbox"
-                                  className="form-checkbox bg-white/5 border-white/10 rounded text-primary"
+                                  className="form-checkbox bg-foreground/5 border-foreground/10 rounded text-primary"
                                   checked={formData.supportNeeded.includes(option)}
                                   onChange={(e) => {
                                     const isChecked = e.target.checked;
@@ -558,7 +558,7 @@ I'm looking forward to discussing this!`;
                                     });
                                   }}
                                 />
-                                <span className={`text-xs transition-colors ${formData.supportNeeded.includes(option) ? "text-primary" : "text-gray-300 group-hover:text-gray-300"}`}>
+                                <span className={`text-xs transition-colors ${formData.supportNeeded.includes(option) ? "text-primary" : "text-muted-foreground group-hover:text-muted-foreground"}`}>
                                   {option}
                                 </span>
                               </label>
@@ -570,10 +570,10 @@ I'm looking forward to discussing this!`;
                   </AnimatePresence>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-gray-300 text-xs uppercase tracking-wider">Why should we pick you? (Optional)</Label>
+                    <Label htmlFor="message" className="text-muted-foreground text-xs uppercase tracking-wider">Why should we pick you? (Optional)</Label>
                     <Textarea
                       id="message"
-                      className="bg-white/5 border-white/10 text-white focus:border-primary transition-colors min-h-[60px]"
+                      className="bg-foreground/5 border-foreground/10 text-white focus:border-primary transition-colors min-h-[60px]"
                       placeholder="Share a quick link to your portfolio or state your core skills."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -616,7 +616,7 @@ I'm looking forward to discussing this!`;
                         </div>
                         <div>
                           <CardTitle className="text-xl font-bold text-white">Marketing Jobs Portal</CardTitle>
-                          <CardDescription className="text-gray-300 mt-1">Explore specialized marketing opportunities and roles.</CardDescription>
+                          <CardDescription className="text-muted-foreground mt-1">Explore specialized marketing opportunities and roles.</CardDescription>
                         </div>
                       </div>
                       <Button variant="outline" size="sm" asChild className="border-primary/20 hover:bg-primary/10 text-primary">
@@ -637,7 +637,7 @@ I'm looking forward to discussing this!`;
                         </div>
                         <div>
                           <CardTitle className="text-xl font-bold text-white">Work Portal</CardTitle>
-                          <CardDescription className="text-gray-300 mt-1">Mission-based work for professionals. Verified projects, direct assignment, and weekly liquidity.</CardDescription>
+                          <CardDescription className="text-muted-foreground mt-1">Mission-based work for professionals. Verified projects, direct assignment, and weekly liquidity.</CardDescription>
                         </div>
                       </div>
                       <Button variant="outline" size="sm" asChild className="border-secondary/20 hover:bg-secondary/10 text-primary">
@@ -659,7 +659,7 @@ I'm looking forward to discussing this!`;
 
               <div className="space-y-4">
                 {fullTimeJobs.map((job, idx) => (
-                  <Card key={idx} className="group border border-white/10 hover:border-primary/50 transition-all duration-300 bg-zinc-900/50 backdrop-blur-sm overflow-hidden hover:shadow-xl hover:shadow-primary/10">
+                  <Card key={idx} className="group border border-foreground/10 hover:border-primary/50 transition-all duration-300 bg-card/50 backdrop-blur-sm overflow-hidden hover:shadow-xl hover:shadow-primary/10">
                     <CardHeader className="p-6 pb-4 bg-gradient-to-b from-primary/5 to-transparent">
                       <div className="flex justify-between items-start">
                         <div>
@@ -670,14 +670,14 @@ I'm looking forward to discussing this!`;
                       </div>
                     </CardHeader>
                     <CardContent className="p-6">
-                      <p className="text-base text-gray-200 mb-4 leading-relaxed">{job.description}</p>
-                      <p className="text-sm text-gray-300 mb-6 leading-relaxed"><strong className="text-white">About the Role:</strong> {job.aboutRole}</p>
+                      <p className="text-base text-foreground/90 mb-4 leading-relaxed">{job.description}</p>
+                      <p className="text-sm text-muted-foreground mb-6 leading-relaxed"><strong className="text-white">About the Role:</strong> {job.aboutRole}</p>
                       <div className="space-y-4 mb-6">
                         <div>
                           <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-2 flex items-center"><Code className="w-4 h-4 mr-2" />Key Responsibilities</h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {job.responsibilities.map((resp, i) => (
-                              <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-primary mr-2">•</span>{resp}</li>
+                              <li key={i} className="text-sm text-muted-foreground flex items-start"><span className="text-primary mr-2">•</span>{resp}</li>
                             ))}
                           </ul>
                         </div>
@@ -685,7 +685,7 @@ I'm looking forward to discussing this!`;
                           <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-2 flex items-center"><Shield className="w-4 h-4 mr-2" />Requirements</h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {job.requirements.map((req, i) => (
-                              <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-primary mr-2">•</span>{req}</li>
+                              <li key={i} className="text-sm text-muted-foreground flex items-start"><span className="text-primary mr-2">•</span>{req}</li>
                             ))}
                           </ul>
                         </div>
@@ -693,13 +693,13 @@ I'm looking forward to discussing this!`;
                           <h4 className="text-sm font-bold text-green-400 uppercase tracking-wider mb-2 flex items-center"><CheckCircle2 className="w-4 h-4 mr-2" />What We Offer</h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {job.benefits.map((ben, i) => (
-                              <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-green-400 mr-2">+</span>{ben}</li>
+                              <li key={i} className="text-sm text-muted-foreground flex items-start"><span className="text-green-400 mr-2">+</span>{ben}</li>
                             ))}
                           </ul>
                         </div>
                       </div>
-                      <div className="flex justify-between items-center bg-white/5 p-3 px-4 rounded-xl border border-white/10 group-hover:bg-white/10 transition-colors">
-                        <span className="text-sm font-semibold text-gray-100 flex items-center">
+                      <div className="flex justify-between items-center bg-foreground/5 p-3 px-4 rounded-xl border border-foreground/10 group-hover:bg-foreground/10 transition-colors">
+                        <span className="text-sm font-semibold text-foreground flex items-center">
                           <MapPin className="w-4 h-4 mr-2 text-primary fill-primary/20" /> {job.location}
                         </span>
                         <Button variant="ghost" size="sm" asChild className="hover:text-primary hover:bg-primary/10 transition-colors font-semibold">
@@ -725,7 +725,7 @@ I'm looking forward to discussing this!`;
 
               <div className="space-y-4">
                 {internships.map((intern, idx) => (
-                  <Card key={idx} className="group border border-white/10 hover:border-secondary/50 transition-all duration-300 bg-zinc-900/50 backdrop-blur-sm overflow-hidden hover:shadow-xl hover:shadow-secondary/10">
+                  <Card key={idx} className="group border border-foreground/10 hover:border-secondary/50 transition-all duration-300 bg-card/50 backdrop-blur-sm overflow-hidden hover:shadow-xl hover:shadow-secondary/10">
                     <CardHeader className="p-6 pb-4 bg-gradient-to-b from-secondary/10 to-transparent">
                       <div className="flex justify-between items-start">
                         <div>
@@ -736,14 +736,14 @@ I'm looking forward to discussing this!`;
                       </div>
                     </CardHeader>
                     <CardContent className="p-6">
-                      <p className="text-base text-gray-200 mb-4 leading-relaxed">{intern.description}</p>
-                      <p className="text-sm text-gray-300 mb-6 leading-relaxed"><strong className="text-white">About the Program:</strong> {intern.aboutRole}</p>
+                      <p className="text-base text-foreground/90 mb-4 leading-relaxed">{intern.description}</p>
+                      <p className="text-sm text-muted-foreground mb-6 leading-relaxed"><strong className="text-white">About the Program:</strong> {intern.aboutRole}</p>
                       <div className="space-y-4 mb-6">
                         <div>
                           <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-2 flex items-center"><Code className="w-4 h-4 mr-2" />What You'll Work On</h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {intern.responsibilities.map((resp, i) => (
-                              <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-primary mr-2">•</span>{resp}</li>
+                              <li key={i} className="text-sm text-muted-foreground flex items-start"><span className="text-primary mr-2">•</span>{resp}</li>
                             ))}
                           </ul>
                         </div>
@@ -751,7 +751,7 @@ I'm looking forward to discussing this!`;
                           <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-2 flex items-center"><Target className="w-4 h-4 mr-2" />What We're Looking For</h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {intern.requirements.map((req, i) => (
-                              <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-primary mr-2">•</span>{req}</li>
+                              <li key={i} className="text-sm text-muted-foreground flex items-start"><span className="text-primary mr-2">•</span>{req}</li>
                             ))}
                           </ul>
                         </div>
@@ -759,7 +759,7 @@ I'm looking forward to discussing this!`;
                           <h4 className="text-sm font-bold text-green-400 uppercase tracking-wider mb-2 flex items-center"><CheckCircle2 className="w-4 h-4 mr-2" />Program Benefits</h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {intern.benefits.map((ben, i) => (
-                              <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-green-400 mr-2">+</span>{ben}</li>
+                              <li key={i} className="text-sm text-muted-foreground flex items-start"><span className="text-green-400 mr-2">+</span>{ben}</li>
                             ))}
                           </ul>
                         </div>
@@ -768,14 +768,14 @@ I'm looking forward to discussing this!`;
                             <h4 className="text-sm font-bold text-amber-400 uppercase tracking-wider mb-2 flex items-center"><Clock className="w-4 h-4 mr-2" />Selection Process</h4>
                             <ol className="space-y-2">
                               {intern.selectionProcess.map((step, i) => (
-                                <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-amber-400 font-bold mr-3">{i + 1}.</span>{step}</li>
+                                <li key={i} className="text-sm text-muted-foreground flex items-start"><span className="text-amber-400 font-bold mr-3">{i + 1}.</span>{step}</li>
                               ))}
                             </ol>
                           </div>
                         )}
                       </div>
-                      <div className="flex justify-between items-center bg-white/5 p-3 px-4 rounded-xl border border-white/10 group-hover:bg-white/10 transition-colors">
-                        <span className="text-sm font-semibold text-gray-100 flex items-center">
+                      <div className="flex justify-between items-center bg-foreground/5 p-3 px-4 rounded-xl border border-foreground/10 group-hover:bg-foreground/10 transition-colors">
+                        <span className="text-sm font-semibold text-foreground flex items-center">
                           <Clock className="w-4 h-4 mr-2 text-primary fill-primary/20" /> {intern.duration}
                         </span>
                         <Button variant="ghost" size="sm" asChild className="hover:text-primary hover:bg-secondary/10 transition-colors">
@@ -810,7 +810,7 @@ I'm looking forward to discussing this!`;
                   <XCircle className="w-7 h-7 mr-3" /> Mandatory Internship Tenure
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-lg text-gray-100 pt-6 space-y-5">
+              <CardContent className="text-lg text-foreground pt-6 space-y-5">
                 <p className="leading-relaxed">
                   The initial two-month internship is <strong className="text-red-400 border-b-2 border-red-500/30 pb-0.5">mandatory and non-negotiable</strong>. Leaving before 2 months, termination due to non-performance, or policy violations will result in:
                 </p>
@@ -831,7 +831,7 @@ I'm looking forward to discussing this!`;
                   <Calendar className="w-7 h-7 mr-3" /> The 6-Month Structured Journey
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-lg text-gray-100 pt-6 space-y-6">
+              <CardContent className="text-lg text-foreground pt-6 space-y-6">
                 <div className="space-y-4">
                   <p className="flex items-center gap-3"><span className="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(139,92,246,0.5)]"></span><strong className="text-white">First 2 months:</strong> Mandatory Internship Plan</p>
                   <p className="flex items-center gap-3"><span className="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(139,92,246,0.5)]"></span><strong className="text-white">Next 4 months:</strong> Mandatory Skill & Project Training</p>
@@ -849,7 +849,7 @@ I'm looking forward to discussing this!`;
                   <ScrollText className="w-7 h-7 mr-3" /> 7-Day Trial Work (Mandatory)
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-lg text-gray-100 pt-6 space-y-4">
+              <CardContent className="text-lg text-foreground pt-6 space-y-4">
                 <p className="leading-relaxed">
                   Without completing the <strong className="text-amber-400">7-day trial work assessment</strong>, we do not offer any internship or job opportunity. This trial tests your <strong className="text-amber-400">AI/Automation and Security knowledge</strong> - no exceptions.
                 </p>
@@ -865,7 +865,7 @@ I'm looking forward to discussing this!`;
                   <Cpu className="w-7 h-7 mr-3" /> AI, Automation & Agentic Skills (Mandatory)
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-lg text-gray-100 pt-6 space-y-4">
+              <CardContent className="text-lg text-foreground pt-6 space-y-4">
                 <p className="leading-relaxed">
                   Interns must have working knowledge of <strong className="text-cyan-400">modern AI automation and agentic technologies</strong> including but not limited to:
                 </p>
@@ -885,7 +885,7 @@ I'm looking forward to discussing this!`;
                   <CheckCircle2 className="w-7 h-7 mr-3" /> Stipend & PPO Policy
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-lg text-gray-100 pt-6 space-y-4">
+              <CardContent className="text-lg text-foreground pt-6 space-y-4">
                 <p className="leading-relaxed">
                   <strong className="text-green-400">Stipend and PPO are strictly subject to performance - not fixed.</strong> Your skills, project delivery, and contribution determine compensation. Only top performers receive offers.
                 </p>

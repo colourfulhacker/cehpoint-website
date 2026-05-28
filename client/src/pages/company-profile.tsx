@@ -183,16 +183,16 @@ export default function CompanyProfile() {
             <div className="max-w-[210mm] mx-auto bg-white shadow-xl min-h-[297mm] relative text-slate-800" ref={profileRef}>
 
                 {/* 1. COVER PAGE HEADER */}
-                <div className="bg-slate-900 text-white p-12 relative overflow-hidden">
+                <div className="bg-card text-white p-12 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mr-10 -mt-20"></div>
                     <div className="relative z-10 flex justify-between items-start">
                         <div>
                             <h1 className="text-5xl font-bold font-display tracking-tight mb-2">Cehpoint</h1>
-                            <p className="text-sm text-slate-400 uppercase tracking-widest font-semibold">Technologies • Innovation • Intelligence</p>
+                            <p className="text-sm text-muted-foreground uppercase tracking-widest font-semibold">Technologies • Innovation • Intelligence</p>
                         </div>
                         <div className="text-right">
-                            <Badge variant="outline" className="text-white border-white/20 mb-2">Service Catalog 2025-26</Badge>
-                            <p className="text-xs text-slate-400">www.cehpoint.co.in</p>
+                            <Badge variant="outline" className="text-white border-foreground/20 mb-2">Service Catalog 2025-26</Badge>
+                            <p className="text-xs text-muted-foreground">www.cehpoint.co.in</p>
                         </div>
                     </div>
                 </div>

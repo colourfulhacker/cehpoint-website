@@ -271,8 +271,10 @@ export default function RegionalService() {
                             <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">Applied <span className="text-primary">AI Innovation</span></h2>
                             <p className="text-lg text-muted-foreground">Moving beyond hype to deliver measurable business impact in the {regionData.name} ecosystem.</p>
                         </div>
-                        <Button variant="outline" className="rounded-full">
-                            Explore All AI Models <ArrowRight className="ml-2 w-4 h-4" />
+                        <Button variant="outline" className="rounded-full" asChild>
+                            <Link href="/ai-solutions">
+                                Explore All AI Models <ArrowRight className="ml-2 w-4 h-4" />
+                            </Link>
                         </Button>
                     </div>
 
@@ -330,7 +332,7 @@ export default function RegionalService() {
 
                     <Card className="bg-primary text-primary-foreground border-none overflow-hidden relative">
                         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-foreground/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
 
                         <CardContent className="relative z-10 py-16 px-8">
                             <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">

@@ -90,7 +90,7 @@ export default function SwipeDeck({ onMatch }: SwipeDeckProps) {
                     <motion.div 
                         key={`next-${nextIdea.id}`}
                         style={{ scale: scaleNext }}
-                        className="absolute inset-0 bg-card rounded-3xl border border-white/5 shadow-xl opacity-50 translate-y-4 -z-10"
+                        className="absolute inset-0 bg-card rounded-3xl border border-foreground/5 shadow-xl opacity-50 translate-y-4 -z-10"
                     >
                         <div className={`h-full w-full rounded-3xl bg-gradient-to-br ${nextIdea.color} opacity-20`} />
                     </motion.div>
@@ -107,11 +107,11 @@ export default function SwipeDeck({ onMatch }: SwipeDeckProps) {
                             initial={{ scale: 0.95, opacity: 0 }}
                             exit={{ x: exitX || 0, opacity: 0, rotate: exitX ? (exitX > 0 ? 10 : -10) : 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}
-                            className="absolute inset-0 bg-card rounded-3xl border border-white/10 shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing"
+                            className="absolute inset-0 bg-card rounded-3xl border border-foreground/10 shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing"
                         >
                             {/* Card Header Gradient */}
                             <div className={`h-32 bg-gradient-to-br ${currentIdea.color} relative p-6 flex flex-col justify-end`}>
-                                <div className="absolute top-4 right-4 bg-black/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium text-white border border-white/10">
+                                <div className="absolute top-4 right-4 bg-black/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium text-white border border-foreground/10">
                                     {currentIdea.industry}
                                 </div>
                                 <h3 className="text-2xl font-bold text-white shadow-sm">{currentIdea.title}</h3>
@@ -124,25 +124,25 @@ export default function SwipeDeck({ onMatch }: SwipeDeckProps) {
                                 </p>
 
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="bg-secondary/30 p-3 rounded-xl border border-white/5">
+                                    <div className="bg-secondary/30 p-3 rounded-xl border border-foreground/5">
                                         <div className="flex items-center gap-2 text-muted-foreground text-xs font-bold uppercase tracking-wider mb-1">
                                             <DollarSign className="w-3 h-3" /> Budget
                                         </div>
                                         <p className="font-bold text-primary">{currentIdea.budget}</p>
                                     </div>
-                                    <div className="bg-secondary/30 p-3 rounded-xl border border-white/5">
+                                    <div className="bg-secondary/30 p-3 rounded-xl border border-foreground/5">
                                         <div className="flex items-center gap-2 text-muted-foreground text-xs font-bold uppercase tracking-wider mb-1">
                                             <TrendingUp className="w-3 h-3" /> Profit
                                         </div>
                                         <p className="font-bold text-green-500">{currentIdea.profitPotential}</p>
                                     </div>
-                                    <div className="bg-secondary/30 p-3 rounded-xl border border-white/5">
+                                    <div className="bg-secondary/30 p-3 rounded-xl border border-foreground/5">
                                         <div className="flex items-center gap-2 text-muted-foreground text-xs font-bold uppercase tracking-wider mb-1">
                                             <Clock className="w-3 h-3" /> Time
                                         </div>
                                         <p className="font-bold">{currentIdea.timeToMarket}</p>
                                     </div>
-                                    <div className="bg-secondary/30 p-3 rounded-xl border border-white/5">
+                                    <div className="bg-secondary/30 p-3 rounded-xl border border-foreground/5">
                                         <div className="flex items-center gap-2 text-muted-foreground text-xs font-bold uppercase tracking-wider mb-1">
                                             <Tag className="w-3 h-3" /> Tags
                                         </div>

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -34,7 +34,7 @@ export default function LeadershipSearch() {
     }, [selectedCountries]);
 
     // Cleanup: Remove selected departments that are no longer available in the newly selected countries
-    useMemo(() => {
+    useEffect(() => {
         if (selectedCountries.length > 0 && selectedDepartments.length > 0) {
             const availableDepts = new Set(
                 leadershipData
@@ -47,12 +47,12 @@ export default function LeadershipSearch() {
                 setSelectedDepartments(validSelectedDepts);
             }
         }
-    }, [selectedCountries]);
+    }, [selectedCountries, selectedDepartments]);
 
     const filteredLeaders = useMemo(() => {
-        // Only show results if a specific country or department is selected
-        if (selectedCountries.length === 0 && selectedDepartments.length === 0) {
-            return [];
+        // Default view: show all leaders sorted by name when no filters applied
+        if (selectedCountries.length === 0 && selectedDepartments.length === 0 && !searchQuery.trim()) {
+            return [...leadershipData].sort((a, b) => a.name.localeCompare(b.name));
         }
 
         return leadershipData.filter(leader => {

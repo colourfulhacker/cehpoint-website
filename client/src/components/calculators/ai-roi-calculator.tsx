@@ -117,7 +117,7 @@ I would like to discuss implementing this solution.`;
                         AI Reality Check: <span className="text-primary">ROI Calculator</span>
                     </CardTitle>
                 </div>
-                <CardDescription className="text-lg text-gray-200 font-medium">
+                <CardDescription className="text-lg text-foreground/90 font-medium">
                     See exactly how much time and money AI automation can save your business.
                 </CardDescription>
             </CardHeader>
@@ -175,7 +175,7 @@ I would like to discuss implementing this solution.`;
                                 step={1}
                                 className="py-4"
                             />
-                            <p className="text-sm text-gray-300 font-medium">Time spent on repetitive tasks like data entry, support, reporting, etc.</p>
+                            <p className="text-sm text-muted-foreground font-medium">Time spent on repetitive tasks like data entry, support, reporting, etc.</p>
                         </div>
 
                         <div className="space-y-4">
@@ -197,7 +197,7 @@ I would like to discuss implementing this solution.`;
                     {/* Results */}
                     <div className="p-6 md:p-8 bg-secondary/20 flex flex-col justify-center space-y-8">
                         <div className="text-center space-y-2">
-                            <p className="text-gray-100 font-bold uppercase tracking-wider text-sm">Potential Annual Savings</p>
+                            <p className="text-foreground font-bold uppercase tracking-wider text-sm">Potential Annual Savings</p>
                             <div className="text-4xl md:text-5xl font-bold text-primary animate-in fade-in zoom-in duration-500">
                                 {formatCurrency(savings)}
                             </div>
@@ -211,12 +211,12 @@ I would like to discuss implementing this solution.`;
                             <div className="bg-background/50 rounded-xl p-4 text-center border border-primary/10">
                                 <Cpu className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                                 <div className="text-2xl font-bold">{efficiency}%</div>
-                                <div className="text-sm text-gray-300 font-bold">Efficiency Gain</div>
+                                <div className="text-sm text-muted-foreground font-bold">Efficiency Gain</div>
                             </div>
                             <div className="bg-background/50 rounded-xl p-4 text-center border border-primary/10">
                                 <Clock className="w-6 h-6 text-blue-500 mx-auto mb-2" />
                                 <div className="text-2xl font-bold">{Math.round(teamSize[0] * hoursPerWeek[0] * 52 * (efficiency / 100))}</div>
-                                <div className="text-sm text-gray-300 font-bold">Hours Saved/Year</div>
+                                <div className="text-sm text-muted-foreground font-bold">Hours Saved/Year</div>
                             </div>
                         </div>
 
@@ -232,7 +232,7 @@ I would like to discuss implementing this solution.`;
                             >
                                 <MessageCircle className="mr-2 w-5 h-5" /> Get Detailed Analysis via WhatsApp
                             </Button>
-                            <p className="text-sm text-center text-gray-400 font-medium">
+                            <p className="text-sm text-center text-muted-foreground font-medium">
                                 Based on industry benchmarks. Actual results may vary.
                             </p>
                         </div>

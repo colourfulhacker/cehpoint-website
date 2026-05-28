@@ -56,7 +56,7 @@ export default function InvestorFAQ() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="glass p-6 md:p-8 rounded-3xl mb-12 bg-card/50 border border-white/10 shadow-2xl"
+                className="glass p-6 md:p-8 rounded-3xl mb-12 bg-card/50 border border-foreground/10 shadow-2xl"
             >
                 <Accordion type="single" collapsible className="w-full">
                     {faqs.map((faq, index) => (

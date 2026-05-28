@@ -109,7 +109,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="relative border-t border-white/10 overflow-hidden" data-testid="footer">
+    <footer className="relative border-t border-foreground/10 overflow-hidden" data-testid="footer">
       <div className="absolute inset-0 bg-[#020010] z-0" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(112,66,248,0.1),transparent_50%)] z-0" />
       <div className="absolute bottom-0 left-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] pointer-events-none animate-pulse-slow" />

@@ -9,6 +9,7 @@ import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import ScrollToTop from "@/components/layout/scroll-to-top";
 import ErrorBoundary from "@/components/layout/error-boundary";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Banner } from "./components/sections/Banner";
 import { KairaWidget } from "@/components/kaira/KairaWidget";
 
@@ -201,12 +202,14 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </HelmetProvider>
+      <ThemeProvider>
+        <HelmetProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </HelmetProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

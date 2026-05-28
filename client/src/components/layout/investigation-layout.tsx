@@ -19,7 +19,7 @@ export default function InvestigationLayout({ children }: { children: React.Reac
 
     return (
         <div className="min-h-screen bg-background">
-            <div className="border-b border-white/5 bg-black/40 backdrop-blur-md sticky top-[104px] z-30">
+            <div className="border-b border-foreground/5 bg-black/40 backdrop-blur-md sticky top-[104px] z-30">
                 <div className="max-w-7xl mx-auto px-4">
                     {/* Breadcrumbs */}
                     <nav aria-label="Breadcrumb" className="pt-2">
@@ -67,14 +67,14 @@ export default function InvestigationLayout({ children }: { children: React.Reac
                                             "px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer border border-transparent",
                                             isActive
                                                 ? "bg-red-500/10 text-red-400 border-red-500/20"
-                                                : "text-muted-foreground hover:text-white hover:bg-white/5"
+                                                : "text-muted-foreground hover:text-white hover:bg-foreground/5"
                                         )}
                                     >
                                         {item.name}
                                     </Link>
                                 );
                             })}
-                            <div className="w-px h-6 bg-white/10 mx-2 hidden md:block" aria-hidden="true" />
+                            <div className="w-px h-6 bg-foreground/10 mx-2 hidden md:block" aria-hidden="true" />
                             <Link
                                 href="/services/cyber-crime-investigation/request"
                                 aria-current={location === "/services/cyber-crime-investigation/request" ? "page" : undefined}
@@ -82,7 +82,7 @@ export default function InvestigationLayout({ children }: { children: React.Reac
                                     "px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer inline-flex items-center gap-2 border",
                                     location === "/services/cyber-crime-investigation/request"
                                         ? "bg-red-600 text-white border-red-600 shadow-lg shadow-red-900/20"
-                                        : "bg-white/5 border-white/10 text-white hover:bg-white/10"
+                                        : "bg-foreground/5 border-foreground/10 text-white hover:bg-foreground/10"
                                 )}
                             >
                                 <Lock className="w-3 h-3" aria-hidden="true" />

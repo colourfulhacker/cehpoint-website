@@ -84,7 +84,7 @@ export default function InvestigationLanding() {
                         className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
                     >
                         <Link href="/services/cyber-crime-investigation/process">
-                            <Button variant="outline" className="h-14 px-8 rounded-full border-white/10 hover:bg-white/5 hover:border-white/20 text-lg transition-all duration-300">
+                            <Button variant="outline" className="h-14 px-8 rounded-full border-foreground/10 hover:bg-foreground/5 hover:border-foreground/20 text-lg transition-all duration-300">
                                 Understand Our Process
                             </Button>
                         </Link>
@@ -99,7 +99,7 @@ export default function InvestigationLanding() {
             </section>
 
             {/* What We Do */}
-            <section className="py-24 border-y border-white/5 bg-white/[0.02] relative overflow-hidden">
+            <section className="py-24 border-y border-foreground/5 bg-white/[0.02] relative overflow-hidden">
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
                 <div className="max-w-7xl mx-auto px-4 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -135,7 +135,7 @@ export default function InvestigationLanding() {
                         </div>
                         <div className="relative group">
                             <div className="absolute inset-0 bg-red-600/20 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
-                            <div className="relative p-8 rounded-3xl glass border border-white/10 backdrop-blur-xl bg-black/40">
+                            <div className="relative p-8 rounded-3xl glass border border-foreground/10 backdrop-blur-xl bg-black/40">
                                 <div className="grid grid-cols-2 gap-4">
                                     <StatCard value="98%" label="Evidence Integrity" />
                                     <StatCard value="Global" label="Coverage Area" />
@@ -160,7 +160,7 @@ export default function InvestigationLanding() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {LEADERSHIP_TEAM.map((lead, i) => (
-                            <div key={i} className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors group">
+                            <div key={i} className="p-6 rounded-2xl border border-foreground/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors group">
                                 <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-4 text-red-500 group-hover:scale-110 transition-transform">
                                     <User className="w-6 h-6" />
                                 </div>
@@ -182,7 +182,7 @@ export default function InvestigationLanding() {
 
 function StatCard({ value, label }: { value: string, label: string }) {
     return (
-        <div className="p-6 rounded-2xl bg-black/40 border border-white/5 text-center hover:border-red-500/20 transition-colors">
+        <div className="p-6 rounded-2xl bg-black/40 border border-foreground/5 text-center hover:border-red-500/20 transition-colors">
             <div className="text-4xl font-bold text-white mb-2 tracking-tight">{value}</div>
             <div className="text-xs text-muted-foreground uppercase tracking-widest font-medium">{label}</div>
         </div>

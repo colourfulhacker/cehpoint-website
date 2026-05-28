@@ -46,7 +46,7 @@ export default function AboutPage() {
                             To be the world's most trusted partner in digital transformation and security, creating an ecosystem where technology operates seamlessly, securely, and intelligently for everyone.
                         </p>
                     </div>
-                    <div className="pt-8 border-t border-white/10">
+                    <div className="pt-8 border-t border-foreground/10">
                         <Link href="/leadership-search" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium">
                             <Users className="w-5 h-5" />
                             Explore our Leadership Search & Corporate Ecosystem

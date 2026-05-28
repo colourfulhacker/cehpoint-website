@@ -81,10 +81,10 @@ export default function ProcessTimeline() {
                                 ${index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'}
                             `}>
                                 <div className="flex justify-between items-start mb-4">
-                                    <div className="p-3 rounded-xl bg-white/5 group-hover:bg-red-500/10 transition-colors">
+                                    <div className="p-3 rounded-xl bg-foreground/5 group-hover:bg-red-500/10 transition-colors">
                                         <step.icon className="w-6 h-6 text-red-500" />
                                     </div>
-                                    <span className="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-muted-foreground">
+                                    <span className="px-3 py-1 rounded-full text-xs font-mono bg-foreground/5 border border-foreground/10 text-muted-foreground">
                                         {step.duration}
                                     </span>
                                 </div>

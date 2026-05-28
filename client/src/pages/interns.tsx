@@ -165,7 +165,7 @@ export default function Interns() {
             <div className="glass rounded-3xl overflow-hidden">
               <button
                 onClick={() => setExpandedRole(expandedRole === "sde" ? null : "sde")}
-                className="w-full p-8 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
+                className="w-full p-8 text-left flex items-center justify-between hover:bg-foreground/5 transition-colors"
               >
                 <div className="flex items-center gap-6">
                   <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center flex-shrink-0">
@@ -384,7 +384,7 @@ export default function Interns() {
             <div className="glass rounded-3xl overflow-hidden">
               <button
                 onClick={() => setExpandedRole(expandedRole === "ai" ? null : "ai")}
-                className="w-full p-8 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
+                className="w-full p-8 text-left flex items-center justify-between hover:bg-foreground/5 transition-colors"
               >
                 <div className="flex items-center gap-6">
                   <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center flex-shrink-0">

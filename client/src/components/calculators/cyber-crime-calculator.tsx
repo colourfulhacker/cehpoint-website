@@ -109,7 +109,7 @@ ${scopeDetails || "None selected"}
     };
 
     return (
-        <section className="py-12 bg-black/20 rounded-2xl border border-white/10" id="calculator">
+        <section className="py-12 bg-black/20 rounded-2xl border border-foreground/10" id="calculator">
             <div className="max-w-4xl mx-auto px-4">
                 <div className="text-center mb-10">
                     <h2 className="text-3xl font-bold mb-4 font-display">Cyber Investigation <span className="text-blue-400">Cost Estimator</span></h2>
@@ -136,7 +136,7 @@ ${scopeDetails || "None selected"}
                             <Label>Investigation Scope (Select all that apply)</Label>
                             <div className="grid gap-3">
                                 {scopeItems.map((item) => (
-                                    <div key={item.id} className={`p-3 rounded-lg border transition-all ${selectedScopes.includes(item.id) ? 'bg-blue-500/10 border-blue-500/50' : 'bg-white/5 border-white/10'}`}>
+                                    <div key={item.id} className={`p-3 rounded-lg border transition-all ${selectedScopes.includes(item.id) ? 'bg-blue-500/10 border-blue-500/50' : 'bg-foreground/5 border-foreground/10'}`}>
                                         <div className="flex items-center space-x-3 mb-2">
                                             <Checkbox
                                                 id={item.id}
@@ -207,7 +207,7 @@ ${scopeDetails || "None selected"}
                                     {formatCurrency(totalCost)}
                                 </div>
 
-                                <div className="space-y-2 text-sm text-gray-400">
+                                <div className="space-y-2 text-sm text-muted-foreground">
                                     <p className="flex justify-between"><span>Base Fee ({clientType}):</span> <span>{formatCurrency(baseRates[clientType as keyof typeof baseRates])}</span></p>
                                     <p className="flex justify-between"><span>Scope Cost:</span> <span>{formatCurrency(selectedScopes.reduce((acc, id) => {
                                         const scope = scopeItems.find(s => s.id === id);

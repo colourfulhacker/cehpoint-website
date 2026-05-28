@@ -63,7 +63,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
 
             <Tabs defaultValue="overview" className="w-full" onValueChange={setActiveTab}>
                 <div className="flex justify-center mb-8 md:mb-12 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4">
-                    <TabsList className="bg-secondary/30 backdrop-blur-md border border-white/10 p-1 rounded-full h-auto inline-flex">
+                    <TabsList className="bg-secondary/30 backdrop-blur-md border border-foreground/10 p-1 rounded-full h-auto inline-flex">
                         {[
                             { id: "overview", label: "Overview" },
                             { id: "financial", label: "Financials" },
@@ -130,7 +130,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                                 <h3 className="text-2xl font-bold mb-6">Tech Stack</h3>
                                 <div className="flex flex-wrap gap-3">
                                     {techStack.map((tech, i) => (
-                                        <span key={i} className="px-4 py-2 rounded-xl bg-secondary/50 border border-white/5 text-sm font-medium hover:bg-primary/10 hover:border-primary/30 transition-colors cursor-default">
+                                        <span key={i} className="px-4 py-2 rounded-xl bg-secondary/50 border border-foreground/5 text-sm font-medium hover:bg-primary/10 hover:border-primary/30 transition-colors cursor-default">
                                             {tech}
                                         </span>
                                     ))}
@@ -150,7 +150,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                                         { value: "₹500Cr+", label: "Total Market Size", color: "text-green-500" },
                                         { value: "25%", label: "Annual Growth Rate", color: "text-purple-500" }
                                     ].map((stat, i) => (
-                                        <div key={i} className="p-6 bg-secondary/30 rounded-2xl border border-white/5 text-center">
+                                        <div key={i} className="p-6 bg-secondary/30 rounded-2xl border border-foreground/5 text-center">
                                             <p className={`text-3xl font-bold ${stat.color} mb-2`}>{stat.value}</p>
                                             <p className="text-sm text-foreground/60 font-medium uppercase tracking-wider">{stat.label}</p>
                                         </div>
@@ -165,7 +165,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                                 </h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {competitiveAdvantage.split(',').map((item, i) => (
-                                        <div key={i} className="flex items-start gap-4 p-5 bg-secondary/40 rounded-2xl border border-white/5 hover:bg-secondary/60 transition-colors">
+                                        <div key={i} className="flex items-start gap-4 p-5 bg-secondary/40 rounded-2xl border border-foreground/5 hover:bg-secondary/60 transition-colors">
                                             <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
                                                 <CheckCircle className="w-4 h-4" />
                                             </div>
@@ -197,7 +197,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                                         { year: "Year 2", revenue: parseInt(idea.profitPotential.replace('₹', '').replace('L/yr', '')) * 2.5, customers: "50-60" },
                                         { year: "Year 3", revenue: parseInt(idea.profitPotential.replace('₹', '').replace('L/yr', '')) * 5, customers: "150+" }
                                     ].map((proj, i) => (
-                                        <div key={i} className={`p-6 rounded-2xl text-center ${i === 1 ? 'bg-green-500/10 border border-green-500/30 scale-105 shadow-xl' : 'bg-secondary/30 border border-white/5'}`}>
+                                        <div key={i} className={`p-6 rounded-2xl text-center ${i === 1 ? 'bg-green-500/10 border border-green-500/30 scale-105 shadow-xl' : 'bg-secondary/30 border border-foreground/5'}`}>
                                             <p className="text-sm text-foreground/60 mb-3 font-bold uppercase tracking-wider">{proj.year}</p>
                                             <p className="text-4xl font-bold text-green-500 mb-2">₹{proj.revenue}L</p>
                                             <p className="text-sm font-bold text-foreground">{proj.customers} customers</p>
@@ -217,7 +217,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                                             { item: "Legal & Compliance", amount: "10%" },
                                             { item: "Operations Buffer", amount: "15%" }
                                         ].map((expense, i) => (
-                                            <div key={i} className="flex justify-between items-center p-3 border-b border-white/5 last:border-0">
+                                            <div key={i} className="flex justify-between items-center p-3 border-b border-foreground/5 last:border-0">
                                                 <span className="font-medium">{expense.item}</span>
                                                 <span className="font-bold text-primary">{expense.amount}</span>
                                             </div>
@@ -252,7 +252,7 @@ export default function MatchReveal({ idea, onProceed }: MatchRevealProps) {
                                         { role: "DevOps Engineer", count: "1" },
                                         { role: "QA Tester", count: "1" }
                                     ].map((member, i) => (
-                                        <div key={i} className="p-4 bg-secondary/40 rounded-xl text-center border border-white/5">
+                                        <div key={i} className="p-4 bg-secondary/40 rounded-xl text-center border border-foreground/5">
                                             <p className="font-bold text-primary text-2xl mb-1">{member.count}x</p>
                                             <p className="font-medium text-sm">{member.role}</p>
                                         </div>

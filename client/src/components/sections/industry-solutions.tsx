@@ -177,7 +177,7 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
 
   return (
     <div
-      className={`group relative rounded-3xl border border-white/5 bg-[#0a0a0a] overflow-hidden transition-all duration-500 hover:border-primary/50 ${item.span}`}
+      className={`group relative rounded-3xl border border-foreground/5 bg-[#0a0a0a] overflow-hidden transition-all duration-500 hover:border-primary/50 ${item.span}`}
       onMouseMove={handleMouseMove}
     >
       {/* 
@@ -204,7 +204,7 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
       <div className="relative h-full p-8 flex flex-col justify-between z-10">
         {/* Icon Header */}
         <div className="flex justify-between items-start mb-6">
-          <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-white group-hover:text-primary group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-500">
+          <div className="p-3 rounded-2xl bg-foreground/5 border border-foreground/10 text-white group-hover:text-primary group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-500">
             <item.icon className="h-6 w-6" />
           </div>
           {/* Subtle "Active" Indicator - Accent Color (Orange) */}
@@ -216,22 +216,22 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
           <h3 className="text-xl font-display font-medium text-white mb-3 group-hover:text-primary-foreground transition-colors duration-300">
             {item.title}
           </h3>
-          <p className="text-sm text-zinc-300 font-light leading-relaxed group-hover:text-zinc-200 transition-colors duration-300">
+          <p className="text-sm text-muted-foreground font-light leading-relaxed group-hover:text-foreground/90 transition-colors duration-300">
             {item.description}
           </p>
         </div>
 
         {/* Footer / Features Reveal */}
-        <div className="mt-8 pt-6 border-t border-white/5 group-hover:border-white/10 transition-colors duration-500">
+        <div className="mt-8 pt-6 border-t border-foreground/5 group-hover:border-foreground/10 transition-colors duration-500">
           {/* Default State: Metrics */}
           <div className="flex justify-between items-center group-hover:opacity-0 transition-opacity duration-300 absolute w-[85%]">
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">Starts From</p>
-              <p className="text-sm font-medium text-zinc-300">{item.cost}</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Starts From</p>
+              <p className="text-sm font-medium text-muted-foreground">{item.cost}</p>
             </div>
             <div className="text-right">
-              <p className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">Timeline</p>
-              <p className="text-sm font-medium text-zinc-300">{item.time}</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Timeline</p>
+              <p className="text-sm font-medium text-muted-foreground">{item.time}</p>
             </div>
           </div>
 
@@ -239,7 +239,7 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
           <div className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
             <ul className="grid grid-cols-2 gap-2">
               {item.features.slice(0, 4).map((feat, i) => (
-                <li key={i} className="flex items-center text-[11px] text-zinc-400">
+                <li key={i} className="flex items-center text-[11px] text-muted-foreground">
                   <ArrowUpRight className="w-2.5 h-2.5 mr-1.5 text-primary" />
                   {feat}
                 </li>
@@ -274,7 +274,7 @@ export default function IndustrySolutions() {
               Industry Coverage
             </h2>
           </div>
-          <div className="max-w-xs text-zinc-300 text-sm font-light leading-relaxed mb-2">
+          <div className="max-w-xs text-muted-foreground text-sm font-light leading-relaxed mb-2">
             We engineer digital dominance across diverse sectors, transforming legacy systems into future-proof powerhouses.
           </div>
         </div>

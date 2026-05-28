@@ -159,7 +159,7 @@ Please provide a formal quotation.`;
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2 space-y-6">
-                        <Card className="glass-intense border-white/10">
+                        <Card className="glass-intense border-foreground/10">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     <ShoppingCart className="w-5 h-5 text-purple-400" />
@@ -198,7 +198,7 @@ Please provide a formal quotation.`;
                             </CardContent>
                         </Card>
 
-                        <Card className="glass-intense border-white/10">
+                        <Card className="glass-intense border-foreground/10">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     <Cpu className="w-5 h-5 text-yellow-400" />
@@ -212,7 +212,7 @@ Please provide a formal quotation.`;
                                             onClick={() => toggleFeature(feature.id)}
                                             className={`p-4 rounded-xl border cursor-pointer transition-all ${selectedFeatures.includes(feature.id)
                                                     ? 'bg-primary/10 border-primary/50'
-                                                    : 'bg-white/5 border-white/10 hover:bg-white/10'
+                                                    : 'bg-foreground/5 border-foreground/10 hover:bg-foreground/10'
                                                 }`}>
                                             <div className="flex items-center gap-3">
                                                 <Checkbox checked={selectedFeatures.includes(feature.id)} />
@@ -247,7 +247,7 @@ Please provide a formal quotation.`;
                                             </SelectContent>
                                         </Select>
                                     </div>
-                                    <div className="pt-6 border-t border-white/10 text-center">
+                                    <div className="pt-6 border-t border-foreground/10 text-center">
                                         <div className="text-sm text-muted-foreground mb-2">Total Estimated Cost</div>
                                         <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                                             {formatCurrency(totalCost)}

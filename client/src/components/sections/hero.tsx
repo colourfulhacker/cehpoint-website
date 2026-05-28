@@ -141,7 +141,7 @@ export default function Hero() {
 
             <Button
               onClick={skipIntro}
-              className="bg-zinc-900/90 hover:bg-black text-white border-2 border-white/30 rounded-full px-8 py-4 transition-all hover:border-blue-500 hover:text-blue-400 group shadow-xl"
+              className="bg-card/90 hover:bg-black text-white border-2 border-foreground/30 rounded-full px-8 py-4 transition-all hover:border-blue-500 hover:text-blue-400 group shadow-xl"
             >
               <span className="mr-2 text-base font-bold tracking-wide uppercase group-hover:text-blue-400 transition-colors">Skip Intro</span>
               <ArrowRight className="w-5 h-5 text-white/70 group-hover:text-blue-400 transition-colors" />
@@ -232,7 +232,7 @@ export default function Hero() {
                   className="flex flex-wrap gap-4 mb-10"
                 >
                   {["MVP to Enterprise", "24h Delivery", "Pay After Demo"].map((item, i) => (
-                    <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground/90 bg-black/20 px-3 py-1.5 rounded-md border border-white/5 backdrop-blur-sm">
+                    <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground/90 bg-black/20 px-3 py-1.5 rounded-md border border-foreground/5 backdrop-blur-sm">
                       <CheckCircle2 className="w-4 h-4 text-primary" />
                       <span>{item}</span>
                     </div>
@@ -281,7 +281,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 0.8 }}
-            className="absolute bottom-0 left-0 right-0 z-30 bg-black/40 backdrop-blur-md border-t border-white/10 pointer-events-none"
+            className="absolute bottom-0 left-0 right-0 z-30 bg-black/40 backdrop-blur-md border-t border-foreground/10 pointer-events-none"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-auto">
@@ -292,7 +292,7 @@ export default function Hero() {
                   { value: "25+", label: "Industries", sublabel: "Expertise" },
                   { value: "500+", label: "Projects", sublabel: "Delivered" }
                 ].map((stat, index) => (
-                  <div key={stat.label} className="py-6 px-4 text-center group hover:bg-white/5 transition-colors cursor-default">
+                  <div key={stat.label} className="py-6 px-4 text-center group hover:bg-foreground/5 transition-colors cursor-default">
                     <div className="text-2xl sm:text-3xl font-bold text-white mb-1 group-hover:scale-105 transition-transform duration-300">
                       {stat.value}
                     </div>

@@ -35,7 +35,7 @@ export default function TechStack() {
                     <h2 className="font-display font-medium text-5xl md:text-7xl mb-6 tracking-tight text-white leading-tight">
                         Tech Stack
                     </h2>
-                    <p className="text-xl text-zinc-300 font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
+                    <p className="text-xl text-muted-foreground font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
                         Enterprise-grade technologies selected for scalability, security, and maintainability.
                     </p>
                 </div>
@@ -53,11 +53,11 @@ export default function TechStack() {
                                     flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 border
                                     ${isActive
                                         ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.3)] scale-105'
-                                        : 'bg-zinc-900/50 text-zinc-300 border-white/5 hover:bg-zinc-800 hover:text-white hover:border-white/10'
+                                        : 'bg-card/50 text-muted-foreground border-foreground/5 hover:bg-muted hover:text-white hover:border-foreground/10'
                                     }
                                 `}
                             >
-                                <Icon className={`w-4 h-4 mr-2 ${isActive ? 'text-black' : 'text-zinc-400'}`} />
+                                <Icon className={`w-4 h-4 mr-2 ${isActive ? 'text-black' : 'text-muted-foreground'}`} />
                                 {service.serviceName}
                             </button>
                         );
@@ -77,11 +77,11 @@ export default function TechStack() {
                         {categories.map((category) => (
                             <div
                                 key={category.name}
-                                className="group bg-zinc-900/40 border border-white/5 p-8 rounded-3xl hover:bg-zinc-900/80 hover:border-primary/20 transition-all duration-300"
+                                className="group bg-card/40 border border-foreground/5 p-8 rounded-3xl hover:bg-card/80 hover:border-primary/20 transition-all duration-300"
                             >
                                 <div className="flex items-center gap-4 mb-8">
-                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center border border-white/5 group-hover:border-primary/30 transition-colors">
-                                        <Cpu className="w-5 h-5 text-zinc-400 group-hover:text-primary transition-colors" />
+                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center border border-foreground/5 group-hover:border-primary/30 transition-colors">
+                                        <Cpu className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                                     </div>
                                     <h3 className="font-display font-medium text-lg text-white group-hover:text-primary-foreground transition-colors">
                                         {category.name}
@@ -93,12 +93,12 @@ export default function TechStack() {
                                         const ToolIcon = getTechIcon(tool.name);
                                         return (
                                             <li key={tool.name} className="flex items-center group/tool">
-                                                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center mr-4 group-hover/tool:bg-white/10 transition-colors">
-                                                    <ToolIcon className="w-4 h-4 text-zinc-400 group-hover/tool:text-white transition-colors" />
+                                                <div className="w-8 h-8 rounded-lg bg-foreground/5 flex items-center justify-center mr-4 group-hover/tool:bg-foreground/10 transition-colors">
+                                                    <ToolIcon className="w-4 h-4 text-muted-foreground group-hover/tool:text-white transition-colors" />
                                                 </div>
                                                 <div className="flex-1">
-                                                    <span className="text-sm font-medium text-zinc-300 block group-hover/tool:text-white transition-colors">{tool.name}</span>
-                                                    <span className="text-[11px] text-zinc-300 block group-hover/tool:text-zinc-400 transition-colors line-clamp-1">{tool.description}</span>
+                                                    <span className="text-sm font-medium text-muted-foreground block group-hover/tool:text-white transition-colors">{tool.name}</span>
+                                                    <span className="text-[11px] text-muted-foreground block group-hover/tool:text-muted-foreground transition-colors line-clamp-1">{tool.description}</span>
                                                 </div>
                                             </li>
                                         );
@@ -109,17 +109,17 @@ export default function TechStack() {
                     </motion.div>
                 </AnimatePresence>
 
-                <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="border-t border-foreground/5 pt-12 flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex items-center gap-4">
                         <div className="p-3 rounded-full bg-primary/10 text-primary">
                             <Code2 className="w-6 h-6" />
                         </div>
                         <div>
                             <h4 className="text-white font-medium">Custom Stack Architecture</h4>
-                            <p className="text-sm text-zinc-400">We don't just use tools; we engineer ecosystems.</p>
+                            <p className="text-sm text-muted-foreground">We don't just use tools; we engineer ecosystems.</p>
                         </div>
                     </div>
-                    <Button variant="outline" className="rounded-full border-white/10 hover:bg-white hover:text-black transition-colors">
+                    <Button variant="outline" className="rounded-full border-foreground/10 hover:bg-white hover:text-black transition-colors">
                         View Full Tech Radar <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                 </div>

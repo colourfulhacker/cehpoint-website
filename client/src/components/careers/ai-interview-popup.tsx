@@ -108,7 +108,7 @@ export default function AIInterviewPopup() {
                                         <Button
                                             variant="outline"
                                             onClick={handleClose}
-                                            className="py-6 border-white/10 hover:bg-secondary/50"
+                                            className="py-6 border-foreground/10 hover:bg-secondary/50"
                                         >
                                             Maybe Later
                                         </Button>

@@ -141,8 +141,10 @@ export default function ProfessionalPartnerPage() {
             </motion.p>
 
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="btn-primary rounded-xl px-8 h-12 text-lg">
-                Apply for Partnership <ArrowRight className="ml-2 w-5 h-5" />
+              <Button size="lg" className="btn-primary rounded-xl px-8 h-12 text-lg" asChild>
+                <Link href="/partner-network">
+                  Apply for Partnership <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
               </Button>
               <Link href="/services">
                 <Button size="lg" variant="outline" className="rounded-xl px-8 h-12 text-lg">
@@ -312,11 +314,15 @@ export default function ProfessionalPartnerPage() {
               Secure your spot in the priority delivery network.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button size="lg" className="btn-primary h-14 px-10 text-xl rounded-2xl shadow-xl shadow-primary/20">
-                Apply to Join <ArrowRight className="ml-2 w-6 h-6" />
+              <Button size="lg" className="btn-primary h-14 px-10 text-xl rounded-2xl shadow-xl shadow-primary/20" asChild>
+                <Link href="/partner-network">
+                  Apply to Join <ArrowRight className="ml-2 w-6 h-6" />
+                </Link>
               </Button>
-              <Button size="lg" variant="outline" className="h-14 px-10 text-xl rounded-2xl glass">
-                Get a Callback
+              <Button size="lg" variant="outline" className="h-14 px-10 text-xl rounded-2xl glass" asChild>
+                <Link href="/contact">
+                  Get a Callback
+                </Link>
               </Button>
             </div>
             <p className="mt-8 text-sm text-muted-foreground">

@@ -102,7 +102,7 @@ export default function CyberSecurity() {
                     >
                         <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-8 border border-blue-500/30">
                             <Shield className="w-5 h-5 text-blue-400 mr-2" />
-                            <span className="text-blue-400 font-medium tracking-wide upercase">Elite Cyber Defense</span>
+                            <span className="text-blue-400 font-medium tracking-wide uppercase">Elite Cyber Defense</span>
                         </div>
 
                         <h1 className="font-display font-bold text-5xl md:text-7xl mb-6 leading-tight">
@@ -124,7 +124,7 @@ export default function CyberSecurity() {
                                     <MessageCircle className="ml-2 w-5 h-5" />
                                 </Button>
                             </a>
-                            <Button variant="outline" className="h-14 px-8 text-lg rounded-full glass hover:bg-white/10" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
+                            <Button variant="outline" className="h-14 px-8 text-lg rounded-full glass hover:bg-foreground/10" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
                                 Explore Services
                             </Button>
                         </div>
@@ -133,7 +133,7 @@ export default function CyberSecurity() {
             </section>
 
             {/* Statistics Section */}
-            <section className="py-20 relative border-y border-white/5 bg-white/5 backdrop-blur-sm">
+            <section className="py-20 relative border-y border-foreground/5 bg-foreground/5 backdrop-blur-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         {[
@@ -168,12 +168,12 @@ export default function CyberSecurity() {
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
                                 whileHover={{ y: -5 }}
-                                className="glass p-8 rounded-2xl border border-white/10 hover:border-blue-500/30 transition-all duration-300 relative group overflow-hidden"
+                                className="glass p-8 rounded-2xl border border-foreground/10 hover:border-blue-500/30 transition-all duration-300 relative group overflow-hidden"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                                 <div className="relative z-10">
-                                    <div className="mb-6 p-4 rounded-xl bg-white/5 inline-block group-hover:bg-white/10 transition-colors">
+                                    <div className="mb-6 p-4 rounded-xl bg-foreground/5 inline-block group-hover:bg-foreground/10 transition-colors">
                                         {service.icon}
                                     </div>
 
@@ -182,7 +182,7 @@ export default function CyberSecurity() {
 
                                     <ul className="space-y-3">
                                         {service.features.map((feature, idx) => (
-                                            <li key={idx} className="flex items-center text-sm text-gray-300">
+                                            <li key={idx} className="flex items-center text-sm text-muted-foreground">
                                                 <CheckCircle className="w-4 h-4 text-blue-400 mr-2 flex-shrink-0" />
                                                 {feature}
                                             </li>
@@ -235,7 +235,7 @@ export default function CyberSecurity() {
                             <img
                                 src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop"
                                 alt="Cyber Security Operations"
-                                className="rounded-2xl border border-white/10 shadow-2xl relative z-10"
+                                className="rounded-2xl border border-foreground/10 shadow-2xl relative z-10"
                              loading="lazy" decoding="async"/>
                         </div>
                     </div>

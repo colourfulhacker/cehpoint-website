@@ -107,7 +107,7 @@ const AppVisual = ({ id, title, icon, image, className = "h-40" }: { id: number,
                     loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
-                <div className="absolute top-3 right-3 bg-black/20 backdrop-blur-md p-2 rounded-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute top-3 right-3 bg-black/20 backdrop-blur-md p-2 rounded-xl border border-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="scale-75 text-white">
                         {icon}
                     </div>
@@ -127,7 +127,7 @@ const AppVisual = ({ id, title, icon, image, className = "h-40" }: { id: number,
 
             {/* Icon & Content */}
             <div className="relative z-10 flex flex-col items-center gap-3 transform group-hover:scale-110 transition-transform duration-300">
-                <div className="bg-white/20 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/20">
+                <div className="bg-foreground/20 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-foreground/20">
                     {/* Make icon larger via cloneElement or wrapper */}
                     <div className="scale-150 text-white">
                         {icon}
@@ -139,7 +139,7 @@ const AppVisual = ({ id, title, icon, image, className = "h-40" }: { id: number,
             </div>
 
             {/* Floating particles/shapes for extra dynamism (randomized by ID) */}
-            <div className={`absolute top-4 left-4 w-12 h-12 rounded-full bg-white/5 blur-xl animate-pulse delay-${(id % 3) * 100}`} />
+            <div className={`absolute top-4 left-4 w-12 h-12 rounded-full bg-foreground/5 blur-xl animate-pulse delay-${(id % 3) * 100}`} />
             <div className={`absolute bottom-4 right-4 w-20 h-20 rounded-full bg-black/5 blur-xl`} />
         </div>
     );
@@ -1090,7 +1090,7 @@ export default function BusinessAppCatalog() {
                 {/* CTA Section */}
                 <section className="container mx-auto px-4 mt-20">
                     <div className="bg-gradient-to-r from-primary/90 to-primary text-primary-foreground rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden text-center">
-                        <div className="absolute top-0 right-0 p-12 bg-white/10 rounded-full transform translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
+                        <div className="absolute top-0 right-0 p-12 bg-foreground/10 rounded-full transform translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
                         <div className="absolute bottom-0 left-0 p-12 bg-black/10 rounded-full transform -translate-x-1/2 translate-y-1/2 blur-2xl"></div>
 
                         <div className="relative z-10 max-w-3xl mx-auto space-y-6">
@@ -1113,7 +1113,7 @@ export default function BusinessAppCatalog() {
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-full px-8"
+                                    className="bg-transparent border-foreground/30 text-white hover:bg-foreground/10 rounded-full px-8"
                                     onClick={() => {
                                         const msg = encodeURIComponent("I want to speak with an expert regarding business apps.");
                                         window.open(`https://wa.me/919091156095?text=${msg}`, "_blank");

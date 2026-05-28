@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown, Bot } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "@/components/theme/theme-toggle";
 
 interface NavItem {
   name: string;
@@ -155,7 +156,7 @@ export default function Navbar() {
         Skip to main content
       </a>
 
-      <nav className="fixed top-14 left-0 right-0 mx-auto w-[95%] max-w-7xl z-50 glass rounded-full px-2 shadow-2xl transition-all duration-300 border border-white/10" data-testid="navbar" role="navigation" aria-label="Main navigation">
+      <nav className="fixed top-14 left-0 right-0 mx-auto w-[95%] max-w-7xl z-50 glass rounded-full px-2 shadow-2xl transition-all duration-300 border border-foreground/10" data-testid="navbar" role="navigation" aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -187,7 +188,7 @@ export default function Navbar() {
                             toggleDropdown(item.name);
                           }
                         }}
-                        className="flex items-center text-gray-200 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
+                        className="flex items-center text-foreground/90 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
                         aria-expanded={openDropdown === item.name}
                         aria-haspopup="true"
                         data-testid={`${item.name.toLowerCase()}-dropdown`}
@@ -211,7 +212,7 @@ export default function Navbar() {
                                 href={child.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 transition-colors whitespace-nowrap focus:outline-none focus:bg-white/10"
+                                className="block px-4 py-2 text-sm text-muted-foreground hover:text-white hover:bg-foreground/10 transition-colors whitespace-nowrap focus:outline-none focus:bg-foreground/10"
                                 onClick={() => setTimeout(() => setOpenDropdown(null), 150)}
                                 role="menuitem"
                                 data-testid={`nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
@@ -222,7 +223,7 @@ export default function Navbar() {
                               <Link
                                 key={child.name}
                                 href={child.href}
-                                className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 transition-colors whitespace-nowrap focus:outline-none focus:bg-white/10"
+                                className="block px-4 py-2 text-sm text-muted-foreground hover:text-white hover:bg-foreground/10 transition-colors whitespace-nowrap focus:outline-none focus:bg-foreground/10"
                                 onClick={() => setOpenDropdown(null)}
                                 role="menuitem"
                                 data-testid={`nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
@@ -239,7 +240,7 @@ export default function Navbar() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-200 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
+                      className="text-foreground/90 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
                       data-testid={`nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {item.name}
@@ -247,7 +248,7 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="text-gray-200 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
+                      className="text-foreground/90 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
                       data-testid={`nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {item.name}
@@ -257,7 +258,8 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <ThemeToggle />
               {/* Desktop CTA - Hidden on Mobile/Tablet */}
               <div className="hidden lg:block">
                 <Link

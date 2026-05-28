@@ -62,7 +62,7 @@ export default function AutomationRecommender() {
                             AI Automation <span className="text-primary">Blueprint Planner</span>
                         </CardTitle>
                     </div>
-                    <CardDescription className="text-lg text-center max-w-2xl mx-auto mt-4 text-gray-200 font-medium">
+                    <CardDescription className="text-lg text-center max-w-2xl mx-auto mt-4 text-foreground/90 font-medium">
                         {step === 1 && "Tell us about your business to get a custom automation blueprint."}
                         {step === 2 && `Which department is the biggest bottleneck for ${businessName}?`}
                         {step === 3 && `Your Custom Blueprint for ${businessName}`}
@@ -123,8 +123,8 @@ export default function AutomationRecommender() {
                                             : "border-primary/20 bg-background/30 hover:border-primary/50 hover:bg-primary/5"
                                             }`}
                                     >
-                                        <Briefcase className={`w-10 h-10 ${selectedFocusId === focus.id ? "text-primary" : "text-gray-400"}`} />
-                                        <h3 className={`font-bold text-lg md:text-xl ${selectedFocusId === focus.id ? "text-white" : "text-gray-200"}`}>{focus.name}</h3>
+                                        <Briefcase className={`w-10 h-10 ${selectedFocusId === focus.id ? "text-primary" : "text-muted-foreground"}`} />
+                                        <h3 className={`font-bold text-lg md:text-xl ${selectedFocusId === focus.id ? "text-white" : "text-foreground/90"}`}>{focus.name}</h3>
                                     </div>
                                 ))}
                             </div>
@@ -157,7 +157,7 @@ export default function AutomationRecommender() {
 
                                         <div className="space-y-8">
                                             {selectedFocus.automations.map((automation, idx) => (
-                                                <div key={idx} className="bg-background/80 rounded-xl p-5 border border-white/5 relative overflow-hidden">
+                                                <div key={idx} className="bg-background/80 rounded-xl p-5 border border-foreground/5 relative overflow-hidden">
                                                     <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-accent"></div>
                                                     <h4 className="text-xl font-bold mb-4 ml-4">{automation.name}</h4>
 
@@ -184,22 +184,22 @@ export default function AutomationRecommender() {
 
                                         <div className="space-y-6">
                                             <div>
-                                                <p className="text-sm text-gray-200 font-bold flex items-center gap-2 mb-1">
+                                                <p className="text-sm text-foreground/90 font-bold flex items-center gap-2 mb-1">
                                                     <Clock className="w-4 h-4 text-primary" /> Estimated Time Saved
                                                 </p>
                                                 <p className="text-2xl font-bold text-primary">{selectedFocus.timeSaved}</p>
                                             </div>
 
                                             <div>
-                                                <p className="text-sm text-gray-200 font-bold flex items-center gap-2 mb-1">
+                                                <p className="text-sm text-foreground/90 font-bold flex items-center gap-2 mb-1">
                                                     <TrendingUp className="w-4 h-4 text-primary" /> Estimated Setup Cost
                                                 </p>
                                                 <p className="text-2xl font-bold text-white">{selectedFocus.costEstimate}</p>
                                                 <p className="text-xs text-primary font-bold mt-1">One-time setup. Predictable ROI.</p>
                                             </div>
 
-                                            <div className="pt-4 border-t border-white/10">
-                                                <p className="text-sm text-gray-300 font-bold mb-2">Business Outcome</p>
+                                            <div className="pt-4 border-t border-foreground/10">
+                                                <p className="text-sm text-muted-foreground font-bold mb-2">Business Outcome</p>
                                                 <p className="text-sm leading-relaxed flex items-start gap-2 text-white/90">
                                                     <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
                                                     <span>{selectedFocus.businessImpact}</span>
@@ -218,7 +218,7 @@ export default function AutomationRecommender() {
                                     <Button
                                         variant="ghost"
                                         onClick={resetForm}
-                                        className="w-full text-gray-300 hover:text-white font-semibold"
+                                        className="w-full text-muted-foreground hover:text-white font-semibold"
                                     >
                                         Recalculate for a different focus
                                     </Button>

@@ -145,9 +145,9 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                         <div className="relative animate-fade-in delay-200 h-auto flex items-center justify-center mt-8 lg:mt-0 w-full">
                             <div className="relative w-full max-w-lg mx-auto">
                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary/20 rounded-full blur-[60px] md:blur-[100px]" />
-                                <div className="glass-intense p-4 md:p-6 rounded-3xl border border-white/10 shadow-2xl relative z-10 backdrop-blur-xl w-full overflow-hidden">
+                                <div className="glass-intense p-4 md:p-6 rounded-3xl border border-foreground/10 shadow-2xl relative z-10 backdrop-blur-xl w-full overflow-hidden">
                                     {/* Dashboard Header */}
-                                    <div className="flex items-center justify-between mb-6 border-b border-white/5 pb-4">
+                                    <div className="flex items-center justify-between mb-6 border-b border-foreground/5 pb-4">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                                                 <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
@@ -168,22 +168,22 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
 
                                     {/* Key Metrics */}
                                     <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
-                                        <div className="bg-background/40 p-3 rounded-xl border border-white/5">
+                                        <div className="bg-background/40 p-3 rounded-xl border border-foreground/5">
                                             <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">Total Events</p>
                                             <p className="text-lg md:text-xl font-bold font-mono">24,592</p>
                                         </div>
-                                        <div className="bg-background/40 p-3 rounded-xl border border-white/5">
+                                        <div className="bg-background/40 p-3 rounded-xl border border-foreground/5">
                                             <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">Active Agents</p>
                                             <p className="text-lg md:text-xl font-bold font-mono text-blue-400">12/12</p>
                                         </div>
-                                        <div className="bg-background/40 p-3 rounded-xl border border-white/5">
+                                        <div className="bg-background/40 p-3 rounded-xl border border-foreground/5">
                                             <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">Threat Level</p>
                                             <p className="text-lg md:text-xl font-bold font-mono text-green-500">Low</p>
                                         </div>
                                     </div>
 
                                     {/* Activity Graph Mockup */}
-                                    <div className="mb-6 bg-background/30 rounded-xl p-4 border border-white/5">
+                                    <div className="mb-6 bg-background/30 rounded-xl p-4 border border-foreground/5">
                                         <div className="flex justify-between items-center mb-4">
                                             <p className="text-xs font-semibold text-muted-foreground">Security Events (Last 24h)</p>
                                             <div className="flex gap-1">
@@ -213,7 +213,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                                             { time: "10:41:58", level: "WARN", msg: "Failed SSH login attempt detected", color: "text-yellow-400" },
                                             { time: "10:41:12", level: "INFO", msg: "System integrity check passed", color: "text-green-400" },
                                         ].map((log, i) => (
-                                            <div key={i} className="flex items-center gap-3 text-xs font-mono p-2 rounded-lg hover:bg-white/5 transition-colors border-b border-white/5 last:border-0">
+                                            <div key={i} className="flex items-center gap-3 text-xs font-mono p-2 rounded-lg hover:bg-foreground/5 transition-colors border-b border-foreground/5 last:border-0">
                                                 <span className="text-muted-foreground opacity-50">{log.time}</span>
                                                 <span className={`font-bold ${log.color}`}>{log.level}</span>
                                                 <span className="truncate">{log.msg}</span>
@@ -221,7 +221,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                                         ))}
                                     </div>
 
-                                    <div className="mt-4 pt-4 border-t border-white/10 text-center flex justify-between items-center">
+                                    <div className="mt-4 pt-4 border-t border-foreground/10 text-center flex justify-between items-center">
                                         <p className="text-[10px] text-muted-foreground">Version 4.7.2</p>
                                         <p className="text-[10px] text-muted-foreground">Powered by <span className="text-primary font-bold">Wazuh</span></p>
                                     </div>
@@ -247,7 +247,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         {benefits.map((benefit, index) => (
-                            <div key={index} className="group p-6 md:p-8 rounded-3xl bg-background/50 border border-white/5 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
+                            <div key={index} className="group p-6 md:p-8 rounded-3xl bg-background/50 border border-foreground/5 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
                                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform">
                                     <benefit.icon className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                                 </div>

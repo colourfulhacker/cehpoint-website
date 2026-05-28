@@ -166,7 +166,7 @@ Please contact me to discuss further.`;
           <div className="lg:col-span-2 space-y-6">
 
             {/* Step 1: Project Type */}
-            <Card className="glass-intense border-white/10">
+            <Card className="glass-intense border-foreground/10">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <div className="p-2 bg-primary/10 rounded-lg">
@@ -188,7 +188,7 @@ Please contact me to discuss further.`;
                         className={`p-4 rounded-xl border text-left transition-all ${
                           isSelected
                             ? "border-primary bg-primary/10 shadow-[0_0_20px_rgba(112,66,248,0.2)]"
-                            : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10"
+                            : "border-foreground/10 bg-foreground/5 hover:border-foreground/20 hover:bg-foreground/10"
                         }`}
                       >
                         <div className="flex items-center gap-2 mb-2">
@@ -208,7 +208,7 @@ Please contact me to discuss further.`;
             </Card>
 
             {/* Step 2: Scale */}
-            <Card className="glass-intense border-white/10">
+            <Card className="glass-intense border-foreground/10">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <div className="p-2 bg-primary/10 rounded-lg">
@@ -231,7 +231,7 @@ Please contact me to discuss further.`;
                       className={`p-4 rounded-xl border text-left transition-all ${
                         scale === option.id
                           ? "border-primary bg-primary/10"
-                          : "border-white/10 bg-white/5 hover:border-white/20"
+                          : "border-foreground/10 bg-foreground/5 hover:border-foreground/20"
                       }`}
                     >
                       <div className="font-bold mb-1">{option.name}</div>
@@ -244,7 +244,7 @@ Please contact me to discuss further.`;
             </Card>
 
             {/* Step 3: Add-ons */}
-            <Card className="glass-intense border-white/10">
+            <Card className="glass-intense border-foreground/10">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <div className="p-2 bg-primary/10 rounded-lg">
@@ -266,7 +266,7 @@ Please contact me to discuss further.`;
                         className={`p-4 rounded-xl border text-left transition-all ${
                           isSelected
                             ? "border-primary bg-primary/10"
-                            : "border-white/10 bg-white/5 hover:border-white/20"
+                            : "border-foreground/10 bg-foreground/5 hover:border-foreground/20"
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -278,7 +278,7 @@ Please contact me to discuss further.`;
                             </div>
                           </div>
                           <div className={`w-5 h-5 rounded border flex items-center justify-center ${
-                            isSelected ? "border-primary bg-primary text-white" : "border-white/20"
+                            isSelected ? "border-primary bg-primary text-white" : "border-foreground/20"
                           }`}>
                             {isSelected && <ChevronRight className="w-3 h-3" />}
                           </div>
@@ -292,7 +292,7 @@ Please contact me to discuss further.`;
 
             {/* Step 4: Hosting & Source Code */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <Card className="glass-intense border-white/10">
+              <Card className="glass-intense border-foreground/10">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <div className="p-2 bg-primary/10 rounded-lg">
@@ -312,7 +312,7 @@ Please contact me to discuss further.`;
                         className={`w-full p-3 rounded-xl border text-left transition-all flex items-center gap-3 ${
                           hostingType === host.id
                             ? "border-primary bg-primary/10"
-                            : "border-white/10 bg-white/5 hover:border-white/20"
+                            : "border-foreground/10 bg-foreground/5 hover:border-foreground/20"
                         }`}
                       >
                         <Icon className={`w-4 h-4 ${hostingType === host.id ? "text-primary" : "text-muted-foreground"}`} />
@@ -326,7 +326,7 @@ Please contact me to discuss further.`;
                 </CardContent>
               </Card>
 
-              <Card className="glass-intense border-white/10">
+              <Card className="glass-intense border-foreground/10">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <div className="p-2 bg-primary/10 rounded-lg">
@@ -346,7 +346,7 @@ Please contact me to discuss further.`;
                         className={`w-full p-3 rounded-xl border text-left transition-all flex items-center gap-3 ${
                           sourceCodeOption === option.id
                             ? "border-primary bg-primary/10"
-                            : "border-white/10 bg-white/5 hover:border-white/20"
+                            : "border-foreground/10 bg-foreground/5 hover:border-foreground/20"
                         }`}
                       >
                         <Icon className={`w-4 h-4 ${sourceCodeOption === option.id ? "text-primary" : "text-muted-foreground"}`} />
@@ -384,7 +384,7 @@ Please contact me to discuss further.`;
                           className={`py-2 rounded-lg border text-sm font-medium transition-all ${
                             currency === curr
                               ? "border-primary bg-primary/10 text-primary"
-                              : "border-white/10 bg-white/5 hover:border-white/20"
+                              : "border-foreground/10 bg-foreground/5 hover:border-foreground/20"
                           }`}
                         >
                           {curr}
@@ -393,7 +393,7 @@ Please contact me to discuss further.`;
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-white/10">
+                  <div className="pt-4 border-t border-foreground/10">
                     <div className="text-xs text-muted-foreground mb-2">Selected Type</div>
                     <div className="font-semibold text-sm mb-4">{selectedProject?.name}</div>
 

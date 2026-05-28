@@ -50,7 +50,7 @@ export default function WhyChooseUs() {
                     {reasons.map((reason, index) => {
                         const Icon = reason.icon;
                         return (
-                            <div key={index} className="glass rounded-3xl p-8 hover-lift transition-all duration-300 border border-white/10 hover:border-primary/30">
+                            <div key={index} className="glass rounded-3xl p-8 hover-lift transition-all duration-300 border border-foreground/10 hover:border-primary/30">
                                 <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                                     <Icon className="w-7 h-7 text-primary" />
                                 </div>

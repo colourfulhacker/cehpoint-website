@@ -205,33 +205,33 @@ Thank you!`;
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 relative z-10">
-                                <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                                <div className="flex items-start gap-4 p-4 rounded-2xl bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors">
                                     <div className="p-3 rounded-xl bg-gradient-to-br from-green-400 to-green-600 text-white shadow-lg shadow-green-500/20 flex-shrink-0">
                                         <Crown className="w-6 h-6" />
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-xl text-white mb-1">100% Equity</h4>
-                                        <p className="text-sm text-gray-300 leading-relaxed">You own the code, the IP, and the brand. No dilution, ever.</p>
+                                        <p className="text-sm text-muted-foreground leading-relaxed">You own the code, the IP, and the brand. No dilution, ever.</p>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                                <div className="flex items-start gap-4 p-4 rounded-2xl bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors">
                                     <div className="p-3 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 text-white shadow-lg shadow-blue-500/20 flex-shrink-0">
                                         <ShieldCheck className="w-6 h-6" />
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-xl text-white mb-1">Zero Tech Risk</h4>
-                                        <p className="text-sm text-gray-300 leading-relaxed">We build, launch, and maintain it. You focus on growth.</p>
+                                        <p className="text-sm text-muted-foreground leading-relaxed">We build, launch, and maintain it. You focus on growth.</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="border-t border-white/10 pt-10 space-y-8 relative z-10">
+                            <div className="border-t border-foreground/10 pt-10 space-y-8 relative z-10">
                                 <div className="flex flex-col md:flex-row justify-between items-end gap-6">
                                     <div>
-                                        <p className="text-sm text-gray-300 mb-2 uppercase tracking-wider font-medium">Total Investment Required</p>
+                                        <p className="text-sm text-muted-foreground mb-2 uppercase tracking-wider font-medium">Total Investment Required</p>
                                         <div className="flex items-baseline gap-2">
                                             <p className="text-5xl sm:text-6xl font-bold text-white tracking-tight">{idea.budget}</p>
-                                            <span className="text-sm text-gray-300 font-medium">One-time fee</span>
+                                            <span className="text-sm text-muted-foreground font-medium">One-time fee</span>
                                         </div>
                                     </div>
                                 </div>
@@ -240,7 +240,7 @@ Thank you!`;
                                     <Button
                                         onClick={handleDownload}
                                         variant="outline"
-                                        className="flex-1 h-auto py-6 text-lg rounded-xl border-white/20 text-white hover:bg-white/10 hover:text-white transition-all"
+                                        className="flex-1 h-auto py-6 text-lg rounded-xl border-foreground/20 text-white hover:bg-foreground/10 hover:text-white transition-all"
                                     >
                                         <Download className="mr-2 w-5 h-5" /> Download Plan
                                     </Button>
@@ -251,7 +251,7 @@ Thank you!`;
                                     </a>
                                 </div>
 
-                                <p className="text-xs text-center text-gray-300">
+                                <p className="text-xs text-center text-muted-foreground">
                                     Clicking "Claim This Deal" opens WhatsApp with a prefilled message to our team
                                 </p>
                             </div>
@@ -260,7 +260,7 @@ Thank you!`;
                 </motion.div>
             </div>
 
-            <div className="glass-intense rounded-[2.5rem] p-8 sm:p-12 border border-white/10 relative overflow-hidden">
+            <div className="glass-intense rounded-[2.5rem] p-8 sm:p-12 border border-foreground/10 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
                 <h3 className="text-2xl sm:text-3xl font-bold mb-12 text-center">What Happens Next?</h3>

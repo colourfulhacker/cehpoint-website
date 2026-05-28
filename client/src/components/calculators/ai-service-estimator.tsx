@@ -193,19 +193,19 @@ export default function AIServiceEstimator() {
 
                         {strategy && (
                             <div className="space-y-4">
-                                <div className="bg-white/5 p-4 rounded-lg border border-white/10">
+                                <div className="bg-foreground/5 p-4 rounded-lg border border-foreground/10">
                                     <h4 className="text-sm font-bold text-primary mb-2">Executive Summary</h4>
-                                    <p className="text-sm text-gray-300 leading-relaxed">{strategy.executiveSummary}</p>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">{strategy.executiveSummary}</p>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="bg-white/5 p-3 rounded-lg border border-white/10">
+                                    <div className="bg-foreground/5 p-3 rounded-lg border border-foreground/10">
                                         <h4 className="text-xs font-bold text-green-400 mb-1">Projected ROI</h4>
                                         <p className="text-sm font-semibold">{strategy.roiProjection}</p>
                                     </div>
-                                    <div className="bg-white/5 p-3 rounded-lg border border-white/10">
+                                    <div className="bg-foreground/5 p-3 rounded-lg border border-foreground/10">
                                         <h4 className="text-xs font-bold text-red-400 mb-1">Key Risk</h4>
-                                        <p className="text-xs text-gray-300 line-clamp-3">{strategy.riskAssessment}</p>
+                                        <p className="text-xs text-muted-foreground line-clamp-3">{strategy.riskAssessment}</p>
                                     </div>
                                 </div>
 
@@ -217,7 +217,7 @@ export default function AIServiceEstimator() {
                                                 <span className="font-mono text-xs text-primary bg-primary/10 px-1 py-0.5 rounded h-fit whitespace-nowrap">{step.timeline}</span>
                                                 <div>
                                                     <p className="font-bold text-xs">{step.phase}</p>
-                                                    <p className="text-xs text-gray-400">{step.action}</p>
+                                                    <p className="text-xs text-muted-foreground">{step.action}</p>
                                                 </div>
                                             </div>
                                         ))}
@@ -228,7 +228,7 @@ export default function AIServiceEstimator() {
                                     <h4 className="text-sm font-bold mb-2">Compliance Requirements</h4>
                                     <div className="flex flex-wrap gap-2">
                                         {strategy.complianceChecklist?.map((item: string, idx: number) => (
-                                            <span key={idx} className="text-xs bg-white/5 border border-white/10 px-2 py-1 rounded-full text-gray-300">
+                                            <span key={idx} className="text-xs bg-foreground/5 border border-foreground/10 px-2 py-1 rounded-full text-muted-foreground">
                                                 {item}
                                             </span>
                                         ))}

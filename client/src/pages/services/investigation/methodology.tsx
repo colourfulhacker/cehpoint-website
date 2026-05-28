@@ -82,7 +82,7 @@ export default function InvestigationMethodology() {
 
 function MethodCard({ icon: Icon, title, points }: { icon: any, title: string, points: string[] }) {
     return (
-        <div className="p-8 rounded-2xl glass border border-white/5 hover:border-red-500/30 transition-all">
+        <div className="p-8 rounded-2xl glass border border-foreground/5 hover:border-red-500/30 transition-all">
             <div className="flex items-center gap-4 mb-6">
                 <div className="p-3 bg-red-500/10 rounded-lg">
                     <Icon className="w-6 h-6 text-red-500" />
@@ -92,7 +92,7 @@ function MethodCard({ icon: Icon, title, points }: { icon: any, title: string, p
             <ul className="space-y-4">
                 {points.map((p, i) => (
                     <li key={i} className="flex gap-3 text-muted-foreground">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/20 mt-2 shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-foreground/20 mt-2 shrink-0" />
                         {p}
                     </li>
                 ))}

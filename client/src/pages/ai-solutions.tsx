@@ -106,7 +106,7 @@ export default function AISolutions() {
               <Button
                 variant="outline"
                 onClick={() => window.open("https://wa.me/919091156095?text=Hi%2C%20I%20want%20to%20start%20a%207-Day%20AI%20Sprint.%20I'm%20interested%20in%20automating%20my%20business%20processes.", "_blank")}
-                className="px-8 py-6 rounded-2xl text-lg font-bold text-foreground hover:bg-white/10"
+                className="px-8 py-6 rounded-2xl text-lg font-bold text-foreground hover:bg-foreground/10"
                 data-testid="hero-cta-primary"
               >
                 Talk to an Expert
@@ -117,7 +117,7 @@ export default function AISolutions() {
       </section>
 
       {/* Reality Check - ROI Calculator Banner */}
-      <section className="py-24 bg-secondary/30 relative border-y border-white/5">
+      <section className="py-24 bg-secondary/30 relative border-y border-foreground/5">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.05),transparent_70%)]"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
@@ -133,7 +133,7 @@ export default function AISolutions() {
                 Calculate Your ROI
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-5xl glass-intense border-white/10 p-0 overflow-hidden bg-transparent shadow-none">
+            <DialogContent className="max-w-5xl glass-intense border-foreground/10 p-0 overflow-hidden bg-transparent shadow-none">
               <AIROICalculator />
             </DialogContent>
           </Dialog>
@@ -167,15 +167,15 @@ export default function AISolutions() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+            <div className="bg-foreground/10 backdrop-blur-sm rounded-2xl p-6">
               <div className="text-4xl font-bold mb-2">Day 1-2</div>
               <div className="text-sm opacity-80">Analysis & Strategy</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/30">
+            <div className="bg-foreground/10 backdrop-blur-sm rounded-2xl p-6 border border-foreground/30">
               <div className="text-4xl font-bold mb-2">Day 3-6</div>
               <div className="text-sm opacity-80">Development & Training</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+            <div className="bg-foreground/10 backdrop-blur-sm rounded-2xl p-6">
               <div className="text-4xl font-bold mb-2">Day 7</div>
               <div className="text-sm opacity-80">Demo & Handover</div>
             </div>

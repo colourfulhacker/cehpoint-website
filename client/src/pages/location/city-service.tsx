@@ -52,9 +52,21 @@ export default function CityServicePage() {
     const isDefaultTrend = trendData === defaultTrend;
 
     // Dynamic Hero Content (fallback to generic if no specific trend)
+    // Safe templating: split around the city name and highlight it as a React node (no innerHTML)
     const heroTitle = isDefaultTrend
         ? <span>Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-500">Empire</span><br /> in {cityData.name}</span>
-        : <span dangerouslySetInnerHTML={{ __html: trendData.heroTitle.replace(cityData.name, `<span class="text-primary">${cityData.name}</span>`) }} />;
+        : (() => {
+            const raw = trendData.heroTitle;
+            const idx = raw.indexOf(cityData.name);
+            if (idx === -1) return <span>{raw}</span>;
+            return (
+                <span>
+                    {raw.slice(0, idx)}
+                    <span className="text-primary">{cityData.name}</span>
+                    {raw.slice(idx + cityData.name.length)}
+                </span>
+            );
+        })();
 
     const heroSubtitle = isDefaultTrend
         ? <span>Don't just run a business. <span className="text-white font-medium">Dominate the market.</span> <br /> We provide the technology Top Startups use.</span>
@@ -125,9 +137,9 @@ export default function CityServicePage() {
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-                        <div className="inline-flex items-center px-4 py-2 rounded-full glass border border-white/10 mb-8 backdrop-blur-md">
+                        <div className="inline-flex items-center px-4 py-2 rounded-full glass border border-foreground/10 mb-8 backdrop-blur-md">
                             <MapPin className="w-4 h-4 text-primary mr-2" />
-                            <span className="text-sm font-medium tracking-wide uppercase text-gray-200">
+                            <span className="text-sm font-medium tracking-wide uppercase text-foreground/90">
                                 Powering {cityData.name}, {cityData.state}
                             </span>
                         </div>
@@ -136,16 +148,16 @@ export default function CityServicePage() {
                             {heroTitle}
                         </h1>
 
-                        <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-10 font-light leading-relaxed">
+                        <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-10 font-light leading-relaxed">
                             {heroSubtitle}
                         </p>
 
                         {/* Market Trends Badges (New for SEO) */}
                         <div className="flex flex-wrap justify-center gap-4 mb-12">
                             {trendData.marketTrends.map((trend, i) => (
-                                <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 transition-colors cursor-default">
+                                <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 border border-foreground/10 hover:border-primary/50 transition-colors cursor-default">
                                     <TrendingUp className="w-4 h-4 text-primary" />
-                                    <span className="text-sm font-medium text-gray-300">{trend.title}: <span className="text-white">{trend.stat}</span></span>
+                                    <span className="text-sm font-medium text-muted-foreground">{trend.title}: <span className="text-white">{trend.stat}</span></span>
                                 </div>
                             ))}
                         </div>
@@ -168,7 +180,7 @@ export default function CityServicePage() {
                                 locationName={cityData.name}
                                 title="Get Custom Quote"
                                 trigger={
-                                    <Button variant="outline" className="h-14 px-8 rounded-full text-lg font-medium border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 text-white">
+                                    <Button variant="outline" className="h-14 px-8 rounded-full text-lg font-medium border-foreground/20 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 text-white">
                                         Get Custom Quote
                                     </Button>
                                 }
@@ -186,7 +198,7 @@ export default function CityServicePage() {
                         <h2 className="text-4xl md:text-6xl font-display font-bold mt-2 mb-6">
                             Top Businesses to Start <br /> in <span className="text-primary">{cityData.name}</span>
                         </h2>
-                        <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+                        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                             We analyzed the {cityData.name} market and found these high-demand business ideas.
                             Start yours today for just <strong>₹15,000</strong>.
                         </p>
@@ -202,18 +214,18 @@ export default function CityServicePage() {
                                 className="group relative"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <div className="relative h-full glass-intense border border-white/10 rounded-3xl p-6 flex flex-col hover:-translate-y-2 transition-transform duration-300">
-                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-black border border-white/10 flex items-center justify-center mb-6 shadow-lg group-hover:shadow-primary/25 transition-shadow">
+                                <div className="relative h-full glass-intense border border-foreground/10 rounded-3xl p-6 flex flex-col hover:-translate-y-2 transition-transform duration-300">
+                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-black border border-foreground/10 flex items-center justify-center mb-6 shadow-lg group-hover:shadow-primary/25 transition-shadow">
                                         {app.icon}
                                     </div>
 
                                     <h3 className="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors">{app.title}</h3>
-                                    <p className="text-sm text-gray-300 mb-6 flex-grow">{app.whyThisApp}</p>
+                                    <p className="text-sm text-muted-foreground mb-6 flex-grow">{app.whyThisApp}</p>
 
-                                    <div className="mt-auto pt-6 border-t border-white/5">
+                                    <div className="mt-auto pt-6 border-t border-foreground/5">
                                         <div className="flex items-center justify-between mb-4">
                                             <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">READY TO LAUNCH</span>
-                                            <span className="text-lg font-bold text-white">{cityData.currency === 'INR' ? '₹15k' : '$200'}<span className="text-xs font-normal text-gray-300">/one-time</span></span>
+                                            <span className="text-lg font-bold text-white">{cityData.currency === 'INR' ? '₹15k' : '$200'}<span className="text-xs font-normal text-muted-foreground">/one-time</span></span>
                                         </div>
                                         <WhatsAppInquiryDialog
                                             appName={app.title}
@@ -236,20 +248,20 @@ export default function CityServicePage() {
             {/* --- SEGMENTED OPPORTUNITIES (NEW) --- */}
             {
                 trendData.segments && (
-                    <section className="py-24 bg-black relative border-t border-white/5">
+                    <section className="py-24 bg-black relative border-t border-foreground/5">
                         <div className="max-w-7xl mx-auto px-4">
                             <div className="text-center mb-16">
                                 <span className="text-primary font-bold tracking-widest uppercase text-sm">Tailored For You</span>
                                 <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-white">
                                     Unlock <span className="text-primary">Potential</span>
                                 </h2>
-                                <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
+                                <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
                                     Curated business ideas specifically designed for the key drivers of {cityData.name}'s economy.
                                 </p>
                             </div>
 
                             <Tabs defaultValue="Business Owners" className="w-full">
-                                <TabsList className="flex flex-col md:grid md:grid-cols-3 w-full max-w-2xl mx-auto bg-white/5 p-1 rounded-[2rem] mb-12 h-auto gap-2 md:gap-0">
+                                <TabsList className="flex flex-col md:grid md:grid-cols-3 w-full max-w-2xl mx-auto bg-foreground/5 p-1 rounded-[2rem] mb-12 h-auto gap-2 md:gap-0">
                                     {trendData.segments.map((segment, idx) => (
                                         <TabsTrigger
                                             key={idx}
@@ -265,28 +277,28 @@ export default function CityServicePage() {
                                     <TabsContent key={idx} value={segment.audience} className="mt-0 focus-visible:outline-none">
                                         <div className="text-center mb-12">
                                             <h3 className="text-2xl font-bold text-white mb-2">{segment.title}</h3>
-                                            <p className="text-gray-300 max-w-lg mx-auto">{segment.description}</p>
+                                            <p className="text-muted-foreground max-w-lg mx-auto">{segment.description}</p>
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                             {segment.ideas.map((idea, i) => {
                                                 const Icon = ICON_MAP[idea.icon] || Cpu;
                                                 return (
-                                                    <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all hover:shadow-[0_0_30px_-10px_rgba(124,58,237,0.3)] hover:-translate-y-1 group relative overflow-hidden">
+                                                    <div key={i} className="p-8 rounded-3xl bg-foreground/5 border border-foreground/10 hover:border-primary/50 transition-all hover:shadow-[0_0_30px_-10px_rgba(124,58,237,0.3)] hover:-translate-y-1 group relative overflow-hidden">
                                                         <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
                                                             <Icon className="w-32 h-32 text-primary rotate-12" />
                                                         </div>
-                                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-black border border-white/10 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform shadow-lg">
+                                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-black border border-foreground/10 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform shadow-lg">
                                                             <Icon className="w-7 h-7" />
                                                         </div>
                                                         <h4 className="text-xl font-bold text-white mb-3 relative z-10">{idea.title}</h4>
-                                                        <p className="text-gray-300 mb-6 text-sm leading-relaxed relative z-10 min-h-[60px]">{idea.description}</p>
-                                                        <div className="relative z-10 pt-4 border-t border-white/5">
+                                                        <p className="text-muted-foreground mb-6 text-sm leading-relaxed relative z-10 min-h-[60px]">{idea.description}</p>
+                                                        <div className="relative z-10 pt-4 border-t border-foreground/5">
                                                             <WhatsAppInquiryDialog
                                                                 appName={idea.title}
                                                                 locationName={cityData.name}
                                                                 title={`Connect for ${idea.title}`}
                                                                 trigger={
-                                                                    <Button variant="ghost" className="text-white hover:text-primary hover:bg-white/5 font-bold p-0 h-auto w-full justify-between group-hover:px-2 transition-all">
+                                                                    <Button variant="ghost" className="text-white hover:text-primary hover:bg-foreground/5 font-bold p-0 h-auto w-full justify-between group-hover:px-2 transition-all">
                                                                         Get Blueprint <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                                                     </Button>
                                                                 }
@@ -313,30 +325,30 @@ export default function CityServicePage() {
                         <div>
                             <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
                                 Why Pay Millions? <br />
-                                <span className="text-gray-300">Start Smart.</span>
+                                <span className="text-muted-foreground">Start Smart.</span>
                             </h2>
-                            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                                 Traditional agencies in {cityData.name} charge ₹1 Lakh+ for custom development.
                                 We disrupted this with our <strong>Business App Catalog</strong>.
                             </p>
 
                             <div className="space-y-6">
-                                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                                <div className="flex items-center gap-4 p-4 rounded-2xl bg-foreground/5 border border-foreground/10">
                                     <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
                                         <DollarSign className="w-6 h-6" />
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-lg text-white">Lowest Cost of Ownership</h4>
-                                        <p className="text-sm text-gray-300">One-time payment of {cityData.currency === 'INR' ? '₹15,000' : '$200'}. No monthly royalties.</p>
+                                        <p className="text-sm text-muted-foreground">One-time payment of {cityData.currency === 'INR' ? '₹15,000' : '$200'}. No monthly royalties.</p>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                                <div className="flex items-center gap-4 p-4 rounded-2xl bg-foreground/5 border border-foreground/10">
                                     <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
                                         <Rocket className="w-6 h-6" />
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-lg text-white">Live in 72 Hours</h4>
-                                        <p className="text-sm text-gray-300">Pre-built, tested codebases ready to deploy with your brand.</p>
+                                        <p className="text-sm text-muted-foreground">Pre-built, tested codebases ready to deploy with your brand.</p>
                                     </div>
                                 </div>
                             </div>
@@ -345,28 +357,28 @@ export default function CityServicePage() {
                         {/* Cost Calculator Card */}
                         <div className="relative">
                             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-3xl blur opacity-30" />
-                            <div className="relative glass-intense rounded-3xl p-8 border border-white/20">
+                            <div className="relative glass-intense rounded-3xl p-8 border border-foreground/20">
                                 <div className="text-center mb-8">
-                                    <p className="text-sm text-gray-300 uppercase tracking-widest">Investment Breakdown</p>
+                                    <p className="text-sm text-muted-foreground uppercase tracking-widest">Investment Breakdown</p>
                                     <div className="text-5xl font-bold text-white mt-2">{cityData.currency === 'INR' ? '₹15,000' : '$200'}</div>
                                     <p className="text-green-400 text-sm mt-1">Limited Time Offer in {cityData.name}</p>
                                 </div>
 
                                 <div className="space-y-4 mb-8">
-                                    <div className="flex justify-between text-sm py-3 border-b border-white/10">
-                                        <span className="text-gray-300">Android App (PWA)</span>
+                                    <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
+                                        <span className="text-muted-foreground">Android App (PWA)</span>
                                         <span className="text-white font-bold">Included</span>
                                     </div>
-                                    <div className="flex justify-between text-sm py-3 border-b border-white/10">
-                                        <span className="text-gray-300">Admin Dashboard</span>
+                                    <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
+                                        <span className="text-muted-foreground">Admin Dashboard</span>
                                         <span className="text-white font-bold">Included</span>
                                     </div>
-                                    <div className="flex justify-between text-sm py-3 border-b border-white/10">
-                                        <span className="text-gray-300">Server Setup</span>
+                                    <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
+                                        <span className="text-muted-foreground">Server Setup</span>
                                         <span className="text-white font-bold">Included</span>
                                     </div>
-                                    <div className="flex justify-between text-sm py-3 border-b border-white/10">
-                                        <span className="text-gray-300">Play Store Upload Guide</span>
+                                    <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
+                                        <span className="text-muted-foreground">Play Store Upload Guide</span>
                                         <span className="text-white font-bold">Included</span>
                                     </div>
                                 </div>
@@ -390,7 +402,7 @@ export default function CityServicePage() {
                         <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-white">
                             Complete IT Solutions in {cityData.name}
                         </h2>
-                        <p className="text-gray-300 max-w-2xl mx-auto text-lg mb-8">
+                        <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8">
                             We don't just build apps. We secure them, scale them, and infuse them with AI.
                             Our full-stack services are available for enterprises in {cityData.name}.
                         </p>
@@ -411,10 +423,10 @@ export default function CityServicePage() {
                             const Icon = ICON_MAP[service.icon] || Cpu;
 
                             return (
-                                <div key={idx} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group h-full flex flex-col">
+                                <div key={idx} className="p-8 rounded-3xl bg-foreground/5 border border-foreground/10 hover:border-primary/50 transition-colors group h-full flex flex-col">
                                     <Icon className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform" />
                                     <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                                    <p className="text-gray-300 mb-6 flex-grow">{service.description}</p>
+                                    <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
                                     <WhatsAppInquiryDialog
                                         appName={service.title}
                                         locationName={cityData.name}
@@ -431,7 +443,7 @@ export default function CityServicePage() {
                     </div>
                 </div>
                 {/* --- PROCESS AUTOMATION SECTION --- */}
-                <section className="py-24 bg-gradient-to-b from-black to-gray-900 border-t border-white/5">
+                <section className="py-24 bg-gradient-to-b from-black to-gray-900 border-t border-foreground/5">
                     <div className="max-w-7xl mx-auto px-4">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             <div>
@@ -441,9 +453,9 @@ export default function CityServicePage() {
                                 </div>
                                 <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 text-white leading-tight">
                                     Automate Your Boring Work. <br />
-                                    <span className="text-gray-300">Scale Your Business.</span>
+                                    <span className="text-muted-foreground">Scale Your Business.</span>
                                 </h2>
-                                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                                <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                                     Why hire 10 people for data entry when 1 AI Bot can do it 24/7?
                                     We build custom automation workflows for {cityData.name}'s businesses to reduce costs by 60%.
                                 </p>
@@ -455,7 +467,7 @@ export default function CityServicePage() {
                                         "Inventory Sync across Amazon/Flipkart",
                                         "Automated Lead Follow-ups via Email/SMS"
                                     ].map((item, i) => (
-                                        <li key={i} className="flex items-center text-gray-300">
+                                        <li key={i} className="flex items-center text-muted-foreground">
                                             <CheckCircle2 className="w-5 h-5 text-green-500 mr-3" />
                                             {item}
                                         </li>
@@ -475,33 +487,33 @@ export default function CityServicePage() {
                             </div>
                             <div className="relative">
                                 <div className="absolute inset-0 bg-purple-600/20 rounded-3xl blur-3xl animate-pulse" />
-                                <div className="relative glass-intense rounded-3xl p-8 border border-white/10">
+                                <div className="relative glass-intense rounded-3xl p-8 border border-foreground/10">
                                     <div className="space-y-4">
-                                        <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
+                                        <div className="flex items-center justify-between p-4 rounded-xl bg-foreground/5 border border-foreground/5">
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400"><DollarSign className="w-5 h-5" /></div>
                                                 <div>
-                                                    <p className="text-sm text-gray-300">Payroll Processing</p>
+                                                    <p className="text-sm text-muted-foreground">Payroll Processing</p>
                                                     <p className="font-bold text-white">Automated</p>
                                                 </div>
                                             </div>
                                             <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">Saved 40hrs</span>
                                         </div>
-                                        <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
+                                        <div className="flex items-center justify-between p-4 rounded-xl bg-foreground/5 border border-foreground/5">
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400"><Bot className="w-5 h-5" /></div>
                                                 <div>
-                                                    <p className="text-sm text-gray-300">Customer Queries</p>
+                                                    <p className="text-sm text-muted-foreground">Customer Queries</p>
                                                     <p className="font-bold text-white">AI Handled</p>
                                                 </div>
                                             </div>
                                             <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">24/7 Active</span>
                                         </div>
-                                        <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
+                                        <div className="flex items-center justify-between p-4 rounded-xl bg-foreground/5 border border-foreground/5">
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400"><TrendingUp className="w-5 h-5" /></div>
                                                 <div>
-                                                    <p className="text-sm text-gray-300">Sales Reporting</p>
+                                                    <p className="text-sm text-muted-foreground">Sales Reporting</p>
                                                     <p className="font-bold text-white">Real-time sync</p>
                                                 </div>
                                             </div>
@@ -516,7 +528,7 @@ export default function CityServicePage() {
             </section>
 
             {/* --- TRUST SIGNALS --- */}
-            <section className="py-24 bg-black border-t border-white/5">
+            <section className="py-24 bg-black border-t border-foreground/5">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <h2 className="text-3xl font-display font-bold mb-12">Trusted by {cityData.name}'s Best</h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
