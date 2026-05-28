@@ -4,7 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowRight, ShieldAlert, Lock, Eye, Clock, MapPin, TrendingUp, Coins, Rocket, Store, UserX, UserCheck, GraduationCap, ShoppingBag, Wrench, Stethoscope, Truck, ShoppingCart, Scale, Landmark, Factory, Building, Sprout, HardHat, Coffee } from "lucide-react";
 import { Link } from "wouter";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { getYesterdayDate } from "@/lib/date-utils";
 
 export default function Insights() {
@@ -299,24 +300,19 @@ export default function Insights() {
 
     return (
         <main className="min-h-screen pt-24 pb-16 bg-background">
-            <Helmet>
-                <title>Industry Insights & Business Ideas | Cehpoint</title>
-                <meta name="description" content="Unlock your potential with our insights. From low-cost startup ideas to deep industry analysis, we provide the blueprint for your success." />
-
-                {/* Open Graph / Facebook */}
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://cehpoint.co.in/insights" />
-                <meta property="og:title" content="Industry Insights & Business Ideas | Cehpoint" />
-                <meta property="og:description" content="Unlock your potential with our insights. From low-cost startup ideas to deep industry analysis, we provide the blueprint for your success." />
-                <meta property="og:image" content="https://cehpoint.co.in/assets/blog/business-hero-generic.png" />
-
-                {/* Twitter */}
-                <meta property="twitter:card" content="summary_large_image" />
-                <meta property="twitter:url" content="https://cehpoint.co.in/insights" />
-                <meta property="twitter:title" content="Industry Insights & Business Ideas | Cehpoint" />
-                <meta property="twitter:description" content="Unlock your potential with our insights. From low-cost startup ideas to deep industry analysis, we provide the blueprint for your success." />
-                <meta property="twitter:image" content="https://cehpoint.co.in/assets/blog/business-hero-generic.png" />
-            </Helmet>
+            <SEO
+                title="Industry Insights & Business Ideas"
+                description="Unlock your potential with our insights. From low-cost startup ideas to deep industry analysis, we provide the blueprint for your success."
+                url="https://www.cehpoint.co.in/insights"
+                canonical="https://www.cehpoint.co.in/insights"
+                image="/assets/blog/business-hero-generic.png"
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Insights", url: "https://www.cehpoint.co.in/insights" }
+                ]}
+            />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

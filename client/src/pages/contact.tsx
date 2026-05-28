@@ -23,6 +23,7 @@ const formSchema = z.object({
 export default function ContactPage() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
+        mode: "onBlur",
         defaultValues: {
             name: "",
             email: "",
@@ -33,11 +34,9 @@ export default function ContactPage() {
     });
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // In a real app, this would send data to a backend
-        console.log(values);
-        // Open WhatsApp with the message
         const waMessage = `Name: ${values.name}%0AEmail: ${values.email}%0APhone: ${values.phone}%0ASubject: ${values.subject}%0AMessage: ${values.message}`;
-        window.open(`https://wa.me/919091156095?text=${waMessage}`, '_blank');
+        window.open(`https://wa.me/919091156095?text=${waMessage}`, '_blank', 'noopener,noreferrer');
+        form.reset();
     }
 
     return (
@@ -102,7 +101,7 @@ export default function ContactPage() {
                                         <div>
                                             <h3 className="font-bold text-lg mb-1">Headquarters</h3>
                                             <p className="text-muted-foreground">Cehpoint, Labpur, Sandipan Patsala Para,<br />Birbhum, Bolpur, West Bengal - 731303, India</p>
-                                            <a href="https://maps.google.com/?q=Cehpoint+Labpur+Bolpur" target="_blank" rel="noreferrer" className="text-primary text-sm mt-2 hover:underline">View on Google Maps</a>
+                                            <a href="https://maps.google.com/?q=Cehpoint+Labpur+Bolpur" target="_blank" rel="noopener noreferrer" className="text-primary text-sm mt-2 hover:underline">View on Google Maps</a>
                                         </div>
                                     </CardContent>
                                 </Card>
@@ -182,7 +181,7 @@ export default function ContactPage() {
                                 </div>
 
                                 <Form {...form}>
-                                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" noValidate>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <FormField
                                                 control={form.control}
@@ -191,7 +190,14 @@ export default function ContactPage() {
                                                     <FormItem>
                                                         <FormLabel>Full Name</FormLabel>
                                                         <FormControl>
-                                                            <Input placeholder="John Doe" {...field} className="h-12 bg-secondary/20" />
+                                                            <Input
+                                                                type="text"
+                                                                placeholder="John Doe"
+                                                                autoComplete="name"
+                                                                required
+                                                                {...field}
+                                                                className="h-12 bg-secondary/20 text-base"
+                                                            />
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
@@ -204,7 +210,15 @@ export default function ContactPage() {
                                                     <FormItem>
                                                         <FormLabel>Phone Number</FormLabel>
                                                         <FormControl>
-                                                            <Input placeholder="+91 98765 43210" {...field} className="h-12 bg-secondary/20" />
+                                                            <Input
+                                                                type="tel"
+                                                                inputMode="tel"
+                                                                placeholder="+91 98765 43210"
+                                                                autoComplete="tel"
+                                                                required
+                                                                {...field}
+                                                                className="h-12 bg-secondary/20 text-base"
+                                                            />
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
@@ -219,7 +233,15 @@ export default function ContactPage() {
                                                 <FormItem>
                                                     <FormLabel>Email Address</FormLabel>
                                                     <FormControl>
-                                                        <Input placeholder="john@example.com" {...field} className="h-12 bg-secondary/20" />
+                                                        <Input
+                                                            type="email"
+                                                            inputMode="email"
+                                                            placeholder="john@example.com"
+                                                            autoComplete="email"
+                                                            required
+                                                            {...field}
+                                                            className="h-12 bg-secondary/20 text-base"
+                                                        />
                                                     </FormControl>
                                                     <FormMessage />
                                                 </FormItem>
@@ -233,7 +255,14 @@ export default function ContactPage() {
                                                 <FormItem>
                                                     <FormLabel>Subject</FormLabel>
                                                     <FormControl>
-                                                        <Input placeholder="Project Inquiry..." {...field} className="h-12 bg-secondary/20" />
+                                                        <Input
+                                                            type="text"
+                                                            placeholder="Project Inquiry..."
+                                                            autoComplete="off"
+                                                            required
+                                                            {...field}
+                                                            className="h-12 bg-secondary/20 text-base"
+                                                        />
                                                     </FormControl>
                                                     <FormMessage />
                                                 </FormItem>
@@ -249,7 +278,8 @@ export default function ContactPage() {
                                                     <FormControl>
                                                         <Textarea
                                                             placeholder="Tell us about your project or inquiry..."
-                                                            className="min-h-[150px] bg-secondary/20"
+                                                            className="min-h-[150px] bg-secondary/20 text-base"
+                                                            required
                                                             {...field}
                                                         />
                                                     </FormControl>
@@ -258,8 +288,12 @@ export default function ContactPage() {
                                             )}
                                         />
 
-                                        <Button type="submit" className="w-full btn-primary py-6 text-lg font-bold">
-                                            Send Message <Send className="ml-2 w-5 h-5" />
+                                        <Button
+                                            type="submit"
+                                            className="w-full btn-primary py-6 text-lg font-bold"
+                                            disabled={form.formState.isSubmitting}
+                                        >
+                                            {form.formState.isSubmitting ? "Sending..." : (<>Send Message <Send className="ml-2 w-5 h-5" aria-hidden="true" /></>)}
                                         </Button>
                                     </form>
                                 </Form>

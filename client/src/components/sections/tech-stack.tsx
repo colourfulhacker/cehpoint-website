@@ -35,7 +35,7 @@ export default function TechStack() {
                     <h2 className="font-display font-medium text-5xl md:text-7xl mb-6 tracking-tight text-white leading-tight">
                         Tech Stack
                     </h2>
-                    <p className="text-xl text-zinc-400 font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
+                    <p className="text-xl text-zinc-300 font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
                         Enterprise-grade technologies selected for scalability, security, and maintainability.
                     </p>
                 </div>
@@ -53,11 +53,11 @@ export default function TechStack() {
                                     flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 border
                                     ${isActive
                                         ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.3)] scale-105'
-                                        : 'bg-zinc-900/50 text-zinc-400 border-white/5 hover:bg-zinc-800 hover:text-white hover:border-white/10'
+                                        : 'bg-zinc-900/50 text-zinc-300 border-white/5 hover:bg-zinc-800 hover:text-white hover:border-white/10'
                                     }
                                 `}
                             >
-                                <Icon className={`w-4 h-4 mr-2 ${isActive ? 'text-black' : 'text-zinc-500'}`} />
+                                <Icon className={`w-4 h-4 mr-2 ${isActive ? 'text-black' : 'text-zinc-400'}`} />
                                 {service.serviceName}
                             </button>
                         );
@@ -94,11 +94,11 @@ export default function TechStack() {
                                         return (
                                             <li key={tool.name} className="flex items-center group/tool">
                                                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center mr-4 group-hover/tool:bg-white/10 transition-colors">
-                                                    <ToolIcon className="w-4 h-4 text-zinc-500 group-hover/tool:text-white transition-colors" />
+                                                    <ToolIcon className="w-4 h-4 text-zinc-400 group-hover/tool:text-white transition-colors" />
                                                 </div>
                                                 <div className="flex-1">
                                                     <span className="text-sm font-medium text-zinc-300 block group-hover/tool:text-white transition-colors">{tool.name}</span>
-                                                    <span className="text-[11px] text-zinc-600 block group-hover/tool:text-zinc-500 transition-colors line-clamp-1">{tool.description}</span>
+                                                    <span className="text-[11px] text-zinc-300 block group-hover/tool:text-zinc-400 transition-colors line-clamp-1">{tool.description}</span>
                                                 </div>
                                             </li>
                                         );
@@ -116,7 +116,7 @@ export default function TechStack() {
                         </div>
                         <div>
                             <h4 className="text-white font-medium">Custom Stack Architecture</h4>
-                            <p className="text-sm text-zinc-500">We don't just use tools; we engineer ecosystems.</p>
+                            <p className="text-sm text-zinc-400">We don't just use tools; we engineer ecosystems.</p>
                         </div>
                     </div>
                     <Button variant="outline" className="rounded-full border-white/10 hover:bg-white hover:text-black transition-colors">

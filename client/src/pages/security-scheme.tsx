@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 export default function SecurityScheme() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -92,7 +93,13 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
             <SEO 
                 title="Free Cyber Security Scheme | Cehpoint" 
                 description="Apply for Cehpoint's free cyber security services scheme. Enterprise-grade monitoring and threat detection for your business, zero cost." 
-                url="https://www.cehpoint.co.in/security-scheme" 
+                url="https://www.cehpoint.co.in/security-scheme"
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Security Scheme", url: "https://www.cehpoint.co.in/security-scheme" }
+                ]}
             />
             {/* Hero Section */}
             <section className="relative py-12 md:py-24 lg:py-32 overflow-hidden px-4 md:px-0">

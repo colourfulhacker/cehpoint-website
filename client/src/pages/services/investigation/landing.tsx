@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Shield, ChevronRight, User } from "lucide-react";
 import InvestigationLayout from "@/components/layout/investigation-layout";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { motion } from "framer-motion";
 import ContactLeaderDialog from "@/components/investigation/contact-leader-dialog";
 
@@ -31,6 +32,13 @@ export default function InvestigationLanding() {
                 title="Cyber Crime Investigation & Digital Forensics | Cehpoint"
                 description="Elite digital forensics and cyber crime investigation unit. We investigate fraud, crypto theft, data breaches, and ransomware for corporates and individuals."
                 url="https://www.cehpoint.co.in/services/cyber-crime-investigation"
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Services", url: "https://www.cehpoint.co.in/services" },
+                    { name: "Cyber Crime Investigation", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation" }
+                ]}
             />
 
             {/* Hero */}

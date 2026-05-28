@@ -10,3 +10,13 @@ export function getFormattedDate(offset: number = 0): string {
 
 export const getYesterdayDate = () => getFormattedDate(-1);
 export const getTodayDate = () => getFormattedDate(0);
+
+export function formatArticleDate(iso: string): string {
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    });
+}

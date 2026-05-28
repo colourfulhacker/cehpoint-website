@@ -4,6 +4,7 @@ import { globalLocations, GlobalLocation } from "@/data/global-locations";
 import { allApps, AppIdea, getIconForApp } from "@/data/business-apps";
 import { cityTrends, defaultTrend, CityTrend } from "@/data/city-trends"; // Import trends
 import SEO from "@/components/seo";
+import PageBreadcrumb from "@/components/layout/page-breadcrumb";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Code, Cpu, BarChart, Heart, Sun, Home, Video, Book, ShoppingBag, Diamond, Flag, Edit, Camera, Gem, Anchor, Search, Leaf, Calendar, Briefcase, Mic, BookOpen, Snowflake, HardHat, Activity, CloudRain, Circle, Layers, Settings, Calculator, Eye, Smile, Coffee, Send, MessageCircle, ShoppingCart, Music, Map, CreditCard, Lock, Beer, Recycle, Truck, Mountain, Wrench, Bitcoin, Users, Landmark, Utensils, GraduationCap, Palette, Gavel, Scissors, Feather, Car, Ticket, Stethoscope, Smartphone, Database, Cloud, Laptop, ChefHat, Bus, Plane } from "lucide-react";
 import NotFound from "@/pages/not-found";
@@ -64,12 +65,18 @@ export default function CityServicePage() {
         ? allApps.filter(app => cityData.recommendedAppIds.includes(app.id))
         : allApps.slice(0, 4); // Fallback
 
-    const jsonLd = {
+    const cityUrl = `https://www.cehpoint.co.in/location/${cityData.slug}`;
+    const seoTitle = `${cityData.name}: ${trendData.heroTitle}`;
+
+    const jsonLd: Record<string, unknown> = {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "ProfessionalService",
+        "@id": `${cityUrl}#localbusiness`,
         "name": `Cehpoint ${cityData.name}`,
         "description": trendData.metaDescription,
-        "url": `https://www.cehpoint.co.in/location/${cityData.slug}`,
+        "url": cityUrl,
+        "image": "https://www.cehpoint.co.in/og-image.png",
+        "logo": "https://www.cehpoint.co.in/og-image.png",
         "telephone": cityData.phone,
         "address": {
             "@type": "PostalAddress",
@@ -77,17 +84,36 @@ export default function CityServicePage() {
             "addressRegion": cityData.state || cityData.name,
             "addressCountry": cityData.country
         },
+        "areaServed": {
+            "@type": "City",
+            "name": cityData.name
+        },
         "priceRange": `${cityData.currency === 'INR' ? '₹15000' : '$200'} - ${cityData.currency === 'INR' ? '₹500000' : '$5000'}`
     };
+    if ((cityData as any).lat && (cityData as any).lng) {
+        jsonLd.geo = {
+            "@type": "GeoCoordinates",
+            latitude: (cityData as any).lat,
+            longitude: (cityData as any).lng,
+        };
+    }
 
     return (
         <div className="pt-36 min-h-screen bg-black text-white selection:bg-primary/30">
             <SEO
-                title={`${trendData.heroTitle} | Cehpoint ${cityData.name}`}
+                title={seoTitle}
                 description={trendData.metaDescription}
                 keywords={[...trendData.keywords, `Business App ${cityData.name}`, `App Developers ${cityData.name}`, `Software Company ${cityData.name}`, cityData.techFocus]}
-                url={`https://www.cehpoint.co.in/location/${cityData.slug}`}
+                url={cityUrl}
                 schema={JSON.stringify(jsonLd)}
+            />
+
+            <PageBreadcrumb
+                items={[
+                    { name: "Services", href: "/services" },
+                    { name: cityData.name, href: `/location/${cityData.slug}` },
+                ]}
+                className="max-w-7xl mx-auto px-4 pt-2"
             />
 
             {/* --- HERO SECTION --- */}
@@ -160,7 +186,7 @@ export default function CityServicePage() {
                         <h2 className="text-4xl md:text-6xl font-display font-bold mt-2 mb-6">
                             Top Businesses to Start <br /> in <span className="text-primary">{cityData.name}</span>
                         </h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                        <p className="text-gray-300 max-w-2xl mx-auto text-lg">
                             We analyzed the {cityData.name} market and found these high-demand business ideas.
                             Start yours today for just <strong>₹15,000</strong>.
                         </p>
@@ -182,12 +208,12 @@ export default function CityServicePage() {
                                     </div>
 
                                     <h3 className="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors">{app.title}</h3>
-                                    <p className="text-sm text-gray-400 mb-6 flex-grow">{app.whyThisApp}</p>
+                                    <p className="text-sm text-gray-300 mb-6 flex-grow">{app.whyThisApp}</p>
 
                                     <div className="mt-auto pt-6 border-t border-white/5">
                                         <div className="flex items-center justify-between mb-4">
                                             <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">READY TO LAUNCH</span>
-                                            <span className="text-lg font-bold text-white">{cityData.currency === 'INR' ? '₹15k' : '$200'}<span className="text-xs font-normal text-gray-500">/one-time</span></span>
+                                            <span className="text-lg font-bold text-white">{cityData.currency === 'INR' ? '₹15k' : '$200'}<span className="text-xs font-normal text-gray-300">/one-time</span></span>
                                         </div>
                                         <WhatsAppInquiryDialog
                                             appName={app.title}
@@ -217,7 +243,7 @@ export default function CityServicePage() {
                                 <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-white">
                                     Unlock <span className="text-primary">Potential</span>
                                 </h2>
-                                <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+                                <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
                                     Curated business ideas specifically designed for the key drivers of {cityData.name}'s economy.
                                 </p>
                             </div>
@@ -239,7 +265,7 @@ export default function CityServicePage() {
                                     <TabsContent key={idx} value={segment.audience} className="mt-0 focus-visible:outline-none">
                                         <div className="text-center mb-12">
                                             <h3 className="text-2xl font-bold text-white mb-2">{segment.title}</h3>
-                                            <p className="text-gray-400 max-w-lg mx-auto">{segment.description}</p>
+                                            <p className="text-gray-300 max-w-lg mx-auto">{segment.description}</p>
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                             {segment.ideas.map((idea, i) => {
@@ -253,7 +279,7 @@ export default function CityServicePage() {
                                                             <Icon className="w-7 h-7" />
                                                         </div>
                                                         <h4 className="text-xl font-bold text-white mb-3 relative z-10">{idea.title}</h4>
-                                                        <p className="text-gray-400 mb-6 text-sm leading-relaxed relative z-10 min-h-[60px]">{idea.description}</p>
+                                                        <p className="text-gray-300 mb-6 text-sm leading-relaxed relative z-10 min-h-[60px]">{idea.description}</p>
                                                         <div className="relative z-10 pt-4 border-t border-white/5">
                                                             <WhatsAppInquiryDialog
                                                                 appName={idea.title}
@@ -287,7 +313,7 @@ export default function CityServicePage() {
                         <div>
                             <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
                                 Why Pay Millions? <br />
-                                <span className="text-gray-400">Start Smart.</span>
+                                <span className="text-gray-300">Start Smart.</span>
                             </h2>
                             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                                 Traditional agencies in {cityData.name} charge ₹1 Lakh+ for custom development.
@@ -301,7 +327,7 @@ export default function CityServicePage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-lg text-white">Lowest Cost of Ownership</h4>
-                                        <p className="text-sm text-gray-400">One-time payment of {cityData.currency === 'INR' ? '₹15,000' : '$200'}. No monthly royalties.</p>
+                                        <p className="text-sm text-gray-300">One-time payment of {cityData.currency === 'INR' ? '₹15,000' : '$200'}. No monthly royalties.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
@@ -310,7 +336,7 @@ export default function CityServicePage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-lg text-white">Live in 72 Hours</h4>
-                                        <p className="text-sm text-gray-400">Pre-built, tested codebases ready to deploy with your brand.</p>
+                                        <p className="text-sm text-gray-300">Pre-built, tested codebases ready to deploy with your brand.</p>
                                     </div>
                                 </div>
                             </div>
@@ -321,7 +347,7 @@ export default function CityServicePage() {
                             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-3xl blur opacity-30" />
                             <div className="relative glass-intense rounded-3xl p-8 border border-white/20">
                                 <div className="text-center mb-8">
-                                    <p className="text-sm text-gray-400 uppercase tracking-widest">Investment Breakdown</p>
+                                    <p className="text-sm text-gray-300 uppercase tracking-widest">Investment Breakdown</p>
                                     <div className="text-5xl font-bold text-white mt-2">{cityData.currency === 'INR' ? '₹15,000' : '$200'}</div>
                                     <p className="text-green-400 text-sm mt-1">Limited Time Offer in {cityData.name}</p>
                                 </div>
@@ -364,7 +390,7 @@ export default function CityServicePage() {
                         <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-white">
                             Complete IT Solutions in {cityData.name}
                         </h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto text-lg mb-8">
+                        <p className="text-gray-300 max-w-2xl mx-auto text-lg mb-8">
                             We don't just build apps. We secure them, scale them, and infuse them with AI.
                             Our full-stack services are available for enterprises in {cityData.name}.
                         </p>
@@ -388,7 +414,7 @@ export default function CityServicePage() {
                                 <div key={idx} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group h-full flex flex-col">
                                     <Icon className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform" />
                                     <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                                    <p className="text-gray-400 mb-6 flex-grow">{service.description}</p>
+                                    <p className="text-gray-300 mb-6 flex-grow">{service.description}</p>
                                     <WhatsAppInquiryDialog
                                         appName={service.title}
                                         locationName={cityData.name}
@@ -415,7 +441,7 @@ export default function CityServicePage() {
                                 </div>
                                 <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 text-white leading-tight">
                                     Automate Your Boring Work. <br />
-                                    <span className="text-gray-400">Scale Your Business.</span>
+                                    <span className="text-gray-300">Scale Your Business.</span>
                                 </h2>
                                 <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                                     Why hire 10 people for data entry when 1 AI Bot can do it 24/7?
@@ -455,7 +481,7 @@ export default function CityServicePage() {
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400"><DollarSign className="w-5 h-5" /></div>
                                                 <div>
-                                                    <p className="text-sm text-gray-400">Payroll Processing</p>
+                                                    <p className="text-sm text-gray-300">Payroll Processing</p>
                                                     <p className="font-bold text-white">Automated</p>
                                                 </div>
                                             </div>
@@ -465,7 +491,7 @@ export default function CityServicePage() {
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400"><Bot className="w-5 h-5" /></div>
                                                 <div>
-                                                    <p className="text-sm text-gray-400">Customer Queries</p>
+                                                    <p className="text-sm text-gray-300">Customer Queries</p>
                                                     <p className="font-bold text-white">AI Handled</p>
                                                 </div>
                                             </div>
@@ -475,7 +501,7 @@ export default function CityServicePage() {
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400"><TrendingUp className="w-5 h-5" /></div>
                                                 <div>
-                                                    <p className="text-sm text-gray-400">Sales Reporting</p>
+                                                    <p className="text-sm text-gray-300">Sales Reporting</p>
                                                     <p className="font-bold text-white">Real-time sync</p>
                                                 </div>
                                             </div>

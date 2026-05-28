@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { useLocation } from "wouter";
 
 interface SEOProps {
     title: string;
@@ -19,6 +20,10 @@ interface SEOProps {
     noIndex?: boolean;
 }
 
+const SITE_TITLE = "Cehpoint - Enterprise IT, AI & Cybersecurity Solutions";
+const BASE_URL = "https://www.cehpoint.co.in";
+const DEFAULT_OG_IMAGE = "/og-image.png";
+
 export default function SEO({
     title,
     description,
@@ -31,7 +36,7 @@ export default function SEO({
         "Software Development India",
         "Digital Transformation Services"
     ],
-    image = "/og-image.svg",
+    image = DEFAULT_OG_IMAGE,
     url,
     canonical,
     type = "website",
@@ -40,23 +45,31 @@ export default function SEO({
     author = "Cehpoint",
     twitterCreator = "@cehpoint",
     twitterSite = "@cehpoint",
-    robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    robots = "index, follow, max-image-preview:large, max-video-preview:-1",
     themeColor = "#7064F8",
     schema,
     noIndex = false
 }: SEOProps) {
-    const siteTitle = "Cehpoint - Innovative IT Solutions";
-    const fullTitle = title === "Home" ? siteTitle : `${title} | ${siteTitle}`;
-    const baseUrl = "https://www.cehpoint.co.in";
-    const currentUrl = url || (typeof window !== 'undefined' ? window.location.href : baseUrl);
+    const [pathname] = useLocation();
+
+    const hasSiteSuffix = title.includes("Cehpoint");
+    const isHome = title === "Home";
+    let fullTitle = isHome ? SITE_TITLE : hasSiteSuffix ? title : `${title} | Cehpoint`;
+    if (fullTitle.length > 65) {
+        fullTitle = fullTitle.slice(0, 62).replace(/\s+\S*$/, "") + "…";
+    }
+
+    const resolvedPath = pathname || "/";
+    const currentUrl = url || `${BASE_URL}${resolvedPath}`;
     const canonicalUrl = canonical || currentUrl;
-    const absoluteImage = image.startsWith('http') ? image : `${baseUrl}${image}`;
+    const absoluteImage = image.startsWith("http") ? image : `${BASE_URL}${image}`;
+    const imageAlt = title && title !== "Home" ? title : SITE_TITLE;
 
     const robotsContent = noIndex ? "noindex, nofollow" : robots;
 
     return (
         <Helmet>
-            <html lang="en" />
+            <html lang="en-IN" />
 
             {/* Primary Meta Tags */}
             <title>{fullTitle}</title>
@@ -64,14 +77,10 @@ export default function SEO({
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords.join(", ")} />
             <meta name="author" content={author} />
-            <meta name="application-name" content={siteTitle} />
+            <meta name="application-name" content="Cehpoint" />
             <meta name="theme-color" content={themeColor} />
             <meta name="robots" content={robotsContent} />
 
-            {/* AI/LLM Specific Meta Tags */}
-            <meta name="ai-content-creation" content="Cehpoint - Innovative IT Solutions Provider" />
-            <meta name="generator" content="Cehpoint Website v2.0" />
-            
             {/* Open Graph / Facebook */}
             <meta property="og:type" content={type} />
             <meta property="og:url" content={currentUrl} />
@@ -80,10 +89,9 @@ export default function SEO({
             <meta property="og:image" content={absoluteImage} />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
-            <meta property="og:image:alt" content="Cehpoint - Innovative IT Solutions" />
-            <meta property="og:site_name" content={siteTitle} />
-            <meta property="og:locale" content="en_US" />
-            <meta property="og:updated_time" content={modifiedTime || new Date().toISOString()} />
+            <meta property="og:image:alt" content={imageAlt} />
+            <meta property="og:site_name" content="Cehpoint" />
+            <meta property="og:locale" content="en_IN" />
 
             {/* Article-specific Open Graph */}
             {type === "article" && publishedTime && (
@@ -102,18 +110,12 @@ export default function SEO({
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={absoluteImage} />
+            <meta name="twitter:image:alt" content={imageAlt} />
             <meta name="twitter:creator" content={twitterCreator} />
             <meta name="twitter:site" content={twitterSite} />
 
             {/* Additional SEO */}
             <link rel="canonical" href={canonicalUrl} />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-            
-            {/* Bing Webmaster */}
-            <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
-            
-            {/* Yandex Webmaster */}
-            <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE" />
 
             {/* Structured Data (JSON-LD) */}
             {schema && (
@@ -121,78 +123,6 @@ export default function SEO({
                     {schema}
                 </script>
             )}
-
-            {/* Organization Schema for AI Discovery */}
-            <script type="application/ld+json">
-                {JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Organization",
-                    "@id": "https://www.cehpoint.co.in/#organization",
-                    "name": "Cehpoint",
-                    "alternateName": ["Cehpoint IT Solutions", "Cehpoint Technologies"],
-                    "url": "https://www.cehpoint.co.in",
-                    "logo": "https://www.cehpoint.co.in/favicon.svg",
-                    "description": "Leading IT consultancy offering enterprise outsourcing, custom software development, AI solutions, and digital transformation services.",
-                    "founder": {
-                        "@type": "Person",
-                        "name": "Jit Banerjee",
-                        "jobTitle": "Founder & CEO"
-                    },
-                    "address": {
-                        "@type": "PostalAddress",
-                        "streetAddress": "Labpur, Sandipan Patsala Para",
-                        "addressLocality": "Bolpur",
-                        "addressRegion": "West Bengal",
-                        "postalCode": "731303",
-                        "addressCountry": "IN"
-                    },
-                    "contactPoint": {
-                        "@type": "ContactPoint",
-                        "telephone": "+91-90911-56095",
-                        "contactType": "customer service",
-                        "email": "contact@cehpoint.co.in",
-                        "availableLanguage": ["English", "Hindi", "Bengali"]
-                    },
-                    "sameAs": [
-                        "https://www.linkedin.com/company/cehpoint"
-                    ],
-                    "knowsAbout": [
-                        "Software Development",
-                        "Artificial Intelligence",
-                        "Cybersecurity",
-                        "Cloud Computing",
-                        "Digital Transformation",
-                        "E-commerce Solutions",
-                        "Fintech Development",
-                        "EdTech Platforms"
-                    ],
-                    "areaServed": "Worldwide"
-                })}
-            </script>
-
-            {/* WebSite Schema with SearchAction */}
-            <script type="application/ld+json">
-                {JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "WebSite",
-                    "@id": "https://www.cehpoint.co.in/#website",
-                    "url": "https://www.cehpoint.co.in",
-                    "name": "Cehpoint - Innovative IT Solutions",
-                    "description": "Leading IT consultancy offering enterprise outsourcing, custom software development, AI solutions, and digital transformation services.",
-                    "publisher": {
-                        "@id": "https://www.cehpoint.co.in/#organization"
-                    },
-                    "potentialAction": {
-                        "@type": "SearchAction",
-                        "target": {
-                            "@type": "EntryPoint",
-                            "urlTemplate": "https://www.cehpoint.co.in/search?q={search_term_string}"
-                        },
-                        "query-input": "required name=search_term_string"
-                    },
-                    "inLanguage": "en-US"
-                })}
-            </script>
         </Helmet>
     );
 }

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { leadershipData } from "@/data/leadership";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 export default function LeadershipSearch() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -80,7 +81,13 @@ export default function LeadershipSearch() {
             <SEO 
                 title="Leadership Team | Cehpoint" 
                 description="Search and explore Cehpoint's global leadership team by country and department." 
-                url="https://www.cehpoint.co.in/leadership-search" 
+                url="https://www.cehpoint.co.in/leadership-search"
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Leadership Search", url: "https://www.cehpoint.co.in/leadership-search" }
+                ]}
             />
             <div className="max-w-7xl mx-auto space-y-12">
                 <div className="text-center space-y-4">

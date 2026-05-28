@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ShieldAlert, Lock, AlertOctagon, XCircle, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 
 export default function RansomwareParadox() {
     return (
@@ -13,7 +13,7 @@ export default function RansomwareParadox() {
                 title="The Ransomware Paradox: Why Paying is a Trap"
                 description="Paying the ransom doesn't save your business. It marks you as a target. Learn the reality of ransomware negotiation and why you shouldn't pay."
                 articleSlug="ransomware-paradox"
-                publishedDate="2024-03-24"
+                publishedDate="2024-07-18"
                 category="Cyber Threat"
             />
 
@@ -39,17 +39,17 @@ export default function RansomwareParadox() {
                         </div>
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2024-07-18")}</span>
                         </div>
                         <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Updated: Today</span>
+                            <span>Updated: July 18, 2024</span>
                         </div>
                     </div>
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
-                    <img src="/assets/blog/cyber-hero-generic.png" alt="Ransomware Paradox" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
+                    <img src="/assets/blog/cyber-hero-generic.png" alt="Ransomware Paradox" className="w-full h-auto rounded-xl mb-8 shadow-2xl"  decoding="async" fetchPriority="high"/>
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         Your screen is locked. Your files are encrypted. The clock is ticking. The hackers want 5 Bitcoin. The fastest way out is to pay, right? <span className="text-red-400 font-bold">Wrong.</span>
                     </p>

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { cn } from "@/lib/utils";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 type ProjectType = "web" | "mobile";
 
@@ -97,7 +98,13 @@ export default function DemoDelivery() {
       <SEO 
         title="Demo Delivery | Rapid Prototyping" 
         description="See your ideas come to life. 24-hour web prototyping and 7-day mobile app prototyping." 
-        url="https://www.cehpoint.co.in/demo-delivery" 
+        url="https://www.cehpoint.co.in/demo-delivery"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.cehpoint.co.in/" },
+          { name: "Demo Delivery", url: "https://www.cehpoint.co.in/demo-delivery" }
+        ]}
       />
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-background via-secondary to-background">

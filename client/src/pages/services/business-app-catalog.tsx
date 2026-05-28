@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -27,6 +26,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 
 // SEO Imports
+import SEO from "@/components/seo";
 import FAQSchema from "@/components/seo/faq-schema";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
@@ -845,55 +845,34 @@ ${app.features.join(", ")}`.trim();
 export default function BusinessAppCatalog() {
     return (
         <>
-            <Helmet>
-                <title>50+ Best Business App Ideas 2025 | Profitable Startup Catalog | Cehpoint</title>
-                <meta name="description" content="Discover 50+ profitable app business ideas with budget estimates. Start your own delivery, education, or service business today. Low investment, high returns." />
-                <meta name="keywords" content="business app ideas, startup apps, low investment business, app development cost, profitable small business ideas, daily need apps, education apps" />
-                <link rel="canonical" href="https://www.cehpoint.co.in/services/business-app-catalog" />
-
-                {/* Open Graph / Facebook */}
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://www.cehpoint.co.in/services/business-app-catalog" />
-                <meta property="og:title" content="50+ Best Business App Ideas 2025 | Profitable Startup Catalog" />
-                <meta property="og:description" content="Ready to launch your startup? Explore 50+ pre-built business app solutions. From Grocery to EdTech, start fast with Cehpoint." />
-                <meta property="og:image" content="https://www.cehpoint.co.in/assets/og-catalog.jpg" />
-
-                {/* Twitter */}
-                <meta property="twitter:card" content="summary_large_image" />
-                <meta property="twitter:url" content="https://www.cehpoint.co.in/services/business-app-catalog" />
-                <meta property="twitter:title" content="50+ Best Business App Ideas 2025 | Profitable Startup Catalog" />
-                <meta property="twitter:description" content="Ready to launch your startup? Explore 50+ pre-built business app solutions. Start fast." />
-                <meta property="twitter:image" content="https://www.cehpoint.co.in/assets/og-catalog.jpg" />
-
-                {/* ItemList Schema for the Apps */}
-                <script type="application/ld+json">
-                    {`
-                    {
-                        "@context": "https://schema.org",
-                        "@type": "ItemList",
-                        "itemListElement": [
-                            ${allApps.map((app, index) => `
-                            {
-                                "@type": "ListItem",
-                                "position": ${index + 1},
-                                "item": {
-                                    "@type": "SoftwareApplication",
-                                    "name": "${app.title}",
-                                    "applicationCategory": "BusinessApplication",
-                                    "operatingSystem": "Android, iOS, Web",
-                                    "offers": {
-                                        "@type": "Offer",
-                                        "price": "15000",
-                                        "priceCurrency": "INR"
-                                    },
-                                    "description": "${app.description}"
-                                }
-                            }`).join(',')}
-                        ]
-                    }
-                    `}
-                </script>
-            </Helmet>
+            <SEO
+                title="50+ Best Business App Ideas 2025 | Profitable Startup Catalog"
+                description="Discover 50+ profitable app business ideas with budget estimates. Start your own delivery, education, or service business today. Low investment, high returns."
+                keywords={["business app ideas", "startup apps", "low investment business", "app development cost", "profitable small business ideas", "daily need apps", "education apps"]}
+                url="https://www.cehpoint.co.in/services/business-app-catalog"
+                canonical="https://www.cehpoint.co.in/services/business-app-catalog"
+                image="/assets/og-catalog.jpg"
+                schema={JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "ItemList",
+                    "itemListElement": allApps.map((app, index) => ({
+                        "@type": "ListItem",
+                        "position": index + 1,
+                        "item": {
+                            "@type": "SoftwareApplication",
+                            "name": app.title,
+                            "applicationCategory": "BusinessApplication",
+                            "operatingSystem": "Android, iOS, Web",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "15000",
+                                "priceCurrency": "INR"
+                            },
+                            "description": app.description
+                        }
+                    }))
+                })}
+            />
 
             <FAQSchema faqs={faqs} pageId="catalog-faq" />
             <BreadcrumbSchema items={breadcrumbItems} />

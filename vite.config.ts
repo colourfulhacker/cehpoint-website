@@ -79,9 +79,9 @@ const tailwindConfig = {
         sans: ["var(--font-body)", "var(--font-sans)"],
         heading: ["var(--font-heading)"],
         body: ["var(--font-body)"],
-        serif: ["var(--font-serif)"],
-        mono: ["var(--font-mono)"],
-        display: ["var(--font-display)"],
+        serif: ["var(--font-heading)", "serif"],
+        mono: ["ui-monospace", "SFMono-Regular", "monospace"],
+        display: ["var(--font-heading)"],
       },
       keyframes: {
         "accordion-down": {

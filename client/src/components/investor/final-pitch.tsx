@@ -211,7 +211,7 @@ Thank you!`;
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-xl text-white mb-1">100% Equity</h4>
-                                        <p className="text-sm text-gray-400 leading-relaxed">You own the code, the IP, and the brand. No dilution, ever.</p>
+                                        <p className="text-sm text-gray-300 leading-relaxed">You own the code, the IP, and the brand. No dilution, ever.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
@@ -220,7 +220,7 @@ Thank you!`;
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-xl text-white mb-1">Zero Tech Risk</h4>
-                                        <p className="text-sm text-gray-400 leading-relaxed">We build, launch, and maintain it. You focus on growth.</p>
+                                        <p className="text-sm text-gray-300 leading-relaxed">We build, launch, and maintain it. You focus on growth.</p>
                                     </div>
                                 </div>
                             </div>
@@ -228,10 +228,10 @@ Thank you!`;
                             <div className="border-t border-white/10 pt-10 space-y-8 relative z-10">
                                 <div className="flex flex-col md:flex-row justify-between items-end gap-6">
                                     <div>
-                                        <p className="text-sm text-gray-400 mb-2 uppercase tracking-wider font-medium">Total Investment Required</p>
+                                        <p className="text-sm text-gray-300 mb-2 uppercase tracking-wider font-medium">Total Investment Required</p>
                                         <div className="flex items-baseline gap-2">
                                             <p className="text-5xl sm:text-6xl font-bold text-white tracking-tight">{idea.budget}</p>
-                                            <span className="text-sm text-gray-500 font-medium">One-time fee</span>
+                                            <span className="text-sm text-gray-300 font-medium">One-time fee</span>
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +251,7 @@ Thank you!`;
                                     </a>
                                 </div>
 
-                                <p className="text-xs text-center text-gray-500">
+                                <p className="text-xs text-center text-gray-300">
                                     Clicking "Claim This Deal" opens WhatsApp with a prefilled message to our team
                                 </p>
                             </div>

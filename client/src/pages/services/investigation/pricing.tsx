@@ -1,5 +1,6 @@
 import InvestigationLayout from "@/components/layout/investigation-layout";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import CyberCrimeCalculator from "@/components/calculators/cyber-crime-calculator";
 
 export default function InvestigationPricing() {
@@ -8,6 +9,14 @@ export default function InvestigationPricing() {
             <SEO
                 title="Investigation Pricing & Cost Estimator | Cehpoint"
                 description="Transparent pricing and cost estimation for cyber crime investigation services."
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Services", url: "https://www.cehpoint.co.in/services" },
+                    { name: "Cyber Crime Investigation", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation" },
+                    { name: "Pricing", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation/pricing" }
+                ]}
             />
             <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-12">

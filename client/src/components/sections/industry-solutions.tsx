@@ -216,7 +216,7 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
           <h3 className="text-xl font-display font-medium text-white mb-3 group-hover:text-primary-foreground transition-colors duration-300">
             {item.title}
           </h3>
-          <p className="text-sm text-zinc-400 font-light leading-relaxed group-hover:text-zinc-300 transition-colors duration-300">
+          <p className="text-sm text-zinc-300 font-light leading-relaxed group-hover:text-zinc-200 transition-colors duration-300">
             {item.description}
           </p>
         </div>
@@ -226,11 +226,11 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
           {/* Default State: Metrics */}
           <div className="flex justify-between items-center group-hover:opacity-0 transition-opacity duration-300 absolute w-[85%]">
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-zinc-600 font-bold">Starts From</p>
+              <p className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">Starts From</p>
               <p className="text-sm font-medium text-zinc-300">{item.cost}</p>
             </div>
             <div className="text-right">
-              <p className="text-[10px] uppercase tracking-widest text-zinc-600 font-bold">Timeline</p>
+              <p className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">Timeline</p>
               <p className="text-sm font-medium text-zinc-300">{item.time}</p>
             </div>
           </div>
@@ -274,7 +274,7 @@ export default function IndustrySolutions() {
               Industry Coverage
             </h2>
           </div>
-          <div className="max-w-xs text-zinc-400 text-sm font-light leading-relaxed mb-2">
+          <div className="max-w-xs text-zinc-300 text-sm font-light leading-relaxed mb-2">
             We engineer digital dominance across diverse sectors, transforming legacy systems into future-proof powerhouses.
           </div>
         </div>

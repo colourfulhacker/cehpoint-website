@@ -8,10 +8,9 @@ export default function NotFound() {
   return (
     <>
       <SEO
-        title="404 - Page Not Found"
-        description="The page you're looking for doesn't exist or has been moved."
-        url="https://www.cehpoint.co.in/404"
-        robots="noindex, nofollow"
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist or has been moved. Explore our services, AI solutions, or contact our team."
+        noIndex
       />
       
       <div className="min-h-screen w-full flex items-center justify-center bg-background relative overflow-hidden">

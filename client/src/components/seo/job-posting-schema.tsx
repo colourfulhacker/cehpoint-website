@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 interface JobPostingSchemaProps {
     title: string;
@@ -16,6 +16,7 @@ interface JobPostingSchemaProps {
     responsibilities: string[];
     requirements: string[];
     applicationUrl: string;
+    remote?: boolean;
 }
 
 export default function JobPostingSchema({
@@ -30,94 +31,66 @@ export default function JobPostingSchema({
     responsibilities,
     requirements,
     applicationUrl,
+    remote = false,
 }: JobPostingSchemaProps) {
-    useEffect(() => {
-        // Calculate validThrough as 90 days from datePosted if not provided
-        const postedDate = new Date(datePosted);
-        const expiryDate = validThrough
-            ? new Date(validThrough)
-            : new Date(postedDate.getTime() + 90 * 24 * 60 * 60 * 1000);
+    const postedDate = new Date(datePosted);
+    const expiryDate = validThrough
+        ? new Date(validThrough)
+        : new Date(postedDate.getTime() + 90 * 24 * 60 * 60 * 1000);
 
-        const schema = {
-            "@context": "https://schema.org",
-            "@type": "JobPosting",
-            title: title,
-            description: `${description}\n\nKey Responsibilities:\n${responsibilities.map((r) => `• ${r}`).join("\n")}\n\nRequirements:\n${requirements.map((r) => `• ${r}`).join("\n")}`,
-            datePosted: datePosted,
-            validThrough: expiryDate.toISOString(),
-            employmentType: employmentType,
-            hiringOrganization: {
-                "@type": "Organization",
-                name: "Cehpoint",
-                sameAs: "https://www.cehpoint.co.in",
-                logo: "https://www.cehpoint.co.in/logo.png",
-            },
-            jobLocation: {
-                "@type": "Place",
-                address: {
-                    "@type": "PostalAddress",
-                    addressLocality: location,
-                    addressCountry: "IN",
-                },
-            },
-            ...(salary && {
-                baseSalary: {
-                    "@type": "MonetaryAmount",
-                    currency: salary.currency,
-                    value: {
-                        "@type": "QuantitativeValue",
-                        value: salary.value,
-                        unitText: salary.unitText,
-                    },
-                },
-            }),
-            applicantLocationRequirements: {
-                "@type": "Country",
-                name: "IN",
-            },
-            jobLocationType: "TELECOMMUTE",
-            directApply: true,
-            applicationContact: {
-                "@type": "ContactPoint",
-                contactType: "HR",
-                email: "hr@cehpoint.co.in",
-                url: applicationUrl,
-            },
-        };
-
-        // Create or update script tag
-        const scriptId = `job-schema-${title.replace(/\s+/g, "-").toLowerCase()}`;
-        let scriptTag = document.getElementById(scriptId) as HTMLScriptElement;
-
-        if (!scriptTag) {
-            scriptTag = document.createElement("script");
-            scriptTag.id = scriptId;
-            scriptTag.type = "application/ld+json";
-            document.head.appendChild(scriptTag);
-        }
-
-        scriptTag.textContent = JSON.stringify(schema);
-
-        // Cleanup function to remove script when component unmounts
-        return () => {
-            const existingScript = document.getElementById(scriptId);
-            if (existingScript) {
-                document.head.removeChild(existingScript);
-            }
-        };
-    }, [
+    const schema: Record<string, unknown> = {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
         title,
-        description,
-        department,
-        location,
-        employmentType,
-        salary,
+        description: `<p>${description}</p><h3>Key Responsibilities</h3><ul>${responsibilities.map((r) => `<li>${r}</li>`).join("")}</ul><h3>Requirements</h3><ul>${requirements.map((r) => `<li>${r}</li>`).join("")}</ul>`,
         datePosted,
-        validThrough,
-        responsibilities,
-        requirements,
-        applicationUrl,
-    ]);
+        validThrough: expiryDate.toISOString(),
+        employmentType,
+        industry: department,
+        hiringOrganization: {
+            "@type": "Organization",
+            name: "Cehpoint",
+            sameAs: "https://www.cehpoint.co.in",
+            logo: "https://www.cehpoint.co.in/og-image.png",
+        },
+        jobLocation: {
+            "@type": "Place",
+            address: {
+                "@type": "PostalAddress",
+                addressLocality: location,
+                addressCountry: "IN",
+            },
+        },
+        ...(salary && {
+            baseSalary: {
+                "@type": "MonetaryAmount",
+                currency: salary.currency,
+                value: {
+                    "@type": "QuantitativeValue",
+                    value: salary.value,
+                    unitText: salary.unitText,
+                },
+            },
+        }),
+        applicantLocationRequirements: {
+            "@type": "Country",
+            name: "IN",
+        },
+        ...(remote && { jobLocationType: "TELECOMMUTE" }),
+        directApply: true,
+        applicationContact: {
+            "@type": "ContactPoint",
+            contactType: "HR",
+            email: "hr@cehpoint.co.in",
+            url: applicationUrl,
+        },
+    };
 
-    return null; // This component doesn't render anything visible
+    return (
+        <Helmet>
+            <script type="application/ld+json">
+                {JSON.stringify(schema)}
+            </script>
+        </Helmet>
+    );
 }

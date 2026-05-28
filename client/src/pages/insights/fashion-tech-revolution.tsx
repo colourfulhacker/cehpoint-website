@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ShoppingBag, Globe, Camera, Heart, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 
 export default function FashionTechRevolution() {
     return (
@@ -12,7 +12,7 @@ export default function FashionTechRevolution() {
                 title="Direct to Consumer: The Digital Fashion Wave"
                 description="Turn your small boutique into a national brand. Discover how local fashion sellers are using apps to beat algorithms and build loyal communities."
                 articleSlug="fashion-tech-revolution"
-                publishedDate="2024-03-24"
+                publishedDate="2024-03-15"
                 category="Direct to Consumer"
             />
 
@@ -38,17 +38,17 @@ export default function FashionTechRevolution() {
                         </div>
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2024-03-15")}</span>
                         </div>
                         <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Updated: Today</span>
+                            <span>Updated: March 15, 2024</span>
                         </div>
                     </div>
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
-                    <img src="/assets/blog/fashion-hero.png" alt="Fashion Boutique App" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
+                    <img src="/assets/blog/fashion-hero.png" alt="Fashion Boutique App" className="w-full h-auto rounded-xl mb-8 shadow-2xl"  decoding="async" fetchPriority="high"/>
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         Instagram is great, but you don't own it. The algorithm changes, and your sales drop. The smart boutique owners are moving their customers from "Social Followers" to <span className="text-primary font-bold">"App Users"</span>.
                     </p>

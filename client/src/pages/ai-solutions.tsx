@@ -6,6 +6,7 @@ import AutomationRecommender from "@/components/calculators/automation-recommend
 import IndustryUseCaseExplorer from "@/components/sections/industry-use-cases";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 export default function AISolutions() {
   const serviceSchema = JSON.stringify({
@@ -61,11 +62,17 @@ export default function AISolutions() {
   return (
     <div className="pt-36 min-h-screen" data-testid="ai-solutions-page">
       <SEO
-        title="Enterprise AI Solutions & Consulting | Generative AI, ML, & Automation services in India"
+        title="Enterprise AI Solutions & Consulting in India"
         description="Transform your business with Cehpoint's AI solutions. We specialize in Generative AI, Computer Vision, Predictive Analytics, and Intelligent Process Automation for Indian enterprises."
         keywords={["AI Solutions India", "Generative AI Consulting", "Computer Vision Services", "Predictive Analytics Company", "AI Automation India", "Machine Learning Services"]}
         schema={serviceSchema}
         image="/images/ai/ai-hero.png"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.cehpoint.co.in/" },
+          { name: "AI Solutions", url: "https://www.cehpoint.co.in/ai-solutions" }
+        ]}
       />
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-background via-primary/5 to-background relative overflow-hidden">

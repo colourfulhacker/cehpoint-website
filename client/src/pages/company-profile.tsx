@@ -11,6 +11,7 @@ import jsPDF from 'jspdf';
 import { globalLocations } from "@/data/global-locations";
 import { serviceTechStacks } from "@/data/service-tech-stacks";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 export default function CompanyProfile() {
     const [isGenerating, setIsGenerating] = useState(false);
@@ -158,7 +159,13 @@ export default function CompanyProfile() {
             <SEO 
                 title="Company Profile | Cehpoint" 
                 description="View and download the complete company profile of Cehpoint, detailing our services, global presence, tech stack, and achievements." 
-                url="https://www.cehpoint.co.in/company-profile" 
+                url="https://www.cehpoint.co.in/company-profile"
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Company Profile", url: "https://www.cehpoint.co.in/company-profile" }
+                ]}
             />
             {/* Control Bar */}
             <div className="fixed bottom-8 right-8 z-50">

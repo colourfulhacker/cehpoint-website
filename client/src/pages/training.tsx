@@ -194,6 +194,7 @@ const premiumTrainings = [
 ];
 
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 // ... existing imports
 
@@ -377,6 +378,13 @@ export default function Training() {
                 schema={courseSchema}
             />
 
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Training", url: "https://www.cehpoint.co.in/training" }
+                ]}
+            />
+
             {/* Premium Background Elements */}
             <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
                 <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-500/10 blur-[120px] rounded-full animate-pulse" />
@@ -388,7 +396,7 @@ export default function Training() {
             <section className="relative py-24 md:py-32 overflow-hidden z-10">
                 <div className="absolute inset-0 bg-gradient-to-b from-secondary/10 via-background to-background" />
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-                
+
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
@@ -399,8 +407,8 @@ export default function Training() {
                             {activeTab === "entrepreneurs" ? "Business Growth Hub" : "Student Career Launchpad"}
                         </Badge>
                     </motion.div>
-                    
-                    <motion.h1 
+
+                    <motion.h1
                         className="font-display font-bold text-5xl md:text-8xl mb-6 tracking-tight"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -411,8 +419,8 @@ export default function Training() {
                             {activeTab === "entrepreneurs" ? "With Technology" : "With Future Tech"}
                         </span>
                     </motion.h1>
-                    
-                    <motion.p 
+
+                    <motion.p
                         className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -464,7 +472,7 @@ export default function Training() {
                                 desc: "Our students work on real-world projects that get them hired instantly."
                             }
                         ].map((feature, idx) => (
-                            <motion.div 
+                            <motion.div
                                 key={idx}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -529,7 +537,7 @@ export default function Training() {
                                             Join elite 2-hour problem-solving sessions designed towards one goal: <span className="text-yellow-400 font-bold">Explosive Growth.</span>
                                         </p>
 
-                                        <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm font-medium text-slate-400">
+                                        <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm font-medium text-slate-300">
                                             <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10">
                                                 <Globe className="w-4 h-4 text-blue-400" /> Online via Google Meet & Zoom
                                             </div>
@@ -572,6 +580,8 @@ export default function Training() {
                                                         <img
                                                             src={`/assets/${training.image}`}
                                                             alt={training.title}
+                                                            loading="lazy"
+                                                            decoding="async"
                                                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-90 group-hover:opacity-100"
                                                             onError={(e) => {
                                                                 e.currentTarget.style.display = 'none';
@@ -592,12 +602,12 @@ export default function Training() {
                                                         <CardTitle className="text-xl md:text-2xl text-white group-hover:text-yellow-400 transition-colors leading-tight min-h-[3.5rem] font-bold">
                                                             {training.title}
                                                         </CardTitle>
-                                                        
+
                                                         <div className="space-y-4 mt-6">
                                                             <div className="bg-red-500/5 p-4 rounded-2xl border border-red-500/10 group-hover:border-red-500/20 transition-colors">
                                                                 <div className="flex items-center gap-2 mb-2">
                                                                     <Target className="w-4 h-4 text-red-400 shrink-0" />
-                                                                    <span className="text-[10px] uppercase font-black text-red-400/80 tracking-[0.2em]">The Challenge</span>
+                                                                    <span className="text-[10px] uppercase font-black text-red-400 tracking-[0.2em]">The Challenge</span>
                                                                 </div>
                                                                 <p className="text-sm text-slate-300 leading-relaxed font-medium">{training.problem}</p>
                                                             </div>
@@ -605,7 +615,7 @@ export default function Training() {
                                                             <div className="bg-green-500/5 p-4 rounded-2xl border border-green-500/10 group-hover:border-green-500/20 transition-colors">
                                                                 <div className="flex items-center gap-2 mb-2">
                                                                     <Lightbulb className="w-4 h-4 text-green-400 shrink-0" />
-                                                                    <span className="text-[10px] uppercase font-black text-green-400/80 tracking-[0.2em]">The Solution</span>
+                                                                    <span className="text-[10px] uppercase font-black text-green-400 tracking-[0.2em]">The Solution</span>
                                                                     <Badge variant="outline" className="ml-auto text-[10px] bg-green-500/10 border-green-500/20 text-green-400 py-0 h-5">Proven Method</Badge>
                                                                 </div>
                                                                 <p className="text-sm text-slate-300 leading-relaxed font-medium">{training.solution}</p>
@@ -616,7 +626,7 @@ export default function Training() {
                                                     <CardContent className="pb-4 flex-grow">
                                                         <Accordion type="single" collapsible className="w-full">
                                                             <AccordionItem value="item-1" className="border-white/5 px-2">
-                                                                <AccordionTrigger className="text-slate-400 hover:text-white py-4 text-sm font-semibold transition-colors">
+                                                                <AccordionTrigger className="text-slate-300 hover:text-white py-4 text-sm font-semibold transition-colors">
                                                                     Curriculum Overview ({training.curriculum.length} Core Modules)
                                                                 </AccordionTrigger>
                                                                 <AccordionContent>
@@ -658,7 +668,7 @@ export default function Training() {
                                     </div>
 
                                     <div className="mt-16 text-center border-t border-white/10 pt-8">
-                                        <p className="text-slate-500 text-sm">
+                                        <p className="text-slate-400 text-sm">
                                             * Prices are subject to increase. Sessions are conducted via Google Meet/Zoom upon booking confirmation.
                                         </p>
                                     </div>

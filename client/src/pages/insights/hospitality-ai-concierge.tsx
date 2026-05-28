@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Coffee, MessageSquare, Clock, Calendar } from "lucide-react";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
 
@@ -12,7 +12,7 @@ export default function HospitalityAIConcierge() {
                 title="Reviving the Digital Front Desk: The $1,000 AI Concierge"
                 description="How an independent boutique hotel cut OTA commission fees and secured 2:00 AM overseas bookings instantly."
                 articleSlug="hospitality-ai-concierge"
-                publishedDate="2024-03-24"
+                publishedDate="2024-10-22"
                 category="Travel & Hospitality"
             />
 
@@ -34,11 +34,11 @@ export default function HospitalityAIConcierge() {
                     <div className="flex flex-wrap items-center gap-6 text-gray-300/80 border-b border-border pb-8">
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2 text-rose-500/70" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2024-10-22")}</span>
                         </div>
                         <div className="flex items-center text-green-400 font-semibold">
                             <Clock className="w-4 h-4 mr-2" />
-                            <span>Updated: Today</span>
+                            <span>Updated: October 22, 2024</span>
                         </div>
                         <div className="flex items-center text-gray-200">
                             <Coffee className="w-4 h-4 mr-2 text-rose-500/70" />
@@ -48,7 +48,7 @@ export default function HospitalityAIConcierge() {
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-primary">
-                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=600&fit=crop" alt="Hospitality Tech AI Concierge" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90" />
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=600&fit=crop" alt="Hospitality Tech AI Concierge" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90"  decoding="async" fetchPriority="high"/>
 
                     <p className="lead text-xl font-medium mb-8">
                         In hospitality, the guest experience begins long before check-in. However, independent boutique hotels often cannot afford a 24/7 dedicated reservation call center, leading to lost bookings and frustrated travelers.

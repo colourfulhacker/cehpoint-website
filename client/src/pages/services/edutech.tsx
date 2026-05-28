@@ -62,7 +62,7 @@ export default function EdutechService() {
   return (
     <div className="pt-36 min-h-screen" data-testid="edutech-service-page">
       <SEO
-        title="Edutech Solutions"
+        title="Edutech Software Development Services in India"
         description="Transform education with cutting-edge learning platforms featuring AI-powered analytics, virtual classrooms, and personalized learning paths. WCAG 2.1 AA compliant and FERPA certified."
         keywords={["Edutech Solutions", "Learning Management System", "Online Education", "Virtual Classroom", "Educational Technology", "LMS Platform", "E-Learning", "Student Analytics"]}
         url="https://www.cehpoint.co.in/services/edutech"

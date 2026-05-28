@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Landmark, ShieldCheck, Clock, Calendar } from "lucide-react";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
 
@@ -12,7 +12,7 @@ export default function FinanceFraudML() {
                 title="FinTech: Sub-$1,000 ML Fraud Detection Engine"
                 description="Read how a boutique credit institution swapped manual auditing for real-time Machine Learning anomaly detection."
                 articleSlug="finance-fraud-ml"
-                publishedDate="2024-03-24"
+                publishedDate="2025-02-20"
                 category="Finance & Banking"
             />
 
@@ -34,11 +34,11 @@ export default function FinanceFraudML() {
                     <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2025-02-20")}</span>
                         </div>
                         <div className="flex items-center text-green-500 font-medium">
                             <Clock className="w-4 h-4 mr-2" />
-                            <span>Updated: Today</span>
+                            <span>Updated: February 20, 2025</span>
                         </div>
                         <div className="flex items-center">
                             <Landmark className="w-4 h-4 mr-2" />
@@ -48,7 +48,7 @@ export default function FinanceFraudML() {
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-primary">
-                    <img src="https://images.unsplash.com/photo-1616077168079-7e09a677fb2c?w=1200&h=600&fit=crop" alt="Finance Security Technology" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90" />
+                    <img src="https://images.unsplash.com/photo-1616077168079-7e09a677fb2c?w=1200&h=600&fit=crop" alt="Finance Security Technology" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90"  decoding="async" fetchPriority="high"/>
 
                     <p className="lead text-xl font-medium mb-8">
                         In the fast-moving financial sector, retroactive audits don't stop money from disappearing. Prevention does. Here is how a boutique lender plugged a severe operational leak by embracing modern predictive modeling and real-time intervention.

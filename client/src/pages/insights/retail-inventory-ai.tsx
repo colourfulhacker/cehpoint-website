@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ShoppingCart, BarChart, Clock, Calendar } from "lucide-react";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
 
@@ -12,7 +12,7 @@ export default function RetailInventoryAI() {
                 title="Ending Stockouts: Sub-$1,000 Retail AI Pipeline"
                 description="See how a retail chain cut inventory waste by 40% utilizing machine learning to predict consumer demand automatically."
                 articleSlug="retail-inventory-ai"
-                publishedDate="2024-03-24"
+                publishedDate="2025-04-25"
                 category="Retail & E-commerce"
             />
 
@@ -34,11 +34,11 @@ export default function RetailInventoryAI() {
                     <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2025-04-25")}</span>
                         </div>
                         <div className="flex items-center text-green-500 font-medium">
                             <Clock className="w-4 h-4 mr-2" />
-                            <span>Updated: Today</span>
+                            <span>Updated: April 25, 2025</span>
                         </div>
                         <div className="flex items-center">
                             <ShoppingCart className="w-4 h-4 mr-2" />
@@ -48,7 +48,7 @@ export default function RetailInventoryAI() {
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-primary">
-                    <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?w=1200&h=600&fit=crop" alt="Retail E-commerce technology" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90" />
+                    <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?w=1200&h=600&fit=crop" alt="Retail E-commerce technology" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90"  decoding="async" fetchPriority="high"/>
 
                     <p className="lead text-xl font-medium mb-8">
                         Inventory mismanagement is a silent killer for mid-sized retailers. Overstock ties up vital working capital, while stockouts drive fiercely loyal customers straight to competitors. We've proven that AI-driven replenishment isn't just for giants like Amazon or Walmart.

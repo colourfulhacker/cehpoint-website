@@ -281,7 +281,7 @@ export default function Footer() {
                     </div>
                     <div className="space-y-0.5">
                       <p className="font-medium text-foreground group-hover:text-primary transition-colors duration-200">{item.label}</p>
-                      <p className="opacity-80 font-mono text-xs">{item.name}</p>
+                      <p className="opacity-90 text-sm break-all">{item.name}</p>
                     </div>
                   </a>
                 </li>
@@ -460,7 +460,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-border/50 text-center">
-          <p className="text-foreground/50 text-xs font-medium" data-testid="footer-copyright">
+          <p className="text-foreground/70 text-xs font-medium" data-testid="footer-copyright">
             &copy; {new Date().getFullYear()} Cehpoint. All rights reserved. &middot; The Point Where IT Innovation Meets Cybersecurity Excellence.
           </p>
         </div>

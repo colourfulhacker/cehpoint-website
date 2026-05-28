@@ -9,6 +9,7 @@ import { Rocket, DollarSign, Shield, Users, Lightbulb, TrendingUp, Award, Globe,
 import { Link } from "wouter";
 import { useState } from "react";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 function ApplicationForm() {
   const [formData, setFormData] = useState({
@@ -297,7 +298,13 @@ export default function Incubation() {
       <SEO 
         title="Incubation Program | Cehpoint" 
         description="Launch your revolutionary startup with Cehpoint's incubation program. Get lifetime hosting, maintenance, funding support, and expert mentorship." 
-        url="https://www.cehpoint.co.in/incubation" 
+        url="https://www.cehpoint.co.in/incubation"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.cehpoint.co.in/" },
+          { name: "Incubation", url: "https://www.cehpoint.co.in/incubation" }
+        ]}
       />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20">

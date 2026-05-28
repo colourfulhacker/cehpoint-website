@@ -1,94 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cehpoint - Enterprise IT, AI & Cybersecurity Solutions</title>
+  <meta name="description" content="Cehpoint delivers enterprise software, AI solutions, cybersecurity, and digital transformation across 100+ locations. Trusted IT partner for startups, enterprises, and government." />
+  <meta name="theme-color" content="#7064F8" />
   <meta name="google-site-verification" content="Fiu22UfNXKC2ADU9WoLDa0px5Sx6o-RXBa6iXsMR_kM" />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.cehpoint.co.in/" />
-  <meta property="og:title" content="Cehpoint - Innovative IT & AI Solutions | Global IT Company" />
-  <meta property="og:description" content="Cehpoint is a globally recognized IT company offering enterprise software development, AI solutions, cybersecurity, and digital transformation. Serving 100+ locations from New York to Mumbai, Kolkata to London." />
-  <meta property="og:image" content="https://www.cehpoint.co.in/og-image.svg" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:site_name" content="Cehpoint" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@cehpoint" />
-  <meta name="twitter:url" content="https://www.cehpoint.co.in/" />
-  <meta name="twitter:title" content="Cehpoint - Innovative IT & AI Solutions | Global IT Company" />
-  <meta name="twitter:description" content="Globally recognized IT company offering enterprise software, AI solutions, cybersecurity & digital transformation. From startups to Fortune 500." />
-  <meta name="twitter:image" content="https://www.cehpoint.co.in/og-image.svg" />
-
-  <!-- Geo Tags for Local SEO (India) -->
-  <meta name="geo.region" content="IN-WB" />
-  <meta name="geo.placename" content="Kolkata, West Bengal, India" />
-  <meta name="geo.position" content="22.5726;88.3639" />
-  <meta name="ICBM" content="22.5726, 88.3639" />
-
-  <!-- Canonical URL -->
+  <!-- Canonical (per-page SEO overrides via react-helmet-async) -->
   <link rel="canonical" href="https://www.cehpoint.co.in/" />
 
-  <!-- Alternate Languages (hreflang) -->
-  <link rel="alternate" hreflang="en" href="https://www.cehpoint.co.in/" />
-  <link rel="alternate" hreflang="x-default" href="https://www.cehpoint.co.in/" />
+  <!-- Open Graph defaults (per-page SEO overrides via react-helmet-async) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Cehpoint" />
+  <meta property="og:title" content="Cehpoint - Enterprise IT, AI & Cybersecurity Solutions" />
+  <meta property="og:description" content="Enterprise software, AI solutions, cybersecurity, and digital transformation across 100+ locations." />
+  <meta property="og:url" content="https://www.cehpoint.co.in/" />
+  <meta property="og:image" content="https://www.cehpoint.co.in/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Cehpoint - Enterprise IT, AI & Cybersecurity Solutions" />
+  <meta property="og:locale" content="en_IN" />
 
-  <!-- Title & Description -->
-  <title>Cehpoint - Innovative IT & AI Solutions | Global IT Company</title>
-  <meta name="description" content="Cehpoint is a globally recognized IT company offering enterprise software development, AI solutions, cybersecurity, and digital transformation. Serving 100+ locations worldwide." />
-  <meta name="keywords" content="IT Company, Software Development, AI Solutions, Cybersecurity, Digital Transformation, Enterprise Software, Mobile App Development, Custom Development, Cloud Solutions, IT Consultancy, Kolkata, West Bengal, Mumbai, Delhi, Bangalore, London, New York, Dubai, Sydney, Munich" />
-  <meta name="author" content="Cehpoint" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <!-- Twitter defaults -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@cehpoint" />
+  <meta name="twitter:title" content="Cehpoint - Enterprise IT, AI & Cybersecurity Solutions" />
+  <meta name="twitter:description" content="Enterprise software, AI solutions, cybersecurity, and digital transformation across 100+ locations." />
+  <meta name="twitter:image" content="https://www.cehpoint.co.in/og-image.png" />
 
-  <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
-  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Cehpoint",
-    "url": "https://www.cehpoint.co.in",
-    "logo": "https://www.cehpoint.co.in/favicon.svg",
-    "image": "https://www.cehpoint.co.in/og-image.svg",
-    "description": "Leading IT consultancy offering enterprise outsourcing, custom software development, AI solutions, and digital transformation services.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Labpur, Sandipan Patsala Para",
-      "addressLocality": "Bolpur",
-      "addressRegion": "West Bengal",
-      "postalCode": "731303",
-      "addressCountry": "IN"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+91-90911-56095",
-      "contactType": "customer service",
-      "email": "contact@cehpoint.co.in",
-      "availableLanguage": ["English", "Hindi", "Bengali"]
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/cehpoint"
-    ]
-  }
-  </script>
-
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <script type="module" src="/src/main.tsx"></script>
-
 </head>
 
 <body>
   <div id="root"></div>
+  <!-- Noscript fallback: provides crawlable content for non-JS crawlers -->
+  <noscript>
+    <div style="max-width:800px;margin:0 auto;padding:40px 20px;font-family:system-ui,sans-serif;color:#fff;background:#0a0515">
+      <h1>Cehpoint - Enterprise IT, AI &amp; Cybersecurity Solutions</h1>
+      <p>Cehpoint is a globally recognized IT company offering enterprise software development, AI solutions, cybersecurity, and digital transformation services across 100+ locations worldwide.</p>
+      <h2>Our Services</h2>
+      <ul>
+        <li><a href="/services/ecommerce" style="color:#a78bfa">E-commerce Development</a></li>
+        <li><a href="/services/edutech" style="color:#a78bfa">Edutech Solutions</a></li>
+        <li><a href="/services/fintech" style="color:#a78bfa">Fintech Applications</a></li>
+        <li><a href="/services/cyber-security" style="color:#a78bfa">Cyber Security</a></li>
+        <li><a href="/services/cyber-crime-investigation" style="color:#a78bfa">Cyber Crime Investigation</a></li>
+        <li><a href="/ai-solutions" style="color:#a78bfa">AI Solutions</a></li>
+        <li><a href="/services/rural-digitalization" style="color:#a78bfa">Rural Digitalization</a></li>
+        <li><a href="/services/game-development" style="color:#a78bfa">Game Development</a></li>
+        <li><a href="/services/business-app-catalog" style="color:#a78bfa">Business App Catalog</a></li>
+      </ul>
+      <h2>Company</h2>
+      <ul>
+        <li><a href="/about" style="color:#a78bfa">About Us</a></li>
+        <li><a href="/careers" style="color:#a78bfa">Careers</a></li>
+        <li><a href="/training" style="color:#a78bfa">Training Programs</a></li>
+        <li><a href="/insights" style="color:#a78bfa">Insights &amp; Blog</a></li>
+        <li><a href="/contact" style="color:#a78bfa">Contact Us</a></li>
+        <li><a href="/quotation" style="color:#a78bfa">Get a Quote</a></li>
+      </ul>
+      <p>Visit us: <a href="https://www.cehpoint.co.in" style="color:#a78bfa">www.cehpoint.co.in</a> | Email: contact@cehpoint.co.in | Phone: +91 90911 56095</p>
+    </div>
+  </noscript>
 </body>
 
 </html>

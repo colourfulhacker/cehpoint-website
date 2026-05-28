@@ -89,7 +89,7 @@ export default function ProcessTimeline() {
                                     </span>
                                 </div>
                                 <h3 className="text-xl font-bold mb-2 flex items-center gap-3">
-                                    <span className="text-white/20 font-display text-2xl">0{step.id}</span>
+                                    <span className="text-white/40 font-display text-2xl">0{step.id}</span>
                                     {step.title}
                                 </h3>
                                 <p className="text-muted-foreground text-sm leading-relaxed">

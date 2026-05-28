@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 interface BreadcrumbItem {
     name: string;
@@ -10,39 +10,24 @@ interface BreadcrumbSchemaProps {
 }
 
 export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
-    useEffect(() => {
-        if (!items || items.length === 0) return;
+    if (!items || items.length === 0) return null;
 
-        const schema = {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: items.map((item, index) => ({
-                "@type": "ListItem",
-                position: index + 1,
-                name: item.name,
-                item: item.url
-            }))
-        };
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: items.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: item.name,
+            item: item.url
+        }))
+    };
 
-        const scriptId = "breadcrumb-schema";
-        let scriptTag = document.getElementById(scriptId) as HTMLScriptElement;
-
-        if (!scriptTag) {
-            scriptTag = document.createElement("script");
-            scriptTag.id = scriptId;
-            scriptTag.type = "application/ld+json";
-            document.head.appendChild(scriptTag);
-        }
-
-        scriptTag.textContent = JSON.stringify(schema);
-
-        return () => {
-            const existingScript = document.getElementById(scriptId);
-            if (existingScript) {
-                document.head.removeChild(existingScript);
-            }
-        };
-    }, [items]);
-
-    return null;
+    return (
+        <Helmet>
+            <script type="application/ld+json">
+                {JSON.stringify(schema)}
+            </script>
+        </Helmet>
+    );
 }

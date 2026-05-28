@@ -6,11 +6,22 @@ import { ArrowRight, CheckCircle2, Building2, Volume2, VolumeX, Briefcase } from
 import { motion, AnimatePresence } from "framer-motion";
 import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
 
+const INTRO_SEEN_KEY = "cehpoint-intro-seen";
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
 export default function Hero() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isIntroPlaying, setIsIntroPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
+  const skipIntroDefault = (() => {
+    if (typeof window === "undefined") return false;
+    if (prefersReducedMotion()) return true;
+    try { return sessionStorage.getItem(INTRO_SEEN_KEY) === "1"; } catch { return false; }
+  })();
+  const [isIntroPlaying, setIsIntroPlaying] = useState(!skipIntroDefault);
+  const [isMuted, setIsMuted] = useState(true);
   const [showUnmuteHint, setShowUnmuteHint] = useState(false);
 
   const rotatingTexts = [
@@ -23,6 +34,7 @@ export default function Hero() {
   ];
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
     const interval = setInterval(() => {
       setCurrentTextIndex((prev) => (prev + 1) % rotatingTexts.length);
     }, 3000);
@@ -30,51 +42,40 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    // Sync body class for global styling (hiding navbar)
     if (isIntroPlaying) {
       document.body.classList.add("intro-playing");
     } else {
       document.body.classList.remove("intro-playing");
     }
-
-    // Cleanup on unmount
     return () => {
       document.body.classList.remove("intro-playing");
     };
   }, [isIntroPlaying]);
 
   useEffect(() => {
-    // Initial Intro Play Logic
-    if (videoRef.current) {
-      // 1. Reset video to start
-      videoRef.current.currentTime = 0;
-      videoRef.current.loop = false; // Don't loop intro
-
-      // 2. Try playing with sound
-      videoRef.current.muted = false;
-      videoRef.current.play().catch((error) => {
-        console.log("Autoplay with sound blocked, falling back to muted:", error);
-        // 3. Fallback: Muted autoplay + Show Unmute Hint
-        if (videoRef.current) {
-          videoRef.current.muted = true;
-          setIsMuted(true);
-          setShowUnmuteHint(true);
-          videoRef.current.play().catch((e) => console.error("Muted autoplay failed", e));
-        }
-      });
-    }
-  }, []);
+    if (!isIntroPlaying) return;
+    if (!videoRef.current) return;
+    // Always start muted (autoplay policy + accessibility); user can unmute.
+    videoRef.current.currentTime = 0;
+    videoRef.current.loop = false;
+    videoRef.current.muted = true;
+    setIsMuted(true);
+    setShowUnmuteHint(true);
+    videoRef.current.play().catch((e) => {
+      console.error("Muted autoplay failed", e);
+      // If muted autoplay even fails, just skip the intro entirely.
+      setIsIntroPlaying(false);
+    });
+  }, [isIntroPlaying]);
 
   const handleVideoEnded = () => {
-    // Transition to Content Phase
     setIsIntroPlaying(false);
-
-    // Switch to background loop mode
+    try { sessionStorage.setItem(INTRO_SEEN_KEY, "1"); } catch { /* noop */ }
     if (videoRef.current) {
       videoRef.current.muted = true;
       videoRef.current.loop = true;
       setIsMuted(true);
-      setShowUnmuteHint(false); // Hide hint if shown
+      setShowUnmuteHint(false);
       videoRef.current.play().catch((e) => console.error("Loop play failed", e));
     }
   };
@@ -185,7 +186,7 @@ export default function Hero() {
                 >
                   Transform Ideas Into
                   <br />
-                  <div className="relative inline-block min-w-[300px]">
+                  <div className="relative inline-block min-w-[200px] sm:min-w-[300px]">
                     <AnimatePresence mode="popLayout">
                       <motion.span
                         key={currentTextIndex}

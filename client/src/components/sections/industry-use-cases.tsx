@@ -225,7 +225,7 @@ export default function IndustryUseCaseExplorer() {
                                 value={industry.id}
                                 className="rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap data-[state=inactive]:text-gray-400 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/10 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20 transition-all flex items-center gap-2"
                             >
-                                <industry.icon className={`w-4 h-4 ${activeTab === industry.id ? "text-white" : "text-gray-500 group-hover:text-white"}`} />
+                                <industry.icon className={`w-4 h-4 ${activeTab === industry.id ? "text-white" : "text-gray-400 group-hover:text-white"}`} />
                                 <span className="inline-block">{industry.name}</span>
                             </TabsTrigger>
                         ))}
@@ -243,6 +243,8 @@ export default function IndustryUseCaseExplorer() {
                                     <img
                                         src="/images/headers/contact-hero.jpg"
                                         alt={`${industry.name} AI Solutions`}
+                                        loading="lazy"
+                                        decoding="async"
                                         className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-60 mix-blend-overlay"
                                         onError={(e) => {
                                             (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop';

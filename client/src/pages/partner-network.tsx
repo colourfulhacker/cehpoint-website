@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import {
     Briefcase,
     Code,
@@ -100,7 +101,13 @@ export default function PartnerNetwork() {
             <SEO 
                 title="Partner Network - Join Cehpoint as a Freelancer or Contractor" 
                 description="Join Cehpoint's elite network of freelancers, investigators, and developers. Apply now with your rate and experience." 
-                url="https://www.cehpoint.co.in/partner-network" 
+                url="https://www.cehpoint.co.in/partner-network"
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Partner Network", url: "https://www.cehpoint.co.in/partner-network" }
+                ]}
             />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -150,7 +157,7 @@ export default function PartnerNetwork() {
                         <Card className="mt-8 bg-gradient-to-br from-secondary/20 to-secondary/5 border-secondary/20">
                             <CardContent className="pt-6">
                                 <div className="flex items-start">
-                                    <Globe className="w-5 h-5 mr-3 text-secondary mt-1" />
+                                    <Globe className="w-5 h-5 mr-3 text-primary mt-1" />
                                     <div>
                                         <h4 className="font-bold text-sm">Remote First</h4>
                                         <p className="text-xs text-foreground/70">Work from anywhere. We care about output, not hours.</p>

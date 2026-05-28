@@ -1,5 +1,6 @@
 import InvestigationLayout from "@/components/layout/investigation-layout";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 export default function InvestigationLegal() {
     return (
@@ -7,6 +8,14 @@ export default function InvestigationLegal() {
             <SEO
                 title="Legal, Confidentiality & Compliance | Cehpoint"
                 description="Our legal adherence, confidentiality guarantees, and compliance standards for digital forensics."
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Services", url: "https://www.cehpoint.co.in/services" },
+                    { name: "Cyber Crime Investigation", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation" },
+                    { name: "Legal & Compliance", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation/legal" }
+                ]}
             />
             <section className="pt-36 pb-20 max-w-4xl mx-auto px-4">
                 <h1 className="text-4xl font-display font-bold mb-12">Legal & Compliance</h1>

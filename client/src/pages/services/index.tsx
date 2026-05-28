@@ -116,7 +116,7 @@ export default function ServicesPage() {
     return (
         <div className="pt-36 min-h-screen" data-testid="services-page">
             <SEO
-                title="Services"
+                title="IT Services | Software Development, Cybersecurity & More"
                 description="Comprehensive IT services including custom software development, cybersecurity, e-commerce, edutech, fintech, rural digitalization, and game development."
                 keywords={["IT Services", "Software Development", "Cybersecurity", "E-commerce", "Edutech", "Fintech", "Game Development", "Rural Tech"]}
                 url="https://www.cehpoint.co.in/services"

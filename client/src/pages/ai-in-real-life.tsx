@@ -21,6 +21,7 @@ import {
   DialogTrigger 
 } from "@/components/ui/dialog";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
@@ -88,6 +89,12 @@ export default function AIInRealLife() {
         description="Master Artificial Intelligence with our outcome-oriented 3-month training program. Designed for professionals and entrepreneurs to drive real business value with AI."
         keywords={["AI Training India", "Artificial Intelligence Course", "Generative AI Training", "AI for Professionals", "Prompt Engineering Course", "AI Automation Training"]}
         schema={courseSchema}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.cehpoint.co.in/" },
+          { name: "AI in Real Life", url: "https://www.cehpoint.co.in/ai-in-real-life" }
+        ]}
       />
 
       {/* Hero Section */}

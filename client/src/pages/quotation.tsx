@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import ProposalPopup from "@/components/quotation/proposal-popup";
 import { Building2, Laptop } from "lucide-react";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 export default function Quotation() {
   return (
@@ -9,7 +10,13 @@ export default function Quotation() {
       <SEO 
         title="Get a Quote | Cehpoint" 
         description="Get your project proposal. Choose from Enterprise Outsourcing or our IT Portal for startups and entrepreneurs." 
-        url="https://www.cehpoint.co.in/quotation" 
+        url="https://www.cehpoint.co.in/quotation"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.cehpoint.co.in/" },
+          { name: "Quotation", url: "https://www.cehpoint.co.in/quotation" }
+        ]}
       />
       <ProposalPopup />
       <section className="py-24 bg-secondary/50">
@@ -38,104 +45,102 @@ export default function Quotation() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Enterprise Option */}
                 <div
-                  className="glass rounded-2xl p-8 hover-lift cursor-pointer transition-all duration-300 hover:bg-primary/5 group"
-                  onClick={() => window.open('https://proposals.cehpoint.co.in/', '_blank')}
+                  className="glass rounded-2xl p-8 hover-lift transition-all duration-300 hover:bg-primary/5 group flex flex-col"
                   data-testid="enterprise-option"
                 >
-                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <Building2 className="w-8 h-8 text-primary" />
+                  <div className="text-center mb-6">
+                    <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                      <Building2 className="w-8 h-8 text-primary" aria-hidden="true" />
+                    </div>
+                    <h3 className="font-display font-bold text-2xl mb-2">Enterprise Outsourcing</h3>
+                    <p className="text-sm text-primary font-medium">For Big Clients & Corporate Brands</p>
                   </div>
-                  <h3 className="font-display font-bold text-2xl mb-2">Enterprise Outsourcing</h3>
-                  <p className="text-sm text-primary font-medium">For Big Clients & Corporate Brands</p>
-                </div>
 
-                <div className="space-y-4 mb-6">
-                  <p className="text-muted-foreground text-center">
-                    High-budget, industry-grade reliability for established companies needing enterprise security and scale.
-                  </p>
+                  <div className="space-y-4 mb-6 flex-1">
+                    <p className="text-muted-foreground text-center">
+                      High-budget, industry-grade reliability for established companies needing enterprise security and scale.
+                    </p>
 
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                      <span className="text-sm">Dedicated Enterprise Teams</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                      <span className="text-sm">Industry-Grade SLAs</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                      <span className="text-sm">Banking & Healthcare Compliance</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                      <span className="text-sm">Full-Scale Digital Transformation</span>
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" aria-hidden="true"></div>
+                        <span className="text-sm">Dedicated Enterprise Teams</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" aria-hidden="true"></div>
+                        <span className="text-sm">Industry-Grade SLAs</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" aria-hidden="true"></div>
+                        <span className="text-sm">Banking & Healthcare Compliance</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" aria-hidden="true"></div>
+                        <span className="text-sm">Full-Scale Digital Transformation</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="text-center">
-                  <button
-                    className="btn-primary px-6 py-3 rounded-xl font-semibold w-full group-hover:shadow-lg transition-all"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open('https://proposals.cehpoint.co.in/', '_blank');
-                    }}
-                  >
-                    Get Enterprise Proposal
-                  </button>
-                </div>
-              </div>
-
-              {/* IT Portal Option */}
-              <div
-                className="glass rounded-2xl p-8 hover-lift cursor-pointer transition-all duration-300 hover:bg-accent/5 group"
-                onClick={() => window.open('https://projects.cehpoint.co.in/', '_blank')}
-                data-testid="portal-option"
-              >
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <Laptop className="w-8 h-8 text-accent" />
-                  </div>
-                  <h3 className="font-display font-bold text-2xl mb-2">IT Portal</h3>
-                  <p className="text-sm text-accent font-medium">For Startups & New Entrepreneurs</p>
-                </div>
-
-                <div className="space-y-4 mb-6">
-                  <p className="text-muted-foreground text-center">
-                    Rapid, cost-effective solutions designed for startups to launch MVPs and generate revenue quickly.
-                  </p>
-
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
-                      <span className="text-sm">Cost-Effective Pricing</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
-                      <span className="text-sm">Pre-built Solution Templates</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
-                      <span className="text-sm">Rapid Launch (Days, not Months)</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
-                      <span className="text-sm">Startup-Friendly Guidance</span>
-                    </div>
+                  <div className="text-center mt-auto">
+                    <a
+                      href="https://proposals.cehpoint.co.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold w-full group-hover:shadow-lg transition-all"
+                    >
+                      Get Enterprise Proposal
+                    </a>
                   </div>
                 </div>
 
-                <div className="text-center">
-                  <button
-                    className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-3 rounded-xl font-semibold w-full group-hover:shadow-lg transition-all"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open('https://projects.cehpoint.co.in/', '_blank');
-                    }}
-                  >
-                    Visit IT Portal →
-                  </button>
+                {/* IT Portal Option */}
+                <div
+                  className="glass rounded-2xl p-8 hover-lift transition-all duration-300 hover:bg-accent/5 group flex flex-col"
+                  data-testid="portal-option"
+                >
+                  <div className="text-center mb-6">
+                    <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                      <Laptop className="w-8 h-8 text-accent" aria-hidden="true" />
+                    </div>
+                    <h3 className="font-display font-bold text-2xl mb-2">IT Portal</h3>
+                    <p className="text-sm text-accent font-medium">For Startups & New Entrepreneurs</p>
+                  </div>
+
+                  <div className="space-y-4 mb-6 flex-1">
+                    <p className="text-muted-foreground text-center">
+                      Rapid, cost-effective solutions designed for startups to launch MVPs and generate revenue quickly.
+                    </p>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" aria-hidden="true"></div>
+                        <span className="text-sm">Cost-Effective Pricing</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" aria-hidden="true"></div>
+                        <span className="text-sm">Pre-built Solution Templates</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" aria-hidden="true"></div>
+                        <span className="text-sm">Rapid Launch (Days, not Months)</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" aria-hidden="true"></div>
+                        <span className="text-sm">Startup-Friendly Guidance</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-center mt-auto">
+                    <a
+                      href="https://projects.cehpoint.co.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-accent hover:bg-accent/90 text-accent-foreground inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold w-full group-hover:shadow-lg transition-all"
+                    >
+                      Visit IT Portal →
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

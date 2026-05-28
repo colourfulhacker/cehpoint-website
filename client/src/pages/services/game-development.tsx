@@ -86,7 +86,7 @@ export default function GameDevelopmentPage() {
                         ].map((stat, idx) => (
                             <div key={idx}>
                                 <div className="text-3xl md:text-4xl font-black text-indigo-500 mb-1">{stat.value}</div>
-                                <div className="text-sm text-gray-400 uppercase tracking-widest">{stat.label}</div>
+                                <div className="text-sm text-gray-300 uppercase tracking-widest">{stat.label}</div>
                             </div>
                         ))}
                     </div>
@@ -100,7 +100,7 @@ export default function GameDevelopmentPage() {
                         <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
                             Pick Your <span className="text-indigo-400">Battlefield</span>
                         </h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                        <p className="text-gray-300 max-w-2xl mx-auto text-lg">
                             We specialize in diverse gaming genres tailored for maximum engagement and revenue.
                         </p>
                     </div>
@@ -119,7 +119,7 @@ export default function GameDevelopmentPage() {
                                 <Coins className="w-8 h-8 text-white" />
                             </div>
                             <h3 className="text-2xl font-bold mb-4">Play-to-Earn (P2E)</h3>
-                            <p className="text-gray-400 mb-6 leading-relaxed">
+                            <p className="text-gray-300 mb-6 leading-relaxed">
                                 Legally compliant gaming economies where players earn real rewards. We handle the blockchain integration and economic balancing.
                             </p>
                             <ul className="space-y-3 text-sm text-gray-300">
@@ -143,7 +143,7 @@ export default function GameDevelopmentPage() {
                                 <Trophy className="w-8 h-8 text-white" />
                             </div>
                             <h3 className="text-2xl font-bold mb-4">eSports Platforms</h3>
-                            <p className="text-gray-400 mb-6 leading-relaxed">
+                            <p className="text-gray-300 mb-6 leading-relaxed">
                                 Create your own tournament platform. Host matches, manage brackets, and stream live events with our scalable backend.
                             </p>
                             <ul className="space-y-3 text-sm text-gray-300">
@@ -166,7 +166,7 @@ export default function GameDevelopmentPage() {
                                 <Monitor className="w-8 h-8 text-white" />
                             </div>
                             <h3 className="text-2xl font-bold mb-4">Educational Gaming</h3>
-                            <p className="text-gray-400 mb-6 leading-relaxed">
+                            <p className="text-gray-300 mb-6 leading-relaxed">
                                 Gamify learning ("Edutainment"). Perfect for schools, corporate training, and interactive simulations.
                             </p>
                             <ul className="space-y-3 text-sm text-gray-300">
@@ -191,7 +191,7 @@ export default function GameDevelopmentPage() {
                         className="text-center mb-16"
                     >
                         <h2 className="font-display font-bold text-3xl md:text-5xl mb-4 italic tracking-tight">The Tech That Wins</h2>
-                        <p className="text-gray-400 max-w-xl mx-auto uppercase tracking-[0.3em] text-[10px] font-black">Industrial Grade Infrastructure</p>
+                        <p className="text-gray-300 max-w-xl mx-auto uppercase tracking-[0.3em] text-[10px] font-black">Industrial Grade Infrastructure</p>
                     </motion.div>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">

@@ -1,5 +1,6 @@
 import InvestigationLayout from "@/components/layout/investigation-layout";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { ShieldCheck, Database, FileSearch, Scale } from "lucide-react";
 
 export default function InvestigationMethodology() {
@@ -8,6 +9,14 @@ export default function InvestigationMethodology() {
             <SEO
                 title="Investigation Methodology & Standards | Cehpoint"
                 description="Our rigorous investigation framework, digital forensics standards, and intelligence correlation methodologies."
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Services", url: "https://www.cehpoint.co.in/services" },
+                    { name: "Cyber Crime Investigation", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation" },
+                    { name: "Methodology", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation/methodology" }
+                ]}
             />
             <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-16">

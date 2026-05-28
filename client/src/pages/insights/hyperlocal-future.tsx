@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Store, Globe, MapPin, ShoppingBag, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 
 export default function HyperlocalFuture() {
     return (
@@ -13,7 +13,7 @@ export default function HyperlocalFuture() {
                 title="E-commerce is Dead. Long Live Hyperlocal."
                 description="Don't fight Amazon. Own your neighborhood. The future of retail is 10-minute delivery from the store next door."
                 articleSlug="hyperlocal-future"
-                publishedDate="2024-03-24"
+                publishedDate="2024-09-03"
                 category="Retail Evolution"
             />
 
@@ -39,17 +39,17 @@ export default function HyperlocalFuture() {
                         </div>
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2024-09-03")}</span>
                         </div>
                         <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Updated: Today</span>
+                            <span>Updated: September 3, 2024</span>
                         </div>
                     </div>
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
-                    <img src="/assets/blog/hyperlocal-hero.png" alt="Hyperlocal Delivery Service" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
+                    <img src="/assets/blog/hyperlocal-hero.png" alt="Hyperlocal Delivery Service" className="w-full h-auto rounded-xl mb-8 shadow-2xl"  decoding="async" fetchPriority="high"/>
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         Trying to build the "Next Amazon" is a suicide mission. You cannot compete with their logistics. You cannot compete with their pricing. But you can beat them where they are weakest: <span className="text-primary font-bold">Time.</span>
                     </p>

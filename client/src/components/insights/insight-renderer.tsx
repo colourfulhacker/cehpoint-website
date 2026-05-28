@@ -187,7 +187,7 @@ export const InsightRenderer: React.FC<InsightRendererProps> = ({ article }) => 
                             src={article.image}
                             alt={article.title[lang]}
                             className="w-full h-auto rounded-xl mb-8 shadow-2xl"
-                        />
+                         decoding="async" fetchPriority="high"/>
                     )}
 
                     <AnimatePresence mode="wait">

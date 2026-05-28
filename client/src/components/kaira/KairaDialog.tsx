@@ -10,6 +10,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { leadershipData, Leader } from "@/data/leadership";
 import ReactMarkdown from "react-markdown";
 import { useLocation } from "wouter";
+import { useToast } from "@/hooks/use-toast";
+
+const KAIRA_TOAST_DISMISSED_KEY = "kaira_toast_dismissed_session";
 
 interface KairaDialogProps {
     isOpen: boolean;
@@ -25,8 +28,13 @@ interface Message {
 
 const STORAGE_KEY = "kaira_chat_history";
 
+const prefersReducedMotion = () =>
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
 export function KairaDialog({ isOpen, onOpen, onClose }: KairaDialogProps) {
     const [location] = useLocation();
+    const { toast } = useToast();
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputText, setInputText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -90,20 +98,40 @@ CURRENCY: Always use INR.
         return () => { window.speechSynthesis.onvoiceschanged = null; };
     }, [selectedVoice]);
 
-    // Trigger Toast on route change
+    // Trigger Toast once per session (skip if user dismissed or reduced motion)
     useEffect(() => {
-        if (!isOpen) {
-            // Reset
-            setShowToast(false);
-
-            const timer = setTimeout(() => {
-                setShowToast(true);
-                playToastSound();
-            }, 5000); // 5s delay
-
-            return () => clearTimeout(timer);
-        }
+        if (isOpen) return;
+        if (prefersReducedMotion()) return;
+        const dismissed = sessionStorage.getItem(KAIRA_TOAST_DISMISSED_KEY) === "1";
+        if (dismissed) return;
+        // Only fire on the first route view of the session
+        const seen = sessionStorage.getItem("kaira_toast_seen");
+        if (seen) return;
+        setShowToast(false);
+        const timer = setTimeout(() => {
+            setShowToast(true);
+            sessionStorage.setItem("kaira_toast_seen", "1");
+        }, 5000);
+        return () => clearTimeout(timer);
     }, [location, isOpen]);
+
+    // Lock body scroll when dialog is open on mobile + bind Escape
+    useEffect(() => {
+        if (!isOpen) return;
+        const isMobileViewport = window.innerWidth < 768;
+        const originalOverflow = document.body.style.overflow;
+        if (isMobileViewport) {
+            document.body.style.overflow = "hidden";
+        }
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+        };
+        document.addEventListener("keydown", onKey);
+        return () => {
+            document.body.style.overflow = originalOverflow;
+            document.removeEventListener("keydown", onKey);
+        };
+    }, [isOpen, onClose]);
 
     // Speak function (Natural human-like pace)
     const speakText = (text: string) => {
@@ -137,7 +165,7 @@ CURRENCY: Always use INR.
         if (path.includes("/careers") || path.includes("/jobs") || path.includes("/interns")) {
             return "Looking for a career change? I'm Kaira, and I can guide you through our latest openings. What's your area of expertise?";
         }
-        if (path.includes("/services/cybercrime-investigation")) {
+        if (path.includes("/services/cyber-crime-investigation")) {
             return "Cyber security concerns? I'm here to help. Could you tell me more about what happened?";
         }
         if (path.includes("/services") || path.includes("/business-app")) {
@@ -266,7 +294,11 @@ CURRENCY: Always use INR.
     // Voice Typing Logic (Web Speech API)
     const startListening = () => {
         if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-            alert("Your browser does not support Voice Typing. Please use Chrome or Edge.");
+            toast({
+                title: "Voice Typing unavailable",
+                description: "Your browser does not support Voice Typing. Please use Chrome or Edge.",
+                variant: "destructive",
+            });
             return;
         }
 
@@ -421,20 +453,22 @@ CURRENCY: Always use INR.
                         dragMomentum={false}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
+                        role="region"
+                        aria-label="Kaira AI Assistant (minimized)"
                         className={`fixed z-[9999] bg-background border border-primary/20 shadow-lg flex items-center justify-between p-3 font-sans rounded-md
                             ${isMobile ? "bottom-20 right-4 w-[calc(100%-32px)]" : "bottom-5 right-5 w-[300px]"}
                         `}
                     >
                         <div className="flex items-center gap-3">
-                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true"></div>
                             <span className="font-semibold text-sm tracking-wide">Kaira AI Assistant</span>
                         </div>
                         <div className="flex gap-1">
-                            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsMinimized(false)}>
-                                <Plus className="h-4 w-4" />
+                            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsMinimized(false)} aria-label="Expand Kaira chat">
+                                <Plus className="h-4 w-4" aria-hidden="true" />
                             </Button>
-                            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={onClose}>
-                                <X className="h-4 w-4" />
+                            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={onClose} aria-label="Close Kaira chat">
+                                <X className="h-4 w-4" aria-hidden="true" />
                             </Button>
                         </div>
                     </motion.div>
@@ -457,6 +491,9 @@ CURRENCY: Always use INR.
                         className={`fixed z-[9998] cursor-pointer flex flex-col items-end
                              ${isMobile ? "bottom-20 right-4 max-w-[280px]" : "bottom-24 right-8 max-w-[320px]"}
                         `}
+                        role="button"
+                        tabIndex={0}
+                        aria-label="Open Kaira AI Assistant"
                         onClick={() => {
                             onOpen();
                             setShowToast(false);
@@ -464,12 +501,19 @@ CURRENCY: Always use INR.
                                 setMessages([{ role: "ai", text: getGreeting(location) }]);
                             }
                         }}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault();
+                                onOpen();
+                                setShowToast(false);
+                            }
+                        }}
                     >
                         {/* Bubble Container */}
                         <div className="glass-intense px-5 py-4 rounded-2xl rounded-br-sm shadow-2xl border border-white/10 flex items-start gap-3 relative transform transition-transform hover:scale-105">
                             {/* Avatar Icon inside bubble */}
                             <div className="bg-primary/10 p-2 rounded-full shrink-0">
-                                <MessageCircle className="w-5 h-5 text-primary" />
+                                <MessageCircle className="w-5 h-5 text-primary" aria-hidden="true" />
                             </div>
 
                             <div className="flex flex-col gap-1">
@@ -481,13 +525,16 @@ CURRENCY: Always use INR.
 
                             {/* Close Button (Small) */}
                             <button
-                                className="absolute -top-2 -right-2 bg-background/80 text-white/40 hover:text-red-500 rounded-full p-1 shadow-md border border-white/10 hover:bg-secondary/50 transition-colors"
+                                type="button"
+                                aria-label="Dismiss Kaira notification"
+                                className="absolute -top-2 -right-2 bg-background/80 text-white/60 hover:text-red-500 rounded-full p-1 shadow-md border border-white/10 hover:bg-secondary/50 transition-colors"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     setShowToast(false);
+                                    sessionStorage.setItem(KAIRA_TOAST_DISMISSED_KEY, "1");
                                 }}
                             >
-                                <X className="w-3 h-3" />
+                                <X className="w-3 h-3" aria-hidden="true" />
                             </button>
                         </div>
 
@@ -514,6 +561,9 @@ CURRENCY: Always use INR.
                             right: isMaximized ? "0px" : "20px"
                         }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="kaira-dialog-title"
                         className={`fixed bg-background border border-border shadow-2xl z-[9999] flex flex-col overflow-hidden font-sans
                         ${isMaximized ? "inset-0 m-0" : ""}
                     `}
@@ -522,11 +572,11 @@ CURRENCY: Always use INR.
                         <div className="px-4 py-3 border-b border-border bg-card flex items-center justify-between cursor-move select-none" onDoubleClick={() => !isMobile && setIsFullscreen(!isFullscreen)}>
                             <div className="flex items-center gap-3">
                                 <Avatar className="h-9 w-9 border border-border/50">
-                                    <AvatarImage src="/kaira.png" />
+                                    <AvatarImage src="/kaira.png" alt="" />
                                     <AvatarFallback className="bg-primary/10 text-primary font-bold">K</AvatarFallback>
                                 </Avatar>
                                 <div>
-                                    <h3 className="font-bold text-sm leading-none mb-1">Kaira AI</h3>
+                                    <h3 id="kaira-dialog-title" className="font-bold text-sm leading-none mb-1">Kaira AI</h3>
                                     <div className="flex items-center gap-1.5">
                                         <span className="relative flex h-2 w-2">
                                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -539,8 +589,14 @@ CURRENCY: Always use INR.
                             <div className="flex items-center gap-1">
                                 {/* Toggle Fullscreen (Desktop Only) */}
                                 {!isMobile && (
-                                    <Button variant="ghost" size="icon" onClick={() => setIsFullscreen(!isFullscreen)} title={isFullscreen ? "Restore" : "Maximize"}>
-                                        {isFullscreen ? <Minus className="h-4 w-4 rotate-90" /> : <div className="w-4 h-4 border-2 border-muted-foreground rounded-sm" />}
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        onClick={() => setIsFullscreen(!isFullscreen)}
+                                        title={isFullscreen ? "Restore" : "Maximize"}
+                                        aria-label={isFullscreen ? "Restore window size" : "Maximize chat"}
+                                    >
+                                        {isFullscreen ? <Minus className="h-4 w-4 rotate-90" aria-hidden="true" /> : <div className="w-4 h-4 border-2 border-muted-foreground rounded-sm" aria-hidden="true" />}
                                     </Button>
                                 )}
                                 <Button
@@ -550,18 +606,28 @@ CURRENCY: Always use INR.
                                         if (isTtsEnabled) window.speechSynthesis.cancel();
                                         setIsTtsEnabled(!isTtsEnabled);
                                     }}
-                                    title={isTtsEnabled ? "Mute TTS" : "Enable TTS"}
+                                    title={isTtsEnabled ? "Mute voice" : "Enable voice"}
+                                    aria-label={isTtsEnabled ? "Mute text-to-speech" : "Enable text-to-speech"}
+                                    aria-pressed={isTtsEnabled}
                                 >
-                                    {isTtsEnabled ? <Volume2 className="h-4 w-4 text-primary" /> : <VolumeX className="h-4 w-4 text-muted-foreground" />}
+                                    {isTtsEnabled ? <Volume2 className="h-4 w-4 text-primary" aria-hidden="true" /> : <VolumeX className="h-4 w-4 text-muted-foreground" aria-hidden="true" />}
                                 </Button>
-                                <Button variant="ghost" size="icon" onClick={() => setIsMinimized(true)} title="Minimize">
-                                    <Minus className="h-4 w-4 text-muted-foreground" />
+                                <Button variant="ghost" size="icon" onClick={() => setIsMinimized(true)} title="Minimize" aria-label="Minimize chat">
+                                    <Minus className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
                                 </Button>
-                                <Button variant="ghost" size="icon" onClick={clearHistory} title="Clear Chat">
-                                    <Trash2 className="h-4 w-4 text-muted-foreground" />
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => {
+                                        if (window.confirm("Clear chat history?")) clearHistory();
+                                    }}
+                                    title="Clear chat"
+                                    aria-label="Clear chat history"
+                                >
+                                    <Trash2 className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
                                 </Button>
-                                <Button variant="ghost" size="icon" onClick={onClose}>
-                                    <X className="h-4 w-4" />
+                                <Button variant="ghost" size="icon" onClick={onClose} aria-label="Close Kaira chat">
+                                    <X className="h-4 w-4" aria-hidden="true" />
                                 </Button>
                             </div>
                         </div>
@@ -638,7 +704,7 @@ CURRENCY: Always use INR.
                                                     </div>
                                                     <div className="flex-1 min-w-0">
                                                         <h4 className="font-bold text-base text-white truncate tracking-tight">{fallbackLeader.name}</h4>
-                                                        <p className="text-xs text-slate-400 mb-4 font-medium leading-tight">
+                                                        <p className="text-xs text-slate-300 mb-4 font-medium leading-tight">
                                                             {fallbackLeader.designation}
                                                         </p>
 
@@ -663,12 +729,15 @@ CURRENCY: Always use INR.
                         <div className="p-4 bg-background border-t border-border flex items-center gap-2">
                             <div className="relative flex-1">
                                 {/* Input Field with Mic Button Inside */}
+                                <label htmlFor="kaira-chat-input" className="sr-only">Message Kaira</label>
                                 <Input
+                                    id="kaira-chat-input"
                                     value={inputText}
                                     onChange={(e) => setInputText(e.target.value)}
                                     onKeyDown={(e) => e.key === "Enter" && sendTextMessage()}
                                     placeholder={isListening ? "Listening..." : "Type a message..."}
-                                    className={`pr-20 rounded-full border-primary/20 focus-visible:ring-primary/30 h-10 ${isListening ? "border-green-500 ring-1 ring-green-500/50" : ""}`}
+                                    aria-label="Message Kaira"
+                                    className={`pr-20 rounded-full border-primary/20 focus-visible:ring-primary/30 h-10 text-base ${isListening ? "border-green-500 ring-1 ring-green-500/50" : ""}`}
                                 />
 
                                 {/* Mic Button */}
@@ -678,9 +747,10 @@ CURRENCY: Always use INR.
                                     className={`absolute right-10 top-1 h-8 w-8 rounded-full ${isListening ? "text-red-500 animate-pulse hover:bg-red-500/10" : "text-muted-foreground hover:bg-primary/10 hover:text-primary"}`}
                                     onClick={startListening}
                                     disabled={isListening}
-                                    title="Voice Typing"
+                                    title="Voice typing"
+                                    aria-label={isListening ? "Listening for voice input" : "Start voice typing"}
                                 >
-                                    {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+                                    {isListening ? <MicOff className="h-4 w-4" aria-hidden="true" /> : <Mic className="h-4 w-4" aria-hidden="true" />}
                                 </Button>
 
                                 {/* Send Button */}
@@ -689,8 +759,9 @@ CURRENCY: Always use INR.
                                     className="absolute right-1 top-1 h-8 w-8 rounded-full"
                                     onClick={sendTextMessage}
                                     disabled={!inputText.trim() || isLoading}
+                                    aria-label="Send message"
                                 >
-                                    <Send className="h-4 w-4" />
+                                    <Send className="h-4 w-4" aria-hidden="true" />
                                 </Button>
                             </div>
                         </div>

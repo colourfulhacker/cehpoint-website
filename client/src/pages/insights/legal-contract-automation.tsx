@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Scale, FileText, Clock, Calendar } from "lucide-react";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
 
@@ -12,7 +12,7 @@ export default function LegalContractAutomation() {
                 title="Legal Tech: NLP Contract Automation for Under $1,000"
                 description="Discover how a corporate law firm utilized a secure NLP service to cut non-billable contract review hours by 60%."
                 articleSlug="legal-contract-automation"
-                publishedDate="2024-03-24"
+                publishedDate="2025-03-12"
                 category="Legal & Compliance"
             />
 
@@ -34,11 +34,11 @@ export default function LegalContractAutomation() {
                     <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2025-03-12")}</span>
                         </div>
                         <div className="flex items-center text-green-500 font-medium">
                             <Clock className="w-4 h-4 mr-2" />
-                            <span>Updated: Today</span>
+                            <span>Updated: March 12, 2025</span>
                         </div>
                         <div className="flex items-center">
                             <Scale className="w-4 h-4 mr-2" />
@@ -48,7 +48,7 @@ export default function LegalContractAutomation() {
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-primary">
-                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1200&h=600&fit=crop" alt="Legal Contracts AI Automation" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90" />
+                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1200&h=600&fit=crop" alt="Legal Contracts AI Automation" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90"  decoding="async" fetchPriority="high"/>
 
                     <p className="lead text-xl font-medium mb-8">
                         The legal industry is built on billable hours, but partners and paralegals alike spend enormous volumes of time performing completely unbillable administrative heavy-lifting: reading, verifying, and extracting core data from massive PDFs. We've replaced this friction with a high-speed extraction engine.

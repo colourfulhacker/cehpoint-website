@@ -1,4 +1,5 @@
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Gavel, AlertCircle, RefreshCw, HelpCircle } from "lucide-react";
 
@@ -8,6 +9,13 @@ export default function Terms() {
             <SEO
                 title="Terms of Use"
                 description="Cehpoint's Terms of Use governing the access and use of our website and services."
+            />
+
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Terms of Use", url: "https://www.cehpoint.co.in/terms" }
+                ]}
             />
 
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

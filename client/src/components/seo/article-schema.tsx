@@ -18,7 +18,7 @@ export default function ArticleSchema({
     author = "Cehpoint",
     publishedTime,
     modifiedTime,
-    image = "/og-image.svg",
+    image = "/favicon.svg",
     tags = []
 }: ArticleSchemaProps) {
     const baseUrl = "https://www.cehpoint.co.in";
@@ -52,7 +52,6 @@ export default function ArticleSchema({
                     },
                     "articleSection": tags[0] || "Technology",
                     "keywords": tags.join(", "),
-                    "wordCount": description.split(" ").length * 10,
                     "inLanguage": "en-US",
                     "isAccessibleForFree": true,
                     "speakable": {

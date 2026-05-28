@@ -120,21 +120,21 @@ export default function IdeaCard({ idea, onSwipe, index }: IdeaCardProps) {
                             <div className="w-10 h-10 mx-auto rounded-full bg-white/10 flex items-center justify-center mb-2 group-hover:bg-white/20 transition-colors backdrop-blur-sm">
                                 <DollarSign className="w-5 h-5 text-green-300" />
                             </div>
-                            <p className="text-[10px] uppercase tracking-widest text-white/60 mb-1 font-bold">Budget</p>
+                            <p className="text-[10px] uppercase tracking-widest text-white/80 mb-1 font-bold">Budget</p>
                             <p className="font-bold text-sm text-white">{idea.budget}</p>
                         </div>
                         <div className="text-center border-l border-white/10 group">
                             <div className="w-10 h-10 mx-auto rounded-full bg-white/10 flex items-center justify-center mb-2 group-hover:bg-white/20 transition-colors backdrop-blur-sm">
                                 <TrendingUp className="w-5 h-5 text-blue-300" />
                             </div>
-                            <p className="text-[10px] uppercase tracking-widest text-white/60 mb-1 font-bold">Profit</p>
+                            <p className="text-[10px] uppercase tracking-widest text-white/80 mb-1 font-bold">Profit</p>
                             <p className="font-bold text-sm text-white">{idea.profitPotential}</p>
                         </div>
                         <div className="text-center border-l border-white/10 group">
                             <div className="w-10 h-10 mx-auto rounded-full bg-white/10 flex items-center justify-center mb-2 group-hover:bg-white/20 transition-colors backdrop-blur-sm">
                                 <Clock className="w-5 h-5 text-purple-300" />
                             </div>
-                            <p className="text-[10px] uppercase tracking-widest text-white/60 mb-1 font-bold">Launch</p>
+                            <p className="text-[10px] uppercase tracking-widest text-white/80 mb-1 font-bold">Launch</p>
                             <p className="font-bold text-sm text-white">{idea.timeToMarket}</p>
                         </div>
                     </div>

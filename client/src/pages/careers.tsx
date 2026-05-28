@@ -42,8 +42,11 @@ import AIInterviewPopup from "@/components/careers/ai-interview-popup";
 import JobPostingSchema from "@/components/seo/job-posting-schema";
 import { TermsAndConditionsModal } from "@/components/careers/terms-modal";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Careers() {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -77,12 +80,16 @@ export default function Careers() {
   const handleWhatsAppSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.contact || !formData.opportunityType) {
-      alert("Please fill in the required fields (Name, Contact, Opportunity Type)");
+      toast({
+        title: "Missing required fields",
+        description: "Please fill in Name, Contact, and Opportunity Type before submitting.",
+        variant: "destructive",
+      });
       return;
     }
 
     const waMessage = `Hi Cehpoint team! I'm interested in joining forces! 🚀
-    
+
 *Name:* ${formData.name}
 *Contact:* ${formData.contact}
 *Path:* ${formData.opportunityType}
@@ -331,10 +338,16 @@ I'm looking forward to discussing this!`;
 
   return (
     <div className="min-h-screen pt-16 bg-background">
-      <SEO 
-        title="Careers | Join the Cehpoint Team" 
-        description="Join Cehpoint to build secure AI-powered software and work on diverse projects from startup MVPs to enterprise systems." 
-        url="https://www.cehpoint.co.in/careers" 
+      <SEO
+        title="Careers | Join the Cehpoint Team"
+        description="Join Cehpoint to build secure AI-powered software and work on diverse projects from startup MVPs to enterprise systems."
+        url="https://www.cehpoint.co.in/careers"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.cehpoint.co.in/" },
+          { name: "Careers", url: "https://www.cehpoint.co.in/careers" }
+        ]}
       />
       <AIInterviewPopup />
 
@@ -390,7 +403,7 @@ I'm looking forward to discussing this!`;
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-[1.1] tracking-tight">
               Build Secure <span className="text-primary">AI-Powered</span> Software
             </h1>
-            <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl font-light leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl font-light leading-relaxed">
               We hire Secure Software Developers who can build enterprise-grade applications with AI automation, agentic workflows, and cybersecurity best practices. 7-day trial work is mandatory skill assessment - no offers without completing it.
             </p>
 
@@ -431,7 +444,7 @@ I'm looking forward to discussing this!`;
                   <MessageSquare className="w-6 h-6 mr-3 text-primary" />
                   Pitch Your Dream
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-gray-300">
                   Fill this out to get instantly connected with Cehpoint via WhatsApp.
                 </CardDescription>
               </CardHeader>
@@ -441,8 +454,10 @@ I'm looking forward to discussing this!`;
                     <Label htmlFor="name" className="text-gray-300 text-xs uppercase tracking-wider">Your Name *</Label>
                     <Input
                       id="name"
+                      type="text"
+                      autoComplete="name"
                       required
-                      className="h-12 bg-white/5 border-white/10 text-white focus:border-primary transition-colors"
+                      className="h-12 bg-white/5 border-white/10 text-white focus:border-primary transition-colors text-base"
                       placeholder="John Doe"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -453,8 +468,11 @@ I'm looking forward to discussing this!`;
                     <Label htmlFor="contact" className="text-gray-300 text-xs uppercase tracking-wider">Contact No. / LinkedIn *</Label>
                     <Input
                       id="contact"
+                      type="text"
+                      inputMode="text"
+                      autoComplete="tel"
                       required
-                      className="h-12 bg-white/5 border-white/10 text-white focus:border-primary transition-colors"
+                      className="h-12 bg-white/5 border-white/10 text-white focus:border-primary transition-colors text-base"
                       placeholder="+91 98765 43210 or linkedin.com/in/you"
                       value={formData.contact}
                       onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
@@ -501,7 +519,7 @@ I'm looking forward to discussing this!`;
                                 }}
                                 className={`px-4 py-2 text-sm rounded-full border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ring-offset-background ${formData.selectedExamples.includes(example)
                                   ? "bg-primary/20 border-primary text-white"
-                                  : "bg-white/5 border-white/10 text-gray-400 hover:border-white/20"
+                                  : "bg-white/5 border-white/10 text-gray-300 hover:border-white/20"
                                   }`}
                               >
                                 {example}
@@ -540,7 +558,7 @@ I'm looking forward to discussing this!`;
                                     });
                                   }}
                                 />
-                                <span className={`text-xs transition-colors ${formData.supportNeeded.includes(option) ? "text-primary" : "text-gray-400 group-hover:text-gray-300"}`}>
+                                <span className={`text-xs transition-colors ${formData.supportNeeded.includes(option) ? "text-primary" : "text-gray-300 group-hover:text-gray-300"}`}>
                                   {option}
                                 </span>
                               </label>
@@ -598,7 +616,7 @@ I'm looking forward to discussing this!`;
                         </div>
                         <div>
                           <CardTitle className="text-xl font-bold text-white">Marketing Jobs Portal</CardTitle>
-                          <CardDescription className="text-gray-400 mt-1">Explore specialized marketing opportunities and roles.</CardDescription>
+                          <CardDescription className="text-gray-300 mt-1">Explore specialized marketing opportunities and roles.</CardDescription>
                         </div>
                       </div>
                       <Button variant="outline" size="sm" asChild className="border-primary/20 hover:bg-primary/10 text-primary">
@@ -614,15 +632,15 @@ I'm looking forward to discussing this!`;
                   <CardHeader className="p-6">
                     <div className="flex justify-between items-start">
                       <div className="flex items-center gap-4">
-                        <div className="p-3 rounded-xl bg-secondary/10 text-secondary">
+                        <div className="p-3 rounded-xl bg-secondary/10 text-primary">
                           <Rocket className="w-6 h-6" />
                         </div>
                         <div>
                           <CardTitle className="text-xl font-bold text-white">Work Portal</CardTitle>
-                          <CardDescription className="text-gray-400 mt-1">Mission-based work for professionals. Verified projects, direct assignment, and weekly liquidity.</CardDescription>
+                          <CardDescription className="text-gray-300 mt-1">Mission-based work for professionals. Verified projects, direct assignment, and weekly liquidity.</CardDescription>
                         </div>
                       </div>
-                      <Button variant="outline" size="sm" asChild className="border-secondary/20 hover:bg-secondary/10 text-secondary">
+                      <Button variant="outline" size="sm" asChild className="border-secondary/20 hover:bg-secondary/10 text-primary">
                         <a href="https://works.cehpoint.co.in/" target="_blank" rel="noopener noreferrer">
                           Start Working <ExternalLink className="w-3 h-3 ml-2" />
                         </a>
@@ -653,7 +671,7 @@ I'm looking forward to discussing this!`;
                     </CardHeader>
                     <CardContent className="p-6">
                       <p className="text-base text-gray-200 mb-4 leading-relaxed">{job.description}</p>
-                      <p className="text-sm text-gray-400 mb-6 leading-relaxed"><strong className="text-white">About the Role:</strong> {job.aboutRole}</p>
+                      <p className="text-sm text-gray-300 mb-6 leading-relaxed"><strong className="text-white">About the Role:</strong> {job.aboutRole}</p>
                       <div className="space-y-4 mb-6">
                         <div>
                           <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-2 flex items-center"><Code className="w-4 h-4 mr-2" />Key Responsibilities</h4>
@@ -700,7 +718,7 @@ I'm looking forward to discussing this!`;
             <div>
               <div className="mb-10">
                 <h2 className="text-3xl font-bold flex items-center mb-3">
-                  <GraduationCap className="w-8 h-8 mr-3 text-secondary" /> Internships (Skill Verification Program)
+                  <GraduationCap className="w-8 h-8 mr-3 text-primary" /> Internships (Skill Verification Program)
                 </h2>
                 <p className="text-muted-foreground text-lg">Stipend and PPO are strictly subject to performance - not fixed. No 7-day trial completion = No opportunity.</p>
               </div>
@@ -712,28 +730,28 @@ I'm looking forward to discussing this!`;
                       <div className="flex justify-between items-start">
                         <div>
                           <div className="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2 shadow-sm">INTERNSHIP • {intern.department}</div>
-                          <CardTitle className="text-2xl font-bold text-white group-hover:text-secondary transition-colors">{intern.title}</CardTitle>
+                          <CardTitle className="text-2xl font-bold text-white group-hover:text-primary transition-colors">{intern.title}</CardTitle>
                         </div>
-                        <Badge variant="default" className="bg-secondary text-secondary-foreground px-4 py-1.5 font-bold shadow-lg ring-2 ring-secondary/20">{intern.stipend}</Badge>
+                        <Badge variant="default" className="bg-secondary text-primary-foreground px-4 py-1.5 font-bold shadow-lg ring-2 ring-secondary/20">{intern.stipend}</Badge>
                       </div>
                     </CardHeader>
                     <CardContent className="p-6">
                       <p className="text-base text-gray-200 mb-4 leading-relaxed">{intern.description}</p>
-                      <p className="text-sm text-gray-400 mb-6 leading-relaxed"><strong className="text-white">About the Program:</strong> {intern.aboutRole}</p>
+                      <p className="text-sm text-gray-300 mb-6 leading-relaxed"><strong className="text-white">About the Program:</strong> {intern.aboutRole}</p>
                       <div className="space-y-4 mb-6">
                         <div>
-                          <h4 className="text-sm font-bold text-secondary uppercase tracking-wider mb-2 flex items-center"><Code className="w-4 h-4 mr-2" />What You'll Work On</h4>
+                          <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-2 flex items-center"><Code className="w-4 h-4 mr-2" />What You'll Work On</h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {intern.responsibilities.map((resp, i) => (
-                              <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-secondary mr-2">•</span>{resp}</li>
+                              <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-primary mr-2">•</span>{resp}</li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold text-secondary uppercase tracking-wider mb-2 flex items-center"><Target className="w-4 h-4 mr-2" />What We're Looking For</h4>
+                          <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-2 flex items-center"><Target className="w-4 h-4 mr-2" />What We're Looking For</h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {intern.requirements.map((req, i) => (
-                              <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-secondary mr-2">•</span>{req}</li>
+                              <li key={i} className="text-sm text-gray-300 flex items-start"><span className="text-primary mr-2">•</span>{req}</li>
                             ))}
                           </ul>
                         </div>
@@ -758,9 +776,9 @@ I'm looking forward to discussing this!`;
                       </div>
                       <div className="flex justify-between items-center bg-white/5 p-3 px-4 rounded-xl border border-white/10 group-hover:bg-white/10 transition-colors">
                         <span className="text-sm font-semibold text-gray-100 flex items-center">
-                          <Clock className="w-4 h-4 mr-2 text-secondary fill-secondary/20" /> {intern.duration}
+                          <Clock className="w-4 h-4 mr-2 text-primary fill-primary/20" /> {intern.duration}
                         </span>
-                        <Button variant="ghost" size="sm" asChild className="hover:text-secondary hover:bg-secondary/10 transition-colors">
+                        <Button variant="ghost" size="sm" asChild className="hover:text-primary hover:bg-secondary/10 transition-colors">
                           <a href="https://internlink.cehpoint.co.in/" target="_blank" rel="noopener noreferrer">
                             Apply via Internlink <ExternalLink className="w-3 h-3 ml-2" />
                           </a>

@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, MapPin, IndianRupee, TrendingUp, Smartphone, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 
 export default function RuralGoldmine() {
     return (
@@ -13,7 +13,7 @@ export default function RuralGoldmine() {
                 title="The Untapped Goldmine in Tier-3 India"
                 description="Forget Bangalore. The 700 million users in rural India are waiting for YOU. Discover how a ₹15k app can dominate a district."
                 articleSlug="rural-goldmine"
-                publishedDate="2024-03-24"
+                publishedDate="2024-08-12"
                 category="Market Analysis"
             />
 
@@ -39,17 +39,17 @@ export default function RuralGoldmine() {
                         </div>
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2024-08-12")}</span>
                         </div>
                         <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Updated: Today</span>
+                            <span>Updated: August 12, 2024</span>
                         </div>
                     </div>
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
-                    <img src="/assets/blog/business-hero-generic.png" alt="Rural Market Opportunity" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
+                    <img src="/assets/blog/business-hero-generic.png" alt="Rural Market Opportunity" className="w-full h-auto rounded-xl mb-8 shadow-2xl"  decoding="async" fetchPriority="high"/>
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         Everyone is looking at Bangalore and Mumbai. But the real money? It's sitting right in your village, your town, your district. While the giants fight for the 1%, the 99% of India is waiting for YOU.
                     </p>

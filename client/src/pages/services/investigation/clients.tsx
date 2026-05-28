@@ -1,5 +1,6 @@
 import InvestigationLayout from "@/components/layout/investigation-layout";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { Building2, Landmark, Gavel, User, Globe } from "lucide-react";
 
 export default function InvestigationClients() {
@@ -8,6 +9,14 @@ export default function InvestigationClients() {
             <SEO
                 title="Who We Serve - Investigation Clients | Cehpoint"
                 description="Specialized cyber investigation services for Corporates, Government, Law Firms, and Individuals."
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Services", url: "https://www.cehpoint.co.in/services" },
+                    { name: "Cyber Crime Investigation", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation" },
+                    { name: "Clients", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation/clients" }
+                ]}
             />
             <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-16">
@@ -59,7 +68,7 @@ function ClientSection({ icon: Icon, title, desc, features }: { icon: any, title
         <div className="flex flex-col md:flex-row gap-8 p-8 rounded-2xl glass border border-white/5 hover:bg-white/[0.02] transition-all">
             <div className="shrink-0">
                 <div className="p-4 bg-white/5 rounded-2xl">
-                    <Icon className="w-10 h-10 text-white/50" />
+                    <Icon className="w-10 h-10 text-white/70" />
                 </div>
             </div>
             <div className="flex-1">

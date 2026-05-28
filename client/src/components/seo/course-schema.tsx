@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 interface CourseSchemaProps {
     name: string;
@@ -10,7 +10,7 @@ interface CourseSchemaProps {
     url?: string;
     courseMode?: "online" | "offline" | "blended";
     educationalLevel?: string;
-    timeRequired?: string; // ISO 8601 duration format (e.g., "P3M" for 3 months)
+    timeRequired?: string;
     hasCourseInstance?: {
         courseMode?: string;
         courseWorkload?: string;
@@ -33,74 +33,58 @@ export default function CourseSchema({
     url,
     courseMode = "online",
     educationalLevel = "Beginner to Advanced",
-    timeRequired = "P3M", // 3 months default
+    timeRequired = "P3M",
     hasCourseInstance = [],
     offers
 }: CourseSchemaProps) {
-    useEffect(() => {
-        const currentUrl = url || (typeof window !== 'undefined' ? window.location.href : provider.url);
+    const currentUrl = url || provider.url;
 
-        const schema: any = {
-            "@context": "https://schema.org",
-            "@type": "Course",
-            name: name,
-            description: description,
-            provider: {
-                "@type": "Organization",
-                name: provider.name,
-                url: provider.url,
-                "@id": `${provider.url}/#organization`
-            },
-            url: currentUrl,
-            courseMode: courseMode,
-            educationalLevel: educationalLevel,
-            timeRequired: timeRequired
+    const schema: Record<string, unknown> = {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        name,
+        description,
+        provider: {
+            "@type": "Organization",
+            name: provider.name,
+            url: provider.url,
+            "@id": `${provider.url}/#organization`
+        },
+        url: currentUrl,
+        courseMode,
+        educationalLevel,
+        timeRequired,
+        inLanguage: "en-IN",
+    };
+
+    if (hasCourseInstance.length > 0) {
+        schema.hasCourseInstance = hasCourseInstance.map((instance) => ({
+            "@type": "CourseInstance",
+            courseMode: instance.courseMode || courseMode,
+            ...(instance.courseWorkload && { courseWorkload: instance.courseWorkload }),
+            ...(instance.instructor && {
+                instructor: {
+                    "@type": "Person",
+                    name: instance.instructor
+                }
+            })
+        }));
+    }
+
+    if (offers) {
+        schema.offers = {
+            "@type": "Offer",
+            price: offers.price,
+            priceCurrency: offers.currency,
+            availability: offers.availability || "https://schema.org/InStock"
         };
+    }
 
-        // Add course instances if provided
-        if (hasCourseInstance.length > 0) {
-            schema.hasCourseInstance = hasCourseInstance.map((instance) => ({
-                "@type": "CourseInstance",
-                courseMode: instance.courseMode || courseMode,
-                ...(instance.courseWorkload && { courseWorkload: instance.courseWorkload }),
-                ...(instance.instructor && {
-                    instructor: {
-                        "@type": "Person",
-                        name: instance.instructor
-                    }
-                })
-            }));
-        }
-
-        // Add pricing offers if provided
-        if (offers) {
-            schema.offers = {
-                "@type": "Offer",
-                price: offers.price,
-                priceCurrency: offers.currency,
-                availability: offers.availability || "https://schema.org/InStock"
-            };
-        }
-
-        const scriptId = `course-schema-${name.toLowerCase().replace(/\s+/g, '-')}`;
-        let scriptTag = document.getElementById(scriptId) as HTMLScriptElement;
-
-        if (!scriptTag) {
-            scriptTag = document.createElement("script");
-            scriptTag.id = scriptId;
-            scriptTag.type = "application/ld+json";
-            document.head.appendChild(scriptTag);
-        }
-
-        scriptTag.textContent = JSON.stringify(schema);
-
-        return () => {
-            const existingScript = document.getElementById(scriptId);
-            if (existingScript) {
-                document.head.removeChild(existingScript);
-            }
-        };
-    }, [name, description, provider, url, courseMode, educationalLevel, timeRequired, hasCourseInstance, offers]);
-
-    return null;
+    return (
+        <Helmet>
+            <script type="application/ld+json">
+                {JSON.stringify(schema)}
+            </script>
+        </Helmet>
+    );
 }

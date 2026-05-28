@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -93,6 +94,14 @@ export default function ProfessionalPartnerPage() {
         title="Professional Partner Program"
         description="Scale your traditional business with Cehpoint. We provide the clients, fixed rates, and 45-minute payouts. Join our elite network of experts."
         keywords={["Traditional Business Growth", "Service Partnership", "Accounting Partner", "Legal Partner", "Design Partnership"]}
+      />
+
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.cehpoint.co.in/" },
+          { name: "Services", url: "https://www.cehpoint.co.in/services" },
+          { name: "Professional Partner", url: "https://www.cehpoint.co.in/services/professional-partner" }
+        ]}
       />
 
       {/* Hero Section */}

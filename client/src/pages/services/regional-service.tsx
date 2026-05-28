@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { regionalTrends } from "@/data/regional-trends";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import NotFound from "@/pages/not-found";
@@ -113,8 +115,14 @@ export default function RegionalService() {
                 url={`https://www.cehpoint.co.in/services/global/${regionData.id}`}
                 canonical={`https://www.cehpoint.co.in/services/global/${regionData.id}`}
             />
-            {/* Hreflang Implementation & Schema */}
-            <head>
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Services", url: "https://www.cehpoint.co.in/services" }
+                ]}
+            />
+            {/* Hreflang & Schema via Helmet */}
+            <Helmet>
                 <link rel="alternate" hrefLang="en-us" href="https://www.cehpoint.co.in/services/global/us-ca" />
                 <link rel="alternate" hrefLang="en-gb" href="https://www.cehpoint.co.in/services/global/uk" />
                 <link rel="alternate" hrefLang="de-de" href="https://www.cehpoint.co.in/services/global/de" />
@@ -125,7 +133,7 @@ export default function RegionalService() {
                 <script type="application/ld+json">
                     {JSON.stringify(schemaMarkup)}
                 </script>
-            </head>
+            </Helmet>
 
             {/* --- Hero Section --- */}
             <section className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-br from-background via-secondary/10 to-background">

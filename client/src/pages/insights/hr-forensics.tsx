@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, UserCheck, Eye, FileWarning, Fingerprint, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 
 export default function HRForensics() {
     return (
@@ -13,7 +13,7 @@ export default function HRForensics() {
                 title="The Internal Threat: Is Your Employee Selling Your Data?"
                 description="80% of data breaches involve insider threats. Learn how digital forensics can secure your HR process and protect your IP."
                 articleSlug="hr-forensics"
-                publishedDate="2024-03-24"
+                publishedDate="2024-06-05"
                 category="HR Prevention"
             />
 
@@ -39,17 +39,17 @@ export default function HRForensics() {
                         </div>
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2024-06-05")}</span>
                         </div>
                         <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Updated: Today</span>
+                            <span>Updated: June 5, 2024</span>
                         </div>
                     </div>
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
-                    <img src="/assets/blog/cyber-hero-generic.png" alt="HR Forensics" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
+                    <img src="/assets/blog/cyber-hero-generic.png" alt="HR Forensics" className="w-full h-auto rounded-xl mb-8 shadow-2xl"  decoding="async" fetchPriority="high"/>
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         You build firewalls to keep hackers out. But what about the person sitting in your office with legitimate access to your entire client list? The most dangerous hacker is the disgruntled employee.
                     </p>

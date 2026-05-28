@@ -1,5 +1,6 @@
 import InvestigationLayout from "@/components/layout/investigation-layout";
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import IntakeForm from "@/components/investigation/intake-form";
 
 export default function InvestigationRequest() {
@@ -8,6 +9,14 @@ export default function InvestigationRequest() {
             <SEO
                 title="Secure Investigation Request | Cehpoint"
                 description="Secure intake form for initiating confidential cyber crime investigations."
+            />
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Services", url: "https://www.cehpoint.co.in/services" },
+                    { name: "Cyber Crime Investigation", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation" },
+                    { name: "Request Investigation", url: "https://www.cehpoint.co.in/services/cyber-crime-investigation/request" }
+                ]}
             />
             <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-12">

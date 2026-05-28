@@ -236,7 +236,7 @@ export default function CyberSecurity() {
                                 src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop"
                                 alt="Cyber Security Operations"
                                 className="rounded-2xl border border-white/10 shadow-2xl relative z-10"
-                            />
+                             loading="lazy" decoding="async"/>
                         </div>
                     </div>
                 </div>

@@ -22,6 +22,24 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+
+  // Body scroll lock + close on route change for mobile menu
+  useEffect(() => {
+    if (isMenuOpen) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = original;
+      };
+    }
+  }, [isMenuOpen]);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+    setOpenDropdown(null);
+  }, [location]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -258,6 +276,7 @@ export default function Navbar() {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
+                aria-controls="mobile-menu"
                 data-testid="mobile-menu-toggle"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -268,9 +287,12 @@ export default function Navbar() {
           {/* Mobile menu */}
           {isMenuOpen && (
             <div
-              className="lg:hidden glass rounded-lg mt-2 p-4 max-h-[calc(100vh-120px)] overflow-y-auto relative z-50"
+              ref={mobileMenuRef}
+              id="mobile-menu"
+              className="lg:hidden glass rounded-lg mt-2 p-4 max-h-[calc(100dvh-120px)] overflow-y-auto relative z-50"
               data-testid="mobile-menu"
-              role="menu"
+              role="dialog"
+              aria-modal="true"
               aria-label="Mobile navigation menu"
             >
               <div className="space-y-4">

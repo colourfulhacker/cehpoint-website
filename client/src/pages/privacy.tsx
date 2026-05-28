@@ -1,4 +1,5 @@
 import SEO from "@/components/seo";
+import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Lock, Eye, FileText } from "lucide-react";
 
@@ -8,6 +9,13 @@ export default function Privacy() {
             <SEO
                 title="Privacy Policy"
                 description="Cehpoint's Privacy Policy outlining how we collect, use, and protect your data in compliance with GDPR and DPDP Act."
+            />
+
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://www.cehpoint.co.in/" },
+                    { name: "Privacy Policy", url: "https://www.cehpoint.co.in/privacy" }
+                ]}
             />
 
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

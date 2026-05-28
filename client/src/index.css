@@ -20,7 +20,7 @@
     --secondary-foreground: hsl(0, 0%, 100%);
 
     --muted: hsl(255, 20%, 15%);
-    --muted-foreground: hsl(255, 10%, 70%);
+    --muted-foreground: hsl(255, 10%, 80%);
 
     --accent: hsl(180, 80%, 60%);
     --accent-foreground: hsl(255, 30%, 5%);
@@ -191,6 +191,26 @@
 
   to {
     box-shadow: 0 0 20px 5px var(--primary);
+  }
+}
+
+/* Focus visible for custom button utilities (a11y) */
+.btn-primary:focus-visible,
+.btn-outline:focus-visible {
+  outline: 2px solid hsl(265, 85%, 75%);
+  outline-offset: 3px;
+}
+
+/* Respect reduced motion (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

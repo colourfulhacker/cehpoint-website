@@ -62,7 +62,7 @@ export default function EcommerceService() {
   return (
     <div className="pt-36 min-h-screen" data-testid="ecommerce-service-page">
       <SEO
-        title="E-commerce Solutions"
+        title="E-commerce Development Services in India"
         description="Build scalable, conversion-optimized e-commerce platforms with PCI-DSS compliance, advanced fraud detection, and multi-channel integration. Drive revenue and customer satisfaction."
         keywords={["E-commerce Solutions", "Online Store Development", "Shopping Cart", "Payment Integration", "Multi-channel Commerce", "Mobile Commerce", "E-commerce Platform", "Conversion Optimization"]}
         url="https://www.cehpoint.co.in/services/ecommerce"

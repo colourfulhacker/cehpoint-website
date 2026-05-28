@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { DollarSign, ArrowLeft, BarChart3, MessageCircle, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 import { InsightSEO } from "@/components/seo/insight-seo";
 
 export default function HiddenCosts() {
@@ -13,7 +13,7 @@ export default function HiddenCosts() {
                 title="The True Cost of 'Cheap' Cyber Security: A Case Study"
                 description="When the invoice is low, the price is paid in data. An anonymous look at how a mid-sized firm lost ₹50L by choosing the cheapest vendor."
                 articleSlug="hidden-costs"
-                publishedDate="2024-03-24"
+                publishedDate="2024-05-10"
                 category="Case Study"
             />
 
@@ -39,17 +39,17 @@ export default function HiddenCosts() {
                         </div>
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2024-05-10")}</span>
                         </div>
                         <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Updated: Today</span>
+                            <span>Updated: May 10, 2024</span>
                         </div>
                     </div>
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
-                    <img src="/assets/blog/cyber-hero-generic.png" alt="Hidden Costs of Cheap Security" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
+                    <img src="/assets/blog/cyber-hero-generic.png" alt="Hidden Costs of Cheap Security" className="w-full h-auto rounded-xl mb-8 shadow-2xl"  decoding="async" fetchPriority="high"/>
                     <p className="lead text-xl text-foreground/90 font-medium mb-8 italic border-l-4 border-red-500 pl-4">
                         "We saved ₹50 Lakhs on the contract. We lost ₹5 Crores in the breach."
                     </p>

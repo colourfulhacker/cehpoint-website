@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Home, Building, Clock, Calendar } from "lucide-react";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
 
@@ -12,7 +12,7 @@ export default function RealEstateAIValuation() {
                 title="PropTech: Sub-$1,000 AI Lead Scoring & Valuation"
                 description="See how a real estate broker slashed comp-generation queues from 48 hours to 10 seconds via API-driven Automated Valuation Models."
                 articleSlug="real-estate-ai-valuation"
-                publishedDate="2024-03-24"
+                publishedDate="2024-11-15"
                 category="Real Estate"
             />
 
@@ -34,11 +34,11 @@ export default function RealEstateAIValuation() {
                     <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2024-11-15")}</span>
                         </div>
                         <div className="flex items-center text-green-500 font-medium">
                             <Clock className="w-4 h-4 mr-2" />
-                            <span>Updated: Today</span>
+                            <span>Updated: November 15, 2024</span>
                         </div>
                         <div className="flex items-center">
                             <Building className="w-4 h-4 mr-2" />
@@ -48,7 +48,7 @@ export default function RealEstateAIValuation() {
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-primary">
-                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=600&fit=crop" alt="Real Estate Tech AI" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90" />
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=600&fit=crop" alt="Real Estate Tech AI" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90"  decoding="async" fetchPriority="high"/>
 
                     <p className="lead text-xl font-medium mb-8">
                         In real estate, speed to lead is everything. But when every lead is treated equally, agents burn out chasing ghost buyers while highly-qualified "ready-to-move" prospects turn to faster competitors.

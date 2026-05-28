@@ -62,7 +62,7 @@ export default function FintechService() {
   return (
     <div className="pt-36 min-h-screen" data-testid="fintech-service-page">
       <SEO
-        title="Fintech Solutions"
+        title="Fintech Application Development in India"
         description="Build secure, compliant, and scalable financial technology platforms with PCI-DSS compliance, real-time fraud detection, and enterprise-grade security. Trusted by leading financial institutions."
         keywords={["Fintech Solutions", "Payment Processing", "Financial Software", "Banking Technology", "PCI-DSS Compliance", "Fraud Detection", "Blockchain Integration", "Mobile Banking"]}
         url="https://www.cehpoint.co.in/services/fintech"

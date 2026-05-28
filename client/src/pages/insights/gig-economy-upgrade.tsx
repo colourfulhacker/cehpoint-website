@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Wrench, Hammer, UserCheck, Smartphone, Calendar, Clock } from "lucide-react";
 import { Link } from "wouter";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 import { InsightSEO } from "@/components/seo/insight-seo";
 
 export default function GigEconomyUpgrade() {
@@ -13,7 +13,7 @@ export default function GigEconomyUpgrade() {
                 title="The Gig Economy Upgrade: Professionalizing Home Services"
                 description="Turn chaotic home services into a professional empire. Discover how to organize electricians, plumbers, and cleaners with a simple app."
                 articleSlug="gig-economy-upgrade"
-                publishedDate="2024-03-24"
+                publishedDate="2024-04-22"
                 category="Service Industry"
             />
 
@@ -39,17 +39,17 @@ export default function GigEconomyUpgrade() {
                         </div>
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2024-04-22")}</span>
                         </div>
                         <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Updated: Today</span>
+                            <span>Updated: April 22, 2024</span>
                         </div>
                     </div>
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
-                    <img src="/assets/blog/service-hero.png" alt="Service Booking App Interface" className="w-full h-auto rounded-xl mb-8 shadow-2xl" />
+                    <img src="/assets/blog/service-hero.png" alt="Service Booking App Interface" className="w-full h-auto rounded-xl mb-8 shadow-2xl"  decoding="async" fetchPriority="high"/>
                     <p className="lead text-xl text-foreground font-medium mb-8">
                         The local service market is chaotic. Finding a reliable plumber or electrician is a nightmare for customers. This chaos is your <span className="text-primary font-bold">opportunity</span>.
                     </p>

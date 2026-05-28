@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Factory, Cog, Clock, Calendar } from "lucide-react";
-import { getYesterdayDate } from "@/lib/date-utils";
+import { formatArticleDate } from "@/lib/date-utils";
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
 
@@ -12,7 +12,7 @@ export default function ManufacturingRPA() {
                 title="Industrial Tech: Sub-$1,000 RPA for Manufacturing"
                 description="Discover how a factory deployed a lightweight Robotic Process Automation (RPA) bot to bridge modern data forms with legacy ERPs."
                 articleSlug="manufacturing-rpa"
-                publishedDate="2024-03-24"
+                publishedDate="2025-01-08"
                 category="Manufacturing"
             />
 
@@ -34,11 +34,11 @@ export default function ManufacturingRPA() {
                     <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" />
-                            <span>Published: {getYesterdayDate()}</span>
+                            <span>Published: {formatArticleDate("2025-01-08")}</span>
                         </div>
                         <div className="flex items-center text-green-500 font-medium">
                             <Clock className="w-4 h-4 mr-2" />
-                            <span>Updated: Today</span>
+                            <span>Updated: January 8, 2025</span>
                         </div>
                         <div className="flex items-center">
                             <Factory className="w-4 h-4 mr-2" />
@@ -48,7 +48,7 @@ export default function ManufacturingRPA() {
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-primary">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=600&fit=crop" alt="Smart Manufacturing Tech Automation" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90" />
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=600&fit=crop" alt="Smart Manufacturing Tech Automation" className="w-full h-auto rounded-xl mb-8 shadow-2xl opacity-90"  decoding="async" fetchPriority="high"/>
 
                     <p className="lead text-xl font-medium mb-8">
                         The factory floor thrives on precision, yet the back-office of many manufacturing plants remains bogged down by clipboard tallies and legacy Excel macros. We've introduced a digital bridge that connects decades-old hardware to modern cloud analytics.
