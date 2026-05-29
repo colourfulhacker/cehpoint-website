@@ -4,6 +4,11 @@
     "tagline": "Enterprise IT, AI & Cybersecurity Solutions",
     "shortTagline": "Engineering the future of business"
   },
+  "pwa": {
+    "installTitle": "Install the Cehpoint app",
+    "installBody": "Add Cehpoint to your home screen for a faster, full-screen experience.",
+    "installCta": "Install"
+  },
   "common": {
     "language": "Language",
     "theme": "Theme",
@@ -147,7 +152,11 @@
         "Enterprise Software"
       ],
       "subtitle": "Enterprise-grade software development across every industry, with <strong>24-hour demo delivery</strong> and a <strong>pay-after-demo</strong> model.",
-      "checkmarks": ["MVP to Enterprise", "24h Delivery", "Pay After Demo"],
+      "checkmarks": [
+        "MVP to Enterprise",
+        "24h Delivery",
+        "Pay After Demo"
+      ],
       "primaryCta": "Get an AI-Powered Quote",
       "secondaryCta": "Browse the App Catalog",
       "skipIntro": "Skip Intro",
@@ -247,7 +256,103 @@
     "industrySolutions": {
       "eyebrow": "Industries",
       "title": "Engineered for every vertical",
-      "subtitle": "Hover any tile to see what we build for that industry. Click to explore the dedicated practice."
+      "subtitle": "Hover any tile to see what we build for that industry. Click to explore the dedicated practice.",
+      "cards": [
+        {
+          "title": "Innovative IT Services",
+          "description": "Cutting-edge technology solutions tailored for your business growth. We deliver scalable, robust, and future-ready IT infrastructure.",
+          "cost": "Custom Quote",
+          "time": "2-4 Weeks"
+        },
+        {
+          "title": "Cyber Security",
+          "description": "Comprehensive protection strategies safeguarding your digital assets against evolving threats.",
+          "cost": "From ₹15,000",
+          "time": "1 Week"
+        },
+        {
+          "title": "E-commerce",
+          "description": "Intelligent recommendations and seamless omnichannel integration.",
+          "cost": "From ₹25,000",
+          "time": "3-5 Weeks"
+        },
+        {
+          "title": "Edutech",
+          "description": "Adaptive learning platforms and virtual classrooms.",
+          "cost": "From ₹30,000",
+          "time": "4-6 Weeks"
+        },
+        {
+          "title": "Fintech",
+          "description": "Secure financial technology. Digital wallets to blockchain.",
+          "cost": "From ₹50,000",
+          "time": "6-8 Weeks"
+        },
+        {
+          "title": "Healthcare",
+          "description": "HIPAA-compliant telemedicine and patient management.",
+          "cost": "From ₹45,000",
+          "time": "5-7 Weeks"
+        },
+        {
+          "title": "Manufacturing",
+          "description": "Industry 4.0 with IoT and predictive maintenance.",
+          "cost": "From ₹60,000",
+          "time": "8+ Weeks"
+        },
+        {
+          "title": "Real Estate",
+          "description": "PropTech with virtual tours and smart contracts.",
+          "cost": "From ₹35,000",
+          "time": "4-6 Weeks"
+        },
+        {
+          "title": "Logistics",
+          "description": "Route optimization and fleet management.",
+          "cost": "From ₹40,000",
+          "time": "5-7 Weeks"
+        },
+        {
+          "title": "Travel & Tourism",
+          "description": "Booking engines and experience management.",
+          "cost": "From ₹30,000",
+          "time": "4-6 Weeks"
+        },
+        {
+          "title": "Food & Beverage",
+          "description": "Restaurant tech with ordering and inventory systems.",
+          "cost": "From ₹20,000",
+          "time": "3-4 Weeks"
+        },
+        {
+          "title": "Automotive",
+          "description": "Connected vehicle platforms and smart mobility.",
+          "cost": "From ₹55,000",
+          "time": "6-9 Weeks"
+        },
+        {
+          "title": "SaaS & Enterprise",
+          "description": "Scalable cloud software with enterprise integration.",
+          "cost": "Custom",
+          "time": "Scale Dependent"
+        },
+        {
+          "title": "Media",
+          "description": "Streaming platforms and content management.",
+          "cost": "From ₹40,000",
+          "time": "5-7 Weeks"
+        },
+        {
+          "title": "Government",
+          "description": "Secure digital transformation for public sector.",
+          "cost": "Tender Based",
+          "time": "Project Based"
+        }
+      ],
+      "labels": {
+        "startsFrom": "Starts From",
+        "timeline": "Timeline"
+      }
     },
     "aiSolutions": {
       "eyebrow": "Enterprise AI",
@@ -255,7 +360,54 @@
       "titleAccent": "AI Solutions",
       "subtitle": "LLM applications, RAG systems, computer vision, and intelligent automation — engineered, audited, and operated by Cehpoint.",
       "talkToExpert": "Talk to an AI expert",
-      "calculateROI": "Calculate ROI"
+      "calculateROI": "Calculate ROI",
+      "cards": [
+        {
+          "title": "Generative AI Integration",
+          "description": "Custom GPT models and neural networks architected for enterprise-scale content and decision automation.",
+          "benefits": "+40% Operational Efficiency"
+        },
+        {
+          "title": "Intelligent Automation",
+          "description": "Autonomous agentic workflows that orchestrate complex business logic without human intervention.",
+          "benefits": "60% Cost Reduction"
+        },
+        {
+          "title": "Predictive Analytics",
+          "description": "High-dimensional forecasting models leveraging deep learning for market and operational foresight.",
+          "benefits": "95% Forecast Accuracy"
+        },
+        {
+          "title": "Computer Vision",
+          "description": "Edge-optimized visual intelligence for real-time quality assurance and biometric security.",
+          "benefits": "Zero-Defect Manufacturing"
+        },
+        {
+          "title": "Edge AI Processing",
+          "description": "Low-latency inference engines deployed on distributed edge infrastructure for instant responsiveness.",
+          "benefits": "<10ms Latency"
+        },
+        {
+          "title": "AI Security Operations",
+          "description": "Real-time anomaly detection and automated threat neutralization using behavioral AI models.",
+          "benefits": "Proactive Defense"
+        },
+        {
+          "title": "Hyper-Personalization",
+          "description": "Real-time behavioral adaptation engines that curate unique user journeys at scale.",
+          "benefits": "3x Conversion Rate"
+        },
+        {
+          "title": "Next-Gen DevTools",
+          "description": "AI-augmented development environments accelerating the software lifecycle from spec to deploy.",
+          "benefits": "4x Dev Velocity"
+        }
+      ],
+      "complexity": {
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate",
+        "Expert": "Expert"
+      }
     },
     "aiInRealLife": {
       "eyebrow": "AI in Real Life",
@@ -347,7 +499,448 @@
       "testimonialsEyebrow": "What clients say",
       "testimonialsTitle": "Cehpoint, in our clients' words",
       "portfolioEyebrow": "Portfolio & careers",
-      "portfolioTitle": "Browse what we've shipped, or come build with us"
+      "portfolioTitle": "Browse what we've shipped, or come build with us",
+      "whyChooseReasons": [
+        {
+          "title": "Rapid Delivery",
+          "description": "From concept to prototype in 24 hours. We value your time and business speed."
+        },
+        {
+          "title": "Enterprise Security",
+          "description": "Security is not an afterthought. We implement bank-grade security protocols from day one."
+        },
+        {
+          "title": "Clean Architecture",
+          "description": "We build scalable, maintainable systems with modern engineering practices and thorough documentation."
+        },
+        {
+          "title": "Global Standards",
+          "description": "World-class development practices ensuring your product is ready for the global market."
+        },
+        {
+          "title": "Expert Team",
+          "description": "A curated team of senior developers, security experts, and creative designers."
+        },
+        {
+          "title": "Measurable Results",
+          "description": "We focus on delivering measurable outcomes - faster load times, higher conversion, lower operational costs."
+        }
+      ],
+      "processTitle": "How We Work",
+      "processSub": "A streamlined workflow designed to deliver excellence from concept to launch and beyond.",
+      "processSteps": [
+        {
+          "title": "UX/UI Design",
+          "description": "We start by crafting intuitive and engaging user experiences. Our design phase focuses on user research, wireframing, and creating high-fidelity prototypes.",
+          "details": [
+            "User Research",
+            "Wireframing",
+            "Prototyping",
+            "Design System"
+          ]
+        },
+        {
+          "title": "Development",
+          "description": "Our expert developers bring designs to life using cutting-edge technologies. We ensure clean code, scalability, and robust performance.",
+          "details": [
+            "Frontend Dev",
+            "Backend Logic",
+            "API Integration",
+            "Database Setup"
+          ]
+        },
+        {
+          "title": "Maintenance",
+          "description": "We provide ongoing support and maintenance to ensure your application runs smoothly, stays secure, and evolves with your business.",
+          "details": [
+            "Security Updates",
+            "Performance Tuning",
+            "Bug Fixes",
+            "Feature Enhancements"
+          ]
+        }
+      ],
+      "demoProcessSteps": [
+        {
+          "title": "Requirements Capture",
+          "description": "Tell us your vision through our smart quotation system. Within minutes, our AI provides detailed cost estimates, technical recommendations, and project roadmaps tailored to your needs."
+        },
+        {
+          "title": "Rapid Development",
+          "description": "Watch your idea transform into reality. Our expert developers create a fully functional prototype with real features, databases, and user interfaces - all within 24 hours."
+        },
+        {
+          "title": "Demo Handoff",
+          "description": "Experience your working prototype firsthand. Get complete source code, comprehensive documentation, and a clear roadmap to scale your demo into a full production application."
+        }
+      ],
+      "engagementTitleLead": "Our",
+      "engagementTitleAccent": "Engagement Model",
+      "engagementSub": "Pay after demo, transparent scope, and rapid MVP delivery that sets us apart from traditional development agencies.",
+      "engagementBenefits": [
+        {
+          "title": "Pay After Demo",
+          "description": "Experience the working solution first, pay only when completely satisfied with the demo results."
+        },
+        {
+          "title": "Transparent Scope",
+          "description": "Fixed deliverables, clear timelines, and no hidden costs or scope creep."
+        },
+        {
+          "title": "Rapid MVP Plan",
+          "description": "Accelerated development with milestone-based delivery and continuous feedback loops."
+        }
+      ],
+      "engagementStatLabel": "Demo Delivery",
+      "engagementStatSub": "From concept to working prototype",
+      "customStackTitle": "Custom Stack Architecture",
+      "customStackDesc": "We don't just use tools; we engineer ecosystems.",
+      "techRadarCta": "View Full Tech Radar",
+      "testimonialsRating": "Consistently rated 4.9/5 by our clients worldwide",
+      "portfolioTitleLead": "Explore Our",
+      "portfolioTitleAccent": "Portfolio",
+      "portfolioDesc": "Discover how we've transformed businesses with cutting-edge solutions. From startup MVPs to enterprise platforms, see the results that speak for themselves.",
+      "joinTitleLead": "Join Our",
+      "joinTitleAccent": "Team",
+      "joinDesc": "Ready to build the future? Join our team of innovators and work on challenging projects that push the boundaries of technology. Grow your skills, make an impact.",
+      "joinCta": "Join the Mission"
+    },
+    "industryUseCases": {
+      "labels": {
+        "legacyConstraint": "Legacy Constraint",
+        "aiImplementation": "AI Implementation",
+        "architecture": "Architecture",
+        "outcome": "Outcome:",
+        "panelDesc": "Specialized machine learning and computer vision architectures designed explicitly for {{industry}} challenges."
+      },
+      "industries": {
+        "retail": "Retail & E-commerce",
+        "finance": "Finance & Banking",
+        "healthcare": "Healthcare & Clinics",
+        "manufacturing": "Manufacturing",
+        "real_estate": "Real Estate & PropTech",
+        "education": "Education & EdTech",
+        "logistics": "Logistics & Supply",
+        "legal": "Legal & Professional"
+      },
+      "cases": {
+        "retail": [
+          {
+            "title": "Dynamic Pricing Engine",
+            "pain": "Static pricing leaves money on the table while competitors constantly adjust to market demand.",
+            "fix": "ML algorithms adjust your product prices in real-time based on competitor scraping and demand surges.",
+            "gain": "Increase profit margins by 12-18% without losing competitive edge."
+          },
+          {
+            "title": "Visual Product Search",
+            "pain": "Shoppers struggle to find the exact clothing or furniture item using text keywords.",
+            "fix": "Computer vision allows users to upload a photo and instantly find similar products in your catalog.",
+            "gain": "Boost average order value and increase search-to-cart conversions."
+          },
+          {
+            "title": "Hyper-Personalized Merchandising",
+            "pain": "Every visitor sees the same generic storefront, leading to high bounce rates.",
+            "fix": "AI reorganizes the homepage and product grids dynamically for each user based on their past behavior.",
+            "gain": "Increase repeat purchase rate and customer lifetime value."
+          }
+        ],
+        "finance": [
+          {
+            "title": "Credit Risk Scoring Models",
+            "pain": "Traditional credit scores exclude viable borrowers and rely on outdated, limited data.",
+            "fix": "Advanced AI models analyze alternative data points (digital footprint, utility bills) to assess true risk.",
+            "gain": "Safely approve 20% more loan applications while maintaining low default rates."
+          },
+          {
+            "title": "Algorithmic Wealth Advisory",
+            "pain": "Human financial advisors are too expensive for the mass market, limiting client acquisition.",
+            "fix": "Robo-advisors generate optimized, personalized, tax-efficient investment portfolios at scale.",
+            "gain": "Scale asset management to thousands of clients with zero variable cost."
+          },
+          {
+            "title": "Anti-Money Laundering (AML)",
+            "pain": "Legacy rule-based AML systems generate 95% false positives, burying compliance teams.",
+            "fix": "Network graph analysis and ML spot sophisticated laundering rings across complex transaction webs.",
+            "gain": "Slash compliance investigation time and avoid severe regulatory fines."
+          }
+        ],
+        "healthcare": [
+          {
+            "title": "Medical Imaging Diagnostics",
+            "pain": "Radiologists suffer from fatigue, leading to delayed or missed diagnoses on subtle X-rays/MRIs.",
+            "fix": "Computer vision algorithms pre-screen scans, highlighting micro-anomalies with superhuman precision.",
+            "gain": "Detect conditions like tumors 30% faster with higher accuracy rates."
+          },
+          {
+            "title": "Predictive Vitals Monitoring",
+            "pain": "Nurses manually checking vitals react to deterioration only after it happens.",
+            "fix": "Real-time AI analysis of continuous ICU streams predicts cardiac or sepsis events hours in advance.",
+            "gain": "Reduce ICU mortality rates and shorten average hospital stays."
+          },
+          {
+            "title": "Drug Discovery Acceleration",
+            "pain": "Identifying new drug compounds takes years of trial and error in expensive laboratories.",
+            "fix": "Generative AI simulates molecular structures and predicts their binding affinity to target proteins.",
+            "gain": "Cut early-stage drug discovery timelines from years to months."
+          }
+        ],
+        "manufacturing": [
+          {
+            "title": "IoT Predictive Maintenance",
+            "pain": "Machinery breaking down unexpectedly halts the entire production line, costing millions.",
+            "fix": "Sensors feed vibration and temperature data to AI, predicting specific part failures weeks before they snap.",
+            "gain": "Achieve near-zero unplanned downtime and extend equipment lifespan."
+          },
+          {
+            "title": "Visual Defect Detection",
+            "pain": "Human QA inspectors get tired and miss microscopic flaws on high-speed conveyor belts.",
+            "fix": "High-speed cameras with edge AI inspect 100% of products, instantly rejecting sub-millimeter defects.",
+            "gain": "Eliminate defective product shipments and reduce QA labor costs."
+          },
+          {
+            "title": "Digital Twin Simulation",
+            "pain": "Testing new factory layouts or processes in the real world is risky and expensive.",
+            "fix": "Create a virtual AI replica of your factory floor to simulate bottlenecks and optimize throughput safely.",
+            "gain": "Increase factory yield by 15% without physical trial-and-error."
+          }
+        ],
+        "real_estate": [
+          {
+            "title": "Automated Property Valuation",
+            "pain": "Manual appraisals are slow, biased, and often lag behind rapidly changing neighborhood data.",
+            "fix": "AI aggregates thousands of data points (crime rates, school zones, past sales) for instant, hyper-accurate pricing.",
+            "gain": "Price properties perfectly for faster sales and higher yields."
+          },
+          {
+            "title": "Generative Virtual Staging",
+            "pain": "Physically staging an empty home or hiring 3D rendering artists is expensive and slow.",
+            "fix": "Upload a raw photo of an empty room, and AI instantly populates it with photorealistic, trendy furniture.",
+            "gain": "Increase listing click-through rates by 40% at zero marginal cost."
+          },
+          {
+            "title": "Smart Building Energy Management",
+            "pain": "HVAC systems waste enormous amounts of energy cooling empty commercial floors.",
+            "fix": "AI analyzes occupancy patterns and weather forecasts to dynamically optimize building temperatures.",
+            "gain": "Cut commercial energy bills by 20% and lower carbon footprint."
+          }
+        ],
+        "education": [
+          {
+            "title": "Adaptive Learning Paths",
+            "pain": "A one-size-fits-all curriculum leaves advanced students bored and struggling students behind.",
+            "fix": "AI analyzes a student's quiz performance to dynamically adjust the difficulty and topic of the next lesson.",
+            "gain": "Boost student test scores and engagement exponentially."
+          },
+          {
+            "title": "Predictive Dropout Prevention",
+            "pain": "Schools often don't realize a student is at risk of dropping out until they stop attending.",
+            "fix": "Machine learning flags subtle behavioral changes (login frequency, assignment delays) for early intervention.",
+            "gain": "Improve student retention rates and graduation outcomes."
+          },
+          {
+            "title": "Automated Essay Grading",
+            "pain": "Teachers spend countless weekend hours subjectively grading hundreds of long-form essays.",
+            "fix": "NLP models grade essays for grammar, structure, and thematic relevance, providing instant feedback.",
+            "gain": "Free up 30% of teacher time to focus on actual student mentorship."
+          }
+        ],
+        "logistics": [
+          {
+            "title": "Dynamic Route Optimization",
+            "pain": "Static delivery routes waste fuel and fail to account for live traffic, weather, or new pickups.",
+            "fix": "AI continuously recalculates the optimal delivery sequence for hundreds of trucks in real-time.",
+            "gain": "Reduce fleet fuel consumption by 15% and improve on-time deliveries."
+          },
+          {
+            "title": "Autonomous Warehouse Robotics",
+            "pain": "Human pickers spend 70% of their shift just walking between aisles to find items.",
+            "fix": "Computer-vision guided robots autonomously navigate warehouses to bring the correct shelves directly to the packers.",
+            "gain": "Multiply order fulfillment speed by 3x during peak seasons."
+          },
+          {
+            "title": "Last-Mile Delivery Prediction",
+            "pain": "Customers are frustrated by inaccurate delivery windows spanning entire days.",
+            "fix": "Predictive models calculate highly accurate ETA windows based on historical driver speeds and micro-local data.",
+            "gain": "Dramatically increase customer satisfaction and reduce support calls."
+          }
+        ],
+        "legal": [
+          {
+            "title": "Contract Risk Analysis",
+            "pain": "Lawyers spend tedious hours reading dense 100-page M&A contracts looking for liability loopholes.",
+            "fix": "AI scans legal documents in seconds, redlining missing clauses and flagging severe compliance risks.",
+            "gain": "Accelerate due diligence by 80% while minimizing human oversight errors."
+          },
+          {
+            "title": "Case Law Precedent Discovery",
+            "pain": "Paralegals struggle to find that one obscure, highly relevant court ruling buried in millions of documents.",
+            "fix": "Semantic AI search understands the context of a case, not just keywords, to surface perfect precedents.",
+            "gain": "Build stronger litigation strategies in a fraction of the research time."
+          },
+          {
+            "title": "IP & Trademark Infringement Scanning",
+            "pain": "Protecting a brand globally is impossible when relying on manual web searches for copycats.",
+            "fix": "Computer vision continuously scrapes the web and global registries to find visually similar logos or stolen IP.",
+            "gain": "Protect brand equity actively with zero manual monitoring effort."
+          }
+        ]
+      }
+    },
+    "serviceEcommerce": {
+      "heroTitleLead": "E-commerce",
+      "heroTitleAccent": "Solutions",
+      "heroSubtitle": "Build scalable, conversion-optimized e-commerce platforms that drive revenue and customer satisfaction.",
+      "heroCta": "Get E-commerce Quote",
+      "freeConsult": "Free consultation • No commitment",
+      "ratingSub": "From 180+ merchants",
+      "gmvSub": "GMV processed annually",
+      "convSub": "Avg. conversion rate",
+      "trustedBy": "Trusted by leading e-commerce brands",
+      "problemsTitleLead": "E-commerce",
+      "problemsTitleAccent": "Challenges We Solve",
+      "problemsSub": "Common pain points that prevent e-commerce businesses from reaching their full potential",
+      "problems": [
+        "Slow-loading product pages affecting conversion rates",
+        "Complex checkout processes leading to cart abandonment",
+        "Inadequate inventory management across multiple channels",
+        "Poor mobile shopping experience",
+        "Limited payment gateway options",
+        "Lack of real-time analytics and insights"
+      ],
+      "archTitleLead": "Reference",
+      "archTitleAccent": "Architecture",
+      "archSub": "Enterprise-grade e-commerce architecture designed for scale, performance, and reliability",
+      "architecture": [
+        {
+          "title": "Product Catalog Management",
+          "description": "Scalable product information management with advanced search and filtering capabilities."
+        },
+        {
+          "title": "Payment Processing",
+          "description": "Secure, multi-gateway payment integration with support for global payment methods."
+        },
+        {
+          "title": "Analytics & Reporting",
+          "description": "Real-time business intelligence with conversion tracking and customer insights."
+        },
+        {
+          "title": "Security & Compliance",
+          "description": "PCI-DSS compliant architecture with advanced fraud detection and prevention."
+        },
+        {
+          "title": "Mobile Commerce",
+          "description": "Progressive web apps and native mobile applications for seamless shopping."
+        },
+        {
+          "title": "Multi-channel Integration",
+          "description": "Unified commerce platform connecting online stores, marketplaces, and physical retail."
+        }
+      ],
+      "caseTitleLead": "Success",
+      "caseTitleAccent": "Stories",
+      "caseSub": "Real revenue growth from our e-commerce solutions",
+      "case1Title": "Fashion Retail Platform",
+      "case1Desc": "Built a multi-vendor fashion marketplace with advanced search, personalized recommendations, and seamless checkout experience.",
+      "case1Quote": "Our revenue tripled within 6 months. The platform is fast, reliable, and our customers love the experience.",
+      "case1Author": "— CEO, Fashion Marketplace",
+      "case2Title": "Electronics Store",
+      "case2Desc": "Developed a high-performance e-commerce platform with real-time inventory, multiple payment options, and omnichannel integration.",
+      "case2Quote": "The platform handles Black Friday traffic effortlessly. Best investment we've made in our digital infrastructure.",
+      "case2Author": "— CTO, Electronics Retailer",
+      "mConversion": "Conversion rate",
+      "mRevenue": "Monthly revenue",
+      "mLoad": "Page load time",
+      "mCart": "Cart abandonment",
+      "mOrders": "Monthly orders",
+      "mUptime": "Uptime SLA",
+      "mMobile": "Mobile traffic",
+      "mRoi": "ROI increase",
+      "compTitleLead": "Security &",
+      "compTitleAccent": "Compliance",
+      "compSub": "Built-in security measures and compliance standards to protect your business and customers.",
+      "compliance": [
+        "PCI-DSS Level 1 Compliance",
+        "GDPR & CCPA Privacy Protection",
+        "SOC 2 Type II Security Standards",
+        "Advanced Fraud Detection",
+        "SSL/TLS Encryption"
+      ],
+      "secFeaturesTitle": "Security Features",
+      "secFeatures": [
+        "Two-Factor Authentication",
+        "Data Encryption at Rest",
+        "Regular Security Audits",
+        "WAF Protection",
+        "DDoS Mitigation"
+      ],
+      "included": "Included",
+      "trustTitleLead": "Certified &",
+      "trustTitleAccent": "Secure",
+      "certifiedLabel": "Level 1 Certified",
+      "compliantLabel": "Compliant",
+      "techPartners": "Technology Partners",
+      "kpisTitleLead": "Target",
+      "kpisTitleAccent": "KPIs",
+      "kpisSub": "Measurable outcomes we deliver for e-commerce success",
+      "kpis": [
+        {
+          "metric": "Conversion Rate",
+          "description": "Industry-leading conversion optimization"
+        },
+        {
+          "metric": "Page Load Time",
+          "description": "Fast-loading pages for better UX"
+        },
+        {
+          "metric": "Cart Abandonment",
+          "description": "Reduced abandonment through UX optimization"
+        },
+        {
+          "metric": "Mobile Traffic",
+          "description": "Mobile-first responsive design"
+        },
+        {
+          "metric": "Uptime",
+          "description": "High availability and reliability"
+        },
+        {
+          "metric": "Security Score",
+          "description": "Top-tier security implementation"
+        }
+      ],
+      "faqTitleLead": "Frequently Asked",
+      "faqTitleAccent": "Questions",
+      "faqs": [
+        {
+          "q": "How long does it take to launch an e-commerce store?",
+          "a": "Timeline depends on complexity and customization, but typically ranges from 2-4 months for a full-featured store. We can launch a basic store in 3-4 weeks with iterative enhancements."
+        },
+        {
+          "q": "What payment gateways do you support?",
+          "a": "We integrate with all major payment gateways including Stripe, PayPal, Razorpay, Square, and regional providers. We also support digital wallets, buy-now-pay-later services, and cryptocurrency payments."
+        },
+        {
+          "q": "How do you optimize for conversions?",
+          "a": "We implement proven conversion optimization techniques including fast page loads, simplified checkout, personalized recommendations, abandoned cart recovery, A/B testing, and mobile-first design."
+        },
+        {
+          "q": "Can you handle high traffic volumes?",
+          "a": "Absolutely. Our platforms are built on scalable cloud infrastructure with auto-scaling, CDN integration, and caching strategies to handle traffic spikes during sales events and seasonal peaks."
+        },
+        {
+          "q": "Do you provide ongoing maintenance and support?",
+          "a": "Yes, we offer comprehensive support including 24/7 monitoring, security updates, performance optimization, feature enhancements, and dedicated support teams with guaranteed response times."
+        }
+      ],
+      "ctaOffer": "Special offer: Free conversion audit",
+      "ctaTitleLead": "Ready to Transform Your",
+      "ctaTitleAccent": "E-commerce Business?",
+      "ctaDesc": "Get a detailed quotation with AI-powered analysis, conversion optimization strategy, and technical recommendations for your e-commerce project.",
+      "ctaQuote": "Get Your E-commerce Quotation",
+      "ctaConsult": "Schedule Consultation",
+      "ctaBadge1": "Free conversion audit",
+      "ctaBadge2": "No commitment required",
+      "ctaBadge3": "Response within 24 hours"
     }
   },
   "themeToggle": {

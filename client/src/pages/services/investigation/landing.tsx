@@ -130,14 +130,14 @@ export default function InvestigationLanding() {
                                         <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 group-hover:bg-red-500/20 transition-colors">
                                             <Shield className="w-5 h-5 text-red-500 shrink-0" />
                                         </div>
-                                        <span className="text-white/80 text-lg">{item}</span>
+                                        <span className="text-foreground/80 text-lg">{item}</span>
                                     </motion.li>
                                 ))}
                             </ul>
                         </div>
                         <div className="relative group">
                             <div className="absolute inset-0 bg-red-600/20 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
-                            <div className="relative p-8 rounded-3xl glass border border-foreground/10 backdrop-blur-xl bg-black/40">
+                            <div className="relative p-8 rounded-3xl glass border border-foreground/10 backdrop-blur-xl bg-card/60">
                                 <div className="grid grid-cols-2 gap-4">
                                     <StatCard value="98%" label="Evidence Integrity" />
                                     <StatCard value="Global" label="Coverage Area" />
@@ -151,7 +151,7 @@ export default function InvestigationLanding() {
             </section>
 
             {/* Key Leadership Contacts */}
-            <section className="py-24 bg-black/40">
+            <section className="py-24 bg-card/60">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-display font-bold mb-4">Investigation Leadership</h2>
@@ -166,7 +166,7 @@ export default function InvestigationLanding() {
                                 <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-4 text-red-500 group-hover:scale-110 transition-transform">
                                     <User className="w-6 h-6" />
                                 </div>
-                                <h3 className="text-lg font-semibold text-white mb-1">{lead.name}</h3>
+                                <h3 className="text-lg font-semibold text-foreground mb-1">{lead.name}</h3>
                                 <p className="text-sm text-red-400 mb-4 h-10">{lead.role}</p>
 
                                 <ContactLeaderDialog
@@ -184,8 +184,8 @@ export default function InvestigationLanding() {
 
 function StatCard({ value, label }: { value: string, label: string }) {
     return (
-        <div className="p-6 rounded-2xl bg-black/40 border border-foreground/5 text-center hover:border-red-500/20 transition-colors">
-            <div className="text-4xl font-bold text-white mb-2 tracking-tight">{value}</div>
+        <div className="p-6 rounded-2xl bg-card/60 border border-foreground/5 text-center hover:border-red-500/20 transition-colors">
+            <div className="text-4xl font-bold text-foreground mb-2 tracking-tight">{value}</div>
             <div className="text-xs text-muted-foreground uppercase tracking-widest font-medium">{label}</div>
         </div>
     );

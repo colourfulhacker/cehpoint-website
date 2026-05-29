@@ -124,7 +124,7 @@ export default function AutomationRecommender() {
                                             }`}
                                     >
                                         <Briefcase className={`w-10 h-10 ${selectedFocusId === focus.id ? "text-primary" : "text-muted-foreground"}`} />
-                                        <h3 className={`font-bold text-lg md:text-xl ${selectedFocusId === focus.id ? "text-white" : "text-foreground/90"}`}>{focus.name}</h3>
+                                        <h3 className={`font-bold text-lg md:text-xl ${selectedFocusId === focus.id ? "text-foreground" : "text-foreground/90"}`}>{focus.name}</h3>
                                     </div>
                                 ))}
                             </div>
@@ -194,13 +194,13 @@ export default function AutomationRecommender() {
                                                 <p className="text-sm text-foreground/90 font-bold flex items-center gap-2 mb-1">
                                                     <TrendingUp className="w-4 h-4 text-primary" /> Estimated Setup Cost
                                                 </p>
-                                                <p className="text-2xl font-bold text-white">{selectedFocus.costEstimate}</p>
+                                                <p className="text-2xl font-bold text-foreground">{selectedFocus.costEstimate}</p>
                                                 <p className="text-xs text-primary font-bold mt-1">One-time setup. Predictable ROI.</p>
                                             </div>
 
                                             <div className="pt-4 border-t border-foreground/10">
                                                 <p className="text-sm text-muted-foreground font-bold mb-2">Business Outcome</p>
-                                                <p className="text-sm leading-relaxed flex items-start gap-2 text-white/90">
+                                                <p className="text-sm leading-relaxed flex items-start gap-2 text-foreground/90">
                                                     <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
                                                     <span>{selectedFocus.businessImpact}</span>
                                                 </p>
@@ -218,7 +218,7 @@ export default function AutomationRecommender() {
                                     <Button
                                         variant="ghost"
                                         onClick={resetForm}
-                                        className="w-full text-muted-foreground hover:text-white font-semibold"
+                                        className="w-full text-muted-foreground hover:text-foreground font-semibold"
                                     >
                                         Recalculate for a different focus
                                     </Button>

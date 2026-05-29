@@ -520,7 +520,7 @@ export default function BusinessAppCatalog() {
                                                                         </div>
                                                                     ))}
                                                                 </div>
-                                                                <div className="text-xs font-bold text-primary flex items-center bg-primary/10 px-3 py-1.5 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
+                                                                <div className="text-xs font-bold text-primary flex items-center bg-primary/10 px-3 py-1.5 rounded-full group-hover:bg-primary group-hover:text-foreground transition-all">
                                                                     OPEN APP <ArrowRight className="w-3 h-3 ml-1" />
                                                                 </div>
                                                             </div>
@@ -589,7 +589,7 @@ export default function BusinessAppCatalog() {
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    className="bg-transparent border-foreground/30 text-white hover:bg-foreground/10 rounded-full px-8"
+                                    className="bg-transparent border-foreground/30 text-foreground hover:bg-foreground/10 rounded-full px-8"
                                     onClick={() => {
                                         const msg = encodeURIComponent("I want to speak with an expert regarding business apps.");
                                         window.open(`https://wa.me/919091156095?text=${msg}`, "_blank");

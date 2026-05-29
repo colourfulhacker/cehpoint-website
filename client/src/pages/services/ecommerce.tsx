@@ -1,6 +1,7 @@
-import { ShoppingCart, CreditCard, BarChart3, Shield, Smartphone, Globe, Star, TrendingUp, Users, Award, CheckCircle2, Clock, ArrowRight, Package, Check } from "lucide-react";
+import { ShoppingCart, CreditCard, BarChart3, Shield, Smartphone, Globe, Star, TrendingUp, Award, CheckCircle2, Clock, ArrowRight, Package, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 import SEO from "@/components/seo";
 import RelatedPrograms from "@/components/shared/related-programs";
 import ServiceSchema from "@/components/seo/service-schema";
@@ -9,56 +10,14 @@ import FAQSchema from "@/components/seo/faq-schema";
 import EcommerceCalculator from "@/components/calculators/ecommerce-calculator";
 
 export default function EcommerceService() {
-  const problemPatterns = [
-    "Slow-loading product pages affecting conversion rates",
-    "Complex checkout processes leading to cart abandonment",
-    "Inadequate inventory management across multiple channels",
-    "Poor mobile shopping experience",
-    "Limited payment gateway options",
-    "Lack of real-time analytics and insights"
-  ];
-
-  const architectureComponents = [
-    {
-      icon: ShoppingCart,
-      title: "Product Catalog Management",
-      description: "Scalable product information management with advanced search and filtering capabilities."
-    },
-    {
-      icon: CreditCard,
-      title: "Payment Processing",
-      description: "Secure, multi-gateway payment integration with support for global payment methods."
-    },
-    {
-      icon: BarChart3,
-      title: "Analytics & Reporting",
-      description: "Real-time business intelligence with conversion tracking and customer insights."
-    },
-    {
-      icon: Shield,
-      title: "Security & Compliance",
-      description: "PCI-DSS compliant architecture with advanced fraud detection and prevention."
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Commerce",
-      description: "Progressive web apps and native mobile applications for seamless shopping."
-    },
-    {
-      icon: Globe,
-      title: "Multi-channel Integration",
-      description: "Unified commerce platform connecting online stores, marketplaces, and physical retail."
-    }
-  ];
-
-  const kpis = [
-    { metric: "Conversion Rate", target: "3.5%+", description: "Industry-leading conversion optimization" },
-    { metric: "Page Load Time", target: "<2s", description: "Fast-loading pages for better UX" },
-    { metric: "Cart Abandonment", target: "<65%", description: "Reduced abandonment through UX optimization" },
-    { metric: "Mobile Traffic", target: "70%+", description: "Mobile-first responsive design" },
-    { metric: "Uptime", target: "99.9%", description: "High availability and reliability" },
-    { metric: "Security Score", target: "A+", description: "Top-tier security implementation" }
-  ];
+  const { t } = useTranslation();
+  const B = "pages.serviceEcommerce";
+  const problemPatterns = t(`${B}.problems`, { returnObjects: true }) as string[];
+  const archIcons = [ShoppingCart, CreditCard, BarChart3, Shield, Smartphone, Globe];
+  const architectureComponents = (t(`${B}.architecture`, { returnObjects: true }) as { title: string; description: string }[]).map((c, i) => ({ ...c, icon: archIcons[i] ?? ShoppingCart }));
+  const kpiTargets = ["3.5%+", "<2s", "<65%", "70%+", "99.9%", "A+"];
+  const kpis = (t(`${B}.kpis`, { returnObjects: true }) as { metric: string; description: string }[]).map((k, i) => ({ ...k, target: kpiTargets[i] ?? "" }));
+  const faqs = t(`${B}.faqs`, { returnObjects: true }) as { q: string; a: string }[];
 
   return (
     <div className="pt-36 min-h-screen" data-testid="ecommerce-service-page">
@@ -70,7 +29,6 @@ export default function EcommerceService() {
         canonical="https://www.cehpoint.co.in/services/ecommerce"
       />
 
-      {/* Structured Data Schemas */}
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "https://www.cehpoint.co.in/" },
@@ -102,20 +60,20 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-up">
             <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight" data-testid="page-title">
-              E-commerce <span className="text-primary">Solutions</span>
+              {t(`${B}.heroTitleLead`)} <span className="text-primary">{t(`${B}.heroTitleAccent`)}</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
-              Build scalable, conversion-optimized e-commerce platforms that drive revenue and customer satisfaction.
+              {t(`${B}.heroSubtitle`)}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/quotation">
                 <Button className="btn-primary px-8 py-4 rounded-xl text-lg font-semibold text-primary-foreground w-full sm:w-auto" data-testid="cta-get-quote">
-                  Get E-commerce Quote <ArrowRight className="ml-2 w-5 h-5" />
+                  {t(`${B}.heroCta`)} <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Clock className="w-4 h-4" />
-                <span>Free consultation • No commitment</span>
+                <span>{t(`${B}.freeConsult`)}</span>
               </div>
             </div>
           </div>
@@ -133,22 +91,22 @@ export default function EcommerceService() {
                 ))}
               </div>
               <p className="text-3xl font-bold mb-1">4.9/5</p>
-              <p className="text-sm text-muted-foreground">From 180+ merchants</p>
+              <p className="text-sm text-muted-foreground">{t(`${B}.ratingSub`)}</p>
             </div>
             <div className="text-center">
               <Package className="w-8 h-8 text-primary mx-auto mb-2" />
               <p className="text-3xl font-bold mb-1">$850M+</p>
-              <p className="text-sm text-muted-foreground">GMV processed annually</p>
+              <p className="text-sm text-muted-foreground">{t(`${B}.gmvSub`)}</p>
             </div>
             <div className="text-center">
               <TrendingUp className="w-8 h-8 text-primary mx-auto mb-2" />
               <p className="text-3xl font-bold mb-1">3.8%</p>
-              <p className="text-sm text-muted-foreground">Avg. conversion rate</p>
+              <p className="text-sm text-muted-foreground">{t(`${B}.convSub`)}</p>
             </div>
           </div>
 
           <div className="text-center mb-8">
-            <p className="text-sm text-muted-foreground mb-4">Trusted by leading e-commerce brands</p>
+            <p className="text-sm text-muted-foreground mb-4">{t(`${B}.trustedBy`)}</p>
             <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
               <span className="text-lg font-semibold">Amazon</span>
               <span className="text-lg font-semibold">Shopify</span>
@@ -165,10 +123,10 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="problems-title">
-              E-commerce <span className="text-primary">Challenges We Solve</span>
+              {t(`${B}.problemsTitleLead`)} <span className="text-primary">{t(`${B}.problemsTitleAccent`)}</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Common pain points that prevent e-commerce businesses from reaching their full potential
+              {t(`${B}.problemsSub`)}
             </p>
           </div>
 
@@ -190,10 +148,10 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="architecture-title">
-              Reference <span className="text-primary">Architecture</span>
+              {t(`${B}.archTitleLead`)} <span className="text-primary">{t(`${B}.archTitleAccent`)}</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Enterprise-grade e-commerce architecture designed for scale, performance, and reliability
+              {t(`${B}.archSub`)}
             </p>
           </div>
 
@@ -226,10 +184,10 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-              Success <span className="text-primary">Stories</span>
+              {t(`${B}.caseTitleLead`)} <span className="text-primary">{t(`${B}.caseTitleAccent`)}</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Real revenue growth from our e-commerce solutions
+              {t(`${B}.caseSub`)}
             </p>
           </div>
 
@@ -237,64 +195,36 @@ export default function EcommerceService() {
             <div className="glass rounded-3xl p-8 hover-lift">
               <div className="flex items-center gap-3 mb-4">
                 <Award className="w-8 h-8 text-primary" />
-                <h3 className="font-bold text-xl">Fashion Retail Platform</h3>
+                <h3 className="font-bold text-xl">{t(`${B}.case1Title`)}</h3>
               </div>
-              <p className="text-muted-foreground mb-6">
-                Built a multi-vendor fashion marketplace with advanced search, personalized recommendations, and seamless checkout experience.
-              </p>
+              <p className="text-muted-foreground mb-6">{t(`${B}.case1Desc`)}</p>
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                  <p className="text-2xl font-bold text-primary">4.2%</p>
-                  <p className="text-sm text-muted-foreground">Conversion rate</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-primary">$12M</p>
-                  <p className="text-sm text-muted-foreground">Monthly revenue</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-primary">1.8s</p>
-                  <p className="text-sm text-muted-foreground">Page load time</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-primary">55%</p>
-                  <p className="text-sm text-muted-foreground">Cart abandonment</p>
-                </div>
+                <div><p className="text-2xl font-bold text-primary">4.2%</p><p className="text-sm text-muted-foreground">{t(`${B}.mConversion`)}</p></div>
+                <div><p className="text-2xl font-bold text-primary">$12M</p><p className="text-sm text-muted-foreground">{t(`${B}.mRevenue`)}</p></div>
+                <div><p className="text-2xl font-bold text-primary">1.8s</p><p className="text-sm text-muted-foreground">{t(`${B}.mLoad`)}</p></div>
+                <div><p className="text-2xl font-bold text-primary">55%</p><p className="text-sm text-muted-foreground">{t(`${B}.mCart`)}</p></div>
               </div>
               <blockquote className="border-l-4 border-primary pl-4 italic text-muted-foreground">
-                "Our revenue tripled within 6 months. The platform is fast, reliable, and our customers love the experience."
-                <footer className="text-sm mt-2 not-italic">— CEO, Fashion Marketplace</footer>
+                "{t(`${B}.case1Quote`)}"
+                <footer className="text-sm mt-2 not-italic">{t(`${B}.case1Author`)}</footer>
               </blockquote>
             </div>
 
             <div className="glass rounded-3xl p-8 hover-lift">
               <div className="flex items-center gap-3 mb-4">
                 <Award className="w-8 h-8 text-primary" />
-                <h3 className="font-bold text-xl">Electronics Store</h3>
+                <h3 className="font-bold text-xl">{t(`${B}.case2Title`)}</h3>
               </div>
-              <p className="text-muted-foreground mb-6">
-                Developed a high-performance e-commerce platform with real-time inventory, multiple payment options, and omnichannel integration.
-              </p>
+              <p className="text-muted-foreground mb-6">{t(`${B}.case2Desc`)}</p>
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                  <p className="text-2xl font-bold text-primary">500K+</p>
-                  <p className="text-sm text-muted-foreground">Monthly orders</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-primary">99.9%</p>
-                  <p className="text-sm text-muted-foreground">Uptime SLA</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-primary">75%</p>
-                  <p className="text-sm text-muted-foreground">Mobile traffic</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-primary">180%</p>
-                  <p className="text-sm text-muted-foreground">ROI increase</p>
-                </div>
+                <div><p className="text-2xl font-bold text-primary">500K+</p><p className="text-sm text-muted-foreground">{t(`${B}.mOrders`)}</p></div>
+                <div><p className="text-2xl font-bold text-primary">99.9%</p><p className="text-sm text-muted-foreground">{t(`${B}.mUptime`)}</p></div>
+                <div><p className="text-2xl font-bold text-primary">75%</p><p className="text-sm text-muted-foreground">{t(`${B}.mMobile`)}</p></div>
+                <div><p className="text-2xl font-bold text-primary">180%</p><p className="text-sm text-muted-foreground">{t(`${B}.mRoi`)}</p></div>
               </div>
               <blockquote className="border-l-4 border-primary pl-4 italic text-muted-foreground">
-                "The platform handles Black Friday traffic effortlessly. Best investment we've made in our digital infrastructure."
-                <footer className="text-sm mt-2 not-italic">— CTO, Electronics Retailer</footer>
+                "{t(`${B}.case2Quote`)}"
+                <footer className="text-sm mt-2 not-italic">{t(`${B}.case2Author`)}</footer>
               </blockquote>
             </div>
           </div>
@@ -307,61 +237,31 @@ export default function EcommerceService() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="compliance-title">
-                Security & <span className="text-primary">Compliance</span>
+                {t(`${B}.compTitleLead`)} <span className="text-primary">{t(`${B}.compTitleAccent`)}</span>
               </h2>
-              <p className="text-xl text-muted-foreground mb-8">
-                Built-in security measures and compliance standards to protect your business and customers.
-              </p>
+              <p className="text-xl text-muted-foreground mb-8">{t(`${B}.compSub`)}</p>
 
               <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span>PCI-DSS Level 1 Compliance</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span>GDPR & CCPA Privacy Protection</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span>SOC 2 Type II Security Standards</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span>Advanced Fraud Detection</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span>SSL/TLS Encryption</span>
-                </div>
+                {(t(`${B}.compliance`, { returnObjects: true }) as string[]).map((item, i) => (
+                  <div key={i} className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div className="glass rounded-3xl p-8">
               <h3 className="font-bold text-2xl mb-6 text-center" data-testid="security-features-title">
-                Security Features
+                {t(`${B}.secFeaturesTitle`)}
               </h3>
               <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span>Two-Factor Authentication</span>
-                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Data Encryption at Rest</span>
-                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Regular Security Audits</span>
-                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>WAF Protection</span>
-                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>DDoS Mitigation</span>
-                  <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> Included</span>
-                </div>
+                {(t(`${B}.secFeatures`, { returnObjects: true }) as string[]).map((feat, i) => (
+                  <div key={i} className="flex justify-between items-center">
+                    <span>{feat}</span>
+                    <span className="flex items-center text-green-500 font-semibold"><Check className="w-4 h-4 mr-2" /> {t(`${B}.included`)}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -373,7 +273,7 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">
-              Certified & <span className="text-primary">Secure</span>
+              {t(`${B}.trustTitleLead`)} <span className="text-primary">{t(`${B}.trustTitleAccent`)}</span>
             </h2>
           </div>
 
@@ -381,27 +281,27 @@ export default function EcommerceService() {
             <div className="glass rounded-2xl p-6 text-center hover-lift">
               <Shield className="w-12 h-12 text-primary mx-auto mb-3" />
               <p className="font-semibold mb-1">PCI-DSS</p>
-              <p className="text-xs text-muted-foreground">Level 1 Certified</p>
+              <p className="text-xs text-muted-foreground">{t(`${B}.certifiedLabel`)}</p>
             </div>
             <div className="glass rounded-2xl p-6 text-center hover-lift">
               <Award className="w-12 h-12 text-primary mx-auto mb-3" />
               <p className="font-semibold mb-1">SOC 2 Type II</p>
-              <p className="text-xs text-muted-foreground">Compliant</p>
+              <p className="text-xs text-muted-foreground">{t(`${B}.compliantLabel`)}</p>
             </div>
             <div className="glass rounded-2xl p-6 text-center hover-lift">
               <CheckCircle2 className="w-12 h-12 text-primary mx-auto mb-3" />
               <p className="font-semibold mb-1">GDPR</p>
-              <p className="text-xs text-muted-foreground">Compliant</p>
+              <p className="text-xs text-muted-foreground">{t(`${B}.compliantLabel`)}</p>
             </div>
             <div className="glass rounded-2xl p-6 text-center hover-lift">
               <Globe className="w-12 h-12 text-primary mx-auto mb-3" />
               <p className="font-semibold mb-1">CCPA</p>
-              <p className="text-xs text-muted-foreground">Compliant</p>
+              <p className="text-xs text-muted-foreground">{t(`${B}.compliantLabel`)}</p>
             </div>
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-sm text-muted-foreground mb-4">Technology Partners</p>
+            <p className="text-sm text-muted-foreground mb-4">{t(`${B}.techPartners`)}</p>
             <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
               <span className="text-base font-semibold">Stripe Partner</span>
               <span className="text-base font-semibold">PayPal Partner</span>
@@ -417,10 +317,10 @@ export default function EcommerceService() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="kpis-title">
-              Target <span className="text-primary">KPIs</span>
+              {t(`${B}.kpisTitleLead`)} <span className="text-primary">{t(`${B}.kpisTitleAccent`)}</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Measurable outcomes we deliver for e-commerce success
+              {t(`${B}.kpisSub`)}
             </p>
           </div>
 
@@ -447,45 +347,17 @@ export default function EcommerceService() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-              Frequently Asked <span className="text-primary">Questions</span>
+              {t(`${B}.faqTitleLead`)} <span className="text-primary">{t(`${B}.faqTitleAccent`)}</span>
             </h2>
           </div>
 
           <div className="space-y-6">
-            <div className="glass rounded-2xl p-6 hover-lift">
-              <h3 className="font-bold text-lg mb-3">How long does it take to launch an e-commerce store?</h3>
-              <p className="text-muted-foreground">
-                Timeline depends on complexity and customization, but typically ranges from 2-4 months for a full-featured store. We can launch a basic store in 3-4 weeks with iterative enhancements.
-              </p>
-            </div>
-
-            <div className="glass rounded-2xl p-6 hover-lift">
-              <h3 className="font-bold text-lg mb-3">What payment gateways do you support?</h3>
-              <p className="text-muted-foreground">
-                We integrate with all major payment gateways including Stripe, PayPal, Razorpay, Square, and regional providers. We also support digital wallets, buy-now-pay-later services, and cryptocurrency payments.
-              </p>
-            </div>
-
-            <div className="glass rounded-2xl p-6 hover-lift">
-              <h3 className="font-bold text-lg mb-3">How do you optimize for conversions?</h3>
-              <p className="text-muted-foreground">
-                We implement proven conversion optimization techniques including fast page loads, simplified checkout, personalized recommendations, abandoned cart recovery, A/B testing, and mobile-first design.
-              </p>
-            </div>
-
-            <div className="glass rounded-2xl p-6 hover-lift">
-              <h3 className="font-bold text-lg mb-3">Can you handle high traffic volumes?</h3>
-              <p className="text-muted-foreground">
-                Absolutely. Our platforms are built on scalable cloud infrastructure with auto-scaling, CDN integration, and caching strategies to handle traffic spikes during sales events and seasonal peaks.
-              </p>
-            </div>
-
-            <div className="glass rounded-2xl p-6 hover-lift">
-              <h3 className="font-bold text-lg mb-3">Do you provide ongoing maintenance and support?</h3>
-              <p className="text-muted-foreground">
-                Yes, we offer comprehensive support including 24/7 monitoring, security updates, performance optimization, feature enhancements, and dedicated support teams with guaranteed response times.
-              </p>
-            </div>
+            {faqs.map((faq, i) => (
+              <div key={i} className="glass rounded-2xl p-6 hover-lift">
+                <h3 className="font-bold text-lg mb-3">{faq.q}</h3>
+                <p className="text-muted-foreground">{faq.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -496,41 +368,32 @@ export default function EcommerceService() {
           <div className="glass rounded-3xl p-8 md:p-12">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
               <Clock className="w-4 h-4" />
-              Special offer: Free conversion audit
+              {t(`${B}.ctaOffer`)}
             </div>
             <h2 className="font-display font-bold text-3xl md:text-5xl mb-6" data-testid="cta-title">
-              Ready to Transform Your <span className="text-primary">E-commerce Business?</span>
+              {t(`${B}.ctaTitleLead`)} <span className="text-primary">{t(`${B}.ctaTitleAccent`)}</span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground mb-8" data-testid="cta-description">
-              Get a detailed quotation with AI-powered analysis, conversion optimization strategy, and technical recommendations for your e-commerce project.
+              {t(`${B}.ctaDesc`)}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <Link href="/quotation">
                 <Button className="btn-primary px-8 py-4 rounded-xl text-lg font-semibold text-primary-foreground w-full sm:w-auto" data-testid="cta-final">
-                  Get Your E-commerce Quotation <ArrowRight className="ml-2 w-5 h-5" />
+                  {t(`${B}.ctaQuote`)} <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <Link href="/contact">
                 <Button variant="outline" className="px-8 py-4 rounded-xl text-lg font-semibold w-full sm:w-auto">
-                  Schedule Consultation
+                  {t(`${B}.ctaConsult`)}
                 </Button>
               </Link>
             </div>
 
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary" />
-                <span>Free conversion audit</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary" />
-                <span>No commitment required</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-primary" />
-                <span>Response within 24 hours</span>
-              </div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>{t(`${B}.ctaBadge1`)}</span></div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>{t(`${B}.ctaBadge2`)}</span></div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>{t(`${B}.ctaBadge3`)}</span></div>
             </div>
           </div>
         </div>

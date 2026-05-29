@@ -155,7 +155,7 @@ export default function ServicesPage() {
                     >
                         
 
-                        <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight text-white">
+                        <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight text-foreground">
                             {t("pages.services.title")} <span className="text-primary">{t("pages.services.titleAccent")}</span>
                         </h1>
 
@@ -230,7 +230,7 @@ export default function ServicesPage() {
                             <Globe className="w-4 h-4 text-primary mr-2" />
                             <span className="text-sm font-medium text-primary">Global Strategic Trends 2026</span>
                         </div>
-                        <h2 className="font-display font-bold text-4xl md:text-5xl mb-6 text-white">
+                        <h2 className="font-display font-bold text-4xl md:text-5xl mb-6 text-foreground">
                             Global Strategic Trends
                         </h2>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -296,7 +296,7 @@ export default function ServicesPage() {
             <section id="featured-services" className="py-24 scroll-mt-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="font-display font-bold text-4xl md:text-5xl mb-6 text-white">
+                        <h2 className="font-display font-bold text-4xl md:text-5xl mb-6 text-foreground">
                             Services Overview
                         </h2>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -321,7 +321,7 @@ export default function ServicesPage() {
 
                                             <div className="relative z-10">
                                                 <div className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                                                    <IconComponent className="w-8 h-8 text-white" />
+                                                    <IconComponent className="w-8 h-8 text-foreground" />
                                                 </div>
 
                                                 <div className="flex items-center justify-between mb-3">

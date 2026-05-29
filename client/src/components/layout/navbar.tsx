@@ -182,7 +182,7 @@ export default function Navbar() {
                             toggleDropdown(item.name);
                           }
                         }}
-                        className="flex items-center text-foreground/90 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
+                        className="flex items-center text-foreground/90 hover:text-foreground transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
                         aria-expanded={openDropdown === item.name}
                         aria-haspopup="true"
                         data-testid={`${item.name.toLowerCase()}-dropdown`}
@@ -206,7 +206,7 @@ export default function Navbar() {
                                 href={child.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block px-4 py-2 text-sm text-muted-foreground hover:text-white hover:bg-foreground/10 transition-colors whitespace-nowrap focus:outline-none focus:bg-foreground/10"
+                                className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-foreground/10 transition-colors whitespace-nowrap focus:outline-none focus:bg-foreground/10"
                                 onClick={() => setTimeout(() => setOpenDropdown(null), 150)}
                                 role="menuitem"
                                 data-testid={`nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
@@ -217,7 +217,7 @@ export default function Navbar() {
                               <Link
                                 key={child.name}
                                 href={child.href}
-                                className="block px-4 py-2 text-sm text-muted-foreground hover:text-white hover:bg-foreground/10 transition-colors whitespace-nowrap focus:outline-none focus:bg-foreground/10"
+                                className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-foreground/10 transition-colors whitespace-nowrap focus:outline-none focus:bg-foreground/10"
                                 onClick={() => setOpenDropdown(null)}
                                 role="menuitem"
                                 data-testid={`nav-child-${child.name.toLowerCase().replace(/\s+/g, '-')}`}
@@ -234,7 +234,7 @@ export default function Navbar() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-foreground/90 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
+                      className="text-foreground/90 hover:text-foreground transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
                       data-testid={`nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {item.name}
@@ -242,7 +242,7 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="text-foreground/90 hover:text-white transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
+                      className="text-foreground/90 hover:text-foreground transition-colors whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 font-medium"
                       data-testid={`nav-link-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {item.name}

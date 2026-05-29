@@ -59,7 +59,7 @@ export default function InvestigationLegal() {
 function PolicySection({ title, children }: { title: string, children: React.ReactNode }) {
     return (
         <div className="p-8 rounded-2xl bg-white/[0.02] border border-foreground/5">
-            <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">{title}</h2>
             <div className="text-lg">
                 {children}
             </div>

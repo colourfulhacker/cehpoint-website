@@ -3,10 +3,16 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0" />
   <title>Cehpoint - Enterprise IT, AI & Cybersecurity Solutions</title>
   <meta name="description" content="Cehpoint delivers enterprise software, AI solutions, cybersecurity, and digital transformation across 100+ locations. Trusted IT partner for startups, enterprises, and government." />
   <meta name="theme-color" content="#7064F8" />
+
+  <!-- PWA / installable mobile app -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Cehpoint" />
   <meta name="google-site-verification" content="Fiu22UfNXKC2ADU9WoLDa0px5Sx6o-RXBa6iXsMR_kM" />
 
   <!-- Canonical (per-page SEO overrides via react-helmet-async) -->
@@ -47,9 +53,11 @@
     (function () {
       try {
         var stored = localStorage.getItem('cehpoint-theme');
-        var resolved = 'dark';
+        var resolved;
         if (stored === 'light') resolved = 'light';
-        else if (stored === 'system') {
+        else if (stored === 'dark') resolved = 'dark';
+        else {
+          // No explicit choice (or 'system'): follow the device preference.
           resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
         document.documentElement.classList.add(resolved);

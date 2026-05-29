@@ -69,7 +69,7 @@ export default function CityServicePage() {
         })();
 
     const heroSubtitle = isDefaultTrend
-        ? <span>Don't just run a business. <span className="text-white font-medium">Dominate the market.</span> <br /> We provide the technology Top Startups use.</span>
+        ? <span>Don't just run a business. <span className="text-foreground font-medium">Dominate the market.</span> <br /> We provide the technology Top Startups use.</span>
         : trendData.heroSubtitle;
 
     // Get Recommended Apps
@@ -111,7 +111,7 @@ export default function CityServicePage() {
     }
 
     return (
-        <div className="pt-36 min-h-screen bg-black text-white selection:bg-primary/30">
+        <div className="pt-36 min-h-screen bg-background text-foreground selection:bg-primary/30">
             <SEO
                 title={seoTitle}
                 description={trendData.metaDescription}
@@ -132,7 +132,7 @@ export default function CityServicePage() {
             <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
                 {/* Dynamic Background */}
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')] bg-cover bg-center opacity-20" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-black" />
+                <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/70 to-background" />
                 <div className="absolute inset-0 bg-grid-white/[0.03] bg-[size:60px_60px]" />
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
@@ -157,7 +157,7 @@ export default function CityServicePage() {
                             {trendData.marketTrends.map((trend, i) => (
                                 <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 border border-foreground/10 hover:border-primary/50 transition-colors cursor-default">
                                     <TrendingUp className="w-4 h-4 text-primary" />
-                                    <span className="text-sm font-medium text-muted-foreground">{trend.title}: <span className="text-white">{trend.stat}</span></span>
+                                    <span className="text-sm font-medium text-muted-foreground">{trend.title}: <span className="text-foreground">{trend.stat}</span></span>
                                 </div>
                             ))}
                         </div>
@@ -169,7 +169,7 @@ export default function CityServicePage() {
                                 locationName={cityData.name}
                                 title="Launch Your Startup"
                                 trigger={
-                                    <Button className="h-14 px-8 rounded-full text-lg font-bold bg-white text-black hover:bg-gray-100 transition-transform hover:scale-105 shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]">
+                                    <Button className="h-14 px-8 rounded-full text-lg font-bold bg-foreground text-background hover:bg-foreground/90 transition-transform hover:scale-105 shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]">
                                         <Rocket className="mr-2 w-5 h-5 text-primary" /> Launch Startup
                                     </Button>
                                 }
@@ -180,7 +180,7 @@ export default function CityServicePage() {
                                 locationName={cityData.name}
                                 title="Get Custom Quote"
                                 trigger={
-                                    <Button variant="outline" className="h-14 px-8 rounded-full text-lg font-medium border-foreground/20 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 text-white">
+                                    <Button variant="outline" className="h-14 px-8 rounded-full text-lg font-medium border-foreground/20 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 text-foreground">
                                         Get Custom Quote
                                     </Button>
                                 }
@@ -191,7 +191,7 @@ export default function CityServicePage() {
             </section>
 
             {/* --- RECOMMENDED APPS (The Core Value) --- */}
-            <section id="business-ideas" className="py-24 relative bg-black">
+            <section id="business-ideas" className="py-24 relative bg-background">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="text-center mb-16">
                         <span className="text-primary font-bold tracking-widest uppercase text-sm">Hyper-Local Opportunities</span>
@@ -215,23 +215,23 @@ export default function CityServicePage() {
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 <div className="relative h-full glass-intense border border-foreground/10 rounded-3xl p-6 flex flex-col hover:-translate-y-2 transition-transform duration-300">
-                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-black border border-foreground/10 flex items-center justify-center mb-6 shadow-lg group-hover:shadow-primary/25 transition-shadow">
+                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-muted to-secondary border border-border flex items-center justify-center mb-6 shadow-lg group-hover:shadow-primary/25 transition-shadow">
                                         {app.icon}
                                     </div>
 
-                                    <h3 className="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors">{app.title}</h3>
+                                    <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">{app.title}</h3>
                                     <p className="text-sm text-muted-foreground mb-6 flex-grow">{app.whyThisApp}</p>
 
                                     <div className="mt-auto pt-6 border-t border-foreground/5">
                                         <div className="flex items-center justify-between mb-4">
                                             <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">READY TO LAUNCH</span>
-                                            <span className="text-lg font-bold text-white">{cityData.currency === 'INR' ? '₹15k' : '$200'}<span className="text-xs font-normal text-muted-foreground">/one-time</span></span>
+                                            <span className="text-lg font-bold text-foreground">{cityData.currency === 'INR' ? '₹15k' : '$200'}<span className="text-xs font-normal text-muted-foreground">/one-time</span></span>
                                         </div>
                                         <WhatsAppInquiryDialog
                                             appName={app.title}
                                             locationName={cityData.name}
                                             trigger={
-                                                <Button className="w-full bg-zinc-100 text-zinc-900 hover:bg-zinc-200 font-bold rounded-xl">
+                                                <Button className="w-full bg-foreground text-background hover:bg-foreground/90 font-bold rounded-xl">
                                                     View Demo
                                                 </Button>
                                             }
@@ -248,11 +248,11 @@ export default function CityServicePage() {
             {/* --- SEGMENTED OPPORTUNITIES (NEW) --- */}
             {
                 trendData.segments && (
-                    <section className="py-24 bg-black relative border-t border-foreground/5">
+                    <section className="py-24 bg-secondary/20 relative border-t border-border">
                         <div className="max-w-7xl mx-auto px-4">
                             <div className="text-center mb-16">
                                 <span className="text-primary font-bold tracking-widest uppercase text-sm">Tailored For You</span>
-                                <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-white">
+                                <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-foreground">
                                     Unlock <span className="text-primary">Potential</span>
                                 </h2>
                                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
@@ -276,7 +276,7 @@ export default function CityServicePage() {
                                 {trendData.segments.map((segment, idx) => (
                                     <TabsContent key={idx} value={segment.audience} className="mt-0 focus-visible:outline-none">
                                         <div className="text-center mb-12">
-                                            <h3 className="text-2xl font-bold text-white mb-2">{segment.title}</h3>
+                                            <h3 className="text-2xl font-bold text-foreground mb-2">{segment.title}</h3>
                                             <p className="text-muted-foreground max-w-lg mx-auto">{segment.description}</p>
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -287,10 +287,10 @@ export default function CityServicePage() {
                                                         <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
                                                             <Icon className="w-32 h-32 text-primary rotate-12" />
                                                         </div>
-                                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-black border border-foreground/10 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform shadow-lg">
+                                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-muted to-secondary border border-border flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform shadow-lg">
                                                             <Icon className="w-7 h-7" />
                                                         </div>
-                                                        <h4 className="text-xl font-bold text-white mb-3 relative z-10">{idea.title}</h4>
+                                                        <h4 className="text-xl font-bold text-foreground mb-3 relative z-10">{idea.title}</h4>
                                                         <p className="text-muted-foreground mb-6 text-sm leading-relaxed relative z-10 min-h-[60px]">{idea.description}</p>
                                                         <div className="relative z-10 pt-4 border-t border-foreground/5">
                                                             <WhatsAppInquiryDialog
@@ -298,7 +298,7 @@ export default function CityServicePage() {
                                                                 locationName={cityData.name}
                                                                 title={`Connect for ${idea.title}`}
                                                                 trigger={
-                                                                    <Button variant="ghost" className="text-white hover:text-primary hover:bg-foreground/5 font-bold p-0 h-auto w-full justify-between group-hover:px-2 transition-all">
+                                                                    <Button variant="ghost" className="text-foreground hover:text-primary hover:bg-foreground/5 font-bold p-0 h-auto w-full justify-between group-hover:px-2 transition-all">
                                                                         Get Blueprint <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                                                     </Button>
                                                                 }
@@ -317,7 +317,7 @@ export default function CityServicePage() {
             }
 
             {/* --- PRICING & ROI --- */}
-            <section className="py-24 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
+            <section className="py-24 bg-secondary/20 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-purple-600/10 blur-[100px]" />
 
                 <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -338,7 +338,7 @@ export default function CityServicePage() {
                                         <DollarSign className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg text-white">Lowest Cost of Ownership</h4>
+                                        <h4 className="font-bold text-lg text-foreground">Lowest Cost of Ownership</h4>
                                         <p className="text-sm text-muted-foreground">One-time payment of {cityData.currency === 'INR' ? '₹15,000' : '$200'}. No monthly royalties.</p>
                                     </div>
                                 </div>
@@ -347,7 +347,7 @@ export default function CityServicePage() {
                                         <Rocket className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg text-white">Live in 72 Hours</h4>
+                                        <h4 className="font-bold text-lg text-foreground">Live in 72 Hours</h4>
                                         <p className="text-sm text-muted-foreground">Pre-built, tested codebases ready to deploy with your brand.</p>
                                     </div>
                                 </div>
@@ -360,31 +360,31 @@ export default function CityServicePage() {
                             <div className="relative glass-intense rounded-3xl p-8 border border-foreground/20">
                                 <div className="text-center mb-8">
                                     <p className="text-sm text-muted-foreground uppercase tracking-widest">Investment Breakdown</p>
-                                    <div className="text-5xl font-bold text-white mt-2">{cityData.currency === 'INR' ? '₹15,000' : '$200'}</div>
+                                    <div className="text-5xl font-bold text-foreground mt-2">{cityData.currency === 'INR' ? '₹15,000' : '$200'}</div>
                                     <p className="text-green-400 text-sm mt-1">Limited Time Offer in {cityData.name}</p>
                                 </div>
 
                                 <div className="space-y-4 mb-8">
                                     <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
                                         <span className="text-muted-foreground">Android App (PWA)</span>
-                                        <span className="text-white font-bold">Included</span>
+                                        <span className="text-foreground font-bold">Included</span>
                                     </div>
                                     <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
                                         <span className="text-muted-foreground">Admin Dashboard</span>
-                                        <span className="text-white font-bold">Included</span>
+                                        <span className="text-foreground font-bold">Included</span>
                                     </div>
                                     <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
                                         <span className="text-muted-foreground">Server Setup</span>
-                                        <span className="text-white font-bold">Included</span>
+                                        <span className="text-foreground font-bold">Included</span>
                                     </div>
                                     <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
                                         <span className="text-muted-foreground">Play Store Upload Guide</span>
-                                        <span className="text-white font-bold">Included</span>
+                                        <span className="text-foreground font-bold">Included</span>
                                     </div>
                                 </div>
 
                                 <Link href="/services/business-app-catalog">
-                                    <Button className="w-full h-12 rounded-xl text-lg font-bold bg-zinc-100 text-zinc-900 hover:bg-zinc-200">
+                                    <Button className="w-full h-12 rounded-xl text-lg font-bold bg-foreground text-background hover:bg-foreground/90">
                                         Browse All 50+ Apps
                                     </Button>
                                 </Link>
@@ -395,11 +395,11 @@ export default function CityServicePage() {
             </section>
 
             {/* --- ENTERPRISE SERVICES SECTION (NEW) --- */}
-            <section className="py-24 bg-black relative">
+            <section className="py-24 bg-background relative">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="text-center mb-16">
                         <span className="text-purple-500 font-bold tracking-widest uppercase text-sm">Beyond Apps</span>
-                        <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-white">
+                        <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-foreground">
                             Complete IT Solutions in {cityData.name}
                         </h2>
                         <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8">
@@ -425,7 +425,7 @@ export default function CityServicePage() {
                             return (
                                 <div key={idx} className="p-8 rounded-3xl bg-foreground/5 border border-foreground/10 hover:border-primary/50 transition-colors group h-full flex flex-col">
                                     <Icon className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform" />
-                                    <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                                    <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
                                     <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
                                     <WhatsAppInquiryDialog
                                         appName={service.title}
@@ -443,7 +443,7 @@ export default function CityServicePage() {
                     </div>
                 </div>
                 {/* --- PROCESS AUTOMATION SECTION --- */}
-                <section className="py-24 bg-gradient-to-b from-black to-gray-900 border-t border-foreground/5">
+                <section className="py-24 bg-secondary/20 border-t border-border">
                     <div className="max-w-7xl mx-auto px-4">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             <div>
@@ -451,7 +451,7 @@ export default function CityServicePage() {
                                     <Bot className="w-4 h-4 text-purple-400 mr-2" />
                                     <span className="text-sm font-bold text-purple-400 tracking-wide uppercase">Business Process Automation</span>
                                 </div>
-                                <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 text-white leading-tight">
+                                <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 text-foreground leading-tight">
                                     Automate Your Boring Work. <br />
                                     <span className="text-muted-foreground">Scale Your Business.</span>
                                 </h2>
@@ -494,7 +494,7 @@ export default function CityServicePage() {
                                                 <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400"><DollarSign className="w-5 h-5" /></div>
                                                 <div>
                                                     <p className="text-sm text-muted-foreground">Payroll Processing</p>
-                                                    <p className="font-bold text-white">Automated</p>
+                                                    <p className="font-bold text-foreground">Automated</p>
                                                 </div>
                                             </div>
                                             <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">Saved 40hrs</span>
@@ -504,7 +504,7 @@ export default function CityServicePage() {
                                                 <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400"><Bot className="w-5 h-5" /></div>
                                                 <div>
                                                     <p className="text-sm text-muted-foreground">Customer Queries</p>
-                                                    <p className="font-bold text-white">AI Handled</p>
+                                                    <p className="font-bold text-foreground">AI Handled</p>
                                                 </div>
                                             </div>
                                             <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">24/7 Active</span>
@@ -514,7 +514,7 @@ export default function CityServicePage() {
                                                 <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400"><TrendingUp className="w-5 h-5" /></div>
                                                 <div>
                                                     <p className="text-sm text-muted-foreground">Sales Reporting</p>
-                                                    <p className="font-bold text-white">Real-time sync</p>
+                                                    <p className="font-bold text-foreground">Real-time sync</p>
                                                 </div>
                                             </div>
                                             <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">Zero Errors</span>
@@ -528,7 +528,7 @@ export default function CityServicePage() {
             </section>
 
             {/* --- TRUST SIGNALS --- */}
-            <section className="py-24 bg-black border-t border-foreground/5">
+            <section className="py-24 bg-background border-t border-border">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <h2 className="text-3xl font-display font-bold mb-12">Trusted by {cityData.name}'s Best</h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
@@ -547,7 +547,7 @@ export default function CityServicePage() {
                     <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 text-white">
                         {cityData.name} is Waiting.
                     </h2>
-                    <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                    <p className="text-xl text-foreground/90 mb-10 max-w-2xl mx-auto">
                         Your customers are searching for your service right now. Be the first to launch {cityData.name}'s next big app.
                     </p>
                     <WhatsAppInquiryDialog

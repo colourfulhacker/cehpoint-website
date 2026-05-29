@@ -68,7 +68,7 @@ function ClientSection({ icon: Icon, title, desc, features }: { icon: any, title
         <div className="flex flex-col md:flex-row gap-8 p-8 rounded-2xl glass border border-foreground/5 hover:bg-white/[0.02] transition-all">
             <div className="shrink-0">
                 <div className="p-4 bg-foreground/5 rounded-2xl">
-                    <Icon className="w-10 h-10 text-white/70" />
+                    <Icon className="w-10 h-10 text-foreground/70" />
                 </div>
             </div>
             <div className="flex-1">
@@ -76,7 +76,7 @@ function ClientSection({ icon: Icon, title, desc, features }: { icon: any, title
                 <p className="text-muted-foreground mb-6 text-lg">{desc}</p>
                 <div className="flex flex-wrap gap-3">
                     {features.map((f, i) => (
-                        <span key={i} className="px-3 py-1 rounded-full bg-foreground/5 border border-foreground/10 text-sm text-white/70">
+                        <span key={i} className="px-3 py-1 rounded-full bg-foreground/5 border border-foreground/10 text-sm text-foreground/70">
                             {f}
                         </span>
                     ))}

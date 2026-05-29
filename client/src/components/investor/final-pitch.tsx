@@ -187,17 +187,17 @@ Thank you!`;
                     <div className="relative p-1 rounded-[2.5rem] bg-gradient-to-br from-white/20 to-white/5 overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-primary via-purple-600 to-pink-600 opacity-20 animate-pulse" />
 
-                        <div className="bg-[#0a0a0f] rounded-[2.4rem] p-8 sm:p-12 relative overflow-hidden">
+                        <div className="bg-card rounded-[2.4rem] p-8 sm:p-12 relative overflow-hidden">
                             {/* Card Texture/Shine */}
                             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-b from-white/5 to-transparent blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
                             <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-10 relative z-10">
                                 <div>
                                     <div className="flex items-center gap-3 mb-2">
-                                        <h3 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-wide">The Cehpoint Model</h3>
+                                        <h3 className="text-3xl sm:text-4xl font-display font-bold text-foreground tracking-wide">The Cehpoint Model</h3>
                                         <Star className="w-6 h-6 text-yellow-400 fill-yellow-400 animate-pulse" />
                                     </div>
-                                    <p className="text-primary-foreground/60 font-medium text-lg">Exclusive Offer for <span className="text-white">{idea.title}</span></p>
+                                    <p className="text-muted-foreground font-medium text-lg">Exclusive Offer for <span className="text-foreground">{idea.title}</span></p>
                                 </div>
                                 <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-2 rounded-full text-sm font-bold shadow-lg shadow-yellow-500/20 uppercase tracking-wider flex items-center gap-2">
                                     <Crown className="w-4 h-4" /> Recommended
@@ -210,7 +210,7 @@ Thank you!`;
                                         <Crown className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-xl text-white mb-1">100% Equity</h4>
+                                        <h4 className="font-bold text-xl text-foreground mb-1">100% Equity</h4>
                                         <p className="text-sm text-muted-foreground leading-relaxed">You own the code, the IP, and the brand. No dilution, ever.</p>
                                     </div>
                                 </div>
@@ -219,7 +219,7 @@ Thank you!`;
                                         <ShieldCheck className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-xl text-white mb-1">Zero Tech Risk</h4>
+                                        <h4 className="font-bold text-xl text-foreground mb-1">Zero Tech Risk</h4>
                                         <p className="text-sm text-muted-foreground leading-relaxed">We build, launch, and maintain it. You focus on growth.</p>
                                     </div>
                                 </div>
@@ -230,7 +230,7 @@ Thank you!`;
                                     <div>
                                         <p className="text-sm text-muted-foreground mb-2 uppercase tracking-wider font-medium">Total Investment Required</p>
                                         <div className="flex items-baseline gap-2">
-                                            <p className="text-5xl sm:text-6xl font-bold text-white tracking-tight">{idea.budget}</p>
+                                            <p className="text-5xl sm:text-6xl font-bold text-foreground tracking-tight">{idea.budget}</p>
                                             <span className="text-sm text-muted-foreground font-medium">One-time fee</span>
                                         </div>
                                     </div>
@@ -240,7 +240,7 @@ Thank you!`;
                                     <Button
                                         onClick={handleDownload}
                                         variant="outline"
-                                        className="flex-1 h-auto py-6 text-lg rounded-xl border-foreground/20 text-white hover:bg-foreground/10 hover:text-white transition-all"
+                                        className="flex-1 h-auto py-6 text-lg rounded-xl border-foreground/20 text-foreground hover:bg-foreground/10 hover:text-foreground transition-all"
                                     >
                                         <Download className="mr-2 w-5 h-5" /> Download Plan
                                     </Button>

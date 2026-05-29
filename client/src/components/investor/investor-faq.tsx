@@ -73,7 +73,7 @@ export default function InvestorFAQ() {
             </motion.div>
 
             <div className="text-center bg-gradient-to-br from-primary/20 to-purple-900/20 p-8 rounded-3xl border border-primary/20 backdrop-blur-sm">
-                <h3 className="text-2xl font-bold mb-4 text-white">Ready to proceed?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-foreground">Ready to proceed?</h3>
                 <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
                     Connect with our investment team directly on WhatsApp to finalize the deal and start development.
                 </p>

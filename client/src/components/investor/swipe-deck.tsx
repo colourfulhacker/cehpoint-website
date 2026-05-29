@@ -195,7 +195,7 @@ export default function SwipeDeck({ onMatch }: SwipeDeckProps) {
                     <Button
                         size="icon"
                         variant="outline"
-                        className="w-14 h-14 rounded-full border-red-500/20 bg-red-500/5 text-red-500 hover:bg-red-500 hover:text-white hover:border-red-500 shadow-lg hover:scale-110 transition-all duration-300"
+                        className="w-14 h-14 rounded-full border-red-500/20 bg-red-500/5 text-red-500 hover:bg-red-500 hover:text-foreground hover:border-red-500 shadow-lg hover:scale-110 transition-all duration-300"
                         onClick={() => handleSwipe("left")}
                     >
                         <X className="w-6 h-6" />
@@ -215,7 +215,7 @@ export default function SwipeDeck({ onMatch }: SwipeDeckProps) {
                     <Button
                         size="icon"
                         variant="outline"
-                        className="w-16 h-16 rounded-full border-green-500/20 bg-green-500/5 text-green-500 hover:bg-green-500 hover:text-white hover:border-green-500 shadow-lg hover:scale-110 transition-all duration-300 group"
+                        className="w-16 h-16 rounded-full border-green-500/20 bg-green-500/5 text-green-500 hover:bg-green-500 hover:text-foreground hover:border-green-500 shadow-lg hover:scale-110 transition-all duration-300 group"
                         onClick={() => handleSwipe("right")}
                     >
                         <Heart className="w-8 h-8 group-hover:scale-125 transition-transform duration-300 fill-current" />

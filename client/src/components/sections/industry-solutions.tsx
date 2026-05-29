@@ -183,6 +183,7 @@ const industries = [
 // --- Components ---
 
 function MasterpieceCard({ item }: { item: typeof industries[0] }) {
+  const { t } = useTranslation();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -196,7 +197,7 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
     <Link
       href={item.href}
       onMouseMove={handleMouseMove}
-      className={`group relative block rounded-3xl border border-foreground/5 bg-[#0a0a0a] overflow-hidden transition-all duration-500 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${item.span}`}
+      className={`group relative block rounded-3xl border border-foreground/5 bg-card overflow-hidden transition-all duration-500 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${item.span}`}
       aria-label={`${item.title} — view service`}
     >
       {/* 
@@ -223,7 +224,7 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
       <div className="relative h-full p-8 flex flex-col justify-between z-10">
         {/* Icon Header */}
         <div className="flex justify-between items-start mb-6">
-          <div className="p-3 rounded-2xl bg-foreground/5 border border-foreground/10 text-white group-hover:text-primary group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-500">
+          <div className="p-3 rounded-2xl bg-foreground/5 border border-foreground/10 text-foreground group-hover:text-primary group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-500">
             <item.icon className="h-6 w-6" />
           </div>
           {/* Subtle "Active" Indicator - Accent Color (Orange) */}
@@ -232,7 +233,7 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
 
         {/* Content */}
         <div>
-          <h3 className="text-xl font-display font-medium text-white mb-3 group-hover:text-primary-foreground transition-colors duration-300">
+          <h3 className="text-xl font-display font-medium text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
             {item.title}
           </h3>
           <p className="text-sm text-muted-foreground font-light leading-relaxed group-hover:text-foreground/90 transition-colors duration-300">
@@ -245,11 +246,11 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
           {/* Default State: Metrics */}
           <div className="flex justify-between items-center group-hover:opacity-0 transition-opacity duration-300 absolute w-[85%]">
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Starts From</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">{t("pages.industrySolutions.labels.startsFrom")}</p>
               <p className="text-sm font-medium text-muted-foreground">{item.cost}</p>
             </div>
             <div className="text-right">
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Timeline</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">{t("pages.industrySolutions.labels.timeline")}</p>
               <p className="text-sm font-medium text-muted-foreground">{item.time}</p>
             </div>
           </div>
@@ -274,7 +275,7 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
 export default function IndustrySolutions() {
   const { t } = useTranslation();
   return (
-    <section className="py-32 bg-black relative overflow-hidden" data-testid="industry-solutions-masterpiece">
+    <section className="py-32 bg-background relative overflow-hidden" data-testid="industry-solutions-masterpiece">
       {/* 
           MASTERPIECE BACKGROUND 
           - Deep Black Base
@@ -290,7 +291,7 @@ export default function IndustrySolutions() {
               <Globe className="w-5 h-5 text-primary" />
               <span>{t("pages.industrySolutions.eyebrow")}</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-display font-medium text-white tracking-tight leading-[1.1]">
+            <h2 className="text-5xl md:text-7xl font-display font-medium text-foreground tracking-tight leading-[1.1]">
               {t("pages.industrySolutions.title")}
             </h2>
           </div>
@@ -301,9 +302,10 @@ export default function IndustrySolutions() {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[minmax(320px,auto)]">
-          {industries.map((item, i) => (
-            <MasterpieceCard key={i} item={item} />
-          ))}
+          {industries.map((item, i) => {
+            const c = (t("pages.industrySolutions.cards", { returnObjects: true }) as Array<Partial<typeof industries[0]>>)[i] || {};
+            return <MasterpieceCard key={i} item={{ ...item, ...c }} />;
+          })}
         </div>
       </div>
     </section>

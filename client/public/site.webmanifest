@@ -1,13 +1,16 @@
 {
+  "id": "/",
   "name": "Cehpoint - Enterprise IT, AI & Cybersecurity Solutions",
   "short_name": "Cehpoint",
   "description": "Enterprise software, AI solutions, cybersecurity, and digital transformation across 100+ locations.",
-  "start_url": "/",
+  "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "categories": ["business", "productivity", "technology"],
   "background_color": "#0a0815",
   "theme_color": "#7064F8",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "lang": "en-IN",
   "icons": [
     {

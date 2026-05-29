@@ -207,7 +207,7 @@ export default function IntakeForm() {
                                 <input
                                     type="checkbox"
                                     id="nda"
-                                    className="w-4 h-4 rounded border-gray-600 bg-transparent"
+                                    className="w-4 h-4 rounded border-border bg-transparent"
                                     {...form.register("ndaConsent")}
                                 />
                                 <label htmlFor="nda" className="text-sm text-muted-foreground cursor-pointer select-none">

@@ -58,7 +58,7 @@ export default function ClientTestimonials() {
                         <div className="flex text-yellow-500">
                             {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4 fill-current" />)}
                         </div>
-                        <span className="text-sm font-medium">Consistently rated 4.9/5 by our clients worldwide</span>
+                        <span className="text-sm font-medium">{t("pages.sections.testimonialsRating")}</span>
                     </div>
                 </div>
             </div>

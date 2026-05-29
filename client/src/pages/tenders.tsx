@@ -483,7 +483,7 @@ ${formData.company}`;
                 ]}
             />
 
-            <div className="min-h-screen bg-background text-slate-100 pt-32 pb-20 relative overflow-hidden">
+            <div className="min-h-screen bg-background text-foreground pt-32 pb-20 relative overflow-hidden">
                 {/* Glowing Abstract Backdrops */}
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
                 <div className="absolute top-40 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
@@ -498,7 +498,7 @@ ${formData.company}`;
                                     <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
                                     {t("pages.tenders.eyebrow")}
                                 </div>
-                                <h1 className="text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-wider flex items-center gap-3">
+                                <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground uppercase tracking-wider flex items-center gap-3">
                                     {t("pages.tenders.title")} {t("pages.tenders.titleAccent")}
                                 </h1>
                                 <p className="text-muted-foreground mt-3 text-lg font-light max-w-3xl">
@@ -507,7 +507,7 @@ ${formData.company}`;
                             </div>
                             <div className="bg-card/60 border border-border p-4 rounded-xl text-left md:text-right glass min-w-[240px]">
                                 <div className="text-xs text-muted-foreground uppercase tracking-widest font-mono">Authority Division</div>
-                                <div className="font-bold text-lg text-white mt-1">Cehpoint Technical Board</div>
+                                <div className="font-bold text-lg text-foreground mt-1">Cehpoint Technical Board</div>
                                 <div className="text-xs text-muted-foreground mt-1 font-mono">Ref: CEH-NIT-OPS-2026</div>
                             </div>
                         </div>
@@ -521,7 +521,7 @@ ${formData.company}`;
                                     <stat.icon className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <div className="text-2xl font-bold text-white font-mono">{stat.value}</div>
+                                    <div className="text-2xl font-bold text-foreground font-mono">{stat.value}</div>
                                     <div className="text-xs text-muted-foreground font-medium">{stat.label}</div>
                                 </div>
                             </div>
@@ -532,7 +532,7 @@ ${formData.company}`;
                     <div className="bg-card/40 border border-border/80 p-6 rounded-2xl mb-10 glass-intense">
                         <div className="flex flex-col gap-6">
                             <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-                                <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                                <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
                                     <Filter className="w-5 h-5 text-primary" />
                                     Contract Listings & Searches
                                 </h2>
@@ -547,7 +547,7 @@ ${formData.company}`;
                                     <Search className="absolute left-3 top-3.5 w-4 h-4 text-muted-foreground" />
                                     <Input
                                         placeholder="Search by ID, Title, Keyword..."
-                                        className="pl-10 bg-background border-border text-white placeholder-slate-400 focus:border-primary py-6"
+                                        className="pl-10 bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary py-6"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                     />
@@ -590,7 +590,7 @@ ${formData.company}`;
                                     <Button
                                         variant="outline"
                                         size="sm"
-                                        className="text-muted-foreground hover:text-white border-border hover:bg-slate-800/50"
+                                        className="text-muted-foreground hover:text-foreground border-border hover:bg-secondary/50"
                                         onClick={() => {
                                             setSearchQuery("");
                                             setSelectedCategory("All");
@@ -624,7 +624,7 @@ ${formData.company}`;
                                                         {tender.id}
                                                         {copiedId === tender.id ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5 text-muted-foreground" />}
                                                     </div>
-                                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-800 text-muted-foreground border border-slate-700">
+                                                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary text-muted-foreground border border-border">
                                                         {tender.category}
                                                     </span>
                                                     <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold uppercase border ${
@@ -639,7 +639,7 @@ ${formData.company}`;
                                                 </div>
 
                                                 <div>
-                                                    <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{tender.title}</h3>
+                                                    <h3 className="text-2xl font-bold text-foreground mb-2 tracking-tight">{tender.title}</h3>
                                                     <p className="text-muted-foreground leading-relaxed max-w-4xl text-sm md:text-base">
                                                         {tender.description}
                                                     </p>
@@ -648,11 +648,11 @@ ${formData.company}`;
                                                 <div className="flex flex-wrap gap-4 text-xs md:text-sm text-muted-foreground pt-2">
                                                     <div className="flex items-center gap-2 bg-background border border-border/80 px-3 py-1.5 rounded-lg">
                                                         <Briefcase className="w-4 h-4 text-primary" />
-                                                        <span>Eligibility: <strong className="text-white font-medium">{tender.eligibility}</strong></span>
+                                                        <span>Eligibility: <strong className="text-foreground font-medium">{tender.eligibility}</strong></span>
                                                     </div>
                                                     <div className="flex items-center gap-2 bg-background border border-border/80 px-3 py-1.5 rounded-lg">
                                                         <Calendar className="w-4 h-4 text-primary" />
-                                                        <span>Deadline: <strong className="text-white font-medium">{tender.deadline}</strong></span>
+                                                        <span>Deadline: <strong className="text-foreground font-medium">{tender.deadline}</strong></span>
                                                     </div>
                                                     <div className="flex items-center gap-2 bg-background border border-border/80 px-3 py-1.5 rounded-lg">
                                                         <Calendar className="w-4 h-4 text-muted-foreground" />
@@ -665,7 +665,7 @@ ${formData.company}`;
                                             <div className="flex flex-col sm:flex-row lg:flex-col gap-5 items-start lg:items-end lg:min-w-[240px] border-t lg:border-t-0 lg:border-l border-border pt-5 lg:pt-0 lg:pl-8">
                                                 <div className="text-left lg:text-right w-full">
                                                     <div className="text-xs text-muted-foreground uppercase tracking-widest font-mono">Estimated Tender Budget</div>
-                                                    <div className="text-3xl font-bold text-white font-mono mt-1">{tender.budget}</div>
+                                                    <div className="text-3xl font-bold text-foreground font-mono mt-1">{tender.budget}</div>
                                                 </div>
 
                                                 <div className="flex flex-col sm:flex-row lg:flex-col gap-2 w-full">
@@ -673,16 +673,16 @@ ${formData.company}`;
                                                         <DialogTrigger asChild>
                                                             <Button
                                                                 variant="outline"
-                                                                className="w-full border-border hover:border-slate-700 text-muted-foreground hover:text-white font-medium hover:bg-slate-800/40"
+                                                                className="w-full border-border hover:border-border text-muted-foreground hover:text-foreground font-medium hover:bg-secondary/40"
                                                                 onClick={() => setViewingTenderId(tender.id)}
                                                             >
                                                                 <Eye className="w-4 h-4 mr-2 text-primary" />
                                                                 View RFP Details
                                                             </Button>
                                                         </DialogTrigger>
-                                                        <DialogContent className="bg-card border-border text-slate-100 sm:max-w-xl glass-intense max-h-[90vh] overflow-y-auto">
+                                                        <DialogContent className="bg-card border-border text-foreground sm:max-w-xl glass-intense max-h-[90vh] overflow-y-auto">
                                                             <DialogHeader>
-                                                                <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
+                                                                <DialogTitle className="text-2xl font-bold text-foreground flex items-center gap-2">
                                                                     <FileText className="w-6 h-6 text-primary" />
                                                                     Request for Proposal (RFP) Details
                                                                 </DialogTitle>
@@ -694,7 +694,7 @@ ${formData.company}`;
                                                             <div className="space-y-6 py-4">
                                                                 {/* Summary description */}
                                                                 <div>
-                                                                    <h4 className="font-bold text-white text-sm uppercase tracking-wider mb-1.5 border-b border-slate-850 pb-1">Project Objective</h4>
+                                                                    <h4 className="font-bold text-foreground text-sm uppercase tracking-wider mb-1.5 border-b border-border pb-1">Project Objective</h4>
                                                                     <p className="text-slate-350 text-sm leading-relaxed">{tender.description}</p>
                                                                 </div>
 
@@ -702,7 +702,7 @@ ${formData.company}`;
                                                                 {TENDER_DETAILS[tender.id] && (
                                                                     <>
                                                                         <div>
-                                                                            <h4 className="font-bold text-white text-sm uppercase tracking-wider mb-1.5 border-b border-slate-850 pb-1">Scope of Work</h4>
+                                                                            <h4 className="font-bold text-foreground text-sm uppercase tracking-wider mb-1.5 border-b border-border pb-1">Scope of Work</h4>
                                                                             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-xs md:text-sm">
                                                                                 {TENDER_DETAILS[tender.id].scope.map((item, idx) => (
                                                                                     <li key={idx}>{item}</li>
@@ -711,7 +711,7 @@ ${formData.company}`;
                                                                         </div>
 
                                                                         <div>
-                                                                            <h4 className="font-bold text-white text-sm uppercase tracking-wider mb-1.5 border-b border-slate-850 pb-1">Technical Stack Requirements</h4>
+                                                                            <h4 className="font-bold text-foreground text-sm uppercase tracking-wider mb-1.5 border-b border-border pb-1">Technical Stack Requirements</h4>
                                                                             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-xs md:text-sm">
                                                                                 {TENDER_DETAILS[tender.id].technical.map((item, idx) => (
                                                                                     <li key={idx}>{item}</li>
@@ -720,7 +720,7 @@ ${formData.company}`;
                                                                         </div>
 
                                                                         <div>
-                                                                            <h4 className="font-bold text-white text-sm uppercase tracking-wider mb-1.5 border-b border-slate-850 pb-1">Payment Milestones</h4>
+                                                                            <h4 className="font-bold text-foreground text-sm uppercase tracking-wider mb-1.5 border-b border-border pb-1">Payment Milestones</h4>
                                                                             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-xs md:text-sm">
                                                                                 {TENDER_DETAILS[tender.id].milestones.map((item, idx) => (
                                                                                     <li key={idx}>{item}</li>
@@ -732,7 +732,7 @@ ${formData.company}`;
 
                                                                 {/* Action Section inside RFP viewer */}
                                                                 <div className="bg-background/80 border border-border p-4 rounded-xl space-y-3">
-                                                                    <h5 className="font-bold text-white text-sm flex items-center gap-1.5">
+                                                                    <h5 className="font-bold text-foreground text-sm flex items-center gap-1.5">
                                                                         <Lock className="w-4 h-4 text-primary" />
                                                                         Procurement Policy Inquiry
                                                                     </h5>
@@ -742,7 +742,7 @@ ${formData.company}`;
                                                                     <div className="flex flex-col sm:flex-row gap-2 pt-1.5">
                                                                         <Button 
                                                                             variant="outline" 
-                                                                            className="flex-1 border-border text-xs text-muted-foreground hover:text-white"
+                                                                            className="flex-1 border-border text-xs text-muted-foreground hover:text-foreground"
                                                                             onClick={() => handleRequestRFPDetails(tender.id, tender.docName)}
                                                                         >
                                                                             <Mail className="w-3.5 h-3.5 mr-1.5 text-primary" />
@@ -750,7 +750,7 @@ ${formData.company}`;
                                                                         </Button>
                                                                         <Button 
                                                                             variant="outline" 
-                                                                            className="flex-1 border-border text-xs text-muted-foreground hover:text-white"
+                                                                            className="flex-1 border-border text-xs text-muted-foreground hover:text-foreground"
                                                                             onClick={() => handleMailToRequest(
                                                                                 `Pre-Bid Clarification Request: ${tender.id}`,
                                                                                 `Dear Cehpoint Procurement,\n\nWe have a clarification query regarding Tender ID: ${tender.id}.\n\nQuery:\n- [Write your query here]\n\nRegards,\n[Name]`,
@@ -765,7 +765,7 @@ ${formData.company}`;
 
                                                                 {tender.status === 'Active' && (
                                                                     <Button
-                                                                        className="w-full btn-primary text-white font-bold py-5"
+                                                                        className="w-full btn-primary text-foreground font-bold py-5"
                                                                         onClick={() => {
                                                                             setViewingTenderId(null);
                                                                             // Trigger apply modal
@@ -789,15 +789,15 @@ ${formData.company}`;
                                                             <DialogTrigger asChild>
                                                                 <Button
                                                                     id={`apply-trigger-${tender.id}`}
-                                                                    className="w-full btn-primary text-white font-bold py-5 hover-lift"
+                                                                    className="w-full btn-primary text-foreground font-bold py-5 hover-lift"
                                                                     onClick={() => handleApplyClick(tender.id)}
                                                                 >
                                                                     Apply for Tender
                                                                 </Button>
                                                             </DialogTrigger>
-                                                            <DialogContent className="bg-card border-border text-slate-100 sm:max-w-xl glass-intense max-h-[90vh] overflow-y-auto">
+                                                            <DialogContent className="bg-card border-border text-foreground sm:max-w-xl glass-intense max-h-[90vh] overflow-y-auto">
                                                                 <DialogHeader>
-                                                                    <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
+                                                                    <DialogTitle className="text-2xl font-bold text-foreground flex items-center gap-2">
                                                                         <Shield className="w-6 h-6 text-primary" />
                                                                         Bid Proposal Submission
                                                                     </DialogTitle>
@@ -812,7 +812,7 @@ ${formData.company}`;
                                                                     <div className="bg-background/80 border border-border/80 p-4 rounded-xl flex items-center justify-between">
                                                                         <div>
                                                                             <div className="text-xs text-muted-foreground font-mono">Applying For</div>
-                                                                            <div className="text-sm font-bold text-white mt-0.5">{tender.title}</div>
+                                                                            <div className="text-sm font-bold text-foreground mt-0.5">{tender.title}</div>
                                                                         </div>
                                                                         <div className="text-right">
                                                                             <div className="text-xs text-muted-foreground font-mono">Reference</div>
@@ -836,7 +836,7 @@ ${formData.company}`;
                                                                                 autoComplete="name"
                                                                                 required
                                                                                 placeholder="John Doe"
-                                                                                className="bg-background border-border focus:border-primary text-white py-5 text-base"
+                                                                                className="bg-background border-border focus:border-primary text-foreground py-5 text-base"
                                                                                 value={formData.name}
                                                                                 onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                                                                             />
@@ -848,7 +848,7 @@ ${formData.company}`;
                                                                                 autoComplete="organization"
                                                                                 required
                                                                                 placeholder="Apex CyberCorp Ltd"
-                                                                                className="bg-background border-border focus:border-primary text-white py-5 text-base"
+                                                                                className="bg-background border-border focus:border-primary text-foreground py-5 text-base"
                                                                                 value={formData.company}
                                                                                 onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
                                                                             />
@@ -864,7 +864,7 @@ ${formData.company}`;
                                                                                 autoComplete="email"
                                                                                 required
                                                                                 placeholder="contracts@agency.com"
-                                                                                className="bg-background border-border focus:border-primary text-white py-5 text-base"
+                                                                                className="bg-background border-border focus:border-primary text-foreground py-5 text-base"
                                                                                 value={formData.email}
                                                                                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                                                                             />
@@ -877,7 +877,7 @@ ${formData.company}`;
                                                                                 autoComplete="tel"
                                                                                 required
                                                                                 placeholder="+91 90000 12345"
-                                                                                className="bg-background border-border focus:border-primary text-white py-5 text-base"
+                                                                                className="bg-background border-border focus:border-primary text-foreground py-5 text-base"
                                                                                 value={formData.phone}
                                                                                 onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                                                                             />
@@ -893,7 +893,7 @@ ${formData.company}`;
                                                                                 inputMode="numeric"
                                                                                 required
                                                                                 placeholder="1,40,000"
-                                                                                className="pl-8 bg-background border-border focus:border-primary text-white py-5 font-mono text-base"
+                                                                                className="pl-8 bg-background border-border focus:border-primary text-foreground py-5 font-mono text-base"
                                                                                 value={formData.bidValue}
                                                                                 onChange={(e) => setFormData(prev => ({ ...prev, bidValue: e.target.value }))}
                                                                             />
@@ -947,7 +947,7 @@ ${formData.company}`;
                                                                         <Textarea
                                                                             required
                                                                             placeholder="Outline key deliverables, compliance frameworks, SLA commitments, and technology stacks..."
-                                                                            className="bg-background border-border focus:border-primary text-white min-h-[100px]"
+                                                                            className="bg-background border-border focus:border-primary text-foreground min-h-[100px]"
                                                                             value={formData.summary}
                                                                             onChange={(e) => setFormData(prev => ({ ...prev, summary: e.target.value }))}
                                                                         />
@@ -959,7 +959,7 @@ ${formData.company}`;
                                                                                 <span>Packing bid metadata...</span>
                                                                                 <span>{uploadProgress}%</span>
                                                                             </div>
-                                                                            <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                                                                            <div className="w-full bg-secondary rounded-full h-1.5 overflow-hidden">
                                                                                 <div 
                                                                                     className="bg-gradient-to-r from-primary to-accent h-1.5 transition-all duration-300"
                                                                                     style={{ width: `${uploadProgress}%` }}
@@ -969,7 +969,7 @@ ${formData.company}`;
                                                                     ) : (
                                                                         <Button
                                                                             type="submit"
-                                                                            className="w-full btn-primary text-white font-bold text-base py-6 mt-4"
+                                                                            className="w-full btn-primary text-foreground font-bold text-base py-6 mt-4"
                                                                         >
                                                                             <Mail className="w-5 h-5 mr-2" />
                                                                             Submit Official Bid Proposal
@@ -1007,7 +1007,7 @@ ${formData.company}`;
                         ) : (
                             <div className="text-center py-16 bg-card/20 border border-border rounded-2xl glass">
                                 <AlertCircle className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-                                <h3 className="text-xl font-bold text-white">No Matching Procurement Notices</h3>
+                                <h3 className="text-xl font-bold text-foreground">No Matching Procurement Notices</h3>
                                 <p className="text-muted-foreground mt-1 text-sm max-w-md mx-auto">
                                     No tender matches your search criteria. Try modifying your search query or choosing another status category.
                                 </p>
@@ -1018,7 +1018,7 @@ ${formData.company}`;
                     {/* Step-by-Step Bidding Workflow Timeline */}
                     <div className="mb-20">
                         <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold text-white tracking-tight uppercase">Procurement Workflow</h2>
+                            <h2 className="text-3xl font-bold text-foreground tracking-tight uppercase">Procurement Workflow</h2>
                             <p className="text-muted-foreground mt-2 text-sm md:text-base max-w-2xl mx-auto">
                                 Our transparent bidding cycle ensures fair opportunity and technical adherence across all projects.
                             </p>
@@ -1030,7 +1030,7 @@ ${formData.company}`;
                                     <div className="text-3xl font-extrabold text-slate-600 font-mono mb-3 group-hover:text-primary/60 transition-colors">
                                         {step.num}
                                     </div>
-                                    <h4 className="font-bold text-white text-base mb-1.5 group-hover:text-primary transition-colors">{step.title}</h4>
+                                    <h4 className="font-bold text-foreground text-base mb-1.5 group-hover:text-primary transition-colors">{step.title}</h4>
                                     <p className="text-muted-foreground text-xs leading-relaxed">{step.desc}</p>
                                 </div>
                             ))}
@@ -1042,7 +1042,7 @@ ${formData.company}`;
                         {/* Request Documents Section */}
                         <div className="space-y-6">
                             <div>
-                                <h2 className="text-2xl font-bold text-white tracking-tight uppercase">Procurement Guidelines & Bidding Templates</h2>
+                                <h2 className="text-2xl font-bold text-foreground tracking-tight uppercase">Procurement Guidelines & Bidding Templates</h2>
                                 <p className="text-muted-foreground text-sm mt-1 max-w-xl">
                                     Official forms and policy guides can be requested via email redirection. Please complete proposals using these templates before submission.
                                 </p>
@@ -1050,7 +1050,7 @@ ${formData.company}`;
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {RESOURCES.map((res, idx) => (
-                                    <div key={idx} className="p-4 bg-card/40 border border-border/60 rounded-xl glass hover:border-slate-700 transition-colors flex flex-col justify-between">
+                                    <div key={idx} className="p-4 bg-card/40 border border-border/60 rounded-xl glass hover:border-border transition-colors flex flex-col justify-between">
                                         <div>
                                             <div className="flex items-center justify-between mb-3">
                                                 <div className="p-2 rounded-lg bg-background border border-border text-primary">
@@ -1060,7 +1060,7 @@ ${formData.company}`;
                                                     {res.format}
                                                 </span>
                                             </div>
-                                            <h4 className="font-bold text-white text-sm mb-1 line-clamp-1">{res.name}</h4>
+                                            <h4 className="font-bold text-foreground text-sm mb-1 line-clamp-1">{res.name}</h4>
                                             <p className="text-muted-foreground text-[11px] leading-snug line-clamp-2">{res.description}</p>
                                         </div>
                                         <div className="pt-4 flex items-center justify-between border-t border-border/40 mt-3">
@@ -1068,7 +1068,7 @@ ${formData.company}`;
                                             <Button 
                                                 variant="ghost" 
                                                 size="sm" 
-                                                className="h-7 text-xs text-primary hover:text-white px-2 hover:bg-slate-800"
+                                                className="h-7 text-xs text-primary hover:text-foreground px-2 hover:bg-secondary"
                                                 onClick={() => handleRequestTemplate(res.name)}
                                             >
                                                 <Mail className="w-3.5 h-3.5 mr-1" />
@@ -1083,7 +1083,7 @@ ${formData.company}`;
                         {/* Interactive Accordion FAQs */}
                         <div className="space-y-6">
                             <div>
-                                <h2 className="text-2xl font-bold text-white tracking-tight uppercase">Procurement FAQ</h2>
+                                <h2 className="text-2xl font-bold text-foreground tracking-tight uppercase">Procurement FAQ</h2>
                                 <p className="text-muted-foreground text-sm mt-1">
                                     Find quick clarifications on submission guidelines, evaluation criteria, and contract awards.
                                 </p>
@@ -1098,7 +1098,7 @@ ${formData.company}`;
                                                 className="w-full flex items-center justify-between p-4 bg-card/20 text-left hover:bg-card/50 transition-colors"
                                                 onClick={() => setOpenFaq(isOpen ? null : idx)}
                                             >
-                                                <span className="font-semibold text-white text-sm md:text-base pr-4">{faq.q}</span>
+                                                <span className="font-semibold text-foreground text-sm md:text-base pr-4">{faq.q}</span>
                                                 <HelpCircle className={`w-4 h-4 text-muted-foreground shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-primary' : ''}`} />
                                             </button>
                                             
@@ -1126,7 +1126,7 @@ ${formData.company}`;
                     {/* Trust Banner / Legal Info / Helpdesk */}
                     <div className="bg-card/30 border border-border rounded-2xl p-6 md:p-8 glass flex flex-col md:flex-row gap-6 md:items-center justify-between">
                         <div className="space-y-3 max-w-3xl">
-                            <h4 className="font-bold text-white text-lg flex items-center gap-2">
+                            <h4 className="font-bold text-foreground text-lg flex items-center gap-2">
                                 <Lock className="w-5 h-5 text-primary" />
                                 Anti-Corruption Policy & Encrypted Bids
                             </h4>
@@ -1137,14 +1137,14 @@ ${formData.company}`;
                         <div className="flex flex-col sm:flex-row gap-4 shrink-0">
                             <a 
                                 href="mailto:tenders@cehpoint.co.in" 
-                                className="flex items-center justify-center gap-2 bg-background border border-border hover:border-slate-700 text-white text-xs md:text-sm px-4 py-3 rounded-xl transition-all"
+                                className="flex items-center justify-center gap-2 bg-background border border-border hover:border-border text-foreground text-xs md:text-sm px-4 py-3 rounded-xl transition-all"
                             >
                                 <Mail className="w-4 h-4 text-primary" />
                                 tenders@cehpoint.co.in
                             </a>
                             <a
                                 href="tel:+919091156095"
-                                className="flex items-center justify-center gap-2 bg-background border border-border hover:border-slate-700 text-white text-xs md:text-sm px-4 py-3 rounded-xl transition-all"
+                                className="flex items-center justify-center gap-2 bg-background border border-border hover:border-border text-foreground text-xs md:text-sm px-4 py-3 rounded-xl transition-all"
                             >
                                 <Phone className="w-4 h-4 text-primary" />
                                 Procurement Hotline
@@ -1155,16 +1155,16 @@ ${formData.company}`;
                     {/* Official Footer Details */}
                     <div className="mt-12 grid md:grid-cols-2 gap-8 text-muted-foreground text-sm border-t border-border pt-8">
                         <div>
-                            <h4 className="font-bold text-white mb-2 flex items-center gap-2">
+                            <h4 className="font-bold text-foreground mb-2 flex items-center gap-2">
                                 <User className="w-4 h-4 text-primary" />
                                 Official Submission Hotline
                             </h4>
                             <p className="text-xs md:text-sm">For portal support or urgent operational issues, contact the procurement office:</p>
-                            <p className="mt-2 text-white font-mono text-xs">Primary: tenders@cehpoint.co.in</p>
-                            <p className="text-white font-mono text-xs">Escalations: jit.banerjee@cehpoint.co.in</p>
+                            <p className="mt-2 text-foreground font-mono text-xs">Primary: tenders@cehpoint.co.in</p>
+                            <p className="text-foreground font-mono text-xs">Escalations: jit.banerjee@cehpoint.co.in</p>
                         </div>
                         <div>
-                            <h4 className="font-bold text-white mb-2 flex items-center gap-2">
+                            <h4 className="font-bold text-foreground mb-2 flex items-center gap-2">
                                 <Building2 className="w-4 h-4 text-primary" />
                                 Procurement Directorate Address
                             </h4>

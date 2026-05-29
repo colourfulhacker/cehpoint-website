@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import {
@@ -43,7 +44,13 @@ function pickRelated(currentSlug: string, currentCategoryEn: string): ArticleDat
 }
 
 export const InsightRenderer: React.FC<InsightRendererProps> = ({ article }) => {
-    const [lang, setLang] = useState<Language>("en");
+    // Follow the site-wide language so the global translate control changes
+    // article content too; the article's own switcher updates the whole site.
+    const { i18n } = useTranslation();
+    const lang: Language = (["en", "hi", "bn"].includes((i18n.language || "").split("-")[0])
+        ? (i18n.language.split("-")[0] as Language)
+        : "en");
+    const setLang = (l: Language) => { i18n.changeLanguage(l); };
     const [isPlaying, setIsPlaying] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const synth = typeof window !== "undefined" ? window.speechSynthesis : null;

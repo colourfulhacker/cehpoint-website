@@ -35,7 +35,7 @@ export default function GameDevelopmentPage() {
             />
 
             {/* Hero Section */}
-            <section className="relative py-20 lg:py-32 overflow-hidden bg-background text-white">
+            <section className="relative py-20 lg:py-32 overflow-hidden bg-background text-foreground">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
 
@@ -50,7 +50,7 @@ export default function GameDevelopmentPage() {
                             <span className="text-sm font-bold tracking-wider">NEXT-GEN GAMING</span>
                         </div>
 
-                        <h1 className="font-display font-black text-5xl sm:text-7xl md:text-8xl mb-6 tracking-tighter leading-tight text-white drop-shadow-2xl">
+                        <h1 className="font-display font-black text-5xl sm:text-7xl md:text-8xl mb-6 tracking-tighter leading-tight text-foreground drop-shadow-2xl">
                             Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Virtual Empire</span>
                         </h1>
 
@@ -65,7 +65,7 @@ export default function GameDevelopmentPage() {
                                 </Button>
                             </Link>
                             <Link href="#game-types">
-                                <Button variant="outline" className="border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/10 hover:text-white px-8 py-5 rounded-xl text-lg font-bold">
+                                <Button variant="outline" className="border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/10 hover:text-foreground px-8 py-5 rounded-xl text-lg font-bold">
                                     Explore Genres
                                 </Button>
                             </Link>
@@ -77,7 +77,7 @@ export default function GameDevelopmentPage() {
             {/* Features/Stats */}
             <section className="py-12 bg-card border-y border-foreground/5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-foreground">
                         {[
                             { label: "Active Players", value: "10M+" },
                             { label: "Games Shipped", value: "50+" },
@@ -94,7 +94,7 @@ export default function GameDevelopmentPage() {
             </section>
 
             {/* Game Types */}
-            <section id="game-types" className="py-24 bg-background text-white">
+            <section id="game-types" className="py-24 bg-background text-foreground">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
@@ -180,7 +180,7 @@ export default function GameDevelopmentPage() {
             </section>
 
             {/* Tech Stack */}
-            <section className="py-24 bg-card text-white border-t border-foreground/10 relative overflow-hidden">
+            <section className="py-24 bg-card text-foreground border-t border-foreground/10 relative overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
                 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -215,7 +215,7 @@ export default function GameDevelopmentPage() {
                                 <div className={`p-4 rounded-xl ${tech.color} border border-foreground/10 group-hover:scale-110 transition-transform duration-300 text-indigo-400 group-hover:text-indigo-300`}>
                                     {tech.icon}
                                 </div>
-                                <span className="text-sm font-black tracking-widest font-mono text-muted-foreground group-hover:text-white transition-colors">{tech.name}</span>
+                                <span className="text-sm font-black tracking-widest font-mono text-muted-foreground group-hover:text-foreground transition-colors">{tech.name}</span>
                             </motion.div>
                         ))}
                     </div>
@@ -223,7 +223,7 @@ export default function GameDevelopmentPage() {
             </section>
 
             {/* CTA */}
-            <section className="py-24 bg-gradient-to-b from-background to-[#1a1a3a] text-white">
+            <section className="py-24 bg-gradient-to-b from-background to-secondary text-foreground">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="font-display font-bold text-4xl md:text-6xl mb-8">
                         Ready to Launch Your Game?
@@ -232,7 +232,7 @@ export default function GameDevelopmentPage() {
                         Whether you need a simple mobile game or a complex metaverse economy, our team of veteran developers is ready to execute your vision.
                     </p>
                     <Link href="/contact">
-                        <Button className="bg-white text-indigo-900 hover:bg-gray-100 px-10 py-8 rounded-2xl text-xl font-bold shadow-2xl transition-transform hover:scale-105">
+                        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-8 rounded-2xl text-xl font-bold shadow-2xl transition-transform hover:scale-105">
                             Get a Game Dev Estimate
                         </Button>
                     </Link>

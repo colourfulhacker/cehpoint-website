@@ -183,22 +183,22 @@ export default function CompanyProfile() {
             <div className="max-w-[210mm] mx-auto bg-white shadow-xl min-h-[297mm] relative text-slate-800" ref={profileRef}>
 
                 {/* 1. COVER PAGE HEADER */}
-                <div className="bg-card text-white p-12 relative overflow-hidden">
+                <div className="bg-slate-900 text-white p-12 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mr-10 -mt-20"></div>
                     <div className="relative z-10 flex justify-between items-start">
                         <div>
                             <h1 className="text-5xl font-bold font-display tracking-tight mb-2">Cehpoint</h1>
-                            <p className="text-sm text-muted-foreground uppercase tracking-widest font-semibold">Technologies • Innovation • Intelligence</p>
+                            <p className="text-sm text-slate-300 uppercase tracking-widest font-semibold">Technologies • Innovation • Intelligence</p>
                         </div>
                         <div className="text-right">
-                            <Badge variant="outline" className="text-white border-foreground/20 mb-2">Service Catalog 2025-26</Badge>
-                            <p className="text-xs text-muted-foreground">www.cehpoint.co.in</p>
+                            <Badge variant="outline" className="text-white border-white/20 mb-2">Service Catalog 2025-26</Badge>
+                            <p className="text-xs text-slate-300">www.cehpoint.co.in</p>
                         </div>
                     </div>
                 </div>
 
                 {/* 2. EXECUTIVE SUMMARY */}
-                <div className="p-10 border-b border-neutral-100">
+                <div className="p-10 border-b border-slate-200">
                     <h2 className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">Vision & Mission</h2>
                     <p className="text-xl font-light leading-relaxed text-slate-800">
                         Cehpoint is more than a software company; we are a <span className="font-semibold text-primary">Digital Sovereign</span>.
@@ -208,7 +208,7 @@ export default function CompanyProfile() {
                 </div>
 
                 {/* 3. GLOBAL FOOTPRINT */}
-                <div className="p-10 bg-slate-50 border-b border-neutral-100">
+                <div className="p-10 bg-slate-50 border-b border-slate-200">
                     <h2 className="text-lg font-bold font-display text-slate-900 mb-6 flex items-center">
                         <Globe className="w-5 h-5 mr-2 text-primary" /> Global Operational Nodes
                     </h2>
@@ -224,7 +224,7 @@ export default function CompanyProfile() {
                 </div>
 
                 {/* 4. SERVICE ECOSYSTEM */}
-                <div className="p-10 border-b border-neutral-100">
+                <div className="p-10 border-b border-slate-200">
                     <h2 className="text-2xl font-bold font-display text-slate-900 mb-8">Comprehensive Service Ecosystem</h2>
                     <div className="grid grid-cols-2 gap-8">
                         {serviceEcosystem.map((eco, i) => (
@@ -250,7 +250,7 @@ export default function CompanyProfile() {
                 </div>
 
                 {/* 5. INDUSTRY VERTICALS */}
-                <div className="p-10 bg-slate-50 border-b border-neutral-100">
+                <div className="p-10 bg-slate-50 border-b border-slate-200">
                     <h2 className="text-lg font-bold font-display text-slate-900 mb-6">Industry Verticals</h2>
                     <div className="grid grid-cols-3 gap-4">
                         {industries.map((ind, i) => (
@@ -264,7 +264,7 @@ export default function CompanyProfile() {
                 </div>
 
                 {/* 6. USE CASE GALLERY */}
-                <div className="p-10 border-b border-neutral-100">
+                <div className="p-10 border-b border-slate-200">
                     <h2 className="text-lg font-bold font-display text-slate-900 mb-6">Strategic Use Cases</h2>
                     <div className="space-y-4">
                         {useCases.map((uc, i) => (

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Offline — Cehpoint</title>
+  <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: #0a0815; color: #fff; text-align: center; padding: 24px;
+    }
+    @media (prefers-color-scheme: light) { body { background: #faf7ff; color: #1a1533; } }
+    .card { max-width: 420px; }
+    .logo { font-weight: 700; font-size: 1.75rem; color: #7064F8; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    h1 { font-size: 1.35rem; margin: 0 0 .5rem; }
+    p { opacity: .75; line-height: 1.6; margin: 0 0 1.5rem; }
+    button {
+      background: #7064F8; color: #fff; border: 0; border-radius: 9999px;
+      padding: 12px 28px; font-size: 1rem; font-weight: 600; cursor: pointer;
+    }
+    button:active { transform: scale(.97); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">Cehpoint</div>
+    <h1>You're offline</h1>
+    <p>It looks like you've lost your connection. Check your network and try again — pages you've already visited stay available.</p>
+    <button onclick="location.reload()">Retry</button>
+  </div>
+</body>
+</html>

@@ -283,6 +283,27 @@
   background: rgba(var(--surface-on-bg), 0.28);
 }
 
+/* PWA standalone (installed app) — respect device safe areas / notches */
+@media (display-mode: standalone) {
+  /* Push the fixed certification banner below the status bar / notch */
+  div[role="region"][aria-label="Company certifications"] {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* Keep horizontal content clear of rounded corners in landscape */
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Smooth momentum scrolling + no tap-highlight flash for an app-like feel */
+@media (max-width: 768px) {
+  body {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 /* Intro Video Mode - Hide Navbar */
 body.intro-playing nav[data-testid="navbar"] {
   display: none !important;

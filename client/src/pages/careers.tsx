@@ -388,9 +388,9 @@ I'm looking forward to discussing this!`;
       ))}
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-16 bg-black">
+      <section className="relative overflow-hidden pt-24 pb-16 bg-background">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-black to-blue-900/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-background to-blue-900/20" />
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         </div>
 
@@ -398,11 +398,11 @@ I'm looking forward to discussing this!`;
 
           {/* Hero Content */}
           <div className="lg:w-1/2 text-left">
-            <Badge className="bg-foreground/10 text-white hover:bg-foreground/20 border-foreground/20 mb-6 px-4 py-2 text-sm backdrop-blur-md">
+            <Badge className="bg-foreground/10 text-foreground hover:bg-foreground/20 border-foreground/20 mb-6 px-4 py-2 text-sm backdrop-blur-md">
               <Rocket className="w-4 h-4 mr-2 text-primary" />
               {t("pages.careers.eyebrow")}
             </Badge>
-            <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-display font-bold text-foreground mb-6 leading-[1.1] tracking-tight">
               {t("pages.careers.title")} <span className="text-primary">{t("pages.careers.titleAccent")}</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl font-light leading-relaxed">
@@ -425,10 +425,10 @@ I'm looking forward to discussing this!`;
             </div>
 
             <div className="pt-4 flex flex-wrap gap-4">
-              <TermsAndConditionsModal triggerText="View our Hiring Policy & Terms" className="bg-transparent border border-foreground/20 text-white hover:bg-foreground/10" />
+              <TermsAndConditionsModal triggerText="View our Hiring Policy & Terms" className="bg-transparent border border-foreground/20 text-foreground hover:bg-foreground/10" />
               <Button
                 variant="outline"
-                className="bg-primary/10 border-primary/50 text-white hover:bg-primary/20"
+                className="bg-primary/10 border-primary/50 text-foreground hover:bg-primary/20"
                 onClick={() => window.open("https://works.cehpoint.co.in/", "_blank")}
               >
                 <Briefcase className="w-4 h-4 mr-2 text-primary" />
@@ -439,10 +439,10 @@ I'm looking forward to discussing this!`;
 
           {/* Dream App Builder Form */}
           <div className="lg:w-1/2 w-full max-w-md mx-auto lg:mx-0">
-            <Card className="bg-black/40 backdrop-blur-xl border border-foreground/10 shadow-2xl overflow-hidden relative">
+            <Card className="bg-card/60 backdrop-blur-xl border border-foreground/10 shadow-2xl overflow-hidden relative">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-purple-500 to-blue-500" />
               <CardHeader className="pb-4 border-b border-foreground/5">
-                <CardTitle className="text-2xl font-bold flex items-center text-white">
+                <CardTitle className="text-2xl font-bold flex items-center text-foreground">
                   <MessageSquare className="w-6 h-6 mr-3 text-primary" />
                   Pitch Your Dream
                 </CardTitle>
@@ -459,7 +459,7 @@ I'm looking forward to discussing this!`;
                       type="text"
                       autoComplete="name"
                       required
-                      className="h-12 bg-foreground/5 border-foreground/10 text-white focus:border-primary transition-colors text-base"
+                      className="h-12 bg-foreground/5 border-foreground/10 text-foreground focus:border-primary transition-colors text-base"
                       placeholder="John Doe"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -474,7 +474,7 @@ I'm looking forward to discussing this!`;
                       inputMode="text"
                       autoComplete="tel"
                       required
-                      className="h-12 bg-foreground/5 border-foreground/10 text-white focus:border-primary transition-colors text-base"
+                      className="h-12 bg-foreground/5 border-foreground/10 text-foreground focus:border-primary transition-colors text-base"
                       placeholder="+91 98765 43210 or linkedin.com/in/you"
                       value={formData.contact}
                       onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
@@ -484,10 +484,10 @@ I'm looking forward to discussing this!`;
                   <div className="space-y-2">
                     <Label className="text-muted-foreground text-xs uppercase tracking-wider">Your path with us *</Label>
                     <Select required onValueChange={(value) => setFormData({ ...formData, opportunityType: value })}>
-                      <SelectTrigger className="h-12 bg-foreground/5 border-foreground/10 text-white focus:border-primary">
+                      <SelectTrigger className="h-12 bg-foreground/5 border-foreground/10 text-foreground focus:border-primary">
                         <SelectValue placeholder="Select Opportunity" />
                       </SelectTrigger>
-                      <SelectContent className="bg-card border-foreground/10 text-white">
+                      <SelectContent className="bg-card border-foreground/10 text-foreground">
                         <SelectItem value="I have an Idea, let's build it!">I have an Idea, let's build it!</SelectItem>
                         <SelectItem value="Select a Project">Select a Project</SelectItem>
                         <SelectItem value="Project Collab">Project Collab</SelectItem>
@@ -520,7 +520,7 @@ I'm looking forward to discussing this!`;
                                   });
                                 }}
                                 className={`px-4 py-2 text-sm rounded-full border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ring-offset-background ${formData.selectedExamples.includes(example)
-                                  ? "bg-primary/20 border-primary text-white"
+                                  ? "bg-primary/20 border-primary text-foreground"
                                   : "bg-foreground/5 border-foreground/10 text-muted-foreground hover:border-foreground/20"
                                   }`}
                               >
@@ -534,7 +534,7 @@ I'm looking forward to discussing this!`;
                           <Label htmlFor="idea" className="text-green-400 text-xs uppercase tracking-wider font-semibold">Pitch Your Idea Briefly</Label>
                           <Textarea
                             id="idea"
-                            className="bg-foreground/5 border-green-500/30 text-white focus:border-green-500 transition-colors min-h-[80px]"
+                            className="bg-foreground/5 border-green-500/30 text-foreground focus:border-green-500 transition-colors min-h-[80px]"
                             placeholder="I want to build a platform that does..."
                             value={formData.idea}
                             onChange={(e) => setFormData({ ...formData, idea: e.target.value })}
@@ -575,7 +575,7 @@ I'm looking forward to discussing this!`;
                     <Label htmlFor="message" className="text-muted-foreground text-xs uppercase tracking-wider">Why should we pick you? (Optional)</Label>
                     <Textarea
                       id="message"
-                      className="bg-foreground/5 border-foreground/10 text-white focus:border-primary transition-colors min-h-[60px]"
+                      className="bg-foreground/5 border-foreground/10 text-foreground focus:border-primary transition-colors min-h-[60px]"
                       placeholder="Share a quick link to your portfolio or state your core skills."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -602,7 +602,7 @@ I'm looking forward to discussing this!`;
             {/* Full Time Section */}
             <div>
               <div className="mb-10">
-                <h2 className="text-3xl font-bold flex items-center mb-3 text-white">
+                <h2 className="text-3xl font-bold flex items-center mb-3 text-foreground">
                   <Briefcase className="w-8 h-8 mr-3 text-primary" /> Hiring Portals
                 </h2>
                 <p className="text-muted-foreground text-lg">Access our specialized hiring and work portals.</p>
@@ -617,7 +617,7 @@ I'm looking forward to discussing this!`;
                           <Rocket className="w-6 h-6" />
                         </div>
                         <div>
-                          <CardTitle className="text-xl font-bold text-white">Marketing Jobs Portal</CardTitle>
+                          <CardTitle className="text-xl font-bold text-foreground">Marketing Jobs Portal</CardTitle>
                           <CardDescription className="text-muted-foreground mt-1">Explore specialized marketing opportunities and roles.</CardDescription>
                         </div>
                       </div>
@@ -638,7 +638,7 @@ I'm looking forward to discussing this!`;
                           <Rocket className="w-6 h-6" />
                         </div>
                         <div>
-                          <CardTitle className="text-xl font-bold text-white">Work Portal</CardTitle>
+                          <CardTitle className="text-xl font-bold text-foreground">Work Portal</CardTitle>
                           <CardDescription className="text-muted-foreground mt-1">Mission-based work for professionals. Verified projects, direct assignment, and weekly liquidity.</CardDescription>
                         </div>
                       </div>
@@ -653,7 +653,7 @@ I'm looking forward to discussing this!`;
               </div>
 
               <div className="mb-10">
-                <h2 className="text-3xl font-bold flex items-center mb-3 text-white">
+                <h2 className="text-3xl font-bold flex items-center mb-3 text-foreground">
                   <Briefcase className="w-8 h-8 mr-3 text-primary" /> Full-Time Roles
                 </h2>
                 <p className="text-muted-foreground text-lg">Permanent positions with competitive benefits.</p>
@@ -666,14 +666,14 @@ I'm looking forward to discussing this!`;
                       <div className="flex justify-between items-start">
                         <div>
                           <div className="text-xs font-bold uppercase tracking-widest text-primary mb-2 shadow-sm">JOB • {job.department}</div>
-                          <CardTitle className="text-2xl font-bold text-white group-hover:text-primary transition-colors">{job.title}</CardTitle>
+                          <CardTitle className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">{job.title}</CardTitle>
                         </div>
                         <Badge variant="default" className="bg-primary text-primary-foreground px-4 py-1.5 font-bold shadow-lg ring-2 ring-primary/20">{job.salary}</Badge>
                       </div>
                     </CardHeader>
                     <CardContent className="p-6">
                       <p className="text-base text-foreground/90 mb-4 leading-relaxed">{job.description}</p>
-                      <p className="text-sm text-muted-foreground mb-6 leading-relaxed"><strong className="text-white">About the Role:</strong> {job.aboutRole}</p>
+                      <p className="text-sm text-muted-foreground mb-6 leading-relaxed"><strong className="text-foreground">About the Role:</strong> {job.aboutRole}</p>
                       <div className="space-y-4 mb-6">
                         <div>
                           <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-2 flex items-center"><Code className="w-4 h-4 mr-2" />Key Responsibilities</h4>
@@ -732,14 +732,14 @@ I'm looking forward to discussing this!`;
                       <div className="flex justify-between items-start">
                         <div>
                           <div className="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2 shadow-sm">INTERNSHIP • {intern.department}</div>
-                          <CardTitle className="text-2xl font-bold text-white group-hover:text-primary transition-colors">{intern.title}</CardTitle>
+                          <CardTitle className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">{intern.title}</CardTitle>
                         </div>
                         <Badge variant="default" className="bg-secondary text-primary-foreground px-4 py-1.5 font-bold shadow-lg ring-2 ring-secondary/20">{intern.stipend}</Badge>
                       </div>
                     </CardHeader>
                     <CardContent className="p-6">
                       <p className="text-base text-foreground/90 mb-4 leading-relaxed">{intern.description}</p>
-                      <p className="text-sm text-muted-foreground mb-6 leading-relaxed"><strong className="text-white">About the Program:</strong> {intern.aboutRole}</p>
+                      <p className="text-sm text-muted-foreground mb-6 leading-relaxed"><strong className="text-foreground">About the Program:</strong> {intern.aboutRole}</p>
                       <div className="space-y-4 mb-6">
                         <div>
                           <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-2 flex items-center"><Code className="w-4 h-4 mr-2" />What You'll Work On</h4>
@@ -835,8 +835,8 @@ I'm looking forward to discussing this!`;
               </CardHeader>
               <CardContent className="text-lg text-foreground pt-6 space-y-6">
                 <div className="space-y-4">
-                  <p className="flex items-center gap-3"><span className="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(139,92,246,0.5)]"></span><strong className="text-white">First 2 months:</strong> Mandatory Internship Plan</p>
-                  <p className="flex items-center gap-3"><span className="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(139,92,246,0.5)]"></span><strong className="text-white">Next 4 months:</strong> Mandatory Skill & Project Training</p>
+                  <p className="flex items-center gap-3"><span className="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(139,92,246,0.5)]"></span><strong className="text-foreground">First 2 months:</strong> Mandatory Internship Plan</p>
+                  <p className="flex items-center gap-3"><span className="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(139,92,246,0.5)]"></span><strong className="text-foreground">Next 4 months:</strong> Mandatory Skill & Project Training</p>
                 </div>
                 <div className="text-base bg-primary/20 border border-primary/30 p-5 rounded-xl text-primary-foreground font-semibold mt-8 flex items-start gap-4 shadow-lg backdrop-blur-sm">
                   <Shield className="w-6 h-6 shrink-0 mt-0.5 text-primary" />

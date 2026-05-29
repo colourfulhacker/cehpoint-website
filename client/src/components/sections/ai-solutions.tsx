@@ -43,12 +43,12 @@ function AISolutionCard({ solution }: { solution: any }) {
             solution.complexity === 'Advanced' ? 'border-purple-500/30 text-purple-400 bg-purple-500/10' :
               'border-blue-500/30 text-blue-400 bg-blue-500/10'
             }`}>
-            {solution.complexity}
+            {solution.complexityLabel}
           </div>
         </div>
 
         {/* Content */}
-        <h3 className="font-display font-medium text-xl text-white mb-3 group-hover:text-primary-foreground transition-colors">
+        <h3 className="font-display font-medium text-xl text-foreground mb-3 group-hover:text-primary transition-colors">
           {solution.title}
         </h3>
         <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6 group-hover:text-foreground/90 transition-colors">
@@ -70,7 +70,7 @@ function AISolutionCard({ solution }: { solution: any }) {
               <Activity className="w-3 h-3 mr-1.5" />
               <span className="font-medium">{solution.benefits}</span>
             </div>
-            <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-white transition-colors" />
+            <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
           </div>
         </div>
       </div>
@@ -80,7 +80,8 @@ function AISolutionCard({ solution }: { solution: any }) {
 
 export default function AISolutions() {
   const { t } = useTranslation();
-  const aiSolutions = [
+  const cards = t("pages.aiSolutions.cards", { returnObjects: true }) as { title: string; description: string; benefits: string }[];
+  const aiSolutionsBase = [
     {
       icon: Brain,
       title: "Generative AI Integration",
@@ -145,16 +146,21 @@ export default function AISolutions() {
       benefits: "4x Dev Velocity",
       complexity: "Advanced",
     },
-  ]
+  ];
+  const aiSolutions = aiSolutionsBase.map((s, i) => ({
+    ...s,
+    ...(cards[i] || {}),
+    complexityLabel: t(`pages.aiSolutions.complexity.${s.complexity}`),
+  }));
 
   return (
-    <section id="ai-solutions" className="py-32 bg-black relative overflow-hidden" data-testid="ai-solutions-section">
+    <section id="ai-solutions" className="py-32 bg-background relative overflow-hidden" data-testid="ai-solutions-section">
       {/* Background Ambience */}
       <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-primary/5 blur-[150px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-20">
-          <h2 className="font-display font-medium text-5xl md:text-7xl mb-6 tracking-tight text-white leading-tight">
+          <h2 className="font-display font-medium text-5xl md:text-7xl mb-6 tracking-tight text-foreground leading-tight">
             {t("pages.sections.aiSectionTitle")}
           </h2>
           <p className="text-xl text-muted-foreground font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">

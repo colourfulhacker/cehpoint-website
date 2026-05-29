@@ -19,29 +19,29 @@ export default function InvestigationLayout({ children }: { children: React.Reac
 
     return (
         <div className="min-h-screen bg-background">
-            <div className="border-b border-foreground/5 bg-black/40 backdrop-blur-md sticky top-[104px] z-30">
+            <div className="border-b border-border bg-card/70 backdrop-blur-md sticky top-[104px] z-30">
                 <div className="max-w-7xl mx-auto px-4">
                     {/* Breadcrumbs */}
                     <nav aria-label="Breadcrumb" className="pt-2">
                         <ol className="flex items-center gap-1.5 text-xs text-muted-foreground">
                             <li>
-                                <Link href="/" className="hover:text-white inline-flex items-center gap-1 transition-colors">
+                                <Link href="/" className="hover:text-foreground inline-flex items-center gap-1 transition-colors">
                                     <Home className="w-3 h-3" aria-hidden="true" />
                                     Home
                                 </Link>
                             </li>
                             <li aria-hidden="true"><ChevronRight className="w-3 h-3" /></li>
                             <li>
-                                <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+                                <Link href="/services" className="hover:text-foreground transition-colors">Services</Link>
                             </li>
                             <li aria-hidden="true"><ChevronRight className="w-3 h-3" /></li>
                             <li>
-                                <Link href="/services/cyber-crime-investigation" className="hover:text-white transition-colors">Cyber Crime Investigation</Link>
+                                <Link href="/services/cyber-crime-investigation" className="hover:text-foreground transition-colors">Cyber Crime Investigation</Link>
                             </li>
                             {currentItem && currentItem.href !== "/services/cyber-crime-investigation" && (
                                 <>
                                     <li aria-hidden="true"><ChevronRight className="w-3 h-3" /></li>
-                                    <li aria-current="page" className="text-white">{currentName}</li>
+                                    <li aria-current="page" className="text-foreground">{currentName}</li>
                                 </>
                             )}
                         </ol>
@@ -50,8 +50,8 @@ export default function InvestigationLayout({ children }: { children: React.Reac
                     <div className="flex flex-col md:flex-row md:items-center justify-between py-3">
                         <div className="flex items-center gap-2 mb-2 md:mb-0">
                             <Shield className="w-5 h-5 text-red-500" aria-hidden="true" />
-                            <span className="font-display font-medium text-sm tracking-wide text-white/80">
-                                CCIS <span className="text-white/50 mx-2" aria-hidden="true">|</span> Cyber Crime Investigation Service
+                            <span className="font-display font-medium text-sm tracking-wide text-foreground/80">
+                                CCIS <span className="text-foreground/50 mx-2" aria-hidden="true">|</span> Cyber Crime Investigation Service
                             </span>
                         </div>
 
@@ -67,7 +67,7 @@ export default function InvestigationLayout({ children }: { children: React.Reac
                                             "px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer border border-transparent",
                                             isActive
                                                 ? "bg-red-500/10 text-red-400 border-red-500/20"
-                                                : "text-muted-foreground hover:text-white hover:bg-foreground/5"
+                                                : "text-muted-foreground hover:text-foreground hover:bg-foreground/5"
                                         )}
                                     >
                                         {item.name}
@@ -82,7 +82,7 @@ export default function InvestigationLayout({ children }: { children: React.Reac
                                     "px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer inline-flex items-center gap-2 border",
                                     location === "/services/cyber-crime-investigation/request"
                                         ? "bg-red-600 text-white border-red-600 shadow-lg shadow-red-900/20"
-                                        : "bg-foreground/5 border-foreground/10 text-white hover:bg-foreground/10"
+                                        : "bg-foreground/5 border-foreground/10 text-foreground hover:bg-foreground/10"
                                 )}
                             >
                                 <Lock className="w-3 h-3" aria-hidden="true" />

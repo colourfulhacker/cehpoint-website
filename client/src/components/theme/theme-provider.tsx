@@ -19,12 +19,13 @@ function getSystemTheme(): ResolvedTheme {
 }
 
 function readStored(): Theme {
-  if (typeof window === "undefined") return "dark";
+  if (typeof window === "undefined") return "system";
   try {
     const v = window.localStorage.getItem(STORAGE_KEY);
     if (v === "dark" || v === "light" || v === "system") return v;
   } catch { /* noop */ }
-  return "dark";
+  // No explicit choice yet: follow the visitor's device preference.
+  return "system";
 }
 
 function applyTheme(resolved: ResolvedTheme) {
@@ -36,13 +37,11 @@ function applyTheme(resolved: ResolvedTheme) {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
-  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("dark");
-
-  useEffect(() => {
+  const [theme, setThemeState] = useState<Theme>(() => readStored());
+  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(() => {
     const stored = readStored();
-    setThemeState(stored);
-  }, []);
+    return stored === "system" ? getSystemTheme() : stored;
+  });
 
   useEffect(() => {
     const resolved: ResolvedTheme = theme === "system" ? getSystemTheme() : theme;

@@ -12,6 +12,7 @@ import ErrorBoundary from "@/components/layout/error-boundary";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Banner } from "./components/sections/Banner";
 import { KairaWidget } from "@/components/kaira/KairaWidget";
+import InstallPrompt from "@/components/pwa/install-prompt";
 
 // Lazy-loaded pages for code splitting
 const Home = lazy(() => import("@/pages/home"));
@@ -194,6 +195,7 @@ function Router() {
       </main>
       <Footer />
       <KairaWidget />
+      <InstallPrompt />
     </div>
 
   );

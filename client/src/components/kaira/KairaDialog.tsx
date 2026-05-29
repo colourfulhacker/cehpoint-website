@@ -518,7 +518,7 @@ CURRENCY: Always use INR.
 
                             <div className="flex flex-col gap-1">
                                 <span className="text-xs font-bold text-primary uppercase tracking-wider">Kaira AI</span>
-                                <span className="text-sm font-medium leading-relaxed text-white">
+                                <span className="text-sm font-medium leading-relaxed text-foreground">
                                     {getGreeting(location)}
                                 </span>
                             </div>
@@ -527,7 +527,7 @@ CURRENCY: Always use INR.
                             <button
                                 type="button"
                                 aria-label="Dismiss Kaira notification"
-                                className="absolute -top-2 -right-2 bg-background/80 text-white/60 hover:text-red-500 rounded-full p-1 shadow-md border border-foreground/10 hover:bg-secondary/50 transition-colors"
+                                className="absolute -top-2 -right-2 bg-background/80 text-foreground/60 hover:text-red-500 rounded-full p-1 shadow-md border border-foreground/10 hover:bg-secondary/50 transition-colors"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     setShowToast(false);
@@ -659,7 +659,7 @@ CURRENCY: Always use INR.
                                                     {m.role === "user" ? (
                                                         m.text
                                                     ) : (
-                                                        <div className="prose prose-sm dark:prose-invert max-w-none text-white prose-p:text-white prose-headings:text-white prose-strong:text-white prose-ul:text-white prose-a:text-blue-400 prose-a:underline prose-a:font-bold">
+                                                        <div className="prose prose-sm dark:prose-invert max-w-none text-foreground prose-p:text-foreground prose-headings:text-foreground prose-strong:text-foreground prose-ul:text-foreground prose-a:text-blue-400 prose-a:underline prose-a:font-bold">
                                                             <ReactMarkdown>{m.text}</ReactMarkdown>
                                                         </div>
                                                     )}
@@ -698,12 +698,12 @@ CURRENCY: Always use INR.
                                                                 {fallbackLeader.name.charAt(0)}
                                                             </AvatarFallback>
                                                         </Avatar>
-                                                        <div className="absolute -bottom-1 -right-1 bg-green-500 w-4 h-4 rounded-full border-2 border-slate-900 flex items-center justify-center">
+                                                        <div className="absolute -bottom-1 -right-1 bg-green-500 w-4 h-4 rounded-full border-2 border-border flex items-center justify-center">
                                                             <div className="bg-white w-1.5 h-1.5 rounded-full" />
                                                         </div>
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <h4 className="font-bold text-base text-white truncate tracking-tight">{fallbackLeader.name}</h4>
+                                                        <h4 className="font-bold text-base text-foreground truncate tracking-tight">{fallbackLeader.name}</h4>
                                                         <p className="text-xs text-muted-foreground mb-4 font-medium leading-tight">
                                                             {fallbackLeader.designation}
                                                         </p>

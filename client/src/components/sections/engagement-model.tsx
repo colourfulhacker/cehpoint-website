@@ -1,20 +1,9 @@
 import { Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function EngagementModel() {
-  const benefits = [
-    {
-      title: "Pay After Demo",
-      description: "Experience the working solution first, pay only when completely satisfied with the demo results."
-    },
-    {
-      title: "Transparent Scope",
-      description: "Fixed deliverables, clear timelines, and no hidden costs or scope creep."
-    },
-    {
-      title: "Rapid MVP Plan",
-      description: "Accelerated development with milestone-based delivery and continuous feedback loops."
-    }
-  ];
+  const { t } = useTranslation();
+  const benefits = t("pages.sections.engagementBenefits", { returnObjects: true }) as { title: string; description: string }[];
 
   return (
     <section className="py-24" data-testid="engagement-model-section">
@@ -23,14 +12,14 @@ export default function EngagementModel() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display font-bold text-4xl md:text-5xl mb-6" data-testid="engagement-model-title">
-                Our <span className="text-primary">Engagement Model</span>
+                {t("pages.sections.engagementTitleLead")} <span className="text-primary">{t("pages.sections.engagementTitleAccent")}</span>
               </h2>
               <p className="text-xl text-foreground/80 mb-8" data-testid="engagement-model-subtitle">
-                Pay after demo, transparent scope, and rapid MVP delivery that sets us apart from traditional development agencies.
+                {t("pages.sections.engagementSub")}
               </p>
 
               <div className="space-y-6">
-                {benefits.map((benefit, index) => (
+                {(Array.isArray(benefits) ? benefits : []).map((benefit, index) => (
                   <div key={index} className="flex items-start space-x-4" data-testid={`benefit-${index}`}>
                     <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <Check className="w-4 h-4 text-white" />
@@ -53,8 +42,8 @@ export default function EngagementModel() {
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
                 <div className="relative z-10 h-full flex flex-col justify-center text-center text-white">
                   <div className="text-6xl font-bold mb-4" data-testid="demo-time-highlight">24h</div>
-                  <div className="text-xl font-medium mb-2" data-testid="demo-delivery-text">Demo Delivery</div>
-                  <div className="text-sm opacity-90" data-testid="demo-description">From concept to working prototype</div>
+                  <div className="text-xl font-medium mb-2" data-testid="demo-delivery-text">{t("pages.sections.engagementStatLabel")}</div>
+                  <div className="text-sm opacity-90" data-testid="demo-description">{t("pages.sections.engagementStatSub")}</div>
                 </div>
               </div>
             </div>

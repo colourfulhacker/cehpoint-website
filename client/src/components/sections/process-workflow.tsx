@@ -1,39 +1,27 @@
 import { PenTool, Code, Settings, CheckCircle2, ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function ProcessWorkflow() {
-    const steps = [
-        {
-            id: "01",
-            title: "UX/UI Design",
-            icon: PenTool,
-            description: "We start by crafting intuitive and engaging user experiences. Our design phase focuses on user research, wireframing, and creating high-fidelity prototypes.",
-            details: ["User Research", "Wireframing", "Prototyping", "Design System"]
-        },
-        {
-            id: "02",
-            title: "Development",
-            icon: Code,
-            description: "Our expert developers bring designs to life using cutting-edge technologies. We ensure clean code, scalability, and robust performance.",
-            details: ["Frontend Dev", "Backend Logic", "API Integration", "Database Setup"]
-        },
-        {
-            id: "03",
-            title: "Maintenance",
-            icon: Settings,
-            description: "We provide ongoing support and maintenance to ensure your application runs smoothly, stays secure, and evolves with your business.",
-            details: ["Security Updates", "Performance Tuning", "Bug Fixes", "Feature Enhancements"]
-        }
-    ];
+    const { t } = useTranslation();
+    const icons = [PenTool, Code, Settings];
+    const stepCopy = t("pages.sections.processSteps", { returnObjects: true }) as { title: string; description: string; details: string[] }[];
+    const steps = (Array.isArray(stepCopy) ? stepCopy : []).map((s, i) => ({
+        id: `0${i + 1}`,
+        title: s.title,
+        icon: icons[i] ?? PenTool,
+        description: s.description,
+        details: s.details,
+    }));
 
     return (
         <section className="py-24 bg-secondary/30" data-testid="process-section">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-20 animate-fade-up">
-                    <h2 className="font-display font-bold text-4xl md:text-6xl mb-6 tracking-tight text-white">
-                        How We Work
+                    <h2 className="font-display font-bold text-4xl md:text-6xl mb-6 tracking-tight text-foreground">
+                        {t("pages.sections.processTitle")}
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        A streamlined workflow designed to deliver excellence from concept to launch and beyond.
+                        {t("pages.sections.processSub")}
                     </p>
                 </div>
 

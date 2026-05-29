@@ -2,23 +2,12 @@ import { useTranslation } from "react-i18next";
 
 export default function DemoProcess() {
   const { t } = useTranslation();
-  const steps = [
-    {
-      number: "1",
-      title: "Requirements Capture",
-      description: "Tell us your vision through our smart quotation system. Within minutes, our AI provides detailed cost estimates, technical recommendations, and project roadmaps tailored to your needs."
-    },
-    {
-      number: "2", 
-      title: "Rapid Development",
-      description: "Watch your idea transform into reality. Our expert developers create a fully functional prototype with real features, databases, and user interfaces - all within 24 hours."
-    },
-    {
-      number: "3",
-      title: "Demo Handoff",
-      description: "Experience your working prototype firsthand. Get complete source code, comprehensive documentation, and a clear roadmap to scale your demo into a full production application."
-    }
-  ];
+  const stepCopy = t("pages.sections.demoProcessSteps", { returnObjects: true }) as { title: string; description: string }[];
+  const steps = (Array.isArray(stepCopy) ? stepCopy : []).map((s, i) => ({
+    number: `${i + 1}`,
+    title: s.title,
+    description: s.description,
+  }));
 
   return (
     <section className="py-24 bg-secondary/50" data-testid="demo-process-section">

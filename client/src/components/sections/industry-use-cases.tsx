@@ -225,10 +225,10 @@ export default function IndustryUseCaseExplorer() {
                             <TabsTrigger
                                 key={industry.id}
                                 value={industry.id}
-                                className="rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-foreground/10 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20 transition-all flex items-center gap-2"
+                                className="rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground data-[state=inactive]:hover:bg-foreground/10 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-purple-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20 transition-all flex items-center gap-2"
                             >
-                                <industry.icon className={`w-4 h-4 ${activeTab === industry.id ? "text-white" : "text-muted-foreground group-hover:text-white"}`} />
-                                <span className="inline-block">{industry.name}</span>
+                                <industry.icon className={`w-4 h-4 ${activeTab === industry.id ? "text-white" : "text-muted-foreground group-hover:text-foreground"}`} />
+                                <span className="inline-block">{t(`pages.industryUseCases.industries.${industry.id}`)}</span>
                             </TabsTrigger>
                         ))}
                     </TabsList>
@@ -257,9 +257,9 @@ export default function IndustryUseCaseExplorer() {
                                         <div className="bg-primary/20 p-3 rounded-lg w-max mb-4 border border-primary/30">
                                             <industry.icon className="w-8 h-8 text-white" />
                                         </div>
-                                        <h3 className="text-3xl font-display font-bold text-white mb-2">{industry.name}</h3>
+                                        <h3 className="text-3xl font-display font-bold text-white mb-2">{t(`pages.industryUseCases.industries.${industry.id}`)}</h3>
                                         <p className="text-white/80 text-sm leading-relaxed mb-4">
-                                            Specialized machine learning and computer vision architectures designed explicitly for {industry.name.toLowerCase()} challenges.
+                                            {t("pages.industryUseCases.labels.panelDesc", { industry: t(`pages.industryUseCases.industries.${industry.id}`) })}
                                         </p>
                                     </div>
                                 </div>
@@ -268,13 +268,15 @@ export default function IndustryUseCaseExplorer() {
                             {/* Use Cases Grid */}
                             <div className="lg:col-span-8">
                                 <div className="grid grid-cols-1 gap-6">
-                                    {useCases[industry.id as keyof typeof useCases].map((useCase, index) => (
+                                    {(t(`pages.industryUseCases.cases.${industry.id}`, { returnObjects: true }) as { title: string; pain: string; fix: string; gain: string }[]).map((useCase, index) => {
+                                        const tech = useCases[industry.id as keyof typeof useCases][index]?.tech ?? [];
+                                        return (
                                         <Card key={index} className="glass border border-primary/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] hover:border-primary/30 transition-all group">
                                             <CardHeader className="pb-3 border-b border-primary/5">
                                                 <div className="flex justify-between items-start gap-4">
                                                     <CardTitle className="text-xl font-bold text-foreground leading-tight group-hover:text-primary transition-colors">{useCase.title}</CardTitle>
                                                     <Badge variant="outline" className="shrink-0 bg-primary/5 text-primary border-primary/20">
-                                                        Architecture
+                                                        {t("pages.industryUseCases.labels.architecture")}
                                                     </Badge>
                                                 </div>
                                             </CardHeader>
@@ -282,12 +284,12 @@ export default function IndustryUseCaseExplorer() {
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                     <div className="bg-gradient-to-br from-destructive/10 to-transparent p-4 rounded-xl border border-destructive/20 relative overflow-hidden">
                                                         <div className="absolute top-0 right-0 p-2 opacity-10"><XCircle className="w-12 h-12" /></div>
-                                                        <span className="text-[10px] font-bold text-destructive uppercase tracking-widest block mb-2">Legacy Constraint</span>
+                                                        <span className="text-[10px] font-bold text-destructive uppercase tracking-widest block mb-2">{t("pages.industryUseCases.labels.legacyConstraint")}</span>
                                                         <p className="text-sm text-foreground/80 leading-relaxed font-medium">{useCase.pain}</p>
                                                     </div>
                                                     <div className="bg-gradient-to-br from-blue-500/10 to-transparent p-4 rounded-xl border border-blue-500/20 relative overflow-hidden">
                                                         <div className="absolute top-0 right-0 p-2 opacity-10"><ArrowRight className="w-12 h-12" /></div>
-                                                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-widest block mb-2">AI Implementation</span>
+                                                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-widest block mb-2">{t("pages.industryUseCases.labels.aiImplementation")}</span>
                                                         <p className="text-sm text-foreground/80 leading-relaxed font-medium">{useCase.fix}</p>
                                                     </div>
                                                 </div>
@@ -296,12 +298,12 @@ export default function IndustryUseCaseExplorer() {
                                                     <div className="flex items-center gap-2">
                                                         <CheckCircle className="w-5 h-5 text-green-500 shrink-0" />
                                                         <span className="text-sm font-medium text-foreground">
-                                                            <span className="text-muted-foreground mr-1">Outcome:</span>
+                                                            <span className="text-muted-foreground mr-1">{t("pages.industryUseCases.labels.outcome")}</span>
                                                             <span className="text-green-500 font-bold">{useCase.gain}</span>
                                                         </span>
                                                     </div>
                                                     <div className="flex flex-wrap gap-2 justify-end">
-                                                        {useCase.tech.map((t, i) => (
+                                                        {tech.map((t, i) => (
                                                             <Badge key={i} variant="secondary" className="text-[10px] bg-secondary/50 hover:bg-secondary border-none px-2 py-0.5">
                                                                 {t}
                                                             </Badge>
@@ -310,7 +312,8 @@ export default function IndustryUseCaseExplorer() {
                                                 </div>
                                             </CardContent>
                                         </Card>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>

@@ -68,7 +68,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                     Contact Securely
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md bg-black/95 border-foreground/10 text-white backdrop-blur-xl">
+            <DialogContent className="sm:max-w-md bg-popover/95 border-foreground/10 text-foreground backdrop-blur-xl">
                 <DialogHeader>
                     <DialogTitle className="text-xl font-display font-bold">Encrypted Inquiry Channel</DialogTitle>
                     <DialogDescription className="text-muted-foreground text-sm">
@@ -78,7 +78,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
 
                 <div className="space-y-4 py-4">
                     <div className="space-y-2">
-                        <Label className="text-white/80">To: Practice Lead (Select)</Label>
+                        <Label className="text-foreground/80">To: Practice Lead (Select)</Label>
                         <Select
                             value={formData.selectedEmail}
                             onValueChange={(val) => setFormData({ ...formData, selectedEmail: val })}
@@ -86,7 +86,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                             <SelectTrigger className="bg-foreground/5 border-foreground/10 focus:border-red-500/50">
                                 <SelectValue placeholder="Select Leader" />
                             </SelectTrigger>
-                            <SelectContent className="bg-black border-foreground/10 text-white">
+                            <SelectContent className="bg-popover border-foreground/10 text-foreground">
                                 {allLeaders.map((leader, i) => (
                                     <SelectItem key={i} value={leader.email}>
                                         {leader.name} - {leader.role}
@@ -98,7 +98,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <Label htmlFor="name" className="text-white/80">Full Name *</Label>
+                            <Label htmlFor="name" className="text-foreground/80">Full Name *</Label>
                             <Input
                                 id="name"
                                 placeholder="John Doe"
@@ -108,7 +108,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="org" className="text-white/80">Organization</Label>
+                            <Label htmlFor="org" className="text-foreground/80">Organization</Label>
                             <Input
                                 id="org"
                                 placeholder="Company Ltd"
@@ -120,7 +120,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="phone" className="text-white/80">Phone (Optional)</Label>
+                        <Label htmlFor="phone" className="text-foreground/80">Phone (Optional)</Label>
                         <Input
                             id="phone"
                             placeholder="+91..."
@@ -131,7 +131,7 @@ export default function ContactLeaderDialog({ preSelectedLeader, allLeaders }: C
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="req" className="text-white/80">Requirement Details *</Label>
+                        <Label htmlFor="req" className="text-foreground/80">Requirement Details *</Label>
                         <Textarea
                             id="req"
                             placeholder="Briefly describe your case or requirement..."

@@ -529,12 +529,12 @@ export default function Training() {
                                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-yellow-600/20 to-orange-600/20 text-yellow-500 border border-yellow-500/20 text-sm font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(234,179,8,0.2)]">
                                             <Crown className="w-4 h-4" /> Mr. Banerjee's Masterclass
                                         </div>
-                                        <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+                                        <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
                                             Run Your Business <br />
                                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-500">Like A Tech Giant</span>
                                         </h2>
                                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                                            Don't just survive in 2026. <span className="text-white font-semibold underline decoration-yellow-500/50 underline-offset-4">Dominate</span> it.
+                                            Don't just survive in 2026. <span className="text-foreground font-semibold underline decoration-yellow-500/50 underline-offset-4">Dominate</span> it.
                                             Join elite 2-hour problem-solving sessions designed towards one goal: <span className="text-yellow-400 font-bold">Explosive Growth.</span>
                                         </p>
 
@@ -556,7 +556,7 @@ export default function Training() {
                                                 <Star className="w-8 h-8 fill-current" />
                                             </div>
                                             <div className="space-y-2">
-                                                <h3 className="text-2xl font-bold text-white">The "Lucky Winner" Bonus</h3>
+                                                <h3 className="text-2xl font-bold text-foreground">The "Lucky Winner" Bonus</h3>
                                                 <p className="text-muted-foreground">
                                                     Stand a chance to win <span className="text-yellow-400 font-bold">3 Days of Physical Mentorship</span>.
                                                     Mr. Banerjee will visit your office to restructure your business personally.
@@ -576,7 +576,7 @@ export default function Training() {
                                             >
                                                 <Card className="bg-card/50 border-foreground/10 hover:border-yellow-500/50 transition-all duration-300 group overflow-hidden flex flex-col h-full shadow-lg hover:shadow-yellow-900/40 backdrop-blur-sm relative">
                                                     {/* IMAGE HEADER */}
-                                                    <div className="h-56 relative overflow-hidden bg-slate-800">
+                                                    <div className="h-56 relative overflow-hidden bg-secondary">
                                                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900 z-10" />
                                                         <img
                                                             src={`/assets/${training.image}`}
@@ -600,7 +600,7 @@ export default function Training() {
                                                         <div className="p-3.5 w-fit rounded-2xl bg-card border border-foreground/10 text-yellow-500 shadow-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
                                                             <Gem className="w-6 h-6" />
                                                         </div>
-                                                        <CardTitle className="text-xl md:text-2xl text-white group-hover:text-yellow-400 transition-colors leading-tight min-h-[3.5rem] font-bold">
+                                                        <CardTitle className="text-xl md:text-2xl text-foreground group-hover:text-yellow-400 transition-colors leading-tight min-h-[3.5rem] font-bold">
                                                             {training.title}
                                                         </CardTitle>
 
@@ -627,7 +627,7 @@ export default function Training() {
                                                     <CardContent className="pb-4 flex-grow">
                                                         <Accordion type="single" collapsible className="w-full">
                                                             <AccordionItem value="item-1" className="border-foreground/5 px-2">
-                                                                <AccordionTrigger className="text-muted-foreground hover:text-white py-4 text-sm font-semibold transition-colors">
+                                                                <AccordionTrigger className="text-muted-foreground hover:text-foreground py-4 text-sm font-semibold transition-colors">
                                                                     Curriculum Overview ({training.curriculum.length} Core Modules)
                                                                 </AccordionTrigger>
                                                                 <AccordionContent>
@@ -636,7 +636,7 @@ export default function Training() {
                                                                             {training.curriculum.map((item, i) => (
                                                                                 <li key={i} className="flex items-start gap-3.5 text-sm text-muted-foreground group/item">
                                                                                     <div className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-yellow-500/60 group-hover/item:bg-yellow-400 transition-colors" />
-                                                                                    <span className="leading-snug group-hover/item:text-white transition-colors">{item}</span>
+                                                                                    <span className="leading-snug group-hover/item:text-foreground transition-colors">{item}</span>
                                                                                 </li>
                                                                             ))}
                                                                         </ul>
@@ -645,7 +645,7 @@ export default function Training() {
                                                                             <h4 className="text-[10px] font-black text-yellow-500 uppercase tracking-[0.2em] mb-2 flex items-center gap-2 relative z-10">
                                                                                 <ShieldCheck className="w-3.5 h-3.5" /> Guaranteed Outcome
                                                                             </h4>
-                                                                            <p className="text-sm text-white font-semibold italic relative z-10 leading-relaxed">
+                                                                            <p className="text-sm text-foreground font-semibold italic relative z-10 leading-relaxed">
                                                                                 "{training.outcome}"
                                                                             </p>
                                                                         </div>
