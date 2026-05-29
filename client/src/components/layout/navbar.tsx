@@ -6,6 +6,8 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/theme/theme-toggle";
+import LanguageToggle from "@/components/i18n/language-toggle";
+import { useTranslation } from "react-i18next";
 
 interface NavItem {
   name: string;
@@ -20,6 +22,7 @@ interface NavItem {
 
 export default function Navbar() {
   const [location] = useLocation();
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -72,74 +75,65 @@ export default function Navbar() {
 
   const navigation: NavItem[] = [
     {
-      name: "Services",
+      name: t("nav.services"),
       href: "/services",
       children: [
-        { name: "All Services", href: "/services" },
-        { name: "Free Security Scheme", href: "/security-scheme" },
-        { name: "IT Services", href: "/services#innovative-it-services" },
-        { name: "Cyber Security", href: "/services/cyber-security" },
-        { name: "Cyber Crime Investigation", href: "/services/cyber-crime-investigation" },
-        { name: "E-commerce", href: "/services/ecommerce" },
-        { name: "Edutech", href: "/services/edutech" },
-        { name: "Fintech", href: "/services/fintech" },
-        { name: "Rural Digitalization", href: "/services/rural-digitalization" },
-        { name: "Game Development", href: "/services/game-development" },
-        { name: "Business App Catalog", href: "/services/business-app-catalog" },
+        { name: t("nav.allServices"), href: "/services" },
+        { name: t("nav.freeSecurityScheme"), href: "/security-scheme" },
+        { name: t("nav.itServices"), href: "/services#featured-services" },
+        { name: t("nav.cyberSecurity"), href: "/services/cyber-security" },
+        { name: t("nav.cyberInvestigation"), href: "/services/cyber-crime-investigation" },
+        { name: t("nav.ecommerce"), href: "/services/ecommerce" },
+        { name: t("nav.edutech"), href: "/services/edutech" },
+        { name: t("nav.fintech"), href: "/services/fintech" },
+        { name: t("nav.ruralDigitalization"), href: "/services/rural-digitalization" },
+        { name: t("nav.gameDevelopment"), href: "/services/game-development" },
+        { name: t("nav.businessAppCatalog"), href: "/services/business-app-catalog" },
       ]
     },
-    { name: "AI Solutions", href: "/ai-solutions" },
-    { name: "Investment Desk", href: "/cost-estimator" },
-    { name: "Training", href: "/training" },
+    { name: t("nav.aiSolutions"), href: "/ai-solutions" },
+    { name: t("nav.investmentDesk"), href: "/cost-estimator" },
+    { name: t("nav.training"), href: "/training" },
     {
-      name: "Company",
+      name: t("nav.company"),
       href: "#",
       children: [
-        { name: "About Us", href: "/about" },
-        { name: "Demo Process", href: "/demo-delivery" },
-        { name: "Company Profile", href: "/company-profile" },
-        { name: "Incubation", href: "/incubation" },
-        { name: "Leadership Search", href: "/leadership-search" },
-        { name: "Investor Connect", href: "/investor-connect" },
-        { name: "Portfolio", href: "https://portfolios.cehpoint.co.in/", external: true },
+        { name: t("nav.aboutUs"), href: "/about" },
+        { name: t("nav.demoProcess"), href: "/demo-delivery" },
+        { name: t("nav.companyProfile"), href: "/company-profile" },
+        { name: t("nav.incubation"), href: "/incubation" },
+        { name: t("nav.leadershipSearch"), href: "/leadership-search" },
+        { name: t("nav.investorConnect"), href: "/investor-connect" },
+        { name: t("nav.portfolio"), href: "https://portfolios.cehpoint.co.in/", external: true },
       ]
     },
     {
-      name: "Portals",
+      name: t("nav.portals"),
       href: "#",
       children: [
-        { name: "Projects Portal", href: "https://projects.cehpoint.co.in/", external: true },
-        { name: "Developer Docs", href: "https://developer-document.cehpoint.co.in/", external: true },
-        { name: "Proposal Maker", href: "https://proposal-maker.cehpoint.co.in/", external: true },
-        { name: "CCIE Portal", href: "https://ccie.cehpoint.co.in/", external: true },
-        { name: "CPIS Portal", href: "http://cpis.cehpoint.co.in/", external: true },
-        { name: "Outreach AI", href: "http://outreach-ai.cehpoint.co.in/", external: true },
-        { name: "Outreach Portal", href: "https://outreach.cehpoint.co.in/", external: true },
-        { name: "Partner Network", href: "/partner-network" },
+        { name: t("nav.projectsPortal"), href: "https://projects.cehpoint.co.in/", external: true },
+        { name: t("nav.developerDocs"), href: "https://developer-document.cehpoint.co.in/", external: true },
+        { name: t("nav.proposalMaker"), href: "https://proposal-maker.cehpoint.co.in/", external: true },
+        { name: t("nav.ccie"), href: "https://ccie.cehpoint.co.in/", external: true },
+        { name: t("nav.cpis"), href: "https://cpis.cehpoint.co.in/", external: true },
+        { name: t("nav.outreachAi"), href: "https://outreach-ai.cehpoint.co.in/", external: true },
+        { name: t("nav.outreachPortal"), href: "https://outreach.cehpoint.co.in/", external: true },
+        { name: t("nav.partnerNetwork"), href: "/partner-network" },
       ]
     },
+    { name: t("nav.insights"), href: "/insights" },
+    { name: t("nav.tenders"), href: "/tenders" },
     {
-      name: "Insights",
-      href: "/insights",
-    },
-    {
-      name: "Tenders",
-      href: "/tenders",
-    },
-    {
-      name: "Careers",
+      name: t("nav.careers"),
       href: "/careers",
       children: [
-        { name: "Full-time Jobs", href: "/careers" },
-        { name: "Internship Program", href: "/interns" },
-        { name: "Campus Ambassador", href: "https://cehpoint-campus-ambassador-portal.cehpoint.co.in/", external: true },
-        { name: "Work Portal", href: "https://works.cehpoint.co.in/", external: true },
+        { name: t("nav.fullTimeJobs"), href: "/careers" },
+        { name: t("nav.internshipProgram"), href: "/interns" },
+        { name: t("nav.campusAmbassador"), href: "https://cehpoint-campus-ambassador-portal.cehpoint.co.in/", external: true },
+        { name: t("nav.workPortal"), href: "https://works.cehpoint.co.in/", external: true },
       ]
     },
-    {
-      name: "Contact Us",
-      href: "/contact",
-    },
+    { name: t("nav.contactUs"), href: "/contact" },
   ];
 
   const toggleDropdown = (name: string) => {
@@ -153,7 +147,7 @@ export default function Navbar() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md"
       >
-        Skip to main content
+        {t("common.skipToContent")}
       </a>
 
       <nav className="fixed top-14 left-0 right-0 mx-auto w-[95%] max-w-7xl z-50 glass rounded-full px-2 shadow-2xl transition-all duration-300 border border-foreground/10" data-testid="navbar" role="navigation" aria-label="Main navigation">
@@ -259,6 +253,7 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center space-x-2 sm:space-x-3">
+              <LanguageToggle />
               <ThemeToggle />
               {/* Desktop CTA - Hidden on Mobile/Tablet */}
               <div className="hidden lg:block">
@@ -266,17 +261,17 @@ export default function Navbar() {
                   href="/quotation"
                   className={cn(buttonVariants({ size: "default" }), "btn-primary hover-glow magnetic-hover px-6 py-3 rounded-xl text-primary-foreground font-bold")}
                   data-testid="cta-get-quote"
-                  aria-label="Get AI Quote - Request a proposal"
+                  aria-label={t("nav.getAiQuote")}
                 >
                   <Bot className="w-5 h-5 mr-2" />
-                  <span>Get AI Quote</span>
+                  <span>{t("nav.getAiQuote")}</span>
                 </Link>
               </div>
 
               <button
                 className="lg:hidden text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md p-1 sm:p-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                aria-label={isMenuOpen ? t("common.closeMenu") : t("common.openMenu")}
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
                 data-testid="mobile-menu-toggle"
@@ -368,7 +363,7 @@ export default function Navbar() {
                     data-testid="mobile-cta-get-quote"
                   >
                     <Bot className="w-5 h-5 mr-2" />
-                    Get AI Quote
+                    {t("nav.getAiQuote")}
                   </Link>
                 </div>
               </div>

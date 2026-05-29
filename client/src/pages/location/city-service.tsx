@@ -562,6 +562,42 @@ export default function CityServicePage() {
                     />
                 </div>
             </section>
+
+            {/* Sibling cities (other locations we serve in the same country) */}
+            {(() => {
+                const siblings = globalLocations
+                    .filter(c => c.slug !== cityData.slug && c.country === cityData.country)
+                    .slice(0, 6);
+                if (siblings.length === 0) return null;
+                return (
+                    <section className="py-20 bg-background border-t border-border">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
+                                <div>
+                                    <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-2">Nearby cities</p>
+                                    <h2 className="text-3xl md:text-4xl font-display font-bold">Also serving teams across {cityData.country}</h2>
+                                </div>
+                                <Link href="/services" className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1">
+                                    See all locations <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                                </Link>
+                            </div>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                                {siblings.map(s => (
+                                    <Link
+                                        key={s.slug}
+                                        href={`/location/${s.slug}`}
+                                        className="rounded-xl border border-border/60 hover:border-primary/40 bg-card/50 hover:bg-card transition-all p-4 text-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                                    >
+                                        <MapPin className="w-4 h-4 mx-auto mb-2 text-primary" aria-hidden="true" />
+                                        <span className="text-sm font-medium block group-hover:text-primary transition-colors">{s.name}</span>
+                                        {s.state && <span className="text-xs text-muted-foreground block mt-0.5">{s.state}</span>}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                );
+            })()}
         </div >
     );
 }

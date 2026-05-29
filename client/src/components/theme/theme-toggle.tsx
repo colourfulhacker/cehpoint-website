@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   className?: string;
@@ -14,6 +15,7 @@ interface Props {
 
 export default function ThemeToggle({ className }: Props) {
   const { theme, resolvedTheme, setTheme } = useTheme();
+  const { t } = useTranslation();
   const Icon = resolvedTheme === "dark" ? Moon : Sun;
 
   return (
@@ -24,7 +26,7 @@ export default function ThemeToggle({ className }: Props) {
           variant="ghost"
           size="icon"
           className={`rounded-full border border-border/40 hover:bg-foreground/5 ${className ?? ""}`}
-          aria-label={`Switch theme. Current: ${theme}`}
+          aria-label={t("themeToggle.switchLabel")}
         >
           <Icon className="h-4 w-4" aria-hidden="true" />
         </Button>
@@ -32,17 +34,17 @@ export default function ThemeToggle({ className }: Props) {
       <DropdownMenuContent align="end" className="min-w-[140px]">
         <DropdownMenuItem onClick={() => setTheme("light")} aria-current={theme === "light" ? "true" : undefined}>
           <Sun className="h-4 w-4 mr-2" aria-hidden="true" />
-          Light
+          {t("themeToggle.light")}
           {theme === "light" && <span className="ml-auto text-xs text-primary">●</span>}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")} aria-current={theme === "dark" ? "true" : undefined}>
           <Moon className="h-4 w-4 mr-2" aria-hidden="true" />
-          Dark
+          {t("themeToggle.dark")}
           {theme === "dark" && <span className="ml-auto text-xs text-primary">●</span>}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")} aria-current={theme === "system" ? "true" : undefined}>
           <Monitor className="h-4 w-4 mr-2" aria-hidden="true" />
-          System
+          {t("themeToggle.system")}
           {theme === "system" && <span className="ml-auto text-xs text-primary">●</span>}
         </DropdownMenuItem>
       </DropdownMenuContent>

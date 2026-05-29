@@ -366,7 +366,7 @@ export default function ServicesPage() {
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
                             Delivering specialized solutions across every business vertical with proven expertise and measurable outcomes
                         </p>
-                        <Link href="/services#services">
+                        <Link href="/services#featured-services">
                             <Button className="btn-primary px-8 py-4 rounded-xl text-lg font-semibold text-primary-foreground">
                                 View All Industries <ArrowRight className="ml-2 w-5 h-5" />
                             </Button>

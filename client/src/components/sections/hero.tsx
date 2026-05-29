@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { ArrowRight, CheckCircle2, Building2, Volume2, VolumeX, Briefcase } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
+import { useTranslation, Trans } from "react-i18next";
 
 const INTRO_SEEN_KEY = "cehpoint-intro-seen";
 
@@ -13,6 +14,9 @@ const prefersReducedMotion = () =>
   window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 export default function Hero() {
+  const { t } = useTranslation();
+  const rotatingTexts = t("home.hero.rotating", { returnObjects: true }) as string[];
+  const checkmarks = t("home.hero.checkmarks", { returnObjects: true }) as string[];
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const skipIntroDefault = (() => {
@@ -23,15 +27,6 @@ export default function Hero() {
   const [isIntroPlaying, setIsIntroPlaying] = useState(!skipIntroDefault);
   const [isMuted, setIsMuted] = useState(true);
   const [showUnmuteHint, setShowUnmuteHint] = useState(false);
-
-  const rotatingTexts = [
-    "Digital Excellence",
-    "MVP Solutions",
-    "AI Innovation",
-    "Cloud Platforms",
-    "Mobile Apps",
-    "Enterprise Software",
-  ];
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
@@ -135,7 +130,7 @@ export default function Hero() {
                 className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-6 shadow-[0_0_30px_rgba(37,99,235,0.6)] border-2 border-white/50 transition-all hover:scale-105 animate-pulse"
               >
                 <VolumeX className="w-6 h-6 mr-2" />
-                <span className="font-bold text-lg tracking-wide">TAP FOR SOUND</span>
+                <span className="font-bold text-lg tracking-wide uppercase">{t("home.hero.tapForSound")}</span>
               </Button>
             )}
 
@@ -143,7 +138,7 @@ export default function Hero() {
               onClick={skipIntro}
               className="bg-card/90 hover:bg-black text-white border-2 border-foreground/30 rounded-full px-8 py-4 transition-all hover:border-blue-500 hover:text-blue-400 group shadow-xl"
             >
-              <span className="mr-2 text-base font-bold tracking-wide uppercase group-hover:text-blue-400 transition-colors">Skip Intro</span>
+              <span className="mr-2 text-base font-bold tracking-wide uppercase group-hover:text-blue-400 transition-colors">{t("home.hero.skipIntro")}</span>
               <ArrowRight className="w-5 h-5 text-white/70 group-hover:text-blue-400 transition-colors" />
             </Button>
           </div>
@@ -175,7 +170,7 @@ export default function Hero() {
                 >
                   <Building2 className="w-4 h-4 text-primary mr-2" />
                   <span className="text-xs sm:text-sm font-semibold text-primary tracking-wide uppercase">
-                    Enterprise-Grade Development
+                    {t("home.hero.eyebrow")}
                   </span>
                 </motion.div>
 
@@ -184,7 +179,7 @@ export default function Hero() {
                   className="font-display font-bold text-5xl sm:text-7xl md:text-8xl mb-6 tracking-tight leading-[1.1]"
                   data-testid="hero-title"
                 >
-                  Transform Ideas Into
+                  {t("home.hero.titlePrefix")}
                   <br />
                   <div className="relative inline-block min-w-[200px] sm:min-w-[300px]">
                     <AnimatePresence mode="popLayout">
@@ -211,17 +206,12 @@ export default function Hero() {
                   data-testid="hero-subtitle"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  Enterprise-grade software development across all industries with{" "}
-                  <span className="text-white font-medium relative inline-block">
-                    24-hour demo delivery
-                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary/50"></span>
-                  </span>{" "}
-                  and{" "}
-                  <span className="text-white font-medium relative inline-block">
-                    pay-after-demo
-                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary/50"></span>
-                  </span>{" "}
-                  model.
+                  <Trans
+                    i18nKey="home.hero.subtitle"
+                    components={{
+                      strong: <span className="text-white font-medium relative inline-block underline decoration-primary/50 underline-offset-4" />,
+                    }}
+                  />
                 </motion.p>
 
                 {/* Checkmarks */}
@@ -231,7 +221,7 @@ export default function Hero() {
                   transition={{ delay: 0.6, duration: 0.6 }}
                   className="flex flex-wrap gap-4 mb-10"
                 >
-                  {["MVP to Enterprise", "24h Delivery", "Pay After Demo"].map((item, i) => (
+                  {checkmarks.map((item) => (
                     <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground/90 bg-black/20 px-3 py-1.5 rounded-md border border-foreground/5 backdrop-blur-sm">
                       <CheckCircle2 className="w-4 h-4 text-primary" />
                       <span>{item}</span>
@@ -252,7 +242,7 @@ export default function Hero() {
                     className={cn(buttonVariants({ size: "lg" }), "btn-primary w-full sm:w-auto px-8 py-6 text-lg font-bold group shadow-[0_0_20px_rgba(112,66,248,0.3)] hover:shadow-[0_0_30px_rgba(112,66,248,0.6)]")}
                     data-testid="hero-cta-primary"
                   >
-                    Get AI-Powered Quote
+                    {t("home.hero.primaryCta")}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
 
@@ -262,7 +252,7 @@ export default function Hero() {
                     data-testid="hero-cta-catalog"
                   >
                     <Briefcase className="mr-2 w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-                    Business App Catalog
+                    {t("home.hero.secondaryCta")}
                   </Link>
                 </motion.div>
               </motion.div>
@@ -287,11 +277,11 @@ export default function Hero() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-auto">
               <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
                 {[
-                  { value: "24h", label: "Demo Delivery", sublabel: "Record Time" },
-                  { value: "0%", label: "Upfront Payment", sublabel: "Pay After Demo" },
-                  { value: "25+", label: "Industries", sublabel: "Expertise" },
-                  { value: "500+", label: "Projects", sublabel: "Delivered" }
-                ].map((stat, index) => (
+                  { value: "24h", label: t("home.stats.demoTitle"), sublabel: t("home.stats.demoSub") },
+                  { value: "0%", label: t("home.stats.upfrontTitle"), sublabel: t("home.stats.upfrontSub") },
+                  { value: "25+", label: t("home.stats.industriesTitle"), sublabel: t("home.stats.industriesSub") },
+                  { value: "500+", label: t("home.stats.projectsTitle"), sublabel: t("home.stats.projectsSub") }
+                ].map((stat) => (
                   <div key={stat.label} className="py-6 px-4 text-center group hover:bg-foreground/5 transition-colors cursor-default">
                     <div className="text-2xl sm:text-3xl font-bold text-white mb-1 group-hover:scale-105 transition-transform duration-300">
                       {stat.value}

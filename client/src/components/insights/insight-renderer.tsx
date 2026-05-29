@@ -3,12 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import {
     ArrowLeft, Calendar, Clock, Volume2, VolumeX,
-    Languages, Play, Pause, Square
+    Languages, Play, Pause, Square, ArrowRight
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { InsightSEO } from "@/components/seo/insight-seo";
 import { ArticleData, Language } from "@/types/insight-content";
+import { insightArticles } from "@/data/insights/insight-content-data";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,6 +19,27 @@ import {
 
 interface InsightRendererProps {
     article: ArticleData;
+}
+
+// Map an article category (English) to the most relevant on-site service route.
+const categoryToServiceRoute: Record<string, { href: string; label: { en: string; hi: string; bn: string } }> = {
+    "Cyber Threat": { href: "/services/cyber-security", label: { en: "Cyber Security service", hi: "साइबर सुरक्षा सेवा", bn: "সাইবার সিকিউরিটি সার্ভিস" } },
+    "Corporate Security": { href: "/services/cyber-crime-investigation", label: { en: "Cyber Crime Investigation", hi: "साइबर अपराध जाँच", bn: "সাইবার ক্রাইম ইনভেস্টিগেশন" } },
+    "Case Study": { href: "/services/cyber-security", label: { en: "Cyber Security service", hi: "साइबर सुरक्षा सेवा", bn: "সাইবার সিকিউরিটি সার্ভিস" } },
+    "HR Prevention": { href: "/services/cyber-crime-investigation/methodology", label: { en: "Investigation Methodology", hi: "जाँच कार्यप्रणाली", bn: "ইনভেস্টিগেশন মেথডোলজি" } },
+    "Financial Freedom": { href: "/incubation", label: { en: "Cehpoint Incubation", hi: "सेहपॉइंट इनक्यूबेशन", bn: "সেহপয়েন্ট ইনকিউবেশন" } },
+    "Direct to Consumer": { href: "/services/ecommerce", label: { en: "E-commerce service", hi: "ई-कॉमर्स सेवा", bn: "ই-কমার্স সার্ভিস" } },
+    "Service Industry": { href: "/services/business-app-catalog", label: { en: "Business App Catalog", hi: "बिज़नेस ऐप कैटलॉग", bn: "ব্যবসায়িক অ্যাপ ক্যাটালগ" } },
+    "Hyperlocal": { href: "/services/rural-digitalization", label: { en: "Rural Digitalization", hi: "ग्रामीण डिजिटलीकरण", bn: "গ্রামীণ ডিজিটালাইজেশন" } },
+};
+
+const fallbackServiceRoute = { href: "/services", label: { en: "Explore our Services", hi: "हमारी सेवाएँ देखें", bn: "আমাদের সেবাসমূহ দেখুন" } };
+
+function pickRelated(currentSlug: string, currentCategoryEn: string): ArticleData[] {
+    const all = Object.values(insightArticles);
+    const sameCategory = all.filter(a => a.slug !== currentSlug && a.category?.en === currentCategoryEn);
+    const others = all.filter(a => a.slug !== currentSlug && a.category?.en !== currentCategoryEn);
+    return [...sameCategory, ...others].slice(0, 3);
 }
 
 export const InsightRenderer: React.FC<InsightRendererProps> = ({ article }) => {
@@ -284,16 +306,81 @@ export const InsightRenderer: React.FC<InsightRendererProps> = ({ article }) => 
                     </AnimatePresence>
                 </article>
 
+                {/* Related Insights */}
+                {(() => {
+                    const related = pickRelated(article.slug, article.category?.en || "");
+                    if (related.length === 0) return null;
+                    const heading = lang === 'hi' ? 'संबंधित इनसाइट्स' : lang === 'bn' ? 'সম্পর্কিত ইনসাইট' : 'Related Insights';
+                    return (
+                        <motion.section
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="mt-16 border-t border-border pt-12"
+                            aria-labelledby="related-insights-heading"
+                        >
+                            <h2 id="related-insights-heading" className="text-2xl md:text-3xl font-bold mb-8 text-foreground">{heading}</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {related.map((r) => (
+                                    <Link
+                                        key={r.slug}
+                                        href={`/insights/${r.slug}`}
+                                        className="group block rounded-2xl border border-border/60 bg-card/50 hover:bg-card hover:border-primary/40 transition-all overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                    >
+                                        <div className="aspect-[16/9] bg-muted overflow-hidden">
+                                            <img
+                                                src={r.image}
+                                                alt=""
+                                                loading="lazy"
+                                                decoding="async"
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            />
+                                        </div>
+                                        <div className="p-5">
+                                            <Badge variant="secondary" className="mb-3 text-xs">{r.category?.[lang]}</Badge>
+                                            <h3 className="font-bold text-base leading-snug mb-2 group-hover:text-primary transition-colors line-clamp-2">{r.title[lang]}</h3>
+                                            <p className="text-sm text-muted-foreground line-clamp-2">{r.description[lang]}</p>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </motion.section>
+                    );
+                })()}
+
+                {/* Service CTA mapped from category */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-16 text-center border-t border-border pt-12"
+                    className="mt-16 border-t border-border pt-12"
                 >
-                    <h2 className="text-2xl font-bold mb-6 text-foreground">{lang === 'hi' ? 'क्या आप अपना वर्कफ़्लो ऑटोमेट करने के लिए तैयार हैं?' : lang === 'bn' ? 'আপনি কি আপনার ওয়ার্কফ্লো স্বয়ংক্রিয় করতে প্রস্তুত?' : 'Ready to Automate Your Workflow?'}</h2>
-                    <Link href="/contact" className="inline-flex items-center justify-center rounded-md text-lg font-bold transition-transform hover:scale-105 bg-primary text-primary-foreground hover:bg-primary/90 h-14 px-8 shadow-lg shadow-primary/20">
-                        {lang === 'hi' ? 'आज ही चर्चा करें' : lang === 'bn' ? 'আজই আলোচনা করুন' : 'Discuss Your Workflow Today'}
-                    </Link>
+                    {(() => {
+                        const mapping = categoryToServiceRoute[article.category?.en || ""] || fallbackServiceRoute;
+                        const heading = lang === 'hi' ? 'इस विषय पर हमारी विशेषज्ञता' : lang === 'bn' ? 'এই বিষয়ে আমাদের দক্ষতা' : 'Our expertise on this topic';
+                        const seeServiceLabel = lang === 'hi' ? 'सेवा देखें' : lang === 'bn' ? 'সার্ভিস দেখুন' : 'See the service';
+                        const primaryCta = lang === 'hi' ? 'विशेषज्ञ से बात करें' : lang === 'bn' ? 'বিশেষজ্ঞের সাথে কথা বলুন' : 'Talk to an Expert';
+                        return (
+                            <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-card to-card p-8 md:p-12 text-center">
+                                <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">{heading}</p>
+                                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">{mapping.label[lang]}</h2>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <Link
+                                        href={mapping.href}
+                                        className="inline-flex items-center justify-center gap-2 rounded-full text-base font-semibold border border-primary/40 hover:bg-primary/10 h-12 px-6 transition"
+                                    >
+                                        {seeServiceLabel} <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                                    </Link>
+                                    <Link
+                                        href="/contact"
+                                        className="inline-flex items-center justify-center rounded-full text-base font-bold transition-transform hover:scale-105 bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-lg shadow-primary/20"
+                                    >
+                                        {primaryCta}
+                                    </Link>
+                                </div>
+                            </div>
+                        );
+                    })()}
                 </motion.div>
             </div>
         </main>

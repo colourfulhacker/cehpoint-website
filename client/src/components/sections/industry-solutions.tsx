@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Link } from "wouter";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import {
   ShoppingCart,
@@ -34,6 +35,7 @@ const industries = [
     cost: "Custom Quote",
     time: "2-4 Weeks",
     span: "md:col-span-2 md:row-span-2",
+    href: "/services/business-app-catalog",
   },
   {
     title: "Cyber Security",
@@ -43,6 +45,7 @@ const industries = [
     cost: "From ₹15,000",
     time: "1 Week",
     span: "md:col-span-2 md:row-span-1",
+    href: "/services/cyber-security",
   },
   {
     title: "E-commerce",
@@ -52,6 +55,7 @@ const industries = [
     cost: "From ₹25,000",
     time: "3-5 Weeks",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/ecommerce",
   },
   {
     title: "Edutech",
@@ -61,6 +65,7 @@ const industries = [
     cost: "From ₹30,000",
     time: "4-6 Weeks",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/edutech",
   },
   {
     title: "Fintech",
@@ -70,6 +75,7 @@ const industries = [
     cost: "From ₹50,000",
     time: "6-8 Weeks",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/fintech",
   },
   {
     title: "Healthcare",
@@ -79,6 +85,7 @@ const industries = [
     cost: "From ₹45,000",
     time: "5-7 Weeks",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/business-app-catalog",
   },
   {
     title: "Manufacturing",
@@ -88,6 +95,7 @@ const industries = [
     cost: "From ₹60,000",
     time: "8+ Weeks",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/business-app-catalog",
   },
   {
     title: "Real Estate",
@@ -97,6 +105,7 @@ const industries = [
     cost: "From ₹35,000",
     time: "4-6 Weeks",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/business-app-catalog",
   },
   {
     title: "Logistics",
@@ -106,6 +115,7 @@ const industries = [
     cost: "From ₹40,000",
     time: "5-7 Weeks",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/business-app-catalog",
   },
   {
     title: "Travel & Tourism",
@@ -115,6 +125,7 @@ const industries = [
     cost: "From ₹30,000",
     time: "4-6 Weeks",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/business-app-catalog",
   },
   {
     title: "Food & Beverage",
@@ -124,6 +135,7 @@ const industries = [
     cost: "From ₹20,000",
     time: "3-4 Weeks",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/business-app-catalog",
   },
   {
     title: "Automotive",
@@ -133,6 +145,7 @@ const industries = [
     cost: "From ₹55,000",
     time: "6-9 Weeks",
     span: "md:col-span-2 md:row-span-1",
+    href: "/services/business-app-catalog",
   },
   {
     title: "SaaS & Enterprise",
@@ -142,6 +155,7 @@ const industries = [
     cost: "Custom",
     time: "Scale Dependent",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/business-app-catalog",
   },
   {
     title: "Media",
@@ -151,6 +165,7 @@ const industries = [
     cost: "From ₹40,000",
     time: "5-7 Weeks",
     span: "md:col-span-1 md:row-span-1",
+    href: "/services/business-app-catalog",
   },
   {
     title: "Government",
@@ -160,6 +175,7 @@ const industries = [
     cost: "Tender Based",
     time: "Project Based",
     span: "md:col-span-2 md:row-span-1",
+    href: "/tenders",
   },
 ];
 
@@ -176,9 +192,11 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
   }
 
   return (
-    <div
-      className={`group relative rounded-3xl border border-foreground/5 bg-[#0a0a0a] overflow-hidden transition-all duration-500 hover:border-primary/50 ${item.span}`}
+    <Link
+      href={item.href}
       onMouseMove={handleMouseMove}
+      className={`group relative block rounded-3xl border border-foreground/5 bg-[#0a0a0a] overflow-hidden transition-all duration-500 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${item.span}`}
+      aria-label={`${item.title} — view service`}
     >
       {/* 
           STRICT BRANDING ENFORCEMENT:
@@ -248,7 +266,7 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
