@@ -1788,6 +1788,31 @@
       "assist": "तत्काल सहायता चाहिए?",
       "or": "या",
       "callUs": "हमें कॉल करें"
+    },
+    "pgRegional": {
+      "eyebrow": "रणनीतिक नवाचार केंद्र",
+      "heroAccent": "टेक फ्रंटियर्स",
+      "partnerBtn": "Cehpoint {{id}} के साथ साझेदारी करें",
+      "consultTitle": "रणनीतिक परामर्श बुक करें",
+      "challengesLead": "क्षेत्रीय",
+      "challengesAccent": "चुनौतियाँ",
+      "challengesTail": " जो हम हल करते हैं",
+      "challengesSub": "{{name}} बाज़ार की अनूठी समस्याओं के लिए लक्षित हस्तक्षेप।",
+      "competenciesBadge": "मुख्य दक्षताएँ",
+      "competenciesLead": "रणनीतिक",
+      "competenciesAccent": "क्षमताएँ",
+      "aiLead": "व्यावहारिक",
+      "aiAccent": "एआई नवाचार",
+      "aiSub": "{{name}} इकोसिस्टम में मापने योग्य व्यावसायिक प्रभाव देने के लिए प्रचार से आगे बढ़ना।",
+      "exploreAi": "सभी एआई मॉडल देखें",
+      "impactAnalysis": "प्रभाव विश्लेषण",
+      "industriesLead": "प्रमुख उद्योगों को",
+      "industriesAccent": "सशक्त बनाना",
+      "techStackLabel": "पसंदीदा प्रौद्योगिकी स्टैक",
+      "ctaTitle": "{{name}} में तैनात करने के लिए तैयार हैं?",
+      "ctaDesc": "स्थानीय अनुपालन और बाज़ार रुझानों के अनुरूप एक अनुकूलित तकनीकी रोडमैप प्राप्त करें।",
+      "consultExperts": "विशेषज्ञों से परामर्श करें",
+      "connectExperts": "स्थानीय विशेषज्ञों से जुड़ें"
     }
   },
   "themeToggle": {

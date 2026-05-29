@@ -9,6 +9,7 @@ import {
     Globe2, Target, Users
 } from "lucide-react";
 import { regionalTrends } from "@/data/regional-trends";
+import { useTranslation } from "react-i18next";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { Helmet } from "react-helmet-async";
@@ -30,6 +31,8 @@ const iconMap: Record<string, any> = {
 };
 
 export default function RegionalService() {
+    const { t } = useTranslation();
+    const B = "pages.pgRegional";
     const [match, params] = useRoute("/services/global/:region");
 
     if (!match || !params?.region) {
@@ -150,12 +153,12 @@ export default function RegionalService() {
                         <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-primary/20 bg-background/50 backdrop-blur-md shadow-sm mb-4">
                             <span className="text-4xl filter drop-shadow-md">{regionData.flag}</span>
                             <span className="h-6 w-px bg-border/60"></span>
-                            <span className="text-sm font-bold text-primary tracking-wide uppercase">Strategic Innovation Hub</span>
+                            <span className="text-sm font-bold text-primary tracking-wide uppercase">{t(`${B}.eyebrow`)}</span>
                         </div>
 
                         <h1 className="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.1]">
                             {regionData.name} <br />
-                            <span className="text-primary">Tech Frontiers</span>
+                            <span className="text-primary">{t(`${B}.heroAccent`)}</span>
                         </h1>
 
                         <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -166,10 +169,10 @@ export default function RegionalService() {
                             <WhatsAppInquiryDialog
                                 appName="Consulting Inquiry"
                                 locationName={regionData.name}
-                                title="Book Strategic Consultation"
+                                title={t(`${B}.consultTitle`)}
                                 trigger={
                                     <Button size="lg" className="rounded-full text-lg h-14 px-8 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all">
-                                        Partner with Cehpoint {regionData.id.toUpperCase()} <ArrowRight className="ml-2 w-5 h-5" />
+                                        {t(`${B}.partnerBtn`, { id: regionData.id.toUpperCase() })} <ArrowRight className="ml-2 w-5 h-5" />
                                     </Button>
                                 }
                             />
@@ -200,8 +203,8 @@ export default function RegionalService() {
                         variants={staggerContainer}
                         className="mb-14 text-center md:text-left"
                     >
-                        <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">Regional <span className="text-primary">Challenges</span> We Solve</h2>
-                        <p className="text-muted-foreground text-lg max-w-2xl">Targeted intervention for the unique pain points of the {regionData.name} market.</p>
+                        <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">{t(`${B}.challengesLead`)} <span className="text-primary">{t(`${B}.challengesAccent`)}</span>{t(`${B}.challengesTail`)}</h2>
+                        <p className="text-muted-foreground text-lg max-w-2xl">{t(`${B}.challengesSub`, { name: regionData.name })}</p>
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -230,8 +233,8 @@ export default function RegionalService() {
             <section className="py-24 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <Badge variant="outline" className="mb-4">Core Competencies</Badge>
-                        <h2 className="font-display text-3xl md:text-5xl font-bold">Strategic <span className="text-primary">Capabilities</span></h2>
+                        <Badge variant="outline" className="mb-4">{t(`${B}.competenciesBadge`)}</Badge>
+                        <h2 className="font-display text-3xl md:text-5xl font-bold">{t(`${B}.competenciesLead`)} <span className="text-primary">{t(`${B}.competenciesAccent`)}</span></h2>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -268,12 +271,12 @@ export default function RegionalService() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                         <div className="max-w-2xl">
-                            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">Applied <span className="text-primary">AI Innovation</span></h2>
-                            <p className="text-lg text-muted-foreground">Moving beyond hype to deliver measurable business impact in the {regionData.name} ecosystem.</p>
+                            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">{t(`${B}.aiLead`)} <span className="text-primary">{t(`${B}.aiAccent`)}</span></h2>
+                            <p className="text-lg text-muted-foreground">{t(`${B}.aiSub`, { name: regionData.name })}</p>
                         </div>
                         <Button variant="outline" className="rounded-full" asChild>
                             <Link href="/ai-solutions">
-                                Explore All AI Models <ArrowRight className="ml-2 w-4 h-4" />
+                                {t(`${B}.exploreAi`)} <ArrowRight className="ml-2 w-4 h-4" />
                             </Link>
                         </Button>
                     </div>
@@ -292,7 +295,7 @@ export default function RegionalService() {
                                     <div className="bg-secondary/50 p-4 rounded-lg flex items-start gap-3">
                                         <TrendingUp className="w-5 h-5 text-green-500 mt-1 shrink-0" />
                                         <div>
-                                            <span className="font-semibold text-foreground block mb-1">Impact Analysis</span>
+                                            <span className="font-semibold text-foreground block mb-1">{t(`${B}.impactAnalysis`)}</span>
                                             <span className="text-sm text-muted-foreground">{sol.impact}</span>
                                         </div>
                                     </div>
@@ -306,7 +309,7 @@ export default function RegionalService() {
             {/* --- Industries (ICP) --- */}
             <section className="py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center">Powering Key <span className="text-primary">Industries</span></h2>
+                    <h2 className="font-display text-3xl md:text-4xl font-bold mb-12 text-center">{t(`${B}.industriesLead`)} <span className="text-primary">{t(`${B}.industriesAccent`)}</span></h2>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {regionData.industries.map((ind, idx) => (
@@ -323,7 +326,7 @@ export default function RegionalService() {
             {/* --- Tech Stack & CTA --- */}
             <section className="py-24 bg-background">
                 <div className="max-w-4xl mx-auto text-center px-4">
-                    <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-6">Preferred Technology Stack</p>
+                    <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-6">{t(`${B}.techStackLabel`)}</p>
                     <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-20 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
                         {regionData.techStack.map((tech, i) => (
                             <span key={i} className="text-xl font-bold text-foreground/80">{tech}</span>
@@ -336,20 +339,20 @@ export default function RegionalService() {
 
                         <CardContent className="relative z-10 py-16 px-8">
                             <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
-                                Ready to deploy in {regionData.name}?
+                                {t(`${B}.ctaTitle`, { name: regionData.name })}
                             </h2>
                             <p className="text-primary-foreground/90 text-xl max-w-2xl mx-auto mb-10">
-                                Get a customized technical roadmap aligned with local compliance and market trends.
+                                {t(`${B}.ctaDesc`)}
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <WhatsAppInquiryDialog
                                     appName="Regional Deployment"
                                     locationName={regionData.name}
-                                    title="Consult Experts"
+                                    title={t(`${B}.consultExperts`)}
                                     trigger={
                                         <Button size="lg" variant="secondary" className="text-primary font-bold text-lg h-14 px-8">
-                                            Connect with Local Experts
+                                            {t(`${B}.connectExperts`)}
                                         </Button>
                                     }
                                 />

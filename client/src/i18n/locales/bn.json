@@ -1788,6 +1788,31 @@
       "assist": "তাৎক্ষণিক সহায়তা প্রয়োজন?",
       "or": "অথবা",
       "callUs": "আমাদের কল করুন"
+    },
+    "pgRegional": {
+      "eyebrow": "কৌশলগত উদ্ভাবন কেন্দ্র",
+      "heroAccent": "টেক ফ্রন্টিয়ার্স",
+      "partnerBtn": "Cehpoint {{id}} এর সাথে অংশীদার হোন",
+      "consultTitle": "কৌশলগত পরামর্শ বুক করুন",
+      "challengesLead": "আঞ্চলিক",
+      "challengesAccent": "চ্যালেঞ্জ",
+      "challengesTail": " যা আমরা সমাধান করি",
+      "challengesSub": "{{name}} বাজারের অনন্য সমস্যার জন্য লক্ষ্যযুক্ত হস্তক্ষেপ।",
+      "competenciesBadge": "মূল দক্ষতা",
+      "competenciesLead": "কৌশলগত",
+      "competenciesAccent": "সক্ষমতা",
+      "aiLead": "ফলিত",
+      "aiAccent": "এআই উদ্ভাবন",
+      "aiSub": "{{name}} ইকোসিস্টেমে পরিমাপযোগ্য ব্যবসায়িক প্রভাব দিতে প্রচারের বাইরে গিয়ে কাজ করা।",
+      "exploreAi": "সব এআই মডেল দেখুন",
+      "impactAnalysis": "প্রভাব বিশ্লেষণ",
+      "industriesLead": "মূল শিল্পকে",
+      "industriesAccent": "শক্তি যোগানো",
+      "techStackLabel": "পছন্দের প্রযুক্তি স্ট্যাক",
+      "ctaTitle": "{{name}} এ মোতায়েন করতে প্রস্তুত?",
+      "ctaDesc": "স্থানীয় কমপ্লায়েন্স ও বাজার প্রবণতার সাথে সামঞ্জস্যপূর্ণ একটি কাস্টমাইজড কারিগরি রোডম্যাপ নিন।",
+      "consultExperts": "বিশেষজ্ঞদের পরামর্শ নিন",
+      "connectExperts": "স্থানীয় বিশেষজ্ঞদের সাথে সংযুক্ত হোন"
     }
   },
   "themeToggle": {

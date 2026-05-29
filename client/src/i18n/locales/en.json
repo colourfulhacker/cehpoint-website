@@ -1788,6 +1788,31 @@
       "assist": "Need immediate assistance?",
       "or": "or",
       "callUs": "call us"
+    },
+    "pgRegional": {
+      "eyebrow": "Strategic Innovation Hub",
+      "heroAccent": "Tech Frontiers",
+      "partnerBtn": "Partner with Cehpoint {{id}}",
+      "consultTitle": "Book Strategic Consultation",
+      "challengesLead": "Regional",
+      "challengesAccent": "Challenges",
+      "challengesTail": " We Solve",
+      "challengesSub": "Targeted intervention for the unique pain points of the {{name}} market.",
+      "competenciesBadge": "Core Competencies",
+      "competenciesLead": "Strategic",
+      "competenciesAccent": "Capabilities",
+      "aiLead": "Applied",
+      "aiAccent": "AI Innovation",
+      "aiSub": "Moving beyond hype to deliver measurable business impact in the {{name}} ecosystem.",
+      "exploreAi": "Explore All AI Models",
+      "impactAnalysis": "Impact Analysis",
+      "industriesLead": "Powering Key",
+      "industriesAccent": "Industries",
+      "techStackLabel": "Preferred Technology Stack",
+      "ctaTitle": "Ready to deploy in {{name}}?",
+      "ctaDesc": "Get a customized technical roadmap aligned with local compliance and market trends.",
+      "consultExperts": "Consult Experts",
+      "connectExperts": "Connect with Local Experts"
     }
   },
   "themeToggle": {
