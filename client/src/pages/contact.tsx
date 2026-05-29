@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock, MessageSquare, Send } from "lucide-react";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters."),
@@ -21,6 +22,7 @@ const formSchema = z.object({
 });
 
 export default function ContactPage() {
+    const { t } = useTranslation();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         mode: "onBlur",
@@ -67,13 +69,13 @@ export default function ContactPage() {
                     >
                         <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
                             <MessageSquare className="w-4 h-4 mr-2" />
-                            <span className="text-sm font-bold">We'd Love to Hear From You</span>
+                            <span className="text-sm font-bold">{t("pages.contact.eyebrow")}</span>
                         </div>
                         <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl mb-6 tracking-tight">
-                            Let's Start a <span className="text-primary">Conversation</span>
+                            {t("pages.contact.title")} <span className="text-primary">{t("pages.contact.titleAccent")}</span>
                         </h1>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-                            Whether you have a question about our services, need a demo, or want to discuss a partnership, our team is ready to answer all your questions.
+                            {t("pages.contact.subtitle")}
                         </p>
                     </motion.div>
                 </div>
@@ -90,7 +92,7 @@ export default function ContactPage() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
                         >
-                            <h2 className="font-display font-bold text-3xl mb-8">Get in Touch</h2>
+                            <h2 className="font-display font-bold text-3xl mb-8">{t("pages.contact.infoTitle")}</h2>
 
                             <div className="space-y-8">
                                 <Card className="glass border-l-4 border-l-primary hover:translate-x-2 transition-transform duration-300">
@@ -176,8 +178,8 @@ export default function ContactPage() {
                         >
                             <Card className="glass p-8">
                                 <div className="mb-6">
-                                    <h2 className="font-display font-bold text-2xl mb-2">Send us a Message</h2>
-                                    <p className="text-muted-foreground">We usually respond within 24 hours.</p>
+                                    <h2 className="font-display font-bold text-2xl mb-2">{t("pages.contact.formTitle")}</h2>
+                                    <p className="text-muted-foreground">{t("pages.contact.formSub")}</p>
                                 </div>
 
                                 <Form {...form}>

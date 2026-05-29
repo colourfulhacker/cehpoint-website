@@ -3,8 +3,10 @@ import ProposalPopup from "@/components/quotation/proposal-popup";
 import { Building2, Laptop } from "lucide-react";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 
 export default function Quotation() {
+  const { t } = useTranslation();
   return (
     <div className="pt-36 min-h-screen" data-testid="quotation-page">
       <SEO 
@@ -23,11 +25,11 @@ export default function Quotation() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fade-up">
             <h1 className="font-display font-bold text-4xl md:text-7xl mb-8 tracking-tight" data-testid="quotation-title">
-              Get Your
-              <span className="text-primary"> Project Proposal</span>
+              {t("pages.quotation.title")}
+              <span className="text-primary"> {t("pages.quotation.titleAccent")}</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light" data-testid="quotation-subtitle">
-              Choose your path to success: Enterprise outsourcing for established companies or our IT Portal for new entrepreneurs.
+              {t("pages.quotation.subtitle")}
             </p>
           </div>
 
@@ -35,10 +37,10 @@ export default function Quotation() {
             <div className="space-y-8">
               <div className="text-center mb-12">
                 <h2 className="font-display font-bold text-3xl md:text-4xl mb-4" data-testid="options-title">
-                  Choose Your <span className="text-primary">Development Path</span>
+                  {t("pages.quotation.pathTitle")} <span className="text-primary">{t("pages.quotation.pathAccent")}</span>
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  Select the option that best fits your business needs and development requirements.
+                  {t("pages.quotation.pathSub")}
                 </p>
               </div>
 
@@ -52,8 +54,8 @@ export default function Quotation() {
                     <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                       <Building2 className="w-8 h-8 text-primary" aria-hidden="true" />
                     </div>
-                    <h3 className="font-display font-bold text-2xl mb-2">Enterprise Outsourcing</h3>
-                    <p className="text-sm text-primary font-medium">For Big Clients & Corporate Brands</p>
+                    <h3 className="font-display font-bold text-2xl mb-2">{t("pages.quotation.enterprise")}</h3>
+                    <p className="text-sm text-primary font-medium">{t("pages.quotation.enterpriseFor")}</p>
                   </div>
 
                   <div className="space-y-4 mb-6 flex-1">
@@ -88,7 +90,7 @@ export default function Quotation() {
                       rel="noopener noreferrer"
                       className="btn-primary inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold w-full group-hover:shadow-lg transition-all"
                     >
-                      Get Enterprise Proposal
+                      {t("pages.quotation.getEnterprise")}
                     </a>
                   </div>
                 </div>
@@ -102,8 +104,8 @@ export default function Quotation() {
                     <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                       <Laptop className="w-8 h-8 text-accent" aria-hidden="true" />
                     </div>
-                    <h3 className="font-display font-bold text-2xl mb-2">IT Portal</h3>
-                    <p className="text-sm text-accent font-medium">For Startups & New Entrepreneurs</p>
+                    <h3 className="font-display font-bold text-2xl mb-2">{t("pages.quotation.itPortal")}</h3>
+                    <p className="text-sm text-accent font-medium">{t("pages.quotation.itPortalFor")}</p>
                   </div>
 
                   <div className="space-y-4 mb-6 flex-1">
@@ -138,7 +140,7 @@ export default function Quotation() {
                       rel="noopener noreferrer"
                       className="bg-accent hover:bg-accent/90 text-accent-foreground inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold w-full group-hover:shadow-lg transition-all"
                     >
-                      Visit IT Portal →
+                      {t("pages.quotation.visitItPortal")} →
                     </a>
                   </div>
                 </div>

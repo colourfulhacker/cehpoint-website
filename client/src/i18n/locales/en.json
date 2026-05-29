@@ -164,6 +164,66 @@
       "projectsSub": "Delivered worldwide"
     }
   },
+  "pages": {
+    "contact": {
+      "eyebrow": "We'd love to hear from you",
+      "title": "Let's start a",
+      "titleAccent": "conversation",
+      "subtitle": "Whether you have a product idea, a security concern, or a partnership opportunity — our senior team responds within one working day.",
+      "formTitle": "Send us a message",
+      "formSub": "We usually respond within 24 hours.",
+      "infoTitle": "Get in touch"
+    },
+    "quotation": {
+      "eyebrow": "Project proposals",
+      "title": "Get your",
+      "titleAccent": "project proposal",
+      "subtitle": "Choose your path — enterprise outsourcing for established teams or our IT Portal for new founders and startups.",
+      "pathTitle": "Choose your",
+      "pathAccent": "development path",
+      "pathSub": "Pick the option that matches where your business is today.",
+      "enterprise": "Enterprise Outsourcing",
+      "enterpriseFor": "For corporate brands and established companies",
+      "itPortal": "IT Portal",
+      "itPortalFor": "For startups and new entrepreneurs",
+      "getEnterprise": "Get enterprise proposal",
+      "visitItPortal": "Visit IT Portal"
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "Solutions engineered for",
+      "titleAccent": "every business",
+      "subtitle": "From a single MVP to a multi-region enterprise platform — one accountable senior team, one fair quote, one demo before you commit.",
+      "browseAll": "Browse all services",
+      "viewIndustries": "View all industries"
+    },
+    "about": {
+      "eyebrow": "Since 2020 · 500+ projects · 25+ industries",
+      "title": "Engineering trust into every",
+      "titleAccent": "product we ship",
+      "subtitle": "Cehpoint is an India-headquartered IT, AI, and cybersecurity firm. We build the software, run the security, and stand behind the code — for hundreds of teams across the world.",
+      "startProject": "Start a project",
+      "downloadProfile": "Download company profile"
+    },
+    "demoDelivery": {
+      "eyebrow": "Demo-first delivery",
+      "title": "See it working,",
+      "titleAccent": "then decide",
+      "subtitle": "Web prototype in 24 hours. Mobile MVP in 7 days. You pay only when the demo earns your trust."
+    },
+    "careers": {
+      "eyebrow": "Join the team",
+      "title": "Build the future of",
+      "titleAccent": "secure software",
+      "subtitle": "We hire engineers who ship — and stay. Real ownership, senior mentorship, fair pay, no corporate theatre."
+    },
+    "training": {
+      "eyebrow": "Cehpoint Training Academy",
+      "title": "Learn the skills that",
+      "titleAccent": "actually ship",
+      "subtitle": "Practical, project-based programs taught by engineers who have built in production. No theory dumps."
+    }
+  },
   "themeToggle": {
     "light": "Light",
     "dark": "Dark",

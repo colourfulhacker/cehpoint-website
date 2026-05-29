@@ -1,6 +1,7 @@
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 import {
     Users, Target, Rocket, Shield, Brain, Globe2, Award,
     HeartHandshake, Zap, ArrowRight, CheckCircle2, Building2,
@@ -52,6 +53,7 @@ const milestones = [
 ];
 
 export default function AboutPage() {
+    const { t } = useTranslation();
     return (
         <div className="pt-24 min-h-screen bg-background text-foreground">
             <SEO
@@ -80,23 +82,23 @@ export default function AboutPage() {
                         </span>
                     </div>
                     <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl mb-6 tracking-tight leading-[1.1]">
-                        Engineering trust into every <span className="text-primary">product we ship</span>
+                        {t("pages.about.title")} <span className="text-primary">{t("pages.about.titleAccent")}</span>
                     </h1>
                     <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        Cehpoint is an India-headquartered IT, AI, and cybersecurity firm. We build the software, run the security, and stand behind the code — for {COMPANY.stats.projects} teams in {COMPANY.stats.industries} industries across {YEARS}+ years.
+                        {t("pages.about.subtitle")}
                     </p>
                     <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                         <Link
                             href="/quotation"
                             className="inline-flex items-center justify-center btn-primary px-7 py-3 rounded-full font-semibold"
                         >
-                            Start a project <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
+                            {t("pages.about.startProject")} <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
                         </Link>
                         <Link
                             href="/company-profile"
                             className="inline-flex items-center justify-center btn-outline px-7 py-3 rounded-full font-semibold"
                         >
-                            Download company profile
+                            {t("pages.about.downloadProfile")}
                         </Link>
                     </div>
                 </div>

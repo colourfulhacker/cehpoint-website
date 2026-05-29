@@ -10,9 +10,11 @@ import { Button } from "@/components/ui/button";
 import SEO from "@/components/seo";
 import ServiceSchema from "@/components/seo/service-schema";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 
 export default function ServicesPage() {
+    const { t } = useTranslation();
     const featuredServices = [
         {
             icon: Brain,
@@ -154,22 +156,22 @@ export default function ServicesPage() {
                         
 
                         <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight text-white">
-                            Our Services
+                            {t("pages.services.title")} <span className="text-primary">{t("pages.services.titleAccent")}</span>
                         </h1>
 
                         <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-10 max-w-4xl mx-auto leading-relaxed">
-                            From startups to Fortune 500 companies, we deliver world-class solutions across every industry vertical with measurable results and exceptional quality.
+                            {t("pages.services.subtitle")}
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                             <Link href="/quotation">
                                 <Button className="btn-primary px-8 py-4 rounded-xl text-lg font-semibold text-primary-foreground w-full sm:w-auto">
-                                    Get Your Quote <ArrowRight className="ml-2 w-5 h-5" />
+                                    {t("cta.getQuote")} <ArrowRight className="ml-2 w-5 h-5" />
                                 </Button>
                             </Link>
                             <Link href="#featured-services">
                                 <Button variant="outline" className="px-8 py-4 rounded-xl text-lg font-semibold w-full sm:w-auto">
-                                    Explore Services
+                                    {t("cta.exploreServices")}
                                 </Button>
                             </Link>
                         </div>
