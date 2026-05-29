@@ -1833,6 +1833,66 @@
       "ctaDesc": "Get a detailed quotation with AI-powered analysis and technical recommendations for your project.",
       "getQuotation": "Get Your Quotation",
       "seeProcess": "See Our Process"
+    },
+    "pgSecurity": {
+      "eyebrow": "CEHPOINT CSR INITIATIVE",
+      "heroPre": "Cyber Security is a ",
+      "heroAccent": "Right",
+      "heroPost": ", Not a Privilege.",
+      "heroSub": "We are on a mission to secure the digital ecosystem. Get enterprise-grade monitoring and threat detection for your business—absolutely free.",
+      "applyWhatsApp": "Apply via WhatsApp",
+      "whyWeDo": "Why We Do This",
+      "applyTime": "Takes less than 2 minutes to apply",
+      "benefits": [
+        {
+          "title": "Enterprise Protection",
+          "description": "Access the same level of security used by large corporations, completely free of charge. We believe security is a right."
+        },
+        {
+          "title": "A CSR Initiative",
+          "description": "This is our way of giving back. CEHPOINT contributes to a safer digital India by empowering businesses."
+        },
+        {
+          "title": "Global Compliance",
+          "description": "Stay ahead of regulations. Our Wazuh-powered solution helps you meet GDPR, HIPAA, and PCI DSS requirements."
+        },
+        {
+          "title": "Zero-Cost Security",
+          "description": "No hidden fees, no trial periods. Just robust, open-source security monitoring to keep your business safe."
+        }
+      ],
+      "missionLead": "Security with a",
+      "missionAccent": "Purpose",
+      "missionSub": "We recognize that 60% of small businesses close within 6 months of a cyber attack. Our goal is to change that statistic by removing the cost barrier to professional security.",
+      "processLead": "Get Secured in",
+      "processAccent": "4 Simple Steps",
+      "steps": [
+        {
+          "title": "Connect",
+          "description": "Click the apply button and share your basic details with us."
+        },
+        {
+          "title": "Verify",
+          "description": "We verifies your business eligibility for the scheme."
+        },
+        {
+          "title": "Deploy",
+          "description": "Install the lightweight Wazuh agent on your endpoints."
+        },
+        {
+          "title": "Protect",
+          "description": "24/7 Monitoring by our Security Operations Center starts."
+        }
+      ],
+      "startReg": "Start Registration Now",
+      "onboardLine": "Direct line to our Security Onboarding Team",
+      "dialogTitle": "One Step Closer to Safety",
+      "dialogDesc": "Please fill in your details. We will use this to generate a personalized application message for you on WhatsApp.",
+      "labelName": "Full Name",
+      "labelCompany": "Company Name",
+      "labelEmail": "Email Address",
+      "labelPhone": "Phone Number",
+      "proceed": "Proceed to WhatsApp"
     }
   },
   "themeToggle": {

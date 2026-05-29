@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useTranslation } from "react-i18next";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
@@ -42,51 +43,13 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
         setIsDialogOpen(false);
     };
 
-    const benefits = [
-        {
-            icon: Shield,
-            title: "Enterprise Protection",
-            description: "Access the same level of security used by large corporations, completely free of charge. We believe security is a right."
-        },
-        {
-            icon: HeartHandshake,
-            title: "A CSR Initiative",
-            description: "This is our way of giving back. CEHPOINT contributes to a safer digital India by empowering businesses."
-        },
-        {
-            icon: Globe,
-            title: "Global Compliance",
-            description: "Stay ahead of regulations. Our Wazuh-powered solution helps you meet GDPR, HIPAA, and PCI DSS requirements."
-        },
-        {
-            icon: Lock,
-            title: "Zero-Cost Security",
-            description: "No hidden fees, no trial periods. Just robust, open-source security monitoring to keep your business safe."
-        }
-    ];
-
-    const steps = [
-        {
-            number: "01",
-            title: "Connect",
-            description: "Click the apply button and share your basic details with us."
-        },
-        {
-            number: "02",
-            title: "Verify",
-            description: "We verifies your business eligibility for the scheme."
-        },
-        {
-            number: "03",
-            title: "Deploy",
-            description: "Install the lightweight Wazuh agent on your endpoints."
-        },
-        {
-            number: "04",
-            title: "Protect",
-            description: "24/7 Monitoring by our Security Operations Center starts."
-        }
-    ];
+    const { t } = useTranslation();
+    const B = "pages.pgSecurity";
+    const benefitIcons = [Shield, HeartHandshake, Globe, Lock];
+    const benefits = (t(`${B}.benefits`, { returnObjects: true }) as { title: string; description: string }[])
+        .map((b, i) => ({ ...b, icon: benefitIcons[i] ?? Shield }));
+    const steps = (t(`${B}.steps`, { returnObjects: true }) as { title: string; description: string }[])
+        .map((s, i) => ({ ...s, number: `0${i + 1}` }));
 
     return (
         <div className="pt-36 min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -111,15 +74,15 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                         <div className="space-y-6 md:space-y-8 text-center lg:text-left">
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full glass border border-primary/20 text-primary animate-fade-in mx-auto lg:mx-0">
                                 <Shield className="w-3 h-3 md:w-4 md:h-4" />
-                                <span className="text-xs md:text-sm font-semibold tracking-wide">CEHPOINT CSR INITIATIVE</span>
+                                <span className="text-xs md:text-sm font-semibold tracking-wide">{t(`${B}.eyebrow`)}</span>
                             </div>
 
                             <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-7xl leading-tight animate-fade-up">
-                                Cyber Security is a <span className="text-primary">Right</span>, Not a Privilege.
+                                {t(`${B}.heroPre`)}<span className="text-primary">{t(`${B}.heroAccent`)}</span>{t(`${B}.heroPost`)}
                             </h1>
 
                             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed animate-fade-up delay-100 max-w-xl mx-auto lg:mx-0">
-                                We are on a mission to secure the digital ecosystem. Get enterprise-grade monitoring and threat detection for your business—absolutely free.
+                                {t(`${B}.heroSub`)}
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 animate-fade-up delay-200 justify-center lg:justify-start">
@@ -128,17 +91,17 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                                     className="w-full sm:w-auto btn-primary px-8 py-6 rounded-xl text-xl font-bold shadow-xl shadow-primary/25 hover:scale-105 transition-transform group"
                                 >
                                     <MessageCircle className="w-6 h-6 mr-3 group-hover:animate-bounce" />
-                                    Apply via WhatsApp
+                                    {t(`${B}.applyWhatsApp`)}
                                 </Button>
                                 <Link href="#mission">
                                     <Button variant="outline" className="w-full sm:w-auto px-8 py-6 rounded-xl text-lg border-primary/20 hover:bg-secondary/50">
-                                        Why We Do This
+                                        {t(`${B}.whyWeDo`)}
                                     </Button>
                                 </Link>
                             </div>
                             <p className="text-sm text-muted-foreground flex items-center justify-center lg:justify-start gap-2 animate-fade-up delay-300">
                                 <CheckCircle className="w-4 h-4 text-green-500" />
-                                <span>Takes less than 2 minutes to apply</span>
+                                <span>{t(`${B}.applyTime`)}</span>
                             </p>
                         </div>
 
@@ -237,11 +200,10 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
                         <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6">
-                            Security with a <span className="text-primary">Purpose</span>
+                            {t(`${B}.missionLead`)} <span className="text-primary">{t(`${B}.missionAccent`)}</span>
                         </h2>
                         <p className="text-lg md:text-xl text-muted-foreground">
-                            We recognize that 60% of small businesses close within 6 months of a cyber attack.
-                            Our goal is to change that statistic by removing the cost barrier to professional security.
+                            {t(`${B}.missionSub`)}
                         </p>
                     </div>
 
@@ -268,7 +230,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none" />
 
                         <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl mb-12 md:mb-16 relative z-10">
-                            Get Secured in <span className="text-primary">4 Simple Steps</span>
+                            {t(`${B}.processLead`)} <span className="text-primary">{t(`${B}.processAccent`)}</span>
                         </h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 relative z-10">
@@ -293,10 +255,10 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                                 className="w-full sm:w-auto btn-primary px-8 md:px-12 py-6 md:py-8 rounded-2xl text-xl md:text-2xl font-bold shadow-2xl hover:shadow-primary/50 hover:scale-105 transition-all duration-300"
                             >
                                 <MessageCircle className="w-6 h-6 md:w-8 md:h-8 mr-3 md:mr-4" />
-                                Start Registration Now
+                                {t(`${B}.startReg`)}
                             </Button>
                             <p className="mt-4 md:mt-6 text-xs md:text-sm text-muted-foreground">
-                                Direct line to our Security Onboarding Team
+                                {t(`${B}.onboardLine`)}
                             </p>
                         </div>
                     </div>
@@ -307,14 +269,14 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogContent className="sm:max-w-md glass-intense border-primary/20">
                     <DialogHeader>
-                        <DialogTitle className="text-2xl font-display font-bold">One Step Closer to Safety</DialogTitle>
+                        <DialogTitle className="text-2xl font-display font-bold">{t(`${B}.dialogTitle`)}</DialogTitle>
                         <DialogDescription>
-                            Please fill in your details. We will use this to generate a personalized application message for you on WhatsApp.
+                            {t(`${B}.dialogDesc`)}
                         </DialogDescription>
                     </DialogHeader>
                     <form onSubmit={handleWhatsAppRedirect} className="space-y-4 mt-4">
                         <div className="space-y-2">
-                            <Label htmlFor="name">Full Name</Label>
+                            <Label htmlFor="name">{t(`${B}.labelName`)}</Label>
                             <div className="relative">
                                 <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                 <Input
@@ -328,7 +290,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="company">Company Name</Label>
+                            <Label htmlFor="company">{t(`${B}.labelCompany`)}</Label>
                             <div className="relative">
                                 <Building2 className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                 <Input
@@ -342,7 +304,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="email">Email Address</Label>
+                            <Label htmlFor="email">{t(`${B}.labelEmail`)}</Label>
                             <div className="relative">
                                 <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                 <Input
@@ -357,7 +319,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="phone">Phone Number</Label>
+                            <Label htmlFor="phone">{t(`${B}.labelPhone`)}</Label>
                             <div className="relative">
                                 <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                 <Input
@@ -373,7 +335,7 @@ I am interested in the Free Cyber Security Services Scheme. Please guide me thro
                         </div>
                         <div className="pt-4">
                             <Button type="submit" className="w-full btn-primary text-lg font-bold">
-                                Proceed to WhatsApp
+                                {t(`${B}.proceed`)}
                                 <MessageCircle className="ml-2 w-5 h-5" />
                             </Button>
                         </div>
