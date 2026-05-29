@@ -24,6 +24,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 // SEO Imports
 import SEO from "@/components/seo";
@@ -180,6 +181,8 @@ const categoryDescriptions: Record<string, string> = {
 
 function AppDetailDialog({ app, children }: { app: AppIdea, children: React.ReactNode }) {
     const { toast } = useToast();
+    const { t } = useTranslation();
+    const B = "pages.serviceCatalog";
 
     const handleCopyInput = () => {
         const textToCopy = `*App Idea: ${app.title}*
@@ -200,8 +203,8 @@ ${app.features.join(", ")}`.trim();
 
         navigator.clipboard.writeText(textToCopy);
         toast({
-            title: "Copied to clipboard",
-            description: "App details copied successfully!",
+            title: t(`${B}.copyTitle`),
+            description: t(`${B}.copyDesc`),
         });
     };
 
@@ -222,7 +225,7 @@ ${app.features.join(", ")}`.trim();
                                 <Badge variant="secondary" className="mt-1">{app.category}</Badge>
                             </div>
                         </div>
-                        <Button variant="ghost" size="icon" onClick={handleCopyInput} title="Copy Details">
+                        <Button variant="ghost" size="icon" onClick={handleCopyInput} title={t(`${B}.copyTooltip`)}>
                             <Copy className="w-5 h-5" />
                         </Button>
                     </div>
@@ -236,7 +239,7 @@ ${app.features.join(", ")}`.trim();
                         {app.businessIdea && (
                             <div className="bg-primary/5 p-4 rounded-lg space-y-2 border border-primary/10">
                                 <h4 className="font-semibold flex items-center gap-2 text-primary">
-                                    <Lightbulb className="w-4 h-4" /> Business Opportunity
+                                    <Lightbulb className="w-4 h-4" /> {t(`${B}.bizOpportunity`)}
                                 </h4>
                                 <p className="text-sm text-foreground/90 leading-relaxed italic">
                                     "{app.businessIdea}"
@@ -246,7 +249,7 @@ ${app.features.join(", ")}`.trim();
 
                         <div className="bg-secondary/20 p-4 rounded-lg space-y-2">
                             <h4 className="font-semibold flex items-center gap-2 text-primary">
-                                <Target className="w-4 h-4" /> Business Objective
+                                <Target className="w-4 h-4" /> {t(`${B}.bizObjective`)}
                             </h4>
                             <p className="text-sm text-foreground/90 leading-relaxed">
                                 {app.objective}
@@ -255,7 +258,7 @@ ${app.features.join(", ")}`.trim();
 
                         <div className="space-y-3">
                             <h4 className="font-semibold flex items-center gap-2">
-                                <Cpu className="w-4 h-4 text-primary" /> Key Market Advantage
+                                <Cpu className="w-4 h-4 text-primary" /> {t(`${B}.marketAdvantage`)}
                             </h4>
                             <p className="text-sm border-l-2 border-primary pl-3 italic text-muted-foreground">
                                 "{app.whyThisApp}"
@@ -264,7 +267,7 @@ ${app.features.join(", ")}`.trim();
 
                         <div className="space-y-3">
                             <h4 className="font-semibold flex items-center gap-2">
-                                <Layers className="w-4 h-4 text-primary" /> Tech Stack
+                                <Layers className="w-4 h-4 text-primary" /> {t(`${B}.techStack`)}
                             </h4>
                             <div className="flex flex-wrap gap-2">
                                 {app.techStack.map(tech => (
@@ -279,7 +282,7 @@ ${app.features.join(", ")}`.trim();
                     <div className="space-y-6">
                         <div className="space-y-3">
                             <h4 className="font-semibold flex items-center gap-2">
-                                <Info className="w-4 h-4 text-primary" /> How It Works
+                                <Info className="w-4 h-4 text-primary" /> {t(`${B}.howItWorks`)}
                             </h4>
                             <div className="text-sm bg-secondary/10 p-4 rounded-lg border border-border">
                                 {app.howItWorks.split('->').map((step, i) => (
@@ -293,7 +296,7 @@ ${app.features.join(", ")}`.trim();
 
                         <div className="space-y-3">
                             <h4 className="font-semibold flex items-center gap-2">
-                                <CheckCircle2 className="w-4 h-4 text-green-500" /> Core Features
+                                <CheckCircle2 className="w-4 h-4 text-green-500" /> {t(`${B}.coreFeatures`)}
                             </h4>
                             <ul className="space-y-2">
                                 {app.features.map(feature => (
@@ -309,7 +312,7 @@ ${app.features.join(", ")}`.trim();
                 <DialogFooter className="flex-col sm:flex-row gap-3 pt-4 border-t sticky bottom-0 bg-background/95 backdrop-blur z-10">
                     <Link href="/quotation">
                         <Button size="lg" className="w-full sm:w-auto shadow-md">
-                            Start {app.title} Now
+                            {t(`${B}.startNow`, { title: app.title })}
                         </Button>
                     </Link>
                 </DialogFooter>
@@ -319,6 +322,10 @@ ${app.features.join(", ")}`.trim();
 }
 
 export default function BusinessAppCatalog() {
+    const { t } = useTranslation();
+    const B = "pages.serviceCatalog";
+    const catNames = t(`${B}.categoryNames`, { returnObjects: true }) as Record<string, string>;
+    const catDescs = t(`${B}.categoryDescriptions`, { returnObjects: true }) as Record<string, string>;
     return (
         <>
             <SEO
@@ -361,32 +368,32 @@ export default function BusinessAppCatalog() {
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
                             <div className="lg:w-1/2 space-y-6">
                                 <Badge variant="outline" className="border-primary text-primary px-4 py-1 text-sm font-semibold rounded-full bg-primary/10">
-                                    Business Launchpad 2025
+                                    {t(`${B}.badge`)}
                                 </Badge>
                                 <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-tight">
-                                    <span className="text-primary">50+ Profitable</span> <br />
-                                    Business App Ideas
+                                    <span className="text-primary">{t(`${B}.heroTitleAccent`)}</span> <br />
+                                    {t(`${B}.heroTitleRest`)}
                                 </h1>
                                 <p className="text-xl text-muted-foreground max-w-lg">
-                                    Launch your dream startup with our catalogue of 50+ pre-built, customizable business applications. Low investment, rapid launch, and high ranking potential.
+                                    {t(`${B}.heroSubtitle`)}
                                 </p>
                                 <div className="bg-card border border-border p-6 rounded-xl shadow-lg inline-block w-full max-w-md">
                                     <div className="flex items-center justify-between mb-4">
-                                        <span className="text-lg font-medium text-foreground">One Time Fee</span>
-                                        <span className="text-2xl font-bold text-primary">Starting ₹15,000</span>
+                                        <span className="text-lg font-medium text-foreground">{t(`${B}.feeLabel`)}</span>
+                                        <span className="text-2xl font-bold text-primary">{t(`${B}.feeValue`)}</span>
                                     </div>
                                     <div className="space-y-2 text-sm text-foreground/80">
                                         <div className="flex items-center gap-2">
                                             <ShieldCheck className="w-4 h-4 text-green-500" />
-                                            <span>No Advance Payment</span>
+                                            <span>{t(`${B}.feat1`)}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <CheckCircle2 className="w-4 h-4 text-green-500" />
-                                            <span>No Maintenance Required</span>
+                                            <span>{t(`${B}.feat2`)}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <Cpu className="w-4 h-4 text-green-500" />
-                                            <span>Launch Fast</span>
+                                            <span>{t(`${B}.feat3`)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -400,11 +407,11 @@ export default function BusinessAppCatalog() {
                                             window.open(`https://wa.me/919091156095?text=${msg}`, "_blank");
                                         }}
                                     >
-                                        Get Started <ArrowRight className="ml-2 w-4 h-4" />
+                                        {t(`${B}.getStarted`)} <ArrowRight className="ml-2 w-4 h-4" />
                                     </Button>
                                     <Link href="#apps">
                                         <Button variant="outline" size="lg" className="rounded-full px-8">
-                                            View Catalog
+                                            {t(`${B}.viewCatalog`)}
                                         </Button>
                                     </Link>
                                 </div>
@@ -413,7 +420,7 @@ export default function BusinessAppCatalog() {
                             <div className="lg:w-1/2 relative bg-card p-8 rounded-2xl shadow-xl border border-border">
                                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                                     <Laptop className="w-5 h-5 text-primary" />
-                                    Tech Stack & Support
+                                    {t(`${B}.techSupportTitle`)}
                                 </h3>
                                 <div className="space-y-6">
                                     <div className="flex items-start gap-4">
@@ -421,8 +428,8 @@ export default function BusinessAppCatalog() {
                                             <div className="font-bold">PWA</div>
                                         </div>
                                         <div>
-                                            <h4 className="font-semibold text-foreground">PWA App + Firebase Backend</h4>
-                                            <p className="text-sm text-muted-foreground">Modern Progressive Web App technology ensuring performance and reliability.</p>
+                                            <h4 className="font-semibold text-foreground">{t(`${B}.pwaTitle`)}</h4>
+                                            <p className="text-sm text-muted-foreground">{t(`${B}.pwaDesc`)}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-4">
@@ -430,8 +437,8 @@ export default function BusinessAppCatalog() {
                                             <User className="w-5 h-5" />
                                         </div>
                                         <div>
-                                            <h4 className="font-semibold text-foreground">Target Audience</h4>
-                                            <p className="text-sm text-muted-foreground">New Entrepreneurs | Local Businesses | Side Hustles</p>
+                                            <h4 className="font-semibold text-foreground">{t(`${B}.audienceTitle`)}</h4>
+                                            <p className="text-sm text-muted-foreground">{t(`${B}.audienceDesc`)}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-4">
@@ -439,8 +446,8 @@ export default function BusinessAppCatalog() {
                                             <MessageSquare className="w-5 h-5" />
                                         </div>
                                         <div>
-                                            <h4 className="font-semibold text-foreground">Consultancy & Support</h4>
-                                            <p className="text-sm text-muted-foreground">Full handholding support and consultancy to register your business if required.</p>
+                                            <h4 className="font-semibold text-foreground">{t(`${B}.consultTitle`)}</h4>
+                                            <p className="text-sm text-muted-foreground">{t(`${B}.consultDesc`)}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -452,11 +459,9 @@ export default function BusinessAppCatalog() {
                 {/* SEO Content Section - Intro */}
                 <section className="container mx-auto px-4 mb-20">
                     <div className="max-w-4xl mx-auto text-center space-y-6">
-                        <h2 className="text-3xl font-bold">Why Start an App-Based Business in 2025?</h2>
+                        <h2 className="text-3xl font-bold">{t(`${B}.whyTitle`)}</h2>
                         <p className="text-lg text-muted-foreground leading-relaxed">
-                            The digital economy is booming. In 2025, maximizing your local presence through a dedicated mobile application is not just a luxury, it's a necessity.
-                            Whether you are looking to digitize your existing grocery store, start a new coaching center, or launch a hyperlocal delivery service, having a robust
-                            **Progressive Web App (PWA)** gives you the edge. Our catalog offers **low-investment business ideas** that are designed for high profitability and scalability.
+                            {t(`${B}.whyDesc`)}
                         </p>
                     </div>
                 </section>
@@ -464,9 +469,9 @@ export default function BusinessAppCatalog() {
                 {/* Catalog Section */}
                 <section id="apps" className="container mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold mb-4">Explore Our Catalog</h2>
+                        <h2 className="text-3xl font-bold mb-4">{t(`${B}.exploreTitle`)}</h2>
                         <div className="w-24 h-1 bg-primary mx-auto rounded-full" />
-                        <p className="mt-4 text-muted-foreground">Click on any card to view detailed run-down, objective and features</p>
+                        <p className="mt-4 text-muted-foreground">{t(`${B}.exploreSub`)}</p>
                     </div>
 
                     <div className="grid gap-12">
@@ -475,9 +480,9 @@ export default function BusinessAppCatalog() {
                                 <div className="mb-8">
                                     <div className="flex items-center gap-4 mb-2">
                                         <div className="h-10 w-1 bg-primary rounded-full"></div>
-                                        <h3 className="text-2xl font-bold text-foreground">{category} Businesses</h3>
+                                        <h3 className="text-2xl font-bold text-foreground">{catNames[category] ?? category} {t(`${B}.categorySuffix`)}</h3>
                                     </div>
-                                    <p className="text-muted-foreground ml-5">{categoryDescriptions[category]}</p>
+                                    <p className="text-muted-foreground ml-5">{catDescs[category] ?? categoryDescriptions[category]}</p>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -521,7 +526,7 @@ export default function BusinessAppCatalog() {
                                                                     ))}
                                                                 </div>
                                                                 <div className="text-xs font-bold text-primary flex items-center bg-primary/10 px-3 py-1.5 rounded-full group-hover:bg-primary group-hover:text-foreground transition-all">
-                                                                    OPEN APP <ArrowRight className="w-3 h-3 ml-1" />
+                                                                    {t(`${B}.openApp`)} <ArrowRight className="w-3 h-3 ml-1" />
                                                                 </div>
                                                             </div>
 
@@ -541,8 +546,8 @@ export default function BusinessAppCatalog() {
                 <section className="container mx-auto px-4 mt-20 mb-12">
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-10">
-                            <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-                            <p className="text-muted-foreground">Everything you need to know about starting your app business.</p>
+                            <h2 className="text-3xl font-bold mb-4">{t(`${B}.faqTitle`)}</h2>
+                            <p className="text-muted-foreground">{t(`${B}.faqSub`)}</p>
                         </div>
 
                         <div className="space-y-4">
@@ -570,9 +575,9 @@ export default function BusinessAppCatalog() {
                         <div className="absolute bottom-0 left-0 p-12 bg-black/10 rounded-full transform -translate-x-1/2 translate-y-1/2 blur-2xl"></div>
 
                         <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Journey?</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t(`${B}.ctaTitle`)}</h2>
                             <p className="text-lg opacity-90 mb-8">
-                                Don't wait! Grab this opportunity to launch your own business with our affordable, high-quality app solutions.
+                                {t(`${B}.ctaDesc`)}
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <Button
@@ -584,7 +589,7 @@ export default function BusinessAppCatalog() {
                                         window.open(`https://wa.me/919091156095?text=${msg}`, "_blank");
                                     }}
                                 >
-                                    Book Your App Now
+                                    {t(`${B}.bookNow`)}
                                 </Button>
                                 <Button
                                     size="lg"
@@ -595,7 +600,7 @@ export default function BusinessAppCatalog() {
                                         window.open(`https://wa.me/919091156095?text=${msg}`, "_blank");
                                     }}
                                 >
-                                    Contact Expert
+                                    {t(`${B}.contactExpert`)}
                                 </Button>
                             </div>
                         </div>
