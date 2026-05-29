@@ -1813,6 +1813,26 @@
       "ctaDesc": "Get a customized technical roadmap aligned with local compliance and market trends.",
       "consultExperts": "Consult Experts",
       "connectExperts": "Connect with Local Experts"
+    },
+    "pgServices": {
+      "trendsEyebrow": "Global Strategic Trends 2026",
+      "trendsTitle": "Global Strategic Trends",
+      "trendsSub": "Explore specialized IT and Cybersecurity strategies designed for key global markets.",
+      "nearYou": "NEAR YOU",
+      "overviewTitle": "Services Overview",
+      "overviewSub": "Comprehensive technology solutions tailored to drive innovation and growth across your organization",
+      "learnMore": "Learn more →",
+      "industriesAccent": "15+ Industries",
+      "industriesTail": " We Serve",
+      "industriesSub": "Delivering specialized solutions across every business vertical with proven expertise and measurable outcomes",
+      "trustedTitle": "Trusted by Industry Leaders",
+      "trustedSub": "Join hundreds of satisfied clients who have transformed their businesses with our solutions",
+      "techPartners": "Technology Partners",
+      "ctaLead": "Ready to Build Something",
+      "ctaAccent": "Amazing?",
+      "ctaDesc": "Get a detailed quotation with AI-powered analysis and technical recommendations for your project.",
+      "getQuotation": "Get Your Quotation",
+      "seeProcess": "See Our Process"
     }
   },
   "themeToggle": {

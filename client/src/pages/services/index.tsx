@@ -228,13 +228,13 @@ export default function ServicesPage() {
                     <div className="text-center mb-16">
                         <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 mb-4">
                             <Globe className="w-4 h-4 text-primary mr-2" />
-                            <span className="text-sm font-medium text-primary">Global Strategic Trends 2026</span>
+                            <span className="text-sm font-medium text-primary">{t("pages.pgServices.trendsEyebrow")}</span>
                         </div>
                         <h2 className="font-display font-bold text-4xl md:text-5xl mb-6 text-foreground">
-                            Global Strategic Trends
+                            {t("pages.pgServices.trendsTitle")}
                         </h2>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                            Explore specialized IT and Cybersecurity strategies designed for key global markets.
+                            {t("pages.pgServices.trendsSub")}
                         </p>
                     </div>
 
@@ -278,7 +278,7 @@ export default function ServicesPage() {
                                         <div className={`glass p-6 rounded-2xl hover:bg-primary/5 transition-colors cursor-pointer border border-border/50 hover:border-primary/50 group h-full ${index === 0 ? 'ring-2 ring-primary/20 bg-primary/5' : ''}`}>
                                             <div className="flex items-center justify-between mb-4">
                                                 <span className="text-4xl">{region.flag}</span>
-                                                {index === 0 && <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">NEAR YOU</span>}
+                                                {index === 0 && <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">{t("pages.pgServices.nearYou")}</span>}
                                                 <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                                             </div>
                                             <h3 className="font-bold text-xl mb-2 group-hover:text-primary transition-colors">{region.name}</h3>
@@ -297,10 +297,10 @@ export default function ServicesPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="font-display font-bold text-4xl md:text-5xl mb-6 text-foreground">
-                            Services Overview
+                            {t("pages.pgServices.overviewTitle")}
                         </h2>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                            Comprehensive technology solutions tailored to drive innovation and growth across your organization
+                            {t("pages.pgServices.overviewSub")}
                         </p>
                     </div>
 
@@ -346,7 +346,7 @@ export default function ServicesPage() {
 
                                                 <div className="flex items-center justify-between pt-4 border-t border-border">
                                                     <span className="text-sm font-medium text-primary">{service.stats}</span>
-                                                    <span className="text-sm text-muted-foreground">Learn more →</span>
+                                                    <span className="text-sm text-muted-foreground">{t("pages.pgServices.learnMore")}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -363,10 +363,10 @@ export default function ServicesPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-                            <span className="text-primary">15+ Industries</span> We Serve
+                            <span className="text-primary">{t("pages.pgServices.industriesAccent")}</span>{t("pages.pgServices.industriesTail")}
                         </h2>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                            Delivering specialized solutions across every business vertical with proven expertise and measurable outcomes
+                            {t("pages.pgServices.industriesSub")}
                         </p>
                         <Link href="/services#featured-services">
                             <Button className="btn-primary px-8 py-4 rounded-xl text-lg font-semibold text-primary-foreground">
@@ -404,11 +404,11 @@ export default function ServicesPage() {
                                 <Award key={i} className="w-6 h-6 text-yellow-500 fill-yellow-500" />
                             ))}
                         </div>
-                        <h3 className="font-bold text-3xl mb-4">Trusted by Industry Leaders</h3>
+                        <h3 className="font-bold text-3xl mb-4">{t("pages.pgServices.trustedTitle")}</h3>
                         <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                            Join hundreds of satisfied clients who have transformed their businesses with our solutions
+                            {t("pages.pgServices.trustedSub")}
                         </p>
-                        <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wide">Technology Partners</p>
+                        <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wide">{t("pages.pgServices.techPartners")}</p>
                         <div className="flex flex-wrap justify-center gap-8 opacity-60">
                             <span className="text-lg font-semibold">Amazon</span>
                             <span className="text-lg font-semibold">Shopify</span>
@@ -425,20 +425,20 @@ export default function ServicesPage() {
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="glass rounded-3xl p-12">
                         <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
-                            Ready to Build Something <span className="text-primary">Amazing?</span>
+                            {t("pages.pgServices.ctaLead")} <span className="text-primary">{t("pages.pgServices.ctaAccent")}</span>
                         </h2>
                         <p className="text-lg md:text-xl text-muted-foreground mb-8">
-                            Get a detailed quotation with AI-powered analysis and technical recommendations for your project.
+                            {t("pages.pgServices.ctaDesc")}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/quotation">
                                 <Button className="btn-primary px-8 py-4 rounded-xl text-lg font-semibold text-primary-foreground w-full sm:w-auto">
-                                    Get Your Quotation <ArrowRight className="ml-2 w-5 h-5" />
+                                    {t("pages.pgServices.getQuotation")} <ArrowRight className="ml-2 w-5 h-5" />
                                 </Button>
                             </Link>
                             <Link href="/demo-delivery">
                                 <Button variant="outline" className="px-8 py-4 rounded-xl text-lg font-semibold w-full sm:w-auto">
-                                    See Our Process
+                                    {t("pages.pgServices.seeProcess")}
                                 </Button>
                             </Link>
                         </div>
