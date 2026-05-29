@@ -1418,6 +1418,115 @@
       "ctaTitle": "Become a Local IT Leader",
       "ctaDesc": "Partner with Cehpoint to modernize your region. We provide the technology; you provide the local leadership.",
       "ctaButton": "Partner With Us"
+    },
+    "servicePartner": {
+      "eyebrow": "Elite Partner Network",
+      "heroTitleLead": "Scale Your Expertise With",
+      "heroTitleAccent": "Cehpoint Scale",
+      "heroSubtitle": "We bridge the gap between traditional professional excellence and the digital economy. Get access to premium clients, guaranteed rates, and lightning-fast payouts.",
+      "ctaApply": "Apply for Partnership",
+      "exploreServices": "Explore Services",
+      "pillarsTitleLead": "The Partnership",
+      "pillarsTitleAccent": "Agreement",
+      "pillarsSub": "Four pillars designed to protect your time and maximize your revenue.",
+      "corePillars": [
+        {
+          "title": "Zero Acquisition Cost",
+          "description": "We handle the marketing and client vetting. You focus entirely on delivery."
+        },
+        {
+          "title": "Fixed Rates",
+          "description": "Transparent, pre-negotiated project rates ensure your revenue is predictable."
+        },
+        {
+          "title": "45-Minute Payout",
+          "description": "Industry-leading payment speed. Funds released instantly upon project approval."
+        },
+        {
+          "title": "Priority Ecosystem",
+          "description": "Cehpoint projects must be your top priority. In return, you get consistent work."
+        }
+      ],
+      "whoTitleLead": "Who is this",
+      "whoTitleAccent": "For?",
+      "whoSub": "Empowering traditional sectors with high-tech client pipelines.",
+      "partnerTypes": [
+        {
+          "title": "Accounting & Finance",
+          "description": "Manage high-value compliance and financial planning for Cehpoint's enterprise clients."
+        },
+        {
+          "title": "Designers & Creatives",
+          "description": "Deliver world-class UI/UX, branding, and digital assets for our global project pipeline."
+        },
+        {
+          "title": "Studios & Production",
+          "description": "Handle professional video production and digital content creation for tech-driven campaigns."
+        },
+        {
+          "title": "Legal & Compliance",
+          "description": "Provide essential legal framework and IP protection services for our hardware and software innovations."
+        },
+        {
+          "title": "Influencers & PR",
+          "description": "Amplify our technological breakthroughs and educational reach through strategic digital influence."
+        },
+        {
+          "title": "Industry Experts",
+          "description": "Join as a domain specialist for niche technical and strategic consulting projects."
+        }
+      ],
+      "joinCategory": "Join Category",
+      "payoutTitleLead": "The 45-Minute",
+      "payoutTitleAccent": "Payout Cycle",
+      "payoutSteps": [
+        {
+          "label": "Delivery:",
+          "text": "Submit your expert work through our priority portal."
+        },
+        {
+          "label": "Verification:",
+          "text": "Our internal QA team performs a 15-minute rapid audit."
+        },
+        {
+          "label": "Payout:",
+          "text": "Direct bank transfer triggered instantly. Funds in your account in under 45 mins."
+        }
+      ],
+      "settlementTime": "Settlement Time",
+      "whyTitleLead": "Why Partner",
+      "whyTitleAccent": "Direct?",
+      "tableFeature": "Feature",
+      "tableSelf": "Self-Acquisition",
+      "tablePartner": "Cehpoint Partner",
+      "tableRows": [
+        {
+          "feature": "Client Sourcing",
+          "self": "Manual / Ad Spend",
+          "partner": "Automatic"
+        },
+        {
+          "feature": "Payment Terms",
+          "self": "Net 30/60 Days",
+          "partner": "45 Minutes"
+        },
+        {
+          "feature": "Admin Overheads",
+          "self": "High (Billing, KYC)",
+          "partner": "Zero Admin"
+        },
+        {
+          "feature": "Revenue Model",
+          "self": "Variable / Unstable",
+          "partner": "Predictable Fixed"
+        }
+      ],
+      "finalTitleLead": "Ready to Scale with",
+      "finalTitleAccent": "Priority?",
+      "finalDesc": "We are currently accepting highly specialized partners in select regions. Secure your spot in the priority delivery network.",
+      "applyJoin": "Apply to Join",
+      "getCallback": "Get a Callback",
+      "vetNote": "Vetting process takes 72 hours. Limited availability by industry category."
     }
   },
   "themeToggle": {

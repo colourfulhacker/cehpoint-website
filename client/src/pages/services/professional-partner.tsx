@@ -8,6 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
@@ -88,6 +89,14 @@ const corePillars = [
 ];
 
 export default function ProfessionalPartnerPage() {
+  const { t } = useTranslation();
+  const B = "pages.servicePartner";
+  const partnerTypesI18n = (t(`${B}.partnerTypes`, { returnObjects: true }) as { title: string; description: string }[])
+    .map((x, i) => ({ ...x, icon: partnerTypes[i].icon, color: partnerTypes[i].color }));
+  const corePillarsI18n = (t(`${B}.corePillars`, { returnObjects: true }) as { title: string; description: string }[])
+    .map((x, i) => ({ ...x, icon: corePillars[i].icon }));
+  const payoutSteps = t(`${B}.payoutSteps`, { returnObjects: true }) as { label: string; text: string }[];
+  const tableRows = t(`${B}.tableRows`, { returnObjects: true }) as { feature: string; self: string; partner: string }[];
   return (
     <div className="min-h-screen pt-24 bg-background">
       <SEO 
@@ -121,34 +130,33 @@ export default function ProfessionalPartnerPage() {
               className="inline-flex items-center space-x-2 px-3 py-1 rounded-full glass border border-primary/20 mb-6"
             >
               <Handshake className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Elite Partner Network</span>
+              <span className="text-sm font-medium text-primary">{t(`${B}.eyebrow`)}</span>
             </motion.div>
 
-            <motion.h1 
+            <motion.h1
               variants={fadeIn}
               className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight"
             >
-              Scale Your Expertise With 
-              <span className="text-primary block mt-2">Cehpoint Scale</span>
+              {t(`${B}.heroTitleLead`)}
+              <span className="text-primary block mt-2">{t(`${B}.heroTitleAccent`)}</span>
             </motion.h1>
 
-            <motion.p 
+            <motion.p
               variants={fadeIn}
               className="text-xl text-muted-foreground mb-10 leading-relaxed"
             >
-              We bridge the gap between traditional professional excellence and the digital economy. 
-              Get access to premium clients, guaranteed rates, and lightning-fast payouts.
+              {t(`${B}.heroSubtitle`)}
             </motion.p>
 
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="btn-primary rounded-xl px-8 h-12 text-lg" asChild>
                 <Link href="/partner-network">
-                  Apply for Partnership <ArrowRight className="ml-2 w-5 h-5" />
+                  {t(`${B}.ctaApply`)} <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
               <Link href="/services">
                 <Button size="lg" variant="outline" className="rounded-xl px-8 h-12 text-lg">
-                  Explore Services
+                  {t(`${B}.exploreServices`)}
                 </Button>
               </Link>
             </motion.div>
@@ -160,12 +168,12 @@ export default function ProfessionalPartnerPage() {
       <section className="py-24 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">The Partnership <span className="text-primary">Agreement</span></h2>
-            <p className="text-muted-foreground text-lg">Four pillars designed to protect your time and maximize your revenue.</p>
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">{t(`${B}.pillarsTitleLead`)} <span className="text-primary">{t(`${B}.pillarsTitleAccent`)}</span></h2>
+            <p className="text-muted-foreground text-lg">{t(`${B}.pillarsSub`)}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {corePillars.map((pillar, index) => (
+            {corePillarsI18n.map((pillar, index) => (
               <motion.div
                 key={pillar.title}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -189,12 +197,12 @@ export default function ProfessionalPartnerPage() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Who is this <span className="text-primary">For?</span></h2>
-            <p className="text-muted-foreground text-lg">Empowering traditional sectors with high-tech client pipelines.</p>
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">{t(`${B}.whoTitleLead`)} <span className="text-primary">{t(`${B}.whoTitleAccent`)}</span></h2>
+            <p className="text-muted-foreground text-lg">{t(`${B}.whoSub`)}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {partnerTypes.map((type, index) => (
+            {partnerTypesI18n.map((type, index) => (
               <motion.div
                 key={type.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -214,7 +222,7 @@ export default function ProfessionalPartnerPage() {
                   <p className="text-muted-foreground flex-grow leading-relaxed">{type.description}</p>
                   
                   <div className="mt-8 flex items-center text-sm font-medium text-primary">
-                    Join Category <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    {t(`${B}.joinCategory`)} <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </motion.div>
@@ -229,27 +237,21 @@ export default function ProfessionalPartnerPage() {
           <div className="glass p-12 rounded-4xl border border-primary/10 relative overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
-                <h3 className="text-3xl font-display font-bold mb-6">The 45-Minute <span className="text-primary">Payout Cycle</span></h3>
+                <h3 className="text-3xl font-display font-bold mb-6">{t(`${B}.payoutTitleLead`)} <span className="text-primary">{t(`${B}.payoutTitleAccent`)}</span></h3>
                 <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">1</div>
-                    <p className="text-muted-foreground"><span className="text-foreground font-semibold">Delivery:</span> Submit your expert work through our priority portal.</p>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">2</div>
-                    <p className="text-muted-foreground"><span className="text-foreground font-semibold">Verification:</span> Our internal QA team performs a 15-minute rapid audit.</p>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">3</div>
-                    <p className="text-muted-foreground"><span className="text-foreground font-semibold">Payout:</span> Direct bank transfer triggered instantly. Funds in your account in &lt;45 mins.</p>
-                  </div>
+                  {payoutSteps.map((step, i) => (
+                    <div key={i} className="flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">{i + 1}</div>
+                      <p className="text-muted-foreground"><span className="text-foreground font-semibold">{step.label}</span> {step.text}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="relative">
                 <div className="aspect-square glass-intense rounded-full flex items-center justify-center relative animate-pulse">
                   <div className="text-center">
                     <div className="text-5xl font-bold text-primary mb-2">45m</div>
-                    <div className="text-sm uppercase tracking-widest text-muted-foreground font-semibold">Settlement Time</div>
+                    <div className="text-sm uppercase tracking-widest text-muted-foreground font-semibold">{t(`${B}.settlementTime`)}</div>
                   </div>
                   {/* Decorative orbital rings */}
                   <div className="absolute inset-0 border-2 border-primary/20 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
@@ -265,39 +267,26 @@ export default function ProfessionalPartnerPage() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Why Partner <span className="text-primary">Direct?</span></h2>
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">{t(`${B}.whyTitleLead`)} <span className="text-primary">{t(`${B}.whyTitleAccent`)}</span></h2>
           </div>
-          
+
           <div className="max-w-3xl mx-auto overflow-hidden rounded-3xl border border-border glass relative">
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-secondary/50">
-                  <th className="p-6 font-bold">Feature</th>
-                  <th className="p-6 font-bold text-muted-foreground">Self-Acquisition</th>
-                  <th className="p-6 font-bold text-primary">Cehpoint Partner</th>
+                  <th className="p-6 font-bold">{t(`${B}.tableFeature`)}</th>
+                  <th className="p-6 font-bold text-muted-foreground">{t(`${B}.tableSelf`)}</th>
+                  <th className="p-6 font-bold text-primary">{t(`${B}.tablePartner`)}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                <tr>
-                  <td className="p-6 font-semibold">Client Sourcing</td>
-                  <td className="p-6 text-muted-foreground">Manual / Ad Spend</td>
-                  <td className="p-6 text-primary flex items-center"><CheckCircle2 className="w-4 h-4 mr-2" /> Automatic</td>
-                </tr>
-                <tr>
-                  <td className="p-6 font-semibold">Payment Terms</td>
-                  <td className="p-6 text-muted-foreground">Net 30/60 Days</td>
-                  <td className="p-6 text-primary flex items-center"><CheckCircle2 className="w-4 h-4 mr-2" /> 45 Minutes</td>
-                </tr>
-                <tr>
-                  <td className="p-6 font-semibold">Admin Overheads</td>
-                  <td className="p-6 text-muted-foreground">High (Billing, KYC)</td>
-                  <td className="p-6 text-primary flex items-center"><CheckCircle2 className="w-4 h-4 mr-2" /> Zero Admin</td>
-                </tr>
-                <tr>
-                  <td className="p-6 font-semibold">Revenue Model</td>
-                  <td className="p-6 text-muted-foreground">Variable / Unstable</td>
-                  <td className="p-6 text-primary flex items-center"><CheckCircle2 className="w-4 h-4 mr-2" /> Predictable Fixed</td>
-                </tr>
+                {tableRows.map((row, i) => (
+                  <tr key={i}>
+                    <td className="p-6 font-semibold">{row.feature}</td>
+                    <td className="p-6 text-muted-foreground">{row.self}</td>
+                    <td className="p-6 text-primary flex items-center"><CheckCircle2 className="w-4 h-4 mr-2" /> {row.partner}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -308,25 +297,24 @@ export default function ProfessionalPartnerPage() {
       <section className="py-24 bg-gradient-to-b from-transparent to-primary/10">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="glass-intense rounded-4xl p-16 border border-primary/20">
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-8">Ready to Scale with <span className="text-primary">Priority?</span></h2>
+            <h2 className="text-4xl md:text-6xl font-display font-bold mb-8">{t(`${B}.finalTitleLead`)} <span className="text-primary">{t(`${B}.finalTitleAccent`)}</span></h2>
             <p className="text-xl text-muted-foreground mb-12">
-              We are currently accepting highly specialized partners in select regions. 
-              Secure your spot in the priority delivery network.
+              {t(`${B}.finalDesc`)}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button size="lg" className="btn-primary h-14 px-10 text-xl rounded-2xl shadow-xl shadow-primary/20" asChild>
                 <Link href="/partner-network">
-                  Apply to Join <ArrowRight className="ml-2 w-6 h-6" />
+                  {t(`${B}.applyJoin`)} <ArrowRight className="ml-2 w-6 h-6" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="h-14 px-10 text-xl rounded-2xl glass" asChild>
                 <Link href="/contact">
-                  Get a Callback
+                  {t(`${B}.getCallback`)}
                 </Link>
               </Button>
             </div>
             <p className="mt-8 text-sm text-muted-foreground">
-              Vetting process takes 72 hours. Limited availability by industry category.
+              {t(`${B}.vetNote`)}
             </p>
           </div>
         </div>
