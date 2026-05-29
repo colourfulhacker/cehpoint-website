@@ -130,18 +130,18 @@ export default function AboutPage() {
                             <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-primary/10 mb-6">
                                 <Rocket className="w-6 h-6 text-primary" aria-hidden="true" />
                             </div>
-                            <h2 className="text-2xl md:text-3xl font-display font-bold mb-4">Our mission</h2>
+                            <h2 className="text-2xl md:text-3xl font-display font-bold mb-4">{t("pages.aboutSections.missionHeading")}</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                Make enterprise-grade software, AI, and cybersecurity accessible to every business — not only the ones with a Series B cheque. A village retailer in Birbhum and a Fortune 500 CIO in New York should both feel they got expert craft for a fair price.
+                                {t("pages.aboutSections.mission")}
                             </p>
                         </div>
                         <div className="rounded-3xl glass-card p-8 md:p-10">
                             <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-500/10 mb-6">
                                 <Target className="w-6 h-6 text-blue-500" aria-hidden="true" />
                             </div>
-                            <h2 className="text-2xl md:text-3xl font-display font-bold mb-4">Our vision</h2>
+                            <h2 className="text-2xl md:text-3xl font-display font-bold mb-4">{t("pages.aboutSections.visionHeading")}</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                Be the partner clients call first — for the next product launch, the next compliance audit, and the next strategic bet — because we have already earned the right with the last one.
+                                {t("pages.aboutSections.vision")}
                             </p>
                         </div>
                     </div>
@@ -152,10 +152,10 @@ export default function AboutPage() {
             <section className="py-20 bg-card/30 border-y border-border">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-14">
-                        <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">How we work</p>
-                        <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Four commitments that govern every engagement</h2>
+                        <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">{t("pages.aboutSections.principlesEyebrow")}</p>
+                        <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">{t("pages.aboutSections.principlesTitle")}</h2>
                         <p className="text-muted-foreground">
-                            These are not aspirations on a slide. They are the contract you can hold us to from the first call.
+                            {t("pages.aboutSections.principlesSub")}
                         </p>
                     </div>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -176,10 +176,10 @@ export default function AboutPage() {
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-14">
-                        <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">What we do</p>
-                        <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">From a single landing page to a national-scale platform</h2>
+                        <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">{t("pages.aboutSections.whatWeDoEyebrow")}</p>
+                        <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">{t("pages.aboutSections.whatWeDoTitle")}</h2>
                         <p className="text-muted-foreground">
-                            Six core practices, one accountable team. Every project is led by a senior engineer who has shipped in production — not a sales rep with a slide deck.
+                            {t("pages.aboutSections.whatWeDoSub")}
                         </p>
                     </div>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -207,10 +207,10 @@ export default function AboutPage() {
             <section className="py-20 bg-card/30 border-y border-border">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-14">
-                        <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">Our story</p>
-                        <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Built quietly, shipped consistently</h2>
+                        <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">{t("pages.aboutSections.storyEyebrow")}</p>
+                        <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">{t("pages.aboutSections.storyTitle")}</h2>
                         <p className="text-muted-foreground">
-                            We did not raise a funding round and announce it on stage. We took on one client, kept them, then took on the next. Four years in, that compounding is the company.
+                            {t("pages.aboutSections.storySub")}
                         </p>
                     </div>
                     <ol className="relative border-l border-primary/30 ml-3 space-y-10">
@@ -273,32 +273,32 @@ export default function AboutPage() {
             {/* Closing CTA */}
             <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-card border-t border-border">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">Let's talk</p>
+                    <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">{t("pages.aboutSections.closingEyebrow")}</p>
                     <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-                        Tell us what you're building. We'll tell you what it costs and how fast we can ship it.
+                        {t("pages.aboutSections.closingTitle")}
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
-                        Most calls take 25 minutes. By the end of one, you'll have an honest scope, a working budget, and the name of the senior engineer who'd lead delivery.
+                        {t("pages.aboutSections.closingSub")}
                     </p>
                     <div className="flex flex-wrap items-center justify-center gap-4">
                         <Link
                             href="/quotation"
                             className="inline-flex items-center justify-center btn-primary px-7 py-3 rounded-full font-semibold"
                         >
-                            Get a proposal <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
+                            {t("pages.aboutSections.getProposal")} <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
                         </Link>
                         <Link
                             href="/contact"
                             className="inline-flex items-center justify-center btn-outline px-7 py-3 rounded-full font-semibold"
                         >
-                            Talk to the team
+                            {t("pages.aboutSections.talkToTeam")}
                         </Link>
                         <Link
                             href="/leadership-search"
                             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline ml-2"
                         >
                             <Users className="w-4 h-4" aria-hidden="true" />
-                            Meet our leadership
+                            {t("pages.aboutSections.meetLeadership")}
                         </Link>
                     </div>
                 </div>

@@ -7,8 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { WhatsAppInquiryDialog } from "@/components/shared/whatsapp-inquiry-dialog";
 import { useTranslation, Trans } from "react-i18next";
 
-const INTRO_SEEN_KEY = "cehpoint-intro-seen";
-
 const prefersReducedMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -19,11 +17,9 @@ export default function Hero() {
   const checkmarks = t("home.hero.checkmarks", { returnObjects: true }) as string[];
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const skipIntroDefault = (() => {
-    if (typeof window === "undefined") return false;
-    if (prefersReducedMotion()) return true;
-    try { return sessionStorage.getItem(INTRO_SEEN_KEY) === "1"; } catch { return false; }
-  })();
+  // Always play the intro on a fresh page-load. The only reason to skip
+  // is if the user has prefers-reduced-motion set in their OS.
+  const skipIntroDefault = prefersReducedMotion();
   const [isIntroPlaying, setIsIntroPlaying] = useState(!skipIntroDefault);
   const [isMuted, setIsMuted] = useState(true);
   const [showUnmuteHint, setShowUnmuteHint] = useState(false);
@@ -48,31 +44,30 @@ export default function Hero() {
   }, [isIntroPlaying]);
 
   useEffect(() => {
-    if (!isIntroPlaying) return;
     if (!videoRef.current) return;
-    // Always start muted (autoplay policy + accessibility); user can unmute.
-    videoRef.current.currentTime = 0;
-    videoRef.current.loop = false;
-    videoRef.current.muted = true;
-    setIsMuted(true);
-    setShowUnmuteHint(true);
-    videoRef.current.play().catch((e) => {
-      console.error("Muted autoplay failed", e);
-      // If muted autoplay even fails, just skip the intro entirely.
-      setIsIntroPlaying(false);
-    });
-  }, [isIntroPlaying]);
-
-  const handleVideoEnded = () => {
-    setIsIntroPlaying(false);
-    try { sessionStorage.setItem(INTRO_SEEN_KEY, "1"); } catch { /* noop */ }
-    if (videoRef.current) {
+    if (isIntroPlaying) {
+      // Intro phase: start from the top, muted (autoplay-friendly), no loop.
+      videoRef.current.currentTime = 0;
+      videoRef.current.loop = false;
+      videoRef.current.muted = true;
+      setIsMuted(true);
+      setShowUnmuteHint(true);
+      videoRef.current.play().catch((e) => {
+        console.error("Muted autoplay failed", e);
+        setIsIntroPlaying(false);
+      });
+    } else {
+      // Content phase: muted background loop.
       videoRef.current.muted = true;
       videoRef.current.loop = true;
       setIsMuted(true);
       setShowUnmuteHint(false);
       videoRef.current.play().catch((e) => console.error("Loop play failed", e));
     }
+  }, [isIntroPlaying]);
+
+  const handleVideoEnded = () => {
+    setIsIntroPlaying(false);
   };
 
   const handleUnmute = (e: React.MouseEvent) => {

@@ -222,6 +222,32 @@
       "title": "Learn the skills that",
       "titleAccent": "actually ship",
       "subtitle": "Practical, project-based programs taught by engineers who have built in production. No theory dumps."
+    },
+    "aboutSections": {
+      "missionHeading": "Our mission",
+      "mission": "Make enterprise-grade software, AI, and cybersecurity accessible to every business — not only the ones with a Series B cheque. A village retailer in Birbhum and a Fortune 500 CIO in New York should both feel they got expert craft for a fair price.",
+      "visionHeading": "Our vision",
+      "vision": "Be the partner clients call first — for the next product launch, the next compliance audit, and the next strategic bet — because we have already earned the right with the last one.",
+      "principlesEyebrow": "How we work",
+      "principlesTitle": "Four commitments that govern every engagement",
+      "principlesSub": "These are not aspirations on a slide. They are the contract you can hold us to from the first call.",
+      "whatWeDoEyebrow": "What we do",
+      "whatWeDoTitle": "From a single landing page to a national-scale platform",
+      "whatWeDoSub": "Six core practices, one accountable team. Every project is led by a senior engineer who has shipped in production — not a sales rep with a slide deck.",
+      "storyEyebrow": "Our story",
+      "storyTitle": "Built quietly, shipped consistently",
+      "storySub": "We did not raise a funding round and announce it on stage. We took on one client, kept them, then took on the next. Four years in, that compounding is the company.",
+      "closingEyebrow": "Let's talk",
+      "closingTitle": "Tell us what you're building. We'll tell you what it costs and how fast we can ship it.",
+      "closingSub": "Most calls take 25 minutes. By the end of one, you'll have an honest scope, a working budget, and the name of the senior engineer who'd lead delivery.",
+      "getProposal": "Get a proposal",
+      "talkToTeam": "Talk to the team",
+      "meetLeadership": "Meet our leadership"
+    },
+    "industrySolutions": {
+      "eyebrow": "Industries",
+      "title": "Engineered for every vertical",
+      "subtitle": "Hover any tile to see what we build for that industry. Click to explore the dedicated practice."
     }
   },
   "themeToggle": {

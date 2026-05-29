@@ -190,7 +190,7 @@ export default function ContactPage() {
                                                 name="name"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Full Name</FormLabel>
+                                                        <FormLabel>{t("forms.fullName")}</FormLabel>
                                                         <FormControl>
                                                             <Input
                                                                 type="text"
@@ -210,7 +210,7 @@ export default function ContactPage() {
                                                 name="phone"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Phone Number</FormLabel>
+                                                        <FormLabel>{t("forms.phone")}</FormLabel>
                                                         <FormControl>
                                                             <Input
                                                                 type="tel"
@@ -233,7 +233,7 @@ export default function ContactPage() {
                                             name="email"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Email Address</FormLabel>
+                                                    <FormLabel>{t("forms.email")}</FormLabel>
                                                     <FormControl>
                                                         <Input
                                                             type="email"
@@ -255,7 +255,7 @@ export default function ContactPage() {
                                             name="subject"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Subject</FormLabel>
+                                                    <FormLabel>{t("forms.subject")}</FormLabel>
                                                     <FormControl>
                                                         <Input
                                                             type="text"
@@ -276,7 +276,7 @@ export default function ContactPage() {
                                             name="message"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Message</FormLabel>
+                                                    <FormLabel>{t("forms.message")}</FormLabel>
                                                     <FormControl>
                                                         <Textarea
                                                             placeholder="Tell us about your project or inquiry..."
@@ -295,7 +295,7 @@ export default function ContactPage() {
                                             className="w-full btn-primary py-6 text-lg font-bold"
                                             disabled={form.formState.isSubmitting}
                                         >
-                                            {form.formState.isSubmitting ? "Sending..." : (<>Send Message <Send className="ml-2 w-5 h-5" aria-hidden="true" /></>)}
+                                            {form.formState.isSubmitting ? t("common.sending") : (<>{t("common.submit")} <Send className="ml-2 w-5 h-5" aria-hidden="true" /></>)}
                                         </Button>
                                     </form>
                                 </Form>
