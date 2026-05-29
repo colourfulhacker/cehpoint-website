@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { motion, AnimatePresence } from "framer-motion";
+import RelatedPrograms from "@/components/shared/related-programs";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import {
     Rocket,
@@ -890,6 +891,16 @@ export default function Training() {
                     </form>
                 </DialogContent>
             </Dialog>
+
+            <RelatedPrograms
+                heading="Pair our training with the right program"
+                description="What graduates pick next."
+                programs={[
+                    { href: "/ai-in-real-life", label: "AI in Real Life", description: "Six-week applied AI program — practical case studies from healthcare, fintech, and operations." },
+                    { href: "/ai-solutions", label: "Enterprise AI Solutions", description: "Production AI, RAG, computer vision — engineered, audited, and operated by us." },
+                    { href: "/services/business-app-catalog", label: "Business App Catalog", description: "50+ ready-to-launch business apps with the skills you just learned." },
+                ]}
+            />
         </div>
     );
 }

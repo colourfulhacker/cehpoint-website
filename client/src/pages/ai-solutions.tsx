@@ -7,6 +7,7 @@ import IndustryUseCaseExplorer from "@/components/sections/industry-use-cases";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import RelatedPrograms from "@/components/shared/related-programs";
 
 export default function AISolutions() {
   const serviceSchema = JSON.stringify({
@@ -189,6 +190,16 @@ export default function AISolutions() {
           </Button>
         </div>
       </section>
+
+      <RelatedPrograms
+        heading="Take AI further with the right partner"
+        description="Where teams usually go after exploring AI Solutions."
+        programs={[
+          { href: "/ai-in-real-life", label: "AI in Real Life", description: "Six-week applied AI program for working professionals — practical, hands-on, outcomes-led." },
+          { href: "/services/cyber-crime-investigation", label: "Cyber Crime Investigation", description: "AI-assisted digital forensics with court-admissible reports for HR, legal, and law-enforcement teams." },
+          { href: "/insights", label: "Insights & Case Studies", description: "Read how teams shipped AI to production — wins, failures, and the engineering choices behind them." },
+        ]}
+      />
     </div>
   );
 }

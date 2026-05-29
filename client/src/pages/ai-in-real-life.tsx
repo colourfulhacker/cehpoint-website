@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import RelatedPrograms from "@/components/shared/related-programs";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
@@ -484,6 +485,16 @@ export default function AIInRealLife() {
           </div>
         </motion.div>
       </section>
+
+      <RelatedPrograms
+        heading="Pair AI in Real Life with deeper expertise"
+        description="Three ways to go further once you've learned the fundamentals."
+        programs={[
+          { href: "/ai-solutions", label: "Enterprise AI Solutions", description: "Custom AI implementations, LLM apps, RAG systems, and computer-vision pipelines for production." },
+          { href: "/training", label: "Cehpoint Training Academy", description: "Specialised bootcamps in AI, automation, fintech, and cybersecurity for ambitious teams." },
+          { href: "/insights", label: "Insights & Case Studies", description: "Real-world AI deployments — what worked, what didn't, and what we'd ship differently next time." },
+        ]}
+      />
     </div>
   );
 }

@@ -131,7 +131,7 @@ export default function EdutechService() {
                   <Star key={i} className="w-5 h-5 fill-yellow-500 text-yellow-500" />
                 ))}
               </div>
-              <p className="text-3xl font-bold mb-1">4.8/5</p>
+              <p className="text-3xl font-bold mb-1">4.9/5</p>
               <p className="text-sm text-muted-foreground">From 200+ educators</p>
             </div>
             <div className="text-center">
