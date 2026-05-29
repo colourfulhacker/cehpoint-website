@@ -6,6 +6,7 @@ import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { motion } from "framer-motion";
 import ContactLeaderDialog from "@/components/investigation/contact-leader-dialog";
+import { useTranslation } from "react-i18next";
 
 const LEADERSHIP_TEAM = [
     {
@@ -26,6 +27,7 @@ const LEADERSHIP_TEAM = [
 ];
 
 export default function InvestigationLanding() {
+    const { t } = useTranslation();
     return (
         <InvestigationLayout>
             <SEO
@@ -55,7 +57,7 @@ export default function InvestigationLanding() {
                         className="inline-flex items-center px-4 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 text-red-400 text-sm font-medium tracking-wide"
                     >
                         <span className="w-2 h-2 rounded-full bg-red-500 mr-2 animate-pulse" />
-                        Active Investigation Unit
+                        {t("pages.investigation.eyebrow")}
                     </motion.div>
 
                     <motion.h1
@@ -64,8 +66,8 @@ export default function InvestigationLanding() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="text-5xl md:text-7xl font-display font-bold leading-tight"
                     >
-                        Cyber Crime Investigation <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">& Digital Forensics Services</span>
+                        {t("pages.investigation.title")} <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">{t("pages.investigation.titleAccent")}</span>
                     </motion.h1>
 
                     <motion.p
@@ -74,7 +76,7 @@ export default function InvestigationLanding() {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="text-xl md:text-2xl text-muted-foreground/80 max-w-2xl mx-auto font-light leading-relaxed"
                     >
-                        Technology-driven cyber investigation for corporates, governments, law enforcement partners, and individuals.
+                        {t("pages.investigation.subtitle")}
                     </motion.p>
 
                     <motion.div

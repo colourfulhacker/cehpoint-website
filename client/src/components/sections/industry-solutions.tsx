@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "wouter";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   ShoppingCart,
   BookOpen,
@@ -271,6 +272,7 @@ function MasterpieceCard({ item }: { item: typeof industries[0] }) {
 }
 
 export default function IndustrySolutions() {
+  const { t } = useTranslation();
   return (
     <section className="py-32 bg-black relative overflow-hidden" data-testid="industry-solutions-masterpiece">
       {/* 
@@ -286,14 +288,14 @@ export default function IndustrySolutions() {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-medium uppercase tracking-widest mb-6 backdrop-blur-md">
               <Globe className="w-5 h-5 text-primary" />
-              <span>Global Expertise</span>
+              <span>{t("pages.industrySolutions.eyebrow")}</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-display font-medium text-white tracking-tight leading-[1.1]">
-              Industry Coverage
+              {t("pages.industrySolutions.title")}
             </h2>
           </div>
           <div className="max-w-xs text-muted-foreground text-sm font-light leading-relaxed mb-2">
-            We engineer digital dominance across diverse sectors, transforming legacy systems into future-proof powerhouses.
+            {t("pages.industrySolutions.subtitle")}
           </div>
         </div>
 

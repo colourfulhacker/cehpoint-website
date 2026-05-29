@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 import {
     Briefcase,
     Code,
@@ -36,6 +37,7 @@ type FormData = {
 };
 
 export default function PartnerNetwork() {
+    const { t } = useTranslation();
     const { register, handleSubmit, setValue, resetField } = useForm<FormData>();
     const [selectedCategory, setSelectedCategory] = useState("tech");
 
@@ -117,13 +119,12 @@ export default function PartnerNetwork() {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-16"
                 >
-                    <Badge variant="outline" className="mb-4">Work With Us</Badge>
+                    <Badge variant="outline" className="mb-4">{t("pages.partnerNetwork.eyebrow")}</Badge>
                     <h1 className="text-4xl md:text-6xl font-black text-primary mb-6">
-                        The Partner Network
+                        {t("pages.partnerNetwork.title")} <span className="text-primary">{t("pages.partnerNetwork.titleAccent")}</span>
                     </h1>
                     <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-                        We are looking for the top 1% of talent. <br />
-                        Freelancers, Contractors, and Agency Partners who value <strong>Autonomy, Mastery, and Purpose</strong>.
+                        {t("pages.partnerNetwork.subtitle")}
                     </p>
                 </motion.div>
 

@@ -25,8 +25,10 @@ import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import RelatedPrograms from "@/components/shared/related-programs";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function AIInRealLife() {
+  const { t } = useTranslation();
   const courseSchema = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Course",
@@ -111,18 +113,18 @@ export default function AIInRealLife() {
             className="inline-flex items-center px-4 py-2 rounded-full glass border-primary/20 mb-8"
           >
             <span className="text-sm font-semibold text-primary uppercase tracking-wider flex items-center gap-2">
-              Next Batch Starting Soon
+              {t("pages.aiInRealLife.eyebrow")}
             </span>
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight"
           >
-            Artificial Intelligence <br /> 
-            <span className="text-primary">In Real Life</span>
+            {t("pages.aiInRealLife.title")} <br />
+            <span className="text-primary">{t("pages.aiInRealLife.titleAccent")}</span>
           </motion.h1>
           
           <motion.p 

@@ -8,8 +8,10 @@ import { Handshake } from "lucide-react";
 import { Idea } from "@/data/investor-ideas";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 
 export default function InvestorConnect() {
+    const { t } = useTranslation();
     const [view, setView] = useState<"swipe" | "match" | "pitch">("swipe");
     const [matchedIdea, setMatchedIdea] = useState<Idea | null>(null);
 
@@ -54,14 +56,14 @@ export default function InvestorConnect() {
                             <div className="text-center mb-4 md:mb-8">
                                 <div className="inline-flex items-center px-4 py-2 rounded-full glass mb-4 border-primary/20">
                                     <span className="text-sm font-medium text-primary flex items-center gap-2">
-                                        <Handshake className="w-4 h-4" /> Investor Connect
+                                        <Handshake className="w-4 h-4" /> {t("pages.investor.eyebrow")}
                                     </span>
                                 </div>
                                 <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
-                                    Discover Your Next <span className="text-primary">Unicorn</span>
+                                    {t("pages.investor.title")} <span className="text-primary">{t("pages.investor.titleAccent")}</span>
                                 </h1>
                                 <p className="text-muted-foreground max-w-xl mx-auto">
-                                    Swipe right on ideas you love. We'll match you with the perfect opportunity to own 100% of a profitable tech startup.
+                                    {t("pages.investor.subtitle")}
                                 </p>
                             </div>
 

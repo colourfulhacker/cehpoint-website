@@ -7,8 +7,10 @@ import { Link } from "wouter";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { getYesterdayDate } from "@/lib/date-utils";
+import { useTranslation } from "react-i18next";
 
 export default function Insights() {
+    const { t } = useTranslation();
     const articles = [
         {
             id: "healthcare-ai-triage",
@@ -321,14 +323,13 @@ export default function Insights() {
                     className="text-center mb-16"
                 >
                     <Badge variant="outline" className="mb-4">
-                        Industry Insights
+                        {t("pages.insights.eyebrow")}
                     </Badge>
                     <h1 className="text-4xl md:text-6xl font-black text-primary mb-6">
-                        Unlock Your <span className="text-primary">Empire</span>
+                        {t("pages.insights.title")} <span className="text-primary">{t("pages.insights.titleAccent")}</span>
                     </h1>
                     <p className="text-xl text-foreground max-w-3xl mx-auto">
-                        Whether you are fighting cybercrime or building a business, knowledge is your weapon.
-                        Read the blueprints that are creating the next generation of leaders.
+                        {t("pages.insights.subtitle")}
                     </p>
                 </motion.div>
 

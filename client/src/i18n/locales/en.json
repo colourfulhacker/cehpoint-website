@@ -248,6 +248,106 @@
       "eyebrow": "Industries",
       "title": "Engineered for every vertical",
       "subtitle": "Hover any tile to see what we build for that industry. Click to explore the dedicated practice."
+    },
+    "aiSolutions": {
+      "eyebrow": "Enterprise AI",
+      "title": "Production AI that earns its keep",
+      "titleAccent": "AI Solutions",
+      "subtitle": "LLM applications, RAG systems, computer vision, and intelligent automation — engineered, audited, and operated by Cehpoint.",
+      "talkToExpert": "Talk to an AI expert",
+      "calculateROI": "Calculate ROI"
+    },
+    "aiInRealLife": {
+      "eyebrow": "AI in Real Life",
+      "title": "Six weeks. Real AI.",
+      "titleAccent": "Real outcomes",
+      "subtitle": "A practical AI program built for working professionals — taught by engineers who have shipped AI to production.",
+      "enroll": "Enroll now",
+      "viewCurriculum": "View curriculum"
+    },
+    "incubation": {
+      "eyebrow": "Cehpoint Incubation",
+      "title": "Build a profitable business",
+      "titleAccent": "we believe in",
+      "subtitle": "We invest tech, time, and trust in founders building locally relevant products. Apply once — we respond within 7 working days.",
+      "applyNow": "Apply now",
+      "readPlaybook": "Read the playbook"
+    },
+    "investor": {
+      "eyebrow": "Investor Connect",
+      "title": "Discover the next",
+      "titleAccent": "unicorn idea",
+      "subtitle": "A curated deck of founder-led, revenue-earning ventures. Browse, shortlist, and connect directly.",
+      "browseIdeas": "Browse ideas",
+      "scheduleCall": "Schedule a call"
+    },
+    "leadership": {
+      "eyebrow": "Leadership Search",
+      "title": "Find your next",
+      "titleAccent": "senior hire",
+      "subtitle": "A pre-vetted bench of senior engineers, security specialists, and product leaders — sourced from across our project network."
+    },
+    "companyProfile": {
+      "eyebrow": "Company Profile",
+      "title": "A complete",
+      "titleAccent": "Cehpoint overview",
+      "subtitle": "Capabilities, case studies, leadership, and certifications — ready for procurement, RFPs, and partnership decks.",
+      "downloadPDF": "Download as PDF"
+    },
+    "costEstimator": {
+      "eyebrow": "Investment Desk",
+      "title": "Estimate your",
+      "titleAccent": "build cost",
+      "subtitle": "Pick the modules, get an honest range, then talk to a senior engineer to refine."
+    },
+    "tenders": {
+      "eyebrow": "Active tenders",
+      "title": "Open procurement",
+      "titleAccent": "opportunities",
+      "subtitle": "Live RFPs and tenders from Cehpoint. Submit a proposal directly — vetted firms receive priority routing."
+    },
+    "insights": {
+      "eyebrow": "Insights",
+      "title": "Field notes from the engineers who",
+      "titleAccent": "ship every week",
+      "subtitle": "Practical write-ups on AI, cybersecurity, hyperlocal commerce, and the business of building software in India.",
+      "filter": "Filter by category",
+      "all": "All",
+      "readArticle": "Read article"
+    },
+    "partnerNetwork": {
+      "eyebrow": "Partner Network",
+      "title": "Build with us,",
+      "titleAccent": "grow with us",
+      "subtitle": "An elite partnership for traditional professionals and specialised teams. Guaranteed rates, fast payouts, premium clients."
+    },
+    "investigation": {
+      "eyebrow": "Cyber Crime Investigation",
+      "title": "Court-admissible",
+      "titleAccent": "digital forensics",
+      "subtitle": "Discreet, expert investigation for corporate boards, HR teams, legal counsel, and law-enforcement liaisons.",
+      "requestInvestigation": "Request investigation",
+      "viewMethodology": "View methodology"
+    },
+    "sections": {
+      "useCasesEyebrow": "Industry use cases",
+      "useCasesTitle": "What we are building, by sector",
+      "useCasesSub": "Pick a vertical to see the pain we solve, the fix we ship, and the gain you keep.",
+      "aiSectionEyebrow": "Artificial Intelligence",
+      "aiSectionTitle": "AI that actually moves the number",
+      "aiSectionSub": "Three patterns we deploy most: assistant copilots, decision-grade analytics, and intelligent automation.",
+      "whyChooseEyebrow": "Why teams pick Cehpoint",
+      "whyChooseTitle": "Four reasons enterprise buyers stay",
+      "whyChooseSub": "These are the commitments that turn a single project into a multi-year partnership.",
+      "demoProcessEyebrow": "Demo process",
+      "demoProcessTitle": "Working demo before any payment",
+      "demoProcessSub": "Web prototype in 24 hours. Mobile MVP in 7 days. Approve the demo, then we commercialise.",
+      "techStackEyebrow": "Engineering stack",
+      "techStackTitle": "Modern, boring, and battle-tested",
+      "testimonialsEyebrow": "What clients say",
+      "testimonialsTitle": "Cehpoint, in our clients' words",
+      "portfolioEyebrow": "Portfolio & careers",
+      "portfolioTitle": "Browse what we've shipped, or come build with us"
     }
   },
   "themeToggle": {

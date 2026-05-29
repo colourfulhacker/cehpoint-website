@@ -44,9 +44,11 @@ import { TermsAndConditionsModal } from "@/components/careers/terms-modal";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 export default function Careers() {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -398,13 +400,13 @@ I'm looking forward to discussing this!`;
           <div className="lg:w-1/2 text-left">
             <Badge className="bg-foreground/10 text-white hover:bg-foreground/20 border-foreground/20 mb-6 px-4 py-2 text-sm backdrop-blur-md">
               <Rocket className="w-4 h-4 mr-2 text-primary" />
-              Zero Trial Period - Real Work From Day One
+              {t("pages.careers.eyebrow")}
             </Badge>
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-[1.1] tracking-tight">
-              Build Secure <span className="text-primary">AI-Powered</span> Software
+              {t("pages.careers.title")} <span className="text-primary">{t("pages.careers.titleAccent")}</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl font-light leading-relaxed">
-              We hire Secure Software Developers who can build enterprise-grade applications with AI automation, agentic workflows, and cybersecurity best practices. 7-day trial work is mandatory skill assessment - no offers without completing it.
+              {t("pages.careers.subtitle")}
             </p>
 
             <div className="flex flex-wrap gap-4 mb-8">

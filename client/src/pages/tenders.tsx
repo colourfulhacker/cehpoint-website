@@ -36,6 +36,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ALL_TENDERS = [
@@ -278,6 +279,7 @@ const FAQS = [
 
 export default function TendersPage() {
     const { toast } = useToast();
+    const { t } = useTranslation();
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [selectedStatus, setSelectedStatus] = useState("All");
@@ -494,13 +496,13 @@ ${formData.company}`;
                             <div>
                                 <div className="inline-flex items-center gap-2 bg-card border border-border px-3 py-1 rounded-full text-xs text-muted-foreground font-mono mb-4">
                                     <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
-                                    Procurement Notice Inviting Bids
+                                    {t("pages.tenders.eyebrow")}
                                 </div>
                                 <h1 className="text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-wider flex items-center gap-3">
-                                    Notice Inviting Tenders
+                                    {t("pages.tenders.title")} {t("pages.tenders.titleAccent")}
                                 </h1>
                                 <p className="text-muted-foreground mt-3 text-lg font-light max-w-3xl">
-                                    Cehpoint Procurement and Operations Directorate publishes Request for Proposals (RFP) for software audits, cyberdefense utilities, and public governance infrastructures.
+                                    {t("pages.tenders.subtitle")}
                                 </p>
                             </div>
                             <div className="bg-card/60 border border-border p-4 rounded-xl text-left md:text-right glass min-w-[240px]">

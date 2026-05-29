@@ -5,10 +5,12 @@ import { Link } from "wouter";
 import { cn } from "@/lib/utils";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 
 type ProjectType = "web" | "mobile";
 
 export default function DemoDelivery() {
+  const { t } = useTranslation();
   const [projectType, setProjectType] = useState<ProjectType>("web");
 
   const demoConfig = {
@@ -141,16 +143,16 @@ export default function DemoDelivery() {
 
             <div>
               <h1 className="font-display font-bold text-5xl md:text-7xl mb-6 tracking-tight" data-testid="page-title">
-                {currentConfig.title} <span className="text-primary">Demo Delivery</span>
+                {t("pages.demoDelivery.title")} <span className="text-primary">{t("pages.demoDelivery.titleAccent")}</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
-                {currentConfig.subtitle} See your ideas come to life with our rapid development process.
+                {t("pages.demoDelivery.subtitle")}
               </p>
             </div>
 
             <Link href="/quotation">
               <Button className="btn-primary px-8 py-4 rounded-xl text-lg font-semibold text-primary-foreground" data-testid="cta-get-demo">
-                Request Your Demo
+                {t("cta.bookDemo")}
               </Button>
             </Link>
           </div>

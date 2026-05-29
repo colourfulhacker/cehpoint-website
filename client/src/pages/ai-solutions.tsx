@@ -8,8 +8,10 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import RelatedPrograms from "@/components/shared/related-programs";
+import { useTranslation } from "react-i18next";
 
 export default function AISolutions() {
+  const { t } = useTranslation();
   const serviceSchema = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Service",
@@ -88,12 +90,12 @@ export default function AISolutions() {
             </div>
 
             <h1 className="font-display font-bold text-5xl md:text-7xl mb-6 tracking-tight" data-testid="page-title">
-              Stop Guessing. <br />
-              Start <span className="text-primary">Automating.</span>
+              {t("pages.aiSolutions.title")} <br />
+              <span className="text-primary">{t("pages.aiSolutions.titleAccent")}</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-foreground/80 mb-12 max-w-3xl mx-auto leading-relaxed" data-testid="page-subtitle">
-              We don't sell "AI hype". We build practical, revenue-generating automation systems that are delivered in 7 days.
+              {t("pages.aiSolutions.subtitle")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
@@ -102,7 +104,7 @@ export default function AISolutions() {
                 className="btn-primary hover-glow px-8 py-6 rounded-2xl text-lg font-bold text-primary-foreground shadow-xl shadow-primary/20"
                 data-testid="hero-cta-planner"
               >
-                Plan & Create Automation
+                {t("pages.aiSolutions.calculateROI")}
               </Button>
               <Button
                 variant="outline"
@@ -110,7 +112,7 @@ export default function AISolutions() {
                 className="px-8 py-6 rounded-2xl text-lg font-bold text-foreground hover:bg-foreground/10"
                 data-testid="hero-cta-primary"
               >
-                Talk to an Expert
+                {t("pages.aiSolutions.talkToExpert")}
               </Button>
             </div>
           </div>

@@ -10,6 +10,7 @@ import { Link } from "wouter";
 import { useState } from "react";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 
 function ApplicationForm() {
   const [formData, setFormData] = useState({
@@ -228,6 +229,7 @@ ${formData.founderName}`;
 }
 
 export default function Incubation() {
+  const { t } = useTranslation();
   const benefits = [
     {
       icon: Globe,
@@ -317,22 +319,20 @@ export default function Incubation() {
           >
             <Badge variant="secondary" className="mb-4">
               <Rocket className="w-4 h-4 mr-2" />
-              Startup Incubation Program
+              {t("pages.incubation.eyebrow")}
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6">
-              Launch Your Revolutionary Idea
+              {t("pages.incubation.title")} <span className="text-primary">{t("pages.incubation.titleAccent")}</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Turn your innovative startup idea into reality with our comprehensive incubation program. 
-              Get lifetime hosting, maintenance support, funding assistance, and expert mentorship 
-              to build the next generation of technology solutions.
+              {t("pages.incubation.subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="text-lg px-8 py-6" onClick={() => document.getElementById('application-section')?.scrollIntoView({ behavior: 'smooth' })}>
-                Apply Directly
+                {t("pages.incubation.applyNow")}
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-                <Link href="/quotation">Business Quotation</Link>
+              <Button variant="outline" size="lg" className="text-lg px-8 py-6" asChild>
+                <Link href="/quotation">{t("cta.getQuote")}</Link>
               </Button>
             </div>
           </motion.div>
