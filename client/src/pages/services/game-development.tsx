@@ -3,11 +3,23 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Gamepad2, Trophy, Coins, Monitor, Code2, Layers, ShieldCheck, Cpu, Globe, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 import SEO from "@/components/seo";
 import ServiceSchema from "@/components/seo/service-schema";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 
 export default function GameDevelopmentPage() {
+    const { t } = useTranslation();
+    const B = "pages.serviceGame";
+    const statValues = ["10M+", "50+", "300%", "Mobile/PC/Web"];
+    const stats = (t(`${B}.stats`, { returnObjects: true }) as string[]).map((label, i) => ({ label, value: statValues[i] ?? "" }));
+    const gameMeta = [
+        { icon: <Coins className="w-8 h-8 text-white" />, grad: "from-indigo-500 to-purple-600", shadow: "shadow-[0_0_20px_rgba(99,102,241,0.3)]", badge: false },
+        { icon: <Trophy className="w-8 h-8 text-white" />, grad: "from-pink-500 to-red-600", shadow: "shadow-[0_0_20px_rgba(236,72,153,0.3)]", badge: true },
+        { icon: <Monitor className="w-8 h-8 text-white" />, grad: "from-blue-400 to-cyan-500", shadow: "shadow-[0_0_20px_rgba(34,211,238,0.3)]", badge: false },
+    ];
+    const gameTypes = (t(`${B}.gameTypes`, { returnObjects: true }) as { title: string; description: string; features: string[] }[])
+        .map((x, i) => ({ ...x, ...gameMeta[i] }));
     return (
         <div className="pt-24 min-h-screen">
             <SEO
@@ -47,26 +59,26 @@ export default function GameDevelopmentPage() {
                     >
                         <div className="inline-flex items-center px-4 py-2 rounded-full bg-indigo-500/20 text-indigo-300 mb-6 border border-indigo-500/30 backdrop-blur-md">
                             <Gamepad2 className="w-4 h-4 mr-2" />
-                            <span className="text-sm font-bold tracking-wider">NEXT-GEN GAMING</span>
+                            <span className="text-sm font-bold tracking-wider">{t(`${B}.eyebrow`)}</span>
                         </div>
 
                         <h1 className="font-display font-black text-5xl sm:text-7xl md:text-8xl mb-6 tracking-tighter leading-tight text-foreground drop-shadow-2xl">
-                            Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Virtual Empire</span>
+                            {t(`${B}.heroTitleLead`)} <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">{t(`${B}.heroTitleAccent`)}</span>
                         </h1>
 
                         <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed font-light">
-                            From high-octane eSports arenas to educational "Play-to-Learn" ecosystems. We create immersive gaming experiences that entertain, educate, and monetize globally.
+                            {t(`${B}.heroSubtitle`)}
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/contact">
                                 <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-5 rounded-xl text-lg font-bold shadow-[0_0_20px_rgba(79,70,229,0.5)] transition-all hover:scale-105 border-0">
-                                    Start Building <Gamepad2 className="ml-2 w-5 h-5" />
+                                    {t(`${B}.ctaBuild`)} <Gamepad2 className="ml-2 w-5 h-5" />
                                 </Button>
                             </Link>
                             <Link href="#game-types">
                                 <Button variant="outline" className="border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/10 hover:text-foreground px-8 py-5 rounded-xl text-lg font-bold">
-                                    Explore Genres
+                                    {t(`${B}.exploreGenres`)}
                                 </Button>
                             </Link>
                         </div>
@@ -78,12 +90,7 @@ export default function GameDevelopmentPage() {
             <section className="py-12 bg-card border-y border-foreground/5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-foreground">
-                        {[
-                            { label: "Active Players", value: "10M+" },
-                            { label: "Games Shipped", value: "50+" },
-                            { label: "Avg. ROI", value: "300%" },
-                            { label: "Platforms", value: "Mobile/PC/Web" }
-                        ].map((stat, idx) => (
+                        {stats.map((stat, idx) => (
                             <div key={idx}>
                                 <div className="text-3xl md:text-4xl font-black text-indigo-500 mb-1">{stat.value}</div>
                                 <div className="text-sm text-muted-foreground uppercase tracking-widest">{stat.label}</div>
@@ -98,83 +105,41 @@ export default function GameDevelopmentPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
-                            Pick Your <span className="text-indigo-400">Battlefield</span>
+                            {t(`${B}.typesTitleLead`)} <span className="text-indigo-400">{t(`${B}.typesTitleAccent`)}</span>
                         </h2>
                         <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                            We specialize in diverse gaming genres tailored for maximum engagement and revenue.
+                            {t(`${B}.typesSub`)}
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {/* Card 1 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                            whileHover={{ y: -10 }}
-                            className="bg-card rounded-3xl p-8 border border-foreground/5 hover:border-indigo-500/50 transition-all group"
-                        >
-                            <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(99,102,241,0.3)]">
-                                <Coins className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4">Play-to-Earn (P2E)</h3>
-                            <p className="text-muted-foreground mb-6 leading-relaxed">
-                                Legally compliant gaming economies where players earn real rewards. We handle the blockchain integration and economic balancing.
-                            </p>
-                            <ul className="space-y-3 text-sm text-muted-foreground">
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-green-400 mr-2" /> Secure Tokenomics</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-green-400 mr-2" /> Asset Ownership (NFTs)</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-green-400 mr-2" /> Smart Contract Audits</li>
-                            </ul>
-                        </motion.div>
-
-                        {/* Card 2 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            whileHover={{ y: -10 }}
-                            className="bg-card rounded-3xl p-8 border border-foreground/5 hover:border-indigo-500/50 transition-all group relative overflow-hidden"
-                        >
-                            <div className="absolute top-0 right-0 bg-indigo-600 text-[10px] font-extrabold px-3 py-1 rounded-bl-xl uppercase tracking-wider z-20">Best Seller</div>
-                            <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(236,72,153,0.3)]">
-                                <Trophy className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4">eSports Platforms</h3>
-                            <p className="text-muted-foreground mb-6 leading-relaxed">
-                                Create your own tournament platform. Host matches, manage brackets, and stream live events with our scalable backend.
-                            </p>
-                            <ul className="space-y-3 text-sm text-muted-foreground">
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-green-400 mr-2" /> Live Scoreboard</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-green-400 mr-2" /> Anti-Cheat Systems</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-green-400 mr-2" /> Payment Gateways</li>
-                            </ul>
-                        </motion.div>
-
-                        {/* Card 3 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
-                            whileHover={{ y: -10 }}
-                            className="bg-card rounded-3xl p-8 border border-foreground/5 hover:border-indigo-500/50 transition-all group"
-                        >
-                            <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(34,211,238,0.3)]">
-                                <Monitor className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4">Educational Gaming</h3>
-                            <p className="text-muted-foreground mb-6 leading-relaxed">
-                                Gamify learning ("Edutainment"). Perfect for schools, corporate training, and interactive simulations.
-                            </p>
-                            <ul className="space-y-3 text-sm text-muted-foreground">
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-green-400 mr-2" /> Interactive Quizzes</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-green-400 mr-2" /> Progress Tracking</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-green-400 mr-2" /> Multi-Platform Support</li>
-                            </ul>
-                        </motion.div>
+                        {gameTypes.map((type, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.1 * (idx + 1) }}
+                                whileHover={{ y: -10 }}
+                                className="bg-card rounded-3xl p-8 border border-foreground/5 hover:border-indigo-500/50 transition-all group relative overflow-hidden"
+                            >
+                                {type.badge && (
+                                    <div className="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-bl-xl uppercase tracking-wider z-20">{t(`${B}.bestSeller`)}</div>
+                                )}
+                                <div className={`w-16 h-16 bg-gradient-to-br ${type.grad} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${type.shadow}`}>
+                                    {type.icon}
+                                </div>
+                                <h3 className="text-2xl font-bold mb-4">{type.title}</h3>
+                                <p className="text-muted-foreground mb-6 leading-relaxed">
+                                    {type.description}
+                                </p>
+                                <ul className="space-y-3 text-sm text-muted-foreground">
+                                    {type.features.map((feature, fi) => (
+                                        <li key={fi} className="flex items-center"><CheckCircle2 className="w-4 h-4 text-green-400 mr-2" /> {feature}</li>
+                                    ))}
+                                </ul>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -190,8 +155,8 @@ export default function GameDevelopmentPage() {
                         viewport={{ once: true }}
                         className="text-center mb-16"
                     >
-                        <h2 className="font-display font-bold text-3xl md:text-5xl mb-4 italic tracking-tight">The Tech That Wins</h2>
-                        <p className="text-muted-foreground max-w-xl mx-auto uppercase tracking-[0.3em] text-[10px] font-black">Industrial Grade Infrastructure</p>
+                        <h2 className="font-display font-bold text-3xl md:text-5xl mb-4 italic tracking-tight">{t(`${B}.techTitle`)}</h2>
+                        <p className="text-muted-foreground max-w-xl mx-auto uppercase tracking-[0.3em] text-[10px] font-black">{t(`${B}.techSub`)}</p>
                     </motion.div>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -226,14 +191,14 @@ export default function GameDevelopmentPage() {
             <section className="py-24 bg-gradient-to-b from-background to-secondary text-foreground">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="font-display font-bold text-4xl md:text-6xl mb-8">
-                        Ready to Launch Your Game?
+                        {t(`${B}.ctaTitle`)}
                     </h2>
                     <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-                        Whether you need a simple mobile game or a complex metaverse economy, our team of veteran developers is ready to execute your vision.
+                        {t(`${B}.ctaDesc`)}
                     </p>
                     <Link href="/contact">
                         <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-8 rounded-2xl text-xl font-bold shadow-2xl transition-transform hover:scale-105">
-                            Get a Game Dev Estimate
+                            {t(`${B}.ctaButton`)}
                         </Button>
                     </Link>
                 </div>

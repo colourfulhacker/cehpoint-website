@@ -1527,6 +1527,58 @@
       "applyJoin": "Apply to Join",
       "getCallback": "Get a Callback",
       "vetNote": "Vetting process takes 72 hours. Limited availability by industry category."
+    },
+    "serviceGame": {
+      "eyebrow": "NEXT-GEN GAMING",
+      "heroTitleLead": "Build Your",
+      "heroTitleAccent": "Virtual Empire",
+      "heroSubtitle": "From high-octane eSports arenas to educational \"Play-to-Learn\" ecosystems. We create immersive gaming experiences that entertain, educate, and monetize globally.",
+      "ctaBuild": "Start Building",
+      "exploreGenres": "Explore Genres",
+      "stats": [
+        "Active Players",
+        "Games Shipped",
+        "Avg. ROI",
+        "Platforms"
+      ],
+      "typesTitleLead": "Pick Your",
+      "typesTitleAccent": "Battlefield",
+      "typesSub": "We specialize in diverse gaming genres tailored for maximum engagement and revenue.",
+      "gameTypes": [
+        {
+          "title": "Play-to-Earn (P2E)",
+          "description": "Legally compliant gaming economies where players earn real rewards. We handle the blockchain integration and economic balancing.",
+          "features": [
+            "Secure Tokenomics",
+            "Asset Ownership (NFTs)",
+            "Smart Contract Audits"
+          ]
+        },
+        {
+          "title": "eSports Platforms",
+          "description": "Create your own tournament platform. Host matches, manage brackets, and stream live events with our scalable backend.",
+          "features": [
+            "Live Scoreboard",
+            "Anti-Cheat Systems",
+            "Payment Gateways"
+          ]
+        },
+        {
+          "title": "Educational Gaming",
+          "description": "Gamify learning (\"Edutainment\"). Perfect for schools, corporate training, and interactive simulations.",
+          "features": [
+            "Interactive Quizzes",
+            "Progress Tracking",
+            "Multi-Platform Support"
+          ]
+        }
+      ],
+      "techTitle": "The Tech That Wins",
+      "techSub": "Industrial Grade Infrastructure",
+      "ctaTitle": "Ready to Launch Your Game?",
+      "ctaDesc": "Whether you need a simple mobile game or a complex metaverse economy, our team of veteran developers is ready to execute your vision.",
+      "ctaButton": "Get a Game Dev Estimate",
+      "bestSeller": "Best Seller"
     }
   },
   "themeToggle": {
