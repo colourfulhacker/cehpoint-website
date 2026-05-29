@@ -1764,6 +1764,30 @@
     "invRequest": {
       "heading": "Open A Secure Inquiry",
       "subheading": "Initiate a case with our intake team. All operational details submitted here are encrypted and privileged."
+    },
+    "pgNotFound": {
+      "badge": "Signal Lost - Page Not Found",
+      "titleLead": "Connection",
+      "titleAccent": "Terminated",
+      "subtitle": "The page you're looking for seems to have drifted into the digital void. Our AI systems couldn't locate it, but we can help you find your way back.",
+      "errorAnalysis": "Error Analysis",
+      "statusLabel": "Status:",
+      "sourceLabel": "Source:",
+      "actionLabel": "Action:",
+      "sourceVal": "Unknown Route",
+      "actionVal": "Navigation Required",
+      "home": "Return to Home",
+      "support": "Contact Support",
+      "explore": "Or explore our key pages:",
+      "links": [
+        "Services",
+        "AI Solutions",
+        "Get Quote",
+        "Insights"
+      ],
+      "assist": "Need immediate assistance?",
+      "or": "or",
+      "callUs": "call us"
     }
   },
   "themeToggle": {

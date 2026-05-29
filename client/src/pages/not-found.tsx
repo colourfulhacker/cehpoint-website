@@ -1,10 +1,15 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 import SEO from "@/components/seo";
 import { Home, ArrowLeft, Search, Bot, Cpu } from "lucide-react";
 
 export default function NotFound() {
+  const { t } = useTranslation();
+  const B = "pages.pgNotFound";
+  const quickLinks = (t(`${B}.links`, { returnObjects: true }) as string[]);
+  const linkHrefs = ["/services", "/ai-solutions", "/quotation", "/insights"];
   return (
     <>
       <SEO
@@ -80,7 +85,7 @@ export default function NotFound() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 border border-primary/20"
           >
             <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-primary">Signal Lost - Page Not Found</span>
+            <span className="text-sm font-medium text-primary">{t(`${B}.badge`)}</span>
           </motion.div>
 
           {/* Main Message */}
@@ -91,11 +96,10 @@ export default function NotFound() {
             className="mb-8"
           >
             <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
-              Connection <span className="text-primary">Terminated</span>
+              {t(`${B}.titleLead`)} <span className="text-primary">{t(`${B}.titleAccent`)}</span>
             </h2>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              The page you're looking for seems to have drifted into the digital void. 
-              Our AI systems couldn't locate it, but we can help you find your way back.
+              {t(`${B}.subtitle`)}
             </p>
           </motion.div>
 
@@ -110,20 +114,20 @@ export default function NotFound() {
               <div className="w-8 h-8 bg-red-500/10 rounded-lg flex items-center justify-center">
                 <Search className="w-4 h-4 text-red-500" />
               </div>
-              <span className="font-semibold text-foreground">Error Analysis</span>
+              <span className="font-semibold text-foreground">{t(`${B}.errorAnalysis`)}</span>
             </div>
             <div className="space-y-2 text-left text-sm font-mono">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Status:</span>
+                <span className="text-muted-foreground">{t(`${B}.statusLabel`)}</span>
                 <span className="text-red-400">404 NOT_FOUND</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Source:</span>
-                <span className="text-foreground/70">Unknown Route</span>
+                <span className="text-muted-foreground">{t(`${B}.sourceLabel`)}</span>
+                <span className="text-foreground/70">{t(`${B}.sourceVal`)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Action:</span>
-                <span className="text-cyan-400">Navigation Required</span>
+                <span className="text-muted-foreground">{t(`${B}.actionLabel`)}</span>
+                <span className="text-cyan-400">{t(`${B}.actionVal`)}</span>
               </div>
             </div>
           </motion.div>
@@ -138,14 +142,14 @@ export default function NotFound() {
             <Link href="/">
               <Button className="btn-primary px-8 py-6 text-lg font-bold group">
                 <Home className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-                Return to Home
+                {t(`${B}.home`)}
               </Button>
             </Link>
-            
+
             <Link href="/contact">
               <Button variant="outline" className="px-8 py-6 text-lg font-semibold group">
                 <Bot className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
-                Contact Support
+                {t(`${B}.support`)}
               </Button>
             </Link>
           </motion.div>
@@ -157,18 +161,13 @@ export default function NotFound() {
             transition={{ delay: 0.7, duration: 0.5 }}
             className="space-y-4"
           >
-            <p className="text-sm text-muted-foreground mb-4">Or explore our key pages:</p>
+            <p className="text-sm text-muted-foreground mb-4">{t(`${B}.explore`)}</p>
             <div className="flex flex-wrap justify-center gap-3">
-              {[
-                { label: "Services", href: "/services" },
-                { label: "AI Solutions", href: "/ai-solutions" },
-                { label: "Get Quote", href: "/quotation" },
-                { label: "Insights", href: "/insights" },
-              ].map((link) => (
-                <Link key={link.href} href={link.href}>
+              {quickLinks.map((label, i) => (
+                <Link key={linkHrefs[i]} href={linkHrefs[i]}>
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer">
                     <Cpu className="w-3 h-3" />
-                    {link.label}
+                    {label}
                   </span>
                 </Link>
               ))}
@@ -190,13 +189,13 @@ export default function NotFound() {
             transition={{ delay: 1, duration: 0.5 }}
             className="mt-6 text-xs text-muted-foreground"
           >
-            Need immediate assistance?{" "}
+            {t(`${B}.assist`)}{" "}
             <a href="mailto:contact@cehpoint.co.in" className="text-primary hover:underline">
               contact@cehpoint.co.in
             </a>
-            {" "}or{" "}
+            {" "}{t(`${B}.or`)}{" "}
             <a href="tel:+919091156095" className="text-primary hover:underline">
-              call us
+              {t(`${B}.callUs`)}
             </a>
           </motion.p>
         </div>
