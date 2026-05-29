@@ -1098,6 +1098,166 @@
       "ctaBadge1": "Free platform demo",
       "ctaBadge2": "No commitment required",
       "ctaBadge3": "Expert consultation included"
+    },
+    "serviceFintech": {
+      "heroTitleLead": "Fintech",
+      "heroTitleAccent": "Solutions",
+      "heroSubtitle": "Build secure, compliant, and scalable financial technology platforms that power the future of finance.",
+      "heroCta": "Get Fintech Quote",
+      "freeConsult": "Free consultation • No commitment",
+      "ratingSub": "From 127+ client reviews",
+      "volSub": "Transactions processed annually",
+      "usersSub": "End users served globally",
+      "trustedBy": "Trusted by leading financial institutions",
+      "problemsTitleLead": "Financial",
+      "problemsTitleAccent": "Challenges We Solve",
+      "problemsSub": "Complex financial technology challenges require specialized expertise and proven solutions",
+      "problems": [
+        "Complex regulatory compliance across multiple jurisdictions",
+        "Security vulnerabilities in payment processing systems",
+        "Slow transaction processing and settlement times",
+        "Limited integration with banking and financial institutions",
+        "Poor user experience in mobile financial applications",
+        "Lack of real-time fraud detection and risk management"
+      ],
+      "archTitleLead": "Financial",
+      "archTitleAccent": "Architecture",
+      "archSub": "Enterprise-grade fintech architecture designed for security, compliance, and scalability",
+      "architecture": [
+        {
+          "title": "Payment Processing",
+          "description": "High-performance payment engines with multi-currency support and instant settlements."
+        },
+        {
+          "title": "Security & Fraud Detection",
+          "description": "Advanced AI-powered fraud detection with real-time risk assessment and prevention."
+        },
+        {
+          "title": "Financial Analytics",
+          "description": "Comprehensive financial reporting, analytics, and business intelligence platforms."
+        },
+        {
+          "title": "Mobile Banking",
+          "description": "Native mobile applications with biometric authentication and seamless UX."
+        },
+        {
+          "title": "Blockchain Integration",
+          "description": "Cryptocurrency support, smart contracts, and distributed ledger technologies."
+        },
+        {
+          "title": "Regulatory Compliance",
+          "description": "Built-in compliance frameworks for KYC, AML, PCI-DSS, and regional regulations."
+        }
+      ],
+      "caseTitleLead": "Success",
+      "caseTitleAccent": "Stories",
+      "caseSub": "Real results from our fintech implementations",
+      "case1Title": "Digital Payment Platform",
+      "case1Desc": "Built a comprehensive payment processing platform for a leading fintech startup, handling multi-currency transactions with real-time fraud detection.",
+      "case1Quote": "Cehpoint delivered a robust, scalable platform that exceeded our expectations. Their expertise in fintech compliance was invaluable.",
+      "case1Author": "— CTO, Digital Payments Inc.",
+      "case2Title": "Mobile Banking App",
+      "case2Desc": "Developed a feature-rich mobile banking application with biometric authentication, instant transfers, and AI-powered financial insights.",
+      "case2Quote": "The mobile app transformed our customer experience. User adoption exceeded projections by 150%.",
+      "case2Author": "— Head of Digital, Regional Bank",
+      "mUptime": "Uptime achieved",
+      "mTxTime": "Avg. transaction time",
+      "mVolume": "Monthly volume",
+      "mFraud": "Fraud detection rate",
+      "mUsers": "Active users",
+      "mRating": "App store rating",
+      "mEngagement": "Increase in engagement",
+      "mLaunch": "App launch time",
+      "compTitleLead": "Regulatory",
+      "compTitleAccent": "Compliance",
+      "compSub": "Financial platforms built with comprehensive regulatory compliance and security frameworks.",
+      "compliance": [
+        "PCI-DSS Level 1 Compliance",
+        "SOX Financial Reporting Standards",
+        "KYC/AML Compliance Frameworks",
+        "GDPR & Privacy Protection",
+        "ISO 27001 Security Standards",
+        "Regional Banking Regulations"
+      ],
+      "featuresTitle": "Security Features",
+      "features": [
+        "End-to-End Encryption",
+        "Multi-Factor Authentication",
+        "Biometric Authentication",
+        "Real-time Fraud Detection",
+        "Blockchain Security",
+        "Audit Trail & Logging"
+      ],
+      "included": "Included",
+      "trustTitleLead": "Certified &",
+      "trustTitleAccent": "Trusted",
+      "t1Label": "Level 1 Certified",
+      "t2Label": "Security Standards",
+      "t3Label": "Compliance",
+      "t4Label": "Compliant",
+      "techPartners": "Technology Partners",
+      "kpisTitleLead": "Performance",
+      "kpisTitleAccent": "Metrics",
+      "kpisSub": "Mission-critical performance standards for financial technology platforms",
+      "kpis": [
+        {
+          "metric": "Transaction Speed",
+          "description": "Ultra-fast payment processing"
+        },
+        {
+          "metric": "Uptime",
+          "description": "Mission-critical system reliability"
+        },
+        {
+          "metric": "Fraud Detection",
+          "description": "AI-powered fraud prevention accuracy"
+        },
+        {
+          "metric": "Compliance Score",
+          "description": "Full regulatory compliance adherence"
+        },
+        {
+          "metric": "Mobile Adoption",
+          "description": "Mobile-first user engagement"
+        },
+        {
+          "metric": "API Response",
+          "description": "High-speed API performance"
+        }
+      ],
+      "faqTitleLead": "Frequently Asked",
+      "faqTitleAccent": "Questions",
+      "faqs": [
+        {
+          "q": "How long does it take to build a fintech platform?",
+          "a": "Timeline varies based on complexity, but typically ranges from 4-9 months for a full-featured platform. We follow an agile approach with regular releases, so you can start seeing value within the first 6-8 weeks."
+        },
+        {
+          "q": "Do you handle regulatory compliance?",
+          "a": "Yes, compliance is built into our development process. We have extensive experience with PCI-DSS, KYC/AML, GDPR, SOX, and regional banking regulations. Our team includes compliance specialists who ensure your platform meets all requirements."
+        },
+        {
+          "q": "What security measures do you implement?",
+          "a": "We implement end-to-end encryption, multi-factor authentication, real-time fraud detection, secure API gateways, regular security audits, and comprehensive audit logging. All our solutions are built with security-first architecture."
+        },
+        {
+          "q": "Can you integrate with existing banking systems?",
+          "a": "Absolutely. We have extensive experience integrating with core banking systems, payment gateways, credit bureaus, and third-party financial services through secure APIs and industry-standard protocols."
+        },
+        {
+          "q": "What ongoing support do you provide?",
+          "a": "We offer 24/7 monitoring, regular security updates, performance optimization, compliance updates, and dedicated support teams. Our SLA guarantees 99.9% uptime with rapid incident response."
+        }
+      ],
+      "ctaOffer": "Limited slots available this month",
+      "ctaTitleLead": "Ready to Build the",
+      "ctaTitleAccent": "Future of Finance?",
+      "ctaDesc": "Get a detailed quotation with AI-powered analysis, compliance roadmap, and technical architecture for your fintech project.",
+      "ctaQuote": "Get Your Fintech Quotation",
+      "ctaConsult": "Schedule a Call",
+      "ctaBadge1": "Free consultation",
+      "ctaBadge2": "No commitment required",
+      "ctaBadge3": "Response within 24 hours"
     }
   },
   "themeToggle": {
