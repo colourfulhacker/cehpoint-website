@@ -10,7 +10,7 @@ export function KairaWidget() {
     return (
         <>
             <motion.div
-                className="fixed bottom-6 right-6 z-50"
+                className="fixed bottom-[calc(5.25rem+env(safe-area-inset-bottom))] right-4 z-50 lg:bottom-6 lg:right-6"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 whileHover={{ scale: 1.05 }}

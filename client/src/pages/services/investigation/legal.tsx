@@ -1,8 +1,10 @@
 import InvestigationLayout from "@/components/layout/investigation-layout";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 
 export default function InvestigationLegal() {
+    const { t } = useTranslation();
     return (
         <InvestigationLayout>
             <SEO
@@ -18,36 +20,36 @@ export default function InvestigationLegal() {
                 ]}
             />
             <section className="pt-36 pb-20 max-w-4xl mx-auto px-4">
-                <h1 className="text-4xl font-display font-bold mb-12">Legal & Compliance</h1>
+                <h1 className="text-4xl font-display font-bold mb-12">{t("pages.invLegal.heading")}</h1>
 
                 <div className="space-y-12 text-muted-foreground leading-relaxed">
-                    <PolicySection title="Confidentiality Guarantee">
+                    <PolicySection title={t("pages.invLegal.confidentiality.title")}>
                         <p>
-                            Cehpoint adheres to strict non-disclosure protocols. All client data, investigation findings, and reports are treated as highly confidential. We implement military-grade encryption for data at rest and in transit. Access is restricted on a strict need-to-know basis within our investigation unit.
+                            {t("pages.invLegal.confidentiality.body")}
                         </p>
                     </PolicySection>
 
-                    <PolicySection title="Data Handling & Privacy">
+                    <PolicySection title={t("pages.invLegal.dataHandling.title")}>
                         <p>
-                            Our digital forensics lab operates in alignment with ISO 27037 (Digital Evidence) standards. We do not sell, share, or monetize client data. All evidence data is retained only for the duration mandated by the engagement contract or law, after which it is securely sanitized (DoD 5220.22-M standard).
+                            {t("pages.invLegal.dataHandling.body")}
                         </p>
                     </PolicySection>
 
-                    <PolicySection title="Evidence Admissibility">
+                    <PolicySection title={t("pages.invLegal.admissibility.title")}>
                         <p>
-                            Investigations are conducted with the primary goal of legal admissibility. We maintain hash-verified Chain of Custody logs for all acquired evidence. Our analysts are prepared to provide expert witness testimony in Indian and International courts regarding the integrity and methodology of our findings.
+                            {t("pages.invLegal.admissibility.body")}
                         </p>
                     </PolicySection>
 
-                    <PolicySection title="Jurisdiction & Authority">
+                    <PolicySection title={t("pages.invLegal.jurisdiction.title")}>
                         <p>
-                            Cehpoint acts as a technical consulting agency. We do not have the authority to arrest, detain, or seize property without a court order. We work in tandem with Law Enforcement Agencies (LEAs) when required by the client to facilitate such actions based on our technical evidence.
+                            {t("pages.invLegal.jurisdiction.body")}
                         </p>
                     </PolicySection>
 
-                    <PolicySection title="Conflict of Interest">
+                    <PolicySection title={t("pages.invLegal.conflict.title")}>
                         <p>
-                            We conduct mandatory conflict checks before accepting any engagement. We will not accept a case where we have a pre-existing relationship with the opposing party or where our impartiality might be compromised.
+                            {t("pages.invLegal.conflict.body")}
                         </p>
                     </PolicySection>
                 </div>

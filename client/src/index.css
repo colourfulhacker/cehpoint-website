@@ -283,6 +283,11 @@
   background: rgba(var(--surface-on-bg), 0.28);
 }
 
+/* Hide the app tab bar while the intro video is playing */
+body.intro-playing .mobile-tab-bar {
+  display: none !important;
+}
+
 /* PWA standalone (installed app) — respect device safe areas / notches */
 @media (display-mode: standalone) {
   /* Push the fixed certification banner below the status bar / notch */
@@ -294,6 +299,8 @@
   body {
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
+    /* App-like: prevent the browser rubber-band/overscroll bounce */
+    overscroll-behavior-y: none;
   }
 }
 

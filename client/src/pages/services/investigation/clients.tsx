@@ -2,8 +2,10 @@ import InvestigationLayout from "@/components/layout/investigation-layout";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { Building2, Landmark, Gavel, User, Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function InvestigationClients() {
+    const { t } = useTranslation();
     return (
         <InvestigationLayout>
             <SEO
@@ -20,42 +22,42 @@ export default function InvestigationClients() {
             />
             <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-16">
-                    <h1 className="text-4xl font-display font-bold mb-6">Who We Serve</h1>
+                    <h1 className="text-4xl font-display font-bold mb-6">{t("pages.invClients.heading")}</h1>
                     <p className="text-xl text-muted-foreground">
-                        Specialized investigation protocols tailored for distinct client categories.
+                        {t("pages.invClients.subheading")}
                     </p>
                 </div>
 
                 <div className="space-y-8">
                     <ClientSection
                         icon={Building2}
-                        title="Corporates & Enterprises"
-                        desc="For organizations facing internal fraud, data theft, business email compromise (BEC), or ransomware."
-                        features={["Discreet internal investigations", "Employee misconduct analysis", "Trade secret leakage tracing"]}
+                        title={t("pages.invClients.corporate.title")}
+                        desc={t("pages.invClients.corporate.desc")}
+                        features={t("pages.invClients.corporate.features", { returnObjects: true }) as string[]}
                     />
                     <ClientSection
                         icon={Landmark}
-                        title="Government & PSUs"
-                        desc="Technical intelligence support for state agencies, defense contractors, and public sector units."
-                        features={["National security aligned protocols", "Large-scale log analysis", "Cross-border intelligence"]}
+                        title={t("pages.invClients.government.title")}
+                        desc={t("pages.invClients.government.desc")}
+                        features={t("pages.invClients.government.features", { returnObjects: true }) as string[]}
                     />
                     <ClientSection
                         icon={Gavel}
-                        title="Law Firms & Legal Teams"
-                        desc="Forensic support for litigation, e-discovery, and technical evidence validation."
-                        features={["Expert witness testimony", "E-Discovery processing", "Opposing counsel report critique"]}
+                        title={t("pages.invClients.legal.title")}
+                        desc={t("pages.invClients.legal.desc")}
+                        features={t("pages.invClients.legal.features", { returnObjects: true }) as string[]}
                     />
                     <ClientSection
                         icon={User}
-                        title="Individuals & HNIs"
-                        desc="Private services for victims of crypto theft, sextortion, blackmail, and stalking."
-                        features={["Absolute privacy guarantee", "Personal device securing", "Harassment tracing"]}
+                        title={t("pages.invClients.individuals.title")}
+                        desc={t("pages.invClients.individuals.desc")}
+                        features={t("pages.invClients.individuals.features", { returnObjects: true }) as string[]}
                     />
                     <ClientSection
                         icon={Globe}
-                        title="International Clients"
-                        desc="Cross-border investigations for foreign entities requiring on-ground intelligence in India or digital tracing globally."
-                        features={["Time-zone aligned updates", "International legal alignment", "Remote forensic acquisition"]}
+                        title={t("pages.invClients.international.title")}
+                        desc={t("pages.invClients.international.desc")}
+                        features={t("pages.invClients.international.features", { returnObjects: true }) as string[]}
                     />
                 </div>
             </section>

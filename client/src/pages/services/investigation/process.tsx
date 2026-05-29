@@ -2,8 +2,10 @@ import InvestigationLayout from "@/components/layout/investigation-layout";
 import ProcessTimeline from "@/components/investigation/process-timeline";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 
 export default function InvestigationProcess() {
+    const { t } = useTranslation();
     return (
         <InvestigationLayout>
             <SEO
@@ -23,9 +25,9 @@ export default function InvestigationProcess() {
             <section className="pt-36 pb-20 relative">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">How Our Investigation Works</h1>
+                        <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">{t("pages.invProcess.heading")}</h1>
                         <p className="text-xl text-muted-foreground">
-                            A transparent, step-by-step approach designed to remove confusion and ensure full legal chain-of-custody from day one.
+                            {t("pages.invProcess.subheading")}
                         </p>
                     </div>
 

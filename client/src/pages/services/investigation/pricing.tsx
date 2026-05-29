@@ -2,8 +2,10 @@ import InvestigationLayout from "@/components/layout/investigation-layout";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import CyberCrimeCalculator from "@/components/calculators/cyber-crime-calculator";
+import { useTranslation } from "react-i18next";
 
 export default function InvestigationPricing() {
+    const { t } = useTranslation();
     return (
         <InvestigationLayout>
             <SEO
@@ -20,9 +22,9 @@ export default function InvestigationPricing() {
             />
             <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-display font-bold mb-6">Transparent Costing</h1>
+                    <h1 className="text-4xl font-display font-bold mb-6">{t("pages.invPricing.heading")}</h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Cyber investigation is complex, but pricing shouldn't be. Use our estimator to understand potential costs before engagement.
+                        {t("pages.invPricing.subheading")}
                     </p>
                 </div>
 
@@ -30,7 +32,7 @@ export default function InvestigationPricing() {
                 <CyberCrimeCalculator />
 
                 <div className="mt-12 text-center text-sm text-muted-foreground">
-                    * Final scope and cost are subject to expert review and feasibility analysis. This tool provides an estimate only.
+                    {t("pages.invPricing.disclaimer")}
                 </div>
             </section>
         </InvestigationLayout>

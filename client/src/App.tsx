@@ -13,6 +13,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Banner } from "./components/sections/Banner";
 import { KairaWidget } from "@/components/kaira/KairaWidget";
 import InstallPrompt from "@/components/pwa/install-prompt";
+import MobileTabBar from "@/components/layout/mobile-tab-bar";
 
 // Lazy-loaded pages for code splitting
 const Home = lazy(() => import("@/pages/home"));
@@ -101,7 +102,7 @@ function PageLoader() {
 
 function Router() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
       <ScrollToTop />
       {/* Banner with highest z-index */}
       <div className="relative z-50">
@@ -196,6 +197,7 @@ function Router() {
       <Footer />
       <KairaWidget />
       <InstallPrompt />
+      <MobileTabBar />
     </div>
 
   );

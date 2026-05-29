@@ -1635,6 +1635,135 @@
       "ctaDesc": "Don't wait! Grab this opportunity to launch your own business with our affordable, high-quality app solutions.",
       "bookNow": "Book Your App Now",
       "contactExpert": "Contact Expert"
+    },
+    "invClients": {
+      "heading": "Who We Serve",
+      "subheading": "Specialized investigation protocols tailored for distinct client categories.",
+      "corporate": {
+        "title": "Corporates & Enterprises",
+        "desc": "For organizations facing internal fraud, data theft, business email compromise (BEC), or ransomware.",
+        "features": [
+          "Discreet internal investigations",
+          "Employee misconduct analysis",
+          "Trade secret leakage tracing"
+        ]
+      },
+      "government": {
+        "title": "Government & PSUs",
+        "desc": "Technical intelligence support for state agencies, defense contractors, and public sector units.",
+        "features": [
+          "National security aligned protocols",
+          "Large-scale log analysis",
+          "Cross-border intelligence"
+        ]
+      },
+      "legal": {
+        "title": "Law Firms & Legal Teams",
+        "desc": "Forensic support for litigation, e-discovery, and technical evidence validation.",
+        "features": [
+          "Expert witness testimony",
+          "E-Discovery processing",
+          "Opposing counsel report critique"
+        ]
+      },
+      "individuals": {
+        "title": "Individuals & HNIs",
+        "desc": "Private services for victims of crypto theft, sextortion, blackmail, and stalking.",
+        "features": [
+          "Absolute privacy guarantee",
+          "Personal device securing",
+          "Harassment tracing"
+        ]
+      },
+      "international": {
+        "title": "International Clients",
+        "desc": "Cross-border investigations for foreign entities requiring on-ground intelligence in India or digital tracing globally.",
+        "features": [
+          "Time-zone aligned updates",
+          "International legal alignment",
+          "Remote forensic acquisition"
+        ]
+      }
+    },
+    "invLegal": {
+      "heading": "Legal & Compliance",
+      "confidentiality": {
+        "title": "Confidentiality Guarantee",
+        "body": "Cehpoint adheres to strict non-disclosure protocols. All client data, investigation findings, and reports are treated as highly confidential. We implement military-grade encryption for data at rest and in transit. Access is restricted on a strict need-to-know basis within our investigation unit."
+      },
+      "dataHandling": {
+        "title": "Data Handling & Privacy",
+        "body": "Our digital forensics lab operates in alignment with ISO 27037 (Digital Evidence) standards. We do not sell, share, or monetize client data. All evidence data is retained only for the duration mandated by the engagement contract or law, after which it is securely sanitized (DoD 5220.22-M standard)."
+      },
+      "admissibility": {
+        "title": "Evidence Admissibility",
+        "body": "Investigations are conducted with the primary goal of legal admissibility. We maintain hash-verified Chain of Custody logs for all acquired evidence. Our analysts are prepared to provide expert witness testimony in Indian and International courts regarding the integrity and methodology of our findings."
+      },
+      "jurisdiction": {
+        "title": "Jurisdiction & Authority",
+        "body": "Cehpoint acts as a technical consulting agency. We do not have the authority to arrest, detain, or seize property without a court order. We work in tandem with Law Enforcement Agencies (LEAs) when required by the client to facilitate such actions based on our technical evidence."
+      },
+      "conflict": {
+        "title": "Conflict of Interest",
+        "body": "We conduct mandatory conflict checks before accepting any engagement. We will not accept a case where we have a pre-existing relationship with the opposing party or where our impartiality might be compromised."
+      }
+    },
+    "invMethodology": {
+      "heading": "Methodology & Standards",
+      "subheading": "A rigorous framework designed for enterprises, law firms, and government entities requiring absolute technical precision.",
+      "framework": {
+        "title": "1. Investigation Framework",
+        "points": [
+          "Incident-driven response model",
+          "Evidence-first hypothesis testing",
+          "Zero-assumption analysis logic",
+          "Rapid triage & containment support"
+        ]
+      },
+      "forensics": {
+        "title": "2. Digital Forensics Standards",
+        "points": [
+          "Bit-stream forensic imaging (E01/DD)",
+          "MD5/SHA-256 Hash verification",
+          "Write-blocker protected acquisition",
+          "Evidence integrity validation logs"
+        ]
+      },
+      "intelligence": {
+        "title": "3. Intelligence Correlation",
+        "points": [
+          "OSINT + Dark Web data fusion",
+          "Cross-platform behavioral mapping",
+          "Financial trail reconstruction",
+          "Crypto-asset hop analysis"
+        ]
+      },
+      "legal": {
+        "title": "4. Legal & Compliance",
+        "points": [
+          "Strict Chain of Custody documentation",
+          "Jurisdiction-aware data handling",
+          "Admissibility-focused reporting",
+          "Non-disclosure & seal protocols"
+        ]
+      },
+      "disclaimer": {
+        "title": "Official Disclaimer",
+        "body": "Cehpoint is a private digital forensics and cyber intelligence agency. We provide technical investigation support and evidence analysis. While our reports are legally admissible, we do not possess law enforcement powers (arrest/seizure) unless operating under specific government contract. All legal actions must be driven by the client's counsel or relevant authorities based on our technical findings."
+      }
+    },
+    "invPricing": {
+      "heading": "Transparent Costing",
+      "subheading": "Cyber investigation is complex, but pricing shouldn't be. Use our estimator to understand potential costs before engagement.",
+      "disclaimer": "* Final scope and cost are subject to expert review and feasibility analysis. This tool provides an estimate only."
+    },
+    "invProcess": {
+      "heading": "How Our Investigation Works",
+      "subheading": "A transparent, step-by-step approach designed to remove confusion and ensure full legal chain-of-custody from day one."
+    },
+    "invRequest": {
+      "heading": "Open A Secure Inquiry",
+      "subheading": "Initiate a case with our intake team. All operational details submitted here are encrypted and privileged."
     }
   },
   "themeToggle": {
@@ -1645,5 +1774,12 @@
   },
   "languageToggle": {
     "switchLabel": "Change language"
+  },
+  "tabBar": {
+    "home": "Home",
+    "services": "Services",
+    "ai": "AI",
+    "insights": "Insights",
+    "contact": "Contact"
   }
 }

@@ -2,8 +2,10 @@ import InvestigationLayout from "@/components/layout/investigation-layout";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { ShieldCheck, Database, FileSearch, Scale } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function InvestigationMethodology() {
+    const { t } = useTranslation();
     return (
         <InvestigationLayout>
             <SEO
@@ -20,59 +22,39 @@ export default function InvestigationMethodology() {
             />
             <section className="pt-36 pb-20 max-w-7xl mx-auto px-4">
                 <div className="text-center mb-16">
-                    <h1 className="text-4xl font-display font-bold mb-6">Methodology & Standards</h1>
+                    <h1 className="text-4xl font-display font-bold mb-6">{t("pages.invMethodology.heading")}</h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        A rigorous framework designed for enterprises, law firms, and government entities requiring absolute technical precision.
+                        {t("pages.invMethodology.subheading")}
                     </p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-12">
                     <MethodCard
                         icon={ShieldCheck}
-                        title="1. Investigation Framework"
-                        points={[
-                            "Incident-driven response model",
-                            "Evidence-first hypothesis testing",
-                            "Zero-assumption analysis logic",
-                            "Rapid triage & containment support"
-                        ]}
+                        title={t("pages.invMethodology.framework.title")}
+                        points={t("pages.invMethodology.framework.points", { returnObjects: true }) as string[]}
                     />
                     <MethodCard
                         icon={Database}
-                        title="2. Digital Forensics Standards"
-                        points={[
-                            "Bit-stream forensic imaging (E01/DD)",
-                            "MD5/SHA-256 Hash verification",
-                            "Write-blocker protected acquisition",
-                            "Evidence integrity validation logs"
-                        ]}
+                        title={t("pages.invMethodology.forensics.title")}
+                        points={t("pages.invMethodology.forensics.points", { returnObjects: true }) as string[]}
                     />
                     <MethodCard
                         icon={FileSearch}
-                        title="3. Intelligence Correlation"
-                        points={[
-                            "OSINT + Dark Web data fusion",
-                            "Cross-platform behavioral mapping",
-                            "Financial trail reconstruction",
-                            "Crypto-asset hop analysis"
-                        ]}
+                        title={t("pages.invMethodology.intelligence.title")}
+                        points={t("pages.invMethodology.intelligence.points", { returnObjects: true }) as string[]}
                     />
                     <MethodCard
                         icon={Scale}
-                        title="4. Legal & Compliance"
-                        points={[
-                            "Strict Chain of Custody documentation",
-                            "Jurisdiction-aware data handling",
-                            "Admissibility-focused reporting",
-                            "Non-disclosure & seal protocols"
-                        ]}
+                        title={t("pages.invMethodology.legal.title")}
+                        points={t("pages.invMethodology.legal.points", { returnObjects: true }) as string[]}
                     />
                 </div>
 
                 <div className="mt-20 p-8 rounded-2xl bg-red-950/10 border border-red-500/20">
-                    <h3 className="text-xl font-bold text-red-400 mb-4">Official Disclaimer</h3>
+                    <h3 className="text-xl font-bold text-red-400 mb-4">{t("pages.invMethodology.disclaimer.title")}</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                        Cehpoint is a private digital forensics and cyber intelligence agency. We provide technical investigation support and evidence analysis. While our reports are legally admissible, we do not possess law enforcement powers (arrest/seizure) unless operating under specific government contract. All legal actions must be driven by the client's counsel or relevant authorities based on our technical findings.
+                        {t("pages.invMethodology.disclaimer.body")}
                     </p>
                 </div>
             </section>

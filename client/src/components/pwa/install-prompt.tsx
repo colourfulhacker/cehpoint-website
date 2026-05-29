@@ -62,7 +62,7 @@ export default function InstallPrompt() {
 
   return (
     <div
-      className="fixed inset-x-3 z-[60] bottom-[calc(1rem+env(safe-area-inset-bottom))] mx-auto max-w-md glass-intense rounded-2xl border border-border shadow-2xl p-4 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4"
+      className="fixed inset-x-3 z-[60] bottom-[calc(5.25rem+env(safe-area-inset-bottom))] lg:bottom-[calc(1rem+env(safe-area-inset-bottom))] mx-auto max-w-md glass-intense rounded-2xl border border-border shadow-2xl p-4 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4"
       role="dialog"
       aria-label={t("pwa.installTitle")}
     >
