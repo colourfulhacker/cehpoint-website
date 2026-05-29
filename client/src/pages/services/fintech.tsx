@@ -2,6 +2,7 @@ import { DollarSign, Shield, BarChart3, Smartphone, Globe, Lock, Star, TrendingU
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
+import RelatedPrograms from "@/components/shared/related-programs";
 import ServiceSchema from "@/components/seo/service-schema";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import FAQSchema from "@/components/seo/faq-schema";
@@ -542,6 +543,16 @@ export default function FintechService() {
           </div>
         </div>
       </section>
+
+      <RelatedPrograms
+        heading="What fintech teams read next"
+        description="Practical guides from our work with lenders, neobanks, and payments teams."
+        programs={[
+          { href: "/insights/finance-fraud-ml", label: "Catching Fraud with ML", description: "How a real lending platform cut fraud losses 47% in one quarter using AI-assisted anomaly detection." },
+          { href: "/insights/digital-forensics-roi", label: "The Forensics ROI", description: "Why every regulated fintech needs a digital-forensics retainer before it has an incident, not after." },
+          { href: "/services/cyber-security", label: "Pair with Cyber Security", description: "Penetration testing, PCI-DSS audits, and 24/7 SOC for regulated financial platforms." },
+        ]}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { ShoppingCart, CreditCard, BarChart3, Shield, Smartphone, Globe, Star, T
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
+import RelatedPrograms from "@/components/shared/related-programs";
 import ServiceSchema from "@/components/seo/service-schema";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import FAQSchema from "@/components/seo/faq-schema";
@@ -534,6 +535,16 @@ export default function EcommerceService() {
           </div>
         </div>
       </section>
+
+      <RelatedPrograms
+        heading="What ecommerce founders read next"
+        description="Three articles every D2C team should send their CTO."
+        programs={[
+          { href: "/insights/retail-inventory-ai", label: "AI for Inventory", description: "Predicting demand 30 days ahead — the model, the math, and what it does to your gross margin." },
+          { href: "/insights/fashion-tech-revolution", label: "Direct to Consumer", description: "How small boutiques are turning Instagram followers into app users — and what changes when they do." },
+          { href: "/insights/hyperlocal-future", label: "Hyperlocal Wins", description: "Why the next ₹100Cr retail brands will be city-first, not country-first." },
+        ]}
+      />
     </div>
   );
 }

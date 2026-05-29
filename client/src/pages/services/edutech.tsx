@@ -2,6 +2,7 @@ import { BookOpen, Users, Award, Monitor, Brain, Globe, Star, TrendingUp, CheckC
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/seo";
+import RelatedPrograms from "@/components/shared/related-programs";
 import ServiceSchema from "@/components/seo/service-schema";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import FAQSchema from "@/components/seo/faq-schema";
@@ -534,6 +535,16 @@ export default function EdutechService() {
           </div>
         </div>
       </section>
+
+      <RelatedPrograms
+        heading="What edtech leaders read next"
+        description="Three pieces that influenced how we build for schools, universities, and edupreneurs."
+        programs={[
+          { href: "/insights/edtech-evolution", label: "EdTech Evolution", description: "From COVID-era patchwork to a real learning operating system — the architecture choices that matter." },
+          { href: "/insights/edtech-automated-enrollment", label: "Automating Enrollment", description: "A 6-step playbook to take a 14-day admissions process down to 90 minutes." },
+          { href: "/ai-in-real-life", label: "Pair with AI-in-Real-Life", description: "Six-week applied AI program — the program template adapts naturally to higher-ed and corporate L&D." },
+        ]}
+      />
     </div>
   );
 }

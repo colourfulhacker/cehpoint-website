@@ -9,10 +9,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
+import { useTranslation } from "react-i18next"
 
 import { WorldClock } from "@/components/ui/world-clock"
 
 export default function Footer() {
+  const { t } = useTranslation();
   const serviceLinks = [
     { name: "Free Security Scheme", href: "/security-scheme" },
     { name: "Cyber Crime Investigation", href: "/services/cyber-crime-investigation" },
@@ -187,7 +189,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="space-y-2">
               <h4 className="font-semibold text-lg text-foreground" data-testid="footer-departments-title">
-                Departments
+                {t("footer.departments")}
               </h4>
               <div className="w-8 h-1 bg-primary/50 rounded-full" />
             </div>
@@ -225,7 +227,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="space-y-2">
               <h4 className="font-semibold text-lg text-foreground" data-testid="footer-company-title">
-                Company
+                {t("footer.company")}
               </h4>
               <div className="w-8 h-1 bg-primary/50 rounded-full" />
             </div>
@@ -263,7 +265,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="space-y-2">
               <h4 className="font-semibold text-lg text-foreground" data-testid="footer-contact-title">
-                Get in Touch
+                {t("footer.getInTouch")}
               </h4>
               <div className="w-8 h-1 bg-primary/50 rounded-full" />
             </div>
@@ -295,7 +297,7 @@ export default function Footer() {
           {/* International */}
           <div className="space-y-6">
             <div className="space-y-2">
-              <h4 className="font-semibold text-lg text-foreground">International</h4>
+              <h4 className="font-semibold text-lg text-foreground">{t("footer.international")}</h4>
               <div className="w-8 h-1 bg-primary/50 rounded-full" />
             </div>
             <ul className="space-y-2">
@@ -461,7 +463,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border/50 text-center">
           <p className="text-foreground/70 text-xs font-medium" data-testid="footer-copyright">
-            &copy; {new Date().getFullYear()} Cehpoint. All rights reserved. &middot; The Point Where IT Innovation Meets Cybersecurity Excellence.
+            &copy; {new Date().getFullYear()} Cehpoint. {t("footer.rights")} &middot; {t("brand.shortTagline")}
           </p>
         </div>
       </div>

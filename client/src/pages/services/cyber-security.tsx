@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import CyberSecurityCalculator from "@/components/calculators/cyber-security-calculator";
 import SEO from "@/components/seo";
+import RelatedPrograms from "@/components/shared/related-programs";
 import ServiceSchema from "@/components/seo/service-schema";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
 import { MessageCircle } from "lucide-react";
@@ -267,6 +268,16 @@ export default function CyberSecurity() {
                     </a>
                 </div>
             </section>
+
+            <RelatedPrograms
+                heading="Reading we send to security buyers"
+                description="Three pieces our clients usually share around the boardroom table."
+                programs={[
+                    { href: "/insights/ransomware-paradox", label: "The Ransomware Paradox", description: "Why paying the ransom marks you as a target — and what to do instead." },
+                    { href: "/insights/cyber-security-myths", label: "Cyber Security Myths", description: "The five most expensive misconceptions about enterprise defence in 2025." },
+                    { href: "/services/cyber-crime-investigation", label: "Already breached? See Investigation", description: "Digital forensics with court-admissible reports for HR, legal, and law-enforcement teams." },
+                ]}
+            />
         </div>
     );
 }
