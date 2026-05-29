@@ -1355,6 +1355,69 @@
       "ctaTitle": "Ready to Fortify Your Business?",
       "ctaDesc": "Don't wait for a breach to happen. Secure your digital assets with our comprehensive cyber security solutions today.",
       "ctaButton": "Get Your Security Quote via WhatsApp"
+    },
+    "serviceRural": {
+      "eyebrow": "Bridging the Digital Divide",
+      "heroL1": "Empowering",
+      "heroA1": "Rural India",
+      "heroL2": "with",
+      "heroA2": "Digital Innovation",
+      "heroSubtitle": "We bring world-class technology to local businesses, helping you modernize, grow, and create employment opportunities right in your community.",
+      "ctaStart": "Start Your Digital Journey",
+      "viewSolutions": "View Rural Solutions",
+      "valueProps": [
+        {
+          "title": "Business Growth",
+          "desc": "Expand your local market reach to global audiences."
+        },
+        {
+          "title": "Create Jobs",
+          "desc": "Generate local employment through digital operations."
+        },
+        {
+          "title": "Mobile First",
+          "desc": "Solutions designed for smartphones and low-bandwidth areas."
+        },
+        {
+          "title": "Connectivity",
+          "desc": "Tools that work seamlessly even with limited internet."
+        }
+      ],
+      "solutionsTitleLead": "Tailored",
+      "solutionsTitleAccent": "Rural Solutions",
+      "solutionsSub": "Affordable, effective, and easy-to-use technology designed specifically for the needs of rural entrepreneurs.",
+      "solutions": [
+        {
+          "title": "Agri-Tech Platforms",
+          "desc": "Connect farmers directly to markets, manage crops, and predict yields with simple mobile apps.",
+          "features": [
+            "Market Linkage",
+            "Weather Alerts",
+            "Crop Management"
+          ]
+        },
+        {
+          "title": "Local E-Commerce",
+          "desc": "Launch your village store online. Sell handicrafts, produce, and goods to customers nationwide.",
+          "features": [
+            "Easy Shop Setup",
+            "Local Language Support",
+            "WhatsApp Integration"
+          ]
+        },
+        {
+          "title": "Digital Skill Centers",
+          "desc": "Establish local IT training centers to equip youth with modern skills and software knowledge.",
+          "features": [
+            "Curriculum Support",
+            "Remote Training",
+            "Certification"
+          ]
+        }
+      ],
+      "ctaTitle": "Become a Local IT Leader",
+      "ctaDesc": "Partner with Cehpoint to modernize your region. We provide the technology; you provide the local leadership.",
+      "ctaButton": "Partner With Us"
     }
   },
   "themeToggle": {
