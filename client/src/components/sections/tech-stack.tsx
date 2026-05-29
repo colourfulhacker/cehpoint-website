@@ -8,6 +8,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { getTechIcon } from "@/components/shared/tech-icons";
+import { useTranslation } from "react-i18next";
 
 // Map service IDs to display icons
 const ServiceIcons: Record<string, any> = {
@@ -19,6 +20,7 @@ const ServiceIcons: Record<string, any> = {
 };
 
 export default function TechStack() {
+    const { t } = useTranslation();
     const [activeService, setActiveService] = useState("ai-solutions");
 
     // Get current service data
@@ -33,10 +35,10 @@ export default function TechStack() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="mb-20">
                     <h2 className="font-display font-medium text-5xl md:text-7xl mb-6 tracking-tight text-white leading-tight">
-                        Tech Stack
+                        {t("pages.sections.techStackTitle")}
                     </h2>
                     <p className="text-xl text-muted-foreground font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
-                        Enterprise-grade technologies selected for scalability, security, and maintainability.
+                        {t("pages.sections.techStackEyebrow")}
                     </p>
                 </div>
 

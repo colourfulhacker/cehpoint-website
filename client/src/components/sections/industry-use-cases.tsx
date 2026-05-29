@@ -3,8 +3,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, XCircle, ArrowRight, ShoppingCart, Landmark, Stethoscope, Factory, Building, BookOpen, Truck, Scale, Cpu } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function IndustryUseCaseExplorer() {
+    const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState("retail");
 
     const industries = [
@@ -209,10 +211,10 @@ export default function IndustryUseCaseExplorer() {
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="text-center mb-12">
                 <h2 className="font-display font-bold text-3xl md:text-5xl mb-4">
-                    Industry <span className="text-primary">Transformations</span>
+                    {t("pages.sections.useCasesTitle")}
                 </h2>
                 <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                    A deep dive into the specialized AI architectures we build for specific sectors.
+                    {t("pages.sections.useCasesSub")}
                 </p>
             </div>
 

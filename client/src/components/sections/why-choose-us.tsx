@@ -1,6 +1,8 @@
 import { Code, Cpu, Globe, ShieldCheck, Users, TrendingUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function WhyChooseUs() {
+    const { t } = useTranslation();
     const reasons = [
         {
             icon: Cpu,
@@ -39,10 +41,10 @@ export default function WhyChooseUs() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="font-display font-bold text-4xl md:text-6xl mb-6 text-white">
-                        Why Work With Us
+                        {t("pages.sections.whyChooseTitle")}
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                        Technical excellence meets business outcomes.
+                        {t("pages.sections.whyChooseSub")}
                     </p>
                 </div>
 

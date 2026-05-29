@@ -1,5 +1,6 @@
 import { Brain, Bot, TrendingUp, Eye, Cpu, Shield, Target, Code, Activity, ArrowUpRight } from "lucide-react"
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
+import { useTranslation } from "react-i18next"
 
 // Premium Holographic Card Component
 function AISolutionCard({ solution }: { solution: any }) {
@@ -78,6 +79,7 @@ function AISolutionCard({ solution }: { solution: any }) {
 }
 
 export default function AISolutions() {
+  const { t } = useTranslation();
   const aiSolutions = [
     {
       icon: Brain,
@@ -153,10 +155,10 @@ export default function AISolutions() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-20">
           <h2 className="font-display font-medium text-5xl md:text-7xl mb-6 tracking-tight text-white leading-tight">
-            AI Solutions
+            {t("pages.sections.aiSectionTitle")}
           </h2>
           <p className="text-xl text-muted-foreground font-light max-w-2xl leading-relaxed border-l-2 border-primary/20 pl-6">
-            Beyond chatbots - we engineer cognitive architectures that redefine what's possible in your industry.
+            {t("pages.sections.aiSectionSub")}
           </p>
         </div>
 

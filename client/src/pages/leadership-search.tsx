@@ -9,8 +9,10 @@ import { MultiSelect } from "@/components/ui/multi-select";
 import { leadershipData } from "@/data/leadership";
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 
 export default function LeadershipSearch() {
+    const { t } = useTranslation();
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
     const [selectedDepartments, setSelectedDepartments] = useState<string[]>([]);
@@ -96,7 +98,7 @@ export default function LeadershipSearch() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60"
                     >
-                        Leadership Team Search
+                        {t("pages.leadership.title")} <span>{t("pages.leadership.titleAccent")}</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -104,7 +106,7 @@ export default function LeadershipSearch() {
                         transition={{ delay: 0.1 }}
                         className="text-lg text-muted-foreground max-w-2xl mx-auto"
                     >
-                        Find the right expert entirely by Name, Designation, Country, or Department.
+                        {t("pages.leadership.subtitle")}
                     </motion.p>
                 </div>
 

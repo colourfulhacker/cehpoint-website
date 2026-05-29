@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslation } from "react-i18next";
 
 export default function ClientTestimonials() {
+    const { t } = useTranslation();
     const clients = [
         { name: "Cedarguard", contact: "Mr. Anthony", initials: "CG" },
         { name: "Getgrants", contact: "Utkarsh ji", initials: "GG" },
@@ -21,9 +23,9 @@ export default function ClientTestimonials() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(112,66,248,0.05),transparent_70%)]" />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
-                    <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">Trusted by <span className="text-primary">Global Brands</span></h2>
+                    <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">{t("pages.sections.testimonialsTitle")}</h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        We have successfully delivered 500+ projects globally. Here are some of the remarkable partners we've worked with.
+                        {t("pages.sections.testimonialsEyebrow")}
                     </p>
                 </div>
                 
