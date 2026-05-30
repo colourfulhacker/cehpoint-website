@@ -1952,7 +1952,17 @@
       "launchStartupTitle": "Launch Your Startup",
       "launchStartupBtn": "Launch Startup",
       "customQuoteTitle": "Get Custom Quote",
-      "customQuoteBtn": "Get Custom Quote"
+      "customQuoteBtn": "Get Custom Quote",
+      "requestQuote": "Request Quote",
+      "dashPayroll": "Payroll Processing",
+      "dashAutomated": "Automated",
+      "dashSaved": "Saved 40hrs",
+      "dashQueries": "Customer Queries",
+      "dashAiHandled": "AI Handled",
+      "dashActive": "24/7 Active",
+      "dashSales": "Sales Reporting",
+      "dashSync": "Real-time sync",
+      "dashZero": "Zero Errors"
     },
     "xFashionTechRevolution": {
       "back": "Back to Insights",

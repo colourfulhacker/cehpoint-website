@@ -170,10 +170,10 @@ export default function CityServicePage() {
                             <WhatsAppInquiryDialog
                                 appName="Startup Launch"
                                 locationName={cityData.name}
-                                title="Launch Your Startup"
+                                title={t(`${B}.launchStartupTitle`)}
                                 trigger={
                                     <Button className="h-14 px-8 rounded-full text-lg font-bold bg-foreground text-background hover:bg-foreground/90 transition-transform hover:scale-105 shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]">
-                                        <Rocket className="mr-2 w-5 h-5 text-primary" /> Launch Startup
+                                        <Rocket className="mr-2 w-5 h-5 text-primary" /> {t(`${B}.launchStartupBtn`)}
                                     </Button>
                                 }
                             />
@@ -181,10 +181,10 @@ export default function CityServicePage() {
                             <WhatsAppInquiryDialog
                                 appName="Custom Project"
                                 locationName={cityData.name}
-                                title="Get Custom Quote"
+                                title={t(`${B}.customQuoteTitle`)}
                                 trigger={
                                     <Button variant="outline" className="h-14 px-8 rounded-full text-lg font-medium border-foreground/20 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 text-foreground">
-                                        Get Custom Quote
+                                        {t(`${B}.customQuoteBtn`)}
                                     </Button>
                                 }
                             />
@@ -226,15 +226,15 @@ export default function CityServicePage() {
 
                                     <div className="mt-auto pt-6 border-t border-foreground/5">
                                         <div className="flex items-center justify-between mb-4">
-                                            <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">READY TO LAUNCH</span>
-                                            <span className="text-lg font-bold text-foreground">{cityData.currency === 'INR' ? '₹15k' : '$200'}<span className="text-xs font-normal text-muted-foreground">/one-time</span></span>
+                                            <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">{t(`${B}.readyLaunch`)}</span>
+                                            <span className="text-lg font-bold text-foreground">{cityData.currency === 'INR' ? '₹15k' : '$200'}<span className="text-xs font-normal text-muted-foreground">{t(`${B}.oneTime`)}</span></span>
                                         </div>
                                         <WhatsAppInquiryDialog
                                             appName={app.title}
                                             locationName={cityData.name}
                                             trigger={
                                                 <Button className="w-full bg-foreground text-background hover:bg-foreground/90 font-bold rounded-xl">
-                                                    View Demo
+                                                    {t(`${B}.viewDemo`)}
                                                 </Button>
                                             }
                                         />
@@ -301,7 +301,7 @@ export default function CityServicePage() {
                                                                 title={`Connect for ${idea.title}`}
                                                                 trigger={
                                                                     <Button variant="ghost" className="text-foreground hover:text-primary hover:bg-foreground/5 font-bold p-0 h-auto w-full justify-between group-hover:px-2 transition-all">
-                                                                        Get Blueprint <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                                                                        {t(`${B}.getBlueprint`)} <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                                                     </Button>
                                                                 }
                                                             />
@@ -339,8 +339,8 @@ export default function CityServicePage() {
                                         <DollarSign className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg text-foreground">Lowest Cost of Ownership</h4>
-                                        <p className="text-sm text-muted-foreground">One-time payment of {cityData.currency === 'INR' ? '₹15,000' : '$200'}. No monthly royalties.</p>
+                                        <h4 className="font-bold text-lg text-foreground">{t(`${B}.lowCostTitle`)}</h4>
+                                        <p className="text-sm text-muted-foreground">{t(`${B}.lowCostDesc`, { price: cityData.currency === 'INR' ? '₹15,000' : '$200' })}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4 p-4 rounded-2xl bg-foreground/5 border border-foreground/10">
@@ -348,8 +348,8 @@ export default function CityServicePage() {
                                         <Rocket className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg text-foreground">Live in 72 Hours</h4>
-                                        <p className="text-sm text-muted-foreground">Pre-built, tested codebases ready to deploy with your brand.</p>
+                                        <h4 className="font-bold text-lg text-foreground">{t(`${B}.liveTitle`)}</h4>
+                                        <p className="text-sm text-muted-foreground">{t(`${B}.liveDesc`)}</p>
                                     </div>
                                 </div>
                             </div>
@@ -360,33 +360,33 @@ export default function CityServicePage() {
                             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-3xl blur opacity-30" />
                             <div className="relative glass-intense rounded-3xl p-8 border border-foreground/20">
                                 <div className="text-center mb-8">
-                                    <p className="text-sm text-muted-foreground uppercase tracking-widest">Investment Breakdown</p>
+                                    <p className="text-sm text-muted-foreground uppercase tracking-widest">{t(`${B}.investBreakdown`)}</p>
                                     <div className="text-5xl font-bold text-foreground mt-2">{cityData.currency === 'INR' ? '₹15,000' : '$200'}</div>
-                                    <p className="text-green-400 text-sm mt-1">Limited Time Offer in {cityData.name}</p>
+                                    <p className="text-green-400 text-sm mt-1">{t(`${B}.limitedOffer`, { name: cityData.name })}</p>
                                 </div>
 
                                 <div className="space-y-4 mb-8">
                                     <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
-                                        <span className="text-muted-foreground">Android App (PWA)</span>
-                                        <span className="text-foreground font-bold">Included</span>
+                                        <span className="text-muted-foreground">{t(`${B}.androidApp`)}</span>
+                                        <span className="text-foreground font-bold">{t(`${B}.included`)}</span>
                                     </div>
                                     <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
-                                        <span className="text-muted-foreground">Admin Dashboard</span>
-                                        <span className="text-foreground font-bold">Included</span>
+                                        <span className="text-muted-foreground">{t(`${B}.adminDash`)}</span>
+                                        <span className="text-foreground font-bold">{t(`${B}.included`)}</span>
                                     </div>
                                     <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
-                                        <span className="text-muted-foreground">Server Setup</span>
-                                        <span className="text-foreground font-bold">Included</span>
+                                        <span className="text-muted-foreground">{t(`${B}.serverSetup`)}</span>
+                                        <span className="text-foreground font-bold">{t(`${B}.included`)}</span>
                                     </div>
                                     <div className="flex justify-between text-sm py-3 border-b border-foreground/10">
-                                        <span className="text-muted-foreground">Play Store Upload Guide</span>
-                                        <span className="text-foreground font-bold">Included</span>
+                                        <span className="text-muted-foreground">{t(`${B}.playStore`)}</span>
+                                        <span className="text-foreground font-bold">{t(`${B}.included`)}</span>
                                     </div>
                                 </div>
 
                                 <Link href="/services/business-app-catalog">
                                     <Button className="w-full h-12 rounded-xl text-lg font-bold bg-foreground text-background hover:bg-foreground/90">
-                                        Browse All 50+ Apps
+                                        {t(`${B}.browseApps`)}
                                     </Button>
                                 </Link>
                             </div>
@@ -433,7 +433,7 @@ export default function CityServicePage() {
                                         title={`Inquire about ${service.title}`}
                                         trigger={
                                             <Button variant="link" className="text-primary font-bold hover:underline p-0 h-auto justify-start">
-                                                Request Quote &rarr;
+                                                {t(`${B}.requestQuote`)} &rarr;
                                             </Button>
                                         }
                                     />
@@ -487,31 +487,31 @@ export default function CityServicePage() {
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400"><DollarSign className="w-5 h-5" /></div>
                                                 <div>
-                                                    <p className="text-sm text-muted-foreground">Payroll Processing</p>
-                                                    <p className="font-bold text-foreground">Automated</p>
+                                                    <p className="text-sm text-muted-foreground">{t(`${B}.dashPayroll`)}</p>
+                                                    <p className="font-bold text-foreground">{t(`${B}.dashAutomated`)}</p>
                                                 </div>
                                             </div>
-                                            <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">Saved 40hrs</span>
+                                            <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">{t(`${B}.dashSaved`)}</span>
                                         </div>
                                         <div className="flex items-center justify-between p-4 rounded-xl bg-foreground/5 border border-foreground/5">
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400"><Bot className="w-5 h-5" /></div>
                                                 <div>
-                                                    <p className="text-sm text-muted-foreground">Customer Queries</p>
-                                                    <p className="font-bold text-foreground">AI Handled</p>
+                                                    <p className="text-sm text-muted-foreground">{t(`${B}.dashQueries`)}</p>
+                                                    <p className="font-bold text-foreground">{t(`${B}.dashAiHandled`)}</p>
                                                 </div>
                                             </div>
-                                            <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">24/7 Active</span>
+                                            <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">{t(`${B}.dashActive`)}</span>
                                         </div>
                                         <div className="flex items-center justify-between p-4 rounded-xl bg-foreground/5 border border-foreground/5">
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400"><TrendingUp className="w-5 h-5" /></div>
                                                 <div>
-                                                    <p className="text-sm text-muted-foreground">Sales Reporting</p>
-                                                    <p className="font-bold text-foreground">Real-time sync</p>
+                                                    <p className="text-sm text-muted-foreground">{t(`${B}.dashSales`)}</p>
+                                                    <p className="font-bold text-foreground">{t(`${B}.dashSync`)}</p>
                                                 </div>
                                             </div>
-                                            <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">Zero Errors</span>
+                                            <span className="text-xs text-green-400 px-2 py-1 rounded bg-green-500/10">{t(`${B}.dashZero`)}</span>
                                         </div>
                                     </div>
                                 </div>

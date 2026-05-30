@@ -1952,7 +1952,17 @@
       "launchStartupTitle": "আপনার স্টার্টআপ চালু করুন",
       "launchStartupBtn": "স্টার্টআপ চালু করুন",
       "customQuoteTitle": "কাস্টম কোটেশন নিন",
-      "customQuoteBtn": "কাস্টম কোটেশন নিন"
+      "customQuoteBtn": "কাস্টম কোটেশন নিন",
+      "requestQuote": "কোটেশন অনুরোধ করুন",
+      "dashPayroll": "পেরোল প্রসেসিং",
+      "dashAutomated": "স্বয়ংক্রিয়",
+      "dashSaved": "৪০ ঘণ্টা সাশ্রয়",
+      "dashQueries": "গ্রাহক প্রশ্ন",
+      "dashAiHandled": "এআই দ্বারা পরিচালিত",
+      "dashActive": "২৪/৭ সক্রিয়",
+      "dashSales": "সেলস রিপোর্টিং",
+      "dashSync": "রিয়েল-টাইম সিঙ্ক",
+      "dashZero": "শূন্য ত্রুটি"
     },
     "xFashionTechRevolution": {
       "back": "ইনসাইটস-এ ফিরে যান",

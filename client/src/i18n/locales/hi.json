@@ -1952,7 +1952,17 @@
       "launchStartupTitle": "अपना स्टार्टअप लॉन्च करें",
       "launchStartupBtn": "स्टार्टअप लॉन्च करें",
       "customQuoteTitle": "कस्टम कोटेशन प्राप्त करें",
-      "customQuoteBtn": "कस्टम कोटेशन प्राप्त करें"
+      "customQuoteBtn": "कस्टम कोटेशन प्राप्त करें",
+      "requestQuote": "कोटेशन का अनुरोध करें",
+      "dashPayroll": "पेरोल प्रोसेसिंग",
+      "dashAutomated": "स्वचालित",
+      "dashSaved": "40 घंटे बचाए",
+      "dashQueries": "ग्राहक प्रश्न",
+      "dashAiHandled": "एआई द्वारा संभाला",
+      "dashActive": "24/7 सक्रिय",
+      "dashSales": "सेल्स रिपोर्टिंग",
+      "dashSync": "रीयल-टाइम सिंक",
+      "dashZero": "शून्य त्रुटियाँ"
     },
     "xFashionTechRevolution": {
       "back": "इनसाइट्स पर वापस जाएं",
