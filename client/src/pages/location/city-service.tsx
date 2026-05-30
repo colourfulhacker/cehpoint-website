@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin, CheckCircle, CheckCircle2, Globe, Phone, Building2, TrendingUp, DollarSign, Star, Rocket, ShieldCheck, Bot, Code, Cpu, BarChart, Heart, Sun, Home, Video, Book, ShoppingBag, Diamond, Flag, Edit, Camera, Gem, Anchor, Search, Leaf, Calendar, Briefcase, Mic, BookOpen, Snowflake, HardHat, Activity, CloudRain, Circle, Layers, Settings, Calculator, Eye, Smile, Coffee, Send, MessageCircle, ShoppingCart, Music, Map, CreditCard, Lock, Beer, Recycle, Truck, Mountain, Wrench, Bitcoin, Users, Landmark, Utensils, GraduationCap, Palette, Gavel, Scissors, Feather, Car, Ticket, Stethoscope, Smartphone, Database, Cloud, Laptop, ChefHat, Bus, Plane } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import ProjectCostEstimator from "@/components/calculators/project-cost-estimator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
 import { useForm } from "react-hook-form";
@@ -41,6 +42,8 @@ const ICON_MAP: Record<string, any> = {
 };
 
 export default function CityServicePage() {
+    const { t } = useTranslation();
+    const B = "pages.pgCity";
     const [match, params] = useRoute("/location/:city");
 
     if (!match || !params?.city) { return <NotFound />; }
@@ -54,7 +57,7 @@ export default function CityServicePage() {
     // Dynamic Hero Content (fallback to generic if no specific trend)
     // Safe templating: split around the city name and highlight it as a React node (no innerHTML)
     const heroTitle = isDefaultTrend
-        ? <span>Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-500">Empire</span><br /> in {cityData.name}</span>
+        ? <span>{t(`${B}.heroDefPre`)} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-pink-500">{t(`${B}.heroDefAccent`)}</span><br /> {t(`${B}.heroDefIn`)} {cityData.name}</span>
         : (() => {
             const raw = trendData.heroTitle;
             const idx = raw.indexOf(cityData.name);
@@ -69,7 +72,7 @@ export default function CityServicePage() {
         })();
 
     const heroSubtitle = isDefaultTrend
-        ? <span>Don't just run a business. <span className="text-foreground font-medium">Dominate the market.</span> <br /> We provide the technology Top Startups use.</span>
+        ? <span>{t(`${B}.heroSubPre`)} <span className="text-foreground font-medium">{t(`${B}.heroSubAccent`)}</span> <br /> {t(`${B}.heroSubPost`)}</span>
         : trendData.heroSubtitle;
 
     // Get Recommended Apps
@@ -194,13 +197,12 @@ export default function CityServicePage() {
             <section id="business-ideas" className="py-24 relative bg-background">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="text-center mb-16">
-                        <span className="text-primary font-bold tracking-widest uppercase text-sm">Hyper-Local Opportunities</span>
+                        <span className="text-primary font-bold tracking-widest uppercase text-sm">{t(`${B}.oppsEyebrow`)}</span>
                         <h2 className="text-4xl md:text-6xl font-display font-bold mt-2 mb-6">
-                            Top Businesses to Start <br /> in <span className="text-primary">{cityData.name}</span>
+                            {t(`${B}.oppsTitle`)} <br /> {t(`${B}.oppsTitleIn`)} <span className="text-primary">{cityData.name}</span>
                         </h2>
                         <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                            We analyzed the {cityData.name} market and found these high-demand business ideas.
-                            Start yours today for just <strong>₹15,000</strong>.
+                            {t(`${B}.oppsSub`, { name: cityData.name })}
                         </p>
                     </div>
 
@@ -251,12 +253,12 @@ export default function CityServicePage() {
                     <section className="py-24 bg-secondary/20 relative border-t border-border">
                         <div className="max-w-7xl mx-auto px-4">
                             <div className="text-center mb-16">
-                                <span className="text-primary font-bold tracking-widest uppercase text-sm">Tailored For You</span>
+                                <span className="text-primary font-bold tracking-widest uppercase text-sm">{t(`${B}.segEyebrow`)}</span>
                                 <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-foreground">
-                                    Unlock <span className="text-primary">Potential</span>
+                                    {t(`${B}.segTitle`)} <span className="text-primary">{t(`${B}.segAccent`)}</span>
                                 </h2>
                                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-                                    Curated business ideas specifically designed for the key drivers of {cityData.name}'s economy.
+                                    {t(`${B}.segSub`, { name: cityData.name })}
                                 </p>
                             </div>
 
@@ -324,12 +326,11 @@ export default function CityServicePage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div>
                             <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
-                                Why Pay Millions? <br />
-                                <span className="text-muted-foreground">Start Smart.</span>
+                                {t(`${B}.pricePre`)} <br />
+                                <span className="text-muted-foreground">{t(`${B}.priceAccent`)}</span>
                             </h2>
                             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                                Traditional agencies in {cityData.name} charge ₹1 Lakh+ for custom development.
-                                We disrupted this with our <strong>Business App Catalog</strong>.
+                                {t(`${B}.priceDesc`, { name: cityData.name })}
                             </p>
 
                             <div className="space-y-6">
@@ -398,13 +399,12 @@ export default function CityServicePage() {
             <section className="py-24 bg-background relative">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="text-center mb-16">
-                        <span className="text-purple-500 font-bold tracking-widest uppercase text-sm">Beyond Apps</span>
+                        <span className="text-purple-500 font-bold tracking-widest uppercase text-sm">{t(`${B}.beyondApps`)}</span>
                         <h2 className="text-3xl md:text-5xl font-display font-bold mt-2 mb-6 text-foreground">
-                            Complete IT Solutions in {cityData.name}
+                            {t(`${B}.completeIT`, { name: cityData.name })}
                         </h2>
                         <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8">
-                            We don't just build apps. We secure them, scale them, and infuse them with AI.
-                            Our full-stack services are available for enterprises in {cityData.name}.
+                            {t(`${B}.completeITdesc`, { name: cityData.name })}
                         </p>
 
                         {/* Popular Services Tags (SEO Rich) */}
@@ -449,24 +449,18 @@ export default function CityServicePage() {
                             <div>
                                 <div className="inline-flex items-center px-4 py-2 rounded-full glass border border-purple-500/30 mb-6">
                                     <Bot className="w-4 h-4 text-purple-400 mr-2" />
-                                    <span className="text-sm font-bold text-purple-400 tracking-wide uppercase">Business Process Automation</span>
+                                    <span className="text-sm font-bold text-purple-400 tracking-wide uppercase">{t(`${B}.autoEyebrow`)}</span>
                                 </div>
                                 <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 text-foreground leading-tight">
-                                    Automate Your Boring Work. <br />
-                                    <span className="text-muted-foreground">Scale Your Business.</span>
+                                    {t(`${B}.autoTitlePre`)} <br />
+                                    <span className="text-muted-foreground">{t(`${B}.autoAccent`)}</span>
                                 </h2>
                                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                                    Why hire 10 people for data entry when 1 AI Bot can do it 24/7?
-                                    We build custom automation workflows for {cityData.name}'s businesses to reduce costs by 60%.
+                                    {t(`${B}.autoDesc`, { name: cityData.name })}
                                 </p>
 
                                 <ul className="space-y-4 mb-8">
-                                    {[
-                                        "Auto-Invoice Generation from WhatsApp Orders",
-                                        "Customer Service Chatbots for Website",
-                                        "Inventory Sync across Amazon/Flipkart",
-                                        "Automated Lead Follow-ups via Email/SMS"
-                                    ].map((item, i) => (
+                                    {(t(`${B}.autoList`, { returnObjects: true }) as string[]).map((item, i) => (
                                         <li key={i} className="flex items-center text-muted-foreground">
                                             <CheckCircle2 className="w-5 h-5 text-green-500 mr-3" />
                                             {item}
@@ -480,7 +474,7 @@ export default function CityServicePage() {
                                     title="Automate My Business"
                                     trigger={
                                         <Button className="h-12 px-8 rounded-full text-lg font-bold bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-900/20">
-                                            Get Automation Audit <ArrowRight className="ml-2 w-5 h-5" />
+                                            {t(`${B}.autoBtn`)} <ArrowRight className="ml-2 w-5 h-5" />
                                         </Button>
                                     }
                                 />
@@ -530,7 +524,7 @@ export default function CityServicePage() {
             {/* --- TRUST SIGNALS --- */}
             <section className="py-24 bg-background border-t border-border">
                 <div className="max-w-7xl mx-auto px-4 text-center">
-                    <h2 className="text-3xl font-display font-bold mb-12">Trusted by {cityData.name}'s Best</h2>
+                    <h2 className="text-3xl font-display font-bold mb-12">{t(`${B}.trustTitle`, { name: cityData.name })}</h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
                         {/* Abstract Logos */}
                         <div className="flex items-center justify-center gap-2"><Globe className="w-8 h-8" /> <span className="text-xl font-bold">TechCorp</span></div>
@@ -545,10 +539,10 @@ export default function CityServicePage() {
             <section className="py-24 bg-primary text-primary-foreground text-center px-4">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 text-white">
-                        {cityData.name} is Waiting.
+                        {t(`${B}.ctaTitle`, { name: cityData.name })}
                     </h2>
-                    <p className="text-xl text-foreground/90 mb-10 max-w-2xl mx-auto">
-                        Your customers are searching for your service right now. Be the first to launch {cityData.name}'s next big app.
+                    <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                        {t(`${B}.ctaDesc`, { name: cityData.name })}
                     </p>
                     <WhatsAppInquiryDialog
                         appName="Project Inquiry"
@@ -556,7 +550,7 @@ export default function CityServicePage() {
                         title="Start Your Project"
                         trigger={
                             <Button className="h-16 px-12 rounded-full text-xl font-bold bg-white text-primary hover:bg-gray-100 shadow-2xl">
-                                Start My Project Now <ArrowRight className="ml-2 w-6 h-6" />
+                                {t(`${B}.startProject`)} <ArrowRight className="ml-2 w-6 h-6" />
                             </Button>
                         }
                     />
@@ -574,11 +568,11 @@ export default function CityServicePage() {
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
                                 <div>
-                                    <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-2">Nearby cities</p>
-                                    <h2 className="text-3xl md:text-4xl font-display font-bold">Also serving teams across {cityData.country}</h2>
+                                    <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-2">{t(`${B}.nearbyEyebrow`)}</p>
+                                    <h2 className="text-3xl md:text-4xl font-display font-bold">{t(`${B}.nearbyTitle`, { country: cityData.country })}</h2>
                                 </div>
                                 <Link href="/services" className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1">
-                                    See all locations <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                                    {t(`${B}.seeAll`)} <ArrowRight className="w-4 h-4" aria-hidden="true" />
                                 </Link>
                             </div>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
