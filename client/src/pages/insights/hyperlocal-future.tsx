@@ -5,8 +5,10 @@ import { ArrowLeft, Store, Globe, MapPin, ShoppingBag, Calendar, Clock } from "l
 import { Link } from "wouter";
 import { InsightSEO } from "@/components/seo/insight-seo";
 import { formatArticleDate } from "@/lib/date-utils";
+import { useTranslation } from "react-i18next";
 
 export default function HyperlocalFuture() {
+    const { t } = useTranslation();
     return (
         <main className="min-h-screen bg-background pt-24 pb-16">
             <InsightSEO
@@ -19,7 +21,7 @@ export default function HyperlocalFuture() {
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link href="/insights" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4 mb-8 pl-0 hover:pl-2">
-                    <ArrowLeft className="w-4 h-4 mr-2" /> Back to Insights
+                    <ArrowLeft className="w-4 h-4 mr-2" /> {t("pages.xHyperlocalFuture.backToInsights")}
                 </Link>
 
                 <motion.div
@@ -28,75 +30,71 @@ export default function HyperlocalFuture() {
                     transition={{ duration: 0.8 }}
                     className="mb-12"
                 >
-                    <Badge className="mb-4" variant="secondary">Business Strategy</Badge>
+                    <Badge className="mb-4" variant="secondary">{t("pages.xHyperlocalFuture.badge")}</Badge>
                     <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
-                        E-commerce is Dead. <span className="text-gradient">Long Live Hyperlocal.</span>
+                        {t("pages.xHyperlocalFuture.titleLead")} <span className="text-gradient">{t("pages.xHyperlocalFuture.titleHighlight")}</span>
                     </h1>
                     <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-8">
                         <div className="flex items-center">
                             <Store className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Retail Evolution</span>
+                            <span>{t("pages.xHyperlocalFuture.metaCategory")}</span>
                         </div>
                         <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Published: {formatArticleDate("2024-09-03")}</span>
+                            <span>{t("pages.xHyperlocalFuture.publishedLabel")} {formatArticleDate("2024-09-03")}</span>
                         </div>
                         <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-2" aria-hidden="true" />
-                            <span>Updated: September 3, 2024</span>
+                            <span>{t("pages.xHyperlocalFuture.updatedLabel")}</span>
                         </div>
                     </div>
                 </motion.div>
 
                 <article className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-lead:text-foreground prose-strong:text-primary prose-a:text-primary prose-ul:text-foreground prose-li:text-foreground prose-blockquote:text-foreground">
                     <img src="/assets/blog/hyperlocal-hero.png" alt="Hyperlocal Delivery Service" className="w-full h-auto rounded-xl mb-8 shadow-2xl"  decoding="async" fetchPriority="high"/>
-                    <p className="lead text-xl text-foreground font-medium mb-8">
-                        Trying to build the "Next Amazon" is a suicide mission. You cannot compete with their logistics. You cannot compete with their pricing. But you can beat them where they are weakest: <span className="text-primary font-bold">Time.</span>
-                    </p>
+                    <p className="lead text-xl text-foreground font-medium mb-8" dangerouslySetInnerHTML={{ __html: t("pages.xHyperlocalFuture.lead") }} />
 
-                    <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground">The 10-Minute War</h2>
-                    <p className="text-foreground/90">
-                        The modern Indian consumer is impatient. They don't want to wait 2 days for a phone charger. They want it *now*. This shift has killed traditional drop-shipping and birthed the <strong>Hyperlocal Empire</strong>.
-                    </p>
+                    <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground">{t("pages.xHyperlocalFuture.warHeading")}</h2>
+                    <p className="text-foreground/90" dangerouslySetInnerHTML={{ __html: t("pages.xHyperlocalFuture.warBody") }} />
 
                     <div className="my-12 p-8 bg-secondary/10 rounded-2xl border-l-4 border-primary">
                         <h3 className="text-2xl font-bold mb-4 flex items-center text-foreground">
                             <MapPin className="w-6 h-6 mr-3 text-primary" aria-hidden="true" />
-                            Hyperlocal Logistics Engine
+                            {t("pages.xHyperlocalFuture.engineTitle")}
                         </h3>
                         <ul className="text-foreground/90 list-none p-0 space-y-2">
-                            <li>• <strong>Real-time Tracking:</strong> Using <strong>WebSockets</strong> for sub-second rider location updates, providing the "Uber-like" experience customers demand.</li>
-                            <li>• <strong>Smart Zones:</strong> Leveraging <strong>Turf.js</strong> for advanced geofencing, ensuring delivery promises are only made for areas where riders are currently active.</li>
-                            <li>• <strong>Dynamic Dispatch:</strong> Integrated <strong>FCM Push</strong> orchestration that alerts the nearest 3 riders simultaneously, ensuring pickup within 120 seconds.</li>
+                            {(t("pages.xHyperlocalFuture.engineList", { returnObjects: true }) as string[]).map((item, i) => (
+                                <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+                            ))}
                         </ul>
                     </div>
 
-                    <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground">Why Hyperlocal Wins</h2>
+                    <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground">{t("pages.xHyperlocalFuture.winsHeading")}</h2>
                     <div className="grid md:grid-cols-2 gap-8 my-8">
                         <div>
-                            <h4 className="font-bold text-lg text-foreground mb-2">For the Startup (You)</h4>
+                            <h4 className="font-bold text-lg text-foreground mb-2">{t("pages.xHyperlocalFuture.startupHeading")}</h4>
                             <ul className="list-disc pl-4 space-y-2 text-foreground/90">
-                                <li><strong>Zero Inventory:</strong> You don't buy products; you move them.</li>
-                                <li><strong>Low CAC:</strong> Marketing is offline (pamphlets/word of mouth).</li>
-                                <li><strong>High Loyalty:</strong> You are the "community" app.</li>
+                                {(t("pages.xHyperlocalFuture.startupList", { returnObjects: true }) as string[]).map((item, i) => (
+                                    <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+                                ))}
                             </ul>
                         </div>
                         <div>
-                            <h4 className="font-bold text-lg text-foreground mb-2">For the Customer</h4>
+                            <h4 className="font-bold text-lg text-foreground mb-2">{t("pages.xHyperlocalFuture.customerHeading")}</h4>
                             <ul className="list-disc pl-4 space-y-2 text-foreground/90">
-                                <li><strong>Speed:</strong> 15-minute delivery beats 2-day shipping.</li>
-                                <li><strong>Trust:</strong> Buying from "Raju Kirana" feels safer than a random seller.</li>
-                                <li><strong>Easy Returns:</strong> The shop is down the street.</li>
+                                {(t("pages.xHyperlocalFuture.customerList", { returnObjects: true }) as string[]).map((item, i) => (
+                                    <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+                                ))}
                             </ul>
                         </div>
                     </div>
 
-                    <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground">The Tech is Ready</h2>
+                    <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground">{t("pages.xHyperlocalFuture.techHeading")}</h2>
                     <p className="text-foreground/90">
-                        You don't need a team of engineers to build a Blinkit clone. Cehpoint provides the entire Hyperlocal Stack—Customer App, Delivery Partner App, and Store Dashboard—ready to deploy in 48 hours.
+                        {t("pages.xHyperlocalFuture.techBody")}
                     </p>
                     <p className="text-foreground/90 font-bold">
-                        Stop thinking global. Get rich local.
+                        {t("pages.xHyperlocalFuture.techTagline")}
                     </p>
 
                 </article>
@@ -107,9 +105,9 @@ export default function HyperlocalFuture() {
                     viewport={{ once: true }}
                     className="mt-16 text-center"
                 >
-                    <h2 className="text-2xl font-bold mb-6 text-foreground">Launch Your Local Empire</h2>
+                    <h2 className="text-2xl font-bold mb-6 text-foreground">{t("pages.xHyperlocalFuture.ctaHeading")}</h2>
                     <Link href="/services/business-app-catalog" className="inline-flex items-center justify-center rounded-md text-lg font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-lg hover:shadow-xl transform duration-200">
-                        See Hyperlocal App Demos
+                        {t("pages.xHyperlocalFuture.ctaButton")}
                     </Link>
                 </motion.div>
             </div>

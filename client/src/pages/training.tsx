@@ -196,10 +196,12 @@ const premiumTrainings = [
 
 import SEO from "@/components/seo";
 import BreadcrumbSchema from "@/components/seo/breadcrumb-schema";
+import { useTranslation } from "react-i18next";
 
 // ... existing imports
 
 export default function Training() {
+    const { t } = useTranslation();
     const searchString = useSearch();
     const [activeTab, setActiveTab] = useState("entrepreneurs");
     const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -405,7 +407,7 @@ export default function Training() {
                         transition={{ duration: 0.6 }}
                     >
                         <Badge className="mb-6 bg-primary/10 text-primary hover:bg-primary/20 px-4 py-1.5 text-sm border-primary/20 backdrop-blur-md shadow-sm">
-                            {activeTab === "entrepreneurs" ? "Business Growth Hub" : "Student Career Launchpad"}
+                            {activeTab === "entrepreneurs" ? t("pages.pgTraining.heroBadgeEntrepreneurs") : t("pages.pgTraining.heroBadgeStudents")}
                         </Badge>
                     </motion.div>
 
@@ -415,9 +417,9 @@ export default function Training() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
                     >
-                        {activeTab === "entrepreneurs" ? "Solve Real Business Problems" : "Fast-Track Your Career"} <br />
+                        {activeTab === "entrepreneurs" ? t("pages.pgTraining.heroTitleEntrepreneurs") : t("pages.pgTraining.heroTitleStudents")} <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 pb-2">
-                            {activeTab === "entrepreneurs" ? "With Technology" : "With Future Tech"}
+                            {activeTab === "entrepreneurs" ? t("pages.pgTraining.heroTitleAccentEntrepreneurs") : t("pages.pgTraining.heroTitleAccentStudents")}
                         </span>
                     </motion.h1>
 
@@ -428,8 +430,8 @@ export default function Training() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         {activeTab === "entrepreneurs"
-                            ? "From free automation audits to premium hand-holding implementation sessions."
-                            : "Learn high-demand skills like AI and Cloud that colleges miss."}
+                            ? t("pages.pgTraining.heroSubtitleEntrepreneurs")
+                            : t("pages.pgTraining.heroSubtitleStudents")}
                     </motion.p>
 
                     <motion.div
@@ -440,13 +442,13 @@ export default function Training() {
                     >
                         <div className="flex items-center gap-3 px-5 py-2.5 bg-foreground/5 backdrop-blur-sm rounded-2xl border border-foreground/10">
                             <Users className="w-5 h-5 text-blue-400" />
-                            <span className="text-sm font-medium">5000+ Students Trained</span>
+                            <span className="text-sm font-medium">{t("pages.pgTraining.statStudentsTrained")}</span>
                         </div>
                         <div className="flex items-center gap-3 px-5 py-2.5 bg-foreground/5 backdrop-blur-sm rounded-2xl border border-foreground/10">
-                            <span className="text-sm font-medium">4.9/5 Rating</span>
+                            <span className="text-sm font-medium">{t("pages.pgTraining.statRating")}</span>
                         </div>
                         <div className="flex items-center gap-3 px-5 py-2.5 bg-foreground/5 backdrop-blur-sm rounded-2xl border border-foreground/10">
-                            <span className="text-sm font-medium">100% Practical</span>
+                            <span className="text-sm font-medium">{t("pages.pgTraining.statPractical")}</span>
                         </div>
                     </motion.div>
                 </div>
@@ -484,8 +486,8 @@ export default function Training() {
                                 <div className="mb-4 p-3 w-fit rounded-2xl bg-background/50 border border-foreground/5 shadow-inner">
                                     <Monitor className="w-8 h-8 text-yellow-500" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Live Implementation</h3>
-                                <p className="text-muted-foreground leading-relaxed">No passive videos. We build systems together on live calls (Zoom/Meet).</p>
+                                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{t("pages.pgTraining.whyLiveTitle")}</h3>
+                                <p className="text-muted-foreground leading-relaxed">{t("pages.pgTraining.whyLiveDesc")}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -504,13 +506,13 @@ export default function Training() {
                                         value="entrepreneurs"
                                         className="rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white"
                                     >
-                                        For Entrepreneurs
+                                        {t("pages.pgTraining.tabEntrepreneurs")}
                                     </TabsTrigger>
                                     <TabsTrigger
                                         value="students"
                                         className="rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white"
                                     >
-                                        For Students
+                                        {t("pages.pgTraining.tabStudents")}
                                     </TabsTrigger>
                                 </TabsList>
                             </div>
@@ -527,23 +529,22 @@ export default function Training() {
                                 <div className="relative z-10 p-4 md:p-12">
                                     <div className="text-center max-w-4xl mx-auto mb-16 space-y-6">
                                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-yellow-600/20 to-orange-600/20 text-yellow-500 border border-yellow-500/20 text-sm font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(234,179,8,0.2)]">
-                                            <Crown className="w-4 h-4" /> Mr. Banerjee's Masterclass
+                                            <Crown className="w-4 h-4" /> {t("pages.pgTraining.premiumBadge")}
                                         </div>
                                         <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
-                                            Run Your Business <br />
-                                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-500">Like A Tech Giant</span>
+                                            {t("pages.pgTraining.premiumTitle1")} <br />
+                                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-500">{t("pages.pgTraining.premiumTitleAccent")}</span>
                                         </h2>
                                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                                            Don't just survive in 2026. <span className="text-foreground font-semibold underline decoration-yellow-500/50 underline-offset-4">Dominate</span> it.
-                                            Join elite 2-hour problem-solving sessions designed towards one goal: <span className="text-yellow-400 font-bold">Explosive Growth.</span>
+                                            {t("pages.pgTraining.premiumSubtitlePart1")} <span className="text-foreground font-semibold underline decoration-yellow-500/50 underline-offset-4">{t("pages.pgTraining.premiumSubtitleDominate")}</span> {t("pages.pgTraining.premiumSubtitlePart2")} <span className="text-yellow-400 font-bold">{t("pages.pgTraining.premiumSubtitleGrowth")}</span>
                                         </p>
 
                                         <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm font-medium text-muted-foreground">
                                             <div className="flex items-center gap-2 px-3 py-1 bg-foreground/5 rounded-full border border-foreground/10">
-                                                <Globe className="w-4 h-4 text-blue-400" /> Online via Google Meet & Zoom
+                                                <Globe className="w-4 h-4 text-blue-400" /> {t("pages.pgTraining.premiumOnline")}
                                             </div>
                                             <div className="flex items-center gap-2 px-3 py-1 bg-foreground/5 rounded-full border border-foreground/10">
-                                                <Monitor className="w-4 h-4 text-yellow-400" /> Live Implementation
+                                                <Monitor className="w-4 h-4 text-yellow-400" /> {t("pages.pgTraining.premiumLiveImpl")}
                                             </div>
                                         </div>
                                     </div>
@@ -556,10 +557,9 @@ export default function Training() {
                                                 <Star className="w-8 h-8 fill-current" />
                                             </div>
                                             <div className="space-y-2">
-                                                <h3 className="text-2xl font-bold text-foreground">The "Lucky Winner" Bonus</h3>
+                                                <h3 className="text-2xl font-bold text-foreground">{t("pages.pgTraining.bonusTitle")}</h3>
                                                 <p className="text-muted-foreground">
-                                                    Stand a chance to win <span className="text-yellow-400 font-bold">3 Days of Physical Mentorship</span>.
-                                                    Mr. Banerjee will visit your office to restructure your business personally.
+                                                    {t("pages.pgTraining.bonusDescPart1")} <span className="text-yellow-400 font-bold">{t("pages.pgTraining.bonusDescHighlight")}</span>{t("pages.pgTraining.bonusDescPart2")}
                                                 </p>
                                             </div>
                                         </div>
@@ -608,18 +608,18 @@ export default function Training() {
                                                             <div className="bg-red-500/5 p-4 rounded-2xl border border-red-500/10 group-hover:border-red-500/20 transition-colors">
                                                                 <div className="flex items-center gap-2 mb-2">
                                                                     <Target className="w-4 h-4 text-red-400 shrink-0" />
-                                                                    <span className="text-[10px] uppercase font-black text-red-400 tracking-[0.2em]">The Challenge</span>
+                                                                    <span className="text-[10px] uppercase font-black text-red-400 tracking-[0.2em]">{t("pages.pgTraining.challengeLabel")}</span>
                                                                 </div>
-                                                                <p className="text-sm text-muted-foreground leading-relaxed font-medium">{training.problem}</p>
+                                                                <p className="text-sm text-muted-foreground leading-relaxed font-medium">{t(`pages.pgTraining.courses.${training.id}.problem`)}</p>
                                                             </div>
 
                                                             <div className="bg-green-500/5 p-4 rounded-2xl border border-green-500/10 group-hover:border-green-500/20 transition-colors">
                                                                 <div className="flex items-center gap-2 mb-2">
                                                                     <Lightbulb className="w-4 h-4 text-green-400 shrink-0" />
-                                                                    <span className="text-[10px] uppercase font-black text-green-400 tracking-[0.2em]">The Solution</span>
-                                                                    <Badge variant="outline" className="ml-auto text-[10px] bg-green-500/10 border-green-500/20 text-green-400 py-0 h-5">Proven Method</Badge>
+                                                                    <span className="text-[10px] uppercase font-black text-green-400 tracking-[0.2em]">{t("pages.pgTraining.solutionLabel")}</span>
+                                                                    <Badge variant="outline" className="ml-auto text-[10px] bg-green-500/10 border-green-500/20 text-green-400 py-0 h-5">{t("pages.pgTraining.provenMethod")}</Badge>
                                                                 </div>
-                                                                <p className="text-sm text-muted-foreground leading-relaxed font-medium">{training.solution}</p>
+                                                                <p className="text-sm text-muted-foreground leading-relaxed font-medium">{t(`pages.pgTraining.courses.${training.id}.solution`)}</p>
                                                             </div>
                                                         </div>
                                                     </CardHeader>
@@ -628,12 +628,12 @@ export default function Training() {
                                                         <Accordion type="single" collapsible className="w-full">
                                                             <AccordionItem value="item-1" className="border-foreground/5 px-2">
                                                                 <AccordionTrigger className="text-muted-foreground hover:text-foreground py-4 text-sm font-semibold transition-colors">
-                                                                    Curriculum Overview ({training.curriculum.length} Core Modules)
+                                                                    {t("pages.pgTraining.curriculumOverview", { count: training.curriculum.length })}
                                                                 </AccordionTrigger>
                                                                 <AccordionContent>
                                                                     <div className="space-y-5 pt-2 pb-4">
                                                                         <ul className="space-y-3.5">
-                                                                            {training.curriculum.map((item, i) => (
+                                                                            {(t(`pages.pgTraining.courses.${training.id}.curriculum`, { returnObjects: true }) as string[]).map((item, i) => (
                                                                                 <li key={i} className="flex items-start gap-3.5 text-sm text-muted-foreground group/item">
                                                                                     <div className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-yellow-500/60 group-hover/item:bg-yellow-400 transition-colors" />
                                                                                     <span className="leading-snug group-hover/item:text-foreground transition-colors">{item}</span>
@@ -643,10 +643,10 @@ export default function Training() {
                                                                         <div className="bg-gradient-to-br from-yellow-500/10 to-transparent p-5 rounded-2xl border border-yellow-500/20 mt-6 relative overflow-hidden">
                                                                             <div className="absolute top-0 right-0 p-8 bg-yellow-500/5 blur-2xl rounded-full" />
                                                                             <h4 className="text-[10px] font-black text-yellow-500 uppercase tracking-[0.2em] mb-2 flex items-center gap-2 relative z-10">
-                                                                                <ShieldCheck className="w-3.5 h-3.5" /> Guaranteed Outcome
+                                                                                <ShieldCheck className="w-3.5 h-3.5" /> {t("pages.pgTraining.guaranteedOutcome")}
                                                                             </h4>
                                                                             <p className="text-sm text-foreground font-semibold italic relative z-10 leading-relaxed">
-                                                                                "{training.outcome}"
+                                                                                "{t(`pages.pgTraining.courses.${training.id}.outcome`)}"
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -660,7 +660,7 @@ export default function Training() {
                                                             onClick={() => handleOpenBooking("premium", training.title)}
                                                             className="w-full bg-gradient-to-r from-yellow-600 via-orange-600 to-yellow-600 bg-[length:200%_auto] hover:bg-right transition-all duration-500 text-white font-black border-0 py-7 text-lg shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-yellow-500/40 rounded-2xl group"
                                                         >
-                                                            Secure Your Throne <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                                                            {t("pages.pgTraining.secureThrone")} <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                                                         </Button>
                                                     </CardFooter>
                                                 </Card>
@@ -670,7 +670,7 @@ export default function Training() {
 
                                     <div className="mt-16 text-center border-t border-foreground/10 pt-8">
                                         <p className="text-muted-foreground text-sm">
-                                            * Prices are subject to increase. Sessions are conducted via Google Meet/Zoom upon booking confirmation.
+                                            {t("pages.pgTraining.pricesNote")}
                                         </p>
                                     </div>
                                 </div>
@@ -681,19 +681,18 @@ export default function Training() {
                                 <div className="space-y-6">
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium">
                                         <Rocket className="w-4 h-4" />
-                                        Free Starter Options
+                                        {t("pages.pgTraining.freeStarterBadge")}
                                     </div>
-                                    <h2 className="text-3xl font-bold">Free 40-Min Power Sessions</h2>
+                                    <h2 className="text-3xl font-bold">{t("pages.pgTraining.freeSessionsTitle")}</h2>
                                     <p className="text-muted-foreground text-lg">
-                                        Not ready for the Masterclass? Start with our free sessions to understand the basics of automation and AI.
-                                        Limited to one session per business.
+                                        {t("pages.pgTraining.freeSessionsDesc")}
                                     </p>
                                     <ul className="space-y-4">
                                         {[
-                                            "Basic Process Audit",
-                                            "Intro to AI Tools",
-                                            "Digital Marketing Basics",
-                                            "Customer Journey Mapping"
+                                            t("pages.pgTraining.freeItem1"),
+                                            t("pages.pgTraining.freeItem2"),
+                                            t("pages.pgTraining.freeItem3"),
+                                            t("pages.pgTraining.freeItem4")
                                         ].map((item, i) => (
                                             <li key={i} className="flex items-center gap-3">
                                                 <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0" />
@@ -706,7 +705,7 @@ export default function Training() {
                                         variant="outline"
                                         className="w-full sm:w-auto px-8 py-6 text-lg border-primary text-primary hover:bg-primary/5"
                                     >
-                                        Book Free Session <ArrowRight className="w-5 h-5 ml-2" />
+                                        {t("pages.pgTraining.bookFreeSession")} <ArrowRight className="w-5 h-5 ml-2" />
                                     </Button>
                                 </div>
                                 <div className="grid grid-cols-1 gap-6">
@@ -714,11 +713,11 @@ export default function Training() {
                                         <CardHeader>
                                             <CardTitle className="flex items-center gap-2 text-blue-400">
                                                 <Clock className="w-5 h-5" />
-                                                Quick & Effective
-                                                <Badge variant="secondary" className="ml-2 bg-green-500/10 text-green-400 border-green-500/20">Free</Badge>
+                                                {t("pages.pgTraining.quickEffectiveTitle")}
+                                                <Badge variant="secondary" className="ml-2 bg-green-500/10 text-green-400 border-green-500/20">{t("pages.pgTraining.freeBadge")}</Badge>
                                             </CardTitle>
                                             <CardDescription>
-                                                Concise, actionable training with no fluff. Get the skills you need and get back to business.
+                                                {t("pages.pgTraining.quickEffectiveDesc")}
                                             </CardDescription>
                                         </CardHeader>
                                     </Card>
@@ -726,10 +725,10 @@ export default function Training() {
                                         <CardHeader>
                                             <CardTitle className="flex items-center gap-2 text-blue-400">
                                                 <TrendingUp className="w-5 h-5" />
-                                                ROI Focused
+                                                {t("pages.pgTraining.roiTitle")}
                                             </CardTitle>
                                             <CardDescription>
-                                                Every session is designed to provide immediate value and return on investment for your company.
+                                                {t("pages.pgTraining.roiDesc")}
                                             </CardDescription>
                                         </CardHeader>
                                     </Card>
@@ -745,10 +744,10 @@ export default function Training() {
                                         <CardHeader>
                                             <CardTitle className="flex items-center gap-2 text-purple-400">
                                                 <BrainCircuit className="w-5 h-5" />
-                                                Industry-Ready Skills
+                                                {t("pages.pgTraining.industryReadyTitle")}
                                             </CardTitle>
                                             <CardDescription>
-                                                Learn the exact technologies and frameworks top companies are using right now.
+                                                {t("pages.pgTraining.industryReadyDesc")}
                                             </CardDescription>
                                         </CardHeader>
                                     </Card>
@@ -756,10 +755,10 @@ export default function Training() {
                                         <CardHeader>
                                             <CardTitle className="flex items-center gap-2 text-purple-400">
                                                 <Users className="w-5 h-5" />
-                                                Internship Opportunities
+                                                {t("pages.pgTraining.internshipTitle")}
                                             </CardTitle>
                                             <CardDescription>
-                                                Top performers get direct access to internship interviews and career mentorship.
+                                                {t("pages.pgTraining.internshipDesc")}
                                             </CardDescription>
                                         </CardHeader>
                                     </Card>
@@ -767,11 +766,11 @@ export default function Training() {
                                         <CardHeader>
                                             <CardTitle className="flex items-center gap-2 text-purple-400">
                                                 <Clock className="w-5 h-5" />
-                                                40-Min Free Training
-                                                <Badge variant="secondary" className="ml-2 bg-green-500/10 text-green-400 border-green-500/20">Free</Badge>
+                                                {t("pages.pgTraining.freeTrainingTitle")}
+                                                <Badge variant="secondary" className="ml-2 bg-green-500/10 text-green-400 border-green-500/20">{t("pages.pgTraining.freeBadge")}</Badge>
                                             </CardTitle>
                                             <CardDescription>
-                                                Join our free sessions to learn high-demand skills without any financial barrier.
+                                                {t("pages.pgTraining.freeTrainingDesc")}
                                             </CardDescription>
                                         </CardHeader>
                                     </Card>
@@ -779,18 +778,18 @@ export default function Training() {
                                 <div className="space-y-6 order-1 md:order-2">
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-sm font-medium">
                                         <GraduationCap className="w-4 h-4" />
-                                        Future Tech & Internships
+                                        {t("pages.pgTraining.futureTechBadge")}
                                     </div>
-                                    <h2 className="text-3xl font-bold">Master Future Technologies</h2>
+                                    <h2 className="text-3xl font-bold">{t("pages.pgTraining.masterFutureTitle")}</h2>
                                     <p className="text-muted-foreground text-lg">
-                                        Stay ahead of the curve. Learn about the latest trends in AI, Cyber Security, and Cloud Computing that colleges don't teach you yet.
+                                        {t("pages.pgTraining.masterFutureDesc")}
                                     </p>
                                     <ul className="space-y-4">
                                         {[
-                                            "Generative AI & LLMs",
-                                            "Cyber Security Essentials",
-                                            "Modern Web Development",
-                                            "Cloud Infrastructure Patterns"
+                                            t("pages.pgTraining.studentItem1"),
+                                            t("pages.pgTraining.studentItem2"),
+                                            t("pages.pgTraining.studentItem3"),
+                                            t("pages.pgTraining.studentItem4")
                                         ].map((item, i) => (
                                             <li key={i} className="flex items-center gap-3">
                                                 <CheckCircle2 className="w-5 h-5 text-purple-400 flex-shrink-0" />
@@ -802,7 +801,7 @@ export default function Training() {
                                         onClick={() => handleOpenBooking("student")}
                                         className="btn-primary-purple w-full sm:w-auto px-8 py-6 text-lg bg-purple-600 hover:bg-purple-700"
                                     >
-                                        Join Next Cohort <BookOpen className="w-5 h-5 ml-2" />
+                                        {t("pages.pgTraining.joinNextCohort")} <BookOpen className="w-5 h-5 ml-2" />
                                     </Button>
                                 </div>
                             </div>
@@ -816,9 +815,9 @@ export default function Training() {
                 <DialogContent className="sm:max-w-[500px] glass-intense border-foreground/10">
                     <DialogHeader>
                         <DialogTitle>
-                            {bookingType === 'entrepreneur' ? 'Book Business Growth Session' :
-                                bookingType === 'premium' ? 'Secure Your Masterclass Seat' :
-                                    'Apply for Student Cohort'}
+                            {bookingType === 'entrepreneur' ? t("pages.pgTraining.dialogTitleEntrepreneur") :
+                                bookingType === 'premium' ? t("pages.pgTraining.dialogTitlePremium") :
+                                    t("pages.pgTraining.dialogTitleStudent")}
                         </DialogTitle>
                         <DialogDescription>
                             {bookingType === 'premium' ? (
@@ -826,54 +825,54 @@ export default function Training() {
                                     {selectedPremiumTraining}
                                 </span>
                             ) : bookingType === 'entrepreneur'
-                                ? 'Fill in your details to book a 1-on-1 session. Sessions are 40 minutes.'
-                                : 'Join our next training batch. Limited spots available.'}
+                                ? t("pages.pgTraining.dialogDescEntrepreneur")
+                                : t("pages.pgTraining.dialogDescStudent")}
                         </DialogDescription>
                     </DialogHeader>
 
                     <form onSubmit={handleWhatsAppRedirect} className="space-y-4 mt-4">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2 col-span-2">
-                                <Label htmlFor="name">Full Name</Label>
-                                <Input id="name" name="name" required value={formData.name} onChange={handleInputChange} placeholder="John Doe" />
+                                <Label htmlFor="name">{t("pages.pgTraining.labelFullName")}</Label>
+                                <Input id="name" name="name" required value={formData.name} onChange={handleInputChange} placeholder={t("pages.pgTraining.phName")} />
                             </div>
 
                             <div className="space-y-2 col-span-1">
-                                <Label htmlFor="phone">Phone Number</Label>
-                                <Input id="phone" name="phone" required value={formData.phone} onChange={handleInputChange} placeholder="+91..." />
+                                <Label htmlFor="phone">{t("pages.pgTraining.labelPhone")}</Label>
+                                <Input id="phone" name="phone" required value={formData.phone} onChange={handleInputChange} placeholder={t("pages.pgTraining.phPhone")} />
                             </div>
 
                             <div className="space-y-2 col-span-1">
-                                <Label htmlFor="email">Email</Label>
-                                <Input id="email" name="email" type="email" required value={formData.email} onChange={handleInputChange} placeholder="john@example.com" />
+                                <Label htmlFor="email">{t("pages.pgTraining.labelEmail")}</Label>
+                                <Input id="email" name="email" type="email" required value={formData.email} onChange={handleInputChange} placeholder={t("pages.pgTraining.phEmail")} />
                             </div>
 
                             {(bookingType === 'entrepreneur' || bookingType === 'premium') ? (
                                 <>
                                     <div className="space-y-2 col-span-2">
-                                        <Label htmlFor="companyName">Company Name</Label>
-                                        <Input id="companyName" name="companyName" required value={formData.companyName} onChange={handleInputChange} placeholder="Acme Inc." />
+                                        <Label htmlFor="companyName">{t("pages.pgTraining.labelCompanyName")}</Label>
+                                        <Input id="companyName" name="companyName" required value={formData.companyName} onChange={handleInputChange} placeholder={t("pages.pgTraining.phCompany")} />
                                     </div>
                                     {bookingType !== 'premium' && (
                                         <div className="space-y-2 col-span-2">
-                                            <Label htmlFor="industry">Industry</Label>
-                                            <Input id="industry" name="industry" required value={formData.industry} onChange={handleInputChange} placeholder="Retail, Tech, etc." />
+                                            <Label htmlFor="industry">{t("pages.pgTraining.labelIndustry")}</Label>
+                                            <Input id="industry" name="industry" required value={formData.industry} onChange={handleInputChange} placeholder={t("pages.pgTraining.phIndustry")} />
                                         </div>
                                     )}
                                 </>
                             ) : (
                                 <>
                                     <div className="space-y-2 col-span-2">
-                                        <Label htmlFor="collegeName">College / University</Label>
-                                        <Input id="collegeName" name="collegeName" required value={formData.collegeName} onChange={handleInputChange} placeholder="University Name" />
+                                        <Label htmlFor="collegeName">{t("pages.pgTraining.labelCollege")}</Label>
+                                        <Input id="collegeName" name="collegeName" required value={formData.collegeName} onChange={handleInputChange} placeholder={t("pages.pgTraining.phCollege")} />
                                     </div>
                                     <div className="space-y-2 col-span-1">
-                                        <Label htmlFor="yearOfStudy">Year</Label>
-                                        <Input id="yearOfStudy" name="yearOfStudy" required value={formData.yearOfStudy} onChange={handleInputChange} placeholder="e.g. 3rd Year" />
+                                        <Label htmlFor="yearOfStudy">{t("pages.pgTraining.labelYear")}</Label>
+                                        <Input id="yearOfStudy" name="yearOfStudy" required value={formData.yearOfStudy} onChange={handleInputChange} placeholder={t("pages.pgTraining.phYear")} />
                                     </div>
                                     <div className="space-y-2 col-span-1">
-                                        <Label htmlFor="areaOfInterest">Interest</Label>
-                                        <Input id="areaOfInterest" name="areaOfInterest" required value={formData.areaOfInterest} onChange={handleInputChange} placeholder="AI, Web, etc." />
+                                        <Label htmlFor="areaOfInterest">{t("pages.pgTraining.labelInterest")}</Label>
+                                        <Input id="areaOfInterest" name="areaOfInterest" required value={formData.areaOfInterest} onChange={handleInputChange} placeholder={t("pages.pgTraining.phInterest")} />
                                     </div>
                                 </>
                             )}
@@ -881,11 +880,11 @@ export default function Training() {
 
                         <Button type="submit" className={`w-full font-bold py-6 text-lg mt-6 text-white ${bookingType === 'premium' ? 'bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500' : 'btn-primary'}`}>
                             <MessageCircle className="w-5 h-5 mr-2" />
-                            {bookingType === 'premium' ? 'Confirm & Get Payment Link' : 'Book via WhatsApp'}
+                            {bookingType === 'premium' ? t("pages.pgTraining.submitPremium") : t("pages.pgTraining.submitDefault")}
                         </Button>
                         {bookingType === 'premium' && (
                             <p className="text-xs text-center text-muted-foreground mt-2">
-                                Mr. Banerjee or his team will verify your slot immediately on WhatsApp.
+                                {t("pages.pgTraining.premiumVerifyNote")}
                             </p>
                         )}
                     </form>
@@ -893,12 +892,12 @@ export default function Training() {
             </Dialog>
 
             <RelatedPrograms
-                heading="Pair our training with the right program"
-                description="What graduates pick next."
+                heading={t("pages.pgTraining.relatedHeading")}
+                description={t("pages.pgTraining.relatedDescription")}
                 programs={[
-                    { href: "/ai-in-real-life", label: "AI in Real Life", description: "Six-week applied AI program — practical case studies from healthcare, fintech, and operations." },
-                    { href: "/ai-solutions", label: "Enterprise AI Solutions", description: "Production AI, RAG, computer vision — engineered, audited, and operated by us." },
-                    { href: "/services/business-app-catalog", label: "Business App Catalog", description: "50+ ready-to-launch business apps with the skills you just learned." },
+                    { href: "/ai-in-real-life", label: t("pages.pgTraining.relatedAiLifeLabel"), description: t("pages.pgTraining.relatedAiLifeDesc") },
+                    { href: "/ai-solutions", label: t("pages.pgTraining.relatedAiSolLabel"), description: t("pages.pgTraining.relatedAiSolDesc") },
+                    { href: "/services/business-app-catalog", label: t("pages.pgTraining.relatedCatalogLabel"), description: t("pages.pgTraining.relatedCatalogDesc") },
                 ]}
             />
         </div>
