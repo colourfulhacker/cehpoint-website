@@ -33,11 +33,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     try {
         const { message, history, location, conversationTurn } = req.body || {};
-        const apiKey = process.env.OPENROUTER_API_KEY?.trim();
-        const model = process.env.OPENROUTER_MODEL || "openrouter/free";
+        const apiUrl = process.env.CEHPOINT_AI_URL || "https://ai-api.cehpoint.co.in/v1/chat/completions";
+        const model = process.env.CEHPOINT_AI_MODEL || "cehpoint-ai";
 
         if (!message) return res.status(400).json({ error: 'Message is required' });
-        if (!apiKey) return res.status(500).json({ error: 'Server configuration error: OPENROUTER_API_KEY is missing' });
 
         const context = `${SYSTEM_PROMPT}
         Current Page Context: ${location || "Home"}
@@ -53,30 +52,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             { role: "user", content: message }
         ];
 
-        console.log(`[OPENROUTER-DEBUG] Calling ${model}...`);
+        console.log(`[CEHPOINT-AI] Calling ${model} at ${apiUrl}...`);
 
-        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        const response = await fetch(apiUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${apiKey}`,
             },
             body: JSON.stringify({
                 model: model,
                 messages: messages,
                 temperature: 0.2,
-                top_p: 0.7,
                 max_tokens: 2048,
                 stream: true,
-                reasoning: {
-                    enabled: true
-                }
             }),
         });
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`OpenRouter API responded with ${response.status}: ${errorText}`);
+            throw new Error(`Cehpoint AI API responded with ${response.status}: ${errorText}`);
         }
 
         // Set up streaming response to client
@@ -104,7 +98,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                         if (!jsonString) continue;
                         
                         const json = JSON.parse(jsonString);
-                        const content = json.choices[0]?.delta?.content || "";
+                        const choice = json.choices?.[0];
+                        // OpenAI-compatible streams use delta.content; fall back to message.content
+                        const content = choice?.delta?.content || choice?.message?.content || "";
                         if (content) {
                             res.write(content);
                         }
