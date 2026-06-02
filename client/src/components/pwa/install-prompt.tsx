@@ -9,10 +9,19 @@ interface BeforeInstallPromptEvent extends Event {
 
 const DISMISS_KEY = "cehpoint-install-dismissed";
 
+/** True only on mobile/tablet devices — never on desktop computers. */
+function isMobileDevice(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const uaData = (navigator as Navigator & { userAgentData?: { mobile?: boolean } }).userAgentData;
+  if (typeof uaData?.mobile === "boolean") return uaData.mobile;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 /**
- * Lightweight "Add to Home Screen" prompt. Appears only when the browser
- * fires `beforeinstallprompt` (Android/desktop Chromium) and the user hasn't
- * dismissed it. iOS Safari has no such event, so nothing is shown there.
+ * Lightweight "Add to Home Screen" prompt. Appears only on mobile/tablet
+ * devices when the browser fires `beforeinstallprompt` (Android Chromium) and
+ * the user hasn't dismissed it. It is intentionally hidden on desktop
+ * computers, and iOS Safari has no such event so nothing is shown there.
  */
 export default function InstallPrompt() {
   const { t } = useTranslation();
@@ -21,6 +30,8 @@ export default function InstallPrompt() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    // Desktop/computer web — never show; this prompt is phone-only.
+    if (!isMobileDevice()) return;
     // Already installed (standalone) — never show.
     if (window.matchMedia("(display-mode: standalone)").matches) return;
     try {
